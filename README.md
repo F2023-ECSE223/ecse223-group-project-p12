@@ -1,7 +1,5 @@
 HOLA THIS IS TAYBA
-
-Hola this is Julia
-
 HELLOOOOO
-
+Hiiiii XX chromosome
+Hola this is Julia
 Émilia is finally heeere
