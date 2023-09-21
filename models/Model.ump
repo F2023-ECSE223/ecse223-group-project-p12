@@ -1,0 +1,184 @@
+class AssetPlus
+{
+  UserAccount currentUser;
+  1 <@>- 1..* UserAccount;
+  1 <@>- * MaintenanceTicket;
+  1 <@>- * AssetType;
+
+  
+String login(String email, String password){
+    //check list of UserAccounts
+    //assign currentUser to user 
+    // or say account does not exist
+	}
+  String logout(){
+    //assign CurrentUser to null
+	}
+}
+
+class UserAccount
+{
+  immutable unique String email;
+  String password;
+  lazy String name;
+  lazy String phoneNumber;
+}
+
+class Manager
+{
+  isA UserAccount;
+  
+}
+
+class Employee
+{
+  isA UserAccount;
+  
+}
+
+class Guest
+{
+ 	isA UserAccount;
+}
+
+class HotelAsset
+{
+  unique int number;
+  Date purshaseDate;
+  * -- 1 Location;
+  1 -- * MaintenanceTicket maintenanceHistory;
+}
+
+class AssetType 
+{ <<abst
+  unique String name;
+  int lifespan;
+1 <@>- * HotelAsset;
+}
+
+class MaintenanceTicket
+{
+  unique int ticketNumber;
+  String description;
+  Date dateCreated;
+  Date dateAssigned;
+  PriorityLevel priority;
+  State state;
+  TimeEstimate timeEstimate;
+  boolean approvalRequired;
+}
+
+class Note
+{ 
+  UserAccount author;
+  String text;
+  Date dateCreated; 
+  * -<@> 1 MaintenanceTicket;
+}
+
+class Image
+{ 
+  String url;
+  * -<@> 1 MaintenanceTicket;
+}
+
+class Location
+{
+  int floor;
+  int room;
+}
+
+enum PriorityLevel
+{
+  low,
+  normal,
+  urgent
+}
+
+enum TimeEstimate
+{
+  lessThanOneDay,
+  oneToThreeDays,
+  threeToSevenDays,
+  oneToThreeWeeks,
+  moreThanThreeWeeks
+}
+
+enum State
+{
+  open,
+  closed,
+  resolved
+}
+
+
+namespace -;
+
+
+class AssetPlus
+{
+  position 472 41 109 40;
+  position.association AssetPlus__UserAccount 101,56 72,0;
+  position.association AssetPlus__AssetType 0,10 110,10;
+  position.association AssetPlus__MaintenanceTicket 30,60 216,93;
+}
+
+class UserAccount
+{
+  position 541 156 149.109 103.5;
+}
+
+class HotelAsset
+{
+  position 218 134 109 87.8;
+  position.association HotelAsset__Location 0,55 110,11;
+  position.association HotelAsset__Type 0,50 114,56;
+  position.association HotelAsset__MaintenanceTicket:maintenanceHistory 70,72 96,0;
+}
+
+class Location
+{
+  position 12 183 109 71.5;
+}
+
+class MaintenanceTicket
+{
+  position 193 297 214.609 182.367;
+  position.association HotelAsset__MaintenanceTicket 2,0 0,10;
+}
+
+class Note
+{
+  position 3 333 143.906 87.5;
+  position.association MaintenanceTicket__Note 145,49 0,69;
+}
+
+class Image
+{
+  position 39 494 109 55.5;
+  position.association Image__MaintenanceTicket 109,0 77,182;
+}
+
+class Manager
+{
+  position 462 317 109 39.5;
+}
+
+class Employee
+{
+  position 585 315 109 39.5;
+}
+
+class Guest
+{
+  position 711 314 109 39.5;
+}
+
+namespace -;
+
+
+class AssetType
+{
+  position 34 40 109 55.4;
+  position.association AssetType__HotelAsset 114,67 0,10;
+}//$?[End_of_model]$?
