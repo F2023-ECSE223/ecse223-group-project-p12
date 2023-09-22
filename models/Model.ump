@@ -4,23 +4,13 @@ class AssetPlus
   1 <@>- 1..* UserAccount;
   1 <@>- * MaintenanceTicket;
   1 <@>- * AssetType;
-
-  
-String login(String email, String password){
-    //check list of UserAccounts
-    //assign currentUser to user 
-    // or say account does not exist
-	}
-  String logout(){
-    //assign CurrentUser to null
-	}
 }
 
 class UserAccount
 {
   immutable unique String email;
   String password;
-  lazy String name;
+  lazy  email;
   lazy String phoneNumber;
 }
 
@@ -120,12 +110,12 @@ class AssetPlus
   position 472 41 109 40;
   position.association AssetPlus__UserAccount 101,56 72,0;
   position.association AssetPlus__AssetType 0,10 110,10;
-  position.association AssetPlus__MaintenanceTicket 30,60 216,93;
+  position.association AssetPlus__MaintenanceTicket 30,60 216,91;
 }
 
 class UserAccount
 {
-  position 541 156 149.109 103.5;
+  position 541 156 170.086 94.8672;
 }
 
 class HotelAsset
@@ -156,7 +146,7 @@ class Note
 class Image
 {
   position 39 494 109 55.5;
-  position.association Image__MaintenanceTicket 109,0 77,182;
+  position.association Image__MaintenanceTicket 109,0 71,182;
 }
 
 class Manager
@@ -181,4 +171,4 @@ class AssetType
 {
   position 34 40 109 55.4;
   position.association AssetType__HotelAsset 114,67 0,10;
-}//$?[End_of_model]$?
+}
