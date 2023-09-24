@@ -1,97 +1,105 @@
 class AssetPlus
 {
-  UserAccount currentUser;
-  1 <@>- 1..* UserAccount;
+  1 <@>- * User;
   1 <@>- * MaintenanceTicket;
   1 <@>- * AssetType;
 }
 
-class UserAccount
+class User
 {
-  immutable unique String email;
-  String password;
-  lazy  email;
-  lazy String phoneNumber;
+  abstract;
+  unique immutable email;
+  password;
+  lazy name;
+  lazy phoneNumber;
+  1 -- * MaintenanceTicket;
 }
 
 class Manager
 {
-  isA UserAccount;
-  
+  isA User;
+  1 assignsTicket -- * AssignedTicket assignedTickets;
+  0..1 -- 1 AssignedTicket isAssigned;
 }
 
 class Employee
 {
-  isA UserAccount;
+  isA User;
+  0..1 -- 1 AssignedTicket isAssigned;
   
 }
 
 class Guest
 {
- 	isA UserAccount;
+ 	isA User;
 }
 
 class HotelAsset
 {
-  unique int number;
-  Date purshaseDate;
-  * -- 1 Location;
+  autounique number;
+  Date purchaseDate;
   1 -- * MaintenanceTicket maintenanceHistory;
 }
 
 class AssetType 
-{ <<abst
-  unique String name;
-  int lifespan;
-1 <@>- * HotelAsset;
+{ 
+  unique name;
+  Integer lifespan;
+  1 <@>- * HotelAsset;
 }
 
 class MaintenanceTicket
 {
-  unique int ticketNumber;
-  String description;
+  autounique ticketNumber;
+  description;
   Date dateCreated;
-  Date dateAssigned;
-  PriorityLevel priority;
   State state;
+  boolean isApprovalRequired;
+}
+
+class AssignedTicket
+{
+  isA MaintenanceTicket;
+  Date dateAssigned;
   TimeEstimate timeEstimate;
-  boolean approvalRequired;
+  1 <@>- * Note;
+  1 <@>- * Image;
+  PriorityLevel priority;
 }
 
 class Note
 { 
-  UserAccount author;
-  String text;
+  User author;
+  text;
   Date dateCreated; 
-  * -<@> 1 MaintenanceTicket;
 }
 
 class Image
 { 
-  String url;
-  * -<@> 1 MaintenanceTicket;
+  url;
 }
 
 class Location
 {
-  int floor;
-  int room;
+  Integer floor;
+  Integer room;
+  1 -- * HotelAsset;
 }
 
 enum PriorityLevel
 {
-  low,
-  normal,
-  urgent
+  URGENT,
+  NORMAL,
+  LOW
 }
 
 enum TimeEstimate
 {
-  lessThanOneDay,
-  oneToThreeDays,
-  threeToSevenDays,
-  oneToThreeWeeks,
-  moreThanThreeWeeks
+  LESS_THAN_A_DAY,
+  ONE_TO_THREE_DAYS,
+  THREE_TO_SEVEN_DAYS,
+  ONE_TO_THREE_WEEKS,
+  THREE_PLUS_WEEKS
 }
 
 enum State
@@ -102,73 +110,3 @@ enum State
 }
 
 
-namespace -;
-
-
-class AssetPlus
-{
-  position 472 41 109 40;
-  position.association AssetPlus__UserAccount 101,56 72,0;
-  position.association AssetPlus__AssetType 0,10 110,10;
-  position.association AssetPlus__MaintenanceTicket 30,60 216,91;
-}
-
-class UserAccount
-{
-  position 541 156 170.086 94.8672;
-}
-
-class HotelAsset
-{
-  position 218 134 109 87.8;
-  position.association HotelAsset__Location 0,55 110,11;
-  position.association HotelAsset__Type 0,50 114,56;
-  position.association HotelAsset__MaintenanceTicket:maintenanceHistory 70,72 96,0;
-}
-
-class Location
-{
-  position 12 183 109 71.5;
-}
-
-class MaintenanceTicket
-{
-  position 193 297 214.609 182.367;
-  position.association HotelAsset__MaintenanceTicket 2,0 0,10;
-}
-
-class Note
-{
-  position 3 333 143.906 87.5;
-  position.association MaintenanceTicket__Note 145,49 0,69;
-}
-
-class Image
-{
-  position 39 494 109 55.5;
-  position.association Image__MaintenanceTicket 109,0 71,182;
-}
-
-class Manager
-{
-  position 462 317 109 39.5;
-}
-
-class Employee
-{
-  position 585 315 109 39.5;
-}
-
-class Guest
-{
-  position 711 314 109 39.5;
-}
-
-namespace -;
-
-
-class AssetType
-{
-  position 34 40 109 55.4;
-  position.association AssetType__HotelAsset 114,67 0,10;
-}
