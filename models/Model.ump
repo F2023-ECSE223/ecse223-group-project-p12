@@ -110,3 +110,79 @@ enum State
 }
 
 
+//$?[End_of_model]$?
+
+namespace -;
+
+
+class AssignedTicket
+{
+  position 230 316 214.609 94.8672;
+  position.association AssignedTicket__Note 0,0 150,21;
+  position.association AssignedTicket__Image 130,95 100,0;
+}
+
+class AssetPlus
+{
+  position 276 27 109 42.3672;
+  position.association AssetPlus__MaintenanceTicket 61,42 105,0;
+  position.association AssetPlus__AssetType 0,8 137,1;
+  position.association AssetPlus__User 110,28 0,5;
+}
+
+class User
+{
+  position 528 24 170.086 128.867;
+  position.association MaintenanceTicket__User 0,85 217,23;
+}
+
+class Manager
+{
+  position 520 250 109 42.3672;
+  position.association AssignedTicket:assignedTickets__Manager:assignsTicket 0,0 209,0;
+  position.association AssignedTicket:isAssigned__Manager 76,42 216,43;
+}
+
+class Employee
+{
+  position 609 433 109 42.3672;
+  position.association AssignedTicket:isAssigned__Employee 0,36 216,88;
+}
+
+class Guest
+{
+  position 764 209 109 42.3672;
+}
+
+class HotelAsset
+{
+  position 30 169 158.758 77.3672;
+  position.association HotelAsset__MaintenanceTicket:maintenanceHistory 153,0 0,0;
+}
+
+class AssetType
+{
+  position 71 29 135.922 77.3672;
+  position.association AssetType__HotelAsset 0,71 5,0;
+}
+
+class MaintenanceTicket
+{
+  position 234 125 216.156 129.867;
+}
+
+class Note
+{
+  position 21 386 148.531 94.8672;
+}
+
+class Image
+{
+  position 262 494 109 59.8672;
+}
+
+class Location
+{
+  position 38 271 119.125 77.3672;
+  position.association HotelAsset__Location 33,0 42,77;
+}
