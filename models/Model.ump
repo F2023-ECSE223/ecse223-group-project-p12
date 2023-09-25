@@ -52,7 +52,7 @@ class MaintenanceTicket
 {
   autounique ticketNumber;
   description;
-  Date dateCreated;
+  Date creationDate;
   State state;
   boolean isApprovalRequired;
 }
@@ -60,7 +60,7 @@ class MaintenanceTicket
 class AssignedTicket
 {
   isA MaintenanceTicket;
-  Date dateAssigned;
+  Date startDate;
   TimeEstimate timeEstimate;
   1 <@>- * Note;
   1 <@>- * Image;
