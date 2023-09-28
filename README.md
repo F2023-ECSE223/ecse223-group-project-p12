@@ -1,5 +1,9 @@
-HOLA THIS IS TAYBA
-HELLOOOOO
-Hiiiii XX chromosome
-Hola this is Julia
-Émilia is finally heeere
+Team number P12:
+
+Members:
+Julia
+Tayba
+Sahar 
+Anjali
+Camille
+Émilia
