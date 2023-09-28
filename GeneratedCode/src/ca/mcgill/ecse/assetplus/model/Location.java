@@ -5,7 +5,7 @@ package ca.mcgill.ecse.assetplus.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 90 "../../../../../Model.ump"
+// line 107 "../../../../../Model.ump"
 // line 185 "../../../../../Model.ump"
 public class Location
 {

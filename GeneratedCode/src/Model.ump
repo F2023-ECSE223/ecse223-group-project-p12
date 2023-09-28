@@ -20,6 +20,8 @@ class User
 class Manager
 {
   isA User;
+  depend ca.mcgill.ecse.assetplus.model.MaintenanceTicket.State;
+  1 assignsTicket -- * AssignedTicket assignedTickets;
   0..1 -- 1 AssignedTicket isAssigned;
 }
 
@@ -73,6 +75,21 @@ class AssignedTicket
   1 <@>- * Note;
   1 <@>- * Image;
   PriorityLevel priority;
+	enum PriorityLevel
+	{
+	  URGENT,
+	  NORMAL,
+	  LOW
+	}
+	
+	enum TimeEstimate
+	{
+	  LESS_THAN_A_DAY,
+	  ONE_TO_THREE_DAYS,
+	  THREE_TO_SEVEN_DAYS,
+	  ONE_TO_THREE_WEEKS,
+	  THREE_PLUS_WEEKS
+	}
 }
 
 class Note
@@ -93,23 +110,6 @@ class Location
   Integer room;
   1 -- * HotelAsset;
 }
-
-enum PriorityLevel
-{
-  URGENT,
-  NORMAL,
-  LOW
-}
-
-enum TimeEstimate
-{
-  LESS_THAN_A_DAY,
-  ONE_TO_THREE_DAYS,
-  THREE_TO_SEVEN_DAYS,
-  ONE_TO_THREE_WEEKS,
-  THREE_PLUS_WEEKS
-}
-
 
 //$?[End_of_model]$?
 

@@ -5,7 +5,7 @@ package ca.mcgill.ecse.assetplus.model;
 import java.sql.Date;
 import java.util.*;
 
-// line 68 "../../../../../Model.ump"
+// line 70 "../../../../../Model.ump"
 // line 119 "../../../../../Model.ump"
 public class AssignedTicket extends MaintenanceTicket
 {
@@ -29,6 +29,7 @@ public class AssignedTicket extends MaintenanceTicket
   //AssignedTicket Associations
   private List<Note> notes;
   private List<Image> images;
+  private Manager assignsTicket;
   private Manager manager;
   private Employee employee;
 
@@ -36,7 +37,7 @@ public class AssignedTicket extends MaintenanceTicket
   // CONSTRUCTOR
   //------------------------
 
-  public AssignedTicket(String aDescription, Date aCreationDate, State aState, boolean aIsApprovalRequired, AssetPlus aAssetPlus, User aUser, HotelAsset aHotelAsset, Date aStartDate, TimeEstimate aTimeEstimate, PriorityLevel aPriority)
+  public AssignedTicket(String aDescription, Date aCreationDate, State aState, boolean aIsApprovalRequired, AssetPlus aAssetPlus, User aUser, HotelAsset aHotelAsset, Date aStartDate, TimeEstimate aTimeEstimate, PriorityLevel aPriority, Manager aAssignsTicket)
   {
     super(aDescription, aCreationDate, aState, aIsApprovalRequired, aAssetPlus, aUser, aHotelAsset);
     startDate = aStartDate;
@@ -44,6 +45,11 @@ public class AssignedTicket extends MaintenanceTicket
     priority = aPriority;
     notes = new ArrayList<Note>();
     images = new ArrayList<Image>();
+    boolean didAddAssignsTicket = setAssignsTicket(aAssignsTicket);
+    if (!didAddAssignsTicket)
+    {
+      throw new RuntimeException("Unable to create assignedTicket due to assignsTicket. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
   }
 
   //------------------------
@@ -147,6 +153,11 @@ public class AssignedTicket extends MaintenanceTicket
   {
     int index = images.indexOf(aImage);
     return index;
+  }
+  /* Code from template association_GetOne */
+  public Manager getAssignsTicket()
+  {
+    return assignsTicket;
   }
   /* Code from template association_GetOne */
   public Manager getManager()
@@ -314,6 +325,25 @@ public class AssignedTicket extends MaintenanceTicket
     }
     return wasAdded;
   }
+  /* Code from template association_SetOneToMany */
+  public boolean setAssignsTicket(Manager aAssignsTicket)
+  {
+    boolean wasSet = false;
+    if (aAssignsTicket == null)
+    {
+      return wasSet;
+    }
+
+    Manager existingAssignsTicket = assignsTicket;
+    assignsTicket = aAssignsTicket;
+    if (existingAssignsTicket != null && !existingAssignsTicket.equals(aAssignsTicket))
+    {
+      existingAssignsTicket.removeAssignedTicket(this);
+    }
+    assignsTicket.addAssignedTicket(this);
+    wasSet = true;
+    return wasSet;
+  }
   /* Code from template association_SetOptionalOneToOne */
   public boolean setManager(Manager aNewManager)
   {
@@ -385,6 +415,12 @@ public class AssignedTicket extends MaintenanceTicket
       images.remove(aImage);
     }
     
+    Manager placeholderAssignsTicket = assignsTicket;
+    this.assignsTicket = null;
+    if(placeholderAssignsTicket != null)
+    {
+      placeholderAssignsTicket.removeAssignedTicket(this);
+    }
     Manager existingManager = manager;
     manager = null;
     if (existingManager != null)
@@ -407,6 +443,7 @@ public class AssignedTicket extends MaintenanceTicket
             "  " + "startDate" + "=" + (getStartDate() != null ? !getStartDate().equals(this)  ? getStartDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "timeEstimate" + "=" + (getTimeEstimate() != null ? !getTimeEstimate().equals(this)  ? getTimeEstimate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "priority" + "=" + (getPriority() != null ? !getPriority().equals(this)  ? getPriority().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "assignsTicket = "+(getAssignsTicket()!=null?Integer.toHexString(System.identityHashCode(getAssignsTicket())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "manager = "+(getManager()!=null?Integer.toHexString(System.identityHashCode(getManager())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "employee = "+(getEmployee()!=null?Integer.toHexString(System.identityHashCode(getEmployee())):"null");
   }

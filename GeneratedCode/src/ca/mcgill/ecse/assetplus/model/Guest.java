@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.assetplus.model;
 import java.util.*;
 
-// line 33 "../../../../../Model.ump"
+// line 35 "../../../../../Model.ump"
 // line 153 "../../../../../Model.ump"
 public class Guest extends User
 {

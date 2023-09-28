@@ -3,7 +3,7 @@
 
 package ca.mcgill.ecse.assetplus.model;
 
-// line 85 "../../../../../Model.ump"
+// line 102 "../../../../../Model.ump"
 // line 180 "../../../../../Model.ump"
 public class Image
 {

@@ -5,7 +5,7 @@ package ca.mcgill.ecse.assetplus.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 45 "../../../../../Model.ump"
+// line 47 "../../../../../Model.ump"
 // line 164 "../../../../../Model.ump"
 public class AssetType
 {
