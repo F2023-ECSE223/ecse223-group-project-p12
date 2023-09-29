@@ -1,13 +1,13 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
+/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.model;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.State;
 import java.util.*;
 import java.sql.Date;
 
-// line 20 "../../../../../Model.ump"
-// line 140 "../../../../../Model.ump"
+// line 20 "../../../../../../Model.ump"
+// line 140 "../../../../../../Model.ump"
 public class Manager extends User
 {
 
