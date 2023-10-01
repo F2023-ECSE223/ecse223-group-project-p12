@@ -12,8 +12,8 @@ For more information about the AssetPlus application, please consult the [wiki](
 
 | Name          | GitHub username |
 | ------------- | --------------- |
-| Team Member A | fathisahar      |
-| Team Member B | anji00          |
+| Team Member A | anji00          |
+| Team Member B | fathisahar      |
 | Team Member C | Camomille103    |
 | Team Member D | TJusab          |
 | Team Member E | ...             |
