@@ -16,5 +16,5 @@ For more information about the AssetPlus application, please consult the [wiki](
 | Team Member B | fathisahar      |
 | Team Member C | Camomille103    |
 | Team Member D | TJusab          |
-| Team Member E | ...             |
+| Team Member E | julia-b-grenier |
 | Team Member F | ...             |
