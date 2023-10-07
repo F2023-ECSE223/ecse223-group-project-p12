@@ -1,8 +1,14 @@
 package ca.mcgill.ecse.assetplus.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
+import ca.mcgill.ecse.assetplus.model.User;
+import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.TicketImage;
 
 public class AssetPlusFeatureUtility {
   // Input validation static methods:
@@ -71,7 +77,7 @@ public class AssetPlusFeatureUtility {
           }
       }
 
-      return "Error: The assetNumber is not found in the list of assets.\n";
+      return "Error: the assetNumber is not found in the list of assets.\n";
     }
 
     public static String isAssetNumberValid(int assetNumber) {
@@ -91,6 +97,54 @@ public class AssetPlusFeatureUtility {
       return null;
     }
 
+    public static String isExistingUser(String email) {
+      if (!User.hasWithEmail(email)) {
+        return "Error: user not found.";
+      }
+      return "";
+    }
 
+    public static TOMaintenanceTicket convertFromMaintenanceTicket(MaintenanceTicket maintenanceTicket) {
+      List<TOMaintenanceNote> toMaintenanceNotes = convertFromMaintenanceNotes(maintenanceTicket.getTicketNotes());
+      TOMaintenanceNote[] allNotes = toMaintenanceNotes.toArray(new TOMaintenanceNote[0]);
+
+      return new TOMaintenanceTicket(
+          maintenanceTicket.getId(),
+          maintenanceTicket.getRaisedOnDate(),
+          maintenanceTicket.getDescription(),
+          maintenanceTicket.getTicketRaiser().getEmail(),
+          maintenanceTicket.getAsset().toString(),
+          maintenanceTicket.getAsset().getAssetType().getExpectedLifeSpan(),
+          maintenanceTicket.getAsset().getPurchaseDate(),
+          maintenanceTicket.getAsset().getFloorNumber(),
+          maintenanceTicket.getAsset().getRoomNumber(),
+          convertFromTicketImages(maintenanceTicket.getTicketImages()),
+          allNotes
+        );
+    }
+
+    public static List<TOMaintenanceNote> convertFromMaintenanceNotes(List<MaintenanceNote> maintenanceNotes) {
+      List<TOMaintenanceNote> toMaintenanceNotes = new ArrayList<>();
+
+      for (MaintenanceNote maintenanceNote: maintenanceNotes) {
+        TOMaintenanceNote toMaintenanceNote = new TOMaintenanceNote(
+          maintenanceNote.getDate(), 
+          maintenanceNote.getDescription(), 
+          maintenanceNote.getNoteTaker().getEmail());
+        toMaintenanceNotes.add(toMaintenanceNote);
+      }
+
+      return toMaintenanceNotes;
+    }
+
+    public static List<String> convertFromTicketImages(List<TicketImage> ticketImages) {
+      List<String> imageUrls = new ArrayList<>();
+
+      for (TicketImage ticketImage: ticketImages) {
+        imageUrls.add(ticketImage.getImageURL());
+      }
+
+      return imageUrls;
+    }
 
 }
