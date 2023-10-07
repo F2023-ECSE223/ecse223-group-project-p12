@@ -17,7 +17,7 @@ public class AssetPlusFeatureSet5Controller {
    */
   public static String addImageToMaintenanceTicket(String imageURL, int ticketID) {
     // Input validations
-    String err =  AssetPlusFeatureUtility.isTicketIDValid(ticketID) + "/n"  +
+    String err =  AssetPlusFeatureUtility.isTicketIDValid(ticketID) + "\n"  +
                   AssetPlusFeatureUtility.isStringNotEmpty(imageURL);
     if (!err.isEmpty()) {
       return err;
