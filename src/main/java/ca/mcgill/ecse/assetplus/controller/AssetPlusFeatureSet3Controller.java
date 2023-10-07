@@ -19,15 +19,15 @@ public class AssetPlusFeatureSet3Controller {
    * @param roomNumber the room number in which the specific asset is located 
    * @param purchaseDate the date on which the specific asset was purchased
    * @param assetTypeName the type of asset which the specific asset belongs to
-   * @return
+   * @return an empty string or an error message
    */
 
   public static String addSpecificAsset(int assetNumber, int floorNumber, int roomNumber,
       Date purchaseDate, String assetTypeName) {
         //Verify that the inputs are valid.
-        String err = AssetPlusFeatureUtility.isAssetNumberValid(assetNumber) + "/n"  +
-        AssetPlusFeatureUtility.isFloorNumberValid(floorNumber) + "/n"  +
-        AssetPlusFeatureUtility.isRoomNumberValid(roomNumber) + "/n"  +
+        String err = AssetPlusFeatureUtility.isAssetNumberValid(assetNumber) +
+        AssetPlusFeatureUtility.isFloorNumberValid(floorNumber) +
+        AssetPlusFeatureUtility.isRoomNumberValid(roomNumber)  +
         AssetPlusFeatureUtility.isExistingAssetType(assetTypeName);
         if (!err.isEmpty()){
           return err;
@@ -46,29 +46,35 @@ public class AssetPlusFeatureSet3Controller {
         return "";
   }
 
+  /**
+   * <p> Update a specific asset with a new floor number, new room number, new purchase date and a new asset type. <p>
+   * @param assetNumber the number associated to the specific asset
+   * @param newFloorNumber the new floor number on which the specific asset is located  
+   * @param newRoomNumber the new room number in which the specific asset is located 
+   * @param newPurchaseDate the new date on which the specific asset was purchased
+   * @param newAssetTypeName the new type of asset which the specific asset belongs to
+   * @return an empty string or an error message
+   */
   public static String updateSpecificAsset(int assetNumber, int newFloorNumber, int newRoomNumber,
       Date newPurchaseDate, String newAssetTypeName) {
         //Verify that the inputs are valid.
-        String err = AssetPlusFeatureUtility.isExistingAsset(assetNumber) + "/n"  +
-        AssetPlusFeatureUtility.isFloorNumberValid(newFloorNumber) + "/n"  +
-        AssetPlusFeatureUtility.isRoomNumberValid(newRoomNumber) + "/n"  +
+        String err = AssetPlusFeatureUtility.isExistingAsset(assetNumber) +
+        AssetPlusFeatureUtility.isFloorNumberValid(newFloorNumber) +
+        AssetPlusFeatureUtility.isRoomNumberValid(newRoomNumber) +
         AssetPlusFeatureUtility.isExistingAssetType(newAssetTypeName);
         if (!err.isEmpty()){
           return err;
         }
 
-        //Update the specific asset (found based on its assetNumber) and change the fields. 
+        //Update the specific asset (found based on its assetNumber) and change the fields.
         try {
-          for (SpecificAsset asset : AssetPlusApplication.getAssetPlus().getSpecificAssets()) {
-            if (asset.getAssetNumber() == assetNumber) {
-              asset.setFloorNumber(newFloorNumber);
-              asset.setRoomNumber(newRoomNumber);
-              asset.setPurchaseDate(newPurchaseDate);
-              for (AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
-                if(type.getName() == newAssetTypeName)
-                  asset.setAssetType(type);
-              }
-            }
+          SpecificAsset asset = AssetPlusFeatureUtility.findSpecificAsset(assetNumber); 
+          asset.setFloorNumber(newFloorNumber);
+          asset.setRoomNumber(newRoomNumber);
+          asset.setPurchaseDate(newPurchaseDate);
+          for (AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
+            if(type.getName() == newAssetTypeName)
+              asset.setAssetType(type);
           }
        } catch (RuntimeException e){
           return e.getMessage();
@@ -76,6 +82,10 @@ public class AssetPlusFeatureSet3Controller {
         return "";
   }
 
+  /**
+   * <p> Delete a specific asset from the AssetPlus application instance.
+   * @param assetNumber the specific asset which needs to be deleted
+   */
   public static void deleteSpecificAsset(int assetNumber) {
     //Verify that the specific asset exists.
     String err = AssetPlusFeatureUtility.isExistingAsset(assetNumber);
@@ -85,12 +95,7 @@ public class AssetPlusFeatureSet3Controller {
         }
         
         //Delete the specific asset from the AssetPlus application instance. 
-        for (SpecificAsset asset : AssetPlusApplication.getAssetPlus().getSpecificAssets()) {
-          if (asset.getAssetNumber() == assetNumber) {
-            AssetPlusApplication.getAssetPlus().removeSpecificAsset(asset);
-          }
-      }
-      
+        AssetPlusApplication.getAssetPlus().removeSpecificAsset(AssetPlusFeatureUtility.findSpecificAsset(assetNumber)); 
         
   }
 
