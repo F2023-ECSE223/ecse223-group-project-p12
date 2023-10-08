@@ -106,7 +106,7 @@ public class DeleteAssetStepDefinitions {
         //to assert that they are equals with respect to their fields. Application counter augments the index of the application asset list. 
         int applicationCounter = 0;
         for (Map<String, Object> row : tableList) {
-          SpecificAsset asset = application.getSpecificAssets().get(applicationCounter));
+          SpecificAsset asset = application.getSpecificAssets().get(applicationCounter);
           assertEquals(row.get("assetNumber"), asset.getAssetNumber());
           assertEquals(row.get("type"), asset.getAssetType());
           assertEquals(row.get("floorNumber"), asset.getFloorNumber());
@@ -118,7 +118,6 @@ public class DeleteAssetStepDefinitions {
     // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
     // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
     // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
     // For other transformations you can register a DataTableType.
     //throw new io.cucumber.java.PendingException();
   }
