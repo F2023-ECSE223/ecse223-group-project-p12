@@ -25,9 +25,9 @@ public class AssetPlusFeatureSet3Controller {
   public static String addSpecificAsset(int assetNumber, int floorNumber, int roomNumber,
       Date purchaseDate, String assetTypeName) {
         //Verify that the inputs are valid.
-        String err = AssetPlusFeatureUtility.isAssetNumberValid(assetNumber) +
-        AssetPlusFeatureUtility.isFloorNumberValid(floorNumber) +
-        AssetPlusFeatureUtility.isRoomNumberValid(roomNumber)  +
+        String err = AssetPlusFeatureUtility.isGreaterThanZero(assetNumber, "assetNumber") +
+        AssetPlusFeatureUtility.isGreaterThanZero(floorNumber, "floorNumber") +
+        AssetPlusFeatureUtility.isGreaterThanZero(roomNumber, "roomNumber")  +
         AssetPlusFeatureUtility.isExistingAssetType(assetTypeName);
         if (!err.isEmpty()){
           return err;
@@ -35,11 +35,7 @@ public class AssetPlusFeatureSet3Controller {
 
         //Add the specific asset to the AssetPlus application instance.
         try {
-          for (AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
-            if(type.getName() == assetTypeName)
-              AssetPlusApplication.getAssetPlus().addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, type);
-          }
-          
+          AssetPlusApplication.getAssetPlus().addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, AssetType.getWithName(assetTypeName));
         } catch (RuntimeException e){
           return e.getMessage();
         }
@@ -59,8 +55,8 @@ public class AssetPlusFeatureSet3Controller {
       Date newPurchaseDate, String newAssetTypeName) {
         //Verify that the inputs are valid.
         String err = AssetPlusFeatureUtility.isExistingAsset(assetNumber) +
-        AssetPlusFeatureUtility.isFloorNumberValid(newFloorNumber) +
-        AssetPlusFeatureUtility.isRoomNumberValid(newRoomNumber) +
+        AssetPlusFeatureUtility.isGreaterThanZero(newFloorNumber, "newFloorNumber")+
+        AssetPlusFeatureUtility.isGreaterThanZero(newRoomNumber, "newRoomNumber") +
         AssetPlusFeatureUtility.isExistingAssetType(newAssetTypeName);
         if (!err.isEmpty()){
           return err;
@@ -68,7 +64,7 @@ public class AssetPlusFeatureSet3Controller {
 
         //Update the specific asset (found based on its assetNumber) and change the fields.
         try {
-          SpecificAsset asset = AssetPlusFeatureUtility.findSpecificAsset(assetNumber); 
+          SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
           asset.setFloorNumber(newFloorNumber);
           asset.setRoomNumber(newRoomNumber);
           asset.setPurchaseDate(newPurchaseDate);
@@ -95,7 +91,7 @@ public class AssetPlusFeatureSet3Controller {
         }
         
         //Delete the specific asset from the AssetPlus application instance. 
-        AssetPlusApplication.getAssetPlus().removeSpecificAsset(AssetPlusFeatureUtility.findSpecificAsset(assetNumber)); 
+        AssetPlusApplication.getAssetPlus().removeSpecificAsset(SpecificAsset.getWithAssetNumber(assetNumber)); 
         
   }
 
