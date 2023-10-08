@@ -23,12 +23,12 @@ public class DeleteAssetStepDefinitions {
   public void the_following_asset_types_exist_in_the_system_p12(
       io.cucumber.datatable.DataTable dataTable) {
         //Turns the dataTable into a list of lists (each row becomes a list).
-        List<List<String>> tableList = dataTable.asLists(String.class);
-        
+        List<Map<String, Object>> tableList = dataTable.asMaps(String.class, Object.class);
+
         //Iterates through each list to create the specified asset types and add it to the AssetPlus application.
-        for (List<String> row : tableList) {
-          String name = row.get(0);
-          int expectedLifeSpan = Integer.parseInt(row.get(1));
+        for (Map<String, Object> row : tableList) {
+          String name = (String) row.get("name");
+          int expectedLifeSpan = (int) row.get("expectLifeSpan");
           application.addAssetType(name, expectedLifeSpan);
       }
         
