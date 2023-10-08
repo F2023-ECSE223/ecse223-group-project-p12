@@ -3,6 +3,7 @@ package ca.mcgill.ecse.assetplus.controller;
 public class AssetPlusFeatureSet1Controller {
 
   public static String updateManager(String password) {
+    System.out.println("nothing");
     // Remove this exception when you implement this method
     throw new UnsupportedOperationException("Not Implemented!");
   }
