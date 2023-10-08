@@ -79,13 +79,11 @@ public class AssetPlusFeatureUtility {
     }
 
     public static String isExistingAsset(int assetNumber) {
-      for (SpecificAsset asset : AssetPlusApplication.getAssetPlus().getSpecificAssets()) {
-          if (asset.getAssetNumber() == assetNumber) {
-              return "";
-          }
+      if (SpecificAsset.getWithAssetNumber(assetNumber) != null){
+        return "";
+      } else {
+        return "Error: there is no specific asset with that assetNumber.\n";
       }
-
-      return "Error: the assetNumber is not found in the list of assets.\n";
     }
 
     public static String isAssetNumberValid(int assetNumber) {
@@ -94,15 +92,6 @@ public class AssetPlusFeatureUtility {
       }  
 
       return "";
-    }
-
-    public static SpecificAsset findSpecificAsset(int assetNumber){
-      for (SpecificAsset asset : AssetPlusApplication.getAssetPlus().getSpecificAssets()) {
-        if (asset.getAssetNumber() == assetNumber) {
-          return asset;
-        }
-      }
-      return null;
     }
 
     public static String isExistingUser(String email) {
