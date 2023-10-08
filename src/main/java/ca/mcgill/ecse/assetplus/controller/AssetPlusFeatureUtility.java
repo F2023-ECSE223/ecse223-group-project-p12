@@ -13,16 +13,9 @@ import ca.mcgill.ecse.assetplus.model.TicketImage;
 public class AssetPlusFeatureUtility {
   // Input validation static methods:
 
-  public static String isGreaterThanZero(int number, String subject){
-    if (number < 0) {
-      return "Error: the number from " + subject + " must be greater than 0.\n";
-    }
-    return "";
-  }
-
-  public static String isTicketIDValid(int ticketID) {
-    if (ticketID < 0) {
-      return "Error: the ticketID must be greater than 0.\n";
+  public static String isGreaterThanOrEqualToZero(int number, String subject){
+    if (0 <= number) {
+      return "Error: the number from " + subject + " must be greater than or equal to 0.\n";
     }
     return "";
   }
@@ -30,13 +23,6 @@ public class AssetPlusFeatureUtility {
   public static String isStringValid(String input, String subject) {
     if (input.isEmpty()) {
       return "Error: the " + subject + " must not be an empty String.\n";
-    }
-    return "";
-  }
-
-  public static String isLifeSpanValid(int lifeSpan) {
-    if(lifeSpan<=0){
-      return "Error: the life span in days must be greater than 0.\n";
     }
     return "";
   }
@@ -49,20 +35,6 @@ public class AssetPlusFeatureUtility {
     return "Error: the asset type specified with this name does not exist.\n";
   }
 
-  public static String isFloorNumberValid(int floorNumber){
-    if (floorNumber <= 0){
-      return "Error: the floorNumber must be greater than 0.\n";
-    }  
-    return "";
-  }
-
-    public static String isRoomNumberValid(int roomNumber){
-      if (roomNumber <= 0){
-        return "Error: the roomNumber must be greater than 0.\n";
-      }  
-      return "";
-    }
-
     public static String isExistingAsset(int assetNumber) {
       if (SpecificAsset.getWithAssetNumber(assetNumber) != null){
         return "";
@@ -71,19 +43,14 @@ public class AssetPlusFeatureUtility {
       }
     }
 
-    public static String isAssetNumberValid(int assetNumber) {
-      if (assetNumber <= 0){
-        return "Error: the assetNumber must be greater than 0.\n";
-      }  
-      return "";
-    }
-
     public static String isExistingUser(String email) {
       if (!User.hasWithEmail(email)) {
         return "Error: user not found.";
       }
       return "";
     }
+
+    // Other utility methods
 
     public static TOMaintenanceTicket convertFromMaintenanceTicket(MaintenanceTicket maintenanceTicket) {
       List<TOMaintenanceNote> toMaintenanceNotes = convertFromMaintenanceNotes(maintenanceTicket.getTicketNotes());
