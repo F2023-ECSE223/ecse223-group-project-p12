@@ -28,7 +28,7 @@ public class AssetPlusFeatureSet1Controller {
   }
 
   /**
-   * <p>Add an employee or a guest dependaug if the parameter isEmployee is true or false<p>
+   * <p>Add an employee or a guest based on the parameter isEmployee<p>
    * @param email
    * @param password
    * @param name
