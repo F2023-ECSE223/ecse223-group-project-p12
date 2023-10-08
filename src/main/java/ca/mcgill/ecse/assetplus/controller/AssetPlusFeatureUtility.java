@@ -13,6 +13,14 @@ import ca.mcgill.ecse.assetplus.model.TicketImage;
 public class AssetPlusFeatureUtility {
   // Input validation static methods:
 
+  public static String isGreaterThanZero(int number, String subject){
+    if (number < 0) {
+      return "Error: the number from " + subject + " must be greater than 0.\n";
+    }
+
+    return "";
+  }
+
   public static String isTicketIDValid(int ticketID) {
     if (ticketID < 0) {
       return "Error: the ticketID must be greater than 0.\n";
