@@ -14,10 +14,8 @@ public class AssetPlusFeatureSet1Controller {
    * @param password
    */
   public static String updateManager(String password) {
-    //Inpute validation
-    if (password.isEmpty()) {
-      return "Error: the password cannot be empty";
-    }
+    //Input validation
+    AssetPlusFeatureUtility.isStringValid(password, "password");
 
     //Updating the manager password with the new password
     try {
@@ -74,7 +72,7 @@ public class AssetPlusFeatureSet1Controller {
    */
   public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingUser(email);
+    String err = AssetPlusFeatureUtility.isExistingUser(email) + AssetPlusFeatureUtility.isStringValid("password", newPassword);
 
     if (!err.isEmpty()) {
       return err;

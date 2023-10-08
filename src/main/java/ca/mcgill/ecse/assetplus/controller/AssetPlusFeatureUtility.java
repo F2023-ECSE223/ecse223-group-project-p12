@@ -94,10 +94,7 @@ public class AssetPlusFeatureUtility {
     }
 
     public static boolean isEmployeeEmailValid(String email) {
-      if (email.endsWith("@ap.com")){
-        return true;
-      }
-      return false;
+      return email.endsWith(email);
     }
 
 }
