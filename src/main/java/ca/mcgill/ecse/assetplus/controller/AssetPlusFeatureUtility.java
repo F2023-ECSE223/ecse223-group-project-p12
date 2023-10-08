@@ -82,7 +82,6 @@ public class AssetPlusFeatureUtility {
 
     public static String isAssetNumberValid(int assetNumber) {
       if (assetNumber <= 0){
-        System.out.println("nothing");
         return "Error: the assetNumber must be greater than 0.\n";
       }  
 
