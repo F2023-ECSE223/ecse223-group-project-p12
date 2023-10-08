@@ -14,10 +14,12 @@ public class AssetPlusFeatureSet1Controller {
    * @param password
    */
   public static String updateManager(String password) {
+    //Inpute validation
     if (password.isEmpty()) {
       return "Error: the password cannot be empty";
     }
 
+    //Updating the manager password with the new password
     try {
       AssetPlusApplication.getAssetPlus().getManager().setPassword(password);
     }
@@ -37,6 +39,8 @@ public class AssetPlusFeatureSet1Controller {
    */
   public static String addEmployeeOrGuest(String email, String password, String name, String phoneNumber,
         boolean isEmployee) {
+    
+    //Input validation
     String err = AssetPlusFeatureUtility.isExistingUser(email);
 
     if (err.isEmpty()) {
@@ -47,6 +51,7 @@ public class AssetPlusFeatureSet1Controller {
       return "Error: the email for an employee needs to end with \"@ap.com\"";
     }
 
+    //Creating and adding the employee or guest
     try {
       if (isEmployee) {
        AssetPlusApplication.getAssetPlus().addEmployee(email, name, password, phoneNumber); 
@@ -68,12 +73,14 @@ public class AssetPlusFeatureSet1Controller {
    * @param newPhoneNumber
    */
   public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
+    //Input validation
     String err = AssetPlusFeatureUtility.isExistingUser(email);
 
     if (!err.isEmpty()) {
       return err;
     }
 
+    //Updating the fields with the information
     try {
       User userToUpdate = User.getWithEmail(email);
       userToUpdate.setName(newName);
