@@ -17,7 +17,6 @@ public class AssetPlusFeatureUtility {
     if (number < 0) {
       return "Error: the number from " + subject + " must be greater than 0.\n";
     }
-
     return "";
   }
 
@@ -25,7 +24,6 @@ public class AssetPlusFeatureUtility {
     if (ticketID < 0) {
       return "Error: the ticketID must be greater than 0.\n";
     }
-
     return "";
   }
 
@@ -33,7 +31,6 @@ public class AssetPlusFeatureUtility {
     if (input.isEmpty()) {
       return "Error: the " + subject + " must not be an empty String.\n";
     }  
-
     return "";
   }
 
@@ -41,7 +38,6 @@ public class AssetPlusFeatureUtility {
     if(lifeSpan<=0){
       return "Error: the life span in days must be greater than 0.\n";
     }
-
     return "";
   }
 
@@ -58,7 +54,6 @@ public class AssetPlusFeatureUtility {
       if(type.getName() == name)
         return "";
     }
-
     return "Error: the asset type specified with this name does not exist.\n";
   }
 
@@ -66,7 +61,6 @@ public class AssetPlusFeatureUtility {
     if (floorNumber <= 0){
       return "Error: the floorNumber must be greater than 0.\n";
     }  
-
     return "";
   }
 
@@ -74,7 +68,6 @@ public class AssetPlusFeatureUtility {
       if (roomNumber <= 0){
         return "Error: the roomNumber must be greater than 0.\n";
       }  
-
       return "";
     }
 
@@ -90,7 +83,6 @@ public class AssetPlusFeatureUtility {
       if (assetNumber <= 0){
         return "Error: the assetNumber must be greater than 0.\n";
       }  
-
       return "";
     }
 
@@ -130,18 +122,16 @@ public class AssetPlusFeatureUtility {
           maintenanceNote.getNoteTaker().getEmail());
         toMaintenanceNotes.add(toMaintenanceNote);
       }
-
       return toMaintenanceNotes;
     }
 
     public static List<String> convertFromTicketImages(List<TicketImage> ticketImages) {
-      List<String> imageUrls = new ArrayList<>();
+      List<String> imageURLS = new ArrayList<>();
 
       for (TicketImage ticketImage: ticketImages) {
-        imageUrls.add(ticketImage.getImageURL());
+        imageURLS.add(ticketImage.getImageURL());
       }
-
-      return imageUrls;
+      return imageURLS;
     }
 
 }
