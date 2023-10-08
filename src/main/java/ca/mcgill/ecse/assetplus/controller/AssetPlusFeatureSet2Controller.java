@@ -17,7 +17,7 @@ public class AssetPlusFeatureSet2Controller {
    */
   public static String addAssetType(String name, int expectedLifeSpanInDays) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isStringNotEmpty(name, "name") + 
+    String err = AssetPlusFeatureUtility.isStringValid(name, "name") + 
                  AssetPlusFeatureUtility.isLifeSpanValid(expectedLifeSpanInDays) + 
                  AssetPlusFeatureUtility.isNewAssetTypeName(name);
 
@@ -45,7 +45,7 @@ public class AssetPlusFeatureSet2Controller {
   public static String updateAssetType(String oldName, String newName, int newExpectedLifeSpanInDays) {
 
     //Input validation
-    String err = AssetPlusFeatureUtility.isStringNotEmpty(newName, "newName") +
+    String err = AssetPlusFeatureUtility.isStringValid(newName, "newName") +
                  AssetPlusFeatureUtility.isLifeSpanValid(newExpectedLifeSpanInDays) +
                  AssetPlusFeatureUtility.isNewAssetTypeName(newName);
 
@@ -75,7 +75,7 @@ public class AssetPlusFeatureSet2Controller {
    * @return an empty string or an error message
    */
   public static String deleteAssetType(String name) {
-    String err = AssetPlusFeatureUtility.isStringNotEmpty(name, "name") +
+    String err = AssetPlusFeatureUtility.isStringValid(name, "name") +
                  AssetPlusFeatureUtility.isNewAssetTypeName(name) + 
                  AssetPlusFeatureUtility.isExistingAssetType(name);
 
