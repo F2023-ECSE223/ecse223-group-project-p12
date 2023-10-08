@@ -13,16 +13,9 @@ import ca.mcgill.ecse.assetplus.model.TicketImage;
 public class AssetPlusFeatureUtility {
   // Input validation static methods:
 
-  public static String isGreaterThanZero(int number, String subject){
-    if (number < 0) {
-      return "Error: the number from " + subject + " must be greater than 0.\n";
-    }
-    return "";
-  }
-
-  public static String isTicketIDValid(int ticketID) {
-    if (ticketID < 0) {
-      return "Error: the ticketID must be greater than 0.\n";
+  public static String isGreaterThanOrEqualToZero(int number, String subject){
+    if (0 <= number) {
+      return "Error: the number from " + subject + " must be greater than or equal to 0.\n";
     }
     return "";
   }
@@ -34,21 +27,6 @@ public class AssetPlusFeatureUtility {
     return "";
   }
 
-  public static String isLifeSpanValid(int lifeSpan) {
-    if(lifeSpan<=0){
-      return "Error: the life span in days must be greater than 0.\n";
-    }
-    return "";
-  }
-
-  public static String isNewAssetTypeName(String name){
-    for (AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
-      if(type.getName() == name)
-        return "Error: the name of the asset type must not be already used by another asset type.\n";
-    }
-    return "";
-  }
-
   public static String isExistingAssetType(String name){
     for (AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
       if(type.getName() == name)
@@ -56,7 +34,6 @@ public class AssetPlusFeatureUtility {
     }
     return "Error: the asset type specified with this name does not exist.\n";
   }
-
 
     public static String isExistingAsset(int assetNumber) {
       if (SpecificAsset.getWithAssetNumber(assetNumber) != null){
@@ -72,6 +49,8 @@ public class AssetPlusFeatureUtility {
       }
       return "";
     }
+
+    // Other utility methods
 
     public static TOMaintenanceTicket convertFromMaintenanceTicket(MaintenanceTicket maintenanceTicket) {
       List<TOMaintenanceNote> toMaintenanceNotes = convertFromMaintenanceNotes(maintenanceTicket.getTicketNotes());

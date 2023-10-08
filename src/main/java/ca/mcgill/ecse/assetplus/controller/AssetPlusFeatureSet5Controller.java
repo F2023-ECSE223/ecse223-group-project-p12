@@ -17,7 +17,7 @@ public class AssetPlusFeatureSet5Controller {
    */
   public static String addImageToMaintenanceTicket(String imageURL, int ticketID) {
     // Input validations
-    String err =  AssetPlusFeatureUtility.isTicketIDValid(ticketID) + 
+    String err =  AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(ticketID, "ticketID") + 
                   AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL");
     if (!err.isEmpty()) {
       return err;
@@ -40,7 +40,7 @@ public class AssetPlusFeatureSet5Controller {
    */
   public static void deleteImageFromMaintenanceTicket(String imageURL, int ticketID) {
     // Input validations
-    String err =  AssetPlusFeatureUtility.isTicketIDValid(ticketID) + 
+    String err =  AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(ticketID, "ticketID") + 
                   AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL");
     if (!err.isEmpty()) {
       return;
