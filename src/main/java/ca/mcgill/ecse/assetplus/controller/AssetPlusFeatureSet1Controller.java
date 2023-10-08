@@ -11,12 +11,14 @@ public class AssetPlusFeatureSet1Controller {
 
   /**
    * <p>Update the password of the manager<p>
-   * @param password
+   * @param password password of the manager
    */
   public static String updateManager(String password) {
     //Input validation
-    AssetPlusFeatureUtility.isStringValid(password, "password");
-
+    String err = AssetPlusFeatureUtility.isStringValid(password, "password");
+    if (!err.isEmpty()) {
+      return err;
+    }
     //Updating the manager password with the new password
     try {
       AssetPlusApplication.getAssetPlus().getManager().setPassword(password);
@@ -29,11 +31,11 @@ public class AssetPlusFeatureSet1Controller {
 
   /**
    * <p>Add an employee or a guest based on the parameter isEmployee<p>
-   * @param email 
-   * @param password
-   * @param name
-   * @param phoneNumber
-   * @param isEmployee
+   * @param email unique email of a user
+   * @param password password of a user
+   * @param name name of a user (optional)
+   * @param phoneNumber phone number of a user (optional)
+   * @param isEmployee True if the user is an employee, false if the user is a guest
    */
   public static String addEmployeeOrGuest(String email, String password, String name, String phoneNumber,
         boolean isEmployee) {
@@ -65,10 +67,10 @@ public class AssetPlusFeatureSet1Controller {
 
   /**
    * <p>Update an employee or a guest with their email<p>
-   * @param email
-   * @param newPassword
-   * @param newName
-   * @param newPhoneNumber
+   * @param email unique email of a user
+   * @param newPassword New password of the user
+   * @param newName New name of the user (optional)
+   * @param newPhoneNumber New phone number of a user (optional)
    */
   public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
     //Input validation
