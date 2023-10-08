@@ -28,7 +28,7 @@ public class DeleteAssetStepDefinitions {
         //Iterates through each list to create the specified asset types and add it to the AssetPlus application.
         for (Map<String, Object> row : tableList) {
           String name = (String) row.get("name");
-          int expectedLifeSpan = (int) row.get("expectLifeSpan");
+          int expectedLifeSpan = (int) row.get("expectedLifeSpan");
           application.addAssetType(name, expectedLifeSpan);
       }
         
