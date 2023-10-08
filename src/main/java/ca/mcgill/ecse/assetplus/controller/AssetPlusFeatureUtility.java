@@ -96,6 +96,46 @@ public class AssetPlusFeatureUtility {
       }
       return null;
     }
+    
+    public static int isEmployeeEmailValid(String email) {
+      for (int i = 0; i < AssetPlusApplication.getAssetPlus().numberOfEmployees(); i++) {
+        if(email.equalsIgnoreCase(AssetPlusApplication.getAssetPlus().getEmployee(i).getEmail())) {
+          return i;
+        }
+      }
+      return -1;
+    }
+    
+    public static int isGuestEmailValid(String email) {
+      for (int i = 0; i < AssetPlusApplication.getAssetPlus().numberOfGuests(); i++) {
+        if(email.equalsIgnoreCase(AssetPlusApplication.getAssetPlus().getGuest(i).getEmail())) {
+          return i;
+        }
+      }
+      return -1;
+    }
+    
+    public static String isEmployeeEmailUnique(String email) {
+      if (isEmployeeEmailValid(email) == -1) {
+        return "";
+      }
+      return "Error: An employee already uses this email.\n";
+    }
+    
+    public static String isGuestEmailUnique(String email) {
+      if (isGuestEmailValid(email) == -1) {
+        return "";
+      }
+      return "Error: A guest already uses this email.\n";
+    }
+    
+    public static boolean isEmployee(String email) {
+      if (email.endsWith("@ap.com")){
+        return true;
+      }
+      return false;
+    }
+
 
     public static String isExistingUser(String email) {
       if (!User.hasWithEmail(email)) {
