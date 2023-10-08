@@ -18,7 +18,7 @@ public class AssetPlusFeatureSet2Controller {
   public static String addAssetType(String name, int expectedLifeSpanInDays) {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(name, "name") + 
-                 AssetPlusFeatureUtility.isLifeSpanValid(expectedLifeSpanInDays);
+                 AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(expectedLifeSpanInDays, "expectedLifeSpanInDays");
 
     if(!err.isEmpty()){
       return err;
@@ -42,10 +42,9 @@ public class AssetPlusFeatureSet2Controller {
    * @return an empty string or an error message
    */
   public static String updateAssetType(String oldName, String newName, int newExpectedLifeSpanInDays) {
-
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(newName, "newName") +
-                 AssetPlusFeatureUtility.isLifeSpanValid(newExpectedLifeSpanInDays);
+                 AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(newExpectedLifeSpanInDays, "newExpectedLifeSpanInDays");
 
     if(!err.isEmpty()){
       return err;

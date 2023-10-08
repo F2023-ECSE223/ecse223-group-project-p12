@@ -25,9 +25,9 @@ public class AssetPlusFeatureSet3Controller {
   public static String addSpecificAsset(int assetNumber, int floorNumber, int roomNumber,
       Date purchaseDate, String assetTypeName) {
         //Verify that the inputs are valid.
-        String err = AssetPlusFeatureUtility.isGreaterThanZero(assetNumber, "assetNumber") +
-        AssetPlusFeatureUtility.isGreaterThanZero(floorNumber, "floorNumber") +
-        AssetPlusFeatureUtility.isGreaterThanZero(roomNumber, "roomNumber")  +
+        String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(assetNumber, "assetNumber") +
+        AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(floorNumber, "floorNumber") +
+        AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(roomNumber, "roomNumber")  +
         AssetPlusFeatureUtility.isExistingAssetType(assetTypeName);
         if (!err.isEmpty()){
           return err;
@@ -55,8 +55,8 @@ public class AssetPlusFeatureSet3Controller {
       Date newPurchaseDate, String newAssetTypeName) {
         //Verify that the inputs are valid.
         String err = AssetPlusFeatureUtility.isExistingAsset(assetNumber) +
-        AssetPlusFeatureUtility.isGreaterThanZero(newFloorNumber, "newFloorNumber")+
-        AssetPlusFeatureUtility.isGreaterThanZero(newRoomNumber, "newRoomNumber") +
+        AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(newFloorNumber, "newFloorNumber")+
+        AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(newRoomNumber, "newRoomNumber") +
         AssetPlusFeatureUtility.isExistingAssetType(newAssetTypeName);
         if (!err.isEmpty()){
           return err;
