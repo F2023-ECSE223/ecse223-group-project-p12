@@ -1,4 +1,4 @@
-# :hotel::heavy_plus_sign: ECSE223 AssetPlus Project: Team 12
+# :hotel::heavy_plus_sign: ECSE223 AssetPlus Project: Team N
 
 _(Edit this file as needed, then remove this sentence)._
 
