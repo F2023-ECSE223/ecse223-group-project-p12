@@ -14,11 +14,6 @@ public class AssetPlusFeatureSet1Controller {
    * @param password password of the manager
    */
   public static String updateManager(String password) {
-    //Input validation
-    String err = AssetPlusFeatureUtility.isStringValid(password, "password");
-    if (!err.isEmpty()) {
-      return err;
-    }
     //Updating the manager password with the new password
     try {
       AssetPlusApplication.getAssetPlus().getManager().setPassword(password);
