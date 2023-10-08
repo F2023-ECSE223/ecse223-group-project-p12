@@ -14,7 +14,7 @@ public class AssetPlusFeatureUtility {
   // Input validation static methods:
 
   public static String isGreaterThanOrEqualToZero(int number, String subject){
-    if (0 <= number) {
+    if (number < 0) {
       return "Error: the number from " + subject + " must be greater than or equal to 0.\n";
     }
     return "";
