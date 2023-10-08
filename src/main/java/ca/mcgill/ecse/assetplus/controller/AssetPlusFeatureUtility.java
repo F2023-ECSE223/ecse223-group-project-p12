@@ -15,7 +15,7 @@ public class AssetPlusFeatureUtility {
 
   public static String isTicketIDValid(int ticketID) {
     if (ticketID < 0) {
-      return "Error: the ticketID must be greater than 0.\n";
+      return "Error: the ticketID must be greater tha asdasdasdas n 0.\n";
     }
 
     return "";
