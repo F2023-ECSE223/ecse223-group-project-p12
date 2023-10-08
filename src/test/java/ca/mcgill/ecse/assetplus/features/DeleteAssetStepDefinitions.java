@@ -107,10 +107,10 @@ public class DeleteAssetStepDefinitions {
         int applicationCounter = 0;
         for (Map<String, Object> row : tableList) {
           SpecificAsset asset = application.getSpecificAssets().get(applicationCounter);
-          assertEquals(row.get("assetNumber"), asset.getAssetNumber());
-          assertEquals(row.get("type"), asset.getAssetType());
-          assertEquals(row.get("floorNumber"), asset.getFloorNumber());
-          assertEquals(row.get("roomNumber"), asset.getRoomNumber());
+          assertEquals((int)row.get("assetNumber"), asset.getAssetNumber());
+          assertEquals((String)row.get("type"), asset.getAssetType());
+          assertEquals((int) row.get("floorNumber"), asset.getFloorNumber());
+          assertEquals((int) row.get("roomNumber"), asset.getRoomNumber());
           applicationCounter++;
         }
     // Write code here that turns the phrase above into concrete actions
