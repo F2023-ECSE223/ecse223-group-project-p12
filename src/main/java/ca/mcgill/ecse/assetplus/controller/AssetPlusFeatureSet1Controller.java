@@ -29,7 +29,7 @@ public class AssetPlusFeatureSet1Controller {
 
   /**
    * <p>Add an employee or a guest based on the parameter isEmployee<p>
-   * @param email
+   * @param email 
    * @param password
    * @param name
    * @param phoneNumber
