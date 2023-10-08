@@ -45,14 +45,6 @@ public class AssetPlusFeatureUtility {
     return "";
   }
 
-  public static String isNewAssetTypeName(String name){
-    for (AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
-      if(type.getName() == name)
-        return "Error: the name of the asset type must not be already used by another asset type.\n";
-    }
-    return "";
-  }
-
   public static String isExistingAssetType(String name){
     for (AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
       if(type.getName() == name)
