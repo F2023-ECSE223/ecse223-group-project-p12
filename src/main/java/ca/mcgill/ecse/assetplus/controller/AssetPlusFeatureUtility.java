@@ -57,19 +57,6 @@ public class AssetPlusFeatureUtility {
     return "Error: the asset type specified with this name does not exist.\n";
   }
 
-  public static String isFloorNumberValid(int floorNumber){
-    if (floorNumber <= 0){
-      return "Error: the floorNumber must be greater than 0.\n";
-    }  
-    return "";
-  }
-
-    public static String isRoomNumberValid(int roomNumber){
-      if (roomNumber <= 0){
-        return "Error: the roomNumber must be greater than 0.\n";
-      }  
-      return "";
-    }
 
     public static String isExistingAsset(int assetNumber) {
       if (SpecificAsset.getWithAssetNumber(assetNumber) != null){
@@ -77,13 +64,6 @@ public class AssetPlusFeatureUtility {
       } else {
         return "Error: there is no specific asset with that assetNumber.\n";
       }
-    }
-
-    public static String isAssetNumberValid(int assetNumber) {
-      if (assetNumber <= 0){
-        return "Error: the assetNumber must be greater than 0.\n";
-      }  
-      return "";
     }
 
     public static String isExistingUser(String email) {
