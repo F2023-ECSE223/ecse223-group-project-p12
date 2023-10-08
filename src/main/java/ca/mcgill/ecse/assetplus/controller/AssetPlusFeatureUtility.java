@@ -27,10 +27,10 @@ public class AssetPlusFeatureUtility {
     return "";
   }
 
-  public static String isStringNotEmpty(String input, String subject) {
+  public static String isStringValid(String input, String subject) {
     if (input.isEmpty()) {
       return "Error: the " + subject + " must not be an empty String.\n";
-    }  
+    }
     return "";
   }
 
