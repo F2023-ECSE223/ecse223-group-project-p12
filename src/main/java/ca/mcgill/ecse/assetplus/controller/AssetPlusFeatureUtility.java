@@ -29,9 +29,9 @@ public class AssetPlusFeatureUtility {
     return "";
   }
 
-  public static String isStringNotEmpty(String input) {
+  public static String isStringNotEmpty(String input, String subject) {
     if (input.isEmpty()) {
-      return "Error: the String input must not be empty.\n";
+      return "Error: the " + subject + " must not be an empty String.\n";
     }  
 
     return "";
