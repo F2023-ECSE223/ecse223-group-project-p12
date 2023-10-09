@@ -110,4 +110,8 @@ public class AssetPlusFeatureUtility {
       return imageURLS;
     }
 
+    public static boolean isEmployeeEmailValid(String email) {
+      return email.endsWith("@ap.com");
+    }
+
 }
