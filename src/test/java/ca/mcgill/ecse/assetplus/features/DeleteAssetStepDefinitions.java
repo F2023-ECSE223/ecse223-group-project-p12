@@ -51,7 +51,7 @@ public class DeleteAssetStepDefinitions {
         // Iterate through each map representing a row and cast it to the appropriate type.
         for (Map<String, Object> row : tableList) {
           int assetNumber = Integer.parseInt((String)row.get("assetNumber"));
-          String assetType = (row.get("assetType")).toString();
+          String assetType = (row.get("type")).toString();
           int floorNumber = Integer.parseInt((String)row.get("floorNumber"));
           int roomNumber = Integer.parseInt((String)row.get("roomNumber"));
 
