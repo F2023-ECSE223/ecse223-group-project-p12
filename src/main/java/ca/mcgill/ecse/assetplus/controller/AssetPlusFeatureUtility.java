@@ -35,11 +35,12 @@ public class AssetPlusFeatureUtility {
   }
 
   public static String isExistingAssetType(String name){
-    for (AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
-      if(type.getName() == name)
-        return "";
+    String err = "";
+    AssetType type =  AssetType.getWithName(name);
+    if(type == null){
+      err = "Error: the asset type specified with this name does not exist.\n";
     }
-    return "Error: the asset type specified with this name does not exist.\n";
+    return err;
   }
 
     public static String isExistingAsset(int assetNumber) {
