@@ -20,6 +20,13 @@ public class AssetPlusFeatureUtility {
     return "";
   }
 
+  public static String isGreaterThanZero(int number, String subject){
+    if (number < 0) {
+      return "Error: the number from " + subject + " must be greater than  0.\n";
+    }
+    return "";
+  }
+
   public static String isStringValid(String input, String subject) {
     if (input.isEmpty()) {
       return "Error: the " + subject + " must not be an empty String.\n";
