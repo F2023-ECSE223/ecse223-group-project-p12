@@ -43,6 +43,7 @@ public class AssetPlusFeatureSet5Controller {
     String err =  AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(ticketID, "ticketID") + 
                   AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL");
     if (!err.isEmpty()) {
+      System.out.println(err);
       return;
     }
 
