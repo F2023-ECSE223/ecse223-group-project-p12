@@ -14,8 +14,15 @@ public class AssetPlusFeatureUtility {
   // Input validation static methods:
 
   public static String isGreaterThanOrEqualToZero(int number, String subject){
-    if (0 <= number) {
+    if (number < 0) {
       return "Error: the number from " + subject + " must be greater than or equal to 0.\n";
+    }
+    return "";
+  }
+
+  public static String isGreaterThanZero(int number, String subject){
+    if (number < 0) {
+      return "Error: the number from " + subject + " must be greater than  0.\n";
     }
     return "";
   }
@@ -43,12 +50,29 @@ public class AssetPlusFeatureUtility {
       }
     }
 
+
     public static String isExistingUser(String email) {
       if (!User.hasWithEmail(email)) {
         return "Error: user not found.";
       }
       return "";
     }
+
+    public static String isExistingTicket(int id){
+      if ( !MaintenanceTicket.hasWithId(id)){
+        return "Error: ticket not found";
+      }
+      return "";
+    }
+
+    public static String isValidAssetNumberForTicket(int assetNumber){
+      if ((SpecificAsset.getWithAssetNumber(assetNumber) != null) || (assetNumber == -1)){
+        return "";
+      } else {
+        return "Error: not a valid asset number for a ticket.\n";
+      }
+    }
+
 
     // Other utility methods
 
@@ -91,6 +115,10 @@ public class AssetPlusFeatureUtility {
         imageURLS.add(ticketImage.getImageURL());
       }
       return imageURLS;
+    }
+
+    public static boolean isEmployeeEmailValid(String email) {
+      return email.endsWith("@ap.com");
     }
 
 }

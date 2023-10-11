@@ -18,7 +18,7 @@ public class AssetPlusFeatureSet2Controller {
   public static String addAssetType(String name, int expectedLifeSpanInDays) {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(name, "name") + 
-                 AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(expectedLifeSpanInDays, "expectedLifeSpanInDays");
+                 AssetPlusFeatureUtility.isGreaterThanZero(expectedLifeSpanInDays, "expectedLifeSpanInDays");
 
     if(!err.isEmpty()){
       return err;
@@ -27,7 +27,7 @@ public class AssetPlusFeatureSet2Controller {
     try {
       AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpanInDays);
     } 
-    catch (Exception e) {
+    catch (RuntimeException e) {
       return e.getMessage();
     }
 
@@ -51,15 +51,11 @@ public class AssetPlusFeatureSet2Controller {
     }
 
     try {
-      for(AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
-        if(type.getName()==oldName){
-          type.setName(newName);
-          type.setExpectedLifeSpan(newExpectedLifeSpanInDays);
-          break;
-        }
-      }
+      AssetType type = AssetType.getWithName(oldName);
+      type.setName(newName);
+      type.setExpectedLifeSpan(newExpectedLifeSpanInDays);
     }
-    catch (Exception e) {
+    catch (RuntimeException e) {
       return e.getMessage();
     }
 
@@ -72,23 +68,17 @@ public class AssetPlusFeatureSet2Controller {
    * @return an empty string or an error message
    */
   public static String deleteAssetType(String name) {
-    String err = AssetPlusFeatureUtility.isStringValid(name, "name") + 
-                 AssetPlusFeatureUtility.isExistingAssetType(name);
+    String err = AssetPlusFeatureUtility.isStringValid(name, "name");
 
-     if(!err.isEmpty()){
+    if(!err.isEmpty()){
       return err;
     }
 
     try {
-      for(AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
-        if(type.getName() == name){
-          AssetPlusApplication.getAssetPlus().removeAssetType(type);
-          break;
-        }
-      }
-      
+      AssetType type = AssetType.getWithName(name);
+      AssetPlusApplication.getAssetPlus().removeAssetType(type);
     }
-    catch (Exception e) {
+    catch (RuntimeException e) {
       return e.getMessage();
     }
     

@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+<<<<<<< HEAD
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
@@ -17,6 +18,9 @@ import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
+=======
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
+>>>>>>> 88f76ede5e10ee99a8ba61220ef26d5323e7cc5f
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
@@ -91,6 +95,10 @@ public class DeleteAssetStepDefinitions {
   public void the_manager_attempts_to_delete_the_asset_with_number_p12(String string) {
     //Removes the specific asset based on the asset number given.
     AssetPlusFeatureSet3Controller.deleteSpecificAsset(Integer.parseInt(string));
+<<<<<<< HEAD
+=======
+
+>>>>>>> 88f76ede5e10ee99a8ba61220ef26d5323e7cc5f
     // Write code here that turns the phrase above into concrete actions
     //throw new io.cucumber.java.PendingException();
   }
