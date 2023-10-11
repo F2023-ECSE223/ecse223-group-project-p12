@@ -27,7 +27,7 @@ public class DeleteAssetStepDefinitions {
 
         //Iterates through each list to create the specified asset types and add it to the AssetPlus application.
         for (Map<String, Object> row : tableList) {
-          String name = (String) row.get("name");
+          String name = (row.get("name")).toString();
           int expectedLifeSpan = Integer.parseInt((String)row.get("expectedLifeSpan"));
           application.addAssetType(name, expectedLifeSpan);
       }
@@ -51,7 +51,7 @@ public class DeleteAssetStepDefinitions {
         // Iterate through each map representing a row and cast it to the appropriate type.
         for (Map<String, Object> row : tableList) {
           int assetNumber = Integer.parseInt((String)row.get("assetNumber"));
-          String assetType = (String) row.get("assetType");
+          String assetType = (row.get("assetType")).toString();
           int floorNumber = Integer.parseInt((String)row.get("floorNumber"));
           int roomNumber = Integer.parseInt((String)row.get("roomNumber"));
 
