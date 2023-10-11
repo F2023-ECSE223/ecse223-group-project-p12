@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
@@ -84,7 +85,8 @@ public class DeleteAssetStepDefinitions {
   @When("the manager attempts to delete the asset with number {string} \\(p12)")
   public void the_manager_attempts_to_delete_the_asset_with_number_p12(String string) {
     //Removes the specific asset based on the asset number given.
-    application.removeSpecificAsset(SpecificAsset.getWithAssetNumber(Integer.parseInt(string)));
+    AssetPlusFeatureSet3Controller.deleteSpecificAsset(Integer.parseInt(string));
+
     // Write code here that turns the phrase above into concrete actions
     //throw new io.cucumber.java.PendingException();
   }
