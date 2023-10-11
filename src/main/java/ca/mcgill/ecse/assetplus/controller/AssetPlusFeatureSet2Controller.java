@@ -67,11 +67,12 @@ public class AssetPlusFeatureSet2Controller {
    * @param name the name of the asset type
    * @return an empty string or an error message
    */
-  public static String deleteAssetType(String name) {
+  public static void deleteAssetType(String name) {
     String err = AssetPlusFeatureUtility.isStringValid(name, "name");
 
     if(!err.isEmpty()){
-      return err;
+      System.out.println(err);
+      return;
     }
 
     try {
@@ -79,10 +80,10 @@ public class AssetPlusFeatureSet2Controller {
       AssetPlusApplication.getAssetPlus().removeAssetType(type);
     }
     catch (RuntimeException e) {
-      return e.getMessage();
+      System.out.println(err);
     }
     
-    return "";
+    return;
   }
 
 }
