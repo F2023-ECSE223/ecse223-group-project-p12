@@ -25,7 +25,8 @@ public class AssetPlusFeatureSet2Controller {
     }
 
     try {
-      AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpanInDays);
+      AssetType type = AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpanInDays);
+      AssetPlusApplication.getAssetPlus().addAssetType(type);
     } 
     catch (RuntimeException e) {
       return e.getMessage();
