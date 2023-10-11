@@ -68,10 +68,7 @@ public class AssetPlusFeatureSet3Controller {
           asset.setFloorNumber(newFloorNumber);
           asset.setRoomNumber(newRoomNumber);
           asset.setPurchaseDate(newPurchaseDate);
-          for (AssetType type : AssetPlusApplication.getAssetPlus().getAssetTypes()){
-            if(type.getName() == newAssetTypeName)
-              asset.setAssetType(type);
-          }
+          asset.setAssetType(AssetType.getWithName(newAssetTypeName));
        } catch (RuntimeException e){
           return e.getMessage();
         }
