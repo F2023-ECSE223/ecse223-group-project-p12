@@ -44,6 +44,7 @@ public class AssetPlusFeatureSet4Controller {
         else {
           newTicket.setAsset(null);
         }
+        AssetPlusApplication.getAssetPlus().addMaintenanceTicket(newTicket);
       }
     catch (RuntimeException e){
         return e.getMessage();
