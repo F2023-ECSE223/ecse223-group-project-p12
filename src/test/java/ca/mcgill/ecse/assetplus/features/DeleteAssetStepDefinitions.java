@@ -50,27 +50,27 @@ public class DeleteAssetStepDefinitions {
 
         // Iterate through each map representing a row and cast it to the appropriate type.
         for (Map<String, Object> row : tableList) {
-            int assetNumber = (int) row.get("assetNumber");
-            String assetType = (String) row.get("assetType");
-            int floorNumber = (int) row.get("floorNumber");
-            int roomNumber = (int) row.get("roomNumber");
+          int assetNumber = Integer.parseInt((String)row.get("assetNumber"));
+          String assetType = (String) row.get("assetType");
+          int floorNumber = Integer.parseInt((String)row.get("floorNumber"));
+          int roomNumber = Integer.parseInt((String)row.get("roomNumber"));
 
-            //Very annoying parsing to transform a string date into an SQL date. Please let me know if there's any other better way. 
-            String purchaseDate = (String) row.get("purchaseDate");
-            String pattern = "yyyy-MM-dd";
-            SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-            java.util.Date utilDate;
-            try {
-                utilDate = dateFormat.parse(purchaseDate);
-            } catch (java.text.ParseException e) {
-                // Handle the parse exception
-                throw new RuntimeException("Invalid date format: " + purchaseDate, e);
-            }
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+          //Very annoying parsing to transform a string date into an SQL date. Please let me know if there's any other better way. 
+          String purchaseDate = (String) row.get("purchaseDate");
+          String pattern = "yyyy-MM-dd";
+          SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+          java.util.Date utilDate;
+          try {
+              utilDate = dateFormat.parse(purchaseDate);
+          } catch (java.text.ParseException e) {
+              // Handle the parse exception
+              throw new RuntimeException("Invalid date format: " + purchaseDate, e);
+          }
+          java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-            //Adding the specific asset based on the table information. 
-            application.addSpecificAsset(assetNumber, floorNumber, roomNumber, sqlDate, AssetType.getWithName(assetType));
-          }  
+          //Adding the specific asset based on the table information. 
+          application.addSpecificAsset(assetNumber, floorNumber, roomNumber, sqlDate, AssetType.getWithName(assetType));
+        }  
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
     // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
