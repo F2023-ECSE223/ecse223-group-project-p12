@@ -10,6 +10,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
@@ -17,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class DeleteAssetStepDefinitions {
-  private AssetPlus application = new AssetPlus();
 
   @Given("the following asset types exist in the system \\(p12)")
   public void the_following_asset_types_exist_in_the_system_p12(
@@ -28,8 +34,8 @@ public class DeleteAssetStepDefinitions {
         //Iterates through each list to create the specified asset types and add it to the AssetPlus application.
         for (Map<String, Object> row : tableList) {
           String name = (row.get("name")).toString();
-          int expectedLifeSpan = Integer.parseInt((String)row.get("expectedLifeSpan"));
-          application.addAssetType(name, expectedLifeSpan);
+          int expectedLifeSpan = Integer.parseInt(row.get("expectedLifeSpan").toString());
+          AssetPlusFeatureSet2Controller.addAssetType(name, expectedLifeSpan);
       }
         
     // Write code here that turns the phrase above into concrete actions
@@ -50,13 +56,13 @@ public class DeleteAssetStepDefinitions {
 
         // Iterate through each map representing a row and cast it to the appropriate type.
         for (Map<String, Object> row : tableList) {
-          int assetNumber = Integer.parseInt((String)row.get("assetNumber"));
+          int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
           String assetType = (row.get("type")).toString();
-          int floorNumber = Integer.parseInt((String)row.get("floorNumber"));
-          int roomNumber = Integer.parseInt((String)row.get("roomNumber"));
+          int floorNumber = Integer.parseInt(row.get("floorNumber").toString());
+          int roomNumber = Integer.parseInt(row.get("roomNumber").toString());
 
           //Very annoying parsing to transform a string date into an SQL date. Please let me know if there's any other better way. 
-          String purchaseDate = (String) row.get("purchaseDate");
+          String purchaseDate = row.get("purchaseDate").toString();
           String pattern = "yyyy-MM-dd";
           SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
           java.util.Date utilDate;
@@ -68,8 +74,8 @@ public class DeleteAssetStepDefinitions {
           }
           java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-          //Adding the specific asset based on the table information. 
-          application.addSpecificAsset(assetNumber, floorNumber, roomNumber, sqlDate, AssetType.getWithName(assetType));
+          //Adding the specific asset based on the table information.
+          AssetPlusFeatureSet3Controller.addSpecificAsset(assetNumber, floorNumber, roomNumber, sqlDate, assetType);
         }  
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
@@ -84,7 +90,7 @@ public class DeleteAssetStepDefinitions {
   @When("the manager attempts to delete the asset with number {string} \\(p12)")
   public void the_manager_attempts_to_delete_the_asset_with_number_p12(String string) {
     //Removes the specific asset based on the asset number given.
-    application.removeSpecificAsset(SpecificAsset.getWithAssetNumber(Integer.parseInt(string)));
+    AssetPlusFeatureSet3Controller.deleteSpecificAsset(Integer.parseInt(string));
     // Write code here that turns the phrase above into concrete actions
     //throw new io.cucumber.java.PendingException();
   }
@@ -92,7 +98,7 @@ public class DeleteAssetStepDefinitions {
   @Then("the number of assets in the system shall be {string} \\(p12)")
   public void the_number_of_assets_in_the_system_shall_be_p12(String string) {
     //Confirms that the amount of assets has gone down after remvoving an asset.
-    assertEquals(Integer.parseInt(string), application.getSpecificAssets().size());
+    assertEquals(Integer.parseInt(string), AssetPlusApplication.getAssetPlus().getSpecificAssets().size());
     // Write code here that turns the phrase above into concrete actions
     //throw new io.cucumber.java.PendingException();
   }
@@ -106,7 +112,7 @@ public class DeleteAssetStepDefinitions {
         //to assert that they are equals with respect to their fields. Application counter augments the index of the application asset list. 
         int applicationCounter = 0;
         for (Map<String, Object> row : tableList) {
-          SpecificAsset asset = application.getSpecificAssets().get(applicationCounter);
+          SpecificAsset asset = AssetPlusApplication.getAssetPlus().getSpecificAssets().get(applicationCounter);
           assertEquals((int)row.get("assetNumber"), asset.getAssetNumber());
           assertEquals((String)row.get("type"), asset.getAssetType());
           assertEquals((int) row.get("floorNumber"), asset.getFloorNumber());
