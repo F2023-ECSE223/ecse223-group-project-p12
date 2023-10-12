@@ -18,14 +18,18 @@ public class AssetPlusFeatureSet5Controller {
   public static String addImageToMaintenanceTicket(String imageURL, int ticketID) {
     // Input validations
     String err =  AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(ticketID, "ticketID") + 
-                  AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL");
+                  AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL") + 
+                  AssetPlusFeatureUtility.isExistingTicket(ticketID);
     if (!err.isEmpty()) {
       return err;
     }
 
     // Add image
     try {
-      MaintenanceTicket.getWithId(ticketID).addTicketImage(imageURL);
+      // Create a new ticket image
+      TicketImage createdImage = MaintenanceTicket.getWithId(ticketID).addTicketImage(imageURL);
+      // Add it to the list of the maintenance ticket
+      MaintenanceTicket.getWithId(ticketID).addTicketImage(createdImage);
     }
     catch (RuntimeException e) {
       return e.getMessage();
@@ -41,7 +45,8 @@ public class AssetPlusFeatureSet5Controller {
   public static void deleteImageFromMaintenanceTicket(String imageURL, int ticketID) {
     // Input validations
     String err =  AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(ticketID, "ticketID") + 
-                  AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL");
+                  AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL") + 
+                  AssetPlusFeatureUtility.isExistingTicket(ticketID);
     if (!err.isEmpty()) {
       System.out.println(err);
       return;
@@ -50,9 +55,11 @@ public class AssetPlusFeatureSet5Controller {
     // Find the image with the URL and delete it
     for (TicketImage image : MaintenanceTicket.getWithId(ticketID).getTicketImages() ) {
       if (image.getImageURL() == imageURL) {
-        image.getTicket().removeTicketImage(image);
+        image.delete();
+        return;
       }
     }
+    System.out.println("Error: image not found");
   }
 
 }
