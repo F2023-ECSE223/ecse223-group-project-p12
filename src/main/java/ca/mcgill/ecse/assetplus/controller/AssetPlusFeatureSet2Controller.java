@@ -25,7 +25,8 @@ public class AssetPlusFeatureSet2Controller {
     }
 
     try {
-      AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpanInDays);
+      AssetType type = AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpanInDays);
+      AssetPlusApplication.getAssetPlus().addAssetType(type);
     } 
     catch (RuntimeException e) {
       return e.getMessage();
@@ -67,22 +68,22 @@ public class AssetPlusFeatureSet2Controller {
    * @param name the name of the asset type
    * @return an empty string or an error message
    */
-  public static String deleteAssetType(String name) {
-    String err = AssetPlusFeatureUtility.isStringValid(name, "name");
-
+  public static void deleteAssetType(String name) {
+    String err = AssetPlusFeatureUtility.isStringValid(name, "name") + AssetPlusFeatureUtility.isExistingAssetType(name);
     if(!err.isEmpty()){
-      return err;
+      System.out.println(err);
+      return;
     }
 
     try {
       AssetType type = AssetType.getWithName(name);
-      AssetPlusApplication.getAssetPlus().removeAssetType(type);
+      type.delete();
     }
     catch (RuntimeException e) {
-      return e.getMessage();
+      System.out.println(err);
     }
     
-    return "";
+    return;
   }
 
 }

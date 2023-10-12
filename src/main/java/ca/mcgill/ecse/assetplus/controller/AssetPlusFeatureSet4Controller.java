@@ -44,6 +44,7 @@ public class AssetPlusFeatureSet4Controller {
         else {
           newTicket.setAsset(null);
         }
+        AssetPlusApplication.getAssetPlus().addMaintenanceTicket(newTicket);
       }
     catch (RuntimeException e){
         return e.getMessage();
@@ -105,7 +106,7 @@ public class AssetPlusFeatureSet4Controller {
     }
 
     //Delete the specific ticket from the AssetPlus application instance. 
-    AssetPlusApplication.getAssetPlus().removeMaintenanceTicket(MaintenanceTicket.getWithId(id));
+    MaintenanceTicket.getWithId(id).delete();
   }
 
 }
