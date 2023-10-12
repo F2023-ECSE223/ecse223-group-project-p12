@@ -2,7 +2,6 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
@@ -66,6 +65,10 @@ public class AssetPlusFeatureUtility {
       return "";
     }
 
+    public static boolean isEmployeeEmailValid(String email) {
+      return email.endsWith("@ap.com");
+    }
+
     public static String isValidAssetNumberForTicket(int assetNumber){
       if ((SpecificAsset.getWithAssetNumber(assetNumber) != null) || (assetNumber == -1)){
         return "";
@@ -117,9 +120,4 @@ public class AssetPlusFeatureUtility {
       }
       return imageURLS;
     }
-
-    public static boolean isEmployeeEmailValid(String email) {
-      return email.endsWith("@ap.com");
-    }
-
 }
