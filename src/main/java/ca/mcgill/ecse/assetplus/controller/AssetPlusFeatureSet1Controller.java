@@ -2,6 +2,8 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.User;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.Guest;
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
@@ -49,9 +51,11 @@ public class AssetPlusFeatureSet1Controller {
     //Creating and adding the employee or guest
     try {
       if (isEmployee) {
-       AssetPlusApplication.getAssetPlus().addEmployee(email, name, password, phoneNumber); 
+        Employee employee = AssetPlusApplication.getAssetPlus().addEmployee(email, name, password, phoneNumber);
+        AssetPlusApplication.getAssetPlus().addEmployee(employee);
       } else {
-        AssetPlusApplication.getAssetPlus().addGuest(email, name, password, phoneNumber);
+        Guest guest = AssetPlusApplication.getAssetPlus().addGuest(email, name, password, phoneNumber);
+        AssetPlusApplication.getAssetPlus().addGuest(guest);
       }
     } catch (RuntimeException e) {
       return e.getMessage();
