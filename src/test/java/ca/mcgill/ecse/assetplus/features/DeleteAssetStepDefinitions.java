@@ -5,20 +5,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.sql.Date;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
-import ca.mcgill.ecse.assetplus.model.AssetPlus;
-import ca.mcgill.ecse.assetplus.model.AssetType;
+import ca.mcgill.ecse.assetplus.controller.*;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -60,22 +51,10 @@ public class DeleteAssetStepDefinitions {
           String assetType = (row.get("type")).toString();
           int floorNumber = Integer.parseInt(row.get("floorNumber").toString());
           int roomNumber = Integer.parseInt(row.get("roomNumber").toString());
-
-          //Very annoying parsing to transform a string date into an SQL date. Please let me know if there's any other better way. 
-          String purchaseDate = row.get("purchaseDate").toString();
-          String pattern = "yyyy-MM-dd";
-          SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
-          java.util.Date utilDate;
-          try {
-              utilDate = dateFormat.parse(purchaseDate);
-          } catch (java.text.ParseException e) {
-              // Handle the parse exception
-              throw new RuntimeException("Invalid date format: " + purchaseDate, e);
-          }
-          java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-
+          Date purchaseDate = Date.valueOf(row.get("purchaseDate").toString());
+          
           //Adding the specific asset based on the table information.
-          AssetPlusFeatureSet3Controller.addSpecificAsset(assetNumber, floorNumber, roomNumber, sqlDate, assetType);
+          AssetPlusFeatureSet3Controller.addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, assetType);
         }  
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
@@ -117,6 +96,7 @@ public class DeleteAssetStepDefinitions {
           assertEquals(row.get("type").toString(), asset.getAssetType().getName());
           assertEquals(Integer.parseInt(row.get("floorNumber").toString()), asset.getFloorNumber());
           assertEquals(Integer.parseInt(row.get("roomNumber").toString()), asset.getRoomNumber());
+          assertEquals(Date.valueOf(row.get("purchaseDate").toString()), asset.getPurchaseDate());
           applicationCounter++;
         }
     // Write code here that turns the phrase above into concrete actions
