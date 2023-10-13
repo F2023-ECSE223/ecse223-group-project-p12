@@ -1,6 +1,8 @@
 package ca.mcgill.ecse.assetplus.controller;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.User;
 
 /**
@@ -37,7 +39,7 @@ public class AssetPlusFeatureSet1Controller {
     
     //Input validation
     String err = AssetPlusFeatureUtility.isExistingUser(email);
-
+    
     if (err.isEmpty()) {
       return "Error: a user with this email already exist";
     }
@@ -49,9 +51,11 @@ public class AssetPlusFeatureSet1Controller {
     //Creating and adding the employee or guest
     try {
       if (isEmployee) {
-       AssetPlusApplication.getAssetPlus().addEmployee(email, name, password, phoneNumber); 
+       Employee new_employee = AssetPlusApplication.getAssetPlus().addEmployee(email, name, password, phoneNumber);
+       AssetPlusApplication.getAssetPlus().addEmployee(new_employee); 
       } else {
-        AssetPlusApplication.getAssetPlus().addGuest(email, name, password, phoneNumber);
+        Guest aGuest = AssetPlusApplication.getAssetPlus().addGuest(email, name, password, phoneNumber);
+        AssetPlusApplication.getAssetPlus().addGuest(aGuest);
       }
     } catch (RuntimeException e) {
       return e.getMessage();
