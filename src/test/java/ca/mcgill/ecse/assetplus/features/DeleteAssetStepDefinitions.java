@@ -10,6 +10,7 @@ import java.util.Map;
 import java.sql.Date;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.*;
+import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,7 +27,8 @@ public class DeleteAssetStepDefinitions {
         for (Map<String, Object> row : tableList) {
           String name = (row.get("name")).toString();
           int expectedLifeSpan = Integer.parseInt(row.get("expectedLifeSpan").toString());
-          AssetPlusFeatureSet2Controller.addAssetType(name, expectedLifeSpan);
+          AssetType type = AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpan);
+          AssetPlusApplication.getAssetPlus().addAssetType(type);
       }
         
     // Write code here that turns the phrase above into concrete actions
@@ -54,7 +56,8 @@ public class DeleteAssetStepDefinitions {
           Date purchaseDate = Date.valueOf(row.get("purchaseDate").toString());
           
           //Adding the specific asset based on the table information.
-          AssetPlusFeatureSet3Controller.addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, assetType);
+          SpecificAsset asset = AssetPlusApplication.getAssetPlus().addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, AssetType.getWithName(assetType));
+          AssetPlusApplication.getAssetPlus().addSpecificAsset(asset);
         }  
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
