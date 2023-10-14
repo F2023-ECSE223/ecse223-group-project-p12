@@ -35,7 +35,8 @@ public class AssetPlusFeatureSet3Controller {
 
         //Add the specific asset to the AssetPlus application instance.
         try {
-          AssetPlusApplication.getAssetPlus().addSpecificAsset(AssetPlusApplication.getAssetPlus().addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, AssetType.getWithName(assetTypeName)));
+          SpecificAsset asset = AssetPlusApplication.getAssetPlus().addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, AssetType.getWithName(assetTypeName));
+          AssetPlusApplication.getAssetPlus().addSpecificAsset(asset);
         } catch (RuntimeException e){
           return e.getMessage();
         }
