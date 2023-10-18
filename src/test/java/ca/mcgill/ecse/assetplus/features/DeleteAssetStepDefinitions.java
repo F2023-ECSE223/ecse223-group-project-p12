@@ -1,6 +1,8 @@
 package ca.mcgill.ecse.assetplus.features;
 
 import io.cucumber.core.gherkin.messages.internal.gherkin.internal.com.eclipsesource.json.ParseException;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,9 +16,25 @@ import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+/**
+   * This class defines the Gherkin step defintions for the DeleteAsset feature.
+   * @author Everyone on P12 worked on the step definitions. 
+   */
+  
 public class DeleteAssetStepDefinitions {
 
+  /**
+   * Method used to delete the current AssetPlus system instance before the next test. 
+   */
+  @Before
+  public void before() {
+    AssetPlusApplication.getAssetPlus().delete();
+  }
+  
+  /**
+    * Gherkin step definition method to create and add asset types to the AssetPlus application.
+    * @param dataTable Cucumber DataTable containing the asset type information. 
+    */
   @Given("the following asset types exist in the system \\(p12)")
   public void the_following_asset_types_exist_in_the_system_p12(
       io.cucumber.datatable.DataTable dataTable) {
@@ -30,17 +48,12 @@ public class DeleteAssetStepDefinitions {
           AssetType type = AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpan);
           AssetPlusApplication.getAssetPlus().addAssetType(type);
       }
-        
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    //throw new io.cucumber.java.PendingException();
   }
 
+  /**
+   * Gherkin step definition method to create and add the specific assets to the AssetPlus application.
+   * @param dataTable Cucumber DataTable containing specific asset information.
+   */
   @Given("the following assets exist in the system \\(p12)")
   public void the_following_assets_exist_in_the_system_p12(
       io.cucumber.datatable.DataTable dataTable) {
@@ -59,32 +72,34 @@ public class DeleteAssetStepDefinitions {
           SpecificAsset asset = AssetPlusApplication.getAssetPlus().addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, AssetType.getWithName(assetType));
           AssetPlusApplication.getAssetPlus().addSpecificAsset(asset);
         }  
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    //throw new io.cucumber.java.PendingException();
+   
   }
 
-  @When("the manager attempts to delete the asset with number {string} \\(p12)")
-  public void the_manager_attempts_to_delete_the_asset_with_number_p12(String string) {
+  /**
+   * Gherkin step definition method to delete the specific asset specified by number from the AssetPlus application.
+   * @param assetNumber Specific asset number associated to the asset to be deleted.
+   */
+  @When("the manager attempts to delete the asset with number {assetNumber} \\(p12)")
+  public void the_manager_attempts_to_delete_the_asset_with_number_p12(String assetNumber) {
     //Removes the specific asset based on the asset number given.
-    AssetPlusFeatureSet3Controller.deleteSpecificAsset(Integer.parseInt(string));
-    // Write code here that turns the phrase above into concrete actions
-    //throw new io.cucumber.java.PendingException();
+    AssetPlusFeatureSet3Controller.deleteSpecificAsset(Integer.parseInt(assetNumber));
+    
   }
 
-  @Then("the number of assets in the system shall be {string} \\(p12)")
-  public void the_number_of_assets_in_the_system_shall_be_p12(String string) {
+  /**
+   * Gherkin step definition method to verify the amount of assets in the application following the deletion of a specific asset. 
+   * @param expectedNumberOfAssets Expected number of assets after the specific asset has been deleted. 
+   */
+  @Then("the number of assets in the system shall be {expectedNumberOfAssets} \\(p12)")
+  public void the_number_of_assets_in_the_system_shall_be_p12(String expectedNumberOfAssets) {
     //Confirms that the amount of assets has gone down after remvoving an asset.
-    assertEquals(Integer.parseInt(string), AssetPlusApplication.getAssetPlus().getSpecificAssets().size());
-    // Write code here that turns the phrase above into concrete actions
-    //throw new io.cucumber.java.PendingException();
+    assertEquals(Integer.parseInt(expectedNumberOfAssets), AssetPlusApplication.getAssetPlus().getSpecificAssets().size());
   }
 
+  /**
+   * Gherkin step definition method to verify that the correct assets still exist in the AssetPlus application.
+   * @param dataTable Cucumber DataTable containing specific asset information of the assets which should still be existing in the AssetPlus application.
+   */
   @Then("the following assets shall exist in the system \\(p12)")
   public void the_following_assets_shall_exist_in_the_system_p12(
       io.cucumber.datatable.DataTable dataTable) {
@@ -102,12 +117,8 @@ public class DeleteAssetStepDefinitions {
           assertEquals(Date.valueOf(row.get("purchaseDate").toString()), asset.getPurchaseDate());
           applicationCounter++;
         }
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    // For other transformations you can register a DataTableType.
-    //throw new io.cucumber.java.PendingException();
   }
+
+  
+  
 }
