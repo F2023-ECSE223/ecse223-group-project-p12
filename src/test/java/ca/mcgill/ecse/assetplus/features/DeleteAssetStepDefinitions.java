@@ -16,6 +16,11 @@ import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+   * This class defines the Gherkin step defintions for the DeleteAsset feature.
+   * @author Everyone on P12 worked on the step definitions. 
+   */
+  
 public class DeleteAssetStepDefinitions {
 
   /**
