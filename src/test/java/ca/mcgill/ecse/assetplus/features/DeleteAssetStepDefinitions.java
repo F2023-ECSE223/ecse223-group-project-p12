@@ -1,6 +1,8 @@
 package ca.mcgill.ecse.assetplus.features;
 
 import io.cucumber.core.gherkin.messages.internal.gherkin.internal.com.eclipsesource.json.ParseException;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,6 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteAssetStepDefinitions {
 
+  /**
+   * Method used to delete the current AssetPlus system instance before the next test. 
+   */
+  @Before
+  public void before() {
+    AssetPlusApplication.getAssetPlus().delete();
+  }
+  
   /**
     * Gherkin step definition method to create and add asset types to the AssetPlus application.
     * @param dataTable Cucumber DataTable containing the asset type information. 
@@ -103,4 +113,7 @@ public class DeleteAssetStepDefinitions {
           applicationCounter++;
         }
   }
+
+  
+  
 }
