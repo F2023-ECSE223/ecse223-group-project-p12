@@ -14,11 +14,10 @@ import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class DeleteAssetStepDefinitions {
 
   /**
-    * Cucumber step definition method to create and add asset types to the AssetPlus application.
+    * Gherkin step definition method to create and add asset types to the AssetPlus application.
     * @param dataTable Cucumber DataTable containing the asset type information. 
     */
   @Given("the following asset types exist in the system \\(p12)")
@@ -37,7 +36,7 @@ public class DeleteAssetStepDefinitions {
   }
 
   /**
-   * Cucumber step definition method to create and add the specific assets to the AssetPlus application.
+   * Gherkin step definition method to create and add the specific assets to the AssetPlus application.
    * @param dataTable Cucumber DataTable containing specific asset information.
    */
   @Given("the following assets exist in the system \\(p12)")
@@ -62,7 +61,7 @@ public class DeleteAssetStepDefinitions {
   }
 
   /**
-   * Cucumber step definition method to delete the specific asset specified by number from the AssetPlus application.
+   * Gherkin step definition method to delete the specific asset specified by number from the AssetPlus application.
    * @param assetNumber Specific asset number associated to the asset to be deleted.
    */
   @When("the manager attempts to delete the asset with number {assetNumber} \\(p12)")
@@ -73,7 +72,7 @@ public class DeleteAssetStepDefinitions {
   }
 
   /**
-   * Cucumber step definition method to verify the amount of assets in the application following the deletion of a specific asset. 
+   * Gherkin step definition method to verify the amount of assets in the application following the deletion of a specific asset. 
    * @param expectedNumberOfAssets Expected number of assets after the specific asset has been deleted. 
    */
   @Then("the number of assets in the system shall be {expectedNumberOfAssets} \\(p12)")
@@ -83,7 +82,7 @@ public class DeleteAssetStepDefinitions {
   }
 
   /**
-   * Cucumber step definition method to verify that the correct assets still exist in the AssetPlus application.
+   * Gherkin step definition method to verify that the correct assets still exist in the AssetPlus application.
    * @param dataTable Cucumber DataTable containing specific asset information of the assets which should still be existing in the AssetPlus application.
    */
   @Then("the following assets shall exist in the system \\(p12)")
