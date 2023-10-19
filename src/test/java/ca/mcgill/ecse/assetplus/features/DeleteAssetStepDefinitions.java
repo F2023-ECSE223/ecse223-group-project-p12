@@ -1,5 +1,8 @@
 package ca.mcgill.ecse.assetplus.features;
 
+import io.cucumber.core.gherkin.messages.internal.gherkin.internal.com.eclipsesource.json.ParseException;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.sql.Date;
 import java.util.List;
@@ -12,9 +15,20 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-
+/**
+   * This class defines the Gherkin step defintions for the DeleteAsset feature.
+   */
+  
 public class DeleteAssetStepDefinitions {
 
+  
+  /**
+    * Gherkin step definition method to create and add asset types to the AssetPlus application.
+    * @param dataTable Cucumber DataTable containing the asset type information. 
+    *
+    * @author Julia B. Grenier
+    * @author Tayba Jusab
+    */
   @Given("the following asset types exist in the system \\(p12)")
   public void the_following_asset_types_exist_in_the_system_p12(
       io.cucumber.datatable.DataTable dataTable) {
@@ -28,10 +42,19 @@ public class DeleteAssetStepDefinitions {
           AssetType type = AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpan);
           AssetPlusApplication.getAssetPlus().addAssetType(type);
       }
-        
-    
   }
 
+  /**
+   * Gherkin step definition method to create and add the specific assets to the AssetPlus application.
+   * @param dataTable Cucumber DataTable containing specific asset information.
+   * 
+   * @author Sahar Fathi
+   * @author Anjali Singhal
+   * @author Julia B. Grenier
+   * @author Tayba Jusab
+   * @author Camille Pouliot
+   * @author Émilia Gagné
+   */
   @Given("the following assets exist in the system \\(p12)")
   public void the_following_assets_exist_in_the_system_p12(
       io.cucumber.datatable.DataTable dataTable) {
@@ -53,18 +76,43 @@ public class DeleteAssetStepDefinitions {
    
   }
 
-  @When("the manager attempts to delete the asset with number {string} \\(p12)")
+  /**
+   * Gherkin step definition method to delete the specific asset specified by number from the AssetPlus application.
+   * @param assetNumber Specific asset number associated to the asset to be deleted.
+   * 
+   * @author Camille Pouliot
+   * @author Émilia Gagné
+   */
+  @When("the manager attempts to delete the asset with number {assetNumber} \\(p12)")
   public void the_manager_attempts_to_delete_the_asset_with_number_p12(String assetNumber) {
     //Removes the specific asset based on the asset number given.
     AssetPlusFeatureSet3Controller.deleteSpecificAsset(Integer.parseInt(assetNumber));
     
   }
 
-  @Then("the number of assets in the system shall be {string} \\(p12)")
+  /**
+   * Gherkin step definition method to verify the amount of assets in the application following the deletion of a specific asset. 
+   * @param expectedNumberOfAssets Expected number of assets after the specific asset has been deleted. 
+   * 
+   * @author Sahar Fathi 
+   * @author Anjali Singhal
+   */
+  @Then("the number of assets in the system shall be {expectedNumberOfAssets} \\(p12)")
   public void the_number_of_assets_in_the_system_shall_be_p12(String expectedNumberOfAssets) {
     //Confirms that the amount of assets has gone down after remvoving an asset.
     assertEquals(Integer.parseInt(expectedNumberOfAssets), AssetPlusApplication.getAssetPlus().getSpecificAssets().size());
   }
+
+  /**
+   * Gherkin step definition method to verify that the correct assets still exist in the AssetPlus application.
+   * @param dataTable Cucumber DataTable containing specific asset information of the assets which should still be existing in the AssetPlus application.
+   * @author Sahar Fathi
+   * @author Anjali Singhal
+   * @author Julia B. Grenier
+   * @author Tayba Jusab
+   * @author Camille Pouliot
+   * @author Émilia Gagné
+   */
 
   @Then("the following assets shall exist in the system \\(p12)")
   public void the_following_assets_shall_exist_in_the_system_p12(
@@ -84,4 +132,7 @@ public class DeleteAssetStepDefinitions {
           applicationCounter++;
         }
   }
+
+  
+  
 }
