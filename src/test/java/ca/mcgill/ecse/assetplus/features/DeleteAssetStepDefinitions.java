@@ -3,18 +3,17 @@ package ca.mcgill.ecse.assetplus.features;
 import io.cucumber.core.gherkin.messages.internal.gherkin.internal.com.eclipsesource.json.ParseException;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.sql.Date;
+import java.util.List;
+import java.util.Map;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
+import ca.mcgill.ecse.assetplus.model.AssetType;
+import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.util.List;
-import java.util.Map;
-import java.sql.Date;
-import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
-import ca.mcgill.ecse.assetplus.controller.*;
-import ca.mcgill.ecse.assetplus.model.AssetType;
-import ca.mcgill.ecse.assetplus.model.SpecificAsset;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
    * This class defines the Gherkin step defintions for the DeleteAsset feature.
