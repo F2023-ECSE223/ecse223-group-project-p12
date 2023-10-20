@@ -21,16 +21,6 @@ import io.cucumber.java.en.When;
   
 public class DeleteAssetStepDefinitions {
 
-  /**
-   * Method used to delete the current AssetPlus system instance before the next test. 
-   * 
-   * @author Sahar Fathi
-   * @author Anjali Singhal
-   */
-  @Before
-  public void before() {
-    AssetPlusApplication.getAssetPlus().delete();
-  }
   
   /**
     * Gherkin step definition method to create and add asset types to the AssetPlus application.
@@ -104,8 +94,8 @@ public class DeleteAssetStepDefinitions {
    * Gherkin step definition method to verify the amount of assets in the application following the deletion of a specific asset. 
    * @param expectedNumberOfAssets Expected number of assets after the specific asset has been deleted. 
    * 
-   * @author Camille Pouliot
-   * @author Émilia Gagné
+   * @author Sahar Fathi 
+   * @author Anjali Singhal
    */
   @Then("the number of assets in the system shall be {expectedNumberOfAssets} \\(p12)")
   public void the_number_of_assets_in_the_system_shall_be_p12(String expectedNumberOfAssets) {
