@@ -2,10 +2,8 @@ package ca.mcgill.ecse.assetplus.features;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 import java.util.Map;
-
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
@@ -15,8 +13,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 /**
- * Step definitions for the DeleteAssetType feature
- * Checks that an existing asset type is no longer
+ * Step definitions for the DeleteAssetType feature Checks that an existing asset type is no longer
  * available in the system when deleted by a manager
  * 
  * @author Team P4
@@ -47,7 +44,8 @@ public class DeleteAssetTypeStepDefinitions {
    * @param dataTable
    */
   @Given("the following asset types exist in the system \\(p4)")
-  public void the_following_asset_types_exist_in_the_system_p4(io.cucumber.datatable.DataTable dataTable) {
+  public void the_following_asset_types_exist_in_the_system_p4(
+      io.cucumber.datatable.DataTable dataTable) {
     loadAssetTypes(dataTable);
   }
 
@@ -57,7 +55,8 @@ public class DeleteAssetTypeStepDefinitions {
    * @param assetType
    */
   @When("the manager attempts to delete an asset type in the system with name {string} \\(p4)")
-  public void the_manager_attempts_to_delete_an_asset_type_in_the_system_with_name_p4(String assetType) {
+  public void the_manager_attempts_to_delete_an_asset_type_in_the_system_with_name_p4(
+      String assetType) {
     AssetPlusFeatureSet2Controller.deleteAssetType(assetType);
   }
 
@@ -67,7 +66,8 @@ public class DeleteAssetTypeStepDefinitions {
    * @param expectedNumberOfAssetTypes
    */
   @Then("the number of asset types in the system shall be {string} \\(p4)")
-  public void the_number_of_asset_types_in_the_system_shall_be_p4(String expectedNumberOfAssetTypes) {
+  public void the_number_of_asset_types_in_the_system_shall_be_p4(
+      String expectedNumberOfAssetTypes) {
     int expected = Integer.parseInt(expectedNumberOfAssetTypes);
     assertEquals(expected, assetPlus.numberOfAssetTypes());
   }
@@ -78,7 +78,8 @@ public class DeleteAssetTypeStepDefinitions {
    * @param dataTable
    */
   @Then("the following asset types shall exist in the system \\(p4)")
-  public void the_following_asset_types_shall_exist_in_the_system_p4(io.cucumber.datatable.DataTable dataTable) {
+  public void the_following_asset_types_shall_exist_in_the_system_p4(
+      io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
     for (Map<String, String> row : rows) {
       String name = row.get("name");
