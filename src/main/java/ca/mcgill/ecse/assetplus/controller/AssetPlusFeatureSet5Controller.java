@@ -18,9 +18,15 @@ public class AssetPlusFeatureSet5Controller {
   public static String addImageToMaintenanceTicket(String imageURL, int ticketID) {
     // Input validations
     String err =  AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(ticketID, "ticketID") + 
-                  AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL") + 
-                  AssetPlusFeatureUtility.isExistingTicket(ticketID);
+                  AssetPlusFeatureUtility.isStringValid(imageURL, "Image URL") + 
+                  AssetPlusFeatureUtility.isExistingTicket(ticketID) +
+                  AssetPlusFeatureUtility.isStartingWithHttpOrHttps(imageURL) +
+                  AssetPlusFeatureUtility.isExistingImageURL(imageURL, ticketID);
+    
+    System.out.println(err);
+
     if (!err.isEmpty()) {
+      
       return err;
     }
 
@@ -54,12 +60,12 @@ public class AssetPlusFeatureSet5Controller {
 
     // Find the image with the URL and delete it
     for (TicketImage image : MaintenanceTicket.getWithId(ticketID).getTicketImages() ) {
-      if (image.getImageURL() == imageURL) {
+      if (imageURL.equals(image.getImageURL())) {
         image.delete();
         return;
       }
     }
-    System.out.println("Error: image not found");
+    System.out.println("Error: Image not found.");
   }
 
 }
