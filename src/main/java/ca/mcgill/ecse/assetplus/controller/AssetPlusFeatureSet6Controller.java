@@ -33,12 +33,11 @@ public class AssetPlusFeatureSet6Controller {
     if (userToDelete instanceof Employee) {
       Employee employee = (Employee) userToDelete;
       employee.delete();
-      userToDelete.delete();
     } else if (userToDelete instanceof Guest) {
       Guest guest = (Guest) userToDelete;
       guest.delete();
-      userToDelete.delete();
     }
+
   }
 
   /**
