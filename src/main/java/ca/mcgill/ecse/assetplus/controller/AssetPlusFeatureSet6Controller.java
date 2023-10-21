@@ -3,6 +3,9 @@ package ca.mcgill.ecse.assetplus.controller;
 import java.util.ArrayList;
 import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.Guest;
+import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
@@ -21,12 +24,20 @@ public class AssetPlusFeatureSet6Controller {
     // Input validations
     String err = AssetPlusFeatureUtility.isStringValid(email, "email") + 
                  AssetPlusFeatureUtility.isExistingUser(email);
-    if (err.isEmpty()) {
+    if (!err.isEmpty()) {
       return;
     }
 
     User userToDelete = User.getWithEmail(email);
-    userToDelete.delete();
+
+    if (userToDelete instanceof Employee) {
+      Employee employee = (Employee) userToDelete;
+      employee.delete();
+    } else if (userToDelete instanceof Guest) {
+      Guest guest = (Guest) userToDelete;
+      guest.delete();
+    }
+
   }
 
   /**
@@ -34,16 +45,8 @@ public class AssetPlusFeatureSet6Controller {
    * @return the list of tickets
    */
   public static List<TOMaintenanceTicket> getTickets() {
-    List<TOMaintenanceTicket> tickets = new ArrayList<>();
-
-    List<SpecificAsset> assets = AssetPlusApplication.getAssetPlus().getSpecificAssets();
-
-    for (SpecificAsset asset : assets) {
-      for (MaintenanceTicket maintenanceTicket : asset.getMaintenanceTickets()) {
-        tickets.add(AssetPlusFeatureUtility.convertFromMaintenanceTicket(maintenanceTicket));
-      }
-    }
-
+    List<MaintenanceTicket> maintenanceTickets = AssetPlusApplication.getAssetPlus().getMaintenanceTickets();
+    List<TOMaintenanceTicket> tickets = AssetPlusFeatureUtility.getAllTickets(maintenanceTickets);
     return tickets;
   }
 
