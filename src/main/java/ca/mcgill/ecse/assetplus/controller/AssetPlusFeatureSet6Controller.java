@@ -27,18 +27,13 @@ public class AssetPlusFeatureSet6Controller {
       return;
     }
 
-    // Search employees
-    for (Employee employee: AssetPlusApplication.getAssetPlus().getEmployees()) {
-      if (employee.getEmail().equals(email)) {
-        employee.delete();
-      }
-    }
-
-    // Search guests
-    for (Guest guest: AssetPlusApplication.getAssetPlus().getGuests()) {
-      if (guest.getEmail().equals(email)) {
-        guest.delete();
-      }
+    User userToDelete = User.getWithEmail(email);
+    if (userToDelete instanceof Employee) {
+      Employee employee = (Employee) userToDelete;
+      employee.delete();
+    } else if (userToDelete instanceof Guest) {
+      Guest guest = (Guest) userToDelete;
+      guest.delete();
     }
   }
 
@@ -47,7 +42,8 @@ public class AssetPlusFeatureSet6Controller {
    * @return the list of tickets
    */
   public static List<TOMaintenanceTicket> getTickets() {
-    List<TOMaintenanceTicket> tickets = AssetPlusFeatureUtility.getAllTickets(AssetPlusApplication.getAssetPlus().getMaintenanceTickets());
+    List<MaintenanceTicket> maintenanceTickets = AssetPlusApplication.getAssetPlus().getMaintenanceTickets();
+    List<TOMaintenanceTicket> tickets = AssetPlusFeatureUtility.getAllTickets(maintenanceTickets);
     return tickets;
   }
 
