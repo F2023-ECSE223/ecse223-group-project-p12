@@ -1,7 +1,9 @@
 package ca.mcgill.ecse.assetplus.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
@@ -98,20 +100,50 @@ public class AssetPlusFeatureUtility {
 
     // Other utility methods
 
+    public static List<TOMaintenanceTicket> getAllTickets(List<MaintenanceTicket> maintenanceTickets) {
+      List<TOMaintenanceTicket> toMaintenanceTickets = new ArrayList<>();
+
+      for (MaintenanceTicket ticket: maintenanceTickets) {
+        toMaintenanceTickets.add(convertFromMaintenanceTicket(ticket));
+      }
+
+      return toMaintenanceTickets;
+    }
+
     public static TOMaintenanceTicket convertFromMaintenanceTicket(MaintenanceTicket maintenanceTicket) {
       List<TOMaintenanceNote> toMaintenanceNotes = convertFromMaintenanceNotes(maintenanceTicket.getTicketNotes());
       TOMaintenanceNote[] allNotes = toMaintenanceNotes.toArray(new TOMaintenanceNote[0]);
+
+      String assetName;
+      Integer expectedLifeSpanInDays;
+      Date purchaseDate;
+      Integer floorNumber;
+      Integer roomNumber;
+
+      if (maintenanceTicket.getAsset() == null) {
+        assetName = null;
+        expectedLifeSpanInDays = -1;
+        purchaseDate = null;
+        floorNumber = -1;
+        roomNumber = -1;
+      } else {
+        assetName = maintenanceTicket.getAsset().getAssetType().getName();
+        expectedLifeSpanInDays = maintenanceTicket.getAsset().getAssetType().getExpectedLifeSpan();
+        purchaseDate = maintenanceTicket.getAsset().getPurchaseDate();
+        floorNumber = maintenanceTicket.getAsset().getFloorNumber();
+        roomNumber = maintenanceTicket.getAsset().getRoomNumber();
+      }
 
       return new TOMaintenanceTicket(
           maintenanceTicket.getId(),
           maintenanceTicket.getRaisedOnDate(),
           maintenanceTicket.getDescription(),
           maintenanceTicket.getTicketRaiser().getEmail(),
-          maintenanceTicket.getAsset().toString(),
-          maintenanceTicket.getAsset().getAssetType().getExpectedLifeSpan(),
-          maintenanceTicket.getAsset().getPurchaseDate(),
-          maintenanceTicket.getAsset().getFloorNumber(),
-          maintenanceTicket.getAsset().getRoomNumber(),
+          assetName,
+          expectedLifeSpanInDays,
+          purchaseDate,
+          floorNumber,
+          roomNumber,
           convertFromTicketImages(maintenanceTicket.getTicketImages()),
           allNotes
         );
