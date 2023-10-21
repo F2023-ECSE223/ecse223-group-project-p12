@@ -28,7 +28,7 @@ public class AssetPlusFeatureUtility {
 
   public static String isStringValid(String input, String subject) {
     if (input.isEmpty()) {
-      return "Error: the " + subject + " must not be an empty String.\n";
+      return "Error: " + subject + " cannot be empty.\n";
     }
     return "";
   }
@@ -59,8 +59,8 @@ public class AssetPlusFeatureUtility {
     }
 
     public static String isExistingTicket(int id){
-      if ( !MaintenanceTicket.hasWithId(id)){
-        return "Error: ticket not found";
+      if (!MaintenanceTicket.hasWithId(id)){
+        return "Ticket does not exist";
       }
       return "";
     }
@@ -77,6 +77,24 @@ public class AssetPlusFeatureUtility {
       }
     }
 
+    public static String isStartingWithHttpOrHttps(String imageURL) {
+      if (imageURL.startsWith("http://") || imageURL.startsWith("https://")){
+        return "";
+      } else {
+        return "Error: Image URL must start with http:// or https://.\n";
+      }
+    }
+
+    public static String isExistingImageURL(String imageURL, int ticketID) {
+      if (MaintenanceTicket.hasWithId(ticketID)){
+        for (TicketImage image : MaintenanceTicket.getWithId(ticketID).getTicketImages() ) {
+          if (imageURL.equals(image.getImageURL())) {
+            return "Error: Image already exists for the ticket.\n";
+          }
+        }
+      }
+      return "";
+    }
 
     // Other utility methods
 
