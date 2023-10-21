@@ -121,29 +121,9 @@ public class AssetPlusFeatureUtility {
       return imageURLS;
     }
 
-    public static String isValidRoomNumber(int number){
-    if (number == -1){
-      return "";
-    } else if (number > 0){
-      return "";
-    } else if (number < -1) {
-      return "The room number shall not be less than -1";
-    } else {
-      return "";
-    }
-  }
-
-  public static String isValidFloorNumber(int number){
-    if (number < 0){
-      return "The floor number shall not be less than 0";
-    } else {
-      return "";
-    }
-  }
-
-  public static String isValidAssetNumber(int number){
-    if (number < 1){
-      return "The asset number shall not be less than 1";
+  public static String isLessThanLimit(String subject, int number, int limit){
+    if (number < limit){
+      return "The " + subject + " shall not be less than " + limit;
     } else {
       return "";
     }
