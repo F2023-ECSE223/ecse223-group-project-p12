@@ -5,6 +5,7 @@ import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
+import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
@@ -23,17 +24,20 @@ public class AssetPlusFeatureSet6Controller {
     // Input validations
     String err = AssetPlusFeatureUtility.isStringValid(email, "email") + 
                  AssetPlusFeatureUtility.isExistingUser(email);
-    if (err.isEmpty()) {
+    if (!err.isEmpty()) {
       return;
     }
 
     User userToDelete = User.getWithEmail(email);
+
     if (userToDelete instanceof Employee) {
       Employee employee = (Employee) userToDelete;
       employee.delete();
+      userToDelete.delete();
     } else if (userToDelete instanceof Guest) {
       Guest guest = (Guest) userToDelete;
       guest.delete();
+      userToDelete.delete();
     }
   }
 
