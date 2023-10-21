@@ -23,10 +23,8 @@ public class AssetPlusFeatureSet5Controller {
                   AssetPlusFeatureUtility.isStartingWithHttpOrHttps(imageURL) +
                   AssetPlusFeatureUtility.isExistingImageURL(imageURL, ticketID);
     
-    System.out.println(err);
-
     if (!err.isEmpty()) {
-      
+      System.out.println(err);
       return err;
     }
 
