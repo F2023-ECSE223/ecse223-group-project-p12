@@ -26,8 +26,9 @@ public class AssetPlusFeatureSet3Controller {
       Date purchaseDate, String assetTypeName) {
         //Verify that the inputs are valid.
         String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(assetNumber, "assetNumber") +
-        AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(floorNumber, "floorNumber") +
-        AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(roomNumber, "roomNumber")  +
+        AssetPlusFeatureUtility.isLessThanLimit("asset number", assetNumber, 1) + 
+        AssetPlusFeatureUtility.isLessThanLimit("floor number", floorNumber, 0) +
+        AssetPlusFeatureUtility.isLessThanLimit("room number", roomNumber, -1)  +
         AssetPlusFeatureUtility.isExistingAssetType(assetTypeName);
         if (!err.isEmpty()){
           return err;
@@ -56,8 +57,8 @@ public class AssetPlusFeatureSet3Controller {
       Date newPurchaseDate, String newAssetTypeName) {
         //Verify that the inputs are valid.
         String err = AssetPlusFeatureUtility.isExistingAsset(assetNumber) +
-        AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(newFloorNumber, "newFloorNumber")+
-        AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(newRoomNumber, "newRoomNumber") +
+        AssetPlusFeatureUtility.isLessThanLimit("floor number", newFloorNumber, 0) +
+        AssetPlusFeatureUtility.isLessThanLimit("room number", newRoomNumber, -1)  +
         AssetPlusFeatureUtility.isExistingAssetType(newAssetTypeName);
         if (!err.isEmpty()){
           return err;

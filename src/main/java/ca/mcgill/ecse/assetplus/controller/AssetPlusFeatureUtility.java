@@ -37,7 +37,7 @@ public class AssetPlusFeatureUtility {
     String err = "";
     AssetType type =  AssetType.getWithName(name);
     if(type == null){
-      err = "Error: the asset type specified with this name does not exist.\n";
+      err = "The asset type does not exist";
     }
     return err;
   }
@@ -120,4 +120,13 @@ public class AssetPlusFeatureUtility {
       }
       return imageURLS;
     }
+
+  public static String isLessThanLimit(String subject, int number, int limit){
+    if (number < limit){
+      return "The " + subject + " shall not be less than " + limit;
+    } else {
+      return "";
+    }
+  }
 }
+
