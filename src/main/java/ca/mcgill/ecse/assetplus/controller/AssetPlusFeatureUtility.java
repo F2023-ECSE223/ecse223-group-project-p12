@@ -3,6 +3,8 @@ package ca.mcgill.ecse.assetplus.controller;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
@@ -34,8 +36,8 @@ public class AssetPlusFeatureUtility {
    * @return an empty string or an error message
    */
   public static String isGreaterThanZero(int number, String subject){
-    if (number < 0) {
-      return "Error: the number from " + subject + " must be greater than  0.\n";
+    if (number <= 0) {
+      return "The "+ subject + " must be greater than 0 days";
     }
     return "";
   }
@@ -48,7 +50,7 @@ public class AssetPlusFeatureUtility {
    */
   public static String isStringValid(String input, String subject) {
     if (input.isEmpty()) {
-      return "Error: " + subject + " cannot be empty.\n";
+      return "The " + subject + " must not be empty";
     }
     return "";
   }
@@ -67,12 +69,21 @@ public class AssetPlusFeatureUtility {
     return err;
   }
 
+  public static String isNotExistingAssetType(String name){
+    String err = "";
+    AssetType type =  AssetType.getWithName(name);
+    if(type != null){
+      err = "The asset type already exists";
+    }
+    return err;
+  }
+
   /**
    * <p> Check if the input number is an existing asset number and returns an empty string if it is. <p>
    * @param assetNumber the asset number to check if it is an existing asset
    * @return an empty string or an error message
    */
-  public static String isExistingAsset(int assetNumber) {
+    public static String isExistingAsset(int assetNumber) {
       if (SpecificAsset.getWithAssetNumber(assetNumber) != null){
         return "";
       } else {
@@ -192,6 +203,102 @@ public class AssetPlusFeatureUtility {
       return "";
     }
 
+    public static String guestEmailVerification(String email){
+      if (email.isEmpty()) {
+        return "Email cannot be empty";
+      } else if (email.equalsIgnoreCase("manager@ap.com")){
+        return "Email cannot be manager@ap.com";
+      }
+
+      String err = isExistingUser(email);
+      
+      if (err.isEmpty()) {
+        return "Email already linked to an guest account";
+      }
+      if (email.endsWith("@ap.com")) {
+        return "Email domain cannot be @ap.com";
+      } else if (email.contains(" ")) {
+        return "Email must not contain any spaces";
+      } else {
+        String[] emailParts = email.split("@");
+        if (emailParts.length != 2) {
+          return "Invalid email";
+        } else if (emailParts[0].isEmpty() || emailParts[1].isEmpty()) {
+          return "Invalid email";        
+        }else {
+          String[] domainParts = emailParts[1].split("\\.");
+          if (domainParts.length != 2) {
+            return "Invalid email";
+          } else if (domainParts[0].isEmpty() || domainParts[1].isEmpty()) {
+            return "Invalid email";
+          }else {
+            return "";
+          }
+        }
+      }
+    }
+
+    public static String isEmptyPassword(String password){
+      if (password.isEmpty()) {
+        return "Password cannot be empty";
+      } else {
+        return "";
+      }
+
+    }
+    
+      public static String employeeEmailVerification(String email){
+      if (email.isEmpty()) {
+        return "Email cannot be empty";
+      } else if (email.equalsIgnoreCase("manager@ap.com")){
+        return "Email cannot be manager@ap.com";
+      }
+
+      String err = isExistingUser(email);
+      
+      if (err.isEmpty()) {
+        return "Email already linked to an employee account";
+      }
+      if (email.contains(" ")) {
+        return "Email must not contain any spaces";
+      } else {
+        String[] emailParts = email.split("@");
+        if (emailParts.length != 2) {
+          return "Invalid email";
+        } else if (emailParts[0].isEmpty() || emailParts[1].isEmpty()) {
+          return "Invalid email";        
+        }else {
+          String[] domainParts = emailParts[1].split("\\.");
+          if (domainParts.length != 2) {
+            return "Invalid email";
+          } else if (domainParts[0].isEmpty() || domainParts[1].isEmpty()) {
+            return "Invalid email";
+          }else if (!email.endsWith("@ap.com")) {
+            return "Email domain must be @ap.com";
+          }else {
+            return "";
+          }
+        }
+      }
+    }
+
+    public static String managerPasswordVerification(String password) {
+
+      if (password.isEmpty()) {
+        return "Password cannot be empty";
+      } else if (password.length() < 4) {
+        return "Password must be at least four characters long";
+      } else if (!password.contains("!") && !password.contains("#") && !password.contains("$")) {
+        return "Password must contain one character out of !#$";
+      } else if (password.toUpperCase().equals(password)) {
+        return "Password must contain one lower-case character";
+      } else if (password.toLowerCase().equals(password)) {
+        return "Password must contain one upper-case character";
+      } else {
+        return "";
+      }
+    }
+
     // Other utility methods
 
     public static List<TOMaintenanceTicket> getAllTickets(List<MaintenanceTicket> maintenanceTickets) {
@@ -279,5 +386,7 @@ public class AssetPlusFeatureUtility {
       return "";
     }
   }
+
+  
 }
 
