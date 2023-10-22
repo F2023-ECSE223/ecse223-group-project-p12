@@ -29,8 +29,12 @@ public class AssetPlusFeatureSet4Controller {
   public static String addMaintenanceTicket(int id, Date raisedOnDate, String description,
       String email, int assetNumber) {
      //Input Validation 
-    String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(id, "TicketID") + AssetPlusFeatureUtility.isStringValid(description, "Description") 
-    + AssetPlusFeatureUtility.isStringValid(email, "Email") + AssetPlusFeatureUtility.isExistingUser(email) + AssetPlusFeatureUtility.isValidAssetNumberForTicket(assetNumber);
+    String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(id, "Ticket id") + 
+    AssetPlusFeatureUtility.isNotExistingTicket(id) + AssetPlusFeatureUtility.isDescriptionEmpty(description) + 
+    AssetPlusFeatureUtility.isStringValid(email, "Email") + 
+    AssetPlusFeatureUtility.isExistingTicketRaiser(email) + 
+    AssetPlusFeatureUtility.isValidAssetNumberForTicket(assetNumber);
+  
     if (!err.isEmpty()){
         return err;
     }
@@ -44,11 +48,7 @@ public class AssetPlusFeatureSet4Controller {
         }
         //if no asset associated to the ticket
         else {
-          //newTicket.setAsset(null);
-          AssetType emAssetType = AssetPlusApplication.getAssetPlus().addAssetType(null, -1);
-          SpecificAsset emptyAsset = AssetPlusApplication.getAssetPlus().addSpecificAsset(-1, -1, -1, null, null);
-
-          newTicket.setAsset(emptyAsset);
+          newTicket.setAsset(null);
         }
         AssetPlusApplication.getAssetPlus().addMaintenanceTicket(newTicket);
       }
@@ -71,9 +71,14 @@ public class AssetPlusFeatureSet4Controller {
   public static String updateMaintenanceTicket(int id, Date newRaisedOnDate, String newDescription,
       String newEmail, int newAssetNumber) {
     //Input Validation
-    String err = AssetPlusFeatureUtility.isStringValid(newDescription, "Description") +  
-    AssetPlusFeatureUtility.isStringValid(newEmail, "Email") + AssetPlusFeatureUtility.isExistingUser(newEmail) + 
-    AssetPlusFeatureUtility.isExistingTicket(id) + AssetPlusFeatureUtility.isValidAssetNumberForTicket(newAssetNumber);
+
+    String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(id, "Ticket id") + 
+    AssetPlusFeatureUtility.isDescriptionEmpty(newDescription) + 
+    AssetPlusFeatureUtility.isStringValid(newEmail, "Email") + 
+    AssetPlusFeatureUtility.isExistingTicketRaiser(newEmail) + 
+    AssetPlusFeatureUtility.isValidAssetNumberForTicket(newAssetNumber);
+  
+    
     if (!err.isEmpty()){
         return err;
     }
@@ -88,9 +93,9 @@ public class AssetPlusFeatureSet4Controller {
           SpecificAsset asset = SpecificAsset.getWithAssetNumber(newAssetNumber);
           currentTicket.setAsset(asset);
         }
-        //else {
-          //currentTicket.setAsset(null);
-        //}  
+        else {
+          currentTicket.setAsset(null);
+        }  
     } catch (RuntimeException e){
         return e.getMessage();
     }
