@@ -22,15 +22,15 @@ public class AssetPlusFeatureUtility {
   }
 
   public static String isGreaterThanZero(int number, String subject){
-    if (number < 0) {
-      return "Error: the number from " + subject + " must be greater than  0.\n";
+    if (number <= 0) {
+      return "The "+ subject + " must be greater than 0 days";
     }
     return "";
   }
 
   public static String isStringValid(String input, String subject) {
     if (input.isEmpty()) {
-      return "Error: " + subject + " cannot be empty.\n";
+      return "The " + subject + " must not be empty";
     }
     return "";
   }
@@ -40,6 +40,15 @@ public class AssetPlusFeatureUtility {
     AssetType type =  AssetType.getWithName(name);
     if(type == null){
       err = "The asset type does not exist";
+    }
+    return err;
+  }
+
+  public static String isNotExistingAssetType(String name){
+    String err = "";
+    AssetType type =  AssetType.getWithName(name);
+    if(type != null){
+      err = "The asset type already exists";
     }
     return err;
   }
