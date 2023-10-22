@@ -3,6 +3,7 @@ package ca.mcgill.ecse.assetplus.controller;
 import java.sql.Date;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
@@ -41,8 +42,13 @@ public class AssetPlusFeatureSet4Controller {
           SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
           newTicket.setAsset(asset);
         }
+        //if no asset associated to the ticket
         else {
-          newTicket.setAsset(null);
+          //newTicket.setAsset(null);
+          AssetType emAssetType = AssetPlusApplication.getAssetPlus().addAssetType(null, -1);
+          SpecificAsset emptyAsset = AssetPlusApplication.getAssetPlus().addSpecificAsset(-1, -1, -1, null, null);
+
+          newTicket.setAsset(emptyAsset);
         }
         AssetPlusApplication.getAssetPlus().addMaintenanceTicket(newTicket);
       }
@@ -82,9 +88,9 @@ public class AssetPlusFeatureSet4Controller {
           SpecificAsset asset = SpecificAsset.getWithAssetNumber(newAssetNumber);
           currentTicket.setAsset(asset);
         }
-        else {
-          currentTicket.setAsset(null);
-        }  
+        //else {
+          //currentTicket.setAsset(null);
+        //}  
     } catch (RuntimeException e){
         return e.getMessage();
     }
