@@ -16,6 +16,12 @@ import ca.mcgill.ecse.assetplus.model.TicketImage;
 public class AssetPlusFeatureUtility {
   // Input validation static methods:
 
+  /**
+   * <p> Check if the input integer is greater than or equal zero, and returns an empty string if it is. <p>
+   * @param number the integer to check for input validation
+   * @param subject the name of the type of number 
+   * @return an empty string or an error message
+   */
   public static String isGreaterThanOrEqualToZero(int number, String subject){
     if (number < 0) {
       return "Error: the number from " + subject + " must be greater than or equal to 0.\n";
@@ -23,6 +29,12 @@ public class AssetPlusFeatureUtility {
     return "";
   }
 
+  /**
+   * <p> Check if the input integer is greater than zero, and returns an empty string if it is. <p>
+   * @param number the integer to check for input validation
+   * @param subject the name of the type of number 
+   * @return an empty string or an error message
+   */
   public static String isGreaterThanZero(int number, String subject){
     if (number <= 0) {
       return "The "+ subject + " must be greater than 0 days";
@@ -30,6 +42,12 @@ public class AssetPlusFeatureUtility {
     return "";
   }
 
+  /** 
+   * <p> Check if the input string is valid, and returns an empty string if it is. <p>
+   * @param input the string to check for input validation
+   * @param subject the name of the type of number 
+   * @return an empty string or an error message
+   */
   public static String isStringValid(String input, String subject) {
     if (input.isEmpty()) {
       return "The " + subject + " must not be empty";
@@ -37,6 +55,11 @@ public class AssetPlusFeatureUtility {
     return "";
   }
 
+  /**
+   * <p> Check if the input string is an existing asset type and returns an empty string if it is. <p>
+   * @param name the asset type name to check if it is an existing asset type
+   * @return an empty string or an error message
+   */
   public static String isExistingAssetType(String name){
     String err = "";
     AssetType type =  AssetType.getWithName(name);
@@ -55,6 +78,11 @@ public class AssetPlusFeatureUtility {
     return err;
   }
 
+  /**
+   * <p> Check if the input number is an existing asset number and returns an empty string if it is. <p>
+   * @param assetNumber the asset number to check if it is an existing asset
+   * @return an empty string or an error message
+   */
     public static String isExistingAsset(int assetNumber) {
       if (SpecificAsset.getWithAssetNumber(assetNumber) != null){
         return "";
@@ -63,34 +91,95 @@ public class AssetPlusFeatureUtility {
       }
     }
 
-
-    public static String isExistingUser(String email) {
+  /**
+   * <p> Check if the input email is an existing user and returns an empty string if it is. <p>
+   * @param email the email is associated to a user
+   * @return an empty string or an error message
+   */
+  public static String isExistingUser(String email) {
       if (!User.hasWithEmail(email)) {
         return "Error: user not found.";
       }
       return "";
     }
-
-    public static String isExistingTicket(int id){
+  
+  /**
+   * <p> Check if the input id is an existing maintenance ticket and returns an empty string if it is. <p>
+   * @param id the ticket id associated to a maintenance ticket
+   * @return an empty string or an error message
+   */
+  public static String isExistingTicket(int id){
       if (!MaintenanceTicket.hasWithId(id)){
         return "Ticket does not exist";
       }
       return "";
     }
 
-    public static boolean isEmployeeEmailValid(String email) {
+  /**
+   * <p> Check if the input email is valid for an employee, that is, ends with "@ap.com" and returns an empty string if it is. <p>
+   * @param email the email is associated to a user
+   * @return an empty string or an error message
+   */
+  public static boolean isEmployeeEmailValid(String email) {
       return email.endsWith("@ap.com");
     }
 
-    public static String isValidAssetNumberForTicket(int assetNumber){
+  /**
+   * <p> Check if the input number is a valid asset number to input in a ticket and returns an empty string if it is. <p>
+   * @param assetNumber the number associated to an asset and can be -1 if there is not asset associated to the ticket
+   * @return an empty string or an error message
+   */
+  public static String isValidAssetNumberForTicket(int assetNumber){
       if ((SpecificAsset.getWithAssetNumber(assetNumber) != null) || (assetNumber == -1)){
         return "";
       } else {
-        return "Error: not a valid asset number for a ticket.\n";
+        return "The asset does not exist";
       }
     }
 
-    public static String isStartingWithHttpOrHttps(String imageURL) {
+  /** 
+   * <p> Check if the input string is empty, and return an error if it is. <p>
+   * @param input the string to check for input validation
+   * @param subject the name of the type of number 
+   * @return an empty string or an error message
+   */
+  public static String isDescriptionEmpty(String input) {
+    if (input.isEmpty()) {
+      return "Ticket description cannot be empty";
+    }
+    return "";
+  }
+
+  /**
+   * <p> Check if the input email is an existing ticket raiser and returns an empty string if it is. <p>
+   * @param email the email is associated to a user
+   * @return an empty string or an error message
+   */
+  public static String isExistingTicketRaiser(String email) {
+      if (!User.hasWithEmail(email)) {
+        return "The ticket raiser does not exist";
+      }
+      return "";
+    }
+  
+  /**
+   * <p> Check if the input id is an  not an existing maintenance ticket and returns an error if it is. <p>
+   * @param id the ticket id associated to a maintenance ticket
+   * @return an empty string or an error message
+   */
+  public static String isNotExistingTicket(int id){
+      if (MaintenanceTicket.hasWithId(id)){
+        return "Ticket id already exists";
+      }
+      return "";
+    }
+
+  /**
+   * <p> Check if the input string is a valid URL starting with "http://" or "https://" and returns an empty string if it is. <p>
+   * @param imageURL the URL of the image
+   * @return an empty string or an error message
+   */
+  public static String isStartingWithHttpOrHttps(String imageURL) {
       if (imageURL.startsWith("http://") || imageURL.startsWith("https://")){
         return "";
       } else {
@@ -98,7 +187,12 @@ public class AssetPlusFeatureUtility {
       }
     }
 
-    public static String isExistingImageURL(String imageURL, int ticketID) {
+  /**
+   * <p> Check if the input string is an existing image URL associated with the ticket id and returns an error if it is. <p>
+   * @param imageURL the URL of the image
+   * @return an empty string or an error message
+   */
+  public static String isExistingImageURL(String imageURL, int ticketID) {
       if (MaintenanceTicket.hasWithId(ticketID)){
         for (TicketImage image : MaintenanceTicket.getWithId(ticketID).getTicketImages() ) {
           if (imageURL.equals(image.getImageURL())) {
@@ -278,6 +372,13 @@ public class AssetPlusFeatureUtility {
       return imageURLS;
     }
 
+  /**
+   * <p> Check if the input number is less than the specified limit, and returns an error if it is. <p>
+   * @param subject the type of number
+   * @param number the integer to check for input validation
+   * @param limit the minimum value the number should have
+   * @return an empty string or an error message
+   */
   public static String isLessThanLimit(String subject, int number, int limit){
     if (number < limit){
       return "The " + subject + " shall not be less than " + limit;

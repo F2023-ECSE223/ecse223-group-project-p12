@@ -3,6 +3,7 @@ package ca.mcgill.ecse.assetplus.controller;
 import java.sql.Date;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
@@ -28,8 +29,12 @@ public class AssetPlusFeatureSet4Controller {
   public static String addMaintenanceTicket(int id, Date raisedOnDate, String description,
       String email, int assetNumber) {
      //Input Validation 
-    String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(id, "TicketID") + AssetPlusFeatureUtility.isStringValid(description, "Description") 
-    + AssetPlusFeatureUtility.isStringValid(email, "Email") + AssetPlusFeatureUtility.isExistingUser(email) + AssetPlusFeatureUtility.isValidAssetNumberForTicket(assetNumber);
+    String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(id, "Ticket id") + 
+    AssetPlusFeatureUtility.isNotExistingTicket(id) + AssetPlusFeatureUtility.isDescriptionEmpty(description) + 
+    AssetPlusFeatureUtility.isStringValid(email, "Email") + 
+    AssetPlusFeatureUtility.isExistingTicketRaiser(email) + 
+    AssetPlusFeatureUtility.isValidAssetNumberForTicket(assetNumber);
+  
     if (!err.isEmpty()){
         return err;
     }
@@ -41,6 +46,7 @@ public class AssetPlusFeatureSet4Controller {
           SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
           newTicket.setAsset(asset);
         }
+        //if no asset associated to the ticket
         else {
           newTicket.setAsset(null);
         }
@@ -65,9 +71,14 @@ public class AssetPlusFeatureSet4Controller {
   public static String updateMaintenanceTicket(int id, Date newRaisedOnDate, String newDescription,
       String newEmail, int newAssetNumber) {
     //Input Validation
-    String err = AssetPlusFeatureUtility.isStringValid(newDescription, "Description") +  
-    AssetPlusFeatureUtility.isStringValid(newEmail, "Email") + AssetPlusFeatureUtility.isExistingUser(newEmail) + 
-    AssetPlusFeatureUtility.isExistingTicket(id) + AssetPlusFeatureUtility.isValidAssetNumberForTicket(newAssetNumber);
+
+    String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(id, "Ticket id") + 
+    AssetPlusFeatureUtility.isDescriptionEmpty(newDescription) + 
+    AssetPlusFeatureUtility.isStringValid(newEmail, "Email") + 
+    AssetPlusFeatureUtility.isExistingTicketRaiser(newEmail) + 
+    AssetPlusFeatureUtility.isValidAssetNumberForTicket(newAssetNumber);
+  
+    
     if (!err.isEmpty()){
         return err;
     }
