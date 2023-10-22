@@ -134,8 +134,17 @@ public class AssetPlusFeatureUtility {
         }
       }
     }
+
+    public static String isEmptyPassword(String password){
+      if (password.isEmpty()) {
+        return "Password cannot be empty";
+      } else {
+        return "";
+      }
+
+    }
     
-    public static String employeeEmailVerification(String email){
+      public static String employeeEmailVerification(String email){
       if (email.isEmpty()) {
         return "Email cannot be empty";
       } else if (email.equalsIgnoreCase("manager@ap.com")){

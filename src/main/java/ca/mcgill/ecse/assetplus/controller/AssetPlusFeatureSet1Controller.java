@@ -48,9 +48,9 @@ public class AssetPlusFeatureSet1Controller {
     String err;
 
     if (isEmployee){
-      err = AssetPlusFeatureUtility.employeeEmailVerification(email) + AssetPlusFeatureUtility.isStringValid(password, "Password");
+      err = AssetPlusFeatureUtility.employeeEmailVerification(email) + AssetPlusFeatureUtility.isEmptyPassword(password);
     } else {
-      err = AssetPlusFeatureUtility.guestEmailVerification(email) + AssetPlusFeatureUtility.isStringValid(password, "Password"); 
+      err = AssetPlusFeatureUtility.guestEmailVerification(email) + AssetPlusFeatureUtility.isEmptyPassword(password); 
     }
 
     if(!err.isEmpty()) {
@@ -82,7 +82,7 @@ public class AssetPlusFeatureSet1Controller {
    */
   public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingUser(email) + AssetPlusFeatureUtility.isStringValid(newPassword, "Password");
+    String err = AssetPlusFeatureUtility.isExistingUser(email) + AssetPlusFeatureUtility.isEmptyPassword(newPassword);
 
     if (!err.isEmpty()) {
       return err;
