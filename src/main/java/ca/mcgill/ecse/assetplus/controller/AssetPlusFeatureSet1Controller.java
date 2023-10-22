@@ -16,6 +16,13 @@ public class AssetPlusFeatureSet1Controller {
    * @param password password of the manager
    */
   public static String updateManager(String password) {
+    //Input validation
+    String err = AssetPlusFeatureUtility.managerPasswordVerification(password);
+
+    if (!err.isEmpty()) {
+      return err;
+    }
+    
     //Updating the manager password with the new password
     try {
       AssetPlusApplication.getAssetPlus().getManager().setPassword(password);
@@ -38,14 +45,16 @@ public class AssetPlusFeatureSet1Controller {
         boolean isEmployee) {
     
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingUser(email);
-    
-    if (err.isEmpty()) {
-      return "Error: a user with this email already exist";
+    String err;
+
+    if (isEmployee){
+      err = AssetPlusFeatureUtility.employeeEmailVerification(email) + AssetPlusFeatureUtility.isEmptyPassword(password);
+    } else {
+      err = AssetPlusFeatureUtility.guestEmailVerification(email) + AssetPlusFeatureUtility.isEmptyPassword(password); 
     }
-    
-    if (!AssetPlusFeatureUtility.isEmployeeEmailValid(email) && isEmployee) {
-      return "Error: the email for an employee needs to end with \"@ap.com\"";
+
+    if(!err.isEmpty()) {
+      return err;
     }
 
     //Creating and adding the employee or guest
@@ -73,7 +82,7 @@ public class AssetPlusFeatureSet1Controller {
    */
   public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingUser(email) + AssetPlusFeatureUtility.isStringValid("password", newPassword);
+    String err = AssetPlusFeatureUtility.isExistingUser(email) + AssetPlusFeatureUtility.isEmptyPassword(newPassword);
 
     if (!err.isEmpty()) {
       return err;
