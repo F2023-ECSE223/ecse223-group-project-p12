@@ -45,12 +45,12 @@ public class AssetPlusFeatureSet1Controller {
         boolean isEmployee) {
     
     //Input validation
-    String err = "";
+    String err;
 
     if (isEmployee){
-      err = AssetPlusFeatureUtility.employeeEmailVerification(email) + AssetPlusFeatureUtility.isEmptyPassword(password);
+      err = AssetPlusFeatureUtility.employeeEmailVerification(email) + AssetPlusFeatureUtility.isStringValid(password, "Password");
     } else {
-      err = AssetPlusFeatureUtility.guestEmailVerification(email) + AssetPlusFeatureUtility.isEmptyPassword(password); 
+      err = AssetPlusFeatureUtility.guestEmailVerification(email) + AssetPlusFeatureUtility.isStringValid(password, "Password"); 
     }
 
     if(!err.isEmpty()) {
