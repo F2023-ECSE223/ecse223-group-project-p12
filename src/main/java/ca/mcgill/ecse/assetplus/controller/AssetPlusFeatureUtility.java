@@ -134,15 +134,6 @@ public class AssetPlusFeatureUtility {
         }
       }
     }
-
-    public static String isEmptyPassword(String password){
-      if (password.isEmpty()) {
-        return "Password cannot be empty";
-      } else {
-        return "";
-      }
-
-    }
     
     public static String employeeEmailVerification(String email){
       if (email.isEmpty()) {

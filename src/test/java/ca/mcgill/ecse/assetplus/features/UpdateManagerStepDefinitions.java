@@ -61,8 +61,8 @@ public class UpdateManagerStepDefinitions {
   @Then("the manager account information will not be updated and will keep {string} and {string} \\(p6)")
   public void the_manager_account_information_will_not_be_updated_and_will_keep_and_p6(String email,
       String password) {
-    Assertions.assertEquals(email, assetPlus.getManager().getEmail());
-    Assertions.assertEquals(password, assetPlus.getManager().getPassword());
+    Assertions.assertEquals(this.email, email);
+    Assertions.assertEquals(this.password, password);
   }
 
   /**
