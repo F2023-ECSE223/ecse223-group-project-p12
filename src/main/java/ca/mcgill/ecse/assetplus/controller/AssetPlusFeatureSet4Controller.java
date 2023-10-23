@@ -31,7 +31,7 @@ public class AssetPlusFeatureSet4Controller {
      //Input Validation 
     String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(id, "Ticket id") + 
     AssetPlusFeatureUtility.isNotExistingTicket(id) + AssetPlusFeatureUtility.isDescriptionEmpty(description) + 
-    AssetPlusFeatureUtility.isStringValid(email, "Email") + 
+    AssetPlusFeatureUtility.isStringValid(email, "Email", "cannot") + 
     AssetPlusFeatureUtility.isExistingTicketRaiser(email) + 
     AssetPlusFeatureUtility.isValidAssetNumberForTicket(assetNumber);
   
@@ -74,7 +74,7 @@ public class AssetPlusFeatureSet4Controller {
 
     String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(id, "Ticket id") + 
     AssetPlusFeatureUtility.isDescriptionEmpty(newDescription) + 
-    AssetPlusFeatureUtility.isStringValid(newEmail, "Email") + 
+    AssetPlusFeatureUtility.isStringValid(newEmail, "Email", "cannot") + 
     AssetPlusFeatureUtility.isExistingTicketRaiser(newEmail) + 
     AssetPlusFeatureUtility.isValidAssetNumberForTicket(newAssetNumber);
   
