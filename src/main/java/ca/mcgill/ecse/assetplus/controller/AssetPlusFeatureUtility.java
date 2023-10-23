@@ -387,6 +387,24 @@ public class AssetPlusFeatureUtility {
     }
   }
 
+  public static String isDescriptionValid(String input){
+    if (input.isEmpty()){
+      return "Ticket description cannot be empty";
+    } else {
+      return "";
+    }
+  }
+
+  public static String isExistingHotelStaff(String email){
+    User person = User.getWithEmail(email);
+    if (person == null){
+      return "Hotel staff does not exist";
+    } else {
+      return "";
+    }
+  }
+
+  
   
 }
 
