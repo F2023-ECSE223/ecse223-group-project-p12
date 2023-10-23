@@ -48,9 +48,9 @@ public class AssetPlusFeatureUtility {
    * @param subject the name of the type of number 
    * @return an empty string or an error message
    */
-  public static String isStringValid(String input, String subject) {
+  public static String isStringValid(String input, String subject, String cannotOrMustNot) {
     if (input.isEmpty()) {
-      return "The " + subject + " must not be empty";
+      return "The " + subject + " " + cannotOrMustNot +" be empty";
     }
     return "";
   }
