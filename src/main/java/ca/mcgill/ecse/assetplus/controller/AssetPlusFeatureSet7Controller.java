@@ -62,8 +62,14 @@ public class AssetPlusFeatureSet7Controller {
 
   // index starts at 0
   public static void deleteMaintenanceNote(int ticketID, int index) {
-    // Remove this exception when you implement this method
-    throw new UnsupportedOperationException("Not Implemented!");
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticketID);
+        if (!err.isEmpty()){
+          System.out.println(err);
+          return;
+        }
+
+        MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+        ticket.getTicketNote(index).delete();
   }
 
 }
