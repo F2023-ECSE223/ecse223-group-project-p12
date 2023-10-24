@@ -23,7 +23,7 @@ public class AssetPlusFeatureSet6Controller {
   public static void deleteEmployeeOrGuest(String email) {
     // Input validations
     String err = AssetPlusFeatureUtility.isStringValid(email, "email", "cannot") + 
-                 AssetPlusFeatureUtility.isExistingUser(email);
+                 AssetPlusFeatureUtility.isExistingUser(email, "");
     if (!err.isEmpty()) {
       return;
     }
