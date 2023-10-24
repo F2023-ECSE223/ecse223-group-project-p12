@@ -18,7 +18,7 @@ public class AssetPlusFeatureSet5Controller {
   public static String addImageToMaintenanceTicket(String imageURL, int ticketID) {
     // Input validations
     String err =  AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(ticketID, "ticketID") + 
-                  AssetPlusFeatureUtility.isStringValid(imageURL, "Image URL") + 
+                  AssetPlusFeatureUtility.isStringValid(imageURL, "Image URL", "cannot") + 
                   AssetPlusFeatureUtility.isExistingTicket(ticketID) +
                   AssetPlusFeatureUtility.isStartingWithHttpOrHttps(imageURL) +
                   AssetPlusFeatureUtility.isExistingImageURL(imageURL, ticketID);
@@ -49,7 +49,7 @@ public class AssetPlusFeatureSet5Controller {
   public static void deleteImageFromMaintenanceTicket(String imageURL, int ticketID) {
     // Input validations
     String err =  AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(ticketID, "ticketID") + 
-                  AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL") + 
+                  AssetPlusFeatureUtility.isStringValid(imageURL, "imageURL", "cannot") + 
                   AssetPlusFeatureUtility.isExistingTicket(ticketID);
     if (!err.isEmpty()) {
       System.out.println(err);
