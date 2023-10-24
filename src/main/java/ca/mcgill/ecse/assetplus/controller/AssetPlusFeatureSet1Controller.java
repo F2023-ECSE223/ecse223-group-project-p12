@@ -82,7 +82,8 @@ public class AssetPlusFeatureSet1Controller {
    */
   public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingUser(email) + AssetPlusFeatureUtility.isEmptyPassword(newPassword);
+    String err = AssetPlusFeatureUtility.isExistingUser(email, "ticket raiser") + 
+                 AssetPlusFeatureUtility.isEmptyPassword(newPassword);
 
     if (!err.isEmpty()) {
       return err;
