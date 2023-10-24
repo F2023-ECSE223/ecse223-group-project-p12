@@ -47,9 +47,12 @@ public class AssetPlusFeatureSet2Controller {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(newName, "name") +
                  AssetPlusFeatureUtility.isGreaterThanZero(newExpectedLifeSpanInDays, "expected life span") +
-                 AssetPlusFeatureUtility.isExistingAssetType(oldName) +
-                 AssetPlusFeatureUtility.isNotExistingAssetType(newName);
-
+                 AssetPlusFeatureUtility.isExistingAssetType(oldName);
+    
+    if(!newName.equals(oldName)){
+      err = err + AssetPlusFeatureUtility.isNotExistingAssetType(newName);
+    }             
+    
     if(!err.isEmpty()){
       return err;
     }
