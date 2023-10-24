@@ -94,14 +94,27 @@ public class AssetPlusFeatureUtility {
   /**
    * <p> Check if the input email is an existing user and returns an empty string if it is. <p>
    * @param email the email is associated to a user
+   * @param subject a parameter to specify the error message
    * @return an empty string or an error message
    */
-  public static String isExistingUser(String email) {
-      if (!User.hasWithEmail(email)) {
-        return "Error: user not found.";
+  public static String isExistingUser(String email, String subject) {
+
+    String error = "";
+    
+    if (!User.hasWithEmail(email)) {
+      switch (subject) {
+        case "hotel staff":
+          error = "Hotel staff does not exist";
+          break;
+        case "ticket raiser":
+          error = "The ticket raiser does not exist";
+          break;
+        default:
+          error = "Error: user not found";
       }
-      return "";
     }
+    return error;
+  }
   
   /**
    * <p> Check if the input id is an existing maintenance ticket and returns an empty string if it is. <p>
@@ -149,18 +162,6 @@ public class AssetPlusFeatureUtility {
     }
     return "";
   }
-
-  /**
-   * <p> Check if the input email is an existing ticket raiser and returns an empty string if it is. <p>
-   * @param email the email is associated to a user
-   * @return an empty string or an error message
-   */
-  public static String isExistingTicketRaiser(String email) {
-      if (!User.hasWithEmail(email)) {
-        return "The ticket raiser does not exist";
-      }
-      return "";
-    }
   
   /**
    * <p> Check if the input id is an  not an existing maintenance ticket and returns an error if it is. <p>
@@ -210,7 +211,7 @@ public class AssetPlusFeatureUtility {
         return "Email cannot be manager@ap.com";
       }
 
-      String err = isExistingUser(email);
+      String err = isExistingUser(email, "");
       
       if (err.isEmpty()) {
         return "Email already linked to an guest account";
@@ -254,7 +255,7 @@ public class AssetPlusFeatureUtility {
         return "Email cannot be manager@ap.com";
       }
 
-      String err = isExistingUser(email);
+      String err = isExistingUser(email, "");
       
       if (err.isEmpty()) {
         return "Email already linked to an employee account";
@@ -297,6 +298,20 @@ public class AssetPlusFeatureUtility {
       } else {
         return "";
       }
+    }
+
+    public static String isExistingNote(int ticketID, int index) {
+      String err = isExistingTicket(ticketID);
+      if (err.isEmpty()) {
+        MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+
+        try {
+          ticket.getTicketNote(index);
+        } catch (Exception e) {
+          return "Note does not exist";
+        }
+      }
+      return "";
     }
 
     // Other utility methods
