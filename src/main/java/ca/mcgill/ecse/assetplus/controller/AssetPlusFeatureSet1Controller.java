@@ -220,6 +220,11 @@ public class AssetPlusFeatureSet1Controller {
     }
   }
 
+  /**
+   * <p> Checks whether the email is already linked to a user</p>
+   * @param email the email to verify the user existence with
+   * @return an error message or an empty string
+   */
   private static String isAlreadyExistingEmail(String email) {
 
     String error = "";
