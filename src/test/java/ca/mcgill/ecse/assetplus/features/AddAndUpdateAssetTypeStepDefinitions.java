@@ -2,6 +2,7 @@ package ca.mcgill.ecse.assetplus.features;
 
 import static java.lang.Integer.parseInt;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import java.util.List;
