@@ -20,8 +20,8 @@ public class AssetPlusFeatureSet5Controller {
     String err =  AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(ticketID, "ticketID") + 
                   AssetPlusFeatureUtility.isStringValid(imageURL, "Image URL", "cannot") + 
                   AssetPlusFeatureUtility.isExistingTicket(ticketID) +
-                  AssetPlusFeatureUtility.isStartingWithHttpOrHttps(imageURL) +
-                  AssetPlusFeatureUtility.isExistingImageURL(imageURL, ticketID);
+                  isStartingWithHttpOrHttps(imageURL) +
+                  isExistingImageURL(imageURL, ticketID);
     
     if (!err.isEmpty()) {
       System.out.println(err);
@@ -64,6 +64,35 @@ public class AssetPlusFeatureSet5Controller {
       }
     }
     System.out.println("Error: Image not found.");
+  }
+
+  /**
+   * <p>Check if the input string is a valid URL starting with "http://" or "https://" and returns an empty string if it is.</p>
+   * @param imageURL the URL of the image
+   * @return an empty string or an error message
+   */
+  private static String isStartingWithHttpOrHttps(String imageURL) {
+    if (imageURL.startsWith("http://") || imageURL.startsWith("https://")){
+      return "";
+    } else {
+      return "Error: Image URL must start with http:// or https://.\n";
+    }
+  }
+
+  /**
+  * <p>Check if the input string is an existing image URL associated with the ticket id and returns an error if it is.</p>
+  * @param imageURL the URL of the image
+  * @return an empty string or an error message
+  */
+  private static String isExistingImageURL(String imageURL, int ticketID) {
+    if (MaintenanceTicket.hasWithId(ticketID)){
+      for (TicketImage image : MaintenanceTicket.getWithId(ticketID).getTicketImages() ) {
+        if (imageURL.equals(image.getImageURL())) {
+          return "Error: Image already exists for the ticket.\n";
+        }
+      }
+    }
+    return "";
   }
 
 }
