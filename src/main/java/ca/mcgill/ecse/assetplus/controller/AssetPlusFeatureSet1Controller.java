@@ -14,6 +14,7 @@ public class AssetPlusFeatureSet1Controller {
   /**
    * <p>Update the password of the manager/<p>
    * @param password password of the manager
+   * @return an empty string or an error message
    */
   public static String updateManager(String password) {
     //Input validation
@@ -40,6 +41,7 @@ public class AssetPlusFeatureSet1Controller {
    * @param name name of a user (optional)
    * @param phoneNumber phone number of a user (optional)
    * @param isEmployee True if the user is an employee, false if the user is a guest
+   * @return an empty string or an error message
    */
   public static String addEmployeeOrGuest(String email, String password, String name, String phoneNumber,
         boolean isEmployee) {
@@ -79,6 +81,7 @@ public class AssetPlusFeatureSet1Controller {
    * @param newPassword New password of the user
    * @param newName New name of the user (optional)
    * @param newPhoneNumber New phone number of a user (optional)
+   * @return an empty string or an error message
    */
   public static String updateEmployeeOrGuest(String email, String newPassword, String newName, String newPhoneNumber) {
     //Input validation
@@ -104,7 +107,7 @@ public class AssetPlusFeatureSet1Controller {
   /**
    * <p>Checks whether a guest's email is valid</p>
    * @param email the guest's email
-   * @return a error message or an empty string
+   * @return an error message or an empty string
    */
   private static String guestEmailVerification(String email) {
     if (email.isEmpty()) {
