@@ -18,8 +18,8 @@ public class AssetPlusFeatureSet2Controller {
   public static String addAssetType(String name, int expectedLifeSpanInDays) {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(name, "name", "must not") + 
-                 AssetPlusFeatureUtility.isGreaterThanZero(expectedLifeSpanInDays, "expected life span") +
-                 AssetPlusFeatureUtility.isNotExistingAssetType(name);
+                 isGreaterThanZero(expectedLifeSpanInDays, "expected life span") +
+                 isNotExistingAssetType(name);
 
     if(!err.isEmpty()){
       return err;
@@ -46,9 +46,9 @@ public class AssetPlusFeatureSet2Controller {
   public static String updateAssetType(String oldName, String newName, int newExpectedLifeSpanInDays) {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(newName, "name", "must not") +
-                 AssetPlusFeatureUtility.isGreaterThanZero(newExpectedLifeSpanInDays, "expected life span") +
+                 isGreaterThanZero(newExpectedLifeSpanInDays, "expected life span") +
                  AssetPlusFeatureUtility.isExistingAssetType(oldName) +
-                 AssetPlusFeatureUtility.isNotExistingAssetType(newName);
+                 isNotExistingAssetType(newName);
 
     if(!err.isEmpty()){
       return err;
@@ -67,7 +67,7 @@ public class AssetPlusFeatureSet2Controller {
   }
 
   /**
-   * <p>Delete the asset type specified by its name.
+   * <p>Delete the asset type specified by its name.</p>
    * @param name the name of the asset type
    * @return an empty string or an error message
    */
@@ -87,6 +87,33 @@ public class AssetPlusFeatureSet2Controller {
     }
     
     return;
+  }
+
+  /**
+   * <p>Check if the input integer is greater than zero, and returns an empty string if it is.</p>
+   * @param number the integer to check for input validation
+   * @param subject the name of the type of number 
+   * @return an empty string or an error message
+   */
+  private static String isGreaterThanZero(int number, String subject){
+    if (number <= 0) {
+      return "The "+ subject + " must be greater than 0 days";
+    }
+    return "";
+  }
+
+  /**
+   * <p>Check if an asset with a certain name doesn't exist</p>
+   * @param name the asset type name
+   * @return an error message or an empty string
+   */
+  private static String isNotExistingAssetType(String name){
+    String err = "";
+    AssetType type =  AssetType.getWithName(name);
+    if(type != null){
+      err = "The asset type already exists";
+    }
+    return err;
   }
 
 }

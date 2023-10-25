@@ -61,7 +61,7 @@ public class AssetPlusFeatureSet7Controller {
         String err = AssetPlusFeatureUtility.isDescriptionEmpty(newDescription) +
                      AssetPlusFeatureUtility.isExistingTicket(ticketID) +
                      AssetPlusFeatureUtility.isExistingUser(newEmail, "hotel staff") + 
-                     AssetPlusFeatureUtility.isExistingNote(ticketID, index);
+                     isExistingNote(ticketID, index);
 
         if (!err.isEmpty()) {
           return err;
@@ -82,7 +82,7 @@ public class AssetPlusFeatureSet7Controller {
   }
 
   /**
-   * <p>Delete a note of a specific ticket
+   * <p>Delete a note of a specific ticket</p>
    * @param ticketID the ticket whose note to delete
    * @param index the index of the note to delete
    */
@@ -102,6 +102,20 @@ public class AssetPlusFeatureSet7Controller {
     } catch (RuntimeException e) {
       return;
     }
+  }
+
+  private static String isExistingNote(int ticketID, int index) {
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticketID);
+    if (err.isEmpty()) {
+      MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+
+      try {
+        ticket.getTicketNote(index);
+      } catch (Exception e) {
+        return "Note does not exist";
+      }
+    }
+    return "";
   }
 
 }
