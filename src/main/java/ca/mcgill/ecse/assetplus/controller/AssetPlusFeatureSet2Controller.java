@@ -124,6 +124,12 @@ public class AssetPlusFeatureSet2Controller {
     return err;
   }
 
+  /**
+   * <p> Checks whether or not the asset type name remains the same in the update
+   * @param oldName the old asset type which should be updated
+   * @param newName the new name to be given to the asset type
+   * @return a boolean to determine if the asset type names are the same
+   */
   private static boolean isSameType(String oldName, String newName){
       if (oldName.equals(newName)){
         return true;
