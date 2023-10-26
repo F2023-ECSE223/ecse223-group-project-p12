@@ -72,6 +72,7 @@ public class AssetPlusFeatureSet4Controller {
 
     String err = AssetPlusFeatureUtility.isGreaterThanOrEqualToZero(id, "Ticket id") + 
     AssetPlusFeatureUtility.isDescriptionEmpty(newDescription) + 
+    AssetPlusFeatureUtility.isExistingTicket(id) +
     AssetPlusFeatureUtility.isStringValid(newEmail, "Email", "cannot") + 
     AssetPlusFeatureUtility.isExistingUser(newEmail, "ticket raiser") + 
     isValidAssetNumberForTicket(newAssetNumber);
