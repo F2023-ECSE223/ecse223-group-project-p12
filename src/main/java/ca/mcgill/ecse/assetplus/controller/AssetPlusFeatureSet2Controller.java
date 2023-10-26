@@ -47,12 +47,20 @@ public class AssetPlusFeatureSet2Controller {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(newName, "name", "must not") +
                  isGreaterThanZero(newExpectedLifeSpanInDays, "expected life span") +
-                 AssetPlusFeatureUtility.isExistingAssetType(oldName) +
-                 isNotExistingAssetType(newName);
+                 AssetPlusFeatureUtility.isExistingAssetType(oldName);
 
     if(!err.isEmpty()){
       return err;
     }
+
+    if (!isSameType(oldName, newName)){
+      err = isNotExistingAssetType(newName);
+    }
+
+    if(!err.isEmpty()){
+      return err;
+    }
+    
 
     try {
       AssetType type = AssetType.getWithName(oldName);
@@ -114,6 +122,20 @@ public class AssetPlusFeatureSet2Controller {
       err = "The asset type already exists";
     }
     return err;
+  }
+
+  /**
+   * <p> Checks whether or not the asset type name remains the same in the update
+   * @param oldName the old asset type which should be updated
+   * @param newName the new name to be given to the asset type
+   * @return a boolean to determine if the asset type names are the same
+   */
+  private static boolean isSameType(String oldName, String newName){
+      if (oldName.equals(newName)){
+        return true;
+      } else {
+        return false;
+      }
   }
 
 }
