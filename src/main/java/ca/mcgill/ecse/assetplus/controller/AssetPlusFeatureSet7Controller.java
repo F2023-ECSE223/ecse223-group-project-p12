@@ -41,7 +41,6 @@ public class AssetPlusFeatureSet7Controller {
         } catch (RuntimeException e){
           return e.getMessage();
         }
-
         return "";
   }
 

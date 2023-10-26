@@ -52,7 +52,7 @@ public class AssetPlusFeatureSet1Controller {
     if (isEmployee){
       err = employeeEmailVerification(email) + isEmptyPassword(password);
     } else {
-      err = guestEmailVerification(email) + isEmptyPassword(password); 
+      err = guestEmailVerification(email) + isEmptyPassword(password) + isAlreadyExistingEmail(email);
     }
 
     if(!err.isEmpty()) {
@@ -219,4 +219,22 @@ public class AssetPlusFeatureSet1Controller {
       return "";
     }
   }
+
+  /**
+   * <p> Checks whether the email is already linked to a user</p>
+   * @param email the email to verify the user existence with
+   * @return an error message or an empty string
+   */
+  private static String isAlreadyExistingEmail(String email) {
+
+    String error = "";
+
+    if (User.hasWithEmail(email)) {
+        error = "Email already linked to a guest account";
+      } else {
+        error = "";
+      }
+      return error;
+    }
+
 }
