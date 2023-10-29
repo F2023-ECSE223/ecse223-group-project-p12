@@ -11,3 +11,10 @@ bin
 */**/__pycache__
 
 **/*.class
+.settings/org.eclipse.buildship.core.prefs
+.gitignore
+src/.settings/org.eclipse.buildship.core.prefs
+src/.project
+.settings/org.eclipse.buildship.core.prefs
+.settings/org.eclipse.buildship.core.prefs
+.settings/org.eclipse.buildship.core.prefs
