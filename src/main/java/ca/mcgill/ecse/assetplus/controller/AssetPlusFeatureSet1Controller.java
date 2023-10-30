@@ -4,6 +4,7 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.User;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
@@ -27,6 +28,7 @@ public class AssetPlusFeatureSet1Controller {
     //Updating the manager password with the new password
     try {
       AssetPlusApplication.getAssetPlus().getManager().setPassword(password);
+      AssetPlusPersistence.save();
     }
     catch (RuntimeException e){
       return e.getMessage();
@@ -68,6 +70,7 @@ public class AssetPlusFeatureSet1Controller {
         Guest aGuest = AssetPlusApplication.getAssetPlus().addGuest(email, name, password, phoneNumber);
         AssetPlusApplication.getAssetPlus().addGuest(aGuest);
       }
+      AssetPlusPersistence.save();
     } catch (RuntimeException e) {
       return e.getMessage();
     }
@@ -98,6 +101,7 @@ public class AssetPlusFeatureSet1Controller {
       userToUpdate.setName(newName);
       userToUpdate.setPassword(newPassword);
       userToUpdate.setPhoneNumber(newPhoneNumber);
+      AssetPlusPersistence.save();
     } catch (RuntimeException e) {
       return e.getMessage();
     }

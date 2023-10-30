@@ -543,6 +543,12 @@ public class MaintenanceTicket
     }
   }
 
+  public static  void reinitializeUniqueTickets(List<MaintenanceTicket> tickets){
+    maintenanceticketsById.clear();
+        for (var ticket : tickets) {
+            maintenanceticketsById.put(ticket.getId(), ticket);
+        }
+  }
 
   public String toString()
   {

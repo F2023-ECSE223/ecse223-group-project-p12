@@ -5,6 +5,7 @@ import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.User;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
  * <p>Feature 7 - Adding, updating and deleting maintenance notes</p>
@@ -37,6 +38,7 @@ public class AssetPlusFeatureSet7Controller {
           HotelStaff hotelStaff =  (HotelStaff) User.getWithEmail(email);
           MaintenanceNote note = ticket.addTicketNote(date, description, hotelStaff);
           ticket.addTicketNote(note);
+          AssetPlusPersistence.save();
 
         } catch (RuntimeException e){
           return e.getMessage();
@@ -74,6 +76,7 @@ public class AssetPlusFeatureSet7Controller {
 
           HotelStaff staff = (HotelStaff) User.getWithEmail(newEmail);
           note.setNoteTaker(staff);
+          AssetPlusPersistence.save();
         }
 
         return "";
@@ -97,6 +100,7 @@ public class AssetPlusFeatureSet7Controller {
     try {
       MaintenanceNote note = ticket.getTicketNote(index);
       note.delete();
+      AssetPlusPersistence.save();
     } catch (RuntimeException e) {
       return;
     }

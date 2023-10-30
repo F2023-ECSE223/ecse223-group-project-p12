@@ -4,6 +4,7 @@ import java.sql.Date;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
  * <p>Feature 3 - Add, update, and delete asset</p>
@@ -38,6 +39,7 @@ public class AssetPlusFeatureSet3Controller {
         try {
           SpecificAsset asset = AssetPlusApplication.getAssetPlus().addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, AssetType.getWithName(assetTypeName));
           AssetPlusApplication.getAssetPlus().addSpecificAsset(asset);
+          AssetPlusPersistence.save();
         } catch (RuntimeException e){
           return e.getMessage();
         }
@@ -71,6 +73,7 @@ public class AssetPlusFeatureSet3Controller {
           asset.setRoomNumber(newRoomNumber);
           asset.setPurchaseDate(newPurchaseDate);
           asset.setAssetType(AssetType.getWithName(newAssetTypeName));
+          AssetPlusPersistence.save();
        } catch (RuntimeException e){
           return e.getMessage();
         }
@@ -91,6 +94,7 @@ public class AssetPlusFeatureSet3Controller {
 
         //Delete the specific asset from the AssetPlus application instance. 
         (SpecificAsset.getWithAssetNumber(assetNumber)).delete();
+        AssetPlusPersistence.save();
   }
 
   /**

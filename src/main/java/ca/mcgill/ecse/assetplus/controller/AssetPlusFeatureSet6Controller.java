@@ -10,6 +10,7 @@ import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
  * <p>Feature 6 - View status of all maintenance tickets / Delete employee / guest</p>
@@ -38,6 +39,7 @@ public class AssetPlusFeatureSet6Controller {
       Guest guest = (Guest) userToDelete;
       guest.delete();
     }
+    AssetPlusPersistence.save();
 
   }
 
@@ -53,7 +55,7 @@ public class AssetPlusFeatureSet6Controller {
     for (MaintenanceTicket ticket: maintenanceTickets) {
       tickets.add(convertFromMaintenanceTicket(ticket));
     }
-
+    AssetPlusPersistence.save();
     return tickets;
   }
 
@@ -88,11 +90,15 @@ public class AssetPlusFeatureSet6Controller {
       roomNumber = maintenanceTicket.getAsset().getRoomNumber();
     }
 
+    AssetPlusPersistence.save();
     return new TOMaintenanceTicket(maintenanceTicket.getId(), maintenanceTicket.getRaisedOnDate(),
-        maintenanceTicket.getDescription(), maintenanceTicket.getTicketRaiser().getEmail(),
-        assetName, expectedLifeSpanInDays, purchaseDate, floorNumber, roomNumber,
-        convertFromTicketImages(maintenanceTicket.getTicketImages()), allNotes);
+        maintenanceTicket.getDescription(), maintenanceTicket.getTicketRaiser().getEmail(), "status", 
+        maintenanceTicket.getTicketFixer().getEmail(), maintenanceTicket.getTimeToResolve().toString(), 
+        maintenanceTicket.getPriority().toString(), maintenanceTicket.hasFixApprover(), assetName, expectedLifeSpanInDays, 
+        purchaseDate, floorNumber, roomNumber, convertFromTicketImages(maintenanceTicket.getTicketImages()), allNotes);
+
   }
+  
 
   /**
    * <p>Converts a list of maintenance notes into a list of TOMaintenanceNote</p>
