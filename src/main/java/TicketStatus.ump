@@ -1,0 +1,53 @@
+class TicketStatus {  
+  Status {
+    Open { 
+      managerReviews(Person staff, PriorityLevel priority, TimeEstimate timeToResolve, bool approvalRequired) / {
+                doReview(staff, priority, timeToResolve, bool approvalRequired);
+            } -> Assigned;
+    }
+    Assigned {
+      startWork() -> InProgress;
+    }
+    InProgress {
+      completeWork() [hasFixApprover()] -> Resolved;
+      completeWork() [!hasFixApprover()] -> Closed;
+    }
+    Resolved {
+      approveWork() -> Closed;
+      disapproveWork(Date date, String desc, HotelStaff noteTaker) / {
+      	doDisapproveWork(date, desc, noteTaker)
+      } -> InProgress;
+                         
+    }
+    Closed {}
+  }
+  
+  private void doReview(Person staff, PriorityLevel priority, TimeEstimate timeToResolve, bool approvalRequired) {
+    MaintenanceTicket ticket = getMaintenanceTicket();
+    
+    if (ticket != null && ticket.hasTicketFixer) {
+      ticket.setTicketFixer(staff);
+      ticket.setPriority(priority);
+      ticket.setTimeEstimate(timeToResolve);
+      ticket.setApprovalRequired(approvalRequired);
+    }
+  }
+  
+  private void doDisapproveWork(Date date, String desc, HotelStaff noteTaker) {
+    MaintenanceTicket ticket = getMaintenanceTicket();
+    
+    if (ticket != null) {
+      MaintenanceNote newNote = ticket.addTicketNote(date, desc, noteTaker);
+      ticket.addTicketNote(newNote);
+    }
+  }
+}
+
+
+
+namespace -;
+
+class MaintenanceTicketSM
+{
+  position 50 30 109 45;
+}

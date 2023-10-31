@@ -46,6 +46,7 @@ class MaintenanceTicket
 {
   1 ticket <@>- * MaintenanceNote ticketNotes;
   1 ticket <@>- * TicketImage ticketImages;
+  1 MaintenanceTicket <@>- 1 TicketStatus ;
 
   unique Integer id;
   Date raisedOnDate;
