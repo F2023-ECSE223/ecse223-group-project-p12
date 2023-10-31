@@ -1,35 +1,44 @@
-class TicketStatus {  
+namespace ca.mcgill.ecse.assetplus.model;
+
+// Authors: Émilia Gagné, Julia B.Grenier
+class TicketStatus {
+  // Needs the enums of MaintenanceTicket
+  depend ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
+  depend ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
+  // Also needs to deal with date
+  depend java.sql.Date;
+	
   Status {
     Open { 
-      managerReviews(Person staff, PriorityLevel priority, TimeEstimate timeToResolve, bool approvalRequired) / {
-                doReview(staff, priority, timeToResolve, bool approvalRequired);
+      managerReviews(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager fixApprover) / {
+                doReview(staff, priority, timeToResolve, fixApprover);
             } -> Assigned;
     }
     Assigned {
       startWork() -> InProgress;
     }
     InProgress {
-      completeWork() [hasFixApprover()] -> Resolved;
-      completeWork() [!hasFixApprover()] -> Closed;
+      completeWork() [getMaintenanceTicket().hasFixApprover()] -> Resolved;
+      completeWork() [!getMaintenanceTicket().hasFixApprover()] -> Closed;
     }
     Resolved {
       approveWork() -> Closed;
       disapproveWork(Date date, String desc, HotelStaff noteTaker) / {
-      	doDisapproveWork(date, desc, noteTaker)
+      	doDisapproveWork(date, desc, noteTaker);
       } -> InProgress;
                          
     }
     Closed {}
   }
   
-  private void doReview(Person staff, PriorityLevel priority, TimeEstimate timeToResolve, bool approvalRequired) {
+  private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager fixApprover) {
     MaintenanceTicket ticket = getMaintenanceTicket();
     
-    if (ticket != null && ticket.hasTicketFixer) {
+    if (ticket != null && ticket.hasTicketFixer()) {
       ticket.setTicketFixer(staff);
       ticket.setPriority(priority);
-      ticket.setTimeEstimate(timeToResolve);
-      ticket.setApprovalRequired(approvalRequired);
+      ticket.setTimeToResolve(timeToResolve);
+      ticket.setFixApprover(fixApprover);
     }
   }
   
@@ -41,13 +50,4 @@ class TicketStatus {
       ticket.addTicketNote(newNote);
     }
   }
-}
-
-
-
-namespace -;
-
-class MaintenanceTicketSM
-{
-  position 50 30 109 45;
 }
