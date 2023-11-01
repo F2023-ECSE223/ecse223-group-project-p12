@@ -11,9 +11,9 @@ class AssetPlus {
 
 class AssetType {
     public static void reinitializeUniqueTypes(List<AssetType> types) {
-        assettypesByName.clear();
+        assetTypesByName.clear();
         for (var type : types) {
-            assettypesByName.put(type.getName(), type);
+            assetTypesByName.put(type.getName(), type);
         }
     }
 }

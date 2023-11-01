@@ -6,27 +6,25 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
-import java.sql.Date;
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
+import io.cucumber.java.After;
 
 public class AssetPlusApplicationTest {
 
   private static AssetPlus ap = AssetPlusApplication.getAssetPlus();
 
-  private static String filename = "testdata.assetplus";
+  private static String filename = "testdata.assetplus.json";
 
+  File file;
   @BeforeAll
   public static void setUpOnce() {
     AssetPlusPersistence.setFilename(filename);
@@ -35,7 +33,8 @@ public class AssetPlusApplicationTest {
   @BeforeEach
   public void setUp() {
     // remove test file
-    new File(filename).delete();
+    file = new File(filename);
+    file.delete();
     // clear all data
     ap.delete();
   }
@@ -52,6 +51,9 @@ public class AssetPlusApplicationTest {
     // load model again and check it
     AssetPlus ap2 = AssetPlusPersistence.load();
 
+    assertEquals(ap2.getAssetType(0).getName(), "couch");
+    assertEquals(ap2.getAssetType(1).getName(), "next couch");
+
   }
 
   @Test
@@ -67,13 +69,13 @@ public class AssetPlusApplicationTest {
     // simulate shutting down the application
     ap.delete();
     ap.reinitialize();
-    // Make sure there is nothing in the btms
+    // Make sure there is nothing in the ap
     assertEquals(0, ap.getAssetTypes().size());
     assertEquals(0, ap.getSpecificAssets().size());
 
     // load model again and add further model elements
     ap = AssetPlusPersistence.load();
-    // Make sure the btms is loaded properly
+    // Make sure the application is loaded properly
     assertEquals(3, ap.getAssetTypes().size());
     assertEquals(2, ap.getSpecificAssets().size());
     assertTrue(ap.getAssetType(0).getName().equals("couch"));
@@ -90,11 +92,19 @@ public class AssetPlusApplicationTest {
     AssetPlusFeatureSet2Controller.addAssetType("nextNextNextCouch", 300);
     AssetPlusFeatureSet3Controller.addSpecificAsset(3, 0, -1, null, "nextNextNextCouch");
 
-    // load model again and check it
     ap = AssetPlusPersistence.load();
 
-    // there should be another driver with name <name + name> and sick status <true>
     assertTrue(!(SpecificAsset.getWithAssetNumber(3).getAssetType().equals("nextNextNextCouch")));
+    
+    AssetPlusFeatureSet2Controller.deleteAssetType("nextNextNextCouch");
+
+  }
+
+  @After
+  public void tearDown() {
+    file.delete();
+    // clear all data
+    ap.delete();
   }
 
 
