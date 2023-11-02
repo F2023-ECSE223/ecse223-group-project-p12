@@ -70,12 +70,12 @@ public class AssetPlusApplicationTest {
   @Test
   public void deleting() { 
 
+    //Deleting the different data from the json file
     AssetPlusFeatureSet3Controller.deleteSpecificAsset(1);
     AssetPlusFeatureSet3Controller.deleteSpecificAsset(2);
     AssetPlusFeatureSet2Controller.deleteAssetType("Asset Type: 1.1");
     AssetPlusFeatureSet2Controller.deleteAssetType("Asset Type: 2.2");
     
-
   }
 
 
