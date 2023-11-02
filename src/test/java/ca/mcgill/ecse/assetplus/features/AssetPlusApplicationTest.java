@@ -22,7 +22,7 @@ public class AssetPlusApplicationTest {
 
   private static AssetPlus ap = AssetPlusApplication.getAssetPlus();
 
-  private static String filename = "data.json";
+  private static String filename = "ap.data";
 
   File file;
   @BeforeAll
@@ -34,7 +34,7 @@ public class AssetPlusApplicationTest {
   @Test
   public void testPutting() {
 
-    //Adding these different objects to data.json and making sure they've appeared
+    //Adding these different objects to ap.data and making sure they've appeared
     AssetPlusFeatureSet2Controller.addAssetType("Asset Type: 1", 100);
     AssetPlusFeatureSet2Controller.addAssetType("Asset Type: 2", 200);
     AssetPlusFeatureSet3Controller.addSpecificAsset(1, 1, 1, null, "Asset Type: 1");
@@ -59,12 +59,11 @@ public class AssetPlusApplicationTest {
   @Test
   public void testModifying() {
 
-    //Adding these different objects to data.json and making sure they've appeared
+    //Adding these different objects to ap.data and making sure they've appeared
     AssetPlusFeatureSet2Controller.updateAssetType("Asset Type: 1", "Asset Type: 1.1", 1100);
     AssetPlusFeatureSet2Controller.updateAssetType("Asset Type: 2", "Asset Type: 2.2", 2200);
     AssetPlusFeatureSet3Controller.updateSpecificAsset(1, 2, 2, null, "Asset Type: 2.2");
     
-
   }
   
   @Test
