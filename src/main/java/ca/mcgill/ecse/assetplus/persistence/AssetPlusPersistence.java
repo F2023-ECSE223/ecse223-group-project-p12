@@ -5,7 +5,7 @@ import ca.mcgill.ecse.assetplus.model.AssetPlus;
 
 public class AssetPlusPersistence {
 
-  private static String filename = "testdata.assetplus.json";
+  private static String filename = "data.json";
   private static JsonSerializer serializer = new JsonSerializer("ca.mcgill.ecse.assetplus");
 
   public static void setFilename(String filename) {

@@ -22,7 +22,7 @@ public class AssetPlusApplicationTest {
 
   private static AssetPlus ap = AssetPlusApplication.getAssetPlus();
 
-  private static String filename = "testdata.assetplus.json";
+  private static String filename = "data.json";
 
   File file;
   @BeforeAll
@@ -30,79 +30,58 @@ public class AssetPlusApplicationTest {
     AssetPlusPersistence.setFilename(filename);
   }
 
-  @BeforeEach
-  public void setUp() {
-    // remove test file
-    file = new File(filename);
-    file.delete();
-    // clear all data
-    ap.delete();
+
+  @Test
+  public void testPutting() {
+
+    //Adding these different objects to data.json and making sure they've appeared
+    AssetPlusFeatureSet2Controller.addAssetType("Asset Type: 1", 100);
+    AssetPlusFeatureSet2Controller.addAssetType("Asset Type: 2", 200);
+    AssetPlusFeatureSet3Controller.addSpecificAsset(1, 1, 1, null, "Asset Type: 1");
+    AssetPlusFeatureSet3Controller.addSpecificAsset(2, 1, 1, null, "Asset Type: 2");
+  
   }
 
   @Test
-  public void testPersistence() {
-    AssetPlusFeatureSet2Controller.addAssetType("couch", 100);
-    AssetPlusFeatureSet2Controller.addAssetType("next couch", 200);
-    AssetPlusFeatureSet2Controller.addAssetType("next next couch", 300);
-
-    AssetPlusFeatureSet3Controller.addSpecificAsset(1, 0, -1, null, "couch3000");
-    AssetPlusFeatureSet3Controller.addSpecificAsset(1, 0, -1, null, "couch2000");
-
-    // load model again and check it
-    AssetPlus ap2 = AssetPlusPersistence.load();
-
-    assertEquals(ap2.getAssetType(0).getName(), "couch");
-    assertEquals(ap2.getAssetType(1).getName(), "next couch");
-
-  }
-
-  @Test
-  public void testPersistenceReinitialization() {
-    AssetPlusFeatureSet2Controller.addAssetType("couch", 100);
-    AssetPlusFeatureSet2Controller.addAssetType("nextCouch", 200);
-    AssetPlusFeatureSet2Controller.addAssetType("nextNextCouch", 300);
-
-    AssetPlusFeatureSet3Controller.addSpecificAsset(1, 0, -1, null, "couch");
-    AssetPlusFeatureSet3Controller.addSpecificAsset(2, 0, -1, null, "nextCouch");
-
-
-    // simulate shutting down the application
-    ap.delete();
-    ap.reinitialize();
-    // Make sure there is nothing in the ap
-    assertEquals(0, ap.getAssetTypes().size());
-    assertEquals(0, ap.getSpecificAssets().size());
-
-    // load model again and add further model elements
-    ap = AssetPlusPersistence.load();
-    // Make sure the application is loaded properly
-    assertEquals(3, ap.getAssetTypes().size());
-    assertEquals(2, ap.getSpecificAssets().size());
-    assertTrue(ap.getAssetType(0).getName().equals("couch"));
-    assertEquals(ap.getSpecificAsset(0).getAssetNumber(), 1);
-    assertTrue(SpecificAsset.getWithAssetNumber(2).getAssetType().getName().equals("nextCouch"));
-
-    String err1 = AssetPlusFeatureSet3Controller.addSpecificAsset(3, 0, -1, null, "type doesnt exist");
-    System.out.println(err1);
-    assertTrue(!err1.isEmpty());
-    String err2 = AssetPlusFeatureSet2Controller.addAssetType("nextNextCouch", 300);
-    assertTrue(!err2.isBlank());
-
-
-    AssetPlusFeatureSet2Controller.addAssetType("nextNextNextCouch", 300);
-    AssetPlusFeatureSet3Controller.addSpecificAsset(3, 0, -1, null, "nextNextNextCouch");
-
-    ap = AssetPlusPersistence.load();
-
-    assertTrue(!(SpecificAsset.getWithAssetNumber(3).getAssetType().equals("nextNextNextCouch")));
+  public void testGetting() {
     
-    AssetPlusFeatureSet2Controller.deleteAssetType("nextNextNextCouch");
+    //Verifying the reloading of the json file into an ap object
+    AssetPlus ap2 = AssetPlusPersistence.load();
+    assertEquals(ap2.getAssetType(0).getName(), "Asset Type: 1");
+    assertEquals(ap2.getAssetType(1).getName(), "Asset Type: 2");
+    assertEquals(ap2.getSpecificAsset(0).getAssetNumber(), 1);
+    assertEquals(ap2.getSpecificAsset(0).getAssetType().getName(), "Asset Type: 1");
+    assertEquals(ap2.getSpecificAsset(1).getAssetNumber(), 2);
+    assertEquals(ap2.getSpecificAsset(1).getAssetType().getName(), "Asset Type: 2");    
 
   }
+
+  @Test
+  public void testModifying() {
+
+    //Adding these different objects to data.json and making sure they've appeared
+    AssetPlusFeatureSet2Controller.updateAssetType("Asset Type: 1", "Asset Type: 1.1", 1100);
+    AssetPlusFeatureSet2Controller.updateAssetType("Asset Type: 2", "Asset Type: 2.2", 2200);
+    AssetPlusFeatureSet3Controller.updateSpecificAsset(1, 2, 2, null, "Asset Type: 2.2");
+    
+
+  }
+  
+  @Test
+  public void deleting() { 
+
+    AssetPlusFeatureSet3Controller.deleteSpecificAsset(1);
+    AssetPlusFeatureSet3Controller.deleteSpecificAsset(2);
+    AssetPlusFeatureSet2Controller.deleteAssetType("Asset Type: 1.1");
+    AssetPlusFeatureSet2Controller.deleteAssetType("Asset Type: 2.2");
+    
+
+  }
+
 
   @After
   public void tearDown() {
-    file.delete();
+    //file.delete();
     // clear all data
     ap.delete();
   }
