@@ -1,6 +1,6 @@
 namespace ca.mcgill.ecse.assetplus.model;
 
-use MaintenanceTicketSM.ump;
+use TicketStatus.ump;
 
 class AssetPlus
 {
@@ -46,6 +46,7 @@ class MaintenanceTicket
 {
   1 ticket <@>- * MaintenanceNote ticketNotes;
   1 ticket <@>- * TicketImage ticketImages;
+  1 MaintenanceTicket <@>- 1 TicketStatus;
 
   unique Integer id;
   Date raisedOnDate;
