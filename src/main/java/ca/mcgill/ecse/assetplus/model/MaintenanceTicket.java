@@ -5,7 +5,8 @@ package ca.mcgill.ecse.assetplus.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 43 "../../../../../AssetPlus.ump"
+// line 45 "../../../../../../AssetPlus.ump"
+// line 21 "../../../../../../AssetPlusPersistence.ump"
 public class MaintenanceTicket
 {
 
@@ -36,6 +37,7 @@ public class MaintenanceTicket
   //MaintenanceTicket Associations
   private List<MaintenanceNote> ticketNotes;
   private List<TicketImage> ticketImages;
+  private TicketStatus ticketStatus;
   private AssetPlus assetPlus;
   private User ticketRaiser;
   private HotelStaff ticketFixer;
@@ -46,7 +48,7 @@ public class MaintenanceTicket
   // CONSTRUCTOR
   //------------------------
 
-  public MaintenanceTicket(int aId, Date aRaisedOnDate, String aDescription, AssetPlus aAssetPlus, User aTicketRaiser)
+  public MaintenanceTicket(int aId, Date aRaisedOnDate, String aDescription, TicketStatus aTicketStatus, AssetPlus aAssetPlus, User aTicketRaiser)
   {
     raisedOnDate = aRaisedOnDate;
     description = aDescription;
@@ -56,6 +58,34 @@ public class MaintenanceTicket
     }
     ticketNotes = new ArrayList<MaintenanceNote>();
     ticketImages = new ArrayList<TicketImage>();
+    if (aTicketStatus == null || aTicketStatus.getMaintenanceTicket() != null)
+    {
+      throw new RuntimeException("Unable to create MaintenanceTicket due to aTicketStatus. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
+    ticketStatus = aTicketStatus;
+    boolean didAddAssetPlus = setAssetPlus(aAssetPlus);
+    if (!didAddAssetPlus)
+    {
+      throw new RuntimeException("Unable to create maintenanceTicket due to assetPlus. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
+    boolean didAddTicketRaiser = setTicketRaiser(aTicketRaiser);
+    if (!didAddTicketRaiser)
+    {
+      throw new RuntimeException("Unable to create raisedTicket due to ticketRaiser. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
+  }
+
+  public MaintenanceTicket(int aId, Date aRaisedOnDate, String aDescription, AssetPlus aAssetPlus, User aTicketRaiser)
+  {
+    if (!setId(aId))
+    {
+      throw new RuntimeException("Cannot create due to duplicate id. See http://manual.umple.org?RE003ViolationofUniqueness.html");
+    }
+    raisedOnDate = aRaisedOnDate;
+    description = aDescription;
+    ticketNotes = new ArrayList<MaintenanceNote>();
+    ticketImages = new ArrayList<TicketImage>();
+    ticketStatus = new TicketStatus(this);
     boolean didAddAssetPlus = setAssetPlus(aAssetPlus);
     if (!didAddAssetPlus)
     {
@@ -216,6 +246,11 @@ public class MaintenanceTicket
   {
     int index = ticketImages.indexOf(aTicketImage);
     return index;
+  }
+  /* Code from template association_GetOne */
+  public TicketStatus getTicketStatus()
+  {
+    return ticketStatus;
   }
   /* Code from template association_GetOne */
   public AssetPlus getAssetPlus()
@@ -511,6 +546,12 @@ public class MaintenanceTicket
       ticketImages.remove(aTicketImage);
     }
     
+    TicketStatus existingTicketStatus = ticketStatus;
+    ticketStatus = null;
+    if (existingTicketStatus != null)
+    {
+      existingTicketStatus.delete();
+    }
     AssetPlus placeholderAssetPlus = assetPlus;
     this.assetPlus = null;
     if(placeholderAssetPlus != null)
@@ -543,12 +584,14 @@ public class MaintenanceTicket
     }
   }
 
-  public static  void reinitializeUniqueTickets(List<MaintenanceTicket> tickets){
+  // line 23 "../../../../../../AssetPlusPersistence.ump"
+   public static  void reinitializeUniqueTickets(List<MaintenanceTicket> tickets){
     maintenanceticketsById.clear();
         for (var ticket : tickets) {
             maintenanceticketsById.put(ticket.getId(), ticket);
         }
   }
+
 
   public String toString()
   {
@@ -558,6 +601,7 @@ public class MaintenanceTicket
             "  " + "raisedOnDate" + "=" + (getRaisedOnDate() != null ? !getRaisedOnDate().equals(this)  ? getRaisedOnDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "timeToResolve" + "=" + (getTimeToResolve() != null ? !getTimeToResolve().equals(this)  ? getTimeToResolve().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "priority" + "=" + (getPriority() != null ? !getPriority().equals(this)  ? getPriority().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "ticketStatus = "+(getTicketStatus()!=null?Integer.toHexString(System.identityHashCode(getTicketStatus())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "assetPlus = "+(getAssetPlus()!=null?Integer.toHexString(System.identityHashCode(getAssetPlus())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "ticketRaiser = "+(getTicketRaiser()!=null?Integer.toHexString(System.identityHashCode(getTicketRaiser())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "ticketFixer = "+(getTicketFixer()!=null?Integer.toHexString(System.identityHashCode(getTicketFixer())):"null") + System.getProperties().getProperty("line.separator") +
