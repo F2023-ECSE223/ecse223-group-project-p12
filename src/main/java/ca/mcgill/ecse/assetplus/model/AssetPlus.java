@@ -632,12 +632,4 @@ public class AssetPlus
     
   }
 
-  // line 5 "../../../../../../AssetPlusPersistence.ump"
-  public void reinitialize(){
-    AssetType.reinitializeUniqueTypes(getAssetTypes());
-        MaintenanceTicket.reinitializeUniqueTickets(getMaintenanceTickets());
-        SpecificAsset.reinitializeUniqueAssets(getSpecificAssets());
-        User.reinitializeUniqueUsers(getEmployees(), getGuests());
-  }
-
 }

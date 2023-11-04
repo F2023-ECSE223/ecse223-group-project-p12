@@ -2,7 +2,6 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
-import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
  * <p>Feature 2 - Add an asset type, update it, and delete it.</p>
@@ -29,7 +28,6 @@ public class AssetPlusFeatureSet2Controller {
     try {
       AssetType type = AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpanInDays);
       AssetPlusApplication.getAssetPlus().addAssetType(type);
-      AssetPlusPersistence.save();
     } 
     catch (RuntimeException e) {
       return e.getMessage();
@@ -63,11 +61,11 @@ public class AssetPlusFeatureSet2Controller {
       return err;
     }
     
+
     try {
       AssetType type = AssetType.getWithName(oldName);
       type.setName(newName);
       type.setExpectedLifeSpan(newExpectedLifeSpanInDays);
-      AssetPlusPersistence.save();
     }
     catch (RuntimeException e) {
       return e.getMessage();
@@ -91,7 +89,6 @@ public class AssetPlusFeatureSet2Controller {
     try {
       AssetType type = AssetType.getWithName(name);
       type.delete();
-      AssetPlusPersistence.save();
     }
     catch (RuntimeException e) {
       System.out.println(err);

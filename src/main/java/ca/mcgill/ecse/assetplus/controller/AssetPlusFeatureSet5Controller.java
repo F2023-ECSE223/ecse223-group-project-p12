@@ -2,7 +2,6 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
-import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
  * <p>Feature 5 - Add image URL to maintenance ticket and delete it</p>
@@ -35,7 +34,6 @@ public class AssetPlusFeatureSet5Controller {
       TicketImage createdImage = MaintenanceTicket.getWithId(ticketID).addTicketImage(imageURL);
       // Add it to the list of the maintenance ticket
       MaintenanceTicket.getWithId(ticketID).addTicketImage(createdImage);
-      AssetPlusPersistence.save();
     }
     catch (RuntimeException e) {
       return e.getMessage();
@@ -62,12 +60,10 @@ public class AssetPlusFeatureSet5Controller {
     for (TicketImage image : MaintenanceTicket.getWithId(ticketID).getTicketImages() ) {
       if (imageURL.equals(image.getImageURL())) {
         image.delete();
-        AssetPlusPersistence.save();
         return;
       }
     }
     System.out.println("Error: Image not found.");
-    AssetPlusPersistence.save();
   }
 
   /**

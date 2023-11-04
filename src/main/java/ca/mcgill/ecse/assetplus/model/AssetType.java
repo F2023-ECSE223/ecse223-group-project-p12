@@ -239,12 +239,6 @@ public class AssetType
     }
   }
 
-  public static  void reinitializeUniqueTypes(List<AssetType> types){
-    assettypesByName.clear();
-        for (var type : types) {
-            assettypesByName.put(type.getName(), type);
-        }
-  }
 
   public String toString()
   {

@@ -5,7 +5,6 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
-import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
  * <p>Feature 4 - Add, update, and delete Maintenance ticket</p>
@@ -50,7 +49,6 @@ public class AssetPlusFeatureSet4Controller {
           newTicket.setAsset(null);
         }
         AssetPlusApplication.getAssetPlus().addMaintenanceTicket(newTicket);
-        AssetPlusPersistence.save();
       }
     catch (RuntimeException e){
         return e.getMessage();
@@ -96,8 +94,7 @@ public class AssetPlusFeatureSet4Controller {
         }
         else {
           currentTicket.setAsset(null);
-        }
-        AssetPlusPersistence.save();  
+        }  
     } catch (RuntimeException e){
         return e.getMessage();
     }
@@ -120,7 +117,6 @@ public class AssetPlusFeatureSet4Controller {
 
     //Delete the specific ticket from the AssetPlus application instance. 
     MaintenanceTicket.getWithId(id).delete();
-    AssetPlusPersistence.save();
   }
 
   /**

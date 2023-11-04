@@ -303,13 +303,6 @@ public class SpecificAsset
     }
   }
 
-  // line 33 "../../../../../../AssetPlusPersistence.ump"
-  public static  void reinitializeUniqueAssets(List<SpecificAsset> assets){
-    specificassetsByAssetNumber.clear();
-        for (var asset : assets) {
-            specificassetsByAssetNumber.put(asset.getAssetNumber(), asset);
-        }
-  }
 
   public String toString()
   {

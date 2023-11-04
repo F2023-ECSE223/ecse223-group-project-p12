@@ -112,4 +112,3 @@ association
 }
 
 use AssetPlusTransferObjects.ump;
-use AssetPlusPersistence.ump;

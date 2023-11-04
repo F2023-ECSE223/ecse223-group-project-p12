@@ -233,17 +233,6 @@ public abstract class User
     }
   }
 
-  // line 41 "../../../../../../AssetPlusPersistence.ump"
-  public static  void reinitializeUniqueUsers(List<Employee> employees, List<Guest> guests){
-    usersByEmail.clear();
-        for (var guest : guests) {
-            usersByEmail.put(guest.getEmail(), guest);
-        }
-        for (var employee : employees){
-            usersByEmail.put(employee.getEmail(), employee);
-        }
-  }
-
 
   public String toString()
   {
