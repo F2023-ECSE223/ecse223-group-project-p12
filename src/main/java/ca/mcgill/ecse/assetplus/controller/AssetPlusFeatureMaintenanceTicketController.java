@@ -40,7 +40,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
-    MaintenanceTicketSM.startWork(ticket);
+    ticket.getTicketStatus().startWork();
 
     return "";
   }
@@ -57,9 +57,8 @@ public class AssetPlusFeatureMaintenanceTicketController {
     if (!err.isEmpty()) {
       return err;
     }
-
-    MaintenanceTicketSM.completeTicket(ticket);
-
+    ticket.getTicketStatus().completeWork();
+    
     return "";
 
   }
@@ -77,7 +76,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
-    MaintenanceTicketSM.approveTicket(ticket);
+    ticket.getTicketStatus().approveWork();
 
     return "";
 
@@ -96,7 +95,8 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
-    MaintenanceTicketSM.disapproveTicket(ticket);
+    ticket.getTicketStatus().disapproveWork(ticket.getRaisedOnDate(), ticket.getDescription(), ticket.getTicketFixer());
+    
 
     return "";
 
