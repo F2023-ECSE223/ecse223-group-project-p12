@@ -1,14 +1,14 @@
 package ca.mcgill.ecse.assetplus.controller;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
-import ca.mcgill.ecse.assetplus.application.Employee;
-import ca.mcgill.ecse.assetplus.application.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
  * @author Julia B.Grenier
  */
-public class AssetPlusMaintenanceTicketStatus {
+public class AssetPlusFeatureMaintenanceTicketController {
 
   /**
    * <p>Assign an hotel staff to a maintenance ticket</p>
@@ -18,15 +18,13 @@ public class AssetPlusMaintenanceTicketStatus {
    */
   public static String assignStaffToMaintenanceTicket(Employee staff, MaintenanceTicket ticket) {
     //Input validation
-    String err = isExistingTicket(ticket);
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId());
 
     if (!err.isEmpty()) {
       return err;
     }
 
-
-
-    return ""
+    return "";
   }
   
   /**
@@ -36,7 +34,7 @@ public class AssetPlusMaintenanceTicketStatus {
    */
   public static String startWorkingOnTicket(MaintenanceTicket ticket) {
     //Input validation
-    String err = isExistingTicket(ticket);
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId());
 
     if (!err.isEmpty()) {
       return err;
@@ -44,7 +42,7 @@ public class AssetPlusMaintenanceTicketStatus {
 
     MaintenanceTicketSM.startWork(ticket);
 
-    return ""
+    return "";
   }
 
   /**
@@ -54,7 +52,7 @@ public class AssetPlusMaintenanceTicketStatus {
    */
   public static String completeTicket(MaintenanceTicket ticket) {
      //Input validation
-    String err = isExistingTicket(ticket);
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId());
 
     if (!err.isEmpty()) {
       return err;
@@ -62,7 +60,7 @@ public class AssetPlusMaintenanceTicketStatus {
 
     MaintenanceTicketSM.completeTicket(ticket);
 
-    return ""
+    return "";
 
   }
   
@@ -73,7 +71,7 @@ public class AssetPlusMaintenanceTicketStatus {
    */
   public static String approveTicket(MaintenanceTicket ticket) {
     //Input validation
-    String err = isExistingTicket(ticket);
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId());
 
     if (!err.isEmpty()) {
       return err;
@@ -81,7 +79,7 @@ public class AssetPlusMaintenanceTicketStatus {
 
     MaintenanceTicketSM.approveTicket(ticket);
 
-    return ""
+    return "";
 
   }
 
@@ -92,7 +90,7 @@ public class AssetPlusMaintenanceTicketStatus {
    */
   public static String disapproveTicket(MaintenanceTicket ticket) {
     //Input validation
-    String err = isExistingTicket(ticket);
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId());
 
     if (!err.isEmpty()) {
       return err;
@@ -100,7 +98,7 @@ public class AssetPlusMaintenanceTicketStatus {
 
     MaintenanceTicketSM.disapproveTicket(ticket);
 
-    return ""
+    return "";
 
   }
 
