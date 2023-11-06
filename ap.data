@@ -13,28 +13,64 @@
       {
         "AssetType": [
           {
+            "name": "Asset Type: 1.1",
+            "expectedLifeSpan": 1100,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              ""
+            ]
+          },
+          {
+            "name": "Asset Type: 2.2",
+            "expectedLifeSpan": 2200,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              {
+                "SpecificAsset": [
+                  {
+                    "assetNumber": 2,
+                    "floorNumber": 1,
+                    "roomNumber": 1,
+                    "assetPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "maintenanceTickets": [
+                      ""
+                    ],
+                    "assetType": {
+                      "@reference": "../../.."
+                    }
+                  },
+                  {
+                    "assetNumber": 1,
+                    "floorNumber": 2,
+                    "roomNumber": 2,
+                    "assetPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "maintenanceTickets": [
+                      ""
+                    ],
+                    "assetType": {
+                      "@reference": "../../.."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "name": "Asset Type: 1",
             "expectedLifeSpan": 100,
             "assetPlus": {
               "@reference": "../../.."
             },
             "specificAssets": [
-              {
-                "SpecificAsset": {
-                  "assetNumber": 1,
-                  "floorNumber": 1,
-                  "roomNumber": 1,
-                  "assetPlus": {
-                    "@reference": "../../../../.."
-                  },
-                  "maintenanceTickets": [
-                    ""
-                  ],
-                  "assetType": {
-                    "@reference": "../../.."
-                  }
-                }
-              }
+              ""
             ]
           },
           {
@@ -44,22 +80,7 @@
               "@reference": "../../.."
             },
             "specificAssets": [
-              {
-                "SpecificAsset": {
-                  "assetNumber": 2,
-                  "floorNumber": 1,
-                  "roomNumber": 1,
-                  "assetPlus": {
-                    "@reference": "../../../../.."
-                  },
-                  "maintenanceTickets": [
-                    ""
-                  ],
-                  "assetType": {
-                    "@reference": "../../.."
-                  }
-                }
-              }
+              ""
             ]
           }
         ]
@@ -69,7 +90,7 @@
       {
         "SpecificAsset": [
           {
-            "@reference": "../../assetTypes/AssetType/specificAssets/SpecificAsset"
+            "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset[2]"
           },
           {
             "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
