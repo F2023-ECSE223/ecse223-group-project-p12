@@ -10,10 +10,72 @@
       ""
     ],
     "assetTypes": [
-      ""
+      {
+        "AssetType": [
+          {
+            "name": "Asset Type: 1",
+            "expectedLifeSpan": 100,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              {
+                "SpecificAsset": {
+                  "assetNumber": 1,
+                  "floorNumber": 1,
+                  "roomNumber": 1,
+                  "assetPlus": {
+                    "@reference": "../../../../.."
+                  },
+                  "maintenanceTickets": [
+                    ""
+                  ],
+                  "assetType": {
+                    "@reference": "../../.."
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "Asset Type: 2",
+            "expectedLifeSpan": 200,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              {
+                "SpecificAsset": {
+                  "assetNumber": 2,
+                  "floorNumber": 1,
+                  "roomNumber": 1,
+                  "assetPlus": {
+                    "@reference": "../../../../.."
+                  },
+                  "maintenanceTickets": [
+                    ""
+                  ],
+                  "assetType": {
+                    "@reference": "../../.."
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
     ],
     "specificAssets": [
-      ""
+      {
+        "SpecificAsset": [
+          {
+            "@reference": "../../assetTypes/AssetType/specificAssets/SpecificAsset"
+          },
+          {
+            "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
+          }
+        ]
+      }
     ]
   }
 }
