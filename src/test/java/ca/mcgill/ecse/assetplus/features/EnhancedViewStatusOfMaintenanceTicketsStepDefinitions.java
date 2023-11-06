@@ -220,8 +220,11 @@ public class EnhancedViewStatusOfMaintenanceTicketsStepDefinitions{
    */
   @Then("the following maintenance tickets shall be presented")
   public void the_following_maintenance_tickets_shall_be_presented(io.cucumber.datatable.DataTable dataTable){
+     // Turns the data table into a list of HashMaps for which the column name is the key.
     List<Map<String, String>> rows = dataTable.asMaps();
+    // i used to keep track of the index of in the list of existing tickets in the application.
     int i = 0;
+    // Iterate through each map representing a row, cast it to the appropriate type and compare with the expected output.
     for (var row : rows) {
       TOMaintenanceTicket currTicket = tickets.get(i);
       int id = Integer.parseInt(row.get("id"));
@@ -260,7 +263,7 @@ public class EnhancedViewStatusOfMaintenanceTicketsStepDefinitions{
       assertEquals(roomNumber, currTicket.getRoomNumber());
       String status = row.get("status");
       assertEquals(status, currTicket.getStatus());
-      String fixerEmail = row.get("fixedByEmail");      //not sure if there should e check for null
+      String fixerEmail = row.get("fixedByEmail");      //not sure if there should be a check for null
       assertEquals(fixerEmail, currTicket.getFixedByEmail());
       String timeToResolve = row .get("timeToResolve");
       assertEquals(timeToResolve, currTicket.getTimeToResolve());
@@ -269,7 +272,7 @@ public class EnhancedViewStatusOfMaintenanceTicketsStepDefinitions{
       String approvalRequiredStr = row.get("approvalRequired");
       boolean approvalRequired = Boolean.parseBoolean(approvalRequiredStr);      //not sure if if (approvalRequiredStr != null){ } needed
       assertEquals(approvalRequired, currTicket.getApprovalRequired());
-      i++;
+      i++;     
     }
   }
 
@@ -282,10 +285,10 @@ public class EnhancedViewStatusOfMaintenanceTicketsStepDefinitions{
    * @author Anjali Singhal
    */
   @Then("the ticket with id {string} shall have the following notes")
-  public void the_ticket_with_id_shall_have_the_following_notes(String string,
-      io.cucumber.datatable.DataTable dataTable) {
+  public void the_ticket_with_id_shall_have_the_following_notes(String string, io.cucumber.datatable.DataTable dataTable) {
     int ticketID = Integer.parseInt(string);
     TOMaintenanceTicket currTicket = null;
+    // Iterate through each ticket existing in the application to find the ticket with the specified id.
     for (var ticket : tickets) {
       if (ticket.getId() == ticketID) {
         currTicket = ticket;
@@ -293,8 +296,11 @@ public class EnhancedViewStatusOfMaintenanceTicketsStepDefinitions{
     } 
     assertNotNull(currTicket);
     List<TOMaintenanceNote> currTicketNotes = currTicket.getNotes();
+     // Turns the data table into a list of HashMaps for which the column name is the key.
     List<Map<String, String>> rows = dataTable.asMaps();
+    // i used to keep track of the index in the list of existing notes in the application.
     int i = 0;
+    // Iterate through each map representing a row, cast it to the appropriate type and compare with the expected output.
     for (var row : rows) {
       TOMaintenanceNote currNote = currTicketNotes.get(i);
       String noteTaker = row.get("noteTaker");
@@ -319,6 +325,7 @@ public class EnhancedViewStatusOfMaintenanceTicketsStepDefinitions{
   public void the_ticket_with_id_shall_have_no_notes(String string) {
     int ticketID = Integer.parseInt(string);
     TOMaintenanceTicket currTicket = null;
+    // Iterate through each ticket existing in the application to find the ticket with the specified id.
     for (var ticket : tickets) {
       if (ticket.getId() == ticketID) {
         currTicket = ticket;
@@ -337,10 +344,10 @@ public class EnhancedViewStatusOfMaintenanceTicketsStepDefinitions{
    * @author Anjali Singhal
    */
   @Then("the ticket with id {string} shall have the following images")
-  public void the_ticket_with_id_shall_have_the_following_images(String string,
-      io.cucumber.datatable.DataTable dataTable) {
+  public void the_ticket_with_id_shall_have_the_following_images(String string, io.cucumber.datatable.DataTable dataTable) {
     int ticketID = Integer.parseInt(string);
     TOMaintenanceTicket currTicket = null;
+    // Iterate through each ticket existing in the application to find the ticket with the specified id.
     for (var ticket : tickets) {
       if (ticket.getId() == ticketID) {
         currTicket = ticket;
@@ -349,8 +356,11 @@ public class EnhancedViewStatusOfMaintenanceTicketsStepDefinitions{
     assertNotNull(currTicket);
     
     List<String> currTicketImageURLs = currTicket.getImageURLs();
+    // Turns the data table into a list of HashMaps for which the column name is the key.
     List<Map<String, String>> rows = dataTable.asMaps();
+    // i used to keep track of the index in the list of existing image URL in the application.
     int i = 0;
+    // Iterate through each map representing a row, cast it to the appropriate type and compare with the expected output.
     for (var row : rows) {
       assertEquals(currTicketImageURLs.get(i), row.get("imageUrl"));
       i++;
@@ -369,6 +379,7 @@ public class EnhancedViewStatusOfMaintenanceTicketsStepDefinitions{
   public void the_ticket_with_id_shall_have_no_images(String string) {
     int ticketID = Integer.parseInt(string);
     TOMaintenanceTicket currTicket = null;
+    // Iterate through each ticket existing in the application to find the ticket with the specified id.
     for (var ticket : tickets) {
       if (ticket.getId() == ticketID) {
         currTicket = ticket;
