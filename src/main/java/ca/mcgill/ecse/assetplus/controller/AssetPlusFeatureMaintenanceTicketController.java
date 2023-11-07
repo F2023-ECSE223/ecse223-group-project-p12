@@ -136,20 +136,20 @@ public class AssetPlusFeatureMaintenanceTicketController {
     boolean isValidAction = true;
     switch (action) {
       case "assign":
-        isValidAction != ticket.getTicketStatus().getStatusFullName().equals("Assigned");
+        isValidAction = !ticket.getTicketStatus().getStatusFullName().equals("Assigned");
         isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equals("Open");
         break;
       case "start":
-        isValidAction != ticket.getTicketStatus().getStatusFullName().equals("InProgress");
+        isValidAction = !ticket.getTicketStatus().getStatusFullName().equals("InProgress");
         isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equals("Assigned");
         break;
       case "complete":
-        isValidAction != ticket.getTicketStatus().getStatusFullName().equals("Completed");
+        isValidAction = !ticket.getTicketStatus().getStatusFullName().equals("Completed");
         isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equals("InProgress");
         break;
       case "approve":
       case "disapprove":
-        isValidAction != ticket.getTicketStatus().getStatusFullName().equals("Closed");
+        isValidAction = !ticket.getTicketStatus().getStatusFullName().equals("Closed");
         isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equals("Completed");
         break;
       default:
