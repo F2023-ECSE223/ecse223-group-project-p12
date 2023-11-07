@@ -25,8 +25,6 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
-    ticket.setTicketFixer(staff);
-
     return "";
   }
   
