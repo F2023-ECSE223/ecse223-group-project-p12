@@ -172,7 +172,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
     return "";
   }
 
-  public static String isExistingStaff(Employee staff){
+  private static String isExistingStaff(HotelStaff staff){
     if(HotelStaff.getWithEmail(staff.getEmail()) == null){
       return "Error: This employee is not part of the hotel Staff";
     }
