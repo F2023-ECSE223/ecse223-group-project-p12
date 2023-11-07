@@ -23,8 +23,10 @@ public class AssetPlusFeatureMaintenanceTicketController {
    */
   public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager manager, MaintenanceTicket ticket) {
     //Input validation
+
     String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId()) + 
-                  isActionAdequateForCurrentState(ticket, "assign");
+                  isActionAdequateForCurrentState(ticket, "assign") + isExistingStaff(staff);
+
 
     if (!err.isEmpty()) {
       return err;
@@ -119,6 +121,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
   }
 
+
   // Private helper methods
 
   /**
@@ -168,4 +171,13 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
     return "";
   }
+
+  public static String isExistingStaff(Employee staff){
+    if(HotelStaff.getWithEmail(staff.getEmail()) == null){
+      return "Error: This employee is not part of the hotel Staff";
+    }
+    return "";
+  }
+
+
 } 
