@@ -2,6 +2,7 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 
 /**
@@ -18,7 +19,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
    */
   public static String assignStaffToMaintenanceTicket(Employee staff, MaintenanceTicket ticket) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId());
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId()) + isExistingStaff(staff);
 
     if (!err.isEmpty()) {
       return err;
@@ -100,6 +101,13 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
     return "";
 
+  }
+
+  public static String isExistingStaff(Employee staff){
+    if(HotelStaff.getWithEmail(staff.getEmail()) == null){
+      return "Error: This employee is not part of the hotel Staff";
+    }
+    return "";
   }
 
 } 
