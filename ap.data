@@ -311,6 +311,26 @@
           },
           {
             "@reference": "../../employees/Employee/maintenanceNotes/MaintenanceNote/ticket/ticketRaiser/maintenanceNotes/MaintenanceNote/ticket/asset/assetType"
+          },
+          {
+            "name": "Asset Type: 1",
+            "expectedLifeSpan": 100,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              ""
+            ]
+          },
+          {
+            "name": "Asset Type: 2",
+            "expectedLifeSpan": 200,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              ""
+            ]
           }
         ]
       }
