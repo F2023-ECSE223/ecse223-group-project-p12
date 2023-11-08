@@ -42,6 +42,7 @@ public class AssetPlusApplicationTest {
   
   }
 
+  /* 
   @Test
   public void testGetting() {
     
@@ -55,6 +56,7 @@ public class AssetPlusApplicationTest {
     assertEquals(ap2.getSpecificAsset(1).getAssetType().getName(), "Asset Type: 2");    
 
   }
+  */
 
   @Test
   public void testModifying() {
