@@ -216,7 +216,9 @@ public class MaintenanceTicketsStepDefinitions {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     Status status = Status.valueOf(string2);
     while (!(ticket.getTicketStatus().getStatus().equals(status))) {
-      if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
+      if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
+        break;
+      } else if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
         AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticket);
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.InProgress))) {
         AssetPlusFeatureMaintenanceTicketController.completeTicket(ticket);
@@ -240,9 +242,30 @@ public class MaintenanceTicketsStepDefinitions {
         MaintenanceTicket ticket = MaintenanceTicket.getWithId(id);
         HotelStaff staff = (HotelStaff) HotelStaff.getWithEmail(string2);
         PriorityLevel priority = PriorityLevel.valueOf(string4);
-        TimeEstimate estimate = TimeEstimate.valueOf(string3);
+        String timeResolve = (string3);
+        TimeEstimate timeToResolve;
+        switch (timeResolve) {
+          case ("lessThanADay"):
+            timeToResolve = TimeEstimate.LessThanADay;
+            break;
+          case ("oneToThreeDays"):
+            timeToResolve = TimeEstimate.OneToThreeDays;
+            break;
+          case ("oneToThreeWeeks"):
+            timeToResolve = TimeEstimate.OneToThreeWeeks;
+            break;
+          case ("threeOrMoreWeeks"):
+            timeToResolve = TimeEstimate.ThreeOrMoreWeeks;
+            break;
+          case ("threeToSevenDays"):
+            timeToResolve = TimeEstimate.ThreeToSevenDays;
+            break;
+          default:
+            timeToResolve = null;
+            break;
+        }
         Boolean requiresApproval = Boolean.parseBoolean(string5);
-        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((Employee) staff, priority, estimate, AssetPlusApplication.getAssetPlus().getManager(), ticket);
+        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((Employee) staff, priority, timeToResolve, AssetPlusApplication.getAssetPlus().getManager(), ticket);
   }
 
   @When("the hotel staff attempts to start the ticket {string}")
