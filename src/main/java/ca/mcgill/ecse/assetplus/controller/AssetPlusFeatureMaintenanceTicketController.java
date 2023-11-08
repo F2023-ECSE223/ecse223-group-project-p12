@@ -27,7 +27,13 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
     String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
                   isActionAdequateForCurrentState(ticket, "assign") + isExistingStaff(staff);
+    if(timeToResolve == null){
+      err = err + "Error: TimeEstimateIsNull";
+    }
 
+    if(priority == null){
+      err = err + "Error: Priority sould not be null";
+    }
 
     if (!err.isEmpty()) {
       return err;

@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.assetplus.features;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.sql.Date;
@@ -266,7 +267,7 @@ public class MaintenanceTicketsStepDefinitions {
             timeToResolve = TimeEstimate.ThreeToSevenDays;
             break;
           default:
-            timeToResolve = null;
+            timeToResolve = TimeEstimate.valueOf(timeResolve);
             break;
         }
         Boolean requiresApproval = Boolean.parseBoolean(string5);
@@ -316,14 +317,34 @@ public class MaintenanceTicketsStepDefinitions {
   }
 
   @Then("the ticket {string} shall have estimated time {string}, priority {string}, and requires approval {string}")
-  public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String expectedIicketID,String expectedEstimatedTime, String expectedPriority, String expectedApproval){
-    MaintenanceTicket aticket = MaintenanceTicket.getWithId(Integer.parseInt(expectedIicketID));
+  public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String expectedTicketID,String expectedEstimatedTime, String expectedPriority, String expectedApproval){
+    MaintenanceTicket aTicket = MaintenanceTicket.getWithId(Integer.parseInt(expectedTicketID));
+    assertNotNull(aTicket);
 
-    expectedEstimatedTime = expectedEstimatedTime.toLowerCase();
-    String trueEstimatedTime = aticket.getTimeToResolve().toString().toLowerCase();
-    
-    assertEquals(expectedEstimatedTime, trueEstimatedTime);
-    assertEquals(PriorityLevel.valueOf(expectedPriority), aticket.getPriority());
+    TimeEstimate expectedTimeEstimate;
+    switch(expectedEstimatedTime){
+      case("lessThanADay"):
+        expectedTimeEstimate = TimeEstimate.LessThanADay;
+        break;
+      case("oneToThreeDays"):
+        expectedTimeEstimate = TimeEstimate.OneToThreeDays;
+        break;
+      case("oneToThreeWeeks"):
+        expectedTimeEstimate = TimeEstimate.OneToThreeWeeks;
+        break;
+      case("threeOrMoreWeeks"):
+        expectedTimeEstimate = TimeEstimate.ThreeOrMoreWeeks;
+        break;
+      case("threeToSevenDays"):
+        expectedTimeEstimate = TimeEstimate.ThreeToSevenDays;
+        break;
+      default:
+        expectedTimeEstimate = TimeEstimate.valueOf(expectedEstimatedTime);
+        break;
+    }
+
+    assertEquals(expectedTimeEstimate, aTicket.getTimeToResolve());
+    assertEquals(PriorityLevel.valueOf(expectedPriority), aTicket.getPriority());
     
     }
 
