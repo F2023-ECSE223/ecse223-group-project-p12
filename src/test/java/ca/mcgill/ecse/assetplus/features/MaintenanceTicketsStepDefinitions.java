@@ -318,10 +318,18 @@ public class MaintenanceTicketsStepDefinitions {
   @Then("the ticket {string} shall have estimated time {string}, priority {string}, and requires approval {string}")
   public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String expectedIicketID,String expectedEstimatedTime, String expectedPriority, String expectedApproval){
     MaintenanceTicket aticket = MaintenanceTicket.getWithId(Integer.parseInt(expectedIicketID));
-    assertEquals(TimeEstimate.valueOf(expectedEstimatedTime), aticket.getTimeToResolve());
+
+    expectedEstimatedTime = expectedEstimatedTime.toLowerCase();
+    String trueEstimatedTime = aticket.getTimeToResolve().toString().toLowerCase();
+    
+    assertEquals(expectedEstimatedTime, trueEstimatedTime);
     assertEquals(PriorityLevel.valueOf(expectedPriority), aticket.getPriority());
+    
+    }
+
+
     //Not finished
-  }
+  
 
   @Then("the ticket {string} shall be assigned to {string}")
   public void the_ticket_shall_be_assigned_to(String string, String string2) {
