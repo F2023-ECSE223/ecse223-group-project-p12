@@ -315,6 +315,7 @@ public class MaintenanceTicketsStepDefinitions {
     MaintenanceTicket aticket = MaintenanceTicket.getWithId(Integer.parseInt(expectedIicketID));
     assertEquals(TimeEstimate.valueOf(expectedEstimatedTime), aticket.getTimeToResolve());
     assertEquals(PriorityLevel.valueOf(expectedPriority), aticket.getPriority());
+    //Not finished
   }
 
   @Then("the ticket {string} shall be assigned to {string}")
