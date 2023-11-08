@@ -4,6 +4,7 @@
 package ca.mcgill.ecse.assetplus.model;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import java.sql.Date;
 import java.util.*;
 
@@ -59,7 +60,7 @@ public class TicketStatus
     return status;
   }
 
-  public boolean managerReviews(HotelStaff staff,PriorityLevel priority,TimeEstimate timeToResolve,Manager fixApprover)
+  public boolean managerReviews(HotelStaff staff,PriorityLevel priority,TimeEstimate timeToResolve,boolean approvalRequired)
   {
     boolean wasEventProcessed = false;
     
@@ -67,8 +68,8 @@ public class TicketStatus
     switch (aStatus)
     {
       case Open:
-        // line 13 "../../../../../../TicketStatus.ump"
-        doReview(staff, priority, timeToResolve, fixApprover);
+        // line 14 "../../../../../../TicketStatus.ump"
+        doReview(staff, priority, timeToResolve, approvalRequired);
         setStatus(Status.Assigned);
         wasEventProcessed = true;
         break;
@@ -151,7 +152,7 @@ public class TicketStatus
     switch (aStatus)
     {
       case Resolved:
-        // line 26 "../../../../../../TicketStatus.ump"
+        // line 27 "../../../../../../TicketStatus.ump"
         doDisapproveWork(date, desc, noteTaker);
         setStatus(Status.InProgress);
         wasEventProcessed = true;
@@ -183,19 +184,19 @@ public class TicketStatus
     }
   }
 
-  // line 35 "../../../../../../TicketStatus.ump"
-   private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager fixApprover){
+  // line 36 "../../../../../../TicketStatus.ump"
+   private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired){
     MaintenanceTicket ticket = getMaintenanceTicket();
     
     if (ticket != null && ticket.hasTicketFixer()) {
       ticket.setTicketFixer(staff);
       ticket.setPriority(priority);
       ticket.setTimeToResolve(timeToResolve);
-      ticket.setFixApprover(fixApprover);
+      ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
     }
   }
 
-  // line 46 "../../../../../../TicketStatus.ump"
+  // line 47 "../../../../../../TicketStatus.ump"
    private void doDisapproveWork(Date date, String desc, HotelStaff noteTaker){
     MaintenanceTicket ticket = getMaintenanceTicket();
     
