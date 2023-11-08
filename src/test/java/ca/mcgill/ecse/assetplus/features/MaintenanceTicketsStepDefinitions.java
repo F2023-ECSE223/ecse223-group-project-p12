@@ -116,7 +116,6 @@ public class MaintenanceTicketsStepDefinitions {
       // Adding the specific maintenance ticket based on the table information.
       User aUser = User.getWithEmail(ticketRaiser);
       MaintenanceTicket ticket = new MaintenanceTicket(ticketID, dateRaised, description, AssetPlusApplication.getAssetPlus(), aUser);
-      AssetPlusApplication.getAssetPlus().addMaintenanceTicket(ticket);
 
       if (!row.get("status").equals("Open")) {
         int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
@@ -168,6 +167,7 @@ public class MaintenanceTicketsStepDefinitions {
 
         
       }
+      AssetPlusApplication.getAssetPlus().addMaintenanceTicket(ticket);
     }
   }
 
