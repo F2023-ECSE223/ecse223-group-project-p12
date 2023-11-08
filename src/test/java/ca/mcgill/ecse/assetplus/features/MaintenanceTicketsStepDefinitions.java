@@ -180,7 +180,7 @@ public class MaintenanceTicketsStepDefinitions {
         PriorityLevel priority = PriorityLevel.valueOf(string4);
         TimeEstimate estimate = TimeEstimate.valueOf(string3);
         Boolean requiresApproval = Boolean.parseBoolean(string5);
-        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, estimate, requiresApproval ? AssetPlusApplication.getAssetPlus().getManager() : null, ticket);
+        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, estimate, requiresApproval, ticket);
   }
 
   @When("the hotel staff attempts to start the ticket {string}")
