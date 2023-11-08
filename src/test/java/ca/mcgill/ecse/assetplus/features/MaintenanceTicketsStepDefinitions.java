@@ -311,10 +311,10 @@ public class MaintenanceTicketsStepDefinitions {
   }
 
   @Then("the ticket {string} shall have estimated time {string}, priority {string}, and requires approval {string}")
-  public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String string,
-      String string2, String string3, String string4) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String expectedIicketID,String expectedEstimatedTime, String expectedPriority, String expectedApproval){
+    MaintenanceTicket aticket = MaintenanceTicket.getWithId(Integer.parseInt(expectedIicketID));
+    assertEquals(TimeEstimate.valueOf(expectedEstimatedTime), aticket.getTimeToResolve());
+    assertEquals(PriorityLevel.valueOf(expectedPriority), aticket.getPriority());
   }
 
   @Then("the ticket {string} shall be assigned to {string}")
