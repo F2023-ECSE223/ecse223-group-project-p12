@@ -284,7 +284,9 @@ public class MaintenanceTicketsStepDefinitions {
             timeToResolve = null;
             break;
         }
-        Boolean requiresApproval = Boolean.parseBoolean(string5);
+        if (Boolean.parseBoolean(string5)) {
+          ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
+        }
         error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((Employee) staff, priority, timeToResolve, AssetPlusApplication.getAssetPlus().getManager(), ticket);
   }
 
