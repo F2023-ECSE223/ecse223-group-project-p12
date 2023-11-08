@@ -1,11 +1,8 @@
 package ca.mcgill.ecse.assetplus.controller;
 
 import javax.naming.ldap.ManageReferralControl;
-import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
-import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
-import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 
@@ -24,7 +21,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Émilia Gagné and Julia B.Grenier
    */
-  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager manager, MaintenanceTicket ticket) {
+  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired, MaintenanceTicket ticket) {
     //Input validation
 
     String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId()) + 
@@ -35,7 +32,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
     
-    ticket.getTicketStatus().managerReviews(staff, priority, timeToResolve, manager);
+    ticket.getTicketStatus().managerReviews(staff, priority, timeToResolve, approvalRequired);
 
     return "";
   }

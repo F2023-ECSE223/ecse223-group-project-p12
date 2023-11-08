@@ -5,13 +5,14 @@ class TicketStatus {
   // Needs the enums of MaintenanceTicket
   depend ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
   depend ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
+  depend ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
   // Also needs to deal with date
   depend java.sql.Date;
 	
   Status {
     Open { 
-      managerReviews(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager fixApprover) / {
-                doReview(staff, priority, timeToResolve, fixApprover);
+      managerReviews(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired) / {
+                doReview(staff, priority, timeToResolve, approvalRequired);
             } -> Assigned;
     }
     Assigned {
@@ -31,14 +32,14 @@ class TicketStatus {
     Closed {}
   }
   
-  private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager fixApprover) {
+  private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired) {
     MaintenanceTicket ticket = getMaintenanceTicket();
     
     if (ticket != null && ticket.hasTicketFixer()) {
       ticket.setTicketFixer(staff);
       ticket.setPriority(priority);
       ticket.setTimeToResolve(timeToResolve);
-      ticket.setFixApprover(fixApprover);
+      ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
     }
   }
   
