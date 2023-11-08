@@ -124,6 +124,7 @@ public class MaintenanceTicketsStepDefinitions {
         ticket.setAsset(asset);
         String assignedStaff = (row.get("fixedByEmail").toString());
         User aStaff = Employee.getWithEmail(assignedStaff);
+        Employee employee = (Employee) aStaff;
         String timeResolve = (row.get("timeToResolve").toString());
         TimeEstimate timeToResolve;
         switch (timeResolve) {
@@ -150,7 +151,7 @@ public class MaintenanceTicketsStepDefinitions {
         String priorityString = (row.get("priority").toString());
         PriorityLevel priorityLevel = PriorityLevel.valueOf(priorityString);
 
-        AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(((Employee)aStaff), priorityLevel, timeToResolve, AssetPlusApplication.getAssetPlus().getManager(), ticket);
+        ticket.getTicketStatus().managerReviews(employee, priorityLevel, timeToResolve, false);
 
         if ((!row.get("status").equals("Assigned"))) {
           AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticket);
@@ -288,7 +289,7 @@ public class MaintenanceTicketsStepDefinitions {
         if (Boolean.parseBoolean(string5)) {
           ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
         }
-        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((Employee) staff, priority, timeToResolve, AssetPlusApplication.getAssetPlus().getManager(), ticket);
+        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), ticket);
   }
 
   @When("the hotel staff attempts to start the ticket {string}")
