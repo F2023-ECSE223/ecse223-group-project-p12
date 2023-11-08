@@ -208,7 +208,22 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as_with_requires_approval(String string, String string2,
       String string3) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
+    Status status = Status.valueOf(string2);
+   while (!(ticket.getTicketStatus().getStatus().equals(status))) {
+      if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
+        break;
+      } else if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
+        ticket.getTicketStatus().startWork();
+      } else if ((ticket.getTicketStatus().getStatus().equals(Status.InProgress))) {
+        ticket.getTicketStatus().completeWork();
+      } else if ((ticket.getTicketStatus().getStatus().equals(Status.Resolved))) {
+        ticket.getTicketStatus().approveWork();
+      }
+    }
+    if (Boolean.parseBoolean(string3)) {
+      ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
+    }
   }
 
   @Given("ticket {string} is marked as {string}")
@@ -220,11 +235,11 @@ public class MaintenanceTicketsStepDefinitions {
       if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
         break;
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
-        AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticket);
+        ticket.getTicketStatus().startWork();
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.InProgress))) {
-        AssetPlusFeatureMaintenanceTicketController.completeTicket(ticket);
+        ticket.getTicketStatus().completeWork();
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.Resolved))) {
-        AssetPlusFeatureMaintenanceTicketController.approveTicket(ticket);
+        ticket.getTicketStatus().approveWork();
       }
     }
   }
@@ -270,7 +285,9 @@ public class MaintenanceTicketsStepDefinitions {
             timeToResolve = TimeEstimate.valueOf(timeResolve);
             break;
         }
-        Boolean requiresApproval = Boolean.parseBoolean(string5);
+        if (Boolean.parseBoolean(string5)) {
+          ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
+        }
         error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((Employee) staff, priority, timeToResolve, AssetPlusApplication.getAssetPlus().getManager(), ticket);
   }
 
