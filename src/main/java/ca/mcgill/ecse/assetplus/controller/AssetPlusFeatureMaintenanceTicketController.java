@@ -24,7 +24,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
   public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager manager, MaintenanceTicket ticket) {
     //Input validation
 
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId()) + 
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
                   isActionAdequateForCurrentState(ticket, "assign") + isExistingStaff(staff);
 
 
@@ -45,7 +45,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
    */
   public static String startWorkingOnTicket(MaintenanceTicket ticket) {
     // Input validation
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId()) + 
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
                   isActionAdequateForCurrentState(ticket, "assign");
     // To start working on a ticket
 
@@ -66,7 +66,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
    */
   public static String completeTicket(MaintenanceTicket ticket) {
      //Input validation
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId()) + 
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
                   isActionAdequateForCurrentState(ticket, "complete");
 
     if (!err.isEmpty()) {
@@ -87,7 +87,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
    */
   public static String approveTicket(MaintenanceTicket ticket) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId()) + 
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
                   isActionAdequateForCurrentState(ticket, "approve");
 
     if (!err.isEmpty()) {
@@ -108,7 +108,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
    */
   public static String disapproveTicket(MaintenanceTicket ticket) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticket.getId()) + 
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
                   isActionAdequateForCurrentState(ticket, "disapprove");
 
     if (!err.isEmpty()) {
@@ -134,6 +134,9 @@ public class AssetPlusFeatureMaintenanceTicketController {
   private static String isActionAdequateForCurrentState(MaintenanceTicket ticket, String action) {
     boolean isValidCurrentState = true;
     boolean isValidAction = true;
+    if (ticket == null) {
+      return "";
+    }
     switch (action) {
       case "assign":
         isValidAction = !ticket.getTicketStatus().getStatusFullName().equals("Assigned");
@@ -173,7 +176,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
   }
 
   public static String isExistingStaff(HotelStaff staff){
-    if(HotelStaff.getWithEmail(staff.getEmail()) == null){
+    if(staff == null || HotelStaff.getWithEmail(staff.getEmail()) == null){
       return "Staff to assign does not exist.";
     }
     return "";
