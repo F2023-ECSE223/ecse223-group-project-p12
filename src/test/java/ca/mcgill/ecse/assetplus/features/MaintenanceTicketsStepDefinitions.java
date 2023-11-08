@@ -20,10 +20,12 @@ import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
+import ca.mcgill.ecse.assetplus.model.TicketStatus.Status;
 import ca.mcgill.ecse.assetplus.model.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import javafx.scene.layout.Priority;
 
 public class MaintenanceTicketsStepDefinitions {
 
@@ -103,17 +105,67 @@ public class MaintenanceTicketsStepDefinitions {
     // Iterate through each map representing a row and cast it to the appropriate type.
     for (Map<String, Object> row : tableList) {
       int ticketID = Integer.parseInt(row.get("id").toString());
-      String ticketRaiser = (row.get("ticketRaiser").toString());
+      String ticketRaiser = null;
+      if (row.get("ticketRaiser") != null){
+        ticketRaiser = (row.get("ticketRaiser").toString());
+      }
       Date dateRaised = Date.valueOf(row.get("raisedOnDate").toString());
       String description = (row.get("description").toString());
-      int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
 
       // Adding the specific maintenance ticket based on the table information.
       User aUser = User.getWithEmail(ticketRaiser);
-      SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
       MaintenanceTicket ticket = new MaintenanceTicket(ticketID, dateRaised, description, AssetPlusApplication.getAssetPlus(), aUser);
       AssetPlusApplication.getAssetPlus().addMaintenanceTicket(ticket);
-      ticket.setAsset(asset);
+
+      if (!row.get("status").equals("Open")) {
+        int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
+        SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
+        ticket.setAsset(asset);
+        String assignedStaff = (row.get("fixedByEmail").toString());
+        User aStaff = Employee.getWithEmail(assignedStaff);
+        String timeResolve = (row.get("timeToResolve").toString());
+        TimeEstimate timeToResolve;
+        switch (timeResolve) {
+          case ("lessThanADay"):
+            timeToResolve = TimeEstimate.LessThanADay;
+            break;
+          case ("oneToThreeDays"):
+            timeToResolve = TimeEstimate.OneToThreeDays;
+            break;
+          case ("oneToThreeWeeks"):
+            timeToResolve = TimeEstimate.OneToThreeWeeks;
+            break;
+          case ("threeOrMoreWeeks"):
+            timeToResolve = TimeEstimate.ThreeOrMoreWeeks;
+            break;
+          case ("threeToSevenDays"):
+            timeToResolve = TimeEstimate.ThreeToSevenDays;
+            break;
+          default:
+            timeToResolve = null;
+            break;
+        }
+
+        String priorityString = (row.get("priority").toString());
+        PriorityLevel priorityLevel = PriorityLevel.valueOf(priorityString);
+
+        AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(((Employee)aStaff), priorityLevel, timeToResolve, AssetPlusApplication.getAssetPlus().getManager(), ticket);
+
+        if ((!row.get("status").equals("Assigned"))) {
+          AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticket);
+
+          if (!row.get("status").equals("InProgress")) {
+            AssetPlusFeatureMaintenanceTicketController.completeTicket(ticket);
+
+            if (!row.get("status").equals("Resolved")) {
+              AssetPlusFeatureMaintenanceTicketController.approveTicket(ticket);
+            }
+          }
+        }
+        
+
+        
+      }
     }
   }
 
@@ -161,7 +213,17 @@ public class MaintenanceTicketsStepDefinitions {
   @Given("ticket {string} is marked as {string}")
   public void ticket_is_marked_as(String string, String string2) {
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
+    Status status = Status.valueOf(string2);
+    while (!(ticket.getTicketStatus().getStatus().equals(status))) {
+      if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
+        AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticket);
+      } else if ((ticket.getTicketStatus().getStatus().equals(Status.InProgress))) {
+        AssetPlusFeatureMaintenanceTicketController.completeTicket(ticket);
+      } else if ((ticket.getTicketStatus().getStatus().equals(Status.Resolved))) {
+        AssetPlusFeatureMaintenanceTicketController.approveTicket(ticket);
+      }
+    }
   }
 
   @When("the manager attempts to view all maintenance tickets in the system")
@@ -180,7 +242,7 @@ public class MaintenanceTicketsStepDefinitions {
         PriorityLevel priority = PriorityLevel.valueOf(string4);
         TimeEstimate estimate = TimeEstimate.valueOf(string3);
         Boolean requiresApproval = Boolean.parseBoolean(string5);
-        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((Employee) staff, ticket);
+        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((Employee) staff, priority, estimate, AssetPlusApplication.getAssetPlus().getManager(), ticket);
   }
 
   @When("the hotel staff attempts to start the ticket {string}")
