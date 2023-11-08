@@ -16,7 +16,10 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
   /**
    * <p>Assign an hotel staff to a maintenance ticket</p>
-   * @param staff an employee that will be assigned to the specified ticket
+   * @param staff an employee or manager that will be assigned to the specified ticket
+   * @param priority a priority for the ticket importance
+   * @param timeToResolve time required to resolve the ticket according to manager
+   * @param manager the manager who is reviewing the ticket
    * @param ticket a maintenance ticket that is not assigned yet
    * @return an empty string or an error message
    * @author Émilia Gagné and Julia B.Grenier
