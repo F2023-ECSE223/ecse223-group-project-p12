@@ -140,7 +140,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
     }
     switch (action) {
       case "assign":
-        isValidAction = !ticket.getTicketStatus().getStatus().equals(Status.Assigned);
+        isValidAction = !(ticket.getTicketStatus().getStatus().equals(Status.Assigned));
         isValidCurrentState = ticket.getTicketStatus().getStatus().equals(Status.Open);
         break;
       case "start":
