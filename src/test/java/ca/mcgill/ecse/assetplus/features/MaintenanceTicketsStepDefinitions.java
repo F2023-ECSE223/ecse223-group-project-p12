@@ -241,7 +241,12 @@ public class MaintenanceTicketsStepDefinitions {
         int id = Integer.parseInt(string);
         MaintenanceTicket ticket = MaintenanceTicket.getWithId(id);
         HotelStaff staff = (HotelStaff) HotelStaff.getWithEmail(string2);
-        PriorityLevel priority = PriorityLevel.valueOf(string4);
+        PriorityLevel priority;
+        if (string4.equalsIgnoreCase("high")) {
+          priority = PriorityLevel.Urgent;
+        } else {
+          priority = PriorityLevel.valueOf(string4);
+        }
         String timeResolve = (string3);
         TimeEstimate timeToResolve;
         switch (timeResolve) {
