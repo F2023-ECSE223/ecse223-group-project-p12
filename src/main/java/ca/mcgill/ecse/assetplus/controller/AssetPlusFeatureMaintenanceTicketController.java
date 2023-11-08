@@ -8,6 +8,7 @@ import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
+import ca.mcgill.ecse.assetplus.model.TicketStatus.Status;
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
@@ -139,21 +140,21 @@ public class AssetPlusFeatureMaintenanceTicketController {
     }
     switch (action) {
       case "assign":
-        isValidAction = !ticket.getTicketStatus().getStatusFullName().equals("Assigned");
-        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equals("Open");
+        isValidAction = !ticket.getTicketStatus().getStatus().equals(Status.Assigned);
+        isValidCurrentState = ticket.getTicketStatus().getStatus().equals(Status.Open);
         break;
       case "start":
-        isValidAction = !ticket.getTicketStatus().getStatusFullName().equals("InProgress");
-        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equals("Assigned");
+        isValidAction = !ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("InProgress");
+        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Assigned");
         break;
       case "complete":
-        isValidAction = !ticket.getTicketStatus().getStatusFullName().equals("Completed");
-        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equals("InProgress");
+        isValidAction = !ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Completed");
+        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("InProgress");
         break;
       case "approve":
       case "disapprove":
-        isValidAction = !ticket.getTicketStatus().getStatusFullName().equals("Closed");
-        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equals("Completed");
+        isValidAction = !ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Closed");
+        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Completed");
         break;
       default:
         return "Error invalid input for action";
@@ -168,8 +169,12 @@ public class AssetPlusFeatureMaintenanceTicketController {
       }
       
       // The error message about the validity of the action has more priority than the other
-      return isValidAction ? "Cannot " + action + " a maintenance ticket which is " + currentState + "." 
-                            : "The maintenance ticket is already " + currentState;
+      if (isValidAction) {
+        return "Cannot " + action + " a maintenance ticket which is " + currentState + ".";
+      } else {
+        return "The maintenance ticket is already " + currentState;
+      }
+      
     }
 
     return "";

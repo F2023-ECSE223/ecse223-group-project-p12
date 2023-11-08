@@ -302,7 +302,7 @@ public class MaintenanceTicketsStepDefinitions {
   @Then("the ticket {string} shall be marked as {string}")
   public void the_ticket_shall_be_marked_as(String string, String string2) {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
-    //ticket.setTicketStatus(string2)
+    assertEquals(string2, ticket.getTicketStatus().getStatusFullName());
   }
 
   @Then("the system shall raise the error {string}")
