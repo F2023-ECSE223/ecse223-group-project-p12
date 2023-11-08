@@ -109,7 +109,7 @@ public class AssetPlusFeatureUtility {
    */
   public static String isExistingTicket(MaintenanceTicket ticket) {
     if (ticket == null || !MaintenanceTicket.hasWithId(ticket.getId())) {
-      return "Maintenance ticket does not exist";
+      return "Maintenance ticket does not exist.";
     }
     return "";
   }
