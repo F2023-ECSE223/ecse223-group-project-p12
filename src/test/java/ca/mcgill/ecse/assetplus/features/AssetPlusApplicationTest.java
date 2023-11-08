@@ -42,7 +42,7 @@ public class AssetPlusApplicationTest {
   
   }
 
-  /* 
+   
   @Test
   public void testGetting() {
     
@@ -56,7 +56,7 @@ public class AssetPlusApplicationTest {
     assertEquals(ap2.getSpecificAsset(1).getAssetType().getName(), "Asset Type: 2");    
 
   }
-  */
+  
 
   @Test
   public void testModifying() {
@@ -88,48 +88,6 @@ public class AssetPlusApplicationTest {
   }
 
 
-  /* 
-  private void checkResultSchedule(String driverName, boolean driverOnSickLeave, int driverId, Date assignmentDate,
-      int assignmentRouteNumber, String assignmentBusLicencePlate, boolean assignmentBusInRepairShop, Shift shift,
-      BTMS btms, int numberSchedules, int numberAssignments, int numberRoutes, int busStopNumbers, int numberBuses,
-      int numberDrivers) {
-    assertEquals(numberSchedules, btms.getSchedules().size());
-    if (numberSchedules > 0) {
-      assertEquals(shift, btms.getSchedule(0).getShift());
-      assertNotNull(btms.getSchedule(0).getAssignment());
-      assertNotNull(btms.getSchedule(0).getDriver());
-      assertEquals(btms, btms.getSchedule(0).getBTMS());
-    }
-    assertEquals(numberAssignments, btms.getAssignments().size());
-    if (numberAssignments > 0) {
-      assertEquals(assignmentDate, btms.getAssignment(0).getDate());
-      assertNotNull(btms.getAssignment(0).getBus());
-      assertNotNull(btms.getAssignment(0).getRoute());
-      assertEquals(numberSchedules, btms.getAssignment(0).getDriverSchedules().size());
-      assertEquals(btms, btms.getAssignment(0).getBTMS());
-    }
-    assertEquals(numberRoutes, btms.getRoutes().size());
-    if (numberRoutes > 0) {
-      assertEquals(assignmentRouteNumber, btms.getRoute(0).getNumber());
-      assertEquals(numberAssignments, btms.getRoute(0).getRouteAssignments().size());
-      assertEquals(btms, btms.getRoute(0).getBTMS());
-    }
-    assertEquals(numberDrivers, btms.getDrivers().size());
-    if (numberDrivers > 0) {
-      assertEquals(driverName, btms.getDriver(0).getName());
-      assertEquals(driverOnSickLeave, btms.getDriver(0).isOnSickLeave());
-      assertEquals(driverId, btms.getDriver(0).getId());
-      assertEquals(numberSchedules, btms.getDriver(0).getDriverSchedules().size());
-      assertEquals(btms, btms.getDriver(0).getBTMS());
-    }
-    assertEquals(numberBuses, btms.getVehicles().size());
-    if (numberBuses > 0) {
-      assertEquals(assignmentBusLicencePlate, btms.getVehicle(0).getLicencePlate());
-      assertEquals(assignmentBusInRepairShop, btms.getVehicle(0).isInRepairShop());
-      assertEquals(numberAssignments, btms.getVehicle(0).getRouteAssignments().size());
-      assertEquals(btms, btms.getVehicle(0).getBTMS());
-    }
-  }
-  */
+  
 
 }
