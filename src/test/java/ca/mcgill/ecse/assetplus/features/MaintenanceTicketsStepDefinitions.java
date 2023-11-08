@@ -209,15 +209,15 @@ public class MaintenanceTicketsStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     Status status = Status.valueOf(string2);
-    while (!(ticket.getTicketStatus().getStatus().equals(status))) {
+   while (!(ticket.getTicketStatus().getStatus().equals(status))) {
       if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
         break;
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
-        AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticket);
+        ticket.getTicketStatus().startWork();
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.InProgress))) {
-        AssetPlusFeatureMaintenanceTicketController.completeTicket(ticket);
+        ticket.getTicketStatus().completeWork();
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.Resolved))) {
-        AssetPlusFeatureMaintenanceTicketController.approveTicket(ticket);
+        ticket.getTicketStatus().approveWork();
       }
     }
     if (Boolean.parseBoolean(string3)) {
@@ -234,11 +234,11 @@ public class MaintenanceTicketsStepDefinitions {
       if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
         break;
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
-        AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticket);
+        ticket.getTicketStatus().startWork();
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.InProgress))) {
-        AssetPlusFeatureMaintenanceTicketController.completeTicket(ticket);
+        ticket.getTicketStatus().completeWork();
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.Resolved))) {
-        AssetPlusFeatureMaintenanceTicketController.approveTicket(ticket);
+        ticket.getTicketStatus().approveWork();
       }
     }
   }
