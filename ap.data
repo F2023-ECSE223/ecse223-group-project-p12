@@ -107,14 +107,132 @@
     "guests": [
       ""
     ],
+    "manager": {
+      "email": "manager@ap.com",
+      "name": "",
+      "password": "manager",
+      "phoneNumber": "",
+      "raisedTickets": [
+        {
+          "MaintenanceTicket": {
+            "id": 1,
+            "raisedOnDate": "2023-07-20",
+            "description": "This is a dummy description 1",
+            "ticketNotes": [
+              ""
+            ],
+            "ticketImages": [
+              {
+                "TicketImage": [
+                  {
+                    "imageURL": "https://imageurl.com/i.jpg",
+                    "ticket": {
+                      "@reference": "../../.."
+                    }
+                  },
+                  {
+                    "imageURL": "http://thisimage.com/1.png",
+                    "ticket": {
+                      "@reference": "../../.."
+                    }
+                  }
+                ]
+              }
+            ],
+            "ticketStatus": {
+              "status": "Open",
+              "MaintenanceTicket": {
+                "@reference": "../.."
+              }
+            },
+            "assetPlus": {
+              "@reference": "../../../.."
+            },
+            "ticketRaiser": {
+              "@class": "Manager",
+              "@reference": "../../.."
+            },
+            "asset": {
+              "assetNumber": 2,
+              "floorNumber": 10,
+              "roomNumber": 35,
+              "purchaseDate": "2010-01-30",
+              "assetPlus": {
+                "@reference": "../../../../.."
+              },
+              "maintenanceTickets": [
+                {
+                  "MaintenanceTicket": {
+                    "@reference": "../../.."
+                  }
+                }
+              ],
+              "assetType": {
+                "name": "bed",
+                "expectedLifeSpan": 5000,
+                "assetPlus": {
+                  "@reference": "../../../../../.."
+                },
+                "specificAssets": [
+                  {
+                    "SpecificAsset": {
+                      "@reference": "../../.."
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "maintenanceNotes": [
+        ""
+      ],
+      "maintenanceTasks": [
+        ""
+      ],
+      "assetPlus": {
+        "@reference": "../.."
+      },
+      "ticketsForApproval": [
+        ""
+      ]
+    },
     "maintenanceTickets": [
-      ""
+      {
+        "MaintenanceTicket": [
+          {
+            "@reference": "../../manager/raisedTickets/MaintenanceTicket"
+          },
+          {
+            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket"
+          }
+        ]
+      }
     ],
     "assetTypes": [
-      ""
+      {
+        "AssetType": [
+          {
+            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType"
+          },
+          {
+            "@reference": "../../manager/raisedTickets/MaintenanceTicket/asset/assetType"
+          }
+        ]
+      }
     ],
     "specificAssets": [
-      ""
+      {
+        "SpecificAsset": [
+          {
+            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset"
+          },
+          {
+            "@reference": "../../manager/raisedTickets/MaintenanceTicket/asset"
+          }
+        ]
+      }
     ]
   }
 }
