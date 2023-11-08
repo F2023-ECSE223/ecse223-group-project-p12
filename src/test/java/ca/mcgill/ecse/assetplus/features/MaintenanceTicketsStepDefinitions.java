@@ -293,25 +293,25 @@ public class MaintenanceTicketsStepDefinitions {
   @When("the hotel staff attempts to start the ticket {string}")
   public void the_hotel_staff_attempts_to_start_the_ticket(String string) {
     // Write code here that turns the phrase above into concrete actions
-    error = AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(Integer.parseInt(string));
+    error = AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(MaintenanceTicket.getWithId(Integer.parseInt(string)));
   }
 
   @When("the manager attempts to approve the ticket {string}")
   public void the_manager_attempts_to_approve_the_ticket(String string) {
     // Write code here that turns the phrase above into concrete actions
-    error = AssetPlusFeatureMaintenanceTicketController.approveTicket(Integer.parseInt(string));
+    error = AssetPlusFeatureMaintenanceTicketController.approveTicket(MaintenanceTicket.getWithId(Integer.parseInt(string)));
   }
 
   @When("the hotel staff attempts to complete the ticket {string}")
   public void the_hotel_staff_attempts_to_complete_the_ticket(String string) {
     // Write code here that turns the phrase above into concrete actions
-    error = AssetPlusFeatureMaintenanceTicketController.completeTicket(Integer.parseInt(string));
+    error = AssetPlusFeatureMaintenanceTicketController.completeTicket(MaintenanceTicket.getWithId(Integer.parseInt(string)));
   }
 
   @When("the manager attempts to disapprove the ticket {string} on date {string} and with reason {string}")
   public void the_manager_attempts_to_disapprove_the_ticket_on_date_and_with_reason(String string,
       String string2, String string3) {
-        error = AssetPlusFeatureMaintenanceTicketController.disapproveTicket(Integer.parseInt(string));
+        error = AssetPlusFeatureMaintenanceTicketController.disapproveTicket(MaintenanceTicket.getWithId(Integer.parseInt(string)));
       }
 
   @Then("the ticket {string} shall be marked as {string}")
