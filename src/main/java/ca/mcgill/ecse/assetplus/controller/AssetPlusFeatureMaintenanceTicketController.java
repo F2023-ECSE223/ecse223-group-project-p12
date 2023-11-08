@@ -1,8 +1,11 @@
 package ca.mcgill.ecse.assetplus.controller;
 
 import javax.naming.ldap.ManageReferralControl;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 import ca.mcgill.ecse.assetplus.model.TicketStatus.Status;
@@ -14,21 +17,16 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
   /**
    * <p>Assign an hotel staff to a maintenance ticket</p>
-   * @param staff an employee or manager that will be assigned to the specified ticket
-   * @param priority a priority for the ticket importance
-   * @param timeToResolve time required to resolve the ticket according to manager
-   * @param manager the manager who is reviewing the ticket
+   * @param staff an employee that will be assigned to the specified ticket
    * @param ticket a maintenance ticket that is not assigned yet
    * @return an empty string or an error message
    * @author Émilia Gagné and Julia B.Grenier
    */
-
-  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired, MaintenanceTicket ticket) {
-
+  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager manager, MaintenanceTicket ticket) {
     //Input validation
 
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticketID) + 
-                  isActionAdequateForCurrentState(ticketID, "assign") + isExistingStaff(staff);
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
+                  isActionAdequateForCurrentState(ticket, "assign") + isExistingStaff(staff);
     if(timeToResolve == null){
       err = err + "Error: TimeEstimateIsNull";
     }
@@ -41,7 +39,8 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
     
-    MaintenanceTicket.getWithId(ticketID).getTicketStatus().managerReviews(staff, priority, timeToResolve, manager);
+    //Modify the approveRequired boolean in this function call (last argument)
+    ticket.getTicketStatus().managerReviews(staff, priority, timeToResolve, ticket.hasFixApprover());
 
     return "";
   }
@@ -52,17 +51,17 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Julia B.Grenier
    */
-  public static String startWorkingOnTicket(int ticketID) {
+  public static String startWorkingOnTicket(MaintenanceTicket ticket) {
     // Input validation
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticketID) + 
-                  isActionAdequateForCurrentState(ticketID, "assign");
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
+                  isActionAdequateForCurrentState(ticket, "assign");
     // To start working on a ticket
 
     if (!err.isEmpty()) {
       return err;
     }
 
-    MaintenanceTicket.getWithId(ticketID).getTicketStatus().startWork();
+    ticket.getTicketStatus().startWork();
 
     return "";
   }
@@ -73,16 +72,16 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Julia B.Grenier 
    */
-  public static String completeTicket(int ticketID) {
+  public static String completeTicket(MaintenanceTicket ticket) {
      //Input validation
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticketID) + 
-                  isActionAdequateForCurrentState(ticketID, "complete");
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
+                  isActionAdequateForCurrentState(ticket, "complete");
 
     if (!err.isEmpty()) {
       return err;
     }
 
-    MaintenanceTicket.getWithId(ticketID).getTicketStatus().completeWork();
+    ticket.getTicketStatus().completeWork();
     
     return "";
 
@@ -94,16 +93,16 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Julia B.Grenier
    */
-  public static String approveTicket(int ticketID) {
+  public static String approveTicket(MaintenanceTicket ticket) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticketID) + 
-                  isActionAdequateForCurrentState(ticketID, "approve");
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
+                  isActionAdequateForCurrentState(ticket, "approve");
 
     if (!err.isEmpty()) {
       return err;
     }
 
-    MaintenanceTicket.getWithId(ticketID).getTicketStatus().approveWork();
+    ticket.getTicketStatus().approveWork();
 
     return "";
 
@@ -115,16 +114,16 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Julia B.Grenier
    */
-  public static String disapproveTicket(int ticketID) {
+  public static String disapproveTicket(MaintenanceTicket ticket) {
     //Input validation
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticketID) + 
-                  isActionAdequateForCurrentState(ticketID, "disapprove");
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
+                  isActionAdequateForCurrentState(ticket, "disapprove");
 
     if (!err.isEmpty()) {
       return err;
     }
 
-    MaintenanceTicket.getWithId(ticketID).getTicketStatus().disapproveWork(MaintenanceTicket.getWithId(ticketID).getRaisedOnDate(), MaintenanceTicket.getWithId(ticketID).getDescription(), MaintenanceTicket.getWithId(ticketID).getTicketFixer());
+    ticket.getTicketStatus().disapproveWork(ticket.getRaisedOnDate(), ticket.getDescription(), ticket.getTicketFixer());
 
     return "";
 
@@ -140,14 +139,13 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return a string that will be empty if the current state is adequate for the action, else it will contain the error message
    * @author Julia B.Grenier
    */
-  private static String isActionAdequateForCurrentState(int ticketID, String action) {
+  private static String isActionAdequateForCurrentState(MaintenanceTicket ticket, String action) {
     boolean isValidCurrentState = true;
     boolean isValidAction = true;
-    if (MaintenanceTicket.hasWithId(ticketID)) {
+    if (ticket == null) {
       return "";
     }
-    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-    switch (action) {
+    switch(action) {
       case "assign":
         isValidAction = !(ticket.getTicketStatus().getStatus().equals(Status.Assigned));
         isValidCurrentState = ticket.getTicketStatus().getStatus().equals(Status.Open);
@@ -161,6 +159,8 @@ public class AssetPlusFeatureMaintenanceTicketController {
         isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("InProgress");
         break;
       case "approve":
+        //To complete
+        break;
       case "disapprove":
         isValidAction = !ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Closed");
         isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Completed");
