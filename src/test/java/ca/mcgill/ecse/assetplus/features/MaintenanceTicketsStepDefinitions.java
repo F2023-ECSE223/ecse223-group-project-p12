@@ -112,45 +112,13 @@ public class MaintenanceTicketsStepDefinitions {
 
       // Adding the specific maintenance ticket based on the table information.
       MaintenanceTicket ticket = new MaintenanceTicket(ticketID, dateRaised, description, AssetPlusApplication.getAssetPlus(), aUser);
-<<<<<<< HEAD
-
-=======
       AssetPlusApplication.getAssetPlus().addMaintenanceTicket(ticket);
       
->>>>>>> iteration3
       if (!row.get("status").equals("Open")) {
         //Setting up the asset
         int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
         SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
         ticket.setAsset(asset);
-<<<<<<< HEAD
-        String assignedStaff = (row.get("fixedByEmail").toString());
-        User aStaff = Employee.getWithEmail(assignedStaff);
-        Employee employee = (Employee) aStaff;
-        String timeResolve = (row.get("timeToResolve").toString());
-        TimeEstimate timeToResolve;
-        switch (timeResolve) {
-          case ("lessThanADay"):
-            timeToResolve = TimeEstimate.LessThanADay;
-            break;
-          case ("oneToThreeDays"):
-            timeToResolve = TimeEstimate.OneToThreeDays;
-            break;
-          case ("oneToThreeWeeks"):
-            timeToResolve = TimeEstimate.OneToThreeWeeks;
-            break;
-          case ("threeOrMoreWeeks"):
-            timeToResolve = TimeEstimate.ThreeOrMoreWeeks;
-            break;
-          case ("threeToSevenDays"):
-            timeToResolve = TimeEstimate.ThreeToSevenDays;
-            break;
-          default:
-            timeToResolve = null;
-            break;
-        }
-=======
->>>>>>> iteration3
 
         //Setting up the staff
         String assignedStaff = (row.get("fixedByEmail").toString());
@@ -176,18 +144,6 @@ public class MaintenanceTicketsStepDefinitions {
         //Assigns ticket with model method. 
         ticket.managerReviews((HotelStaff)aStaff, priorityLevel, timeToResolve, approvalRequired);
 
-<<<<<<< HEAD
-        ticket.getTicketStatus().managerReviews(employee, priorityLevel, timeToResolve, false);
-
-        if ((!row.get("status").equals("Assigned"))) {
-          ticket.getTicketStatus().startWork();
-
-          if (!row.get("status").equals("InProgress")) {
-            ticket.getTicketStatus().completeWork();
-
-            if (!row.get("status").equals("Resolved")) {
-              ticket.getTicketStatus().approveWork();
-=======
         String status = row.get("status").toString();
 
         switch(status){
@@ -203,7 +159,6 @@ public class MaintenanceTicketsStepDefinitions {
             ticket.completeWork();
             if(ticket.hasFixApprover()){
               ticket.approveWork();
->>>>>>> iteration3
             }
             break;
           default:
@@ -279,18 +234,11 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as(String string, String string2) {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
-<<<<<<< HEAD
-    Status status = Status.valueOf(string2);
-    while (!(ticket.getTicketStatus().getStatus().equals(status))) {
-      if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
-        //ticket.getTicketStatus().managerReviews(null, null, null, AssetPlusApplication.getAssetPlus().getManager());
-=======
     String status = string2;
 
     while (!(ticket.getStatusFullName().equals(status))) {
       if ((ticket.getStatusFullName().equals("Open"))) {
         ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
->>>>>>> iteration3
         break;
       } else if ((ticket.getStatusFullName().equals("Assigned"))) {
         ticket.startWork();
@@ -317,44 +265,12 @@ public class MaintenanceTicketsStepDefinitions {
     
         int id = Integer.parseInt(string);
         HotelStaff staff = (HotelStaff) HotelStaff.getWithEmail(string2);
-<<<<<<< HEAD
-        PriorityLevel priority;
-        if (string4.equalsIgnoreCase("high")) {
-          priority = PriorityLevel.Urgent;
-        } else {
-          priority = PriorityLevel.valueOf(string4);
-        }
-        String timeResolve = (string3);
-        TimeEstimate timeToResolve;
-        switch (timeResolve) {
-          case ("lessThanADay"):
-            timeToResolve = TimeEstimate.LessThanADay;
-            break;
-          case ("oneToThreeDays"):
-            timeToResolve = TimeEstimate.OneToThreeDays;
-            break;
-          case ("oneToThreeWeeks"):
-            timeToResolve = TimeEstimate.OneToThreeWeeks;
-            break;
-          case ("threeOrMoreWeeks"):
-            timeToResolve = TimeEstimate.ThreeOrMoreWeeks;
-            break;
-          case ("threeToSevenDays"):
-            timeToResolve = TimeEstimate.ThreeToSevenDays;
-            break;
-          default:
-            timeToResolve = TimeEstimate.valueOf(timeResolve);
-            break;
-        }
-        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), id);
-=======
         PriorityLevel priority = PriorityLevel.valueOf(string4);
 
         String stringTimeToResolve = (string3);
         TimeEstimate timeToResolve = TimeEstimate.valueOf(stringTimeToResolve);
 
         error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), Integer.parseInt(string));
->>>>>>> iteration3
   }
 
   @When("the hotel staff attempts to start the ticket {string}")

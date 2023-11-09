@@ -21,13 +21,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Émilia Gagné and Julia B.Grenier
    */
-<<<<<<< HEAD
-
   public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired, int ticketID) {
-
-=======
-  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired, int ticketID) {
->>>>>>> iteration3
     //Input validation
 
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
@@ -49,12 +43,8 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
     
-<<<<<<< HEAD
-    MaintenanceTicket.getWithId(ticketID).getTicketStatus().managerReviews(staff, priority, timeToResolve, approvalRequired);
-=======
     //Modify the approveRequired boolean in this function call (last argument)
     ticket.managerReviews(staff, priority, timeToResolve, ticket.hasFixApprover());
->>>>>>> iteration3
 
     return "";
   }
