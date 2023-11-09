@@ -23,7 +23,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @author Émilia Gagné and Julia B.Grenier
    */
 
-  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired, MaintenanceTicket ticket) {
+  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired, int ticketID) {
 
     //Input validation
 
@@ -41,7 +41,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
     
-    MaintenanceTicket.getWithId(ticketID).getTicketStatus().managerReviews(staff, priority, timeToResolve, manager);
+    MaintenanceTicket.getWithId(ticketID).getTicketStatus().managerReviews(staff, priority, timeToResolve, approvalRequired);
 
     return "";
   }
