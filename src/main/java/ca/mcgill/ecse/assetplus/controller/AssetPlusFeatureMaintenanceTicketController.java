@@ -209,10 +209,10 @@ public class AssetPlusFeatureMaintenanceTicketController {
       }
       
       // The error message about the validity of the action has more priority than the other
-      if (isValidAction) {
-        return "Cannot " + action + " a maintenance ticket which is " + currentState + ".";
-      } else {
+      if (isValidCurrentState) {
         return "The maintenance ticket is already " + currentState + ".";
+      } else {
+        return "Cannot " + action + " a maintenance ticket which is " + currentState + ".";
       }
     }
     return "";

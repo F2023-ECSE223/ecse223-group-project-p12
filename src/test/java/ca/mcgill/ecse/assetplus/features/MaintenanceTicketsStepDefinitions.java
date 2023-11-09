@@ -236,20 +236,27 @@ public class MaintenanceTicketsStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     String status = string2;
-    Status aStatus = Status.valueOf(status);
 
-    while (!(ticket.getStatus().equals(aStatus))) {
-      if ((ticket.getStatus().equals(Status.Open))) {
-        ticket.managerReviews((HotelStaff) Employee.getWithEmail("jeff@ap.com"), PriorityLevel.Normal, TimeEstimate.ThreeToSevenDays, true);
-      } else if ((ticket.getStatus().equals(Status.Assigned))) {
-        ticket.startWork();
-      } else if ((ticket.getStatus().equals(Status.InProgress))) {
-        ticket.completeWork();
-        break;
-      } else if ((ticket.getStatus().equals(Status.Resolved))) {
-        ticket.approveWork();
-      }
-    }
+    switch(status){
+          case("Assigned"):
+            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
+          case("InProgress"):
+            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
+            ticket.startWork();
+            break;
+          case("Resolved"):
+            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
+            ticket.startWork();
+            ticket.completeWork();
+            break;
+          case("Closed"):
+            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
+            ticket.startWork();
+            ticket.completeWork();
+            ticket.approveWork();
+            break;
+          default:
+        }
     System.out.println(status.toString());
     System.out.println(ticket.getStatusFullName());
   }
