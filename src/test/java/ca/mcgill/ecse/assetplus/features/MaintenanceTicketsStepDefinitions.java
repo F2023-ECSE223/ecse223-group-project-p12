@@ -376,7 +376,13 @@ public class MaintenanceTicketsStepDefinitions {
     MaintenanceTicket aTicket = MaintenanceTicket.getWithId(Integer.parseInt(expectedTicketID));
     
     assertNotNull(aTicket);
-    TimeEstimate expectedTimeEstimate;
+    TimeEstimate expectedTimeEstimate = TimeEstimate.valueOf(expectedEstimatedTime);
+
+    /*
+    
+
+     */
+
     switch(expectedEstimatedTime){
       case("LessThanADay"):
         expectedTimeEstimate = TimeEstimate.LessThanADay;
