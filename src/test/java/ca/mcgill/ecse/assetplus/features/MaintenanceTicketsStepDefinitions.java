@@ -281,21 +281,32 @@ public class MaintenanceTicketsStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
+  //How we pass ticket needs to be changed
   @When("the manager attempts to assign the ticket {string} to {string} with estimated time {string}, priority {string}, and requires approval {string}")
   public void the_manager_attempts_to_assign_the_ticket_to_with_estimated_time_priority_and_requires_approval(
       String string, String string2, String string3, String string4, String string5) {
     
         int id = Integer.parseInt(string);
         HotelStaff staff = (HotelStaff) HotelStaff.getWithEmail(string2);
-        PriorityLevel priority;
+        PriorityLevel priority = PriorityLevel.valueOf(string4);
+
+        /*
+        
         if (string4.equalsIgnoreCase("high")) {
           priority = PriorityLevel.Urgent;
         } else {
           priority = PriorityLevel.valueOf(string4);
         }
 
-        String timeResolve = (string3);
-        TimeEstimate timeToResolve;
+         */
+        
+
+        String stringTimeToResolve = (string3);
+        TimeEstimate timeToResolve = TimeEstimate.valueOf(stringTimeToResolve);
+
+        /*
+        
+         
         switch (timeResolve) {
           case ("LessThanADay"):
             timeToResolve = TimeEstimate.LessThanADay;
@@ -316,6 +327,7 @@ public class MaintenanceTicketsStepDefinitions {
             timeToResolve = TimeEstimate.valueOf(timeResolve);
             break;
         }
+        */
         error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), MaintenanceTicket.getWithId(Integer.parseInt(string)));
   }
 
