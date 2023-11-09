@@ -117,24 +117,35 @@ public class MaintenanceTicketsStepDefinitions {
       if (!row.get("status").equals("Open")) {
         //Setting up the asset
         int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
-        SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
-        ticket.setAsset(asset);
+        if (assetNumber != -1) {
+          SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
+          ticket.setAsset(asset);
+        }
+        else{
+          ticket.setAsset(null);
+        }
 
         //Setting up the staff
         String assignedStaff = (row.get("fixedByEmail").toString());
-        User aStaff = HotelStaff.getWithEmail(assignedStaff);
-
+        HotelStaff aStaff;
+        if (assignedStaff != null){
+          aStaff = (HotelStaff) HotelStaff.getWithEmail(assignedStaff);
+        }
+        else{
+          aStaff = null;
+        }
+        ticket.setTicketFixer(aStaff);
         //Setting up timeToResolve
         String string_timeToResolve = (row.get("timeToResolve").toString());
 
         //Setting up approvalRequired
         String string_approval = (row.get("approvalRequired").toString());
-        boolean approvalRequired;
-        if (string_approval.equals("true")){
-          approvalRequired = true;
-        } else {
-          approvalRequired = false;
-        }
+       // boolean approvalRequired;
+        //if (string_approval.equals("true")){
+          //approvalRequired = true;
+       // } else {
+         // approvalRequired = false;
+        //}
         
         //Setting up timeToResolve
         TimeEstimate timeToResolve = TimeEstimate.valueOf(string_timeToResolve);
@@ -145,8 +156,8 @@ public class MaintenanceTicketsStepDefinitions {
         ticket.setTimeToResolve(timeToResolve);
         ticket.setPriority(priorityLevel);
         ticket.setTicketFixer((HotelStaff)aStaff);
-        ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
-        ticket.managerReviews((HotelStaff)aStaff, priorityLevel, timeToResolve, approvalRequired);
+        //ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
+        ticket.managerReviews(aStaff, priorityLevel, timeToResolve, Boolean.parseBoolean(string_approval));
 
         String status = row.get("status").toString();
 
@@ -239,6 +250,7 @@ public class MaintenanceTicketsStepDefinitions {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     String status = string2;
 
+    /*
     //If the ticket is set to Assigned or onwards. Weirdly, function managerReviews does not set attribute, so I gotta do it manually
     if(!status.equals("Open")){
       HotelStaff staff = (HotelStaff)HotelStaff.getWithEmail("jeff@ap.com");
@@ -265,7 +277,8 @@ public class MaintenanceTicketsStepDefinitions {
             break;
           default:
         }
-    /* 
+         */
+    
     while (!(ticket.getStatusFullName().equals(status))) {
       if ((ticket.getStatusFullName().equals("Open"))) {
         ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
@@ -278,9 +291,9 @@ public class MaintenanceTicketsStepDefinitions {
         ticket.approveWork();
       }
     }
-    */
-    System.out.println(status.toString());
-    System.out.println(ticket.getStatusFullName());
+  
+    //System.out.println(status.toString());
+    //System.out.println(ticket.getStatusFullName());
   }
 
   //UNSURE IF THIS IS CORRECT
@@ -382,23 +395,27 @@ public class MaintenanceTicketsStepDefinitions {
           assertEquals(tableList.get(i).get("description"), ticket.getDescription());
           assertEquals(tableList.get(i).get("status"), ticket.getStatusFullName());
 
-          if(!ticket.getStatusFullName().equals("Open")){
-            //The way the feature file is done, when you open a ticket, you don't have to specify the name of the asset
+          String email = null;
+          if(tableList.get(i).get("fixedByEmail")!= null){     
+            email = ticket.getTicketFixer().getEmail();
+          }
+          //Attributes that are fixed once the ticket state is Reviewed
+          if (tableList.get(i).get("status") != "Open"){
+            assertEquals(tableList.get(i).get("fixedByEmail"), email);
+            assertEquals(tableList.get(i).get("timeToResolve"), ticket.getTimeToResolve().toString());
+            assertEquals(tableList.get(i).get("priority"), ticket.getPriority().toString());
+            assertEquals(tableList.get(i).get("approvalRequired"), Boolean.toString(ticket.hasFixApprover()));
+          }
+            if(ticket.hasAsset()){
             //Without the name of the asset, we can't know his asset type and related attributes
             assertEquals(tableList.get(i).get("assetName"), ticket.getAsset().getAssetType().getName());//An asset does not have a name, but its asset type does
             assertEquals(tableList.get(i).get("expectLifeSpan"), Integer.toString(ticket.getAsset().getAssetType().getExpectedLifeSpan()));
             assertEquals(tableList.get(i).get("purchaseDate"), ticket.getAsset().getPurchaseDate().toString());
             assertEquals(tableList.get(i).get("floorNumber"), Integer.toString(ticket.getAsset().getFloorNumber()));
             assertEquals(tableList.get(i).get("roomNumber"), Integer.toString(ticket.getAsset().getRoomNumber()));
-            //Attributes that are fixed once the ticket state is Reviewed
-            assertEquals(tableList.get(i).get("fixedByEmail"), ticket.getTicketFixer().getEmail());
-            assertEquals(tableList.get(i).get("timeToResolve"), ticket.getTimeToResolve().toString());
-            assertEquals(tableList.get(i).get("priority"), ticket.getPriority().toString());
-            assertEquals(tableList.get(i).get("approvalRequired"), Boolean.toString(ticket.hasFixApprover()));
-          }
-          
           
         }
+      }
   }
 
   @Then("the ticket with id {string} shall have the following notes")

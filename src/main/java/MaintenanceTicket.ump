@@ -33,14 +33,11 @@ class MaintenanceTicket {
   }
   
   private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired) {
-    
-    
-    if (hasTicketFixer()) {
+
       setTicketFixer(staff);
       setPriority(priority);
       setTimeToResolve(timeToResolve);
       setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
-    }
   }
   
   private void doDisapproveWork(Date date, String desc, HotelStaff noteTaker) {
