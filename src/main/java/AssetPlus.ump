@@ -1,6 +1,6 @@
 namespace ca.mcgill.ecse.assetplus.model;
 
-use TicketStatus.ump;
+use MaintenanceTicket.ump;
 
 class AssetPlus
 {
@@ -56,29 +56,6 @@ class MaintenanceTicket
 
   enum PriorityLevel {Urgent, Normal, Low}
   lazy PriorityLevel priority;
-
-  Status {
-    Open { 
-      managerReviews(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired) / {
-                doReview(staff, priority, timeToResolve, approvalRequired);
-            } -> Assigned;
-    }
-    Assigned {
-      startWork() -> InProgress;
-    }
-    InProgress {
-      completeWork() [getMaintenanceTicket().hasFixApprover()] -> Resolved;
-      completeWork() [!getMaintenanceTicket().hasFixApprover()] -> Closed;
-    }
-    Resolved {
-      approveWork() -> Closed;
-      disapproveWork(Date date, String desc, HotelStaff noteTaker) / {
-      	doDisapproveWork(date, desc, noteTaker);
-      } -> InProgress;
-                         
-    }
-    Closed {}
-  }
   
   private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired) {
     MaintenanceTicket ticket = getMaintenanceTicket();
