@@ -8,7 +8,6 @@ import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
-import ca.mcgill.ecse.assetplus.model.TicketStatus.Status;
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
@@ -22,11 +21,16 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Émilia Gagné and Julia B.Grenier
    */
-  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired, MaintenanceTicket ticket) {
+  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired, int ticketID) {
     //Input validation
 
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+    if(ticket == null){
+      return "Maintenance ticket does not exist.";
+    }
+
     String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
-                  isActionAdequateForCurrentState(ticket, "assign") + isExistingStaff(staff);
+                  isActionAdequateForCurrentState(ticketID, "assign") + isExistingStaff(staff);
     if(timeToResolve == null){
       err = err + "Error: TimeEstimateIsNull";
     }
@@ -40,7 +44,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
     }
     
     //Modify the approveRequired boolean in this function call (last argument)
-    ticket.getTicketStatus().managerReviews(staff, priority, timeToResolve, ticket.hasFixApprover());
+    ticket.managerReviews(staff, priority, timeToResolve, ticket.hasFixApprover());
 
     return "";
   }
@@ -51,17 +55,22 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Julia B.Grenier
    */
-  public static String startWorkingOnTicket(MaintenanceTicket ticket) {
+  public static String startWorkingOnTicket(int ticketID) {
+
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+    if(ticket == null){
+      return "Maintenance ticket does not exist.";
+    }
     // Input validation
     String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
-                  isActionAdequateForCurrentState(ticket, "assign");
+                  isActionAdequateForCurrentState(ticketID, "assign");
     // To start working on a ticket
 
     if (!err.isEmpty()) {
       return err;
     }
 
-    ticket.getTicketStatus().startWork();
+    ticket.startWork();
 
     return "";
   }
@@ -72,16 +81,21 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Julia B.Grenier 
    */
-  public static String completeTicket(MaintenanceTicket ticket) {
+  public static String completeTicket(int ticketID) {
      //Input validation
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+    if(ticket == null){
+      return "Maintenance ticket does not exist.";
+    }
+
     String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
-                  isActionAdequateForCurrentState(ticket, "complete");
+                  isActionAdequateForCurrentState(ticketID, "complete");
 
     if (!err.isEmpty()) {
       return err;
     }
 
-    ticket.getTicketStatus().completeWork();
+    ticket.completeWork();
     
     return "";
 
@@ -93,16 +107,22 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Julia B.Grenier
    */
-  public static String approveTicket(MaintenanceTicket ticket) {
+  public static String approveTicket(int ticketID) {
+
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+    if(ticket == null){
+      return "Maintenance ticket does not exist.";
+    }
+
     //Input validation
     String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
-                  isActionAdequateForCurrentState(ticket, "approve");
+                  isActionAdequateForCurrentState(ticketID, "approve");
 
     if (!err.isEmpty()) {
       return err;
     }
 
-    ticket.getTicketStatus().approveWork();
+    ticket.approveWork();
 
     return "";
 
@@ -114,16 +134,22 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Julia B.Grenier
    */
-  public static String disapproveTicket(MaintenanceTicket ticket) {
+  public static String disapproveTicket(int ticketID) {
+
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+    if(ticket == null){
+      return "Maintenance ticket does not exist.";
+    }
+
     //Input validation
     String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
-                  isActionAdequateForCurrentState(ticket, "disapprove");
+                  isActionAdequateForCurrentState(ticketID, "disapprove");
 
     if (!err.isEmpty()) {
       return err;
     }
 
-    ticket.getTicketStatus().disapproveWork(ticket.getRaisedOnDate(), ticket.getDescription(), ticket.getTicketFixer());
+    ticket.disapproveWork(ticket.getRaisedOnDate(), ticket.getDescription(), ticket.getTicketFixer());
 
     return "";
 
@@ -139,7 +165,13 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return a string that will be empty if the current state is adequate for the action, else it will contain the error message
    * @author Julia B.Grenier
    */
-  private static String isActionAdequateForCurrentState(MaintenanceTicket ticket, String action) {
+  private static String isActionAdequateForCurrentState(int ticketID, String action) {
+
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
+    if(ticket == null){
+      return "Maintenance ticket does not exist.";
+    }
+
     boolean isValidCurrentState = true;
     boolean isValidAction = true;
     if (ticket == null) {
@@ -147,23 +179,23 @@ public class AssetPlusFeatureMaintenanceTicketController {
     }
     switch(action) {
       case "assign":
-        isValidAction = !(ticket.getTicketStatus().getStatus().equals(Status.Assigned));
-        isValidCurrentState = ticket.getTicketStatus().getStatus().equals(Status.Open);
+        isValidAction = !(ticket.getStatusFullName().equals("Assigned"));
+        isValidCurrentState = ticket.getStatusFullName().equals("Open");
         break;
       case "start":
-        isValidAction = !ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("InProgress");
-        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Assigned");
+        isValidAction = !ticket.getStatusFullName().equalsIgnoreCase("InProgress");
+        isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("Assigned");
         break;
       case "complete":
-        isValidAction = !ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Completed");
-        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("InProgress");
+        isValidAction = !ticket.getStatusFullName().equalsIgnoreCase("Completed");
+        isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("InProgress");
         break;
       case "approve":
         //To complete
         break;
       case "disapprove":
-        isValidAction = !ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Closed");
-        isValidCurrentState = ticket.getTicketStatus().getStatusFullName().equalsIgnoreCase("Completed");
+        isValidAction = !ticket.getStatusFullName().equalsIgnoreCase("Closed");
+        isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("Completed");
         break;
       default:
         return "Error invalid input for action";
@@ -171,7 +203,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
     // Display the correct error message depending of the action and current state
     if (!isValidCurrentState || !isValidAction) {
-      String currentState = ticket.getTicketStatus().getStatusFullName().toLowerCase();
+      String currentState = ticket.getStatusFullName().toLowerCase();
       // Deal with the InProgress state as it needs a space
       if (currentState=="inprogress") {
         currentState = "in progress";
@@ -181,7 +213,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
       if (isValidAction) {
         return "Cannot " + action + " a maintenance ticket which is " + currentState + ".";
       } else {
-        return "The maintenance ticket is already " + currentState;
+        return "The maintenance ticket is already " + currentState + ".";
       }
       
     }

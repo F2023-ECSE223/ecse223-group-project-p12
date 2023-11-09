@@ -2,9 +2,14 @@
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.model;
-import java.util.*;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import java.sql.Date;
+import java.util.*;
 
+/**
+ * Authors: Émilia Gagné, Julia B.Grenier
+ */
+// line 4 "../../../../../../MaintenanceTicket.ump"
 // line 45 "../../../../../../AssetPlus.ump"
 // line 21 "../../../../../../AssetPlusPersistence.ump"
 public class MaintenanceTicket
@@ -34,10 +39,13 @@ public class MaintenanceTicket
   private TimeEstimate timeToResolve;
   private PriorityLevel priority;
 
+  //MaintenanceTicket State Machines
+  public enum Status { Open, Assigned, InProgress, Resolved, Closed }
+  private Status status;
+
   //MaintenanceTicket Associations
   private List<MaintenanceNote> ticketNotes;
   private List<TicketImage> ticketImages;
-  private TicketStatus ticketStatus;
   private AssetPlus assetPlus;
   private User ticketRaiser;
   private HotelStaff ticketFixer;
@@ -48,44 +56,16 @@ public class MaintenanceTicket
   // CONSTRUCTOR
   //------------------------
 
-  public MaintenanceTicket(int aId, Date aRaisedOnDate, String aDescription, TicketStatus aTicketStatus, AssetPlus aAssetPlus, User aTicketRaiser)
-  {
-    raisedOnDate = aRaisedOnDate;
-    description = aDescription;
-    if (!setId(aId))
-    {
-      throw new RuntimeException("Cannot create due to duplicate id. See http://manual.umple.org?RE003ViolationofUniqueness.html");
-    }
-    ticketNotes = new ArrayList<MaintenanceNote>();
-    ticketImages = new ArrayList<TicketImage>();
-    if (aTicketStatus == null || aTicketStatus.getMaintenanceTicket() != null)
-    {
-      throw new RuntimeException("Unable to create MaintenanceTicket due to aTicketStatus. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-    ticketStatus = aTicketStatus;
-    boolean didAddAssetPlus = setAssetPlus(aAssetPlus);
-    if (!didAddAssetPlus)
-    {
-      throw new RuntimeException("Unable to create maintenanceTicket due to assetPlus. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-    boolean didAddTicketRaiser = setTicketRaiser(aTicketRaiser);
-    if (!didAddTicketRaiser)
-    {
-      throw new RuntimeException("Unable to create raisedTicket due to ticketRaiser. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-  }
-
   public MaintenanceTicket(int aId, Date aRaisedOnDate, String aDescription, AssetPlus aAssetPlus, User aTicketRaiser)
   {
+    raisedOnDate = aRaisedOnDate;
+    description = aDescription;
     if (!setId(aId))
     {
       throw new RuntimeException("Cannot create due to duplicate id. See http://manual.umple.org?RE003ViolationofUniqueness.html");
     }
-    raisedOnDate = aRaisedOnDate;
-    description = aDescription;
     ticketNotes = new ArrayList<MaintenanceNote>();
     ticketImages = new ArrayList<TicketImage>();
-    ticketStatus = new TicketStatus(this);
     boolean didAddAssetPlus = setAssetPlus(aAssetPlus);
     if (!didAddAssetPlus)
     {
@@ -96,6 +76,7 @@ public class MaintenanceTicket
     {
       throw new RuntimeException("Unable to create raisedTicket due to ticketRaiser. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
+    setStatus(Status.Open);
   }
 
   //------------------------
@@ -187,6 +168,126 @@ public class MaintenanceTicket
   {
     return priority;
   }
+
+  public String getStatusFullName()
+  {
+    String answer = status.toString();
+    return answer;
+  }
+
+  public Status getStatus()
+  {
+    return status;
+  }
+
+  public boolean managerReviews(HotelStaff staff,PriorityLevel priority,TimeEstimate timeToResolve,boolean approvalRequired)
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Open:
+        // line 14 "../../../../../../MaintenanceTicket.ump"
+        doReview(staff, priority, timeToResolve, approvalRequired);
+        setStatus(Status.Assigned);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean startWork()
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Assigned:
+        setStatus(Status.InProgress);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean completeWork()
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case InProgress:
+        if (hasFixApprover())
+        {
+          setStatus(Status.Resolved);
+          wasEventProcessed = true;
+          break;
+        }
+        if (!(hasFixApprover()))
+        {
+          setStatus(Status.Closed);
+          wasEventProcessed = true;
+          break;
+        }
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean approveWork()
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Resolved:
+        setStatus(Status.Closed);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean disapproveWork(Date date,String desc,HotelStaff noteTaker)
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Resolved:
+        // line 27 "../../../../../../MaintenanceTicket.ump"
+        doDisapproveWork(date, desc, noteTaker);
+        setStatus(Status.InProgress);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  private void setStatus(Status aStatus)
+  {
+    status = aStatus;
+  }
   /* Code from template association_GetMany */
   public MaintenanceNote getTicketNote(int index)
   {
@@ -246,11 +347,6 @@ public class MaintenanceTicket
   {
     int index = ticketImages.indexOf(aTicketImage);
     return index;
-  }
-  /* Code from template association_GetOne */
-  public TicketStatus getTicketStatus()
-  {
-    return ticketStatus;
   }
   /* Code from template association_GetOne */
   public AssetPlus getAssetPlus()
@@ -546,12 +642,6 @@ public class MaintenanceTicket
       ticketImages.remove(aTicketImage);
     }
     
-    TicketStatus existingTicketStatus = ticketStatus;
-    ticketStatus = null;
-    if (existingTicketStatus != null)
-    {
-      existingTicketStatus.delete();
-    }
     AssetPlus placeholderAssetPlus = assetPlus;
     this.assetPlus = null;
     if(placeholderAssetPlus != null)
@@ -584,6 +674,22 @@ public class MaintenanceTicket
     }
   }
 
+  // line 38 "../../../../../../MaintenanceTicket.ump"
+   private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired){
+    if (hasTicketFixer()) {
+      setTicketFixer(staff);
+      setPriority(priority);
+      setTimeToResolve(timeToResolve);
+      setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
+    }
+  }
+
+  // line 48 "../../../../../../MaintenanceTicket.ump"
+   private void doDisapproveWork(Date date, String desc, HotelStaff noteTaker){
+    MaintenanceNote newNote = addTicketNote(date, desc, noteTaker);
+    addTicketNote(newNote);
+  }
+
   // line 23 "../../../../../../AssetPlusPersistence.ump"
    public static  void reinitializeUniqueTickets(List<MaintenanceTicket> tickets){
     maintenanceticketsById.clear();
@@ -601,7 +707,6 @@ public class MaintenanceTicket
             "  " + "raisedOnDate" + "=" + (getRaisedOnDate() != null ? !getRaisedOnDate().equals(this)  ? getRaisedOnDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "timeToResolve" + "=" + (getTimeToResolve() != null ? !getTimeToResolve().equals(this)  ? getTimeToResolve().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "priority" + "=" + (getPriority() != null ? !getPriority().equals(this)  ? getPriority().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "ticketStatus = "+(getTicketStatus()!=null?Integer.toHexString(System.identityHashCode(getTicketStatus())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "assetPlus = "+(getAssetPlus()!=null?Integer.toHexString(System.identityHashCode(getAssetPlus())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "ticketRaiser = "+(getTicketRaiser()!=null?Integer.toHexString(System.identityHashCode(getTicketRaiser())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "ticketFixer = "+(getTicketFixer()!=null?Integer.toHexString(System.identityHashCode(getTicketFixer())):"null") + System.getProperties().getProperty("line.separator") +
