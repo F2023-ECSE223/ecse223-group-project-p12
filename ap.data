@@ -153,6 +153,53 @@
                               "ticketRaiser": {
                                 "@class": "Manager",
                                 "@reference": "../ticketNotes/MaintenanceNote[2]/noteTaker"
+                              },
+                              "asset": {
+                                "assetNumber": 2,
+                                "floorNumber": 10,
+                                "roomNumber": 35,
+                                "purchaseDate": "2010-01-30",
+                                "assetPlus": {
+                                  "@reference": "../../../../../../../../../../.."
+                                },
+                                "maintenanceTickets": [
+                                  {
+                                    "MaintenanceTicket": {
+                                      "@reference": "../../.."
+                                    }
+                                  }
+                                ],
+                                "assetType": {
+                                  "name": "bed",
+                                  "expectedLifeSpan": 5000,
+                                  "assetPlus": {
+                                    "@reference": "../../../../../../../../../../../.."
+                                  },
+                                  "specificAssets": [
+                                    {
+                                      "SpecificAsset": [
+                                        {
+                                          "@reference": "../../.."
+                                        },
+                                        {
+                                          "assetNumber": 3,
+                                          "floorNumber": 1,
+                                          "roomNumber": 35,
+                                          "purchaseDate": "2010-01-30",
+                                          "assetPlus": {
+                                            "@reference": "../../../../../../../../../../../../../.."
+                                          },
+                                          "maintenanceTickets": [
+                                            ""
+                                          ],
+                                          "assetType": {
+                                            "@reference": "../../.."
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
                               }
                             },
                             "noteTaker": {
@@ -167,6 +214,36 @@
                       ],
                       "assetPlus": {
                         "@reference": "../../../../../../.."
+                      }
+                    },
+                    "asset": {
+                      "assetNumber": 1,
+                      "floorNumber": 9,
+                      "roomNumber": 23,
+                      "purchaseDate": "2022-03-20",
+                      "assetPlus": {
+                        "@reference": "../../../../../../.."
+                      },
+                      "maintenanceTickets": [
+                        {
+                          "MaintenanceTicket": {
+                            "@reference": "../../.."
+                          }
+                        }
+                      ],
+                      "assetType": {
+                        "name": "lamp",
+                        "expectedLifeSpan": 1800,
+                        "assetPlus": {
+                          "@reference": "../../../../../../../.."
+                        },
+                        "specificAssets": [
+                          {
+                            "SpecificAsset": {
+                              "@reference": "../../.."
+                            }
+                          }
+                        ]
                       }
                     }
                   },
@@ -215,40 +292,10 @@
       {
         "AssetType": [
           {
-            "name": "lamp",
-            "expectedLifeSpan": 1800,
-            "assetPlus": {
-              "@reference": "../../.."
-            },
-            "specificAssets": [
-              ""
-            ]
+            "@reference": "../../employees/Employee/maintenanceNotes/MaintenanceNote/ticket/asset/assetType"
           },
           {
-            "name": "bed",
-            "expectedLifeSpan": 5000,
-            "assetPlus": {
-              "@reference": "../../.."
-            },
-            "specificAssets": [
-              {
-                "SpecificAsset": {
-                  "assetNumber": 3,
-                  "floorNumber": 1,
-                  "roomNumber": 35,
-                  "purchaseDate": "2010-01-30",
-                  "assetPlus": {
-                    "@reference": "../../../../.."
-                  },
-                  "maintenanceTickets": [
-                    ""
-                  ],
-                  "assetType": {
-                    "@reference": "../../.."
-                  }
-                }
-              }
-            ]
+            "@reference": "../../employees/Employee/maintenanceNotes/MaintenanceNote/ticket/ticketRaiser/maintenanceNotes/MaintenanceNote/ticket/asset/assetType"
           },
           {
             "name": "Asset Type: 1",
@@ -275,9 +322,17 @@
     ],
     "specificAssets": [
       {
-        "SpecificAsset": {
-          "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
-        }
+        "SpecificAsset": [
+          {
+            "@reference": "../../employees/Employee/maintenanceNotes/MaintenanceNote/ticket/asset"
+          },
+          {
+            "@reference": "../../employees/Employee/maintenanceNotes/MaintenanceNote/ticket/ticketRaiser/maintenanceNotes/MaintenanceNote/ticket/asset"
+          },
+          {
+            "@reference": "../../employees/Employee/maintenanceNotes/MaintenanceNote/ticket/ticketRaiser/maintenanceNotes/MaintenanceNote/ticket/asset/assetType/specificAssets/SpecificAsset[2]"
+          }
+        ]
       }
     ]
   }

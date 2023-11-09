@@ -44,7 +44,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
     }
     
     //Modify the approveRequired boolean in this function call (last argument)
-    ticket.managerReviews(staff, priority, timeToResolve, ticket.hasFixApprover());
+    ticket.managerReviews(staff, priority, timeToResolve, approvalRequired);
 
     return "";
   }

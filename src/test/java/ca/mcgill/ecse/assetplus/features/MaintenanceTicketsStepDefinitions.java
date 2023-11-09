@@ -18,6 +18,7 @@ import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.Status;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
@@ -213,14 +214,14 @@ public class MaintenanceTicketsStepDefinitions {
 
     //With the new implementation of umple, we should be able to do 
     //ticket.setStatus
-   while (!(ticket.getStatusFullName().equals(status))) {
-      if ((ticket.getStatusFullName().equals("Open"))) {
-        break;
-      } else if ((ticket.getStatusFullName().equals("Assigned"))) {
+   while (!(ticket.getStatusFullName().equalsIgnoreCase(status))) {
+      if ((ticket.getStatusFullName().equalsIgnoreCase("Open"))) {
+        ticket.managerReviews((HotelStaff) Employee.getWithEmail("jeff@ap.com"), PriorityLevel.Normal, TimeEstimate.ThreeToSevenDays, Boolean.parseBoolean(string3));
+      } else if ((ticket.getStatusFullName().equalsIgnoreCase("Assigned"))) {
         ticket.startWork();
-      } else if ((ticket.getStatusFullName().equals("InProgress"))) {
+      } else if ((ticket.getStatusFullName().equalsIgnoreCase("InProgress"))) {
         ticket.completeWork();
-      } else if ((ticket.getStatusFullName().equals("Resolved"))) {
+      } else if ((ticket.getStatusFullName().equalsIgnoreCase("Resolved"))) {
         ticket.approveWork();
       }
     }
@@ -235,16 +236,17 @@ public class MaintenanceTicketsStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     String status = string2;
+    Status aStatus = Status.valueOf(status);
 
-    while (!(ticket.getStatusFullName().equals(status))) {
-      if ((ticket.getStatusFullName().equals("Open"))) {
-        ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
-        break;
-      } else if ((ticket.getStatusFullName().equals("Assigned"))) {
+    while (!(ticket.getStatus().equals(aStatus))) {
+      if ((ticket.getStatus().equals(Status.Open))) {
+        ticket.managerReviews((HotelStaff) Employee.getWithEmail("jeff@ap.com"), PriorityLevel.Normal, TimeEstimate.ThreeToSevenDays, true);
+      } else if ((ticket.getStatus().equals(Status.Assigned))) {
         ticket.startWork();
-      } else if ((ticket.getStatusFullName().equals("InProgress"))) {
+      } else if ((ticket.getStatus().equals(Status.InProgress))) {
         ticket.completeWork();
-      } else if ((ticket.getStatusFullName().equals("Resolved"))) {
+        break;
+      } else if ((ticket.getStatus().equals(Status.Resolved))) {
         ticket.approveWork();
       }
     }
@@ -263,12 +265,9 @@ public class MaintenanceTicketsStepDefinitions {
   public void the_manager_attempts_to_assign_the_ticket_to_with_estimated_time_priority_and_requires_approval(
       String string, String string2, String string3, String string4, String string5) {
     
-        int id = Integer.parseInt(string);
         HotelStaff staff = (HotelStaff) HotelStaff.getWithEmail(string2);
+        TimeEstimate timeToResolve = TimeEstimate.valueOf(string3);
         PriorityLevel priority = PriorityLevel.valueOf(string4);
-
-        String stringTimeToResolve = (string3);
-        TimeEstimate timeToResolve = TimeEstimate.valueOf(stringTimeToResolve);
 
         error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), Integer.parseInt(string));
   }
