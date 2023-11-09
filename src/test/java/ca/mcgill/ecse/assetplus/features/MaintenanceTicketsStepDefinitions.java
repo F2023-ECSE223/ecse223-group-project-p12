@@ -232,19 +232,20 @@ public class MaintenanceTicketsStepDefinitions {
       String string3) {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
-    Status status = Status.valueOf(string2);
+    String status = string2;
+    
 
     //With the new implementation of umple, we should be able to do 
     //ticket.setStatus
-   while (!(ticket.getTicketStatus().getStatus().equals(status))) {
-      if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
+   while (!(ticket.getStatusFullName().equals(status))) {
+      if ((ticket.getStatusFullName().equals("Open"))) {
         break;
-      } else if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
-        ticket.getTicketStatus().startWork();
-      } else if ((ticket.getTicketStatus().getStatus().equals(Status.InProgress))) {
-        ticket.getTicketStatus().completeWork();
-      } else if ((ticket.getTicketStatus().getStatus().equals(Status.Resolved))) {
-        ticket.getTicketStatus().approveWork();
+      } else if ((ticket.getStatusFullName().equals("Assigned"))) {
+        ticket.startWork();
+      } else if ((ticket.getStatusFullName().equals("InProgress"))) {
+        ticket.completeWork();
+      } else if ((ticket.getStatusFullName().equals("Resolved"))) {
+        ticket.approveWork();
       }
     }
     if (Boolean.parseBoolean(string3)) {
@@ -257,21 +258,22 @@ public class MaintenanceTicketsStepDefinitions {
   public void ticket_is_marked_as(String string, String string2) {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
-    Status status = Status.valueOf(string2);
-    while (!(ticket.getTicketStatus().getStatus().equals(status))) {
-      if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
-        ticket.getTicketStatus().managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
+    String status = string2;
+    
+    while (!(ticket.getStatus().equals(status))) {
+      if ((ticket.getStatus().equals(Status.Open))) {
+        ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
         break;
-      } else if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
-        ticket.getTicketStatus().startWork();
-      } else if ((ticket.getTicketStatus().getStatus().equals(Status.InProgress))) {
-        ticket.getTicketStatus().completeWork();
-      } else if ((ticket.getTicketStatus().getStatus().equals(Status.Resolved))) {
-        ticket.getTicketStatus().approveWork();
+      } else if ((ticket.getStatus().equals(Status.Assigned))) {
+        ticket.startWork();
+      } else if ((ticket.getStatus().equals(Status.InProgress))) {
+        ticket.completeWork();
+      } else if ((ticket.getStatus().equals(Status.Resolved))) {
+        ticket.approveWork();
       }
     }
     System.out.println(status.toString());
-    System.out.println(ticket.getTicketStatus().getStatusFullName());
+    System.out.println(ticket.getStatusFullName());
   }
 
   //TO IMPLEMENT
@@ -371,6 +373,7 @@ public class MaintenanceTicketsStepDefinitions {
     assertNull(MaintenanceTicket.getWithId(Integer.parseInt(string)));
   }
 
+
   @Then("the ticket {string} shall have estimated time {string}, priority {string}, and requires approval {string}")
   public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String expectedTicketID,String expectedEstimatedTime, String expectedPriority, String expectedApproval){
     MaintenanceTicket aTicket = MaintenanceTicket.getWithId(Integer.parseInt(expectedTicketID));
@@ -380,9 +383,6 @@ public class MaintenanceTicketsStepDefinitions {
 
     /*
     
-
-     */
-
     switch(expectedEstimatedTime){
       case("LessThanADay"):
         expectedTimeEstimate = TimeEstimate.LessThanADay;
@@ -403,6 +403,9 @@ public class MaintenanceTicketsStepDefinitions {
         expectedTimeEstimate = TimeEstimate.valueOf(expectedEstimatedTime);
         break;
     }
+     */
+
+    
 
     assertEquals(expectedTimeEstimate, aTicket.getTimeToResolve());
     assertEquals(PriorityLevel.valueOf(expectedPriority), aTicket.getPriority());
@@ -410,9 +413,9 @@ public class MaintenanceTicketsStepDefinitions {
     }
 
 
-    //Not finished
   
-
+  
+  //TO COMPLETE
   @Then("the ticket {string} shall be assigned to {string}")
   public void the_ticket_shall_be_assigned_to(String string, String string2) {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
