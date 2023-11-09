@@ -215,9 +215,9 @@ public class MaintenanceTicketsStepDefinitions {
 
     //With the new implementation of umple, we should be able to do 
     //ticket.setStatus
-   while (!(ticket.getStatusFullName().equals(status))) {
+    while (!(ticket.getStatusFullName().equals(status))) {
       if ((ticket.getStatusFullName().equals("Open"))) {
-        break;
+        ticket.managerReviews(null, null, null, Boolean.parseBoolean(string3));
       } else if ((ticket.getStatusFullName().equals("Assigned"))) {
         ticket.startWork();
       } else if ((ticket.getStatusFullName().equals("InProgress"))) {
@@ -225,9 +225,6 @@ public class MaintenanceTicketsStepDefinitions {
       } else if ((ticket.getStatusFullName().equals("Resolved"))) {
         ticket.approveWork();
       }
-    }
-    if (Boolean.parseBoolean(string3)) {
-      ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
     }
   }
 
@@ -238,34 +235,9 @@ public class MaintenanceTicketsStepDefinitions {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     String status = string2;
 
-    
-    //If the ticket is set to Assigned or onwards. Weirdly, function managerReviews does not set attribute, so I gotta do it manually
-    if(!status.equals("Open")){
-      ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
-    }
-
-    //These are dummy values
-    switch(status){
-          case("InProgress"):
-            ticket.startWork();
-            break;
-          case("Resolved"):
-            ticket.startWork();
-            ticket.completeWork();
-            break;
-          case("Closed"):
-            ticket.startWork();
-            ticket.completeWork();
-            break;
-          default:
-        }
-         
-    /*
-     
-     while (!(ticket.getStatusFullName().equals(status))) {
+    while (!(ticket.getStatusFullName().equals(status))) {
       if ((ticket.getStatusFullName().equals("Open"))) {
-        ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
-        break;
+        ticket.managerReviews(null, null, null, true);
       } else if ((ticket.getStatusFullName().equals("Assigned"))) {
         ticket.startWork();
       } else if ((ticket.getStatusFullName().equals("InProgress"))) {
@@ -274,12 +246,8 @@ public class MaintenanceTicketsStepDefinitions {
         ticket.approveWork();
       }
     }
-     
-     */
-   
-  
-    //System.out.println(status.toString());
-    //System.out.println(ticket.getStatusFullName());
+
+    System.err.println(string2 + " " + ticket.getStatusFullName());
   }
 
   //UNSURE IF THIS IS CORRECT

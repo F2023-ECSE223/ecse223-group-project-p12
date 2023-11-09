@@ -29,24 +29,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return "Maintenance ticket does not exist.";
     }
     //I tested this, and it seems to return an empry string, which is good
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + isExistingStaff(staff) + isActionAdequateForCurrentState(ticketID, "assign") ;
-
-    
-    //Data validation should not happen to let some test work 
-    /*
-    
-    if(timeToResolve == null){
-      err = err + "Error: TimeEstimateIsNull";
-    }
-
-    if(priority == null){
-      err = err + "Error: Priority should not be null";
-    }
-     
-     */
-    
-    
-   
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + isExistingStaff(staff) + isActionAdequateForCurrentState(ticketID, "assign");
    
 
     if (!err.isEmpty()) {
@@ -203,7 +186,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
         isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("InProgress");
         break;
       case "approve":
-        isValidAction = !ticket.getStatusFullName().equalsIgnoreCase("Assigned");
+        isValidAction = !ticket.getStatusFullName().equalsIgnoreCase("Closed");
         isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("Resolved");
         break;
       case "disapprove":
@@ -215,20 +198,20 @@ public class AssetPlusFeatureMaintenanceTicketController {
     }
 
     // Display the correct error message depending of the action and current state
-    if (!isValidCurrentState || !isValidAction) {
-      String currentState = ticket.getStatusFullName().toLowerCase();
-      // Deal with the InProgress state as it needs a space
-      if (currentState.equals("inprogress")) {
-        currentState = "in progress";
-      }
-      
-      // The error message about the validity of the action has more priority than the other
-      if (isValidAction) {
-        return "Cannot " + action + " a maintenance ticket which is " + currentState + ".";
-      } else {
-        return "The maintenance ticket is already " + currentState + ".";
-      }
+    String currentState = ticket.getStatusFullName().toLowerCase();
+    // Deal with the InProgress state as it needs a space
+    if (currentState.equals("inprogress")) {
+      currentState = "in progress";
     }
+    
+    if (!isValidCurrentState) {
+        return "Cannot " + action + " a maintenance ticket which is " + currentState + ".";
+    }
+
+    if (!isValidAction) {
+        return "The maintenance ticket is already " + currentState + ".";
+    }
+
     return "";
   }
 
