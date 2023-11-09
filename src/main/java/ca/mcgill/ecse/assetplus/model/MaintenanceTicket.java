@@ -2,8 +2,6 @@
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.model;
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import java.sql.Date;
 import java.util.*;
@@ -228,13 +226,13 @@ public class MaintenanceTicket
     switch (aStatus)
     {
       case InProgress:
-        if (getMaintenanceTicket().hasFixApprover())
+        if (hasFixApprover())
         {
           setStatus(Status.Resolved);
           wasEventProcessed = true;
           break;
         }
-        if (!(getMaintenanceTicket().hasFixApprover()))
+        if (!(hasFixApprover()))
         {
           setStatus(Status.Closed);
           wasEventProcessed = true;
@@ -676,26 +674,20 @@ public class MaintenanceTicket
     }
   }
 
-  // line 36 "../../../../../../MaintenanceTicket.ump"
+  // line 38 "../../../../../../MaintenanceTicket.ump"
    private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired){
-    MaintenanceTicket ticket = getMaintenanceTicket();
-    
-    if (ticket != null && ticket.hasTicketFixer()) {
-      ticket.setTicketFixer(staff);
-      ticket.setPriority(priority);
-      ticket.setTimeToResolve(timeToResolve);
-      ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
+    if (hasTicketFixer()) {
+      setTicketFixer(staff);
+      setPriority(priority);
+      setTimeToResolve(timeToResolve);
+      setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
     }
   }
 
-  // line 47 "../../../../../../MaintenanceTicket.ump"
+  // line 48 "../../../../../../MaintenanceTicket.ump"
    private void doDisapproveWork(Date date, String desc, HotelStaff noteTaker){
-    MaintenanceTicket ticket = getMaintenanceTicket();
-    
-    if (ticket != null) {
-      MaintenanceNote newNote = ticket.addTicketNote(date, desc, noteTaker);
-      ticket.addTicketNote(newNote);
-    }
+    MaintenanceNote newNote = addTicketNote(date, desc, noteTaker);
+    addTicketNote(newNote);
   }
 
   // line 23 "../../../../../../AssetPlusPersistence.ump"
