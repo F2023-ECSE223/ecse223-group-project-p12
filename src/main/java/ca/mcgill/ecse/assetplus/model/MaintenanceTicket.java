@@ -676,12 +676,12 @@ public class MaintenanceTicket
 
   // line 38 "../../../../../../MaintenanceTicket.ump"
    private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired){
-    if (hasTicketFixer()) {
+    //if (hasTicketFixer()) {
       setTicketFixer(staff);
       setPriority(priority);
       setTimeToResolve(timeToResolve);
       setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
-    }
+    //}
   }
 
   // line 48 "../../../../../../MaintenanceTicket.ump"
@@ -712,5 +712,48 @@ public class MaintenanceTicket
             "  " + "ticketFixer = "+(getTicketFixer()!=null?Integer.toHexString(System.identityHashCode(getTicketFixer())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "asset = "+(getAsset()!=null?Integer.toHexString(System.identityHashCode(getAsset())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "fixApprover = "+(getFixApprover()!=null?Integer.toHexString(System.identityHashCode(getFixApprover())):"null");
+  }
+
+
+
+  public static void main(String[] args) {
+    Employee employee = new Employee("nothing", "nothing", "pass2", null, AssetPlusApplication.getAssetPlus());
+    MaintenanceTicket ticket1 = new MaintenanceTicket(100, null, "test 1", AssetPlusApplication.getAssetPlus(), employee); 
+    MaintenanceTicket ticket2 = new MaintenanceTicket(200, null, "test 1", AssetPlusApplication.getAssetPlus(), employee); 
+    
+
+    /* 
+    System.out.println("hasticketfixer ticket1? : " + ticket1.hasTicketFixer());
+    System.out.println("hasticketfixer ticket1? : " + ticket2.hasTicketFixer());
+
+    System.out.println(ticket1.getStatusFullName()); //OPEN. thats ok
+    ticket1.managerReviews((HotelStaff) ticket1.getTicketRaiser(), MaintenanceTicket.PriorityLevel.Urgent, MaintenanceTicket.TimeEstimate.LessThanADay, false);
+    System.out.println("hasticketfixer ticket1? : " + ticket1.hasTicketFixer());
+    System.out.println(ticket1.getStatusFullName()); //ASSIGNED. also ok
+    ticket1.startWork(); 
+    System.out.println(ticket1.getStatusFullName()); //InProgress ok
+    ticket1.completeWork();
+    System.out.println(ticket1.getStatusFullName()); //CLOSED. ok
+    System.out.println(ticket1.getTimeToResolve()); //NULL the whole time
+
+    System.out.println("\n \n SEPERATIONNNN \n \n");
+    */
+
+    System.out.println(ticket2.getStatusFullName()); //OPEN. thats ok
+    ticket2.managerReviews((HotelStaff) ticket2.getTicketRaiser(), MaintenanceTicket.PriorityLevel.Urgent, MaintenanceTicket.TimeEstimate.LessThanADay, true);
+    System.out.println("hasticketfixer ticket2? : " + ticket2.hasTicketFixer());
+    System.out.println(ticket2.getStatusFullName()); //ASSIGNED. also ok
+    ticket2.startWork(); 
+    System.out.println(ticket2.getStatusFullName()); //InProgress ok
+    ticket2.completeWork();
+    System.out.println(ticket2.getStatusFullName()); //RESOLVED
+    ticket2.approveWork();
+    System.out.println(ticket2.getStatusFullName()); //CLOSED 
+
+    System.out.println(ticket2.getTimeToResolve()); //NULL the whole time
+    System.out.println(ticket2.getPriority());
+
+     //public enum Status { Open, Assigned, InProgress, Resolved, Closed }
+
   }
 }
