@@ -105,27 +105,21 @@ public class MaintenanceTicketsStepDefinitions {
     // Iterate through each map representing a row and cast it to the appropriate type.
     for (Map<String, Object> row : tableList) {
       int ticketID = Integer.parseInt(row.get("id").toString());
-
       String ticketRaiser = (row.get("ticketRaiser").toString());
       User aUser = User.getWithEmail(ticketRaiser);
-
       Date dateRaised = Date.valueOf(row.get("raisedOnDate").toString());
       String description = (row.get("description").toString());
 
       // Adding the specific maintenance ticket based on the table information.
-      
       MaintenanceTicket ticket = new MaintenanceTicket(ticketID, dateRaised, description, AssetPlusApplication.getAssetPlus(), aUser);
       AssetPlusApplication.getAssetPlus().addMaintenanceTicket(ticket);
-
       
       if (!row.get("status").equals("Open")) {
-
         //Setting up the asset
         int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
         SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
         ticket.setAsset(asset);
 
-        
         //Setting up the staff
         String assignedStaff = (row.get("fixedByEmail").toString());
         User aStaff = HotelStaff.getWithEmail(assignedStaff);
@@ -144,15 +138,10 @@ public class MaintenanceTicketsStepDefinitions {
         
         //Setting up timeToResolve
         TimeEstimate timeToResolve = TimeEstimate.valueOf(string_timeToResolve);
-    
         String priorityString = (row.get("priority").toString());
         PriorityLevel priorityLevel = PriorityLevel.valueOf(priorityString);
         
-        //I should not need to do these 4 function calls, because managerReviews is supposed to set it by itself
-        ticket.setTimeToResolve(timeToResolve);
-        ticket.setTicketFixer((HotelStaff)aStaff);
-        ticket.setTimeToResolve(timeToResolve);
-        ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
+        //Assigns ticket with model method. 
         ticket.managerReviews((HotelStaff)aStaff, priorityLevel, timeToResolve, approvalRequired);
 
         String status = row.get("status").toString();
@@ -174,7 +163,6 @@ public class MaintenanceTicketsStepDefinitions {
             break;
           default:
         }
-
       }
     }
   }
