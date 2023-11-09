@@ -250,7 +250,7 @@ public class MaintenanceTicketsStepDefinitions {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     String status = string2;
 
-    /*
+    
     //If the ticket is set to Assigned or onwards. Weirdly, function managerReviews does not set attribute, so I gotta do it manually
     if(!status.equals("Open")){
       HotelStaff staff = (HotelStaff)HotelStaff.getWithEmail("jeff@ap.com");
@@ -277,9 +277,10 @@ public class MaintenanceTicketsStepDefinitions {
             break;
           default:
         }
-         */
-    
-    while (!(ticket.getStatusFullName().equals(status))) {
+         
+    /*
+     
+     while (!(ticket.getStatusFullName().equals(status))) {
       if ((ticket.getStatusFullName().equals("Open"))) {
         ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
         break;
@@ -291,6 +292,9 @@ public class MaintenanceTicketsStepDefinitions {
         ticket.approveWork();
       }
     }
+     
+     */
+   
   
     //System.out.println(status.toString());
     //System.out.println(ticket.getStatusFullName());
