@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.assetplus.controller;
 import java.sql.Date;
 
-// line 29 "../../../../../AssetPlusTransferObjects.ump"
+// line 29 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOMaintenanceNote
 {
 
