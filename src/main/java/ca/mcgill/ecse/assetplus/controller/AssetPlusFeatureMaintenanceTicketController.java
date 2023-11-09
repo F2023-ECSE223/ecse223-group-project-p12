@@ -36,7 +36,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
     }
 
     if(priority == null){
-      err = err + "Error: Priority sould not be null";
+      err = err + "Error: Priority should not be null";
     }
 
     if (!err.isEmpty()) {
@@ -174,9 +174,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
     boolean isValidCurrentState = true;
     boolean isValidAction = true;
-    if (ticket == null) {
-      return "";
-    }
+    
     switch(action) {
       case "assign":
         isValidAction = !(ticket.getStatusFullName().equals("Assigned"));
@@ -187,15 +185,16 @@ public class AssetPlusFeatureMaintenanceTicketController {
         isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("Assigned");
         break;
       case "complete":
-        isValidAction = !ticket.getStatusFullName().equalsIgnoreCase("Completed");
+        isValidAction = !ticket.getStatusFullName().equalsIgnoreCase("Resolved");
         isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("InProgress");
         break;
       case "approve":
-        //To complete
+        isValidAction = !ticket.getStatusFullName().equalsIgnoreCase("Assigned");
+        isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("Resolved");
         break;
       case "disapprove":
         isValidAction = !ticket.getStatusFullName().equalsIgnoreCase("Closed");
-        isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("Completed");
+        isValidCurrentState = ticket.getStatusFullName().equalsIgnoreCase("Resolved");
         break;
       default:
         return "Error invalid input for action";
@@ -205,7 +204,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
     if (!isValidCurrentState || !isValidAction) {
       String currentState = ticket.getStatusFullName().toLowerCase();
       // Deal with the InProgress state as it needs a space
-      if (currentState=="inprogress") {
+      if (currentState.equals("inprogress")) {
         currentState = "in progress";
       }
       
@@ -215,9 +214,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
       } else {
         return "The maintenance ticket is already " + currentState + ".";
       }
-      
     }
-
     return "";
   }
 
