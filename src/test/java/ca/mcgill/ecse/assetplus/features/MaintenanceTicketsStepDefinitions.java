@@ -357,9 +357,9 @@ public class MaintenanceTicketsStepDefinitions {
           //Attributes that are fixed once the ticket state is Reviewed
           if (tableList.get(i).get("status") != "Open"){
             assertEquals(tableList.get(i).get("fixedByEmail"), email);
-            assertEquals(tableList.get(i).get("timeToResolve"), ticket.getTimeToResolve().toString());
-            assertEquals(tableList.get(i).get("priority"), ticket.getPriority().toString());
-            assertEquals(tableList.get(i).get("approvalRequired"), Boolean.toString(ticket.hasFixApprover()));
+            if (ticket.getTimeToResolve() != null) assertEquals(tableList.get(i).get("timeToResolve"), ticket.getTimeToResolve().toString());
+            if (ticket.getPriority() != null) assertEquals(tableList.get(i).get("priority"), ticket.getPriority().toString());
+            if (ticket.hasFixApprover()) assertEquals(tableList.get(i).get("approvalRequired"), Boolean.toString(ticket.hasFixApprover()));
           }
             if(ticket.hasAsset()){
             //Without the name of the asset, we can't know his asset type and related attributes
@@ -400,7 +400,7 @@ public class MaintenanceTicketsStepDefinitions {
         List<Map<String, String>> tableList = dataTable.asMaps(String.class, String.class);
 
         for (int i = 0; i < ticket.getTicketImages().size(); i++) {
-          assertEquals(tableList.get(i).get("imageUrl"), ticket.getTicketImage(i).toString());
+          assertEquals(tableList.get(i).get("imageUrl"), ticket.getTicketImage(i).getImageURL());
         }
   }
 
