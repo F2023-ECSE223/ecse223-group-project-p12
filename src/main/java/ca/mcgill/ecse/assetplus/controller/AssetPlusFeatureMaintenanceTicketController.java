@@ -22,7 +22,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
    * @return an empty string or an error message
    * @author Émilia Gagné and Julia B.Grenier
    */
-  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, Manager manager, MaintenanceTicket ticket) {
+  public static String assignStaffToMaintenanceTicket(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired, MaintenanceTicket ticket) {
     //Input validation
 
     String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 

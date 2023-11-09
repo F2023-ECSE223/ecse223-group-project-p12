@@ -125,6 +125,13 @@ public class MaintenanceTicketsStepDefinitions {
         String assignedStaff = (row.get("fixedByEmail").toString());
         User aStaff = Employee.getWithEmail(assignedStaff);
         String timeResolve = (row.get("timeToResolve").toString());
+        String approval = (row.get("approvalRequired").toString());
+        boolean approvalRequired;
+        if (approval.equals(true)){
+          approvalRequired = true;
+        } else {
+          approvalRequired = false;
+        }
         TimeEstimate timeToResolve;
         switch (timeResolve) {
           case ("lessThanADay"):
@@ -150,7 +157,7 @@ public class MaintenanceTicketsStepDefinitions {
         String priorityString = (row.get("priority").toString());
         PriorityLevel priorityLevel = PriorityLevel.valueOf(priorityString);
 
-        AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(((Employee)aStaff), priorityLevel, timeToResolve, AssetPlusApplication.getAssetPlus().getManager(), ticket);
+        AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((HotelStaff)(aStaff), priorityLevel, timeToResolve, approvalRequired, ticket);
 
         if ((!row.get("status").equals("Assigned"))) {
           AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticket);
@@ -233,7 +240,7 @@ public class MaintenanceTicketsStepDefinitions {
     Status status = Status.valueOf(string2);
     while (!(ticket.getTicketStatus().getStatus().equals(status))) {
       if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
-        ticket.getTicketStatus().managerReviews(null, null, null, AssetPlusApplication.getAssetPlus().getManager());
+        ticket.getTicketStatus().managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
         break;
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
         ticket.getTicketStatus().startWork();
@@ -265,29 +272,30 @@ public class MaintenanceTicketsStepDefinitions {
         } else {
           priority = PriorityLevel.valueOf(string4);
         }
+
         String timeResolve = (string3);
         TimeEstimate timeToResolve;
         switch (timeResolve) {
-          case ("lessThanADay"):
+          case ("LessThanADay"):
             timeToResolve = TimeEstimate.LessThanADay;
             break;
-          case ("oneToThreeDays"):
+          case ("OneToThreeDays"):
             timeToResolve = TimeEstimate.OneToThreeDays;
             break;
-          case ("oneToThreeWeeks"):
+          case ("OneToThreeWeeks"):
             timeToResolve = TimeEstimate.OneToThreeWeeks;
             break;
-          case ("threeOrMoreWeeks"):
+          case ("ThreeOrMoreWeeks"):
             timeToResolve = TimeEstimate.ThreeOrMoreWeeks;
             break;
-          case ("threeToSevenDays"):
+          case ("ThreeToSevenDays"):
             timeToResolve = TimeEstimate.ThreeToSevenDays;
             break;
           default:
             timeToResolve = TimeEstimate.valueOf(timeResolve);
             break;
         }
-        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((Employee) staff, priority, timeToResolve, Boolean.parseBoolean(string5), id);
+        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), MaintenanceTicket.getWithId(Integer.parseInt(string)));
   }
 
   @When("the hotel staff attempts to start the ticket {string}")
@@ -333,23 +341,23 @@ public class MaintenanceTicketsStepDefinitions {
   @Then("the ticket {string} shall have estimated time {string}, priority {string}, and requires approval {string}")
   public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String expectedTicketID,String expectedEstimatedTime, String expectedPriority, String expectedApproval){
     MaintenanceTicket aTicket = MaintenanceTicket.getWithId(Integer.parseInt(expectedTicketID));
+    
     assertNotNull(aTicket);
-
     TimeEstimate expectedTimeEstimate;
     switch(expectedEstimatedTime){
-      case("lessThanADay"):
+      case("LessThanADay"):
         expectedTimeEstimate = TimeEstimate.LessThanADay;
         break;
-      case("oneToThreeDays"):
+      case("OneToThreeDays"):
         expectedTimeEstimate = TimeEstimate.OneToThreeDays;
         break;
-      case("oneToThreeWeeks"):
+      case("OneToThreeWeeks"):
         expectedTimeEstimate = TimeEstimate.OneToThreeWeeks;
         break;
-      case("threeOrMoreWeeks"):
+      case("ThreeOrMoreWeeks"):
         expectedTimeEstimate = TimeEstimate.ThreeOrMoreWeeks;
         break;
-      case("threeToSevenDays"):
+      case("ThreeToSevenDays"):
         expectedTimeEstimate = TimeEstimate.ThreeToSevenDays;
         break;
       default:
