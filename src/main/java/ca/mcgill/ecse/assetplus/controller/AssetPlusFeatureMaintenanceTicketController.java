@@ -28,9 +28,8 @@ public class AssetPlusFeatureMaintenanceTicketController {
     if(ticket == null){
       return "Maintenance ticket does not exist.";
     }
-
-    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + 
-                  isActionAdequateForCurrentState(ticketID, "assign") + isExistingStaff(staff);
+    //I tested this, and it seems to return an empry string, which is good
+    String err = AssetPlusFeatureUtility.isExistingTicket(ticket) + isExistingStaff(staff) + isActionAdequateForCurrentState(ticketID, "assign") ;
 
     
     //Data validation should not happen to let some test work 
@@ -53,7 +52,11 @@ public class AssetPlusFeatureMaintenanceTicketController {
     if (!err.isEmpty()) {
       return err;
     }
-    
+    //Weirdly, we need to manually put this here
+    ticket.setTimeToResolve(timeToResolve);
+    ticket.setPriority(priority);
+    ticket.setTicketFixer(staff);
+    ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
     //Modify the approveRequired boolean in this function call (last argument)
     ticket.managerReviews(staff, priority, timeToResolve, ticket.hasFixApprover());
 

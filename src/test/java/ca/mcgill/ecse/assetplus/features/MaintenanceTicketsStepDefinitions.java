@@ -142,6 +142,10 @@ public class MaintenanceTicketsStepDefinitions {
         PriorityLevel priorityLevel = PriorityLevel.valueOf(priorityString);
         
         //Assigns ticket with model method. 
+        ticket.setTimeToResolve(timeToResolve);
+        ticket.setPriority(priorityLevel);
+        ticket.setTicketFixer((HotelStaff)aStaff);
+        ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
         ticket.managerReviews((HotelStaff)aStaff, priorityLevel, timeToResolve, approvalRequired);
 
         String status = row.get("status").toString();
@@ -234,22 +238,28 @@ public class MaintenanceTicketsStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     String status = string2;
-    
+
+    //If the ticket is set to Assigned or onwards. Weirdly, function managerReviews does not set attribute, so I gotta do it manually
+    if(!status.equals("Open")){
+      HotelStaff staff = (HotelStaff)HotelStaff.getWithEmail("jeff@ap.com");
+      ticket.setTimeToResolve(TimeEstimate.LessThanADay);
+      ticket.setPriority(PriorityLevel.Low);
+      ticket.setTicketFixer(staff);
+      ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
+      ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
+
+    }
+
     //These are dummy values
     switch(status){
-          case("Assigned"):
-            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
           case("InProgress"):
-            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
             ticket.startWork();
             break;
           case("Resolved"):
-            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
             ticket.startWork();
             ticket.completeWork();
             break;
           case("Closed"):
-            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
             ticket.startWork();
             ticket.completeWork();
             break;
