@@ -234,7 +234,28 @@ public class MaintenanceTicketsStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     String status = string2;
-
+    
+    //These are dummy values
+    switch(status){
+          case("Assigned"):
+            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
+          case("InProgress"):
+            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
+            ticket.startWork();
+            break;
+          case("Resolved"):
+            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
+            ticket.startWork();
+            ticket.completeWork();
+            break;
+          case("Closed"):
+            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
+            ticket.startWork();
+            ticket.completeWork();
+            break;
+          default:
+        }
+    /* 
     while (!(ticket.getStatusFullName().equals(status))) {
       if ((ticket.getStatusFullName().equals("Open"))) {
         ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
@@ -247,6 +268,7 @@ public class MaintenanceTicketsStepDefinitions {
         ticket.approveWork();
       }
     }
+    */
     System.out.println(status.toString());
     System.out.println(ticket.getStatusFullName());
   }
