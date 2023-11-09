@@ -1,0 +1,52 @@
+namespace ca.mcgill.ecse.assetplus.model;
+
+// Authors: Émilia Gagné, Julia B.Grenier
+class MaintenanceTicket {
+  // Needs the enums of MaintenanceTicket
+  //depend ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
+  //depend ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
+  depend ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+  // Also needs to deal with date
+  depend java.sql.Date;
+	
+  Status {
+    Open { 
+      managerReviews(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired) / {
+                doReview(staff, priority, timeToResolve, approvalRequired);
+            } -> Assigned;
+    }
+    Assigned {
+      startWork() -> InProgress;
+    }
+    InProgress {
+      completeWork() [hasFixApprover()] -> Resolved;
+      completeWork() [!hasFixApprover()] -> Closed;
+    }
+    Resolved {
+      approveWork() -> Closed;
+      disapproveWork(Date date, String desc, HotelStaff noteTaker) / {
+      	doDisapproveWork(date, desc, noteTaker);
+      } -> InProgress;
+                         
+    }
+    Closed {}
+  }
+  
+  private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired) {
+    
+    
+    if (hasTicketFixer()) {
+      setTicketFixer(staff);
+      setPriority(priority);
+      setTimeToResolve(timeToResolve);
+      setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
+    }
+  }
+  
+  private void doDisapproveWork(Date date, String desc, HotelStaff noteTaker) {
+    
+    MaintenanceNote newNote = addTicketNote(date, desc, noteTaker);
+    addTicketNote(newNote);
+    
+  }
+}

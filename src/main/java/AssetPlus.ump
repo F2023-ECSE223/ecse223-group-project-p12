@@ -1,6 +1,6 @@
 namespace ca.mcgill.ecse.assetplus.model;
 
-use TicketStatus.ump;
+use MaintenanceTicket.ump;
 
 class AssetPlus
 {
@@ -46,7 +46,6 @@ class MaintenanceTicket
 {
   1 ticket <@>- * MaintenanceNote ticketNotes;
   1 ticket <@>- * TicketImage ticketImages;
-  1 MaintenanceTicket <@>- 1 TicketStatus;
 
   unique Integer id;
   Date raisedOnDate;
@@ -57,6 +56,27 @@ class MaintenanceTicket
 
   enum PriorityLevel {Urgent, Normal, Low}
   lazy PriorityLevel priority;
+  
+  private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired) {
+    MaintenanceTicket ticket = getMaintenanceTicket();
+    
+    if (ticket != null && ticket.hasTicketFixer()) {
+      ticket.setTicketFixer(staff);
+      ticket.setPriority(priority);
+      ticket.setTimeToResolve(timeToResolve);
+      ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
+    }
+  }
+  
+  private void doDisapproveWork(Date date, String desc, HotelStaff noteTaker) {
+    MaintenanceTicket ticket = getMaintenanceTicket();
+    
+    if (ticket != null) {
+      MaintenanceNote newNote = ticket.addTicketNote(date, desc, noteTaker);
+      ticket.addTicketNote(newNote);
+    }
+  }
+
 }
 
 class MaintenanceNote
