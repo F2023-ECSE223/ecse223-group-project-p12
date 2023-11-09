@@ -259,16 +259,16 @@ public class MaintenanceTicketsStepDefinitions {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     String status = string2;
-    
-    while (!(ticket.getStatus().equals(status))) {
-      if ((ticket.getStatus().equals(Status.Open))) {
+
+    while (!(ticket.getStatusFullName().equals(status))) {
+      if ((ticket.getStatusFullName().equals("Open"))) {
         ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
         break;
-      } else if ((ticket.getStatus().equals(Status.Assigned))) {
+      } else if ((ticket.getStatusFullName().equals("Assigned"))) {
         ticket.startWork();
-      } else if ((ticket.getStatus().equals(Status.InProgress))) {
+      } else if ((ticket.getStatusFullName().equals("InProgress"))) {
         ticket.completeWork();
-      } else if ((ticket.getStatus().equals(Status.Resolved))) {
+      } else if ((ticket.getStatusFullName().equals("Resolved"))) {
         ticket.approveWork();
       }
     }
