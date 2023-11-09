@@ -6,7 +6,6 @@ import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import java.sql.Date;
-import java.util.*;
 
 /**
  * Authors: Émilia Gagné, Julia B.Grenier
@@ -23,26 +22,13 @@ public class TicketStatus
   public enum Status { Open, Assigned, InProgress, Resolved, Closed }
   private Status status;
 
-  //TicketStatus Associations
-  private MaintenanceTicket MaintenanceTicket;
-
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TicketStatus(MaintenanceTicket aMaintenanceTicket)
+  public TicketStatus()
   {
-    if (aMaintenanceTicket == null || aMaintenanceTicket.getTicketStatus() != null)
-    {
-      throw new RuntimeException("Unable to create TicketStatus due to aMaintenanceTicket. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-    MaintenanceTicket = aMaintenanceTicket;
     setStatus(Status.Open);
-  }
-
-  public TicketStatus(int aIdForMaintenanceTicket, Date aRaisedOnDateForMaintenanceTicket, String aDescriptionForMaintenanceTicket, AssetPlus aAssetPlusForMaintenanceTicket, User aTicketRaiserForMaintenanceTicket)
-  {
-    MaintenanceTicket = new MaintenanceTicket(aIdForMaintenanceTicket, aRaisedOnDateForMaintenanceTicket, aDescriptionForMaintenanceTicket, this, aAssetPlusForMaintenanceTicket, aTicketRaiserForMaintenanceTicket);
   }
 
   //------------------------
@@ -168,21 +154,9 @@ public class TicketStatus
   {
     status = aStatus;
   }
-  /* Code from template association_GetOne */
-  public MaintenanceTicket getMaintenanceTicket()
-  {
-    return MaintenanceTicket;
-  }
 
   public void delete()
-  {
-    MaintenanceTicket existingMaintenanceTicket = MaintenanceTicket;
-    MaintenanceTicket = null;
-    if (existingMaintenanceTicket != null)
-    {
-      existingMaintenanceTicket.delete();
-    }
-  }
+  {}
 
   // line 36 "../../../../../../TicketStatus.ump"
    private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired){
