@@ -134,29 +134,17 @@ public class MaintenanceTicketsStepDefinitions {
         else{
           aStaff = null;
         }
-        ticket.setTicketFixer(aStaff);
+        
         //Setting up timeToResolve
         String string_timeToResolve = (row.get("timeToResolve").toString());
 
         //Setting up approvalRequired
         String string_approval = (row.get("approvalRequired").toString());
-       // boolean approvalRequired;
-        //if (string_approval.equals("true")){
-          //approvalRequired = true;
-       // } else {
-         // approvalRequired = false;
-        //}
-        
-        //Setting up timeToResolve
+       
         TimeEstimate timeToResolve = TimeEstimate.valueOf(string_timeToResolve);
         String priorityString = (row.get("priority").toString());
         PriorityLevel priorityLevel = PriorityLevel.valueOf(priorityString);
-        
-        //Assigns ticket with model method. 
-        ticket.setTimeToResolve(timeToResolve);
-        ticket.setPriority(priorityLevel);
-        ticket.setTicketFixer((HotelStaff)aStaff);
-        //ticket.setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
+
         ticket.managerReviews(aStaff, priorityLevel, timeToResolve, Boolean.parseBoolean(string_approval));
 
         String status = row.get("status").toString();
@@ -253,13 +241,7 @@ public class MaintenanceTicketsStepDefinitions {
     
     //If the ticket is set to Assigned or onwards. Weirdly, function managerReviews does not set attribute, so I gotta do it manually
     if(!status.equals("Open")){
-      HotelStaff staff = (HotelStaff)HotelStaff.getWithEmail("jeff@ap.com");
-      ticket.setTimeToResolve(TimeEstimate.LessThanADay);
-      ticket.setPriority(PriorityLevel.Low);
-      ticket.setTicketFixer(staff);
-      ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
       ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
-
     }
 
     //These are dummy values
