@@ -119,20 +119,33 @@ public class MaintenanceTicketsStepDefinitions {
       AssetPlusApplication.getAssetPlus().addMaintenanceTicket(ticket);
 
       if (!row.get("status").equals("Open")) {
+
+        //Setting up the asset
         int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
         SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
         ticket.setAsset(asset);
+
+        //Setting up the staff
         String assignedStaff = (row.get("fixedByEmail").toString());
         User aStaff = Employee.getWithEmail(assignedStaff);
-        String timeResolve = (row.get("timeToResolve").toString());
-        String approval = (row.get("approvalRequired").toString());
+
+        //Setting up timeToResolve
+        String string_timeToResolve = (row.get("timeToResolve").toString());
+
+        //Setting up approvalRequired
+        String string_approval = (row.get("approvalRequired").toString());
         boolean approvalRequired;
-        if (approval.equals(true)){
+        if (string_approval.equals("true")){
           approvalRequired = true;
         } else {
           approvalRequired = false;
         }
-        TimeEstimate timeToResolve;
+        
+        //Setting up timeToResolve
+        TimeEstimate timeToResolve = TimeEstimate.valueOf(string_timeToResolve);
+
+        /*
+         
         switch (timeResolve) {
           case ("lessThanADay"):
             timeToResolve = TimeEstimate.LessThanADay;
@@ -153,10 +166,12 @@ public class MaintenanceTicketsStepDefinitions {
             timeToResolve = null;
             break;
         }
+        */
 
         String priorityString = (row.get("priority").toString());
         PriorityLevel priorityLevel = PriorityLevel.valueOf(priorityString);
 
+        //Here, in each of these function, we need to change the parameter ticket by the ticketID instead
         AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket((HotelStaff)(aStaff), priorityLevel, timeToResolve, approvalRequired, ticket);
 
         if ((!row.get("status").equals("Assigned"))) {
@@ -211,12 +226,16 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  //MODIFY THIS FUNCTION - given the umple code with status inside Maintenance Ticket
   @Given("ticket {string} is marked as {string} with requires approval {string}")
   public void ticket_is_marked_as_with_requires_approval(String string, String string2,
       String string3) {
     // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     Status status = Status.valueOf(string2);
+
+    //With the new implementation of umple, we should be able to do 
+    //ticket.setStatus
    while (!(ticket.getTicketStatus().getStatus().equals(status))) {
       if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
         break;
@@ -233,6 +252,7 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  //TO MODIFY
   @Given("ticket {string} is marked as {string}")
   public void ticket_is_marked_as(String string, String string2) {
     // Write code here that turns the phrase above into concrete actions
@@ -254,6 +274,7 @@ public class MaintenanceTicketsStepDefinitions {
     System.out.println(ticket.getTicketStatus().getStatusFullName());
   }
 
+  //TO IMPLEMENT
   @When("the manager attempts to view all maintenance tickets in the system")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system() {
     //tickets = AssetPlusFeatureSet6Controller.getTickets();
