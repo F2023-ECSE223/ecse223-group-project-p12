@@ -153,13 +153,13 @@ public class MaintenanceTicketsStepDefinitions {
         ticket.getTicketStatus().managerReviews(employee, priorityLevel, timeToResolve, false);
 
         if ((!row.get("status").equals("Assigned"))) {
-          AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticket);
+          ticket.getTicketStatus().startWork();
 
           if (!row.get("status").equals("InProgress")) {
-            AssetPlusFeatureMaintenanceTicketController.completeTicket(ticket);
+            ticket.getTicketStatus().completeWork();
 
             if (!row.get("status").equals("Resolved")) {
-              AssetPlusFeatureMaintenanceTicketController.approveTicket(ticket);
+              ticket.getTicketStatus().approveWork();
             }
           }
         }
@@ -234,6 +234,7 @@ public class MaintenanceTicketsStepDefinitions {
     Status status = Status.valueOf(string2);
     while (!(ticket.getTicketStatus().getStatus().equals(status))) {
       if ((ticket.getTicketStatus().getStatus().equals(Status.Open))) {
+        //ticket.getTicketStatus().managerReviews(null, null, null, AssetPlusApplication.getAssetPlus().getManager());
         break;
       } else if ((ticket.getTicketStatus().getStatus().equals(Status.Assigned))) {
         ticket.getTicketStatus().startWork();
@@ -243,6 +244,8 @@ public class MaintenanceTicketsStepDefinitions {
         ticket.getTicketStatus().approveWork();
       }
     }
+    System.out.println(status.toString());
+    System.out.println(ticket.getTicketStatus().getStatusFullName());
   }
 
   @When("the manager attempts to view all maintenance tickets in the system")
@@ -256,7 +259,6 @@ public class MaintenanceTicketsStepDefinitions {
       String string, String string2, String string3, String string4, String string5) {
     
         int id = Integer.parseInt(string);
-        MaintenanceTicket ticket = MaintenanceTicket.getWithId(id);
         HotelStaff staff = (HotelStaff) HotelStaff.getWithEmail(string2);
         PriorityLevel priority;
         if (string4.equalsIgnoreCase("high")) {
@@ -286,36 +288,31 @@ public class MaintenanceTicketsStepDefinitions {
             timeToResolve = TimeEstimate.valueOf(timeResolve);
             break;
         }
-        if (Boolean.parseBoolean(string5)) {
-          ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
-        }
-        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), ticket);
+        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), id);
   }
 
   @When("the hotel staff attempts to start the ticket {string}")
   public void the_hotel_staff_attempts_to_start_the_ticket(String string) {
     // Write code here that turns the phrase above into concrete actions
-    error = AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(MaintenanceTicket.getWithId(Integer.parseInt(string)));
+    error = AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(Integer.parseInt(string));
   }
 
   @When("the manager attempts to approve the ticket {string}")
   public void the_manager_attempts_to_approve_the_ticket(String string) {
     // Write code here that turns the phrase above into concrete actions
-    error = AssetPlusFeatureMaintenanceTicketController.approveTicket(MaintenanceTicket.getWithId(Integer.parseInt(string)));
+    error = AssetPlusFeatureMaintenanceTicketController.approveTicket(Integer.parseInt(string));
   }
 
   @When("the hotel staff attempts to complete the ticket {string}")
   public void the_hotel_staff_attempts_to_complete_the_ticket(String string) {
     // Write code here that turns the phrase above into concrete actions
-    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
-    error = AssetPlusFeatureMaintenanceTicketController.completeTicket(ticket);
+    error = AssetPlusFeatureMaintenanceTicketController.completeTicket(Integer.parseInt(string));
   }
 
   @When("the manager attempts to disapprove the ticket {string} on date {string} and with reason {string}")
   public void the_manager_attempts_to_disapprove_the_ticket_on_date_and_with_reason(String string,
       String string2, String string3) {
-        MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
-        error = AssetPlusFeatureMaintenanceTicketController.disapproveTicket(ticket);
+        error = AssetPlusFeatureMaintenanceTicketController.disapproveTicket(Integer.parseInt(string));
       }
 
   @Then("the ticket {string} shall be marked as {string}")
