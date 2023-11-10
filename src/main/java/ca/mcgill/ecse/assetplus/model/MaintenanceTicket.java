@@ -674,17 +674,15 @@ public class MaintenanceTicket
     }
   }
 
-  // line 38 "../../../../../../MaintenanceTicket.ump"
+  // line 37 "../../../../../../MaintenanceTicket.ump"
    private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired){
-    if (hasTicketFixer()) {
-      setTicketFixer(staff);
+    setTicketFixer(staff);
       setPriority(priority);
       setTimeToResolve(timeToResolve);
       setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
-    }
   }
 
-  // line 48 "../../../../../../MaintenanceTicket.ump"
+  // line 45 "../../../../../../MaintenanceTicket.ump"
    private void doDisapproveWork(Date date, String desc, HotelStaff noteTaker){
     MaintenanceNote newNote = addTicketNote(date, desc, noteTaker);
     addTicketNote(newNote);

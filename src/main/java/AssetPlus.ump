@@ -60,7 +60,7 @@ class MaintenanceTicket
   private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired) {
     MaintenanceTicket ticket = getMaintenanceTicket();
     
-    if (ticket != null && ticket.hasTicketFixer()) {
+    if (ticket != null) {
       ticket.setTicketFixer(staff);
       ticket.setPriority(priority);
       ticket.setTimeToResolve(timeToResolve);

@@ -118,32 +118,35 @@ public class MaintenanceTicketsStepDefinitions {
       if (!row.get("status").equals("Open")) {
         //Setting up the asset
         int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
-        SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
-        ticket.setAsset(asset);
+        if (assetNumber != -1) {
+          SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
+          ticket.setAsset(asset);
+        }
+        else{
+          ticket.setAsset(null);
+        }
 
         //Setting up the staff
         String assignedStaff = (row.get("fixedByEmail").toString());
-        User aStaff = HotelStaff.getWithEmail(assignedStaff);
-
+        HotelStaff aStaff;
+        if (assignedStaff != null){
+          aStaff = (HotelStaff) HotelStaff.getWithEmail(assignedStaff);
+        }
+        else{
+          aStaff = null;
+        }
+        
         //Setting up timeToResolve
         String string_timeToResolve = (row.get("timeToResolve").toString());
 
         //Setting up approvalRequired
         String string_approval = (row.get("approvalRequired").toString());
-        boolean approvalRequired;
-        if (string_approval.equals("true")){
-          approvalRequired = true;
-        } else {
-          approvalRequired = false;
-        }
-        
-        //Setting up timeToResolve
+       
         TimeEstimate timeToResolve = TimeEstimate.valueOf(string_timeToResolve);
         String priorityString = (row.get("priority").toString());
         PriorityLevel priorityLevel = PriorityLevel.valueOf(priorityString);
-        
-        //Assigns ticket with model method. 
-        ticket.managerReviews((HotelStaff)aStaff, priorityLevel, timeToResolve, approvalRequired);
+
+        ticket.managerReviews(aStaff, priorityLevel, timeToResolve, Boolean.parseBoolean(string_approval));
 
         String status = row.get("status").toString();
 
@@ -214,19 +217,16 @@ public class MaintenanceTicketsStepDefinitions {
 
     //With the new implementation of umple, we should be able to do 
     //ticket.setStatus
-   while (!(ticket.getStatusFullName().equalsIgnoreCase(status))) {
-      if ((ticket.getStatusFullName().equalsIgnoreCase("Open"))) {
-        ticket.managerReviews((HotelStaff) Employee.getWithEmail("jeff@ap.com"), PriorityLevel.Normal, TimeEstimate.ThreeToSevenDays, Boolean.parseBoolean(string3));
-      } else if ((ticket.getStatusFullName().equalsIgnoreCase("Assigned"))) {
+    while (!(ticket.getStatusFullName().equals(status))) {
+      if ((ticket.getStatusFullName().equals("Open"))) {
+        ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), Boolean.parseBoolean(string3));
+      } else if ((ticket.getStatusFullName().equals("Assigned"))) {
         ticket.startWork();
       } else if ((ticket.getStatusFullName().equalsIgnoreCase("InProgress"))) {
         ticket.completeWork();
       } else if ((ticket.getStatusFullName().equalsIgnoreCase("Resolved"))) {
         ticket.approveWork();
       }
-    }
-    if (Boolean.parseBoolean(string3)) {
-      ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
     }
   }
 
@@ -237,28 +237,19 @@ public class MaintenanceTicketsStepDefinitions {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     String status = string2;
 
-    switch(status){
-          case("Assigned"):
-            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
-          case("InProgress"):
-            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
-            ticket.startWork();
-            break;
-          case("Resolved"):
-            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
-            ticket.startWork();
-            ticket.completeWork();
-            break;
-          case("Closed"):
-            ticket.managerReviews((HotelStaff)HotelStaff.getWithEmail("jeff@ap.com"), PriorityLevel.Low, TimeEstimate.LessThanADay, true);
-            ticket.startWork();
-            ticket.completeWork();
-            ticket.approveWork();
-            break;
-          default:
-        }
-    System.out.println(status.toString());
-    System.out.println(ticket.getStatusFullName());
+    while (!(ticket.getStatusFullName().equals(status))) {
+      if ((ticket.getStatusFullName().equals("Open"))) {
+        ticket.managerReviews(null, null, null, true);
+      } else if ((ticket.getStatusFullName().equals("Assigned"))) {
+        ticket.startWork();
+      } else if ((ticket.getStatusFullName().equals("InProgress"))) {
+        ticket.completeWork();
+      } else if ((ticket.getStatusFullName().equals("Resolved"))) {
+        ticket.approveWork();
+      }
+    }
+
+    System.err.println(string2 + " " + ticket.getStatusFullName());
   }
 
   //UNSURE IF THIS IS CORRECT
@@ -283,6 +274,7 @@ public class MaintenanceTicketsStepDefinitions {
   public void the_hotel_staff_attempts_to_start_the_ticket(String string) {
     // Write code here that turns the phrase above into concrete actions
     error = AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(Integer.parseInt(string));
+    System.err.println(error);
   }
 
   @When("the manager attempts to approve the ticket {string}")
@@ -300,7 +292,7 @@ public class MaintenanceTicketsStepDefinitions {
   @When("the manager attempts to disapprove the ticket {string} on date {string} and with reason {string}")
   public void the_manager_attempts_to_disapprove_the_ticket_on_date_and_with_reason(String string,
       String string2, String string3) {
-        error = AssetPlusFeatureMaintenanceTicketController.disapproveTicket(Integer.parseInt(string));
+        error = AssetPlusFeatureMaintenanceTicketController.disapproveTicket(Integer.parseInt(string), Date.valueOf(string2), string3);
       }
 
   @Then("the ticket {string} shall be marked as {string}")
@@ -357,23 +349,27 @@ public class MaintenanceTicketsStepDefinitions {
           assertEquals(tableList.get(i).get("description"), ticket.getDescription());
           assertEquals(tableList.get(i).get("status"), ticket.getStatusFullName());
 
-          if(!ticket.getStatusFullName().equals("Open")){
-            //The way the feature file is done, when you open a ticket, you don't have to specify the name of the asset
+          String email = null;
+          if(tableList.get(i).get("fixedByEmail")!= null){     
+            email = ticket.getTicketFixer().getEmail();
+          }
+          //Attributes that are fixed once the ticket state is Reviewed
+          if (tableList.get(i).get("status") != "Open"){
+            assertEquals(tableList.get(i).get("fixedByEmail"), email);
+            if (ticket.getTimeToResolve() != null) assertEquals(tableList.get(i).get("timeToResolve"), ticket.getTimeToResolve().toString());
+            if (ticket.getPriority() != null) assertEquals(tableList.get(i).get("priority"), ticket.getPriority().toString());
+            if (ticket.hasFixApprover()) assertEquals(tableList.get(i).get("approvalRequired"), Boolean.toString(ticket.hasFixApprover()));
+          }
+            if(ticket.hasAsset()){
             //Without the name of the asset, we can't know his asset type and related attributes
             assertEquals(tableList.get(i).get("assetName"), ticket.getAsset().getAssetType().getName());//An asset does not have a name, but its asset type does
             assertEquals(tableList.get(i).get("expectLifeSpan"), Integer.toString(ticket.getAsset().getAssetType().getExpectedLifeSpan()));
             assertEquals(tableList.get(i).get("purchaseDate"), ticket.getAsset().getPurchaseDate().toString());
             assertEquals(tableList.get(i).get("floorNumber"), Integer.toString(ticket.getAsset().getFloorNumber()));
             assertEquals(tableList.get(i).get("roomNumber"), Integer.toString(ticket.getAsset().getRoomNumber()));
-            //Attributes that are fixed once the ticket state is Reviewed
-            assertEquals(tableList.get(i).get("fixedByEmail"), ticket.getTicketFixer().getEmail());
-            assertEquals(tableList.get(i).get("timeToResolve"), ticket.getTimeToResolve().toString());
-            assertEquals(tableList.get(i).get("priority"), ticket.getPriority().toString());
-            assertEquals(tableList.get(i).get("approvalRequired"), Boolean.toString(ticket.hasFixApprover()));
-          }
-          
           
         }
+      }
   }
 
   @Then("the ticket with id {string} shall have the following notes")
@@ -403,7 +399,7 @@ public class MaintenanceTicketsStepDefinitions {
         List<Map<String, String>> tableList = dataTable.asMaps(String.class, String.class);
 
         for (int i = 0; i < ticket.getTicketImages().size(); i++) {
-          assertEquals(tableList.get(i).get("imageUrl"), ticket.getTicketImage(i).toString());
+          assertEquals(tableList.get(i).get("imageUrl"), ticket.getTicketImage(i).getImageURL());
         }
   }
 
