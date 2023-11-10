@@ -8,6 +8,11 @@ import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
+<<<<<<< Updated upstream
+=======
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
+import java.sql.Date;
+>>>>>>> Stashed changes
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
@@ -43,9 +48,15 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
     
+<<<<<<< Updated upstream
     //Modify the approveRequired boolean in this function call (last argument)
     ticket.managerReviews(staff, priority, timeToResolve, ticket.hasFixApprover());
 
+=======
+    MaintenanceTicket.getWithId(ticketID).managerReviews((HotelStaff) HotelStaff.getWithEmail(staffEmail), priority, timeToResolve, approvalRequired);
+    AssetPlusPersistence.save();
+    
+>>>>>>> Stashed changes
     return "";
   }
   
@@ -70,7 +81,13 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
+<<<<<<< Updated upstream
     ticket.startWork();
+=======
+    // If no error, perform the state change
+    MaintenanceTicket.getWithId(ticketID).startWork();
+    AssetPlusPersistence.save();
+>>>>>>> Stashed changes
 
     return "";
   }
@@ -95,7 +112,13 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
+<<<<<<< Updated upstream
     ticket.completeWork();
+=======
+    // If no error, perform the state change
+    MaintenanceTicket.getWithId(ticketID).completeWork();
+    AssetPlusPersistence.save();
+>>>>>>> Stashed changes
     
     return "";
 
@@ -122,7 +145,13 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
+<<<<<<< Updated upstream
     ticket.approveWork();
+=======
+    // If no error, perform the state change
+    MaintenanceTicket.getWithId(ticketID).approveWork();
+    AssetPlusPersistence.save();
+>>>>>>> Stashed changes
 
     return "";
 
@@ -149,7 +178,13 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
+<<<<<<< Updated upstream
     ticket.disapproveWork(ticket.getRaisedOnDate(), ticket.getDescription(), ticket.getTicketFixer());
+=======
+    // If no error, perform the state change
+    MaintenanceTicket.getWithId(ticketID).disapproveWork(date, reason);
+    AssetPlusPersistence.save();
+>>>>>>> Stashed changes
 
     return "";
 

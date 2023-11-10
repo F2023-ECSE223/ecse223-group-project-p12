@@ -36,6 +36,7 @@ public class MaintenanceTicketsStepDefinitions {
       io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> tableList = dataTable.asMaps(String.class, String.class);
 
+    //The datatable is converted into a map from which we can get specific values to create the employees. 
     for (Map<String, String> row : tableList) {
       String email = row.get("email");
       String password = row.get("password");
