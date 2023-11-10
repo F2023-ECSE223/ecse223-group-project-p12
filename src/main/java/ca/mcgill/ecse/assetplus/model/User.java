@@ -5,8 +5,7 @@ package ca.mcgill.ecse.assetplus.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 15 "../../../../../../AssetPlus.ump"
-// line 39 "../../../../../../AssetPlusPersistence.ump"
+// line 13 "../../../../../AssetPlus.ump"
 public abstract class User
 {
 
@@ -232,17 +231,6 @@ public abstract class User
       MaintenanceTicket aRaisedTicket = raisedTickets.get(i - 1);
       aRaisedTicket.delete();
     }
-  }
-
-  // line 41 "../../../../../../AssetPlusPersistence.ump"
-   public static  void reinitializeUniqueUsers(List<Employee> employees, List<Guest> guests){
-    usersByEmail.clear();
-        for (var guest : guests) {
-            usersByEmail.put(guest.getEmail(), guest);
-        }
-        for (var employee : employees){
-            usersByEmail.put(employee.getEmail(), employee);
-        }
   }
 
 

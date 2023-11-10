@@ -41,7 +41,6 @@ public class AssetPlusFeatureSet7Controller {
         } catch (RuntimeException e){
           return e.getMessage();
         }
-        AssetPlusPersistence.save();
         return "";
   }
 
@@ -76,7 +75,7 @@ public class AssetPlusFeatureSet7Controller {
           HotelStaff staff = (HotelStaff) User.getWithEmail(newEmail);
           note.setNoteTaker(staff);
         }
-        AssetPlusPersistence.save();
+
         return "";
   }
 

@@ -38,7 +38,6 @@ public class AssetPlusFeatureSet5Controller {
     catch (RuntimeException e) {
       return e.getMessage();
     }
-    AssetPlusPersistence.save();
     return ""; // empty string means operation was successful (no error)
   }
 

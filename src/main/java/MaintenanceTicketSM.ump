@@ -1,0 +1,29 @@
+
+
+class MaintenanceTicketSM {
+  state {
+    Opened { 
+      managerReviews() / {assignHotelStaff(HotelStaff staff), setPriority(PriorityLevel aPriority), setTimeToResolve(TimeEstimate aTimeToResolve), setFixApprover()} -> Reviewed;
+    }
+    Reviewed {
+      startWork() -> Reviewed;
+      completeWork() -> Resolved;
+    }
+    Resolved {
+      [!hasFixApprover()] -> Closed;
+      approveWork() [hasFixApprover()] -> Closed;
+      disapproveWork()  [hasFixApprover()] / {addTicketNote(Date aDate, String aDescription, HotelStaff aNoteTaker)} -> Reviewed;
+                         
+    }
+    Closed {}
+  }
+}
+
+//$?[End_of_model]$?
+
+namespace -;
+
+class MaintenanceTicketSM
+{
+  position 50 30 109 45;
+}

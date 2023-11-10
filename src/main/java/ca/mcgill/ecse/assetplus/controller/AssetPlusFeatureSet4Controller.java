@@ -53,7 +53,6 @@ public class AssetPlusFeatureSet4Controller {
     catch (RuntimeException e){
         return e.getMessage();
     }
-    AssetPlusPersistence.save();
       return "";  
   }
 
@@ -95,11 +94,10 @@ public class AssetPlusFeatureSet4Controller {
         }
         else {
           currentTicket.setAsset(null);
-        }
+        }  
     } catch (RuntimeException e){
         return e.getMessage();
     }
-    AssetPlusPersistence.save();
       return "";
   }
 
