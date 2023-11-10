@@ -32,7 +32,7 @@ public class AssetPlusFeatureSet2Controller {
     catch (RuntimeException e) {
       return e.getMessage();
     }
-
+    AssetPlusPersistence.save();
     return "";
   }
 
@@ -70,7 +70,7 @@ public class AssetPlusFeatureSet2Controller {
     catch (RuntimeException e) {
       return e.getMessage();
     }
-
+    AssetPlusPersistence.save();
     return "";
   }
 
@@ -93,7 +93,7 @@ public class AssetPlusFeatureSet2Controller {
     catch (RuntimeException e) {
       System.out.println(err);
     }
-    
+    AssetPlusPersistence.save();
     return;
   }
 

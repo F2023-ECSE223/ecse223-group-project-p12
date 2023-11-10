@@ -107,6 +107,13 @@ public class AssetPlusFeatureUtility {
    * @param id the ticket id associated to a maintenance ticket
    * @return an empty string or an error message
    */
+  public static String isExistingTicket(MaintenanceTicket ticket) {
+    if (ticket == null || !MaintenanceTicket.hasWithId(ticket.getId())) {
+      return "Maintenance ticket does not exist.";
+    }
+    return "";
+  }
+
   public static String isExistingTicket(int id) {
     if (!MaintenanceTicket.hasWithId(id)) {
       return "Ticket does not exist";
