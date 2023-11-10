@@ -684,6 +684,7 @@ public class MaintenanceTicket
 
   // line 40 "../../../../../../MaintenanceTicket.ump"
    private void doDisapproveWork(Date date, String desc){
+    MaintenanceNote newNote = addTicketNote(date, desc, AssetPlusApplication.getAssetPlus().getManager());
     addTicketNote(newNote);
   }
 
