@@ -6,6 +6,7 @@ import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import java.sql.Date;
 
 /**
@@ -36,7 +37,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
     }
     
     MaintenanceTicket.getWithId(ticketID).managerReviews((HotelStaff) HotelStaff.getWithEmail(staffEmail), priority, timeToResolve, approvalRequired);
-
+    AssetPlusPersistence.save();
     return "";
   }
   
@@ -60,7 +61,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
     // If no error, perform the state change
     MaintenanceTicket.getWithId(ticketID).startWork();
-
+    AssetPlusPersistence.save();
     return "";
   }
 
@@ -84,6 +85,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
     // If no error, perform the state change
     MaintenanceTicket.getWithId(ticketID).completeWork();
+    AssetPlusPersistence.save();
     
     return "";
 
@@ -109,7 +111,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
     // If no error, perform the state change
     MaintenanceTicket.getWithId(ticketID).approveWork();
-
+    AssetPlusPersistence.save();
     return "";
 
   }
@@ -136,7 +138,7 @@ public class AssetPlusFeatureMaintenanceTicketController {
 
     // If no error, perform the state change
     MaintenanceTicket.getWithId(ticketID).disapproveWork(date, reason);
-
+    AssetPlusPersistence.save();
     return "";
   }
 

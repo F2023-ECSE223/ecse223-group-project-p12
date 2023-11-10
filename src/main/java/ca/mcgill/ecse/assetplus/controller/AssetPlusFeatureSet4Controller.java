@@ -50,11 +50,11 @@ public class AssetPlusFeatureSet4Controller {
           newTicket.setAsset(null);
         }
         AssetPlusApplication.getAssetPlus().addMaintenanceTicket(newTicket);
-        AssetPlusPersistence.save();
       }
     catch (RuntimeException e){
         return e.getMessage();
     }
+    AssetPlusPersistence.save();
       return "";  
   }
 
@@ -97,10 +97,10 @@ public class AssetPlusFeatureSet4Controller {
         else {
           currentTicket.setAsset(null);
         }
-        AssetPlusPersistence.save();  
     } catch (RuntimeException e){
         return e.getMessage();
     }
+    AssetPlusPersistence.save();
       return "";
   }
 

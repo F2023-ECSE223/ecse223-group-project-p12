@@ -35,11 +35,11 @@ public class AssetPlusFeatureSet5Controller {
       TicketImage createdImage = MaintenanceTicket.getWithId(ticketID).addTicketImage(imageURL);
       // Add it to the list of the maintenance ticket
       MaintenanceTicket.getWithId(ticketID).addTicketImage(createdImage);
-      AssetPlusPersistence.save();
     }
     catch (RuntimeException e) {
       return e.getMessage();
     }
+    AssetPlusPersistence.save();
     return ""; // empty string means operation was successful (no error)
   }
 
