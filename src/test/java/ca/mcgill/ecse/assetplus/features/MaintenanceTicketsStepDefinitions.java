@@ -349,13 +349,11 @@ public class MaintenanceTicketsStepDefinitions {
       String string, String string2, String string3, String string4, String string5) {
     
         int id = Integer.parseInt(string);
-        HotelStaff staff = (HotelStaff) HotelStaff.getWithEmail(string2);
         PriorityLevel priority = PriorityLevel.valueOf(string4);
-
         String stringTimeToResolve = (string3);
         TimeEstimate timeToResolve = TimeEstimate.valueOf(stringTimeToResolve);
 
-        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), Integer.parseInt(string));
+        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(string2, priority, timeToResolve, Boolean.parseBoolean(string5), Integer.parseInt(string));
   }
 
   /**
