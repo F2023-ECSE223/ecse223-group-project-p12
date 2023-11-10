@@ -2,10 +2,16 @@
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.model;
-import java.util.*;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import java.sql.Date;
+import java.util.*;
 
-// line 43 "../../../../../AssetPlus.ump"
+/**
+ * Authors: Émilia Gagné, Julia Grenier, Camille Pouliot, Anjali Singhal
+ */
+// line 4 "../../../../../../MaintenanceTicket.ump"
+// line 45 "../../../../../../AssetPlus.ump"
+// line 21 "../../../../../../AssetPlusPersistence.ump"
 public class MaintenanceTicket
 {
 
@@ -32,6 +38,10 @@ public class MaintenanceTicket
   private String description;
   private TimeEstimate timeToResolve;
   private PriorityLevel priority;
+
+  //MaintenanceTicket State Machines
+  public enum Status { Open, Assigned, InProgress, Resolved, Closed }
+  private Status status;
 
   //MaintenanceTicket Associations
   private List<MaintenanceNote> ticketNotes;
@@ -66,6 +76,7 @@ public class MaintenanceTicket
     {
       throw new RuntimeException("Unable to create raisedTicket due to ticketRaiser. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
+    setStatus(Status.Open);
   }
 
   //------------------------
@@ -156,6 +167,126 @@ public class MaintenanceTicket
   public PriorityLevel getPriority()
   {
     return priority;
+  }
+
+  public String getStatusFullName()
+  {
+    String answer = status.toString();
+    return answer;
+  }
+
+  public Status getStatus()
+  {
+    return status;
+  }
+
+  public boolean managerReviews(HotelStaff staff,PriorityLevel priority,TimeEstimate timeToResolve,boolean approvalRequired)
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Open:
+        // line 11 "../../../../../../MaintenanceTicket.ump"
+        doReview(staff, priority, timeToResolve, approvalRequired);
+        setStatus(Status.Assigned);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean startWork()
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Assigned:
+        setStatus(Status.InProgress);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean completeWork()
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case InProgress:
+        if (hasFixApprover())
+        {
+          setStatus(Status.Resolved);
+          wasEventProcessed = true;
+          break;
+        }
+        if (!(hasFixApprover()))
+        {
+          setStatus(Status.Closed);
+          wasEventProcessed = true;
+          break;
+        }
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean approveWork()
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Resolved:
+        setStatus(Status.Closed);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  public boolean disapproveWork(Date date,String desc)
+  {
+    boolean wasEventProcessed = false;
+    
+    Status aStatus = status;
+    switch (aStatus)
+    {
+      case Resolved:
+        // line 24 "../../../../../../MaintenanceTicket.ump"
+        doDisapproveWork(date, desc);
+        setStatus(Status.InProgress);
+        wasEventProcessed = true;
+        break;
+      default:
+        // Other states do respond to this event
+    }
+
+    return wasEventProcessed;
+  }
+
+  private void setStatus(Status aStatus)
+  {
+    status = aStatus;
   }
   /* Code from template association_GetMany */
   public MaintenanceNote getTicketNote(int index)
@@ -541,6 +672,28 @@ public class MaintenanceTicket
       this.fixApprover = null;
       placeholderFixApprover.removeTicketsForApproval(this);
     }
+  }
+
+  // line 33 "../../../../../../MaintenanceTicket.ump"
+   private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired){
+    setTicketFixer(staff);
+      setPriority(priority);
+      setTimeToResolve(timeToResolve);
+      setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
+  }
+
+  // line 40 "../../../../../../MaintenanceTicket.ump"
+   private void doDisapproveWork(Date date, String desc){
+    MaintenanceNote newNote = addTicketNote(date, desc, AssetPlusApplication.getAssetPlus().getManager());
+    addTicketNote(newNote);
+  }
+
+  // line 23 "../../../../../../AssetPlusPersistence.ump"
+   public static  void reinitializeUniqueTickets(List<MaintenanceTicket> tickets){
+    maintenanceticketsById.clear();
+        for (var ticket : tickets) {
+            maintenanceticketsById.put(ticket.getId(), ticket);
+        }
   }
 
 

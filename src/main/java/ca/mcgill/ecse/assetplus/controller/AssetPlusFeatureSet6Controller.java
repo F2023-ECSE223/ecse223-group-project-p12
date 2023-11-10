@@ -88,10 +88,19 @@ public class AssetPlusFeatureSet6Controller {
       roomNumber = maintenanceTicket.getAsset().getRoomNumber();
     }
 
-    return new TOMaintenanceTicket(maintenanceTicket.getId(), maintenanceTicket.getRaisedOnDate(),
-        maintenanceTicket.getDescription(), maintenanceTicket.getTicketRaiser().getEmail(),
-        assetName, expectedLifeSpanInDays, purchaseDate, floorNumber, roomNumber,
-        convertFromTicketImages(maintenanceTicket.getTicketImages()), allNotes);
+    AssetPlusPersistence.save();
+    return new TOMaintenanceTicket(
+      maintenanceTicket.getId(), 
+      maintenanceTicket.getRaisedOnDate(),
+      maintenanceTicket.getDescription(), 
+      maintenanceTicket.getTicketRaiser().getEmail(), 
+      maintenanceTicket.getStatusFullName(), 
+      maintenanceTicket.hasTicketFixer() ? maintenanceTicket.getTicketFixer().getEmail() : "", 
+      maintenanceTicket.getTimeToResolve() != null ? maintenanceTicket.getTimeToResolve().toString() : "", 
+      maintenanceTicket.getPriority() != null ? maintenanceTicket.getPriority().toString() : "",
+      maintenanceTicket.hasFixApprover(), 
+      assetName, expectedLifeSpanInDays, purchaseDate, floorNumber, roomNumber, 
+      convertFromTicketImages(maintenanceTicket.getTicketImages()), allNotes);
   }
 
   /**
