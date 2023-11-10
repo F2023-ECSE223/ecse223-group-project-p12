@@ -25,12 +25,28 @@ import ca.mcgill.ecse.assetplus.model.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import javafx.scene.layout.Priority;
 
+/**
+ * This class defines the Gherkin step defintions for the EnhancedViewStatusOfMaintenanceTickets feature and the ProcessMaintenanceTicket feature.
+ * 
+ * @author Anjali Singhal
+ * @author Tayba Jusab
+ * @author Julia Grenier
+ * @author Sahar Fathi
+ * @author Émilia Gagné
+ * @author Camille Pouliot
+ */
 public class MaintenanceTicketsStepDefinitions {
 
   public String error;
 
+  /**
+   * Gherkin step definition method to create and add employees to the AssetPlus application.
+   * 
+   * @param dataTable Cucumber DataTable containing the employee information.
+   * 
+   * @author Anjali Singhal
+   */
   @Given("the following employees exist in the system")
   public void the_following_employees_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
@@ -48,6 +64,13 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  /**
+   * Gherkin step definition method to create and add manager to the AssetPlus application.
+   * 
+   * @param dataTable Cucumber DataTable containing the manager information.
+   * 
+   *  @author Anjali Singhal
+   */
   @Given("the following manager exists in the system")
   public void the_following_manager_exists_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
@@ -64,6 +87,13 @@ public class MaintenanceTicketsStepDefinitions {
       Assertions.assertEquals("manager", assetPlus.getManager().getPassword());
   }
 
+  /**
+   * Gherkin step definition method to create and add asset types to the AssetPlus application.
+   * 
+   * @param dataTable Cucumber DataTable containing the asset type information.
+   * 
+   *  @author Anjali Singhal
+   */
   @Given("the following asset types exist in the system")
   public void the_following_asset_types_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
@@ -79,6 +109,13 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+   /**
+   * Gherkin step definition method to create and add specific assets to the AssetPlus application.
+   * 
+   * @param dataTable Cucumber DataTable containing the asset information.
+   * 
+   *  @author Anjali Singhal
+   */
   @Given("the following assets exist in the system")
   public void the_following_assets_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, Object>> tableList = dataTable.asMaps(String.class, Object.class);
@@ -98,6 +135,18 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  /**
+   * Gherkin step definition method to create and add maintenance tickets to the AssetPlus application.
+   * 
+   * @param dataTable Cucumber DataTable containing the maintenance ticket information.
+   * 
+   * @author Tayba Jusab
+   * @author Émilia Gagné
+   * @author Camille Pouliot
+   * @author Julia B.Grenier
+   * @author Sahar Fathi
+   * @author Anjali Singhal
+   */
   @Given("the following tickets exist in the system")
   public void the_following_tickets_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     // Turns the data table into a list of HashMaps for which the column name is the key.
@@ -118,35 +167,40 @@ public class MaintenanceTicketsStepDefinitions {
       if (!row.get("status").equals("Open")) {
         //Setting up the asset
         int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
-        SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
-        ticket.setAsset(asset);
+        if (assetNumber != -1) {
+          SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
+          ticket.setAsset(asset);
+        }
+        else{
+          ticket.setAsset(null);
+        }
 
         //Setting up the staff
         String assignedStaff = (row.get("fixedByEmail").toString());
-        User aStaff = HotelStaff.getWithEmail(assignedStaff);
-
-        //Setting up timeToResolve
-        String string_timeToResolve = (row.get("timeToResolve").toString());
-
-        //Setting up approvalRequired
-        String string_approval = (row.get("approvalRequired").toString());
-        boolean approvalRequired;
-        if (string_approval.equals("true")){
-          approvalRequired = true;
-        } else {
-          approvalRequired = false;
+        HotelStaff aStaff;
+        if (assignedStaff != null){
+          aStaff = (HotelStaff) HotelStaff.getWithEmail(assignedStaff);
+        }
+        else{
+          aStaff = null;
         }
         
         //Setting up timeToResolve
+        String string_timeToResolve = (row.get("timeToResolve").toString());
         TimeEstimate timeToResolve = TimeEstimate.valueOf(string_timeToResolve);
+
+        //Setting up approvalRequired
+        String string_approval = (row.get("approvalRequired").toString());
+       
+        //Setting up priority
         String priorityString = (row.get("priority").toString());
         PriorityLevel priorityLevel = PriorityLevel.valueOf(priorityString);
-        
-        //Assigns ticket with model method. 
-        ticket.managerReviews((HotelStaff)aStaff, priorityLevel, timeToResolve, approvalRequired);
+
+        ticket.managerReviews(aStaff, priorityLevel, timeToResolve, Boolean.parseBoolean(string_approval));
 
         String status = row.get("status").toString();
 
+        //Setting status of tickets
         switch(status){
           case("InProgress"):
             ticket.startWork();
@@ -168,6 +222,13 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  /**
+   * Gherkin step definition method to create and add maintenance notes to the AssetPlus application.
+   * 
+   * @param dataTable Cucumber DataTable containing the maintenance notes information.
+   * 
+   * @author Tayba Jusab
+   */
   @Given("the following notes exist in the system")
   public void the_following_notes_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
     // Turns the data table into a list of HashMaps for which the column name is the key.
@@ -188,6 +249,13 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
+  /**
+   * Gherkin step definition method to create and add maintenance images to the AssetPlus application.
+   * 
+   * @param dataTable Cucumber DataTable containing the maintenance images information.
+   * 
+   * @author Sahar Fathi
+   */
   @Given("the following ticket images exist in the system")
   public void the_following_ticket_images_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
@@ -202,44 +270,24 @@ public class MaintenanceTicketsStepDefinitions {
     }
   }
 
-  //MODIFY THIS FUNCTION - given the umple code with status inside Maintenance Ticket
+  /**
+   * Gherkin step definition method to assign the appropiate status and approvalRequired to a specific maintenance ticket.
+   * 
+   * @param string maintenance ticket id
+   * @param string2 maintenance ticket status
+   * @param string3 boolean approval required
+   * 
+   * @author Camille Pouliot
+   * @author Julia B. Grenier
+   */
   @Given("ticket {string} is marked as {string} with requires approval {string}")
   public void ticket_is_marked_as_with_requires_approval(String string, String string2,
       String string3) {
-    // Write code here that turns the phrase above into concrete actions
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
-    String status = string2;
-    
-
-    //With the new implementation of umple, we should be able to do 
-    //ticket.setStatus
-   while (!(ticket.getStatusFullName().equals(status))) {
-      if ((ticket.getStatusFullName().equals("Open"))) {
-        break;
-      } else if ((ticket.getStatusFullName().equals("Assigned"))) {
-        ticket.startWork();
-      } else if ((ticket.getStatusFullName().equals("InProgress"))) {
-        ticket.completeWork();
-      } else if ((ticket.getStatusFullName().equals("Resolved"))) {
-        ticket.approveWork();
-      }
-    }
-    if (Boolean.parseBoolean(string3)) {
-      ticket.setFixApprover(AssetPlusApplication.getAssetPlus().getManager());
-    }
-  }
-
-  //TO MODIFY
-  @Given("ticket {string} is marked as {string}")
-  public void ticket_is_marked_as(String string, String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
-    String status = string2;
-
+    String status = string2; 
     while (!(ticket.getStatusFullName().equals(status))) {
       if ((ticket.getStatusFullName().equals("Open"))) {
-        ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), ticket.hasFixApprover());
-        break;
+        ticket.managerReviews(ticket.getTicketFixer(), ticket.getPriority(), ticket.getTimeToResolve(), Boolean.parseBoolean(string3));
       } else if ((ticket.getStatusFullName().equals("Assigned"))) {
         ticket.startWork();
       } else if ((ticket.getStatusFullName().equals("InProgress"))) {
@@ -248,96 +296,217 @@ public class MaintenanceTicketsStepDefinitions {
         ticket.approveWork();
       }
     }
-    System.out.println(status.toString());
-    System.out.println(ticket.getStatusFullName());
   }
 
-  //UNSURE IF THIS IS CORRECT
+  /**
+   * Gherkin step definition method to assign the appropiate status to a specific maintenance ticket.
+   * 
+   * @param string maintenance ticket id
+   * @param string2 maintenance ticket status
+   * 
+   * @author Émilia Gagné
+   * @author Camille Pouliot
+   */
+  @Given("ticket {string} is marked as {string}")
+  public void ticket_is_marked_as(String string, String string2) {
+    MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
+    String status = string2;
+    while (!(ticket.getStatusFullName().equals(status))) {
+      if ((ticket.getStatusFullName().equals("Open"))) {
+        ticket.managerReviews(null, null, null, true);
+      } else if ((ticket.getStatusFullName().equals("Assigned"))) {
+        ticket.startWork();
+      } else if ((ticket.getStatusFullName().equals("InProgress"))) {
+        ticket.completeWork();
+      } else if ((ticket.getStatusFullName().equals("Resolved"))) {
+        ticket.approveWork();
+      }
+    }
+  }
+
+  /**
+   * Gherkin step definition method to display all the maintenance tickets in enhanced view from the AssetPlus application.
+   * 
+   * @author Anjali Singhal
+   */
   @When("the manager attempts to view all maintenance tickets in the system")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system() {
     AssetPlusFeatureSet6Controller.getTickets();
   }
 
-  //How we pass ticket needs to be changed
+  /**
+   *  Gherkin step definition method to assign the appropiate staff, priority, timeToResolve  and approvalRequired to a specific maintenance ticket from the AssetPlus application.
+   * 
+   * @param string maintenance ticket id
+   * @param string2 ticket fixer email
+   * @param string3 timeToResolve
+   * @param string4 priority
+   * @param string5 approvalRequired
+   * 
+   * @author Sahar Fathi
+   */
   @When("the manager attempts to assign the ticket {string} to {string} with estimated time {string}, priority {string}, and requires approval {string}")
   public void the_manager_attempts_to_assign_the_ticket_to_with_estimated_time_priority_and_requires_approval(
       String string, String string2, String string3, String string4, String string5) {
     
         int id = Integer.parseInt(string);
-        HotelStaff staff = (HotelStaff) HotelStaff.getWithEmail(string2);
         PriorityLevel priority = PriorityLevel.valueOf(string4);
-
         String stringTimeToResolve = (string3);
         TimeEstimate timeToResolve = TimeEstimate.valueOf(stringTimeToResolve);
 
-        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staff, priority, timeToResolve, Boolean.parseBoolean(string5), Integer.parseInt(string));
+        error = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(string2, priority, timeToResolve, Boolean.parseBoolean(string5), Integer.parseInt(string));
   }
 
+  /**
+   *  Gherkin step definition method to start work on a specific maintenance ticket from the AssetPlus application.
+   * 
+   * @param string maintenance ticket id
+   * 
+   * @author Tayba Jusab
+   */
   @When("the hotel staff attempts to start the ticket {string}")
   public void the_hotel_staff_attempts_to_start_the_ticket(String string) {
-    // Write code here that turns the phrase above into concrete actions
     error = AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(Integer.parseInt(string));
+    System.err.println(error);
   }
 
+  /**
+   *  Gherkin step definition method for manager to approve the work done on a specific maintenance ticket from the AssetPlus application.
+   * 
+   * @param string maintenance ticket id
+   * 
+   * @author Tayba Jusab
+   */
   @When("the manager attempts to approve the ticket {string}")
   public void the_manager_attempts_to_approve_the_ticket(String string) {
-    // Write code here that turns the phrase above into concrete actions
     error = AssetPlusFeatureMaintenanceTicketController.approveTicket(Integer.parseInt(string));
   }
 
+  /**
+   *  Gherkin step definition method for staff to complete the work on a specific maintenance ticket from the AssetPlus application.
+   * 
+   * @param string maintenance ticket id
+   * 
+   * @author Tayba Jusab
+   */
   @When("the hotel staff attempts to complete the ticket {string}")
   public void the_hotel_staff_attempts_to_complete_the_ticket(String string) {
-    // Write code here that turns the phrase above into concrete actions
     error = AssetPlusFeatureMaintenanceTicketController.completeTicket(Integer.parseInt(string));
   }
 
+  /**
+   *  Gherkin step definition method for manager to disapprove the work done on a specific maintenance ticket from the AssetPlus application.
+   * 
+   * @param string maintenance ticket id
+   * @param string2 date on which ticket is disapproved
+   * @param string3 disapproval reason (note)
+   * 
+   * @author Tayba Jusab
+   */
   @When("the manager attempts to disapprove the ticket {string} on date {string} and with reason {string}")
   public void the_manager_attempts_to_disapprove_the_ticket_on_date_and_with_reason(String string,
       String string2, String string3) {
-        error = AssetPlusFeatureMaintenanceTicketController.disapproveTicket(Integer.parseInt(string));
+        error = AssetPlusFeatureMaintenanceTicketController.disapproveTicket(Integer.parseInt(string), Date.valueOf(string2), string3);
       }
 
+  /**
+   * Gherkin step definition method to verify the status of a maintenance ticket in the application.
+   * 
+   * @param string Existing maintenance ticket id
+   * @param string2 maintenance ticket status
+   * 
+   * @author Émilia Gagné
+   */  
   @Then("the ticket {string} shall be marked as {string}")
   public void the_ticket_shall_be_marked_as(String string, String string2) {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     assertEquals(string2, ticket.getStatusFullName());
   }
 
+  /**
+   * Gherkin step definition method to verify the error message displayed in the application.
+   * 
+   * @param string error message
+   * 
+   * @author Sahar Fathi
+   */  
   @Then("the system shall raise the error {string}")
   public void the_system_shall_raise_the_error(String string) {
     assertEquals(string, error);
   }
 
+  /**
+   * Gherkin step definition method to verify the non-existenance of a maintenance ticket in the application.
+   * 
+   * @param string maintenance ticket id
+   * 
+   * @author Sahar Fathi
+   */ 
   @Then("the ticket {string} shall not exist in the system")
   public void the_ticket_shall_not_exist_in_the_system(String string) {
     assertNull(MaintenanceTicket.getWithId(Integer.parseInt(string)));
   }
 
 
+  /**
+   * Gherkin step definition method to verify the status of a maintenance ticket in the application.
+   * 
+   * @param string maintenance ticket id
+   * @param string2 timeEstimate
+   * @param string3 priority
+   * @param string4 approvalRequired
+   * 
+   * @author Anjali Singhal
+   * @author Camille Pouliot
+   */  
   @Then("the ticket {string} shall have estimated time {string}, priority {string}, and requires approval {string}")
-  public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String expectedTicketID,String expectedEstimatedTime, String expectedPriority, String expectedApproval){
-    MaintenanceTicket aTicket = MaintenanceTicket.getWithId(Integer.parseInt(expectedTicketID));
+  public void the_ticket_shall_have_estimated_time_priority_and_requires_approval(String string,
+  String string2, String string3, String string4){
+    MaintenanceTicket aTicket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     
     assertNotNull(aTicket);
-    TimeEstimate expectedTimeEstimate = TimeEstimate.valueOf(expectedEstimatedTime);
+    TimeEstimate expectedTimeEstimate = TimeEstimate.valueOf(string2);
 
     assertEquals(expectedTimeEstimate, aTicket.getTimeToResolve());
-    assertEquals(PriorityLevel.valueOf(expectedPriority), aTicket.getPriority());
+    assertEquals(PriorityLevel.valueOf(string3), aTicket.getPriority());
     
     }
 
-  
-  //TO COMPLETE
+  /**
+   * Gherkin step definition method to verify the email of the ticket fixer for a maintenance ticket in the application.
+   * 
+   * @param string maintenance ticket id
+   * @param string2 expected ticket fixer email
+   * 
+   * @author Anjali Singhal
+   * @author Tayba Jusab
+   */  
   @Then("the ticket {string} shall be assigned to {string}")
   public void the_ticket_shall_be_assigned_to(String string, String string2) {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
+    HotelStaff staff = ticket.getTicketFixer();
+    assertEquals(string2,staff.getEmail());
   }
 
+  /**
+   * Gherkin step definition method to verify the email of the ticket fixer for a maintenance ticket in the application.
+   * 
+   * @param string the expected number of tickets in the application
+   * 
+   * @author Tayba Jusab
+   */  
   @Then("the number of tickets in the system shall be {string}")
   public void the_number_of_tickets_in_the_system_shall_be(String string) {
     assertEquals(Integer.parseInt(string), AssetPlusApplication.getAssetPlus().getMaintenanceTickets().size());
   }
 
+  /**
+   * Gherkin step definition method to verify the amount of maintenance tickets in the application for viewing.
+   * 
+   * @param dataTable Cucumber DataTable containing all the tickets which should be existing in the AssetPlus application.
+   * 
+   * @author Anjali Singhal
+   */
   @Then("the following maintenance tickets shall be presented")
   public void the_following_maintenance_tickets_shall_be_presented(
       io.cucumber.datatable.DataTable dataTable) {
@@ -351,25 +520,31 @@ public class MaintenanceTicketsStepDefinitions {
           assertEquals(tableList.get(i).get("description"), ticket.getDescription());
           assertEquals(tableList.get(i).get("status"), ticket.getStatusFullName());
 
-          if(!ticket.getStatusFullName().equals("Open")){
-            //The way the feature file is done, when you open a ticket, you don't have to specify the name of the asset
-            //Without the name of the asset, we can't know his asset type and related attributes
+          //Attributes that are fixed once the ticket is Reviewed
+          if (tableList.get(i).get("status") != "Open"){
+            if(tableList.get(i).get("fixedByEmail")!= null) assertEquals(tableList.get(i).get("fixedByEmail"), ticket.getTicketFixer().getEmail());
+            if (tableList.get(i).get("timeToResolve") != null) assertEquals(tableList.get(i).get("timeToResolve"), ticket.getTimeToResolve().toString());
+            if (tableList.get(i).get("priority") != null) assertEquals(tableList.get(i).get("priority"), ticket.getPriority().toString());
+            if (tableList.get(i).get("approvalRequired") != null) assertEquals(tableList.get(i).get("approvalRequired"), Boolean.toString(ticket.hasFixApprover()));
+          }
+          if(ticket.hasAsset()){
             assertEquals(tableList.get(i).get("assetName"), ticket.getAsset().getAssetType().getName());//An asset does not have a name, but its asset type does
             assertEquals(tableList.get(i).get("expectLifeSpan"), Integer.toString(ticket.getAsset().getAssetType().getExpectedLifeSpan()));
             assertEquals(tableList.get(i).get("purchaseDate"), ticket.getAsset().getPurchaseDate().toString());
             assertEquals(tableList.get(i).get("floorNumber"), Integer.toString(ticket.getAsset().getFloorNumber()));
             assertEquals(tableList.get(i).get("roomNumber"), Integer.toString(ticket.getAsset().getRoomNumber()));
-            //Attributes that are fixed once the ticket state is Reviewed
-            assertEquals(tableList.get(i).get("fixedByEmail"), ticket.getTicketFixer().getEmail());
-            assertEquals(tableList.get(i).get("timeToResolve"), ticket.getTimeToResolve().toString());
-            assertEquals(tableList.get(i).get("priority"), ticket.getPriority().toString());
-            assertEquals(tableList.get(i).get("approvalRequired"), Boolean.toString(ticket.hasFixApprover()));
           }
-          
-          
-        }
+      }
   }
 
+  /**
+   * Gherkin step definition method to verify the maintenance notes associated to a specific ticket id in the application.
+   * 
+   * @param dataTable Cucumber DataTable containing all the notes associated to a specific ticket id, which should be existing in the AssetPlus application.
+   * @param string Existing maintenance ticket id
+   * 
+   * @author Camille Pouliot
+   */
   @Then("the ticket with id {string} shall have the following notes")
   public void the_ticket_with_id_shall_have_the_following_notes(String string,
       io.cucumber.datatable.DataTable dataTable) {
@@ -383,12 +558,27 @@ public class MaintenanceTicketsStepDefinitions {
         }
       }
 
+  /**
+   * Gherkin step definition method to verify the amount of maintenance notes associated to a specific ticket id in the application.
+   * 
+   * @param string Existing maintenance ticket id
+   * 
+   * @author Camille Pouliot
+   */
   @Then("the ticket with id {string} shall have no notes")
   public void the_ticket_with_id_shall_have_no_notes(String string) {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));
     assertEquals(0, ticket.getTicketNotes().size());
   }
 
+  /**
+   * Gherkin step definition method to verify the URLs of maintenance images associated to a specific ticket id in the application.
+   * 
+   * @param dataTable Cucumber DataTable containing all the images associated to a specific ticket id, which should be existing in the AssetPlus application.
+   * @param string Existing maintenance ticket id
+   * 
+   * @author Camille Pouliot
+   */
   @Then("the ticket with id {string} shall have the following images")
   public void the_ticket_with_id_shall_have_the_following_images(String string,
       io.cucumber.datatable.DataTable dataTable) {
@@ -397,10 +587,17 @@ public class MaintenanceTicketsStepDefinitions {
         List<Map<String, String>> tableList = dataTable.asMaps(String.class, String.class);
 
         for (int i = 0; i < ticket.getTicketImages().size(); i++) {
-          assertEquals(tableList.get(i).get("imageUrl"), ticket.getTicketImage(i).toString());
+          assertEquals(tableList.get(i).get("imageUrl"), ticket.getTicketImage(i).getImageURL());
         }
   }
 
+  /**
+   * Gherkin step definition method to verify the amount of maintenance images associated to a specific ticket id in the application.
+   * 
+   * @param string Existing maintenance ticket id
+   * 
+   * @author Camille Pouliot
+   */
   @Then("the ticket with id {string} shall have no images")
   public void the_ticket_with_id_shall_have_no_images(String string) {
     MaintenanceTicket ticket = MaintenanceTicket.getWithId(Integer.parseInt(string));

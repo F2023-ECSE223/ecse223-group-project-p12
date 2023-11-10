@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.util.*;
 
 /**
- * Authors: Émilia Gagné, Julia B.Grenier
+ * Authors: Émilia Gagné, Julia Grenier, Camille Pouliot, Anjali Singhal
  */
 // line 4 "../../../../../../MaintenanceTicket.ump"
 // line 45 "../../../../../../AssetPlus.ump"
@@ -188,7 +188,7 @@ public class MaintenanceTicket
     switch (aStatus)
     {
       case Open:
-        // line 14 "../../../../../../MaintenanceTicket.ump"
+        // line 11 "../../../../../../MaintenanceTicket.ump"
         doReview(staff, priority, timeToResolve, approvalRequired);
         setStatus(Status.Assigned);
         wasEventProcessed = true;
@@ -264,7 +264,7 @@ public class MaintenanceTicket
     return wasEventProcessed;
   }
 
-  public boolean disapproveWork(Date date,String desc,HotelStaff noteTaker)
+  public boolean disapproveWork(Date date,String desc)
   {
     boolean wasEventProcessed = false;
     
@@ -272,8 +272,8 @@ public class MaintenanceTicket
     switch (aStatus)
     {
       case Resolved:
-        // line 27 "../../../../../../MaintenanceTicket.ump"
-        doDisapproveWork(date, desc, noteTaker);
+        // line 24 "../../../../../../MaintenanceTicket.ump"
+        doDisapproveWork(date, desc);
         setStatus(Status.InProgress);
         wasEventProcessed = true;
         break;
@@ -674,19 +674,17 @@ public class MaintenanceTicket
     }
   }
 
-  // line 38 "../../../../../../MaintenanceTicket.ump"
+  // line 33 "../../../../../../MaintenanceTicket.ump"
    private void doReview(HotelStaff staff, PriorityLevel priority, TimeEstimate timeToResolve, boolean approvalRequired){
-    //if (hasTicketFixer()) {
-      setTicketFixer(staff);
+    setTicketFixer(staff);
       setPriority(priority);
       setTimeToResolve(timeToResolve);
       setFixApprover(approvalRequired ? AssetPlusApplication.getAssetPlus().getManager() : null);
-    //}
   }
 
-  // line 48 "../../../../../../MaintenanceTicket.ump"
-   private void doDisapproveWork(Date date, String desc, HotelStaff noteTaker){
-    MaintenanceNote newNote = addTicketNote(date, desc, noteTaker);
+  // line 40 "../../../../../../MaintenanceTicket.ump"
+   private void doDisapproveWork(Date date, String desc){
+    MaintenanceNote newNote = addTicketNote(date, desc, AssetPlusApplication.getAssetPlus().getManager());
     addTicketNote(newNote);
   }
 
