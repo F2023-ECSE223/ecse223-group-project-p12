@@ -62,6 +62,7 @@ public class AssetPlusFeatureSet2Controller {
       return err;
     }
     
+
     try {
       AssetType type = AssetType.getWithName(oldName);
       type.setName(newName);

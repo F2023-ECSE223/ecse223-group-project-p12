@@ -55,7 +55,7 @@ public class AssetPlusFeatureSet4Controller {
         return e.getMessage();
     }
     AssetPlusPersistence.save();
-    return "";  
+      return "";  
   }
 
   /**
@@ -96,12 +96,12 @@ public class AssetPlusFeatureSet4Controller {
         }
         else {
           currentTicket.setAsset(null);
-        }  
+        }
     } catch (RuntimeException e){
         return e.getMessage();
     }
     AssetPlusPersistence.save();
-    return "";
+      return "";
   }
 
   /**
@@ -120,7 +120,6 @@ public class AssetPlusFeatureSet4Controller {
 
     //Delete the specific ticket from the AssetPlus application instance. 
     MaintenanceTicket.getWithId(id).delete();
-    AssetPlusPersistence.save();
   }
 
   /**

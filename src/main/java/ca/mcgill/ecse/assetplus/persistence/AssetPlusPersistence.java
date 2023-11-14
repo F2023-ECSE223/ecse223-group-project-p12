@@ -3,15 +3,20 @@ package ca.mcgill.ecse.assetplus.persistence;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 
-/**
- * This class defines the persistence layer for the AssetPlusApplcation. 
- *
- * @author Sahar Fathi
- */
+ /**
+   * Implementation of the Persistence Layer to the AssetPlus application.
+   * 
+   * @author Tayba Jusab
+   * @author Émilia Gagné
+   * @author Camille Pouliot
+   * @author Julia B.Grenier
+   * @author Sahar Fathi
+   * @author Anjali Singhal
+   */
 
 public class AssetPlusPersistence {
 
-  //This sets up the json file which in which objects will be serialized, and the file used to deserialize back into objects.
+  //The following fields and setFilename method deal with the json file location. 
   private static String filename = "ap.data";
   private static JsonSerializer serializer = new JsonSerializer("ca.mcgill.ecse.assetplus");
 
@@ -19,7 +24,7 @@ public class AssetPlusPersistence {
     AssetPlusPersistence.filename = filename;
   }
 
-  //This method is called in the different controller actions in order to update the json file. 
+  //This method is utilized in the controller methods in order to save the modified objects to the json file. 
   public static void save() {
     save(AssetPlusApplication.getAssetPlus());
   }
@@ -28,7 +33,7 @@ public class AssetPlusPersistence {
     serializer.serialize(ap, filename);
   }
 
-  //This method is used to load the data back in from the json file after the application has been terminated. 
+  //This method is utilized to load the AssetPlus data back in upon restarting the application.
   public static AssetPlus load() {
     var ap = (AssetPlus) serializer.deserialize(filename);
     

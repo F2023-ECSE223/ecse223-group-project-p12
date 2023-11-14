@@ -6,6 +6,8 @@ import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
+import java.sql.Date;
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
@@ -34,15 +36,8 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
     
-<<<<<<< Updated upstream
-    //Modify the approveRequired boolean in this function call (last argument)
-    ticket.managerReviews(staff, priority, timeToResolve, ticket.hasFixApprover());
-
-=======
     MaintenanceTicket.getWithId(ticketID).managerReviews((HotelStaff) HotelStaff.getWithEmail(staffEmail), priority, timeToResolve, approvalRequired);
     AssetPlusPersistence.save();
-    
->>>>>>> Stashed changes
     return "";
   }
   
@@ -64,8 +59,9 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
-    ticket.startWork();
-
+    // If no error, perform the state change
+    MaintenanceTicket.getWithId(ticketID).startWork();
+    AssetPlusPersistence.save();
     return "";
   }
 
@@ -87,7 +83,9 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
-    ticket.completeWork();
+    // If no error, perform the state change
+    MaintenanceTicket.getWithId(ticketID).completeWork();
+    AssetPlusPersistence.save();
     
     return "";
 
@@ -111,8 +109,9 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
-    ticket.approveWork();
-
+    // If no error, perform the state change
+    MaintenanceTicket.getWithId(ticketID).approveWork();
+    AssetPlusPersistence.save();
     return "";
 
   }
@@ -137,8 +136,9 @@ public class AssetPlusFeatureMaintenanceTicketController {
       return err;
     }
 
-    ticket.disapproveWork(ticket.getRaisedOnDate(), ticket.getDescription(), ticket.getTicketFixer());
-
+    // If no error, perform the state change
+    MaintenanceTicket.getWithId(ticketID).disapproveWork(date, reason);
+    AssetPlusPersistence.save();
     return "";
   }
 
