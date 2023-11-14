@@ -1,0 +1,54 @@
+package ca.mcgill.ecse.assetplus.controller;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
+import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import ca.mcgill.ecse.assetplus.model.AssetType;
+import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.SpecificAsset;
+import ca.mcgill.ecse.assetplus.model.TicketImage;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
+
+public class TOSpecificAsset {
+
+  private int assetNumber;
+  private int floorNumber;
+  private int roomNumber;
+  private Date purchaseDate;
+
+  private HashMap<Integer, TOSpecificAsset> TOassets;
+
+  //SpecificAsset Associations
+  private AssetPlus assetPlus;
+  private List<MaintenanceTicket> maintenanceTickets;
+  private AssetType assetType;
+
+
+  public TOSpecificAsset(int aAssetNumber, int aFloorNumber, int aRoomNumber, Date aPurchaseDate, AssetPlus aAssetPlus, AssetType aAssetType)
+  {
+    floorNumber = aFloorNumber;
+    roomNumber = aRoomNumber;
+    purchaseDate = aPurchaseDate;
+    assetNumber = aAssetNumber;
+    assetType = aAssetType;
+    assetPlus = aAssetPlus;
+  }
+
+  public TOSpecificAsset(SpecificAsset asset){
+    floorNumber = asset.getFloorNumber();
+    assetNumber = asset.getAssetNumber();
+    roomNumber = asset.getRoomNumber();
+    purchaseDate = asset.getPurchaseDate();
+    assetType = asset.getAssetType();
+    assetPlus = asset.getAssetPlus();
+  }
+}
+
+
+
+

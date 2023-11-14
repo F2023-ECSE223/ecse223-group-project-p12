@@ -13,7 +13,8 @@ public class AssetPlusApplication {
   public static AssetPlus getAssetPlus() {
     if (assetPlus == null) {
       // these attributes are default, you should set them later with the setters
-      assetPlus = new AssetPlus();
+      //assetPlus = new AssetPlus();
+      assetPlus = AssetPlusPersistence.load();
     }
     return assetPlus;
   }
