@@ -1,0 +1,30 @@
+
+
+
+.root   
+{  
+    -fx-font-family : "montserrat";
+
+    -fx-accent: #8768F2;
+    -fx-focus-color: #8768F2;
+
+    -fx-background-color: #FFFFFF;
+
+}
+
+.button
+{
+    -fx-background-color: #8768F2;
+    -fx-background-radius: 10px;
+}
+
+.menuButton
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-effect: none;
+
+    -fx-text-fill: #808080;
+}
