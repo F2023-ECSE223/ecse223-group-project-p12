@@ -14,31 +14,22 @@ import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
+/**
+ * <p> Class for the specific asset transfer object.
+ */
+
 public class TOSpecificAsset {
 
   private int assetNumber;
   private int floorNumber;
   private int roomNumber;
   private Date purchaseDate;
-
-  private HashMap<Integer, TOSpecificAsset> TOassets;
-
-  //SpecificAsset Associations
   private AssetPlus assetPlus;
-  private List<MaintenanceTicket> maintenanceTickets;
   private AssetType assetType;
 
-
-  public TOSpecificAsset(int aAssetNumber, int aFloorNumber, int aRoomNumber, Date aPurchaseDate, AssetPlus aAssetPlus, AssetType aAssetType)
-  {
-    floorNumber = aFloorNumber;
-    roomNumber = aRoomNumber;
-    purchaseDate = aPurchaseDate;
-    assetNumber = aAssetNumber;
-    assetType = aAssetType;
-    assetPlus = aAssetPlus;
-  }
-
+  /**
+   * Constructor to create a specific asset transfer object according to the specific asset which needs to be transferred. 
+   */
   public TOSpecificAsset(SpecificAsset asset){
     floorNumber = asset.getFloorNumber();
     assetNumber = asset.getAssetNumber();
