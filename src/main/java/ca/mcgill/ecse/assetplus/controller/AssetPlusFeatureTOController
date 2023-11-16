@@ -21,7 +21,7 @@ public class AssetPlusFeatureTOCtontroller {
 
   /**
    * <p>Generate a list of specific asset transfer objects. </p>
-   * @return a hashmap with the keys being an asset number and the value being the associated specific asset TO.
+   * @return a hashmap with the keys being an asset number and the value being the associated specific asset transfer object.
    */
   public static HashMap<Integer, TOSpecificAsset> getSpecificAssets() {
   List<SpecificAsset> assets = AssetPlusApplication.getAssetPlus().getSpecificAssets();

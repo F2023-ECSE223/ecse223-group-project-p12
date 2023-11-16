@@ -24,7 +24,6 @@ public class TOSpecificAsset {
   private int floorNumber;
   private int roomNumber;
   private Date purchaseDate;
-  private AssetPlus assetPlus;
   private AssetType assetType;
 
   /**
@@ -36,7 +35,6 @@ public class TOSpecificAsset {
     roomNumber = asset.getRoomNumber();
     purchaseDate = asset.getPurchaseDate();
     assetType = asset.getAssetType();
-    assetPlus = asset.getAssetPlus();
   }
 
   //------------------------
