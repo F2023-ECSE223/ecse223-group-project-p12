@@ -40,7 +40,7 @@ class TOUser {
   String name;
   String password;
   String phoneNumber;
-  List<Integer> ticketsRaised;
+  List<String> ticketsRaised;
 }
 
 class TOGuest{

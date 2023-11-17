@@ -15,7 +15,7 @@ public class TOEmployee extends TOHotelStaff
   // CONSTRUCTOR
   //------------------------
 
-  public TOEmployee(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised, List<Integer> aTicketFixed)
+  public TOEmployee(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised, List<String> aTicketFixed)
   {
     super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised, aTicketFixed);
   }

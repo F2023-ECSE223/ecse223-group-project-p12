@@ -15,7 +15,7 @@ public class TOGuest extends TOUser
   // CONSTRUCTOR
   //------------------------
 
-  public TOGuest(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised)
+  public TOGuest(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised)
   {
     super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised);
   }

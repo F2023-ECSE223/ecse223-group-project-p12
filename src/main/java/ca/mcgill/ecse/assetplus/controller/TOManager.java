@@ -12,13 +12,13 @@ public class TOManager extends TOHotelStaff
   //------------------------
 
   //TOManager Attributes
-  private List<Integer> ticketApproved;
+  private List<String> ticketApproved;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOManager(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised, List<Integer> aTicketFixed, List<Integer> aTicketApproved)
+  public TOManager(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised, List<String> aTicketFixed, List<String> aTicketApproved)
   {
     super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised, aTicketFixed);
     ticketApproved = aTicketApproved;
@@ -28,7 +28,7 @@ public class TOManager extends TOHotelStaff
   // INTERFACE
   //------------------------
 
-  public List<Integer> getTicketApproved()
+  public List<String> getTicketApproved()
   {
     return ticketApproved;
   }

@@ -12,13 +12,13 @@ public abstract class TOHotelStaff extends TOUser
   //------------------------
 
   //TOHotelStaff Attributes
-  private List<Integer> ticketFixed;
+  private List<String> ticketFixed;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOHotelStaff(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised, List<Integer> aTicketFixed)
+  public TOHotelStaff(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised, List<String> aTicketFixed)
   {
     super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised);
     ticketFixed = aTicketFixed;
@@ -28,7 +28,7 @@ public abstract class TOHotelStaff extends TOUser
   // INTERFACE
   //------------------------
 
-  public List<Integer> getTicketFixed()
+  public List<String> getTicketFixed()
   {
     return ticketFixed;
   }
