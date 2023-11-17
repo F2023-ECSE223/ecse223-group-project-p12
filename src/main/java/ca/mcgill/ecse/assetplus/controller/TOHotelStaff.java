@@ -2,6 +2,7 @@
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.controller;
+import java.util.*;
 
 // line 51 "../../../../../../AssetPlusTransferObjects.ump"
 public abstract class TOHotelStaff extends TOUser
@@ -12,13 +13,13 @@ public abstract class TOHotelStaff extends TOUser
   //------------------------
 
   //TOHotelStaff Attributes
-  private List<String> ticketFixed;
+  private List<Integer> ticketFixed;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOHotelStaff(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised, List<String> aTicketFixed)
+  public TOHotelStaff(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised, List<Integer> aTicketFixed)
   {
     super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised);
     ticketFixed = aTicketFixed;
@@ -28,7 +29,7 @@ public abstract class TOHotelStaff extends TOUser
   // INTERFACE
   //------------------------
 
-  public List<String> getTicketFixed()
+  public List<Integer> getTicketFixed()
   {
     return ticketFixed;
   }

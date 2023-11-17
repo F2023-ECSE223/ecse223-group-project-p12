@@ -2,6 +2,7 @@
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.controller;
+import java.util.*;
 
 // line 36 "../../../../../../AssetPlusTransferObjects.ump"
 public abstract class TOUser
