@@ -32,3 +32,53 @@ class TOMaintenanceNote {
   String description;
   String noteTakerEmail;
 }
+
+class TOUser {
+  abstract;
+  immutable;
+  String email;
+  String name;
+  String password;
+  String phoneNumber;
+}
+
+class TOGuest{
+  immutable;
+  isA TOUser;
+}
+
+class TOHotelStaff{
+  abstract;
+  immutable;
+  isA TOUser;
+}
+
+class TOEmployee{
+  immutable;
+  isA TOHotelStaff;
+}
+
+class TOManager{
+  immutable;
+  isA TOHotelStaff;
+}
+
+association 
+{  
+  1 TOUser ticketRaiser <- * TOMaintenanceTicket raisedTickets;  
+}
+
+association 
+{  
+  1 TOHotelStaff noteTaker <- * TOMaintenanceNote maintenanceNotes;  
+}
+
+association 
+{
+  0..1 TOHotelStaff ticketFixer <- * TOMaintenanceTicket maintenanceTasks;
+}
+
+association 
+{
+  0..1 TOManager fixApprover <- * TOMaintenanceTicket ticketsForApproval;
+}

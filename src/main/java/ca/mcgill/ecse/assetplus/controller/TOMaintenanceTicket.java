@@ -32,15 +32,21 @@ public class TOMaintenanceTicket
 
   //TOMaintenanceTicket Associations
   private List<TOMaintenanceNote> notes;
+  private TOUser ticketRaiser;
+  private TOHotelStaff ticketFixer;
+  private TOManager fixApprover;
 
   //Helper Variables
   private boolean canSetNotes;
+  private boolean canSetTicketRaiser;
+  private boolean canSetTicketFixer;
+  private boolean canSetFixApprover;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOMaintenanceTicket(int aId, Date aRaisedOnDate, String aDescription, String aRaisedByEmail, String aStatus, String aFixedByEmail, String aTimeToResolve, String aPriority, boolean aApprovalRequired, String aAssetName, int aExpectLifeSpanInDays, Date aPurchaseDate, int aFloorNumber, int aRoomNumber, List<String> aImageURLs, TOMaintenanceNote... allNotes)
+  public TOMaintenanceTicket(int aId, Date aRaisedOnDate, String aDescription, String aRaisedByEmail, String aStatus, String aFixedByEmail, String aTimeToResolve, String aPriority, boolean aApprovalRequired, String aAssetName, int aExpectLifeSpanInDays, Date aPurchaseDate, int aFloorNumber, int aRoomNumber, List<String> aImageURLs, TOUser aTicketRaiser, TOHotelStaff aTicketFixer, TOManager aFixApprover, TOMaintenanceNote... allNotes)
   {
     id = aId;
     raisedOnDate = aRaisedOnDate;
@@ -58,12 +64,21 @@ public class TOMaintenanceTicket
     roomNumber = aRoomNumber;
     imageURLs = aImageURLs;
     canSetNotes = true;
+    canSetTicketRaiser = true;
+    canSetTicketFixer = true;
+    canSetFixApprover = true;
     notes = new ArrayList<TOMaintenanceNote>();
     boolean didAddNotes = setNotes(allNotes);
     if (!didAddNotes)
     {
       throw new RuntimeException("Unable to create TOMaintenanceTicket, must not have duplicate notes. See http://manual.umple.org?RE001ViolationofImmutability.html");
     }
+    if (!setTicketRaiser(aTicketRaiser))
+    {
+      throw new RuntimeException("Unable to create TOMaintenanceTicket due to aTicketRaiser. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
+    setTicketFixer(aTicketFixer);
+    setFixApprover(aFixApprover);
   }
 
   //------------------------
@@ -185,6 +200,33 @@ public class TOMaintenanceTicket
     int index = notes.indexOf(aNote);
     return index;
   }
+  /* Code from template association_GetOne */
+  public TOUser getTicketRaiser()
+  {
+    return ticketRaiser;
+  }
+  /* Code from template association_GetOne */
+  public TOHotelStaff getTicketFixer()
+  {
+    return ticketFixer;
+  }
+
+  public boolean hasTicketFixer()
+  {
+    boolean has = ticketFixer != null;
+    return has;
+  }
+  /* Code from template association_GetOne */
+  public TOManager getFixApprover()
+  {
+    return fixApprover;
+  }
+
+  public boolean hasFixApprover()
+  {
+    boolean has = fixApprover != null;
+    return has;
+  }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfNotes()
   {
@@ -216,6 +258,39 @@ public class TOMaintenanceTicket
     wasSet = true;
     return wasSet;
   }
+  /* Code from template association_SetUnidirectionalOne */
+  private boolean setTicketRaiser(TOUser aNewTicketRaiser)
+  {
+    boolean wasSet = false;
+    if (!canSetTicketRaiser) { return false; }
+    canSetTicketRaiser = false;
+    if (aNewTicketRaiser != null)
+    {
+      ticketRaiser = aNewTicketRaiser;
+      wasSet = true;
+    }
+    return wasSet;
+  }
+  /* Code from template association_SetUnidirectionalOptionalOne */
+  private boolean setTicketFixer(TOHotelStaff aNewTicketFixer)
+  {
+    boolean wasSet = false;
+    if (!canSetTicketFixer) { return false; }
+    canSetTicketFixer = false;
+    ticketFixer = aNewTicketFixer;
+    wasSet = true;
+    return wasSet;
+  }
+  /* Code from template association_SetUnidirectionalOptionalOne */
+  private boolean setFixApprover(TOManager aNewFixApprover)
+  {
+    boolean wasSet = false;
+    if (!canSetFixApprover) { return false; }
+    canSetFixApprover = false;
+    fixApprover = aNewFixApprover;
+    wasSet = true;
+    return wasSet;
+  }
 
   public void delete()
   {}
@@ -238,6 +313,9 @@ public class TOMaintenanceTicket
             "roomNumber" + ":" + getRoomNumber()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "raisedOnDate" + "=" + (getRaisedOnDate() != null ? !getRaisedOnDate().equals(this)  ? getRaisedOnDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "purchaseDate" + "=" + (getPurchaseDate() != null ? !getPurchaseDate().equals(this)  ? getPurchaseDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "imageURLs" + "=" + (getImageURLs() != null ? !getImageURLs().equals(this)  ? getImageURLs().toString().replaceAll("  ","    ") : "this" : "null");
+            "  " + "imageURLs" + "=" + (getImageURLs() != null ? !getImageURLs().equals(this)  ? getImageURLs().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "ticketRaiser = "+(getTicketRaiser()!=null?Integer.toHexString(System.identityHashCode(getTicketRaiser())):"null") + System.getProperties().getProperty("line.separator") +
+            "  " + "ticketFixer = "+(getTicketFixer()!=null?Integer.toHexString(System.identityHashCode(getTicketFixer())):"null") + System.getProperties().getProperty("line.separator") +
+            "  " + "fixApprover = "+(getFixApprover()!=null?Integer.toHexString(System.identityHashCode(getFixApprover())):"null");
   }
 }
