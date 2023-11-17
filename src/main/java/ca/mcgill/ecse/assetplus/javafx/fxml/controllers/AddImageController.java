@@ -1,4 +1,4 @@
-package ca.mcgill.ecse.assetplus.javafx.fxml.pages;
+package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

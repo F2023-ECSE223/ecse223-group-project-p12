@@ -7,9 +7,13 @@ Stylesheet of our UI
 */
 
 /* General attributes for the whole document */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 .root
 {  
-    -fx-font-family : "montserrat";
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-font-weight: bold;
 
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
@@ -42,4 +46,9 @@ Stylesheet of our UI
     -fx-text-fill: white;
     -fx-background-color: #8768F2;
     -fx-background-radius: 10px;
+}
+
+.menuButton.icon
+{
+    -fx-translate-x: -20;
 }
