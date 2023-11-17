@@ -1,6 +1,8 @@
 package ca.mcgill.ecse.assetplus.application;
 
+import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import javafx.application.Application;
 
 public class AssetPlusApplication {
 
@@ -8,6 +10,7 @@ public class AssetPlusApplication {
 
   public static void main(String[] args) {
     // TODO Start the application user interface here
+    Application.launch(AssetPlusFXMLView.class, args);
   }
 
   public static AssetPlus getAssetPlus() {
