@@ -32,3 +32,36 @@ class TOMaintenanceNote {
   String description;
   String noteTakerEmail;
 }
+
+class TOUser {
+  abstract;
+  immutable;
+  String email;
+  String name;
+  String password;
+  String phoneNumber;
+  List<String> ticketsRaised;
+}
+
+class TOGuest{
+  immutable;
+  isA TOUser;
+}
+
+class TOHotelStaff{
+  abstract;
+  immutable;
+  isA TOUser;
+  List<Integer> ticketFixed;
+}
+
+class TOEmployee{
+  immutable;
+  isA TOHotelStaff;
+}
+
+class TOManager{
+  immutable;
+  isA TOHotelStaff;
+  List<Integer> ticketApproved;
+}

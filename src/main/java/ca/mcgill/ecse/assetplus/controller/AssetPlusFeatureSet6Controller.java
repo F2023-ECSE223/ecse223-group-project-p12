@@ -101,7 +101,8 @@ public class AssetPlusFeatureSet6Controller {
       maintenanceTicket.getPriority() != null ? maintenanceTicket.getPriority().toString() : "",
       maintenanceTicket.hasFixApprover(), 
       assetName, expectedLifeSpanInDays, purchaseDate, floorNumber, roomNumber, 
-      convertFromTicketImages(maintenanceTicket.getTicketImages()), allNotes);
+      convertFromTicketImages(maintenanceTicket.getTicketImages()),
+      allNotes);
   }
 
   /**
