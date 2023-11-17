@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ViewTicketStatusController {
+public class AssetTypesController {
 
     @FXML
     private VBox Dashboard;
@@ -46,7 +46,6 @@ public class ViewTicketStatusController {
 
     @FXML
     private Button tabTicketStatus;
-
 
     @FXML
     void ChangeTabAddImage(ActionEvent event) {
