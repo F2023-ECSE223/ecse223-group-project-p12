@@ -12,12 +12,6 @@
 
 }
 
-.button
-{
-    -fx-background-color: #8768F2;
-    -fx-background-radius: 10px;
-}
-
 .menuButton
 {
     -fx-border-color: transparent;
@@ -27,4 +21,11 @@
     -fx-effect: none;
 
     -fx-text-fill: #808080;
+}
+
+.actionButton
+{
+    -fx-text-fill: white;
+    -fx-background-color: #8768F2;
+    -fx-background-radius: 10px;
 }
