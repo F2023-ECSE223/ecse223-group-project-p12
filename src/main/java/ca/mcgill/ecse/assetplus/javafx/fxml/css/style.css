@@ -13,7 +13,7 @@ Stylesheet of our UI
 .root
 {  
     -fx-font-family: 'Montserrat', sans-serif;
-    -fx-font-weight: bold;
+    -fx-font-weight: 500;
 
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
