@@ -1,0 +1,61 @@
+/*
+
+Stylesheet of our UI
+
+@author - Julia B.Grenier, NAMES
+
+*/
+
+/* General attributes for the whole document */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.root
+{  
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-font-weight: 500;
+
+    -fx-accent: #8768F2;
+    -fx-focus-color: #8768F2;
+
+    -fx-background-color: #FFFFFF;
+
+}
+
+.logo
+{
+    -fx-font-size: 24px;
+    -fx-text-fill: #8768F2;
+    -fx-font-weight: bold;
+}
+
+/* Buttons(Tabs) in the dashboard on the left for the different*/
+.menuButton
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-effect: none;
+
+    -fx-text-fill: #808080;
+}
+
+/* Colors of the buttons(Tabs) in the dashboard on the left when the mouse hoves(go over) it*/
+.menuButton:hover
+{
+    -fx-background-color: #f6f6f6;
+}
+
+/* Action buttons are the buttons like AddImage that needs to be purple*/
+.actionButton
+{
+    -fx-text-fill: white;
+    -fx-background-color: #8768F2;
+    -fx-background-radius: 10px;
+}
+
+.menuButton.icon
+{
+    -fx-translate-x: -20;
+}
