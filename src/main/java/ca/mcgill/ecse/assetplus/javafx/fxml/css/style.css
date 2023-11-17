@@ -1,7 +1,13 @@
+/*
 
+Stylesheet of our UI
 
+@author - Julia B.Grenier, NAMES
 
-.root   
+*/
+
+/* General attributes for the whole document */
+.root
 {  
     -fx-font-family : "montserrat";
 
@@ -12,6 +18,7 @@
 
 }
 
+/* Buttons(Tabs) in the dashboard on the left for the different*/
 .menuButton
 {
     -fx-border-color: transparent;
@@ -23,6 +30,13 @@
     -fx-text-fill: #808080;
 }
 
+/* Colors of the buttons(Tabs) in the dashboard on the left when the mouse hoves(go over) it*/
+.menuButton:hover
+{
+    -fx-background-color: #f6f6f6;
+}
+
+/* Action buttons are the buttons like AddImage that needs to be purple*/
 .actionButton
 {
     -fx-text-fill: white;
