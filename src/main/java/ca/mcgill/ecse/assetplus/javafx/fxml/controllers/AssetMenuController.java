@@ -4,12 +4,11 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ViewTicketStatusController {
+public class AssetMenuController {
 
     @FXML
     private VBox Dashboard;
@@ -23,14 +22,6 @@ public class ViewTicketStatusController {
     @FXML
     private VBox TopContent;
 
-    @FXML
-    private Button addTicketButton;
-
-    @FXML
-    private TextField searchBar;
-
-    @FXML
-    private ChoiceBox<?> statusFilter;
 
     @FXML
     private Button tabAddImage;
@@ -55,11 +46,6 @@ public class ViewTicketStatusController {
 
     @FXML
     private Button tabTicketStatus;
-
-    @FXML
-    void AddTicket(ActionEvent event) {
-
-    }
 
     @FXML
     void ChangeTabAddImage(ActionEvent event) {
@@ -94,11 +80,6 @@ public class ViewTicketStatusController {
 
     @FXML
     void ChangeViewToEmployees(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showTickets(ActionEvent event) {
         AssetPlusFXMLView.getInstance().changeTab("pages/Employees.fxml");
     }
 

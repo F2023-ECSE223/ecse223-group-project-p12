@@ -157,7 +157,7 @@
                         <HBox alignment="CENTER_LEFT" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
                               <Label text="Current Images for ticket #" />
-                              <TextField fx:id="ticketNumberField" alignment="CENTER" promptText="ticket number" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;">
+                              <TextField  alignment="CENTER" promptText="ticket number" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
