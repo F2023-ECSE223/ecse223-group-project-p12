@@ -22,7 +22,7 @@ Stylesheet of our UI
 
 }
 
-.logo
+.logo, .username
 {
     -fx-font-size: 24px;
     -fx-text-fill: #8768F2;

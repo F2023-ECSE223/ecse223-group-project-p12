@@ -32,8 +32,11 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -124,11 +127,14 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                              <VBox alignment="CENTER_LEFT">
                                  <children>
-                                    <Label text="Username" />
+                                    <Label styleClass="username" text="Username" />
                                     <Label text="Role" />
                                  </children>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
                               </VBox>
                               <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                                  <fill>
@@ -158,14 +164,29 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <TextField fx:id="ticketNumberField" alignment="CENTER" onAction="#showImagesFromTicket" promptText="ticket number" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;" text="Search...">
+                              <TextField fx:id="searchBar" alignment="CENTER" onAction="#showTickets" promptText="ticket number" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;" text="Search ticket number">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                               <SVGPath content="M12 12h5v5h-5v-5m7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5h14M5 19V9h14v10H5Z&#10;" fill="#8768f2" />
-                              <Pane prefHeight="50.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                              <Button fx:id="addImageButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AddImage" prefHeight="40.0" prefWidth="120.0" styleClass="actionButton" text="Add Ticket">
+                              <Pane prefHeight="28.0" prefWidth="286.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ChoiceBox fx:id="statusFilter" prefWidth="150.0" value="Select Status">
+                                       <items>
+                                          <FXCollections fx:factory="observableArrayList">
+                                             <String fx:value="Open" />
+                                             <String fx:value="In Progress" />
+                                             <String fx:value="Resolved" />
+                                             <String fx:value="Closed" />
+                                          </FXCollections>
+                                       </items>
+                                    </ChoiceBox>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="100.0" right="10.0" top="10.0" />
+                                 </HBox.margin></Pane>
+                              <Button fx:id="addTicketButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AddTicket" prefHeight="40.0" prefWidth="120.0" styleClass="actionButton" text="Add Ticket">
                                  <graphic>
                                     <SVGPath content="M8.9 6.9v-5a1 1 0 1 0-2 0v5h-5a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5z" fill="WHITE" />
                                  </graphic>
@@ -185,17 +206,21 @@
                   </VBox>
               <ScrollPane prefHeight="400.0" prefWidth="750.0" style="-fx-background-color: white;">
                      <content>
-                        <GridPane prefHeight="329.0" prefWidth="748.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                          </rowConstraints>
-                        </GridPane>
+                        <VBox prefHeight="379.0" prefWidth="753.0">
+                           <children>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
+                           </children>
+                        </VBox>
                      </content>
               </ScrollPane>
                </children>

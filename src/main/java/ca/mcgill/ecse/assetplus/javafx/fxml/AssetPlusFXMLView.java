@@ -23,7 +23,7 @@ public class AssetPlusFXMLView extends Application {
   public void start(Stage primaryStage) {
     instance = this;
     try {
-      var root = (Pane) FXMLLoader.load(getClass().getResource("pages/AddImage.fxml"));
+      var root = (Pane) FXMLLoader.load(getClass().getResource("pages/ViewTicketStatus.fxml"));
       var scene = new Scene(root);
       primaryStage.setScene(scene);
       primaryStage.setMinWidth(960);

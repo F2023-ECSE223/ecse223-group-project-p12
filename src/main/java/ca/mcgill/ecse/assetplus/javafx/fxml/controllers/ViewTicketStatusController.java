@@ -3,6 +3,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,7 +23,13 @@ public class ViewTicketStatusController {
     private VBox TopContent;
 
     @FXML
-    private Button addImageButton;
+    private Button addTicketButton;
+
+    @FXML
+    private TextField searchBar;
+
+    @FXML
+    private ChoiceBox<?> statusFilter;
 
     @FXML
     private Button tabAddImage;
@@ -49,10 +56,7 @@ public class ViewTicketStatusController {
     private Button tabTicketStatus;
 
     @FXML
-    private TextField ticketNumberField;
-
-    @FXML
-    void AddImage(ActionEvent event) {
+    void AddTicket(ActionEvent event) {
 
     }
 
@@ -92,7 +96,7 @@ public class ViewTicketStatusController {
     }
 
     @FXML
-    void showImagesFromTicket(ActionEvent event) {
+    void showTickets(ActionEvent event) {
 
     }
 
