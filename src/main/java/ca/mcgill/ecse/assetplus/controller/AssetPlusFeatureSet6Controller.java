@@ -39,7 +39,6 @@ public class AssetPlusFeatureSet6Controller {
       Guest guest = (Guest) userToDelete;
       guest.delete();
     }
-    AssetPlusPersistence.save();
 
   }
 
@@ -55,7 +54,7 @@ public class AssetPlusFeatureSet6Controller {
     for (MaintenanceTicket ticket: maintenanceTickets) {
       tickets.add(convertFromMaintenanceTicket(ticket));
     }
-    AssetPlusPersistence.save();
+
     return tickets;
   }
 
@@ -104,7 +103,6 @@ public class AssetPlusFeatureSet6Controller {
       assetName, expectedLifeSpanInDays, purchaseDate, floorNumber, roomNumber, 
       convertFromTicketImages(maintenanceTicket.getTicketImages()), allNotes);
   }
-  
 
   /**
    * <p>Converts a list of maintenance notes into a list of TOMaintenanceNote</p>

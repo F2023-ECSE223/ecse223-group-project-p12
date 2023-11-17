@@ -39,10 +39,10 @@ public class AssetPlusFeatureSet3Controller {
         try {
           SpecificAsset asset = AssetPlusApplication.getAssetPlus().addSpecificAsset(assetNumber, floorNumber, roomNumber, purchaseDate, AssetType.getWithName(assetTypeName));
           AssetPlusApplication.getAssetPlus().addSpecificAsset(asset);
-          AssetPlusPersistence.save();
         } catch (RuntimeException e){
           return e.getMessage();
         }
+        AssetPlusPersistence.save();
         return "";
   }
 
@@ -73,10 +73,10 @@ public class AssetPlusFeatureSet3Controller {
           asset.setRoomNumber(newRoomNumber);
           asset.setPurchaseDate(newPurchaseDate);
           asset.setAssetType(AssetType.getWithName(newAssetTypeName));
-          AssetPlusPersistence.save();
        } catch (RuntimeException e){
           return e.getMessage();
         }
+        AssetPlusPersistence.save();
         return "";
   }
 
@@ -94,7 +94,6 @@ public class AssetPlusFeatureSet3Controller {
 
         //Delete the specific asset from the AssetPlus application instance. 
         (SpecificAsset.getWithAssetNumber(assetNumber)).delete();
-        AssetPlusPersistence.save();
   }
 
   /**

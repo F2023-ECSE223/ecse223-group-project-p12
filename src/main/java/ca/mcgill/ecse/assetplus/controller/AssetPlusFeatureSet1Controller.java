@@ -28,11 +28,11 @@ public class AssetPlusFeatureSet1Controller {
     //Updating the manager password with the new password
     try {
       AssetPlusApplication.getAssetPlus().getManager().setPassword(password);
-      AssetPlusPersistence.save();
     }
     catch (RuntimeException e){
       return e.getMessage();
     }
+    AssetPlusPersistence.save();
     return "";
   }
 
@@ -70,11 +70,10 @@ public class AssetPlusFeatureSet1Controller {
         Guest aGuest = AssetPlusApplication.getAssetPlus().addGuest(email, name, password, phoneNumber);
         AssetPlusApplication.getAssetPlus().addGuest(aGuest);
       }
-      AssetPlusPersistence.save();
     } catch (RuntimeException e) {
       return e.getMessage();
     }
-    
+    AssetPlusPersistence.save();
     return "";
   }
 
@@ -101,10 +100,10 @@ public class AssetPlusFeatureSet1Controller {
       userToUpdate.setName(newName);
       userToUpdate.setPassword(newPassword);
       userToUpdate.setPhoneNumber(newPhoneNumber);
-      AssetPlusPersistence.save();
     } catch (RuntimeException e) {
       return e.getMessage();
     }
+    AssetPlusPersistence.save();
     return "";
   }
 

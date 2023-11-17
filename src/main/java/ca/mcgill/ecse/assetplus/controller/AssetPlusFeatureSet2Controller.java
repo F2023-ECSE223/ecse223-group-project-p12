@@ -29,12 +29,11 @@ public class AssetPlusFeatureSet2Controller {
     try {
       AssetType type = AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpanInDays);
       AssetPlusApplication.getAssetPlus().addAssetType(type);
-      AssetPlusPersistence.save();
     } 
     catch (RuntimeException e) {
       return e.getMessage();
     }
-
+    AssetPlusPersistence.save();
     return "";
   }
 
@@ -63,16 +62,16 @@ public class AssetPlusFeatureSet2Controller {
       return err;
     }
     
+
     try {
       AssetType type = AssetType.getWithName(oldName);
       type.setName(newName);
       type.setExpectedLifeSpan(newExpectedLifeSpanInDays);
-      AssetPlusPersistence.save();
     }
     catch (RuntimeException e) {
       return e.getMessage();
     }
-
+    AssetPlusPersistence.save();
     return "";
   }
 
@@ -91,12 +90,11 @@ public class AssetPlusFeatureSet2Controller {
     try {
       AssetType type = AssetType.getWithName(name);
       type.delete();
-      AssetPlusPersistence.save();
     }
     catch (RuntimeException e) {
       System.out.println(err);
     }
-    
+    AssetPlusPersistence.save();
     return;
   }
 
