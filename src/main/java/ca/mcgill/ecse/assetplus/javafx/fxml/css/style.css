@@ -22,6 +22,13 @@ Stylesheet of our UI
 
 }
 
+.logo
+{
+    -fx-font-size: 24px;
+    -fx-text-fill: #8768F2;
+    -fx-font-weight: bold;
+}
+
 /* Buttons(Tabs) in the dashboard on the left for the different*/
 .menuButton
 {

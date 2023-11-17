@@ -53,7 +53,7 @@
          <children>
             <VBox fx:id="Dashboard" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="210.0" style="-fx-border-color: f0f0f0;" HBox.hgrow="SOMETIMES">
                <children>
-            <Label alignment="CENTER" minWidth="60.0" prefHeight="75.0" prefWidth="210.0" style="-fx-text-fill: #8768F2;" text="AssetPlus" textAlignment="CENTER" textFill="#8768f2" wrapText="false">
+            <Label alignment="CENTER" minWidth="60.0" prefHeight="75.0" prefWidth="210.0" style="-fx-text-fill: #8768F2;" styleClass="logo" text="AssetPlus" textAlignment="CENTER" textFill="#8768f2" wrapText="false">
                      <graphic>
                         <SVGPath content="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10s-4.477 10-10 10zm0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16zm1-7v4a1 1 0 0 1-2 0v-4H5a1 1 0 0 1 0-2h4V5a1 1 0 1 1 2 0v4h4a1 1 0 0 1 0 2h-4z" fill="#8768f2" />
                      </graphic>
