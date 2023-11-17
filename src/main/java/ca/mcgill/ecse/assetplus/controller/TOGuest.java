@@ -3,7 +3,7 @@
 
 package ca.mcgill.ecse.assetplus.controller;
 
-// line 45 "../../../../../../AssetPlusTransferObjects.ump"
+// line 46 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOGuest extends TOUser
 {
 
@@ -15,9 +15,9 @@ public class TOGuest extends TOUser
   // CONSTRUCTOR
   //------------------------
 
-  public TOGuest(String aEmail, String aName, String aPassword, String aPhoneNumber)
+  public TOGuest(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised)
   {
-    super(aEmail, aName, aPassword, aPhoneNumber);
+    super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised);
   }
 
   //------------------------

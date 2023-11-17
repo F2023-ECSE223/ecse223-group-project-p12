@@ -40,6 +40,7 @@ class TOUser {
   String name;
   String password;
   String phoneNumber;
+  List<Integer> ticketsRaised;
 }
 
 class TOGuest{
@@ -51,6 +52,7 @@ class TOHotelStaff{
   abstract;
   immutable;
   isA TOUser;
+  List<Integer> ticketFixed;
 }
 
 class TOEmployee{
@@ -61,24 +63,5 @@ class TOEmployee{
 class TOManager{
   immutable;
   isA TOHotelStaff;
-}
-
-association 
-{  
-  1 TOUser ticketRaiser <- * TOMaintenanceTicket raisedTickets;  
-}
-
-association 
-{  
-  1 TOHotelStaff noteTaker <- * TOMaintenanceNote maintenanceNotes;  
-}
-
-association 
-{
-  0..1 TOHotelStaff ticketFixer <- * TOMaintenanceTicket maintenanceTasks;
-}
-
-association 
-{
-  0..1 TOManager fixApprover <- * TOMaintenanceTicket ticketsForApproval;
+  List<Integer> ticketApproved;
 }

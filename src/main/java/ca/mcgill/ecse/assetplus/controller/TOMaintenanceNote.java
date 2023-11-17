@@ -17,26 +17,15 @@ public class TOMaintenanceNote
   private String description;
   private String noteTakerEmail;
 
-  //TOMaintenanceNote Associations
-  private TOHotelStaff noteTaker;
-
-  //Helper Variables
-  private boolean canSetNoteTaker;
-
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOMaintenanceNote(Date aDate, String aDescription, String aNoteTakerEmail, TOHotelStaff aNoteTaker)
+  public TOMaintenanceNote(Date aDate, String aDescription, String aNoteTakerEmail)
   {
     date = aDate;
     description = aDescription;
     noteTakerEmail = aNoteTakerEmail;
-    canSetNoteTaker = true;
-    if (!setNoteTaker(aNoteTaker))
-    {
-      throw new RuntimeException("Unable to create TOMaintenanceNote due to aNoteTaker. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
   }
 
   //------------------------
@@ -57,24 +46,6 @@ public class TOMaintenanceNote
   {
     return noteTakerEmail;
   }
-  /* Code from template association_GetOne */
-  public TOHotelStaff getNoteTaker()
-  {
-    return noteTaker;
-  }
-  /* Code from template association_SetUnidirectionalOne */
-  private boolean setNoteTaker(TOHotelStaff aNewNoteTaker)
-  {
-    boolean wasSet = false;
-    if (!canSetNoteTaker) { return false; }
-    canSetNoteTaker = false;
-    if (aNewNoteTaker != null)
-    {
-      noteTaker = aNewNoteTaker;
-      wasSet = true;
-    }
-    return wasSet;
-  }
 
   public void delete()
   {}
@@ -85,7 +56,6 @@ public class TOMaintenanceNote
     return super.toString() + "["+
             "description" + ":" + getDescription()+ "," +
             "noteTakerEmail" + ":" + getNoteTakerEmail()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "noteTaker = "+(getNoteTaker()!=null?Integer.toHexString(System.identityHashCode(getNoteTaker())):"null");
+            "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null");
   }
 }

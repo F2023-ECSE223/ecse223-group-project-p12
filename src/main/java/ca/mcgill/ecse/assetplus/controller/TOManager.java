@@ -3,7 +3,7 @@
 
 package ca.mcgill.ecse.assetplus.controller;
 
-// line 61 "../../../../../../AssetPlusTransferObjects.ump"
+// line 63 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOManager extends TOHotelStaff
 {
 
@@ -11,22 +11,37 @@ public class TOManager extends TOHotelStaff
   // MEMBER VARIABLES
   //------------------------
 
+  //TOManager Attributes
+  private List<Integer> ticketApproved;
+
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOManager(String aEmail, String aName, String aPassword, String aPhoneNumber)
+  public TOManager(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised, List<Integer> aTicketFixed, List<Integer> aTicketApproved)
   {
-    super(aEmail, aName, aPassword, aPhoneNumber);
+    super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised, aTicketFixed);
+    ticketApproved = aTicketApproved;
   }
 
   //------------------------
   // INTERFACE
   //------------------------
 
+  public List<Integer> getTicketApproved()
+  {
+    return ticketApproved;
+  }
+
   public void delete()
   {
     super.delete();
   }
 
+
+  public String toString()
+  {
+    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "ticketApproved" + "=" + (getTicketApproved() != null ? !getTicketApproved().equals(this)  ? getTicketApproved().toString().replaceAll("  ","    ") : "this" : "null");
+  }
 }
