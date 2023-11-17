@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ViewTicketStatusController {
+public class SettingsController {
 
     @FXML
     private VBox Dashboard;

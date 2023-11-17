@@ -24,9 +24,6 @@ public class AddImageController {
     private VBox TopContent;
 
     @FXML
-    private Button addImageButton;
-
-    @FXML
     private Button tabAddImage;
 
     @FXML
@@ -51,54 +48,41 @@ public class AddImageController {
     private Button tabTicketStatus;
 
     @FXML
-    private TextField ticketNumberField;
-
-    @FXML
     private Font x1;
 
     @FXML
-    void AddImage(ActionEvent event) {
-
-    }
-
-    @FXML
     void ChangeTabAddImage(ActionEvent event) {
-
+        AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
     }
 
     @FXML
     void ChangeTabToSettings(ActionEvent event) {
-
+        AssetPlusFXMLView.getInstance().changeTab("pages/Settings.fxml");
     }
 
     @FXML
     void ChangeTabToTicketMenu(ActionEvent event) {
+        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
 
     }
 
     @FXML
-    void ChangeTabToTicketStatus(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("ViewTicketStatus.fxml");
+    void ChangeTabToViewTicketStatus(ActionEvent event) {
+        AssetPlusFXMLView.getInstance().changeTab("pages/ViewTicketStatus.fxml");
     }
 
     @FXML
     void ChangeToLogOutTab(ActionEvent event) {
-
+        // To implement Dialog box
     }
 
     @FXML
     void ChangeViewToAssetTypes(ActionEvent event) {
-
+        AssetPlusFXMLView.getInstance().changeTab("pages/AssetTypes.fxml");
     }
 
     @FXML
     void ChangeViewToEmployees(ActionEvent event) {
-
+        AssetPlusFXMLView.getInstance().changeTab("pages/Employees.fxml");
     }
-
-    @FXML
-    void showImagesFromTicket(ActionEvent event) {
-
-    }
-
 }
