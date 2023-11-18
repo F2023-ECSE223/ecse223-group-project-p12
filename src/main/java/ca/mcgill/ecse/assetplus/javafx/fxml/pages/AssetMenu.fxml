@@ -37,135 +37,33 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox fx:id="MainWindow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewTicketStatusController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssetMenuController">
   <children>
       <HBox fx:id="DashboardAndContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <children>
-            <VBox fx:id="Dashboard" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="210.0" style="-fx-border-color: f0f0f0;" HBox.hgrow="SOMETIMES">
-               <children>
-            <Label alignment="CENTER" minWidth="60.0" prefHeight="75.0" prefWidth="210.0" style="-fx-text-fill: #8768F2;" styleClass="logo" text="AssetPlus" textAlignment="CENTER" textFill="#8768f2" wrapText="false">
-                     <graphic>
-                        <SVGPath content="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10s-4.477 10-10 10zm0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16zm1-7v4a1 1 0 0 1-2 0v-4H5a1 1 0 0 1 0-2h4V5a1 1 0 1 1 2 0v4h4a1 1 0 0 1 0 2h-4z" fill="#8768f2" />
-                     </graphic>
-            </Label>
-                  <Label prefHeight="31.0" prefWidth="222.0" text="Menu">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets left="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <VBox alignment="CENTER" prefHeight="300.0" prefWidth="210.0">
-                     <children>
-                        <Button fx:id="tabEmployees" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeViewToEmployees" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Employees">
-                           <graphic>
-                              <SVGPath content="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12Zm-8 8v-2.8q0-.85.438-1.563T5.6 14.55q1.55-.775 3.15-1.163T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20H4Zm2-2h12v-.8q0-.275-.138-.5t-.362-.35q-1.35-.675-2.725-1.012T12 15q-1.4 0-2.775.338T6.5 16.35q-.225.125-.363.35T6 17.2v.8Zm6-8q.825 0 1.413-.588T14 8q0-.825-.588-1.413T12 6q-.825 0-1.413.588T10 8q0 .825.588 1.413T12 10Zm0-2Zm0 10Z" fill="GREY" styleClass="icon" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="tabAssetTypes" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeViewToAssetTypes" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Asset Types">
-                           <graphic>
-                              <SVGPath content="M5.038 19.346q-.213 0-.356-.143t-.144-.357v-1H4q-.846 0-1.423-.577Q2 16.692 2 15.846v-5q0-.633.434-1.066q.433-.434 1.066-.434t1.066.434Q5 10.213 5 10.846v3.5h14v-3.5q0-.633.434-1.066q.433-.434 1.066-.434t1.066.434q.434.433.434 1.066v5q0 .846-.577 1.423q-.577.577-1.423.577h-.538v1q0 .194-.134.347q-.134.153-.328.153q-.213 0-.357-.143q-.143-.143-.143-.357v-1H5.538v1q0 .214-.143.357t-.357.143Zm.962-6v-2.5q0-.933-.559-1.664T4 8.346V7.231q0-.846.577-1.423Q5.154 5.23 6 5.23h12q.846 0 1.423.577Q20 6.385 20 7.23v1.115q-.888.1-1.444.828Q18 9.902 18 10.846v2.5H6Z" fill="GREY" styleClass="icon" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="tabAssetTypes1" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeViewToAssetTypes" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Asset Menu">
-                           <graphic>
-                              <SVGPath content="m14.56 4l2.67 8H6.78l2.66-8h5.12M16 2H8L4 14h16L16 2m-5 13h2v5h5v2H6v-2h5v-5Z" fill="GREY" styleClass="icon" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="tabTicketMenu" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeTabToTicketMenu" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Ticket Menu">
-                           <graphic>
-                              <SVGPath content="M9 10a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1Zm12 1a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1a1 1 0 0 1 0 2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1a1 1 0 0 1 0-2Zm-1-1.82a3 3 0 0 0 0 5.64V17H10a1 1 0 0 0-2 0H4v-2.18a3 3 0 0 0 0-5.64V7h4a1 1 0 0 0 2 0h10Z" fill="GREY" styleClass="icon" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="tabAddImage" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeTabAddImage" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Add Image">
-                           <graphic>
-                              <SVGPath content="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-5.04 9.29l-2.75 3.54l-1.96-2.36L6.5 17h11l-3.54-4.71Z" fill="GREY" styleClass="icon" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="tabTicketStatus" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeTabToViewTicketStatus" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Ticket Status">
-                           <graphic>
-                              <SVGPath content="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2Zm0 1.5a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17Zm-1.25 9.94l4.47-4.47a.75.75 0 0 1 1.133.976l-.073.084l-5 5a.75.75 0 0 1-.976.073l-.084-.073l-2.5-2.5a.75.75 0 0 1 .976-1.133l.084.073l1.97 1.97l4.47-4.47l-4.47 4.47Z" fill="GREY" styleClass="icon" />
-                           </graphic>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefWidth="210.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Button fx:id="tabSettings" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeTabToSettings" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Settings">
-                           <graphic>
-                              <SVGPath content="M19.5 12c0-.23-.01-.45-.03-.68l1.86-1.41c.4-.3.51-.86.26-1.3l-1.87-3.23a.987.987 0 0 0-1.25-.42l-2.15.91c-.37-.26-.76-.49-1.17-.68l-.29-2.31c-.06-.5-.49-.88-.99-.88h-3.73c-.51 0-.94.38-1 .88l-.29 2.31c-.41.19-.8.42-1.17.68l-2.15-.91c-.46-.2-1-.02-1.25.42L2.41 8.62c-.25.44-.14.99.26 1.3l1.86 1.41a7.343 7.343 0 0 0 0 1.35l-1.86 1.41c-.4.3-.51.86-.26 1.3l1.87 3.23c.25.44.79.62 1.25.42l2.15-.91c.37.26.76.49 1.17.68l.29 2.31c.06.5.49.88.99.88h3.73c.5 0 .93-.38.99-.88l.29-2.31c.41-.19.8-.42 1.17-.68l2.15.91c.46.2 1 .02 1.25-.42l1.87-3.23c.25-.44.14-.99-.26-1.3l-1.86-1.41c.03-.23.04-.45.04-.68zm-7.46 3.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5s3.5 1.57 3.5 3.5s-1.57 3.5-3.5 3.5z" fill="GREY" styleClass="icon" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="tabLogOut" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeToLogOutTab" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Logout">
-                           <graphic>
-                              <SVGPath content="M11.16 4.28a.75.75 0 1 1 1.06-1.06l3.25 3.25L16 7l-.53.53l-3.25 3.25a.75.75 0 0 1-1.06-1.06l1.97-1.97H3.25a1.75 1.75 0 1 0 0 3.5h2a.75.75 0 0 1 0 1.5h-2a3.25 3.25 0 0 1 0-6.5h9.88l-1.97-1.97Z" fill="GREY" styleClass="icon" />
-                           </graphic>
-                        </Button>
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
+            <fx:include source="../components/Dashboard.fxml" />
             <VBox prefHeight="540.0" prefWidth="750.0" HBox.hgrow="ALWAYS">
                <children>
                   <VBox fx:id="TopContent" prefHeight="180.0" prefWidth="750.0">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="Username" />
-                                    <Label text="Role" />
-                                 </children>
-                              </VBox>
-                              <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
-                                 <fill>
-                                    <LinearGradient endX="1.0" endY="1.0">
-                                       <stops>
-                                          <Stop>
-                                             <color>
-                                                <Color red="0.8100000023841858" green="0.4778999984264374" blue="0.8003067374229431" />
-                                             </color>
-                                          </Stop>
-                                          <Stop offset="1.0">
-                                             <color>
-                                                <Color red="0.2981979548931122" green="0.2199999988079071" blue="1.0" />
-                                             </color>
-                                          </Stop>
-                                       </stops>
-                                    </LinearGradient>
-                                 </fill>
-                              </Circle>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets right="30.0" />
-                           </padding>
-                        </HBox>
+                        <fx:include source="../components/UserTopSection.fxml" />
                         <HBox alignment="CENTER_LEFT" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <TextField  alignment="CENTER" promptText="ticket number" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;" text="Search...">
+                              <Label text="%key.CurrentImagesForTicket" />
+                              <TextField fx:id="ticketNumberField" alignment="CENTER" onAction="" promptText="%key.TicketNumber" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <SVGPath content="M12 12h5v5h-5v-5m7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5h14M5 19V9h14v10H5Z&#10;" fill="#8768f2" />
+                              <SVGPath content="m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z" fill="#8768f2" />
                               <Pane prefHeight="50.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                              <Button  alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"  prefHeight="40.0" prefWidth="120.0" styleClass="actionButton" text="Add Ticket">
+                              <Button fx:id="addImageButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#AddImage" prefHeight="40.0" prefWidth="120.0" styleClass="actionButton" text="%key.AddImage">
                                  <graphic>
                                     <SVGPath content="M8.9 6.9v-5a1 1 0 1 0-2 0v5h-5a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5z" fill="WHITE" />
                                  </graphic>
@@ -184,19 +82,12 @@
                      </padding>
                   </VBox>
               <ScrollPane prefHeight="400.0" prefWidth="750.0" style="-fx-background-color: white;">
-                     <content>
-                        <GridPane prefHeight="329.0" prefWidth="748.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                          </rowConstraints>
-                        </GridPane>
-                     </content>
+                <content>
+                  <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="532.0" prefWidth="734.0">
+                           <children>
+                              <Label fx:id="replaceMe" layoutX="141.0" layoutY="122.0" text="Testttt" />
+                           </children></AnchorPane>
+                </content>
               </ScrollPane>
                </children>
             </VBox>

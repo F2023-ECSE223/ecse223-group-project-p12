@@ -6,14 +6,12 @@ Stylesheet of our UI
 
 */
 
-/* General attributes for the whole document */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/* General attributes for the whole document */
 
 .root
 {  
-    -fx-font-family: 'Montserrat', sans-serif;
-    -fx-font-weight: 500;
+    -fx-font-family: 'Yu Gothic';
 
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
@@ -26,7 +24,6 @@ Stylesheet of our UI
 {
     -fx-font-size: 24px;
     -fx-text-fill: #8768F2;
-    -fx-font-weight: bold;
 }
 
 /* Buttons(Tabs) in the dashboard on the left for the different*/
