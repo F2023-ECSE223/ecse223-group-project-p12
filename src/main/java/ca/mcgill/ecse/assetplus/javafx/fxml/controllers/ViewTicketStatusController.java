@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -12,94 +13,30 @@ import javafx.scene.layout.VBox;
 public class ViewTicketStatusController {
 
     @FXML
-    private VBox Dashboard;
-
-    @FXML
     private HBox DashboardAndContent;
-
-    @FXML
-    private VBox MainWindow;
 
     @FXML
     private VBox TopContent;
 
     @FXML
-    private Button addTicketButton;
+    private Button addImageButton;
 
     @FXML
-    private TextField searchBar;
+    private Label replaceMe;
 
     @FXML
-    private ChoiceBox<?> statusFilter;
+    private TextField ticketNumberField;
 
     @FXML
-    private Button tabAddImage;
-
-    @FXML
-    private Button tabAssetTypes;
-
-    @FXML
-    private Button tabAssetTypes1;
-
-    @FXML
-    private Button tabEmployees;
-
-    @FXML
-    private Button tabLogOut;
-
-    @FXML
-    private Button tabSettings;
-
-    @FXML
-    private Button tabTicketMenu;
-
-    @FXML
-    private Button tabTicketStatus;
-
-    @FXML
-    void AddTicket(ActionEvent event) {
+    void AddImage(ActionEvent event) {
 
     }
 
-    @FXML
-    void ChangeTabAddImage(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
-    }
+
 
     @FXML
-    void ChangeTabToSettings(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/Settings.fxml");
+    void initialize() {
+        
+        replaceMe.setText("I replaced you");
     }
-
-    @FXML
-    void ChangeTabToTicketMenu(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
-
-    }
-
-    @FXML
-    void ChangeTabToViewTicketStatus(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/ViewTicketStatus.fxml");
-    }
-
-    @FXML
-    void ChangeToLogOutTab(ActionEvent event) {
-        // To implement Dialog box
-    }
-
-    @FXML
-    void ChangeViewToAssetTypes(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/AssetTypes.fxml");
-    }
-
-    @FXML
-    void ChangeViewToEmployees(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/Employees.fxml");
-    }
-
-    @FXML
-    void showTickets(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/Employees.fxml");
-    }
-
 }
