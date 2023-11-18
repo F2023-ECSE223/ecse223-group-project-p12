@@ -30,10 +30,7 @@ public class AssetPlusFXMLView extends Application {
     instance = this;
     try {
       stage = primaryStage;
-      FXMLLoader fxmlLoader = new FXMLLoader();
-      fxmlLoader.setResources(ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.ressources.Languages.Bundle", new Locale("en", "EN")));
-            
-      var root = (Pane) fxmlLoader.load(getClass().getResource("pages/AddImage.fxml").openStream());
+      var root = (Pane) FXMLLoader.load(getClass().getResource("pages/AddImage.fxml"), ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.fxml.Bundle", new Locale("en", "EN")));
       
       var scene = new Scene(root);
       primaryStage.setScene(scene);
@@ -80,8 +77,7 @@ public class AssetPlusFXMLView extends Application {
 
   public void changeTab(String fxml)
   {
-    FXMLLoader loader = new FXMLLoader(getClass()
-            .getResource(fxml));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.fxml.Bundle", new Locale("en", "EN")));
     Parent root;
     try 
     {

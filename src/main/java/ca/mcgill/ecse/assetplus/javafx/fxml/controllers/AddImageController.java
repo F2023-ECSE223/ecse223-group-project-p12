@@ -1,19 +1,22 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
+
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import java.util.ResourceBundle;
-import java.net.URL;
 
-public class AddImageController implements Initializable{
+public class AddImageController {
 
-    private ResourceBundle bundle;
+
+    @FXML
+    private ResourceBundle resources;
 
     @FXML
     private HBox DashboardAndContent;
@@ -35,10 +38,6 @@ public class AddImageController implements Initializable{
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        bundle = resources;
-    }
 }
 
 
