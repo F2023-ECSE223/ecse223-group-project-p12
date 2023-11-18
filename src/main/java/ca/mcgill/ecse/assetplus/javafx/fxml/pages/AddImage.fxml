@@ -41,10 +41,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.SVGPath?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AddImageController">
@@ -56,43 +52,7 @@
                <children>
                   <VBox fx:id="TopContent" prefHeight="180.0" prefWidth="750.0">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <VBox alignment="CENTER_LEFT">
-                                 <children>
-                                    <Label styleClass="username" text="Username" />
-                                    <Label text="Role" />
-                                 </children>
-                                 <padding>
-                                    <Insets right="20.0" />
-                                 </padding>
-                              </VBox>
-                              <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
-                                 <fill>
-                                    <LinearGradient endX="1.0" endY="1.0">
-                                       <stops>
-                                          <Stop>
-                                             <color>
-                                                <Color red="0.8100000023841858" green="0.4778999984264374" blue="0.8003067374229431" />
-                                             </color>
-                                          </Stop>
-                                          <Stop offset="1.0">
-                                             <color>
-                                                <Color red="0.2981979548931122" green="0.2199999988079071" blue="1.0" />
-                                             </color>
-                                          </Stop>
-                                       </stops>
-                                    </LinearGradient>
-                                 </fill>
-                              </Circle>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </VBox.margin>
-                           <padding>
-                              <Insets right="30.0" />
-                           </padding>
-                        </HBox>
+                        <fx:include source="../components/UserTopSection.fxml" />
                         <HBox alignment="CENTER_LEFT" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
                               <Label text="%key.CurrentImagesForTicket" />
