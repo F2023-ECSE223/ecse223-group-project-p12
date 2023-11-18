@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 
 public class AddImageController {
 
@@ -34,6 +35,9 @@ public class AddImageController {
     private TextField ticketNumberField;
 
     @FXML
+    private GridPane grid;
+
+    @FXML
     void AddImage(ActionEvent event) {
 
     }
@@ -46,18 +50,3 @@ public class AddImageController {
         replaceMe.setText("I replaced you");
     }
 }
-
-
-    
-/* 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    // the driver and assignment choice boxes are refreshable
-    replaceMe.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
-      replaceMe.setText("I changed you");
-    });
-
-    // register the refreshable nodes
-    AssetPlusFXMLView.getInstance().registerRefreshEvent(replaceMe);
-  }
-}*/
