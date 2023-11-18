@@ -65,3 +65,9 @@ class TOManager{
   isA TOHotelStaff;
   List<Integer> ticketApproved;
 }
+
+class TOAssetType {
+  String name;
+  Integer expectedLifeSpan;
+  1 -> * TOSpecificAsset;
+}
