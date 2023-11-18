@@ -5,11 +5,79 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 
 public class DashboardController {
+    @FXML
+    private VBox Dashboard;
+
+    @FXML
+    private Button tabAddImage;
+
+    @FXML
+    private Button tabAssetTypes;
+
+    @FXML
+    private Button tabAssetMenu;
+
+    @FXML
+    private Button tabEmployees;
+
+    @FXML
+    private Button tabLogOut;
+
+    @FXML
+    private Button tabSettings;
+
+    @FXML
+    private Button tabTicketMenu;
+
+    @FXML
+    private Button tabViewTicketStatus;
+
+    private void ClearClassTag() {
+        tabAddImage.getStyleClass().remove("currentMenuButton");
+        tabAssetTypes.getStyleClass().remove("currentMenuButton");
+        tabAssetMenu.getStyleClass().remove("currentMenuButton");
+        tabEmployees.getStyleClass().remove("currentMenuButton");
+        tabSettings.getStyleClass().remove("currentMenuButton");
+        tabTicketMenu.getStyleClass().remove("currentMenuButton");
+        tabViewTicketStatus.getStyleClass().remove("currentMenuButton");
+    }
+
+
+    @FXML
+    void initialize() {
+        String tab = AssetPlusFXMLView.getInstance().getCurrentPage();
+        ClearClassTag();
+        switch (tab) {
+            case "pages/AddImage.fxml":
+                tabAddImage.getStyleClass().add("currentMenuButton");
+                break;
+            case "pages/AssetTypes.fxml":
+                tabAssetTypes.getStyleClass().add("currentMenuButton");
+                break;
+            case "pages/AssetMenu.fxml":
+                tabAssetMenu.getStyleClass().add("currentMenuButton");
+                break;
+            case "pages/Employees.fxml":
+                tabEmployees.getStyleClass().add("currentMenuButton");
+                break;
+            case "pages/Settings.fxml":
+                tabSettings.getStyleClass().add("currentMenuButton");
+                break;
+            case "pages/TicketMenu.fxml":
+                tabTicketMenu.getStyleClass().add("currentMenuButton");
+                break;
+            case "pages/ViewTicketStatus.fxml":
+                tabViewTicketStatus.getStyleClass().add("currentMenuButton");
+                break;
+            default:
+                break;
+        }
+    }
+
     @FXML
     void ChangeTabAddImage(ActionEvent event) {
         AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
@@ -23,7 +91,6 @@ public class DashboardController {
     @FXML
     void ChangeTabToTicketMenu(ActionEvent event) {
         AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
-
     }
 
     @FXML
@@ -43,6 +110,11 @@ public class DashboardController {
     @FXML
     void ChangeViewToAssetTypes(ActionEvent event) {
         AssetPlusFXMLView.getInstance().changeTab("pages/AssetTypes.fxml");
+    }
+
+    @FXML
+    void ChangeViewToAssetMenu(ActionEvent event) {
+        AssetPlusFXMLView.getInstance().changeTab("pages/AssetMenu.fxml");
     }
 
     @FXML

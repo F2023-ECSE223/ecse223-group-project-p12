@@ -38,6 +38,13 @@ public class AddImageController {
 
     }
 
+
+
+    @FXML
+    void initialize() {
+        
+        replaceMe.setText("I replaced you");
+    }
 }
 
 
