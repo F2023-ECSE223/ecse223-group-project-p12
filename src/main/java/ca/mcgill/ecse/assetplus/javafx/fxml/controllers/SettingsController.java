@@ -41,16 +41,3 @@ public class SettingsController {
 }
 
 
-    
-/* 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    // the driver and assignment choice boxes are refreshable
-    replaceMe.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
-      replaceMe.setText("I changed you");
-    });
-
-    // register the refreshable nodes
-    AssetPlusFXMLView.getInstance().registerRefreshEvent(replaceMe);
-  }
-}*/
