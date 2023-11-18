@@ -13,6 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import java.util.ResourceBundle;
+import java.util.Locale;
+
 
 
 public class AssetPlusFXMLView extends Application {
@@ -27,7 +30,8 @@ public class AssetPlusFXMLView extends Application {
     instance = this;
     try {
       stage = primaryStage;
-      var root = (Pane) FXMLLoader.load(getClass().getResource("pages/ViewTicketStatus.fxml"));
+      var root = (Pane) FXMLLoader.load(getClass().getResource("pages/AddImage.fxml"), ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.fxml.Bundle", new Locale("en", "EN")));
+      
       var scene = new Scene(root);
       primaryStage.setScene(scene);
       primaryStage.setMinWidth(960);
@@ -73,8 +77,7 @@ public class AssetPlusFXMLView extends Application {
 
   public void changeTab(String fxml)
   {
-    FXMLLoader loader = new FXMLLoader(getClass()
-            .getResource(fxml));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.fxml.Bundle", new Locale("en", "EN")));
     Parent root;
     try 
     {
