@@ -20,22 +20,6 @@ import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 public class TOSpecificAsset {
 
-  private int assetNumber;
-  private int floorNumber;
-  private int roomNumber;
-  private Date purchaseDate;
-  private AssetType assetType;
-
-  /**
-   * Constructor to create a specific asset transfer object according to the specific asset which needs to be transferred. 
-   */
-  public TOSpecificAsset(SpecificAsset asset){
-    floorNumber = asset.getFloorNumber();
-    assetNumber = asset.getAssetNumber();
-    roomNumber = asset.getRoomNumber();
-    purchaseDate = asset.getPurchaseDate();
-    assetType = asset.getAssetType();
-  }
 
   //------------------------
   // MEMBER VARIABLES
