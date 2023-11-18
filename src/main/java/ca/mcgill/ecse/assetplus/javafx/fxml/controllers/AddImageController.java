@@ -1,88 +1,57 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
-import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
+import java.util.ResourceBundle;
+import java.net.URL;
 
-public class AddImageController {
+public class AddImageController implements Initializable{
 
-    @FXML
-    private VBox Dashboard;
+    private ResourceBundle bundle;
 
     @FXML
     private HBox DashboardAndContent;
 
     @FXML
-    private VBox MainWindow;
-
-    @FXML
     private VBox TopContent;
 
     @FXML
-    private Button tabAddImage;
+    private Button addImageButton;
 
     @FXML
-    private Button tabAssetTypes;
+    private Label replaceMe;
 
     @FXML
-    private Button tabAssetTypes1;
+    private TextField ticketNumberField;
 
     @FXML
-    private Button tabEmployees;
-
-    @FXML
-    private Button tabLogOut;
-
-    @FXML
-    private Button tabSettings;
-
-    @FXML
-    private Button tabTicketMenu;
-
-    @FXML
-    private Button tabTicketStatus;
-
-    @FXML
-    private Font x1;
-
-    @FXML
-    void ChangeTabAddImage(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
-    }
-
-    @FXML
-    void ChangeTabToSettings(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/Settings.fxml");
-    }
-
-    @FXML
-    void ChangeTabToTicketMenu(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
+    void AddImage(ActionEvent event) {
 
     }
 
-    @FXML
-    void ChangeTabToViewTicketStatus(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/ViewTicketStatus.fxml");
-    }
-
-    @FXML
-    void ChangeToLogOutTab(ActionEvent event) {
-        // To implement Dialog box
-    }
-
-    @FXML
-    void ChangeViewToAssetTypes(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/AssetTypes.fxml");
-    }
-
-    @FXML
-    void ChangeViewToEmployees(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/Employees.fxml");
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        bundle = resources;
     }
 }
+
+
+    
+/* 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    // the driver and assignment choice boxes are refreshable
+    replaceMe.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
+      replaceMe.setText("I changed you");
+    });
+
+    // register the refreshable nodes
+    AssetPlusFXMLView.getInstance().registerRefreshEvent(replaceMe);
+  }
+}*/

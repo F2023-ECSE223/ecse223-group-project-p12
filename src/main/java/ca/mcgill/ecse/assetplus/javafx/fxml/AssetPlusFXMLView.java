@@ -13,6 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import java.util.ResourceBundle;
+import java.util.Locale;
+
 
 
 public class AssetPlusFXMLView extends Application {
@@ -27,7 +30,11 @@ public class AssetPlusFXMLView extends Application {
     instance = this;
     try {
       stage = primaryStage;
-      var root = (Pane) FXMLLoader.load(getClass().getResource("pages/ViewTicketStatus.fxml"));
+      FXMLLoader fxmlLoader = new FXMLLoader();
+      fxmlLoader.setResources(ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.ressources.Languages.Bundle", new Locale("en", "EN")));
+            
+      var root = (Pane) fxmlLoader.load(getClass().getResource("pages/AddImage.fxml").openStream());
+      
       var scene = new Scene(root);
       primaryStage.setScene(scene);
       primaryStage.setMinWidth(960);
