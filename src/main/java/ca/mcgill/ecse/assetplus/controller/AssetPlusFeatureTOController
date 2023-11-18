@@ -17,7 +17,7 @@ import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 /**
  * <p> Controller file to deal with all of the transfer objects which need to be created for the view. 
  */
-public class AssetPlusFeatureTOCtontroller {
+public class AssetPlusFeatureTOController {
 
   /**
    * <p>Generate a list of specific asset transfer objects. </p>
