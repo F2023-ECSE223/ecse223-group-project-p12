@@ -39,7 +39,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="Dashboard" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="210.0" style="-fx-border-color: f0f0f0;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers">
+<VBox fx:id="Dashboard" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="210.0" style="-fx-border-color: f0f0f0;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.DashboardController">
    <children>
 <Label alignment="CENTER" minWidth="60.0" prefHeight="75.0" prefWidth="210.0" style="-fx-text-fill: #8768F2;" styleClass="logo" text="AssetPlus" textAlignment="CENTER" textFill="#8768f2" wrapText="false">
          <graphic>
@@ -56,7 +56,7 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="15.0" />
                </VBox.margin>
             </Label>
             <Button fx:id="tabEmployees" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeViewToEmployees" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="%key.Employees">
