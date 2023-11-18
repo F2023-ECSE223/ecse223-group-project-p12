@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.GridPane;
@@ -43,10 +45,18 @@ public class AddImageController {
     }
 
 
-
     @FXML
     void initialize() {
-        
         replaceMe.setText("I replaced you");
+
+        Image image = new Image("https://www.ikea.com/ca/en/images/products/kivik-chaise-grann-bomstad-black__0115141_pe268333_s5.jpg");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(100);
+        imageView.setCache(true);
+        imageView.setPreserveRatio(true);
+
+        grid.add(imageView, 0, 0);
+
+
     }
 }
