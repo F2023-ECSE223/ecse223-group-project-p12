@@ -65,14 +65,14 @@
                         <Insets />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="15.0" />
                      </VBox.margin>
                   </Label>
                   <VBox alignment="CENTER" prefHeight="300.0" prefWidth="210.0">
                      <children>
-                        <Button fx:id="tabEmployees" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeViewToEmployees" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Employees">
+                        <Button fx:id="tabEmployees" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeViewToEmployees" prefHeight="50.0" prefWidth="210.0" styleClass="currentMenuButton" text="Employees">
                            <graphic>
-                              <SVGPath content="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12Zm-8 8v-2.8q0-.85.438-1.563T5.6 14.55q1.55-.775 3.15-1.163T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20H4Zm2-2h12v-.8q0-.275-.138-.5t-.362-.35q-1.35-.675-2.725-1.012T12 15q-1.4 0-2.775.338T6.5 16.35q-.225.125-.363.35T6 17.2v.8Zm6-8q.825 0 1.413-.588T14 8q0-.825-.588-1.413T12 6q-.825 0-1.413.588T10 8q0 .825.588 1.413T12 10Zm0-2Zm0 10Z" fill="GREY" styleClass="icon" />
+                              <SVGPath content="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12Zm-8 8v-2.8q0-.85.438-1.563T5.6 14.55q1.55-.775 3.15-1.163T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20H4Zm2-2h12v-.8q0-.275-.138-.5t-.362-.35q-1.35-.675-2.725-1.012T12 15q-1.4 0-2.775.338T6.5 16.35q-.225.125-.363.35T6 17.2v.8Zm6-8q.825 0 1.413-.588T14 8q0-.825-.588-1.413T12 6q-.825 0-1.413.588T10 8q0 .825.588 1.413T12 10Zm0-2Zm0 10Z" fill="WHITE" styleClass="icon" />
                            </graphic>
                         </Button>
                         <Button fx:id="tabAssetTypes" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeViewToAssetTypes" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Asset Types">
@@ -124,11 +124,14 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="usernameContainer">
                                  <children>
-                                    <Label text="Username" />
+                                    <Label styleClass="username" text="Username" />
                                     <Label text="Role" />
                                  </children>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
                               </VBox>
                               <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                                  <fill>
@@ -158,14 +161,14 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <TextField  alignment="CENTER" promptText="ticket number" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;" text="Search...">
+                              <TextField alignment="CENTER" promptText="ticket number" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;" text="Search...">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                               <SVGPath content="M12 12h5v5h-5v-5m7-9h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 2v2H5V5h14M5 19V9h14v10H5Z&#10;" fill="#8768f2" />
                               <Pane prefHeight="50.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                              <Button  alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"  prefHeight="40.0" prefWidth="120.0" styleClass="actionButton" text="Add Ticket">
+                              <Button alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="actionButton" text="Add Ticket">
                                  <graphic>
                                     <SVGPath content="M8.9 6.9v-5a1 1 0 1 0-2 0v5h-5a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5z" fill="WHITE" />
                                  </graphic>

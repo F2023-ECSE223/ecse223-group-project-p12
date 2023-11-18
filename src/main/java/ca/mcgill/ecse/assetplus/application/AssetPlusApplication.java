@@ -4,6 +4,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import javafx.application.Application;
 import javafx.scene.text.Font;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 public class AssetPlusApplication {
 

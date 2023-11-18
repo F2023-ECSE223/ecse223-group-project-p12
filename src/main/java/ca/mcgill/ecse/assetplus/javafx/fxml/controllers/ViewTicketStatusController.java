@@ -94,7 +94,7 @@ public class ViewTicketStatusController {
 
     @FXML
     void ChangeViewToEmployees(ActionEvent event) {
-
+        AssetPlusFXMLView.getInstance().changeTab("pages/Employees.fxml");
     }
 
     @FXML

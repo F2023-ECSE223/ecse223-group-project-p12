@@ -63,7 +63,7 @@
                         <Insets />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="15.0" />
                      </VBox.margin>
                   </Label>
                   <VBox alignment="CENTER" prefHeight="300.0" prefWidth="210.0">
@@ -88,9 +88,9 @@
                               <SVGPath content="M9 10a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1Zm12 1a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1a1 1 0 0 1 0 2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1a1 1 0 0 1 0-2Zm-1-1.82a3 3 0 0 0 0 5.64V17H10a1 1 0 0 0-2 0H4v-2.18a3 3 0 0 0 0-5.64V7h4a1 1 0 0 0 2 0h10Z" fill="GREY" styleClass="icon" />
                            </graphic>
                         </Button>
-                        <Button fx:id="tabAddImage" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeTabAddImage" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Add Image">
+                        <Button fx:id="tabAddImage" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeTabAddImage" prefHeight="50.0" prefWidth="210.0" styleClass="currentMenuButton" text="Add Image">
                            <graphic>
-                              <SVGPath content="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-5.04 9.29l-2.75 3.54l-1.96-2.36L6.5 17h11l-3.54-4.71Z" fill="GREY" styleClass="icon" />
+                              <SVGPath content="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-5.04 9.29l-2.75 3.54l-1.96-2.36L6.5 17h11l-3.54-4.71Z" fill="WHITE" styleClass="icon" />
                            </graphic>
                         </Button>
                         <Button fx:id="tabViewTicketStatus" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeTabToViewTicketStatus" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="Ticket Status">
@@ -122,11 +122,14 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                              <VBox alignment="CENTER_LEFT">
                                  <children>
-                                    <Label text="Username" />
+                                    <Label styleClass="username" text="Username" />
                                     <Label text="Role" />
                                  </children>
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
                               </VBox>
                               <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                                  <fill>
@@ -164,7 +167,7 @@
                               </TextField>
                               <SVGPath content="m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z" fill="#8768f2" />
                               <Pane prefHeight="50.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                              <Button  alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"  prefHeight="40.0" prefWidth="120.0" styleClass="actionButton" text="Add Image">
+                              <Button alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="actionButton" text="Add Image">
                                  <graphic>
                                     <SVGPath content="M8.9 6.9v-5a1 1 0 1 0-2 0v5h-5a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5z" fill="WHITE" />
                                  </graphic>

@@ -2,7 +2,7 @@
 
 Stylesheet of our UI
 
-@author - Julia B.Grenier, NAMES
+@author - Julia B.Grenier, Tayba Jusab
 
 */
 
@@ -37,18 +37,20 @@ Stylesheet of our UI
     -fx-background-radius: 0;
     -fx-background-color: transparent;
     -fx-effect: none;
-
+    -fx-background-radius: 10px;
     -fx-text-fill: #808080;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
 }
 
 /* Colors of the buttons(Tabs) in the dashboard on the left when the mouse hoves(go over) it*/
 .menuButton:hover
 {
-    -fx-background-color: #f6f6f6;
+    -fx-background-color: #CBC3E3;
 }
 
 /* Action buttons are the buttons like AddImage that needs to be purple*/
-.actionButton
+.actionButton, .currentMenuButton
 {
     -fx-text-fill: white;
     -fx-background-color: #8768F2;
@@ -58,4 +60,14 @@ Stylesheet of our UI
 .menuButton.icon
 {
     -fx-translate-x: -20;
+}
+
+.currentMenuButton {
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
+}
+
+.usernameContainer {
+    -fx-pref-width: -1;
+    -fx-pref-height: -1;
 }
