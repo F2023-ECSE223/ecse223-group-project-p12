@@ -25,7 +25,7 @@ public class AssetTypesController {
     private VBox TopContent;
 
     @FXML
-    private Button addImageButton;
+    private Button addAssetTypeButton;
 
     @FXML
     private Label replaceMe;
@@ -35,6 +35,11 @@ public class AssetTypesController {
 
     @FXML
     void AddImage(ActionEvent event) {
+
+    }
+
+    @FXML
+    void addAssetTypeClicked(ActionEvent event) {
 
     }
 
