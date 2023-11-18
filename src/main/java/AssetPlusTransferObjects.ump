@@ -65,3 +65,17 @@ class TOManager{
   isA TOHotelStaff;
   List<Integer> ticketApproved;
 }
+
+class TOSpecificAsset { 
+  immutable
+  int assetNumber;
+  int floorNumber;
+  int roomNumber;
+  Date purchaseDate;
+}
+
+class TOAssetType {
+  String name;
+  Integer expectedLifeSpan;
+  1 -> * TOSpecificAsset;
+}
