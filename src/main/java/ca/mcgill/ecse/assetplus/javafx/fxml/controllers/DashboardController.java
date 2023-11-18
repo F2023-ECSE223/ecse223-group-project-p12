@@ -3,6 +3,11 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 
 public class DashboardController {
     @FXML
@@ -28,7 +33,11 @@ public class DashboardController {
 
     @FXML
     void ChangeToLogOutTab(ActionEvent event) {
-        // To implement Dialog box
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText(null);
+        alert.setContentText("You have been logged out.");
+        alert.showAndWait();
     }
 
     @FXML
