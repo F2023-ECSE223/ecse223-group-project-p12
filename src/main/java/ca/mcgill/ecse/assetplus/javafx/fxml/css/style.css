@@ -53,6 +53,11 @@ Stylesheet of our UI
     -fx-background-radius: 10px;
 }
 
+.currentMenuButton .icon 
+{
+    -fx-fill: white;
+}
+
 .menuButton.icon
 {
     -fx-translate-x: -20;

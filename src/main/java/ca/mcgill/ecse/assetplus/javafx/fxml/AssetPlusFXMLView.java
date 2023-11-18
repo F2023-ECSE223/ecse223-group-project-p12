@@ -24,15 +24,18 @@ public class AssetPlusFXMLView extends Application {
   private static AssetPlusFXMLView instance;
   private List<Node> refreshableNodes = new ArrayList<>();
   private Stage stage;
+  private String currentPage;
 
   @Override
   public void start(Stage primaryStage) {
     instance = this;
     try {
       stage = primaryStage;
-      var root = (Pane) FXMLLoader.load(getClass().getResource("pages/AddImage.fxml"), ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.fxml.Bundle", new Locale("en", "EN")));
-      
+      currentPage = "pages/ViewTicketStatus.fxml";
+      var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.fxml.Bundle", new Locale("en", "EN")));
+
       var scene = new Scene(root);
+      scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
       primaryStage.setScene(scene);
       primaryStage.setMinWidth(960);
       primaryStage.setMinHeight(540);
@@ -79,16 +82,23 @@ public class AssetPlusFXMLView extends Application {
   {
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.fxml.Bundle", new Locale("en", "EN")));
     Parent root;
+    currentPage = fxml;
     try 
     {
         root = (Parent)loader.load();
-        this.stage.setScene(new Scene(root));
+        // Keep the current size
+        Scene scene = new Scene(root , this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        this.stage.setScene(scene);
     } 
     catch (IOException e)
     {
         e.printStackTrace();
     }
 
+  }
+
+  public String getCurrentPage() {
+    return currentPage;
   }
 
 }
