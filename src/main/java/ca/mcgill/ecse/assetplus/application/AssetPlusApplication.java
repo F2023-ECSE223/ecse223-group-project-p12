@@ -11,6 +11,7 @@ public class AssetPlusApplication {
 
   public static void main(String[] args) {
     // TODO Start the application user interface here
+    getAssetPlus();
     Application.launch(AssetPlusFXMLView.class, args);
   }
 

@@ -63,12 +63,14 @@ Stylesheet of our UI
     -fx-translate-x: -20;
 }
 
-.currentMenuButton {
+.currentMenuButton
+{
     -fx-pref-width: 150px;
     -fx-pref-height: 50px;
 }
 
-.usernameContainer {
+.usernameContainer
+{
     -fx-pref-width: -1;
     -fx-pref-height: -1;
 }

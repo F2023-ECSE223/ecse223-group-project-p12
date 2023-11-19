@@ -59,6 +59,18 @@ public class AssetPlusFeatureSet6Controller {
   }
 
   /**
+   * <p>Get a maintenance ticket as transfer object</p>
+   * @return a ticket
+   */
+  public static TOMaintenanceTicket getTicket(int id) {
+    if(MaintenanceTicket.hasWithId(id))
+      return convertFromMaintenanceTicket(MaintenanceTicket.getWithId(id));
+    
+    return null;
+  }
+
+
+  /**
    * <p>Converts a maintenance ticket object into a TOMaintenanceTicket</p>
    * @param maintenanceTicket the object to convert
    * @return the converted TOMaintenanceTicket object
