@@ -36,7 +36,6 @@ public class EmployeesController {
 
     @FXML
     void initialize() {
-        //AssetPlusFXMLView.getInstance().loadLanguage(AssetPlusFXMLView.getInstance().getLanguage());
     }
 
     @FXML

@@ -36,7 +36,6 @@ public class AssetMenuController {
 
     @FXML
     void initialize() {
-        //AssetPlusFXMLView.getInstance().loadLanguage(AssetPlusFXMLView.getInstance().getLanguage());
     }
 
     @FXML

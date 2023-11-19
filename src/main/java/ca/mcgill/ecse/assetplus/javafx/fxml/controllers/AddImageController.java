@@ -41,7 +41,6 @@ public class AddImageController {
 
     @FXML
     void initialize() {
-        //AssetPlusFXMLView.getInstance().loadLanguage(AssetPlusFXMLView.getInstance().getLanguage());
         currentTicketNumber = -1;
     }
 

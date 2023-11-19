@@ -35,7 +35,6 @@ public class TicketStatusController {
 
     @FXML
     void initialize() {
-        //AssetPlusFXMLView.getInstance().loadLanguage(AssetPlusFXMLView.getInstance().getLanguage());
-        //replaceMe.setText("I replaced you");
+        
     }
 }

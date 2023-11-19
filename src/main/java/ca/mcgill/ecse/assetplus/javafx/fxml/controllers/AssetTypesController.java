@@ -58,7 +58,7 @@ public class AssetTypesController {
 
     @FXML
     void initialize() {
-      //AssetPlusFXMLView.getInstance().loadLanguage(AssetPlusFXMLView.getInstance().getLanguage());
+    
     }
 
     @FXML

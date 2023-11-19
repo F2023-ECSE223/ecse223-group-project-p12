@@ -49,7 +49,6 @@ public class DashboardController {
 
     @FXML
     void initialize() {
-        //AssetPlusFXMLView.getInstance().loadLanguage(AssetPlusFXMLView.getInstance().getLanguage());
         String tab = AssetPlusFXMLView.getInstance().getCurrentPage();
         ClearClassTag();
         switch (tab) {
