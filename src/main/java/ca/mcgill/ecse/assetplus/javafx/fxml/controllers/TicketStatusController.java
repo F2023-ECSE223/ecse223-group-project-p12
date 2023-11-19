@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ViewTicketStatusController {
+public class TicketStatusController {
 
     @FXML
     private HBox DashboardAndContent;
@@ -33,10 +33,8 @@ public class ViewTicketStatusController {
     }
 
 
-
     @FXML
     void initialize() {
         
-        replaceMe.setText("I replaced you");
     }
 }

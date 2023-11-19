@@ -1,7 +1,5 @@
 package ca.mcgill.ecse.assetplus.controller;
 
-import javax.naming.ldap.ManageReferralControl;
-import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
