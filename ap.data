@@ -31,7 +31,7 @@
                     "ticketImages": [
                       {
                         "TicketImage": {
-                          "imageURL": "http://thisimage.com/2.png",
+                          "imageURL": "https://www.ikea.com/ca/en/images/products/sinnerlig-pendant-lamp-bamboo-handmade__1101927_pe866502_s5.jpg",
                           "ticket": {
                             "@reference": "../../.."
                           }
@@ -133,13 +133,13 @@
                                 {
                                   "TicketImage": [
                                     {
-                                      "imageURL": "https://imageurl.com/i.jpg",
+                                      "imageURL": "https://www.ikea.com/ca/en/images/products/taellasen-upholstered-bed-frame-kulsta-gray-green__1206609_pe907548_s5.jpg",
                                       "ticket": {
                                         "@reference": "../../.."
                                       }
                                     },
                                     {
-                                      "imageURL": "http://thisimage.com/1.png",
+                                      "imageURL": "https://klarel.com/cdn/shop/files/K34-1_MAIN.jpg",
                                       "ticket": {
                                         "@reference": "../../.."
                                       }

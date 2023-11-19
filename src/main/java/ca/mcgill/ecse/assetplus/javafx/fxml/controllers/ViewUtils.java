@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
+import static java.lang.Integer.SIZE;
 import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.*;
@@ -76,6 +77,13 @@ public class ViewUtils {
 
   public static ObservableList<String> getTicketImages(int id) {
     TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(id);
+
+    if (ticket==null) {
+      System.out.println("The ticket does not exist");
+      return null;
+    } 
+    System.out.println("Exist!!");
+
     // as javafx works with observable list, we need to convert the java.util.List to
     // javafx.collections.observableList
     return FXCollections.observableList(ticket.getImageURLs());

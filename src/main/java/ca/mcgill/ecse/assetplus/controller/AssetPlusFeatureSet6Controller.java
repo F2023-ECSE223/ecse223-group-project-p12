@@ -75,13 +75,11 @@ public class AssetPlusFeatureSet6Controller {
    * @param maintenanceTicket the object to convert
    * @return the converted TOMaintenanceTicket object
    */
-  private static TOMaintenanceTicket convertFromMaintenanceTicket(MaintenanceTicket maintenanceTicket) {
-    List<TOMaintenanceNote> toMaintenanceNotes = null;
-    TOMaintenanceNote[] allNotes = null;
-    if (maintenanceTicket.hasTicketNotes()) {
-      toMaintenanceNotes = convertFromMaintenanceNotes(maintenanceTicket.getTicketNotes());
-      allNotes = toMaintenanceNotes.toArray(new TOMaintenanceNote[0]);
-    }
+  private static TOMaintenanceTicket convertFromMaintenanceTicket(
+      MaintenanceTicket maintenanceTicket) {
+    List<TOMaintenanceNote> toMaintenanceNotes =
+        convertFromMaintenanceNotes(maintenanceTicket.getTicketNotes());
+    TOMaintenanceNote[] allNotes = toMaintenanceNotes.toArray(new TOMaintenanceNote[0]);
 
     String assetName;
     Integer expectedLifeSpanInDays;

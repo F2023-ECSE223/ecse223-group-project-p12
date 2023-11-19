@@ -1,28 +1,25 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 
-import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class AddImageController {
-
+    private int currentTicketNumber;
 
     @FXML
     private ResourceBundle resources;
@@ -37,52 +34,68 @@ public class AddImageController {
     private Button addImageButton;
 
     @FXML
-    private Label replaceMe;
-
-    @FXML
     private TextField ticketNumberField;
 
     @FXML
     private FlowPane grid;
+
+
+    @FXML
+    void initialize() {
+        currentTicketNumber = -1;
+    }
 
     @FXML
     void AddImage(ActionEvent event) {
 
     }
 
-
     @FXML
-    void initialize() {
-        replaceMe.setText("I replaced you");
+    void TicketNumberEntered(KeyEvent event) {
+        if( event.getCode() == KeyCode.ENTER ) {
+            try {
+                int input = Integer.parseInt(ticketNumberField.getText());
+                ObservableList<String> imageList = ViewUtils.getTicketImages(input);
 
-        Rectangle rectangle1 = new Rectangle(0, 0, 200, 200);
-        rectangle1.setArcWidth(30.0);
-        rectangle1.setArcHeight(30.0);
+                if (imageList != null) {
+                    // Do not reload the images if it is already the correct ones
+                    if (currentTicketNumber != input) {
+                        currentTicketNumber = input;
+                        showImages(imageList);
+                    }
+                }
+                else {
+                    grid.getChildren().clear();
+                }
+            }
+            catch(NumberFormatException e) {
+                System.out.println(e);
+            }
+        }
+    }
 
-        ImagePattern pattern1 = new ImagePattern(
-            new Image("https://www.ikea.com/ca/en/images/products/kivik-chaise-grann-bomstad-black__0115141_pe268333_s5.jpg", 200, 200, true, true) // Resizing
-        );
-
-        rectangle1.setFill(pattern1);
-
-        grid.getChildren().add(rectangle1);
-
-        //System.out.println(ViewUtils.getMaintenanceTickets().size());
-
-        /* ObservableList<String> images = ViewUtils.getTicketImages(1);
-        
-        for (String imageURL : images) {
+    
+    private void showImages(ObservableList<String> list) {
+        grid.getChildren().clear();
+        for (String imageURL : list) {
             Rectangle rectangle = new Rectangle(0, 0, 200, 200);
             rectangle.setArcWidth(30.0);
             rectangle.setArcHeight(30.0);
+            
+            Image image = new Image(imageURL, 200, 200, true, true);
+            // If the image was loaded without exceptions, consider it valid
+            if (image.isError() == false) {
+                System.out.println("Image valid");
+                ImagePattern pattern = new ImagePattern(image);
 
-            ImagePattern pattern = new ImagePattern(
-                new Image(imageURL, 200, 200, true, true) // Resizing
-            );
-
-            rectangle.setFill(pattern);
-
-            grid.getChildren().add(rectangle);
-        } */
+                rectangle.setFill(pattern);
+                grid.getChildren().add(rectangle);
+            }
+            else {
+                ImagePattern pattern = new ImagePattern(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.png", 200, 200, true, true));
+                rectangle.setFill(pattern);
+                grid.getChildren().add(rectangle);
+            }
+        }
     }
 }
