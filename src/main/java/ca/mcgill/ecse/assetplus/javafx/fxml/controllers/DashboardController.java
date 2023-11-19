@@ -34,7 +34,7 @@ public class DashboardController {
     private Button tabTicketMenu;
 
     @FXML
-    private Button tabViewTicketStatus;
+    private Button tabTicketStatus;
 
     private void ClearClassTag() {
         tabAddImage.getStyleClass().remove("currentMenuButton");
@@ -43,12 +43,13 @@ public class DashboardController {
         tabEmployees.getStyleClass().remove("currentMenuButton");
         tabSettings.getStyleClass().remove("currentMenuButton");
         tabTicketMenu.getStyleClass().remove("currentMenuButton");
-        tabViewTicketStatus.getStyleClass().remove("currentMenuButton");
+        tabTicketStatus.getStyleClass().remove("currentMenuButton");
     }
 
 
     @FXML
     void initialize() {
+        //AssetPlusFXMLView.getInstance().loadLanguage(AssetPlusFXMLView.getInstance().getLanguage());
         String tab = AssetPlusFXMLView.getInstance().getCurrentPage();
         ClearClassTag();
         switch (tab) {
@@ -70,8 +71,8 @@ public class DashboardController {
             case "pages/TicketMenu.fxml":
                 tabTicketMenu.getStyleClass().add("currentMenuButton");
                 break;
-            case "pages/ViewTicketStatus.fxml":
-                tabViewTicketStatus.getStyleClass().add("currentMenuButton");
+            case "pages/TicketStatus.fxml":
+                tabTicketStatus.getStyleClass().add("currentMenuButton");
                 break;
             default:
                 break;
@@ -94,8 +95,8 @@ public class DashboardController {
     }
 
     @FXML
-    void ChangeTabToViewTicketStatus(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/ViewTicketStatus.fxml");
+    void ChangeTabToTicketStatus(ActionEvent event) {
+        AssetPlusFXMLView.getInstance().changeTab("pages/TicketStatus.fxml");
     }
 
     @FXML

@@ -3,7 +3,6 @@ package ca.mcgill.ecse.assetplus.javafx.fxml;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AddImageController;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventType;
@@ -25,14 +24,16 @@ public class AssetPlusFXMLView extends Application {
   private List<Node> refreshableNodes = new ArrayList<>();
   private Stage stage;
   private String currentPage;
+  private String language = "en";
+  private final String BUNDLE_PATH = "ca.mcgill.ecse.assetplus.javafx.resources.languages.Bundle";
 
   @Override
   public void start(Stage primaryStage) {
     instance = this;
     try {
       stage = primaryStage;
-      currentPage = "pages/ViewTicketStatus.fxml";
-      var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.fxml.Bundle", new Locale("en", "EN")));
+      currentPage = "pages/TicketStatus.fxml";
+      var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
 
       var scene = new Scene(root);
       scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
@@ -80,12 +81,12 @@ public class AssetPlusFXMLView extends Application {
 
   public void changeTab(String fxml)
   {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle("ca.mcgill.ecse.assetplus.javafx.fxml.Bundle", new Locale("en", "EN")));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
     Parent root;
     currentPage = fxml;
     try 
     {
-        root = (Parent)loader.load();
+        root = (Parent) loader.load();
         // Keep the current size
         Scene scene = new Scene(root , this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
         this.stage.setScene(scene);
@@ -101,4 +102,12 @@ public class AssetPlusFXMLView extends Application {
     return currentPage;
   }
 
+  public void setLanguage(String language) {
+    this.language = language;
+    changeTab(currentPage);
+  }
+
+  public String getLanguage() {
+    return this.language;
+  }
 }
