@@ -1,25 +1,12 @@
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
+
 package ca.mcgill.ecse.assetplus.controller;
-
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
-import ca.mcgill.ecse.assetplus.model.AssetPlus;
-import ca.mcgill.ecse.assetplus.model.AssetType;
-import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
-import ca.mcgill.ecse.assetplus.model.SpecificAsset;
-import ca.mcgill.ecse.assetplus.model.TicketImage;
-import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
-/**
- * <p> Class for the specific asset transfer object.
- */
-
-public class TOSpecificAsset {
-
+// line 69 "../../../../../../AssetPlusTransferObjects.ump"
+public class TOSpecificAsset
+{
 
   //------------------------
   // MEMBER VARIABLES
@@ -30,19 +17,17 @@ public class TOSpecificAsset {
   private int floorNumber;
   private int roomNumber;
   private Date purchaseDate;
-  private AssetType assetType;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOSpecificAsset(int aAssetNumber, int aFloorNumber, int aRoomNumber, Date aPurchaseDate, AssetType aAssetType)
+  public TOSpecificAsset(int aAssetNumber, int aFloorNumber, int aRoomNumber, Date aPurchaseDate)
   {
     assetNumber = aAssetNumber;
     floorNumber = aFloorNumber;
     roomNumber = aRoomNumber;
     purchaseDate = aPurchaseDate;
-    assetType = aAssetType;
   }
 
   //------------------------
@@ -73,14 +58,6 @@ public class TOSpecificAsset {
     return wasSet;
   }
 
-  public boolean setAssetType(AssetType aAssetType)
-  {
-    boolean wasSet = false;
-    assetType = aAssetType;
-    wasSet = true;
-    return wasSet;
-  }
-
   public int getAssetNumber()
   {
     return assetNumber;
@@ -101,11 +78,6 @@ public class TOSpecificAsset {
     return purchaseDate;
   }
 
-  public AssetType getAssetType()
-  {
-    return assetType;
-  }
-
   public void delete()
   {}
 
@@ -116,12 +88,6 @@ public class TOSpecificAsset {
             "assetNumber" + ":" + getAssetNumber()+ "," +
             "floorNumber" + ":" + getFloorNumber()+ "," +
             "roomNumber" + ":" + getRoomNumber()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "purchaseDate" + "=" + (getPurchaseDate() != null ? !getPurchaseDate().equals(this)  ? getPurchaseDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "assetType" + "=" + (getAssetType() != null ? !getAssetType().equals(this)  ? getAssetType().toString().replaceAll("  ","    ") : "this" : "null");
+            "  " + "purchaseDate" + "=" + (getPurchaseDate() != null ? !getPurchaseDate().equals(this)  ? getPurchaseDate().toString().replaceAll("  ","    ") : "this" : "null");
   }
 }
-
-
-
-
-

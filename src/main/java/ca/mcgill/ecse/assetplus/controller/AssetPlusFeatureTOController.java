@@ -28,7 +28,7 @@ public class AssetPlusFeatureTOController {
   HashMap<Integer, TOSpecificAsset> TOassets = new HashMap<>();
 
   for (SpecificAsset asset : assets){
-    TOassets.put(asset.getAssetNumber(), new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), asset.getAssetType()));
+    TOassets.put(asset.getAssetNumber(), new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate()));
   }
   return TOassets;
 }

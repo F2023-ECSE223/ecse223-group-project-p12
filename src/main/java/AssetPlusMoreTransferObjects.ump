@@ -1,9 +1,0 @@
-namespace ca.mcgill.ecse.assetplus.controller;
-
-class TOSpecificAsset { 
-  immutable
-  int assetNumber;
-  int floorNumber;
-  int roomNumber;
-  Date purchaseDate;
-}
