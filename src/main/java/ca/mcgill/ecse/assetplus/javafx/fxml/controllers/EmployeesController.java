@@ -19,10 +19,26 @@ public class EmployeesController {
     private Button addEmployeeButton;
 
     @FXML
+    private Button cancelCreateEmployeeButton;
+
+    @FXML
+    private Button createEmployeeButton;
+
+    @FXML
     private TextField ticketEmployeeField;
 
     @FXML
     void AddEmployee(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cancelCreateEmployee(ActionEvent event) {
+
+    }
+
+    @FXML
+    void createEmployee(ActionEvent event) {
 
     }
 
