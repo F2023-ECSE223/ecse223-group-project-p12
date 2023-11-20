@@ -4,6 +4,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,6 +55,11 @@ public class AssetTypesController {
 
     @FXML 
     private AnchorPane AddAssetTypePane;
+
+    @FXML
+    void initialize() {
+    
+    }
 
     @FXML
     void AddImage(ActionEvent event) {
