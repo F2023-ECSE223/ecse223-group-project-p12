@@ -7,11 +7,14 @@ import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
 import java.util.Locale;
 
@@ -27,6 +30,17 @@ public class AssetPlusFXMLView extends Application {
   private String language = "en";
   private final String BUNDLE_PATH = "ca.mcgill.ecse.assetplus.javafx.resources.languages.Bundle";
 
+  // To drag the window
+  private double xOffset = 0;
+  private double yOffset = 0;
+
+  // Size of the minimize window
+  private double prevX = 0;
+  private double prevY = 0;
+  private double prevWidth = 0;
+  private double prevHeight = 0;
+  private boolean isMaximized = false;
+
   @Override
   public void start(Stage primaryStage) {
     instance = this;
@@ -41,6 +55,7 @@ public class AssetPlusFXMLView extends Application {
       primaryStage.setMinWidth(960);
       primaryStage.setMinHeight(540);
       primaryStage.setTitle("AssetPlus");
+      primaryStage.initStyle(StageStyle.UNDECORATED);
       primaryStage.show();
 
       // Initializes the other pages
@@ -110,4 +125,49 @@ public class AssetPlusFXMLView extends Application {
   public String getLanguage() {
     return this.language;
   }
+
+  public void closeWindow() {
+    this.stage.close();
+  }
+
+  public void maximizeWindow() {
+    if (!isMaximized) {
+      // Save current position and window's size
+      prevX = stage.getX();
+      prevY = stage.getY();
+      prevWidth = stage.getWidth();
+      prevHeight = stage.getHeight();
+
+      Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+
+      stage.setX(bounds.getMinX());
+      stage.setY(bounds.getMinY());
+      stage.setWidth(bounds.getWidth());
+      stage.setHeight(bounds.getHeight());
+      isMaximized = true;
+    }
+    else {
+      stage.setX(prevX);
+      stage.setY(prevY);
+      stage.setWidth(prevWidth);
+      stage.setHeight(prevHeight);
+      isMaximized = false;
+    }
+   
+  }
+
+  public void hideWindow() {
+    this.stage.setIconified(true);
+  }
+
+  public void onToolbarPressed(double x, double y) {
+    xOffset = this.stage.getX() - x;
+    yOffset = this.stage.getY() - y;
+  }
+
+  public void onToolbarDragged(double x, double y) {
+    this.stage.setX(x + xOffset);
+    this.stage.setY(y + yOffset);
+  }
+
 }

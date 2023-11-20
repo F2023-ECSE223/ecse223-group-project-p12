@@ -12,6 +12,7 @@ Stylesheet of our UI
 .root
 {  
     -fx-font-family: 'Yu Gothic';
+    /*-fx-font-family: 'Vollkorn Regular';*/
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
 
@@ -23,6 +24,15 @@ Stylesheet of our UI
 {
     -fx-font-size: 24px;
     -fx-text-fill: #8768F2;
+}
+
+.toolbarButton
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-effect: none;
 }
 
 /* Buttons(Tabs) in the dashboard on the left for the different*/

@@ -49,6 +49,7 @@
             <fx:include source="../components/Dashboard.fxml" />
             <VBox prefHeight="540.0" prefWidth="750.0" HBox.hgrow="ALWAYS">
                <children>
+                  <fx:include source="../components/ToolBar.fxml" />
                   <VBox fx:id="TopContent" prefHeight="180.0" prefWidth="750.0">
                      <children>
                         <fx:include source="../components/UserTopSection.fxml" />
