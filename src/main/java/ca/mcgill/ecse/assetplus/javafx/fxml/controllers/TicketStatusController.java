@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -64,6 +65,8 @@ public class TicketStatusController {
     @FXML
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
 
+    private ObservableList<TOMaintenanceTicket> ticketList;
+
     @FXML
     void initialize() {
         resources = AssetPlusFXMLView.getInstance().getBundle();
@@ -73,10 +76,12 @@ public class TicketStatusController {
             resources.getString("key.Assigned"),
             resources.getString("key.InProgress"),
             resources.getString("key.Resolved"),
-            resources.getString("key.Closed")
+            resources.getString("key.Closed"),
+            resources.getString("key.ShowAll")
         );
 
         statusChoiceBox.setValue(resources.getString("key.SelectStatus"));
+        statusChoiceBox.setOnAction(event -> filterTableView(statusChoiceBox.getValue()));
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
@@ -88,13 +93,23 @@ public class TicketStatusController {
         statusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
 
         List<TOMaintenanceTicket> tickets = AssetPlusFeatureSet6Controller.getTickets();
-        ObservableList<TOMaintenanceTicket> observableTickets = FXCollections.observableList(tickets);
-        ticketTable.setItems(observableTickets);
+        ticketList = FXCollections.observableList(tickets);
+        ticketTable.setItems(ticketList);
     }
 
     @FXML
     void goToTicketMenu(ActionEvent event) {
         AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
+    }
+
+    @FXML
+    void filterTableView(String selectedStatus) {
+        if (selectedStatus == null || selectedStatus.equals(resources.getString("key.ShowAll"))) {
+            ticketTable.setItems(ticketList);
+        } else {
+            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> ticket.getStatus().equals(selectedStatus));
+            ticketTable.setItems(filteredList);
+        }
     }
 
 }

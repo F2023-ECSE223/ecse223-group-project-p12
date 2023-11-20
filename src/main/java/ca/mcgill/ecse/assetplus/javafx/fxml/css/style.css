@@ -11,7 +11,7 @@ Stylesheet of our UI
 
 .root
 {  
-    -fx-font-family: 'Yu Gothic';
+    -fx-font-family: 'Montserrat', sans-serif;
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
 
