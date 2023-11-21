@@ -47,7 +47,6 @@ public class DashboardController {
         tabTicketStatus.getStyleClass().remove("currentMenuButton");
     }
 
-
     @FXML
     void initialize() {
         String tab = AssetPlusFXMLView.getInstance().getCurrentPage();
