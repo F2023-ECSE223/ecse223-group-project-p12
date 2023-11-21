@@ -87,16 +87,16 @@
                   </VBox>
               <ScrollPane prefHeight="400.0" prefWidth="750.0" style="-fx-background-color: white;">
                 <content>
-                  <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="378.0" prefWidth="742.0">
+                  <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="378.0" prefWidth="742.0" style="-fx-background-color: white;">
                            <children>
-                              <TabPane layoutX="1.0" layoutY="3.0" prefHeight="360.0" prefWidth="734.0" tabClosingPolicy="UNAVAILABLE">
+                              <TabPane layoutX="1.0" layoutY="3.0" prefHeight="360.0" prefWidth="734.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                   <Tab text="%key.add">
                                     <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                              <children>
                                                 <Label alignment="CENTER" layoutX="242.0" layoutY="23.0" prefHeight="28.0" prefWidth="252.0" text="%key.Enter" />
-                                                <Label layoutX="29.0" layoutY="81.0" prefHeight="18.0" prefWidth="132.0" text="%key.number" />
+                                                <Label layoutX="29.0" layoutY="81.0" prefHeight="18.0" prefWidth="132.0" text="%key.TicketNumber" />
                                                 <TextField fx:id="ticketNumberField" layoutX="200.0" layoutY="75.0" prefHeight="28.0" prefWidth="120.0" />
                                                 <Label layoutX="29.0" layoutY="124.0" prefHeight="18.0" prefWidth="146.0" text="%key.status" />
                                                 <Label layoutX="29.0" layoutY="168.0" prefHeight="28.0" prefWidth="156.0" text="%key.description" />
@@ -107,14 +107,14 @@
                                                 <Label layoutX="467.0" layoutY="209.0" prefHeight="17.0" prefWidth="66.0" text="%key.floor" />
                                                 <Label layoutX="601.0" layoutY="211.0" prefHeight="17.0" prefWidth="68.0" text="%key.room" />
                                                 <Label layoutX="29.0" layoutY="224.0" prefHeight="17.0" prefWidth="195.0" text="%key.image" />
-                                                <Button layoutX="253.0" layoutY="274.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="74.0" text="%key.cancel" />
-                                                <Button layoutX="392.0" layoutY="274.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="%key.create" />
+                                                <Button layoutX="253.0" layoutY="274.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="74.0" text="%key.Cancel" />
+                                                <Button layoutX="392.0" layoutY="274.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="%key.Create" />
                                                 <TextField fx:id="descriptionField" layoutX="200.0" layoutY="169.0" prefHeight="28.0" prefWidth="120.0" />
                                                 <ChoiceBox fx:id="typeField" layoutX="604.0" layoutY="75.0" prefHeight="28.0" prefWidth="99.0" />
                                                 <ChoiceBox fx:id="assetNumberField" layoutX="618.0" layoutY="120.0" prefHeight="18.0" prefWidth="71.0" />
                                                 <ChoiceBox fx:id="floorField" layoutX="532.0" layoutY="206.0" prefHeight="17.0" prefWidth="35.0" />
                                                 <ChoiceBox fx:id="roomField" layoutX="671.0" layoutY="206.0" prefHeight="16.0" prefWidth="31.0" />
-                                                <Hyperlink fx:id="urlField" layoutX="219.0" layoutY="217.0" prefHeight="31.0" prefWidth="82.0" text="%key.AddImage" />
+                                                <Hyperlink fx:id="urlField" layoutX="208.0" layoutY="217.0" prefHeight="31.0" prefWidth="108.0" text="%key.AddImage" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -131,8 +131,8 @@
                                                 <Label layoutX="576.0" layoutY="186.0" prefHeight="17.0" prefWidth="66.0" text="%key.floor" />
                                                 <Label layoutX="481.0" layoutY="177.0" prefHeight="17.0" prefWidth="68.0" text="%key.room" />
                                                 <Label layoutX="29.0" layoutY="227.0" prefHeight="17.0" prefWidth="195.0" text="%key.image" />
-                                                <Button layoutX="221.0" layoutY="273.0" mnemonicParsing="false" text="%key.cancel" />
-                                                <Button layoutX="395.0" layoutY="273.0" mnemonicParsing="false" text="%key.create" />
+                                                <Button layoutX="221.0" layoutY="273.0" mnemonicParsing="false" text="%key.Cancel" />
+                                                <Button layoutX="395.0" layoutY="273.0" mnemonicParsing="false" text="%key.Create" />
                                                 <ChoiceBox fx:id="typeField1" layoutX="579.0" layoutY="80.0" prefHeight="28.0" prefWidth="99.0" />
                                                 <ChoiceBox fx:id="assetNumberField1" layoutX="619.0" layoutY="152.0" prefHeight="18.0" prefWidth="71.0" />
                                                 <ChoiceBox fx:id="floorField1" layoutX="644.0" layoutY="208.0" prefHeight="17.0" prefWidth="35.0" />
@@ -140,7 +140,7 @@
                                                 <Label layoutX="29.0" layoutY="172.0" prefHeight="28.0" prefWidth="156.0" text="%key.description" />
                                                 <BorderPane layoutX="99.0" layoutY="-89.0" prefHeight="262.0" prefWidth="333.0">
                                                    <top>
-                                                      <Label prefHeight="18.0" prefWidth="132.0" text="%key.number" BorderPane.alignment="CENTER" />
+                                                      <Label prefHeight="18.0" prefWidth="132.0" text="%key.TicketNumber" BorderPane.alignment="CENTER" />
                                                    </top>
                                                    <left>
                                                       <Label prefHeight="18.0" prefWidth="146.0" text="%key.status" BorderPane.alignment="CENTER" />
