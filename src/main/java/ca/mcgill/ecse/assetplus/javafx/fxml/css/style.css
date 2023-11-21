@@ -11,7 +11,7 @@ Stylesheet of our UI
 
 .root
 {  
-    -fx-font-family: 'Yu Gothic';
+    -fx-font-family: 'Montserrat', sans-serif;
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
 
@@ -73,4 +73,19 @@ Stylesheet of our UI
 {
     -fx-pref-width: -1;
     -fx-pref-height: -1;
+}
+
+.title1
+{
+    -fx-font-size: 24px;
+    -fx-text-fill: #8768F2;
+    -fx-font-weight: bold;
+}
+
+.cancelButton
+{
+    -fx-background-color: #a30d11;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
 }

@@ -1,23 +1,13 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
-
-import java.net.URL;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class EmployeesController {
-
-
-    @FXML
-    private ResourceBundle resources;
 
     @FXML
     private HBox DashboardAndContent;
@@ -26,22 +16,30 @@ public class EmployeesController {
     private VBox TopContent;
 
     @FXML
-    private Button addImageButton;
+    private Button addEmployeeButton;
 
     @FXML
-    private Label replaceMe;
+    private Button cancelCreateEmployeeButton;
 
     @FXML
-    private TextField ticketNumberField;
+    private Button createEmployeeButton;
 
     @FXML
-    void initialize() {
+    private TextField ticketEmployeeField;
+
+    @FXML
+    void AddEmployee(ActionEvent event) {
+
     }
 
     @FXML
-    void AddImage(ActionEvent event) {
+    void cancelCreateEmployee(ActionEvent event) {
+
+    }
+
+    @FXML
+    void createEmployee(ActionEvent event) {
 
     }
 
 }
-
