@@ -33,7 +33,7 @@ public class AssetPlusFXMLView extends Application {
     try {
       stage = primaryStage;
       currentPage = "pages/TicketStatus.fxml";
-      var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
+      var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
 
       var scene = new Scene(root);
       scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
@@ -81,7 +81,7 @@ public class AssetPlusFXMLView extends Application {
 
   public void changeTab(String fxml)
   {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
     Parent root;
     currentPage = fxml;
     try 
@@ -109,5 +109,9 @@ public class AssetPlusFXMLView extends Application {
 
   public String getLanguage() {
     return this.language;
+  }
+
+  public ResourceBundle getBundle() {
+    return ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language));
   }
 }
