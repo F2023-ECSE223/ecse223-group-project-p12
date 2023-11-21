@@ -35,7 +35,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -65,11 +64,11 @@
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin></SVGPath>
-                              <Pane HBox.hgrow="ALWAYS">
+                              <Pane prefHeight="50.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ChoiceBox fx:id="statusChoiceBox" layoutX="108.0" layoutY="11.0" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="statusChoiceBox" layoutX="108.0" layoutY="11.0" />
                                  </children></Pane>
-                              <Button fx:id="addTicketButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToTicketMenu" prefHeight="40.0" prefWidth="120.0" styleClass="actionButton" text="%key.AddTicket">
+                              <Button fx:id="addTicketButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToTicketMenu" prefHeight="40.0" styleClass="actionButton" text="%key.AddTicket">
                                  <graphic>
                                     <SVGPath content="M8.9 6.9v-5a1 1 0 1 0-2 0v5h-5a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5z" fill="WHITE" />
                                  </graphic>
@@ -87,21 +86,17 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <ScrollPane prefHeight="380.0" prefWidth="736.0">
-                     <content>
-                        <TableView id="ticketTable" fx:id="ticketTable" prefHeight="324.0" prefWidth="746.0">
-                          <columns>
-                            <TableColumn fx:id="ticketNumberColumn" maxWidth="100.0" minWidth="-1.0" prefWidth="100.0" text="%key.TicketNumber" />
-                            <TableColumn fx:id="assetColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Asset" />
-                              <TableColumn fx:id="reporterColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Reporter" />
-                              <TableColumn fx:id="assigneeColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Assignee" />
-                              <TableColumn fx:id="dateStartedColumn" maxWidth="200.0" prefWidth="100.0" text="%key.DateStarted" />
-                              <TableColumn fx:id="statusColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Status" />
-                              <TableColumn fx:id="actionColumn" maxWidth="200.0" prefWidth="150.0" text="Action" />
-                          </columns>
-                        </TableView>
-                     </content>
-                  </ScrollPane>
+                  <TableView id="ticketTable" fx:id="ticketTable" prefHeight="380.0" prefWidth="392.0">
+                    <columns>
+                      <TableColumn fx:id="ticketNumberColumn" maxWidth="100.0" minWidth="-1.0" prefWidth="100.0" text="%key.TicketNumber" />
+                      <TableColumn fx:id="assetColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Asset" />
+                        <TableColumn fx:id="reporterColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Reporter" />
+                        <TableColumn fx:id="assigneeColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Assignee" />
+                        <TableColumn fx:id="dateStartedColumn" maxWidth="200.0" prefWidth="100.0" text="%key.DateStarted" />
+                        <TableColumn fx:id="statusColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Status" />
+                        <TableColumn fx:id="actionColumn" maxWidth="200.0" prefWidth="150.0" text="Action" />
+                    </columns>
+                  </TableView>
                </children>
             </VBox>
          </children>
