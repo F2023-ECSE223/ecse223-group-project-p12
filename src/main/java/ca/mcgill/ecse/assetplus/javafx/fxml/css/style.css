@@ -8,13 +8,13 @@ Stylesheet of our UI
 
 
 /* General attributes for the whole document */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 
 .root
 {  
     -fx-font-family: 'Montserrat', sans-serif;
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
-
     -fx-background-color: #FFFFFF;
 
 }
@@ -42,7 +42,7 @@ Stylesheet of our UI
 /* Colors of the buttons(Tabs) in the dashboard on the left when the mouse hoves(go over) it*/
 .menuButton:hover
 {
-    -fx-background-color: #CBC3E3;
+    -fx-background-color: #F7F6FE;
 }
 
 /* Action buttons are the buttons like AddImage that needs to be purple*/
@@ -75,13 +75,6 @@ Stylesheet of our UI
     -fx-pref-height: -1;
 }
 
-.title1
-{
-    -fx-font-size: 24px;
-    -fx-text-fill: #8768F2;
-    -fx-font-weight: bold;
-}
-
 .cancelButton
 {
     -fx-background-color: #a30d11;
@@ -89,3 +82,67 @@ Stylesheet of our UI
     -fx-font-weight: bold;
     -fx-background-radius: 10px;
 }
+
+.text-field {
+    -fx-background-color: #F7F6FE;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-text-fill: #808080;
+}
+
+.choice-box {
+    -fx-background-color: white; 
+    -fx-border-radius: 10px;
+    -fx-border-color: #808080;
+    -fx-border-width: 1px;
+}
+
+.choice-box .menu-item{
+    -fx-background-color: white;
+}
+
+.choice-box .menu-item:hover {
+    -fx-background-color: #F7F6FE; 
+}
+
+/** COPIED STUFF */
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 10px 0 10px 0;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell:hover {
+    -fx-text-background-color: #8768F2;
+}
+.table-row-cell:odd{
+    -fx-background-color: white;
+}
+
+.table-row-cell:even{
+    -fx-background-color: #F7F6FE;
+}
+
+
