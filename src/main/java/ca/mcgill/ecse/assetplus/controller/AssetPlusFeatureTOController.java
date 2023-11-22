@@ -21,16 +21,16 @@ public class AssetPlusFeatureTOController {
 
   /**
    * <p>Generate a list of specific asset transfer objects. </p>
-   * @return a hashmap with the keys being an asset number and the value being the associated specific asset transfer object.
+   * @return a list with the indexes holding the associated specific asset transfer object.
    */
-  public static HashMap<Integer, TOSpecificAsset> getSpecificAssets() {
-  List<SpecificAsset> assets = AssetPlusApplication.getAssetPlus().getSpecificAssets();
-  HashMap<Integer, TOSpecificAsset> TOassets = new HashMap<>();
+  public static List<TOSpecificAsset> getSpecificAssets() {
+    List<SpecificAsset> assets = 
+      AssetPlusApplication.getAssetPlus().getSpecificAssets();
+    List<TOSpecificAsset> convertedAssets = new ArrayList<>();
 
-  for (SpecificAsset asset : assets){
-    TOassets.put(asset.getAssetNumber(), new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate()));
+    for (SpecificAsset asset: assets) {
+      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), asset.getAssetType()));
+    }
+    return convertedAssets;
   }
-  return TOassets;
-}
-
 }
