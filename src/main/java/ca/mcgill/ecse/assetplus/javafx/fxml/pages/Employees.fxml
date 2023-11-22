@@ -163,12 +163,12 @@
                                                 </VBox>
                                              </children>
                                           </HBox>
-                                          <HBox layoutX="226.0" layoutY="72.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <children>
-                                                <VBox prefHeight="46.0" prefWidth="323.0">
+                                                <VBox prefHeight="42.0" prefWidth="342.0">
                                                    <children>
                                                       <Label text="%key.Password" />
-                                                      <TextField fx:id="createPasswordField" prefHeight="25.0" prefWidth="310.0" style="-fx-background-color: white;" />
+                                                      <TextField fx:id="createPasswordField" style="-fx-background-color: white; -fx-background-radius: 5px;" />
                                                    </children>
                                                 </VBox>
                                              </children>
