@@ -29,6 +29,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class AssetTypesController {
@@ -140,6 +141,7 @@ public class AssetTypesController {
 
       vbox.getChildren().add(imageView);
       Label name = new Label(" Lamp");
+      name.setFont(new Font(15));
       Label lifeExp = new Label(" Life expenctancy: 5 years");  
       vbox.getChildren().add(name);
       vbox.getChildren().add(lifeExp);
