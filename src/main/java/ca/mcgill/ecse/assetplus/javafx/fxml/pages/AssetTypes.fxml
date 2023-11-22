@@ -42,13 +42,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssetTypesController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssetTypesController">
   <children>
       <HBox fx:id="DashboardAndContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <children>
             <fx:include source="../components/Dashboard.fxml" />
             <VBox prefHeight="540.0" prefWidth="750.0" HBox.hgrow="ALWAYS">
                <children>
+                  <fx:include source="../components/ToolBar.fxml" />
                   <VBox fx:id="TopContent" prefHeight="180.0" prefWidth="750.0">
                      <children>
                         <fx:include source="../components/UserTopSection.fxml" />

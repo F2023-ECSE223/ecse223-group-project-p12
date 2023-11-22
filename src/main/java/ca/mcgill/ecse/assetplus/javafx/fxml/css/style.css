@@ -25,6 +25,15 @@ Stylesheet of our UI
     -fx-text-fill: #8768F2;
 }
 
+.toolbarButton
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-effect: none;
+}
+
 /* Buttons(Tabs) in the dashboard on the left for the different*/
 .menuButton
 {
@@ -90,6 +99,14 @@ Stylesheet of our UI
     -fx-border-radius: 50;
     -fx-text-fill: #808080;
 }
+
+/* Pop Up Style */
+.popUpTitle
+{
+    -fx-text-fill: #8768F2;
+    -fx-font-weight: bold;
+}
+
 
 /* CHOICE BOX STYLE */
 .choice-box {
@@ -243,4 +260,3 @@ Stylesheet of our UI
 .icon-trash:hover {
     -icon-paint: linear-gradient(to bottom,  red, black);
 }
-
