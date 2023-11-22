@@ -20,6 +20,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ViewUtils {
+  
   /** Calls the controller and shows an error, if applicable. */
   public static boolean callController(String result) {
     if (result.isEmpty()) {

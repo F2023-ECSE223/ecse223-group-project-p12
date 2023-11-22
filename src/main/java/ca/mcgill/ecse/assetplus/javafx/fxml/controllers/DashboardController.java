@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 public class DashboardController {
+
     @FXML
     private VBox Dashboard;
 
@@ -45,7 +46,6 @@ public class DashboardController {
         tabTicketMenu.getStyleClass().remove("currentMenuButton");
         tabTicketStatus.getStyleClass().remove("currentMenuButton");
     }
-
 
     @FXML
     void initialize() {

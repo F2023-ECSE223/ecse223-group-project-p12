@@ -8,14 +8,13 @@ Stylesheet of our UI
 
 
 /* General attributes for the whole document */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
 
 .root
 {  
-    -fx-font-family: 'Yu Gothic';
-    /*-fx-font-family: 'Vollkorn Regular';*/
+    -fx-font-family: 'Montserrat', sans-serif;
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
-
     -fx-background-color: #FFFFFF;
 
 }
@@ -52,7 +51,7 @@ Stylesheet of our UI
 /* Colors of the buttons(Tabs) in the dashboard on the left when the mouse hoves(go over) it*/
 .menuButton:hover
 {
-    -fx-background-color: #CBC3E3;
+    -fx-background-color: #F7F6FE;
 }
 
 /* Action buttons are the buttons like AddImage that needs to be purple*/
@@ -61,6 +60,7 @@ Stylesheet of our UI
     -fx-text-fill: white;
     -fx-background-color: #8768F2;
     -fx-background-radius: 10px;
+    -fx-padding: 5px 10px 5px 10px
 }
 
 .currentMenuButton .icon 
@@ -83,4 +83,122 @@ Stylesheet of our UI
 {
     -fx-pref-width: -1;
     -fx-pref-height: -1;
+}
+
+.cancelButton
+{
+    -fx-background-color: #a30d11;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+}
+
+.text-field {
+    -fx-background-color: #F7F6FE;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-text-fill: #808080;
+}
+
+/* CHOICE BOX STYLE */
+.choice-box {
+    -fx-background-color: white; 
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #808080;
+    -fx-border-width: 1px;
+}
+
+.choice-box .menu-item{
+    -fx-background-color: white;
+}
+
+.choice-box .menu-item:hover {
+    -fx-background-color: #F7F6FE; 
+}
+
+/* TABLE VIEW STYLE */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: white;
+    /* HOW DO I REMOVE THE EXTRA FILLER COLUMN */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #8768F2;
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 5px 0 5px 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-view .table-cell {
+    -fx-padding: 10px 0 10px 0;
+}
+
+.table-view .filler {
+    -fx-background-color: red;
+}
+
+.table-row-cell:hover {
+    -fx-text-background-color: #8768F2;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: white;
+}
+
+.table-row-cell:even{
+    -fx-background-color: #F7F6FE;
+}
+
+/* TAB STYLE */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+    -fx-background-color: white;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 90px;
+}
+
+.tab {
+    -fx-background-insets: 0 1 0 1, 0, 0;
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: #F7F6FE;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #8768F2;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #808080;
+    -fx-font-size: 12px;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
 }

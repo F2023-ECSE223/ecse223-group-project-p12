@@ -64,7 +64,7 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="532.0" prefWidth="734.0">
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="532.0">
                      <children>
                         <Button fx:id="saveSettingsButton" layoutX="327.0" layoutY="288.0" mnemonicParsing="false" onAction="#saveSettings" prefHeight="40.0" prefWidth="127.0" styleClass="actionButton" text="%key.SaveSettings" />
                         <VBox layoutX="174.0" layoutY="52.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
