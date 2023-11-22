@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -55,7 +56,7 @@ public class AssetPlusFXMLView extends Application {
       primaryStage.setMinWidth(960);
       primaryStage.setMinHeight(540);
       primaryStage.setTitle("AssetPlus");
-      primaryStage.initStyle(StageStyle.UNDECORATED);
+      //primaryStage.initStyle(StageStyle.TRANSPARENT);
       primaryStage.show();
 
       // Initializes the other pages
@@ -94,6 +95,29 @@ public class AssetPlusFXMLView extends Application {
     return instance;
   }
 
+  public void loadPopupWindow(String fxml) {
+
+    Stage dialog = new Stage();
+    dialog.initModality(Modality.APPLICATION_MODAL);
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
+    Parent root;
+    try 
+    {
+      root = (Parent) loader.load();
+    
+      var scene = new Scene(root);
+      scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
+      dialog.setScene(scene);
+      dialog.setTitle("test");
+      dialog.show();
+    }
+    catch (IOException e)
+    {
+        e.printStackTrace();
+    }
+  }
+
   public void changeTab(String fxml)
   {
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
@@ -103,9 +127,13 @@ public class AssetPlusFXMLView extends Application {
     {
         root = (Parent) loader.load();
         // Keep the current size
-        Scene scene = new Scene(root , this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        System.out.printf("Before change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
+        Scene scene = new Scene(root, this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
         this.stage.setScene(scene);
-    } 
+        System.out.printf("After change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
+    }
     catch (IOException e)
     {
         e.printStackTrace();
@@ -140,10 +168,18 @@ public class AssetPlusFXMLView extends Application {
 
       Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
 
+
+      System.out.printf("Before Maximize %f %f \n", stage.getWidth(), stage.getHeight());
+      System.out.printf("Before Maximize %f %f \n", stage.getScene().getWidth(), stage.getScene().getHeight());
       stage.setX(bounds.getMinX());
       stage.setY(bounds.getMinY());
       stage.setWidth(bounds.getWidth());
       stage.setHeight(bounds.getHeight());
+      System.out.printf("Maximize %f %f \n", stage.getWidth(), stage.getHeight());
+      System.out.printf("Maximize %f %f \n", stage.getScene().getWidth(), stage.getScene().getHeight());
+
+      
+
       isMaximized = true;
     }
     else {
@@ -153,7 +189,7 @@ public class AssetPlusFXMLView extends Application {
       stage.setHeight(prevHeight);
       isMaximized = false;
     }
-   
+  
   }
 
   public void hideWindow() {

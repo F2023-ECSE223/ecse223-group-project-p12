@@ -46,7 +46,7 @@ public class AddImageController {
 
     @FXML
     void AddImage(ActionEvent event) {
-
+        ViewUtils.loadPopupWindow("components/UserTopSection.fxml");
     }
 
     @FXML
