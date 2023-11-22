@@ -89,11 +89,13 @@ public class AssetTypesController {
     private void showAssetTypes(){
 
       grid.getChildren().clear();
+      int width = 200;
       
       VBox vbox = new VBox(8); // spacing = 8
-      vbox.setPrefSize(200, 250);
+      vbox.setPrefSize(width, 280);
       vbox.setBackground(new Background(new BackgroundFill(Color.rgb(247, 246, 254), CornerRadii.EMPTY, Insets.EMPTY)));
       
+
       DropShadow ds = new DropShadow();
       ds.setOffsetX(3.0);
       ds.setOffsetY(3.0);
@@ -108,24 +110,33 @@ public class AssetTypesController {
           imageView = new ImageView(image);          
       }
       else {
-          imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.png", 200, 200, true, true));
+          imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.png",width, width, true, true));
       }
 
       HBox hbox = new HBox();
-      hbox.setPrefSize(200, 15);
-      hbox.setSpacing(8);
+      hbox.setPrefSize(width, 15);
+      hbox.setSpacing(10);
 
-      Rectangle rOffset = new Rectangle(100, 15);
+      Rectangle rOffset = new Rectangle(115, 15);
       rOffset.setFill(Color.rgb(247, 246, 254));
 
       Button pencilBtn = new Button();
       pencilBtn.getStyleClass().add("icon-pencil");
       pencilBtn.setPickOnBounds(true);
 
+      Button assetBtn = new Button();
+      assetBtn.getStyleClass().add("icon-asset");
+      assetBtn.setPickOnBounds(true);
+
+      Button trashBtn = new Button();
+      trashBtn.getStyleClass().add("icon-trash");
+      trashBtn.setPickOnBounds(true);
+
       hbox.getChildren().add(rOffset);
+      hbox.getChildren().add(assetBtn);
       hbox.getChildren().add(pencilBtn);
-      hbox.getChildren().add(new Button("U"));
-      hbox.getChildren().add(new Button("D"));
+      hbox.getChildren().add(trashBtn);
+     
 
       vbox.getChildren().add(imageView);
       Label name = new Label(" Lamp");
