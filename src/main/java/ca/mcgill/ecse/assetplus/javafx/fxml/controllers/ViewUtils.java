@@ -1,11 +1,13 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import static java.lang.Integer.SIZE;
+import java.util.ArrayList;
 import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.*;
-import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -88,6 +90,41 @@ public class ViewUtils {
     // as javafx works with observable list, we need to convert the java.util.List to
     // javafx.collections.observableList
     return FXCollections.observableList(ticket.getImageURLs());
+  }
+
+  private static TOEmployee convertFromEmployee(
+      Employee employee) {
+    List<MaintenanceTicket> ticketsFixedList = employee.getMaintenanceTasks();
+    List<MaintenanceTicket> ticketsRaisedList = employee.getRaisedTickets();
+
+
+    String email = employee.getEmail();
+    String name = employee.getName();
+    String password = employee.getPassword();
+    String phoneNumber = employee.getPhoneNumber();
+    List<Integer> ticketsRaised = new ArrayList<>();
+    List<Integer> ticketFixed = new ArrayList<>();
+    
+    for (int i = 0; i < ticketsFixedList.size(); i++) {
+      ticketFixed.add(ticketsFixedList.get(i).getId());
+    }
+
+    for (int i = 0; i < ticketsRaisedList.size(); i++) {
+      ticketsRaised.add(ticketsRaisedList.get(i).getId());
+    }
+    
+    return new TOEmployee(email, name, password, phoneNumber, ticketsRaised, ticketFixed);
+
+  }
+
+  public static List<TOEmployee> getAllEmployees() {
+    List<Employee> employees = AssetPlusApplication.getAssetPlus().getEmployees();
+    List<TOEmployee> toEmployees = new ArrayList<>();
+
+    for (Employee employee: employees) {
+      toEmployees.add(convertFromEmployee(employee));
+    }
+    return toEmployees;
   }
 
 }

@@ -19,7 +19,7 @@ public class TOManager extends TOHotelStaff
   // CONSTRUCTOR
   //------------------------
 
-  public TOManager(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised, List<Integer> aTicketFixed, List<Integer> aTicketApproved)
+  public TOManager(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised, List<Integer> aTicketFixed, List<Integer> aTicketApproved)
   {
     super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised, aTicketFixed);
     ticketApproved = aTicketApproved;

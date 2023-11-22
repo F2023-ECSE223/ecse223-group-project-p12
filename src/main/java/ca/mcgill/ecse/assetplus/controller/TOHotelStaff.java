@@ -19,7 +19,7 @@ public abstract class TOHotelStaff extends TOUser
   // CONSTRUCTOR
   //------------------------
 
-  public TOHotelStaff(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised, List<Integer> aTicketFixed)
+  public TOHotelStaff(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised, List<Integer> aTicketFixed)
   {
     super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised);
     ticketFixed = aTicketFixed;

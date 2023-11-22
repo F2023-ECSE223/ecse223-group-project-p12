@@ -3,8 +3,10 @@ package ca.mcgill.ecse.assetplus.controller;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
+import java.util.*;
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
@@ -236,8 +238,9 @@ public class AssetPlusFeatureSet1Controller {
         error = "Email already linked to a guest account";
       } else {
         error = "";
-      }
-      return error;
     }
+    return error;
+  }
+
 
 }
