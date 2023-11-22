@@ -89,7 +89,7 @@
                                       "id": 4,
                                       "raisedOnDate": "2023-11-08",
                                       "description": "desk is wobbly",
-                                      "status": "Resolved",
+                                      "status": "Open",
                                       "ticketNotes": [
                                         ""
                                       ],
@@ -256,7 +256,7 @@
                 "id": 3,
                 "raisedOnDate": "2023-11-07",
                 "description": "very noisy after 10pm",
-                "status": "InProgress",
+                "status": "Open",
                 "ticketNotes": [
                   {
                     "MaintenanceNote": {
@@ -277,7 +277,7 @@
                               "id": 5,
                               "raisedOnDate": "2023-11-09",
                               "description": "carpet is stained",
-                              "status": "Closed",
+                              "status": "Open",
                               "ticketNotes": [
                                 ""
                               ],
