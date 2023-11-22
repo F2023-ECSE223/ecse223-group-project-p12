@@ -7,11 +7,15 @@ import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
 import java.util.Locale;
 
@@ -27,6 +31,17 @@ public class AssetPlusFXMLView extends Application {
   private String language = "en";
   private final String BUNDLE_PATH = "ca.mcgill.ecse.assetplus.javafx.resources.languages.Bundle";
 
+  // To drag the window
+  private double xOffset = 0;
+  private double yOffset = 0;
+
+  // Size of the minimize window
+  private double prevX = 0;
+  private double prevY = 0;
+  private double prevWidth = 0;
+  private double prevHeight = 0;
+  private boolean isMaximized = false;
+
   @Override
   public void start(Stage primaryStage) {
     instance = this;
@@ -41,6 +56,7 @@ public class AssetPlusFXMLView extends Application {
       primaryStage.setMinWidth(960);
       primaryStage.setMinHeight(540);
       primaryStage.setTitle("AssetPlus");
+      //primaryStage.initStyle(StageStyle.TRANSPARENT);
       primaryStage.show();
 
       // Initializes the other pages
@@ -79,6 +95,29 @@ public class AssetPlusFXMLView extends Application {
     return instance;
   }
 
+  public void loadPopupWindow(String fxml) {
+
+    Stage dialog = new Stage();
+    dialog.initModality(Modality.APPLICATION_MODAL);
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
+    Parent root;
+    try 
+    {
+      root = (Parent) loader.load();
+    
+      var scene = new Scene(root);
+      scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
+      dialog.setScene(scene);
+      dialog.setTitle("test");
+      dialog.show();
+    }
+    catch (IOException e)
+    {
+        e.printStackTrace();
+    }
+  }
+
   public void changeTab(String fxml)
   {
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
@@ -88,9 +127,13 @@ public class AssetPlusFXMLView extends Application {
     {
         root = (Parent) loader.load();
         // Keep the current size
-        Scene scene = new Scene(root , this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        System.out.printf("Before change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
+        Scene scene = new Scene(root, this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
         this.stage.setScene(scene);
-    } 
+        System.out.printf("After change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
+    }
     catch (IOException e)
     {
         e.printStackTrace();
@@ -114,4 +157,57 @@ public class AssetPlusFXMLView extends Application {
   public ResourceBundle getBundle() {
     return ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language));
   }
+
+  public void closeWindow() {
+    this.stage.close();
+  }
+
+  public void maximizeWindow() {
+    if (!isMaximized) {
+      // Save current position and window's size
+      prevX = stage.getX();
+      prevY = stage.getY();
+      prevWidth = stage.getWidth();
+      prevHeight = stage.getHeight();
+
+      Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+
+
+      System.out.printf("Before Maximize %f %f \n", stage.getWidth(), stage.getHeight());
+      System.out.printf("Before Maximize %f %f \n", stage.getScene().getWidth(), stage.getScene().getHeight());
+      stage.setX(bounds.getMinX());
+      stage.setY(bounds.getMinY());
+      stage.setWidth(bounds.getWidth());
+      stage.setHeight(bounds.getHeight());
+      System.out.printf("Maximize %f %f \n", stage.getWidth(), stage.getHeight());
+      System.out.printf("Maximize %f %f \n", stage.getScene().getWidth(), stage.getScene().getHeight());
+
+      
+
+      isMaximized = true;
+    }
+    else {
+      stage.setX(prevX);
+      stage.setY(prevY);
+      stage.setWidth(prevWidth);
+      stage.setHeight(prevHeight);
+      isMaximized = false;
+    }
+  
+  }
+
+  public void hideWindow() {
+    this.stage.setIconified(true);
+  }
+
+  public void onToolbarPressed(double x, double y) {
+    xOffset = this.stage.getX() - x;
+    yOffset = this.stage.getY() - y;
+  }
+
+  public void onToolbarDragged(double x, double y) {
+    this.stage.setX(x + xOffset);
+    this.stage.setY(y + yOffset);
+  }
+
 }

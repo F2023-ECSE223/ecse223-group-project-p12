@@ -25,6 +25,15 @@ Stylesheet of our UI
     -fx-text-fill: #8768F2;
 }
 
+.toolbarButton
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-effect: none;
+}
+
 /* Buttons(Tabs) in the dashboard on the left for the different*/
 .menuButton
 {
@@ -90,6 +99,14 @@ Stylesheet of our UI
     -fx-border-radius: 50;
     -fx-text-fill: #808080;
 }
+
+/* Pop Up Style */
+.popUpTitle
+{
+    -fx-text-fill: #8768F2;
+    -fx-font-weight: bold;
+}
+
 
 /* CHOICE BOX STYLE */
 .choice-box {
@@ -192,4 +209,54 @@ Stylesheet of our UI
 .tab:selected .tab-label { 
     -fx-alignment: CENTER;
     -fx-text-fill: white;
+}
+
+/* Asset Type */
+.icon-pencil {
+    -icon-paint:  #8768F2;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z";
+}
+
+.icon-pencil:hover {
+    -icon-paint: black;
+}
+
+.icon-asset {
+    -icon-paint:  #808080;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "m14.56 4l2.67 8H6.78l2.66-8h5.12M16 2H8L4 14h16L16 2m-5 13h2v5h5v2H6v-2h5v-5Z";
+}
+
+.icon-asset:hover {
+    -icon-paint: black;
+}
+
+
+.icon-trash {
+    -icon-paint:  red;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "M216 48h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a8 8 0 0 0 0 16h8v144a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16V64h8a8 8 0 0 0 0-16ZM96 40a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm96 168H64V64h128Zm-80-104v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Zm48 0v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Z";
+}
+
+.icon-trash:hover {
+    -icon-paint: black;
 }

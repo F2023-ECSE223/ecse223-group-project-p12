@@ -46,7 +46,7 @@ public class AddImageController {
 
     @FXML
     void AddImage(ActionEvent event) {
-
+        ViewUtils.loadPopupWindow("popUp/AddImage.fxml");
     }
 
     @FXML
