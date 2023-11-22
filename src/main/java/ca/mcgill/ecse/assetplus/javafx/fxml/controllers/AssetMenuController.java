@@ -112,10 +112,6 @@ public class AssetMenuController {
 
     }
 
-    @FXML
-    void goToTicketMenu(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
-    }
 
 }
 
