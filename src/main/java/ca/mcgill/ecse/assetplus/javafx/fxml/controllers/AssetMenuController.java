@@ -40,13 +40,7 @@ public class AssetMenuController {
     private VBox TopContent;
 
     @FXML
-    private Button addImageButton;
-
-    @FXML
     private Label replaceMe;
-
-    @FXML
-    private Button addTicketButton;
 
     @FXML
     private TextField assetNumberField;
@@ -106,7 +100,7 @@ public class AssetMenuController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
         assetNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAssetNumber()).asObject());
-        //assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetType()));
+        assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetType().getName()));
         floorColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRoomNumber()).asObject());
         roomColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFloorNumber()).asObject());
         purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getPurchaseDate())));
@@ -123,7 +117,7 @@ public class AssetMenuController {
         AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
     }
 
-   
-
 }
+
+
 

@@ -29,7 +29,7 @@ public class AssetPlusFeatureTOController {
     List<TOSpecificAsset> convertedAssets = new ArrayList<>();
 
     for (SpecificAsset asset: assets) {
-      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate()));
+      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), asset.getAssetType()));
     }
     return convertedAssets;
   }
