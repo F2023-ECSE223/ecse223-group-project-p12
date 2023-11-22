@@ -65,6 +65,10 @@ public class ViewUtils {
     dialog.show();
   }
 
+  public static void loadPopupWindow(String fxml) {
+    AssetPlusFXMLView.getInstance().loadPopupWindow(fxml);
+  }
+
   public static void showError(String message) {
     makePopupWindow("Error", message);
   }
