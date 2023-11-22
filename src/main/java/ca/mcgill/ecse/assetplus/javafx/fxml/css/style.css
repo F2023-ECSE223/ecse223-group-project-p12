@@ -260,3 +260,10 @@ Stylesheet of our UI
 .icon-trash:hover {
     -icon-paint: linear-gradient(to bottom,  red, black);
 }
+
+.tab-pane-2 {
+    -fx-tab-max-height: 0 ;
+} 
+.tab-pane-2 .tab-header-area-2 {
+    visibility: hidden ;
+}
