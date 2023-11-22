@@ -68,6 +68,7 @@ public class AssetTypesController {
 
     @FXML
     void addAssetTypeClicked(ActionEvent event) {
+      String image_url = "www.ikea.com/ca/en/images/products/blidvaeder-table-lamp-off-white-ceramic-beige__1059591_pe849714_s5.jpg";
       AddAssetTypePane.setVisible(true); 
     }
 
