@@ -122,42 +122,53 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
                                           <Label alignment="CENTER" prefHeight="15.0" prefWidth="301.0" text="%key.EnterDetailsBelowToAddANewEmployee" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" />
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                              <children>
                                                 <Button fx:id="createEmployeeButton" mnemonicParsing="false" onAction="#createEmployee" style="-fx-font-weight: bold;" styleClass="actionButton" stylesheets="@../css/style.css" text="%key.Create" />
                                                 <Pane prefHeight="64.0" prefWidth="82.0" />
                                                 <Button fx:id="cancelCreateEmployeeButton" mnemonicParsing="false" onAction="#cancelCreateEmployee" styleClass="cancelButton" stylesheets="@../css/style.css" text="%key.Cancel" />
                                              </children>
                                           </HBox>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <children>
                                                 <VBox prefHeight="46.0" prefWidth="323.0">
                                                    <children>
                                                       <Label text="%key.Name" />
-                                                      <TextField fx:id="modifyNameField" prefHeight="25.0" prefWidth="310.0" style="-fx-background-color: white;" />
+                                                      <TextField fx:id="createNameField" prefHeight="25.0" prefWidth="310.0" style="-fx-background-color: white;" />
                                                    </children>
                                                 </VBox>
                                              </children>
                                           </HBox>
-                                          <HBox layoutX="10.0" layoutY="74.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                          <HBox layoutX="10.0" layoutY="74.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                              <children>
                                                 <VBox prefHeight="46.0" prefWidth="333.0">
                                                    <children>
                                                       <Label text="%key.PhoneNumber" />
-                                                      <TextField fx:id="modifyPhoneNumberField" prefHeight="25.0" prefWidth="330.0" style="-fx-background-color: white;" />
+                                                      <TextField fx:id="createPhoneNumberField" prefHeight="25.0" prefWidth="330.0" style="-fx-background-color: white;" />
                                                    </children>
                                                 </VBox>
                                              </children>
                                           </HBox>
-                                          <HBox layoutX="10.0" layoutY="74.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <HBox layoutX="10.0" layoutY="74.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <children>
                                                 <VBox prefHeight="45.0" prefWidth="357.0">
                                                    <children>
                                                       <Label text="%key.Email" />
-                                                      <TextField fx:id="modifyEmailField" prefHeight="23.0" prefWidth="251.0" style="-fx-background-color: white;" />
+                                                      <TextField fx:id="createEmailField" prefHeight="23.0" prefWidth="251.0" style="-fx-background-color: white;" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox layoutX="226.0" layoutY="72.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <children>
+                                                <VBox prefHeight="46.0" prefWidth="323.0">
+                                                   <children>
+                                                      <Label text="%key.Password" />
+                                                      <TextField fx:id="createPasswordField" prefHeight="25.0" prefWidth="310.0" style="-fx-background-color: white;" />
                                                    </children>
                                                 </VBox>
                                              </children>

@@ -42,19 +42,22 @@ public class EmployeesController {
     private Button cancelCreateEmployeeButton;
 
     @FXML
+    private TextField createEmailField;
+
+    @FXML
     private Button createEmployeeButton;
 
     @FXML
+    private TextField createNameField;
+
+    @FXML
+    private TextField createPasswordField;
+
+    @FXML
+    private TextField createPhoneNumberField;
+
+    @FXML
     private TabPane employeeOptions;
-
-    @FXML
-    private TextField modifyEmailField;
-
-    @FXML
-    private TextField modifyNameField;
-
-    @FXML
-    private TextField modifyPhoneNumberField;
 
     @FXML
     private GridPane popupCreateEmployee;
@@ -74,19 +77,20 @@ public class EmployeesController {
 
     @FXML
     void cancelCreateEmployee(ActionEvent event) {
-        modifyEmailField.clear();
-        modifyPhoneNumberField.clear();
-        modifyNameField.clear();
+        createEmailField.clear();
+        createPhoneNumberField.clear();
+        createNameField.clear();
+        createPasswordField.clear();
         employeeOptions.getSelectionModel().select(0);
     }
 
     @FXML
     void createEmployee(ActionEvent event) {
-        Employee employee = new Employee(modifyNameField.getText(), modifyPhoneNumberField.getText(), "abcd", modifyEmailField.getText(), AssetPlusApplication.getAssetPlus());
-        AssetPlusApplication.getAssetPlus().addEmployee(employee);
-        modifyEmailField.clear();
-        modifyPhoneNumberField.clear();
-        modifyNameField.clear();
+        AssetPlusFeatureSet1Controller.addEmployeeOrGuest(createEmailField.getText(), createPasswordField.getText(), createNameField.getText(), createPhoneNumberField.getText(), true);
+        createEmailField.clear();
+        createPhoneNumberField.clear();
+        createNameField.clear();
+        createPasswordField.clear();
         employeeOptions.getSelectionModel().select(0);
         initialize();   
     }
@@ -94,6 +98,7 @@ public class EmployeesController {
     @FXML
     void modifyEmployeePopup(ActionEvent event) {
         employeeOptions.getSelectionModel().select(2);
+
     }
 
     @FXML
