@@ -82,12 +82,13 @@ public class EmployeesController {
 
     @FXML
     void createEmployee(ActionEvent event) {
-        Employee employee = new Employee(modifyNameField.getText(), modifyPhoneNumberField.getText(), "abcd", modifyPhoneNumberField.getText(), AssetPlusApplication.getAssetPlus());
+        Employee employee = new Employee(modifyNameField.getText(), modifyPhoneNumberField.getText(), "abcd", modifyEmailField.getText(), AssetPlusApplication.getAssetPlus());
         AssetPlusApplication.getAssetPlus().addEmployee(employee);
         modifyEmailField.clear();
         modifyPhoneNumberField.clear();
         modifyNameField.clear();
         employeeOptions.getSelectionModel().select(0);
+        initialize();   
     }
 
     @FXML
