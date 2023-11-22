@@ -46,14 +46,10 @@ public class AssetMenuController {
     private Label replaceMe;
 
     @FXML
-    void AddImage(ActionEvent event) {
-    }
-
-    @FXML
     private Button addTicketButton;
 
     @FXML
-    private TextField ticketNumberField;
+    private TextField assetNumberField;
 
     @FXML
     private TableView<TOSpecificAsset> assetTable;
@@ -109,18 +105,12 @@ public class AssetMenuController {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
-        assetNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-        assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
-        floorColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedByEmail()));
-        roomColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFixedByEmail()));
-        purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getRaisedOnDate())));
-        maintenaceHistoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
-
-      
-        List<TOMaintenanceTicket> tickets = AssetPlusFeatureSet6Controller.getTickets();
-        ticketList = FXCollections.observableList(tickets);
-        ticketTable.setItems(ticketList);
-
+        assetNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAssetNumber()).asObject());
+        //assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetType()));
+        floorColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRoomNumber()).asObject());
+        roomColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFloorNumber()).asObject());
+        purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getPurchaseDate())));
+        //maintenaceHistoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
 
         List<TOSpecificAsset> assets = AssetPlusFeatureTOController.getSpecificAssets();
         assetList = FXCollections.observableList(assets);
@@ -133,17 +123,7 @@ public class AssetMenuController {
         AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
     }
 
-    @FXML
-    void filterTableView(String selectedStatus) {
-        if (selectedStatus == null || selectedStatus.equals(resources.getString("key.ShowAll"))) {
-            ticketTable.setItems(ticketList);
-        } else {
-            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> ticket.getStatus().equals(selectedStatus));
-            ticketTable.setItems(filteredList);
-        }
-    }
+   
 
 }
 
-
-}
