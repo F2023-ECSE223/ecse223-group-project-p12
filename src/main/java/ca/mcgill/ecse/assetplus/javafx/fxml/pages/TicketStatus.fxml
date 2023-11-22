@@ -89,13 +89,13 @@
                   </VBox>
                   <TableView id="ticketTable" fx:id="ticketTable" prefHeight="380.0" prefWidth="392.0">
                     <columns>
-                      <TableColumn fx:id="ticketNumberColumn" maxWidth="100.0" minWidth="-1.0" prefWidth="100.0" text="%key.TicketNumber" />
-                      <TableColumn fx:id="assetColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Asset" />
-                        <TableColumn fx:id="reporterColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Reporter" />
-                        <TableColumn fx:id="assigneeColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Assignee" />
-                        <TableColumn fx:id="dateStartedColumn" maxWidth="200.0" prefWidth="100.0" text="%key.DateStarted" />
-                        <TableColumn fx:id="statusColumn" maxWidth="200.0" prefWidth="100.0" style="-fx-padding: 0 0 0 0;" text="%key.Status" />
-                        <TableColumn fx:id="actionColumn" maxWidth="200.0" prefWidth="150.0" text="Action" />
+                      <TableColumn fx:id="ticketNumberColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="125.0" text="%key.TicketNumber" />
+                      <TableColumn fx:id="assetColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="%key.Asset" />
+                        <TableColumn fx:id="reporterColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="%key.Reporter" />
+                        <TableColumn fx:id="assigneeColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="%key.Assignee" />
+                        <TableColumn fx:id="dateStartedColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="%key.DateStarted" />
+                        <TableColumn fx:id="statusColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" style="-fx-padding: 0 0 0 0;" text="%key.Status" />
+                        <TableColumn fx:id="actionColumn" maxWidth="1.7976931348623157E308" prefWidth="125.0" text="Action" />
                     </columns>
                   </TableView>
                </children>

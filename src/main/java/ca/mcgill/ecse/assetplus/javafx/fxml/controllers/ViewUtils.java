@@ -90,4 +90,9 @@ public class ViewUtils {
     return FXCollections.observableList(ticket.getImageURLs());
   }
 
+  public static String getUsername(String email) {
+    return AssetPlusFeatureSet1Controller.getUsername(email);
+  }
+
+
 }
