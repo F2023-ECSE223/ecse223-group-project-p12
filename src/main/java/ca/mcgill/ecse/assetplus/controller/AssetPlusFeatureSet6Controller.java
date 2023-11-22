@@ -63,7 +63,7 @@ public class AssetPlusFeatureSet6Controller {
    * @return a ticket
    */
   public static TOMaintenanceTicket getTicket(int id) {
-    if(MaintenanceTicket.hasWithId(id))
+    if (MaintenanceTicket.hasWithId(id))
       return convertFromMaintenanceTicket(MaintenanceTicket.getWithId(id));
     
     return null;

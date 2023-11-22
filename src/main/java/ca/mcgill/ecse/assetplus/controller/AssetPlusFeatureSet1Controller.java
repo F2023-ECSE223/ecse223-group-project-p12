@@ -3,6 +3,7 @@ package ca.mcgill.ecse.assetplus.controller;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
+import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
@@ -238,6 +239,21 @@ public class AssetPlusFeatureSet1Controller {
         error = "";
       }
       return error;
+    }
+
+    public static String getUsername(String email) {
+      User user = User.getWithEmail(email);
+
+      if (user == null) {
+        // Check if it's manager
+        if (email.equals("manager@ap.com")) {
+          return AssetPlusApplication.getAssetPlus().getManager().getName();
+        }
+
+        return "No user found.";
+      }
+
+      return user.getName();
     }
 
 }

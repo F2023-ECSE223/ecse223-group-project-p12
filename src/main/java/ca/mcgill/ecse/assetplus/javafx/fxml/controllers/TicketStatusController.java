@@ -1,24 +1,30 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.model.User;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.SVGPath;
+import javafx.util.Callback;
 import java.util.ResourceBundle;
-import java.util.List;
+import com.google.common.collect.Table;
+import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 import java.text.SimpleDateFormat;;
 
 public class TicketStatusController {
@@ -81,20 +87,124 @@ public class TicketStatusController {
         );
 
         statusChoiceBox.setValue(resources.getString("key.SelectStatus"));
-        statusChoiceBox.setOnAction(event -> filterTableView(statusChoiceBox.getValue()));
+        statusChoiceBox.setOnAction(event -> filterTableView(getKey(statusChoiceBox.getValue())));
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
         ticketNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
-        reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedByEmail()));
+        reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getRaisedByEmail())));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFixedByEmail()));
         dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getRaisedOnDate())));
         statusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
 
-        List<TOMaintenanceTicket> tickets = AssetPlusFeatureSet6Controller.getTickets();
-        ticketList = FXCollections.observableList(tickets);
+        ticketList = ViewUtils.getMaintenanceTickets();
         ticketTable.setItems(ticketList);
+        
+        statusColumn.setCellFactory(new Callback<TableColumn<TOMaintenanceTicket,String>,TableCell<TOMaintenanceTicket,String>>() {
+            @Override
+            public TableCell<TOMaintenanceTicket, String> call(TableColumn<TOMaintenanceTicket, String> param) {
+                return new TableCell<TOMaintenanceTicket, String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                            setStyle(null);
+                        }
+                        else {
+                            setText(resources.getString("key." + item));
+                            setStyle(getStatusStyle(resources.getString("key." + item)));
+                        }
+                    }
+
+                    private String getStatusStyle(String status) {
+                        switch (status) {
+                            case "Open":
+                                return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969;";
+                            case "Ouvert":
+                                return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969;";
+                            case "Assigned":
+                                return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC";
+                            case "Assigné":
+                                return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC";
+                            case "In Progress":
+                                return "-fx-background-color: #FEF2E5; -fx-text-fill: #CD6200";
+                            case "En progrès":
+                                return "-fx-background-color: #FEF2E5; -fx-text-fill: #FFD700";
+                            case "Resolved":
+                                return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254";
+                            case "Résolu":
+                                return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254";
+                            case "Closed":
+                                return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11";
+                            case "Fermé":
+                                return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11";
+                            default: 
+                                return "";
+                        }
+                    }
+                };
+            }
+        });
+
+        ticketNumberColumn.setCellFactory(col -> {
+            TableCell<TOMaintenanceTicket, Integer> cell = new TableCell<TOMaintenanceTicket, Integer>() {
+                @Override
+                protected void updateItem(Integer item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                        setStyle(null);
+                    } else {
+                        setText("#" + String.valueOf(item));
+                        setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
+                    }
+                }
+            };
+        
+            cell.setOnMouseClicked(event -> {
+                if (!cell.isEmpty()) {
+                    System.out.println("Ticket number " + cell.getItem() + " clicked!");
+                }
+            });
+        
+            return cell;
+        });
+
+        actionColumn.setCellFactory(col -> new TableCell<>() {
+            @Override
+            protected void updateItem(HBox item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(item);
+                }
+            }
+        });
+
+        actionColumn.setCellValueFactory(cellData -> {
+        // Create an HBox with three SVGPath objects representing icons
+        Button imgBtn = new Button();
+        imgBtn.getStyleClass().add("icon-image");
+        imgBtn.setPickOnBounds(true);
+
+        Button editBtn = new Button();
+        editBtn.getStyleClass().add("icon-edit");
+        editBtn.setPickOnBounds(true);
+
+        Button trashBtn = new Button();
+        trashBtn.getStyleClass().add("icon-trash");
+        trashBtn.setPickOnBounds(true);
+
+        HBox hbox = new HBox(imgBtn, editBtn, trashBtn);
+        hbox.setSpacing(10);
+        hbox.setAlignment(Pos.CENTER);
+
+        return new SimpleObjectProperty<>(hbox);
+    });
+        
     }
 
     @FXML
@@ -104,12 +214,23 @@ public class TicketStatusController {
 
     @FXML
     void filterTableView(String selectedStatus) {
-        if (selectedStatus == null || selectedStatus.equals(resources.getString("key.ShowAll"))) {
+        if (selectedStatus == null || selectedStatus.equals("key.ShowAll")) {
             ticketTable.setItems(ticketList);
         } else {
-            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> ticket.getStatus().equals(selectedStatus));
+            String status = selectedStatus.substring(selectedStatus.lastIndexOf(".") + 1);
+            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> ticket.getStatus().equals(status));
             ticketTable.setItems(filteredList);
         }
     }
+
+    public String getKey(String text) {
+        for (String key: resources.keySet()) {
+            if (resources.getString(key).equals(text)) {
+                return key;
+            }
+        }
+
+        return "defaultKey";
+    } 
 
 }
