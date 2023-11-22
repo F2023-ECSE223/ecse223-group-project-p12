@@ -139,11 +139,9 @@ Stylesheet of our UI
 }
 
 .table-view .table-cell {
-    -fx-padding: 10px 0 10px 0;
-}
-
-.table-view .filler {
-    -fx-background-color: red;
+    -fx-background-insets: 10, 0, 0, 0;
+    -fx-background-radius: 20px;
+    -fx-padding: 20px 0 10px 0;
 }
 
 .table-row-cell:hover {

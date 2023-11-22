@@ -93,7 +93,7 @@
                         <TableColumn fx:id="reporterColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Reporter" />
                         <TableColumn fx:id="assigneeColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Assignee" />
                         <TableColumn fx:id="dateStartedColumn" maxWidth="200.0" prefWidth="100.0" text="%key.DateStarted" />
-                        <TableColumn fx:id="statusColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Status" />
+                        <TableColumn fx:id="statusColumn" maxWidth="200.0" prefWidth="100.0" style="-fx-padding: 0 0 0 0;" text="%key.Status" />
                         <TableColumn fx:id="actionColumn" maxWidth="200.0" prefWidth="150.0" text="Action" />
                     </columns>
                   </TableView>

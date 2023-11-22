@@ -71,8 +71,6 @@ public class ViewUtils {
 
   public static ObservableList<TOMaintenanceTicket> getMaintenanceTickets() {
     List<TOMaintenanceTicket> ticket = AssetPlusFeatureSet6Controller.getTickets();
-    // as javafx works with observable list, we need to convert the java.util.List to
-    // javafx.collections.observableList
     return FXCollections.observableList(ticket);
   }
 
@@ -85,8 +83,6 @@ public class ViewUtils {
     } 
     System.out.println("Exist!!");
 
-    // as javafx works with observable list, we need to convert the java.util.List to
-    // javafx.collections.observableList
     return FXCollections.observableList(ticket.getImageURLs());
   }
 
