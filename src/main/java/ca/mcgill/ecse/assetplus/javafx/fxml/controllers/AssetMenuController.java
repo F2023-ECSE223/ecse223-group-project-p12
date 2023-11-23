@@ -68,7 +68,7 @@ public class AssetMenuController {
     private TableColumn<TOSpecificAsset, Integer> lifeExpectancyColumn;
 
     @FXML
-    private TableColumn<TOSpecificAsset, String> maintenaceHistoryColumn;
+    private TableColumn<TOSpecificAsset, HBox> maintenanceHistoryColumn;
 
     @FXML
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
@@ -92,14 +92,22 @@ public class AssetMenuController {
         roomColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFloorNumber()).asObject());
         purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getPurchaseDate())));
         
-        //maintenaceHistoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
+        maintenanceHistoryColumn.setCellValueFactory(cellData -> {
+            Button editBtn = new Button();
+            editBtn.getStyleClass().add("icon-maintenancehistory");
+            editBtn.setPickOnBounds(true);
+            editBtn.setOnAction(event -> handleEditButtonClicked());
+
+            HBox hbox = new HBox(editBtn);
+            hbox.setSpacing(10);
+            hbox.setAlignment(Pos.CENTER);
+
+            return new SimpleObjectProperty<>(hbox);
+        });
+        
 
          actionColumn.setCellValueFactory(cellData -> {
         // Create an HBox with three SVGPath objects representing icons
-        Button imgBtn = new Button();
-        imgBtn.getStyleClass().add("icon-image");
-        imgBtn.setPickOnBounds(true);
-        imgBtn.setOnAction(event -> handleImageButtonClicked());
 
         Button editBtn = new Button();
         editBtn.getStyleClass().add("icon-edit");
@@ -111,17 +119,13 @@ public class AssetMenuController {
         trashBtn.setPickOnBounds(true);
         trashBtn.setOnAction(event -> handleTrashButtonClicked());
 
-        HBox hbox = new HBox(imgBtn, editBtn, trashBtn);
+        HBox hbox = new HBox(editBtn, trashBtn);
         hbox.setSpacing(10);
         hbox.setAlignment(Pos.CENTER);
 
         return new SimpleObjectProperty<>(hbox);
     });
 
-    }
-
-    private void handleImageButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
     }
 
     private void handleEditButtonClicked() {
