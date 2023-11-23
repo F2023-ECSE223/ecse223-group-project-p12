@@ -90,9 +90,9 @@
                 <content>
                   <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="378.0" prefWidth="742.0" style="-fx-background-color: white;">
                            <children>
-                              <TabPane layoutX="1.0" layoutY="3.0" prefHeight="360.0" prefWidth="734.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
+                              <TabPane fx:id="tabPane" layoutX="1.0" layoutY="3.0" prefHeight="360.0" prefWidth="734.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
-                                  <Tab text="%key.add">
+                                  <Tab fx:id="addTab" text="%key.add">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                                              <children>
@@ -120,7 +120,7 @@
                                           </AnchorPane>
                                     </content>
                                   </Tab>
-                                  <Tab text="%key.update">
+                                  <Tab fx:id="editTab" text="%key.update">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
@@ -160,7 +160,7 @@
                                           </AnchorPane>
                                     </content>
                                   </Tab>
-                                    <Tab text="%key.delete">
+                                    <Tab fx:id="deleteTab" text="%key.delete">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                       </content>

@@ -11,6 +11,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
@@ -25,7 +27,7 @@ public class AssetPlusFXMLView extends Application {
   private static AssetPlusFXMLView instance;
   private List<Node> refreshableNodes = new ArrayList<>();
   private Stage stage;
-  private Stage popUp;
+  private Stage popUpStage;
   private Object currentController;
   private String currentPage;
   private String language = "en";
@@ -47,7 +49,7 @@ public class AssetPlusFXMLView extends Application {
     instance = this;
     try {
       stage = primaryStage;
-      popUp = null;
+      popUpStage = null;
       currentPage = "pages/TicketStatus.fxml";
       var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
 
@@ -98,10 +100,10 @@ public class AssetPlusFXMLView extends Application {
     return instance;
   }
 
-  public Object loadPopupWindow(String fxml) {
 
-    popUp = new Stage();
-    popUp.initModality(Modality.APPLICATION_MODAL);
+  public Object loadPopupWindow(String fxml) {
+    popUpStage = new Stage();
+    popUpStage.initModality(Modality.APPLICATION_MODAL);
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
     Parent root;
@@ -111,12 +113,13 @@ public class AssetPlusFXMLView extends Application {
     
       var scene = new Scene(root);
       scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
-      popUp.setScene(scene);
-      popUp.setTitle("test");
-      popUp.show();
+      popUpStage.setScene(scene);
+      popUpStage.setTitle("test");
+      popUpStage.show();
       
       // Return the controller of the pop up window
       return loader.getController();
+
     }
     catch (IOException e)
     {
@@ -124,6 +127,12 @@ public class AssetPlusFXMLView extends Application {
     }
 
     return null;
+  }
+
+  public void closePopUpWindow() {
+    if (this.popUpStage != null) {
+      this.popUpStage.close();
+    }
   }
 
   public void changeTab(String fxml)
@@ -136,6 +145,7 @@ public class AssetPlusFXMLView extends Application {
     try 
     {
         root = (Parent) loader.load();
+
         // Keep the current size
         //System.out.printf("Before change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
         //System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
@@ -148,7 +158,35 @@ public class AssetPlusFXMLView extends Application {
     {
         e.printStackTrace();
     }
+  }
 
+  public void changeTab(String fxml, String tabId)
+  {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
+    Parent root;
+    currentPage = fxml;
+    try 
+    {
+        root = (Parent) loader.load();
+        Scene scene = new Scene(root, this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        this.stage.setScene(scene);
+        System.out.println("DOES IT HAPPEN HERE??");
+
+        TabPane tabPane = (TabPane) scene.lookup("#tabPane"); // Replace with the actual ID or use other means to get the reference
+
+        // Find the tab with the specified ID
+        for (Tab tab : tabPane.getTabs()) {
+          System.out.println("The tab is: " + tab);
+            if (tab.getId().equals(tabId)) {
+                tabPane.getSelectionModel().select(tab);
+                break; // Stop searching once the tab is found
+            }
+        }
+    }
+    catch (IOException e)
+    {
+        e.printStackTrace();
+    }
   }
 
   public Object getCurrentController() {
@@ -170,10 +208,6 @@ public class AssetPlusFXMLView extends Application {
 
   public ResourceBundle getBundle() {
     return ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language));
-  }
-
-  public void closePopUp() {
-    this.popUp.close();
   }
 
   public void closeWindow() {
