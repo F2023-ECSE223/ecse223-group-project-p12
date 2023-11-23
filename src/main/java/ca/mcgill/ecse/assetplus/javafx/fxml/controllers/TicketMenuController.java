@@ -35,6 +35,18 @@ public class TicketMenuController {
     private TextField ticketNumberField;
 
     @FXML
+    private Button addTickeButton;
+
+    @FXML
+    private Button canceButton;
+
+    @FXML
+    private Button updateTicketButton;
+
+    @FXML
+    private Button deleteTicketButton;
+
+    @FXML
     void initialize() {
         
     }
@@ -43,6 +55,28 @@ public class TicketMenuController {
     void AddImage(ActionEvent event) {
 
     }
+
+    @FXML
+    void addTicketClicked(ActionEvent event){
+        
+    }
+
+    @FXML
+    void cancelClicked(ActionEvent event){
+
+    }
+
+    @FXML
+    void updateTicketClicked(ActionEvent event){
+
+    }
+
+    @FXML
+    void deleteTicketClicked(ActionEvent event){
+        
+    }
+
+
 
 }
 

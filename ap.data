@@ -405,6 +405,16 @@
           },
           {
             "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket/asset/assetType"
+          },
+          {
+            "name": "abc",
+            "expectedLifeSpan": 12,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              ""
+            ]
           }
         ]
       }
