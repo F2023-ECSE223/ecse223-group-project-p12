@@ -101,7 +101,7 @@ public class AssetPlusFXMLView extends Application {
   }
 
 
-  public Object loadPopupWindow(String fxml) {
+  public Object loadPopupWindow(String fxml, String title) {
     popUpStage = new Stage();
     popUpStage.initModality(Modality.APPLICATION_MODAL);
 
@@ -114,7 +114,7 @@ public class AssetPlusFXMLView extends Application {
       var scene = new Scene(root);
       scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
       popUpStage.setScene(scene);
-      popUpStage.setTitle("test");
+      popUpStage.setTitle(title);
       popUpStage.show();
       
       // Return the controller of the pop up window

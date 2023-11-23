@@ -33,14 +33,14 @@ public class AddImagePopUpController {
   void AddImage(ActionEvent event) {
     String url = urlField.getText();
     if ( ViewUtils.callController((AssetPlusFeatureSet5Controller.addImageToMaintenanceTicket(url, ticketId))) ) {
-      AssetPlusFXMLView.getInstance().closePopUp();
+      AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
     
   }
 
   @FXML
   void Cancel(ActionEvent event) {
-    AssetPlusFXMLView.getInstance().closePopUp();
+    AssetPlusFXMLView.getInstance().closePopUpWindow();
   }
 
   public void setTicketId(int id) {
