@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
@@ -25,7 +26,8 @@ import javafx.util.Callback;
 import java.util.ResourceBundle;
 import com.google.common.collect.Table;
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
-import java.text.SimpleDateFormat;;
+import java.text.SimpleDateFormat;
+import javafx.stage.Stage;;
 
 public class TicketStatusController {
 
@@ -111,10 +113,13 @@ public class TicketStatusController {
                         if (empty || item == null) {
                             setText(null);
                             setStyle(null);
+                            setCursor(Cursor.DEFAULT);
                         }
                         else {
                             setText(resources.getString("key." + item));
                             setStyle(getStatusStyle(resources.getString("key." + item)));
+                            setOnMouseClicked(event -> handleStatusCellClicked("key." + item));
+                            setCursor(Cursor.HAND);
                         }
                     }
 
@@ -189,14 +194,17 @@ public class TicketStatusController {
         Button imgBtn = new Button();
         imgBtn.getStyleClass().add("icon-image");
         imgBtn.setPickOnBounds(true);
+        imgBtn.setOnAction(event -> handleImageButtonClicked());
 
         Button editBtn = new Button();
         editBtn.getStyleClass().add("icon-edit");
         editBtn.setPickOnBounds(true);
+        editBtn.setOnAction(event -> handleEditButtonClicked());
 
         Button trashBtn = new Button();
         trashBtn.getStyleClass().add("icon-trash");
         trashBtn.setPickOnBounds(true);
+        trashBtn.setOnAction(event -> handleTrashButtonClicked());
 
         HBox hbox = new HBox(imgBtn, editBtn, trashBtn);
         hbox.setSpacing(10);
@@ -223,7 +231,7 @@ public class TicketStatusController {
         }
     }
 
-    public String getKey(String text) {
+    private String getKey(String text) {
         for (String key: resources.keySet()) {
             if (resources.getString(key).equals(text)) {
                 return key;
@@ -232,5 +240,25 @@ public class TicketStatusController {
 
         return "defaultKey";
     } 
+
+    private void handleStatusCellClicked(String status) {
+        switch (status) {
+            case "key.Open":
+                ViewUtils.loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+                break;
+        }
+    }
+
+    private void handleImageButtonClicked() {
+        AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
+    }
+
+    private void handleEditButtonClicked() {
+        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "editTab");
+    }
+
+    private void handleTrashButtonClicked() {
+        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
+    }
 
 }

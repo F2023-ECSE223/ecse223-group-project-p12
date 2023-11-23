@@ -11,6 +11,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
@@ -19,14 +21,15 @@ import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
 import java.util.Locale;
 
-
-
 public class AssetPlusFXMLView extends Application {
 
   public static final EventType<Event> REFRESH_EVENT = new EventType<>("REFRESH");
   private static AssetPlusFXMLView instance;
   private List<Node> refreshableNodes = new ArrayList<>();
   private Stage stage;
+
+  private Stage popUp;
+
   private String currentPage;
   private String language = "en";
   private final String BUNDLE_PATH = "ca.mcgill.ecse.assetplus.javafx.resources.languages.Bundle";
@@ -47,6 +50,7 @@ public class AssetPlusFXMLView extends Application {
     instance = this;
     try {
       stage = primaryStage;
+      popUp = null;
       currentPage = "pages/TicketStatus.fxml";
       var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
 
@@ -95,10 +99,12 @@ public class AssetPlusFXMLView extends Application {
     return instance;
   }
 
-  public void loadPopupWindow(String fxml) {
 
-    Stage dialog = new Stage();
-    dialog.initModality(Modality.APPLICATION_MODAL);
+  public Object loadPopupWindow(String fxml) {
+
+    popUp = new Stage();
+    popUp.initModality(Modality.APPLICATION_MODAL);
+
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
     Parent root;
@@ -108,13 +114,26 @@ public class AssetPlusFXMLView extends Application {
     
       var scene = new Scene(root);
       scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
-      dialog.setScene(scene);
-      dialog.setTitle("test");
-      dialog.show();
+
+      popUp.setScene(scene);
+      popUp.setTitle("test");
+      popUp.show();
+      
+      // Return the controller of the pop up window
+      return loader.getController();
+
     }
     catch (IOException e)
     {
         e.printStackTrace();
+    }
+
+    return null;
+  }
+
+  public void closePopUpWindow() {
+    if (this.popUpStage != null) {
+      this.popUpStage.close();
     }
   }
 
@@ -126,19 +145,49 @@ public class AssetPlusFXMLView extends Application {
     try 
     {
         root = (Parent) loader.load();
+
         // Keep the current size
-        System.out.printf("Before change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
-        System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
+        //System.out.printf("Before change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        //System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
         Scene scene = new Scene(root, this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
         this.stage.setScene(scene);
-        System.out.printf("After change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
-        System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
+        //System.out.printf("After change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        //System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
+
     }
     catch (IOException e)
     {
         e.printStackTrace();
     }
+  }
 
+  public void changeTab(String fxml, String tabId)
+  {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
+    Parent root;
+    currentPage = fxml;
+    try 
+    {
+        root = (Parent) loader.load();
+        Scene scene = new Scene(root, this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
+        this.stage.setScene(scene);
+        System.out.println("DOES IT HAPPEN HERE??");
+
+        TabPane tabPane = (TabPane) scene.lookup("#tabPane"); // Replace with the actual ID or use other means to get the reference
+
+        // Find the tab with the specified ID
+        for (Tab tab : tabPane.getTabs()) {
+          System.out.println("The tab is: " + tab);
+            if (tab.getId().equals(tabId)) {
+                tabPane.getSelectionModel().select(tab);
+                break; // Stop searching once the tab is found
+            }
+        }
+    }
+    catch (IOException e)
+    {
+        e.printStackTrace();
+    }
   }
 
   public String getCurrentPage() {
@@ -156,6 +205,10 @@ public class AssetPlusFXMLView extends Application {
 
   public ResourceBundle getBundle() {
     return ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language));
+  }
+
+  public void closePopUp() {
+    this.popUp.close();
   }
 
   public void closeWindow() {
