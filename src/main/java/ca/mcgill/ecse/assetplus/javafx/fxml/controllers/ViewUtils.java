@@ -6,6 +6,7 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.*;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
 import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,50 +28,12 @@ public class ViewUtils {
       AssetPlusFXMLView.getInstance().refresh();
       return true;
     }
-    showError(result);
     return false;
   }
 
   /** Calls the controller and returns true on success. This method is included for readability. */
   public static boolean successful(String controllerResult) {
     return callController(controllerResult);
-  }
-
-  /**
-   * Creates a popup window.
-   *
-   * @param title: title of the popup window
-   * @param message: message to display
-   */
-  public static void makePopupWindow(String title, String message) {
-    Stage dialog = new Stage();
-    dialog.initModality(Modality.APPLICATION_MODAL);
-    VBox dialogPane = new VBox();
-
-    // create UI elements
-    Text text = new Text(message);
-    Button okButton = new Button("OK");
-    okButton.setOnAction(a -> dialog.close());
-
-    // display the popup window
-    int innerPadding = 10; // inner padding/spacing
-    int outerPadding = 100; // outer padding
-    dialogPane.setSpacing(innerPadding);
-    dialogPane.setAlignment(Pos.CENTER);
-    dialogPane.setPadding(new Insets(innerPadding, innerPadding, innerPadding, innerPadding));
-    dialogPane.getChildren().addAll(text, okButton);
-    Scene dialogScene = new Scene(dialogPane, outerPadding + 5 * message.length(), outerPadding);
-    dialog.setScene(dialogScene);
-    dialog.setTitle(title);
-    dialog.show();
-  }
-
-  public static void loadPopupWindow(String fxml) {
-    AssetPlusFXMLView.getInstance().loadPopupWindow(fxml);
-  }
-
-  public static void showError(String message) {
-    makePopupWindow("Error", message);
   }
 
   public static ObservableList<TOMaintenanceTicket> getMaintenanceTickets() {
@@ -82,10 +45,8 @@ public class ViewUtils {
     TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(id);
 
     if (ticket==null) {
-      System.out.println("The ticket does not exist");
       return null;
-    } 
-    System.out.println("Exist!!");
+    }
 
     return FXCollections.observableList(ticket.getImageURLs());
   }

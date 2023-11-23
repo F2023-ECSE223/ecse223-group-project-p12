@@ -33,12 +33,26 @@
                     ],
                     "ticketImages": [
                       {
-                        "TicketImage": {
-                          "imageURL": "https://img.freepik.com/premium-photo/green-scratched-metal-background-texture_88281-1787.jpg",
-                          "ticket": {
-                            "@reference": "../../.."
+                        "TicketImage": [
+                          {
+                            "imageURL": "https://img.freepik.com/premium-photo/green-scratched-metal-background-texture_88281-1787.jpg",
+                            "ticket": {
+                              "@reference": "../../.."
+                            }
+                          },
+                          {
+                            "imageURL": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.30808-6/347632225_989236392070219_4095155735364999539_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=jeW2_yQBtHYAX9kOQd9&_nc_ht=scontent-lga3-1.xx&oh=00_AfCr5iuMlwaYE1a1onyA4jUfsU4KyGN-wL5EO0lJQaZy2Q&oe=65630E0F",
+                            "ticket": {
+                              "@reference": "../../.."
+                            }
+                          },
+                          {
+                            "imageURL": "https://scontent-lga3-1.xx.fbcdn.net/v/t39.30808-6/312612711_3192088677787927_2685846434467567817_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=E9JirAIObKEAX__eHW1&_nc_ht=scontent-lga3-1.xx&oh=00_AfD0FeJz7tba1rD7-HmhbREEoXLqeu1IE6fpCzTMtjRY0g&oe=6563ACD0",
+                            "ticket": {
+                              "@reference": "../../.."
+                            }
                           }
-                        }
+                        ]
                       }
                     ],
                     "assetPlus": {

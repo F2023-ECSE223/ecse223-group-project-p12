@@ -3,10 +3,12 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
@@ -36,6 +38,9 @@ public class AddImageController {
     private TextField ticketNumberField;
 
     @FXML
+    private Label errorMessage;
+
+    @FXML
     private FlowPane grid;
 
 
@@ -46,7 +51,16 @@ public class AddImageController {
 
     @FXML
     void AddImage(ActionEvent event) {
-        ViewUtils.loadPopupWindow("popUp/AddImage.fxml");
+        if (currentTicketNumber != -1) {
+            AddImagePopUpController controller = (AddImagePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddImagePopUp.fxml");
+            if (controller!=null)
+                controller.setTicketId(currentTicketNumber);
+            else System.out.println("controller null");
+        }
+        else {
+            errorMessage.setVisible(true);
+            setErrorMessage("key.AddImage_EnterValidTicket");
+        }
     }
 
     @FXML
@@ -62,8 +76,11 @@ public class AddImageController {
                         currentTicketNumber = input;
                         showImages(imageList);
                     }
+                    errorMessage.setVisible(false);
                 }
                 else {
+                    errorMessage.setVisible(true);
+                    setErrorMessage("key.AddImage_InvalidTicketNumber");
                     grid.getChildren().clear();
                 }
             }
@@ -96,5 +113,9 @@ public class AddImageController {
                 grid.getChildren().add(rectangle);
             }
         }
+    }
+
+    private void setErrorMessage(String message) {
+        errorMessage.setText(AssetPlusFXMLView.getInstance().getBundle().getString(message));
     }
 }
