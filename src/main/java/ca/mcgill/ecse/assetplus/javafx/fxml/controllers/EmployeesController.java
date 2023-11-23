@@ -44,9 +44,6 @@ public class EmployeesController {
     private Button cancelCreateEmployeeButton;
 
     @FXML
-    private Button cancelDeleteEmployee;
-
-    @FXML
     private TextField createEmailField;
 
     @FXML
@@ -62,13 +59,22 @@ public class EmployeesController {
     private TextField createPhoneNumberField;
 
     @FXML
-    private Button deleteEmployee;
-
-    @FXML
     private Label employeeNameDelete;
 
     @FXML
     private TabPane employeeOptions;
+
+    @FXML
+    private TextField modifyEmailField;
+
+    @FXML
+    private TextField modifyNameField;
+
+    @FXML
+    private TextField modifyPasswordField;
+
+    @FXML
+    private TextField modifyPhoneNumberField;
 
     @FXML
     private GridPane popupCreateEmployee;
@@ -107,9 +113,26 @@ public class EmployeesController {
     }
 
     @FXML
-    void modifyEmployeePopup(ActionEvent event) {
+    void modifyEmployeePopup(ActionEvent event, String email) {
         employeeOptions.getSelectionModel().select(2);
+        Employee employee = (Employee) Employee.getWithEmail(email);
+        modifyEmailField.setText(employee.getEmail());
+        modifyPasswordField.setText(employee.getPassword());
+        modifyNameField.setText(employee.getName());
+        modifyPhoneNumberField.setText(employee.getPhoneNumber());
+    }
 
+    @FXML
+    void modifyEmployee(ActionEvent event) {
+        AssetPlusFeatureSet1Controller.updateEmployeeOrGuest(modifyEmailField.getText(), modifyPasswordField.getText(), modifyNameField.getText(), modifyPhoneNumberField.getText());
+        employeeOptions.getSelectionModel().select(0);
+        initialize();  
+    }
+
+    @FXML
+    void cancelModifyEmployee(ActionEvent event) {
+        employeeOptions.getSelectionModel().select(0);
+        initialize(); 
     }
 
     @FXML
@@ -196,7 +219,7 @@ public class EmployeesController {
             hBox.setAlignment(Pos.CENTER);
             Button modify = new Button("Modify");
             modify.setStyle("-fx-text-fill: white;" + "-fx-background-color: #8768F2;" + "-fx-background-radius: 10px;" + "-fx-padding: 5px 10px 5px 10px");
-            modify.setOnAction(e -> modifyEmployeePopup(e));
+            modify.setOnAction(e -> modifyEmployeePopup(e,employee.getEmail()));
             Button deleteButton = new Button("Delete");
             deleteButton.setStyle("-fx-background-color: #a30d11;" + "-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-background-radius: 10px;");
             deleteButton.setOnAction(e -> deleteEmployeePopup(e, employee.getEmail()));
