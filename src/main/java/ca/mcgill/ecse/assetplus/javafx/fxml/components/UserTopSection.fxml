@@ -41,12 +41,12 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 
-<HBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER_RIGHT">
          <children>
             <Label styleClass="username" stylesheets="@../css/style.css" text="manager@ap.com" />
-            <Label text="%key.UserTopSection_Manager" />
+            <Label text="%key.Manager" />
          </children>
          <padding>
             <Insets right="20.0" />

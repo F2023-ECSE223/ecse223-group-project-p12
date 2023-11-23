@@ -21,6 +21,8 @@ import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
 import java.util.Locale;
 
+
+
 public class AssetPlusFXMLView extends Application {
 
   public static final EventType<Event> REFRESH_EVENT = new EventType<>("REFRESH");
@@ -100,7 +102,6 @@ public class AssetPlusFXMLView extends Application {
     return instance;
   }
 
-
   public Object loadPopupWindow(String fxml, String title) {
     popUpStage = new Stage();
     popUpStage.initModality(Modality.APPLICATION_MODAL);
@@ -125,7 +126,6 @@ public class AssetPlusFXMLView extends Application {
     {
         e.printStackTrace();
     }
-
     return null;
   }
 
@@ -145,14 +145,8 @@ public class AssetPlusFXMLView extends Application {
     try 
     {
         root = (Parent) loader.load();
-
-        // Keep the current size
-        //System.out.printf("Before change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
-        //System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
         Scene scene = new Scene(root, this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
         this.stage.setScene(scene);
-        //System.out.printf("After change tab %f %f \n", this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
-        //System.out.printf("Before change tab 1 %f %f \n", this.stage.getWidth(), this.stage.getHeight());
     }
     catch (IOException e)
     {

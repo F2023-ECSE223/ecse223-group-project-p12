@@ -2,8 +2,6 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 
 import java.util.ResourceBundle;
-import javax.swing.text.View;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
 import javafx.collections.ObservableList;
@@ -17,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -41,21 +38,15 @@ public class AddImageController {
     private TextField ticketNumberField;
 
     @FXML
-    private Label errorMessage;
-
-    @FXML
     private FlowPane grid;
 
     @FXML
-    public void initialize() {
-        currentTicketNumber = -1;
-        // the grid listen to the refresh event
-        grid.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
-            refreshView();
-        });
+    private Label errorMessage;
 
-        // let the application be aware of the refreshable node
-        AssetPlusFXMLView.getInstance().registerRefreshEvent(grid);
+
+    @FXML
+    void initialize() {
+        currentTicketNumber = -1;
     }
 
     @FXML
@@ -77,37 +68,29 @@ public class AddImageController {
     @FXML
     void TicketNumberEntered(KeyEvent event) {
         if( event.getCode() == KeyCode.ENTER ) {
-            refreshView();
+            try {
+                int input = Integer.parseInt(ticketNumberField.getText());
+                ObservableList<String> imageList = ViewUtils.getTicketImages(input);
+
+                if (imageList != null) {
+                    // Do not reload the images if it is already the correct ones
+                    if (currentTicketNumber != input) {
+                        currentTicketNumber = input;
+                        showImages(imageList);
+                    }
+                }
+                else {
+                    grid.getChildren().clear();
+                }
+            }
+            catch(NumberFormatException e) {
+                System.out.println(e);
+            }
         }
     }
 
-    private void refreshView() {
-        try {
-            int input = Integer.parseInt(ticketNumberField.getText());
-            ObservableList<String> imageList = ViewUtils.getTicketImages(input);
-
-            if (imageList != null) {
-                currentTicketNumber=input;
-                errorMessage.setVisible(false);
-                showImages(imageList);
-            }
-            else {
-                currentTicketNumber=-1;
-                errorMessage.setVisible(true);
-                setErrorMessage("key.AddImage_InvalidTicketNumber");
-                grid.getChildren().clear();
-            }
-        }
-        catch(NumberFormatException e) {
-            System.out.println(e);
-        }
-    }
     
     private void showImages(ObservableList<String> list) {
-        if (list.size()==0) {
-            errorMessage.setVisible(true);
-            setErrorMessage("key.AddImage_NoImagesWithTicket");
-        }
         grid.getChildren().clear();
         for (String imageURL : list) {
             Rectangle rectangle = new Rectangle(0, 0, 200, 200);
@@ -116,38 +99,19 @@ public class AddImageController {
             
             Image image = new Image(imageURL, 200, 200, true, true);
             // If the image was loaded without exceptions, consider it valid
-            ImagePattern pattern;
             if (image.isError() == false) {
-                pattern = new ImagePattern(image);
+                System.out.println("Image valid");
+                ImagePattern pattern = new ImagePattern(image);
+
+                rectangle.setFill(pattern);
+                grid.getChildren().add(rectangle);
             }
             else {
-                pattern = new ImagePattern(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.png", 200, 200, true, true));
-                
+                ImagePattern pattern = new ImagePattern(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.png", 200, 200, true, true));
+                rectangle.setFill(pattern);
+                grid.getChildren().add(rectangle);
             }
-            rectangle.setFill(pattern);
-            
-            // Create the delete button
-            Button trashBtn = new Button();
-            trashBtn.getStyleClass().add("icon-trash");
-            trashBtn.setStyle("-icon-paint:  white");
-            trashBtn.setPickOnBounds(true);
-            trashBtn.setOnAction(e -> trashBtnClicked(imageURL));
-
-            // Create an AnchorPane to hold the image and button
-            AnchorPane anchorPane = new AnchorPane();
-            anchorPane.getChildren().addAll(rectangle, trashBtn);
-
-            // Set the button's position to the top right corner
-            AnchorPane.setTopAnchor(trashBtn, 10.0);
-            AnchorPane.setRightAnchor(trashBtn, 10.0); 
-
-            grid.getChildren().add(anchorPane);
         }
-    }
-
-    private void trashBtnClicked(String url) {
-        AssetPlusFeatureSet5Controller.deleteImageFromMaintenanceTicket(url, currentTicketNumber);
-        ViewUtils.callController("");
     }
 
     private void setErrorMessage(String message) {
