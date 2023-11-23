@@ -134,7 +134,8 @@ public class EmployeesController {
 
     @FXML
     void cancelDeleteEmployee(ActionEvent event) {
-
+        employeeOptions.getSelectionModel().select(0);
+        initialize(); 
     }
 
     private void showEmployees(List<TOEmployee> employees) {
