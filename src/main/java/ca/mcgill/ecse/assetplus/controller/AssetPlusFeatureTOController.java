@@ -31,6 +31,38 @@ public class AssetPlusFeatureTOController {
     TOassets.put(asset.getAssetNumber(), new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate()));
   }
   return TOassets;
-}
+  }
+
+
+  /**
+   * <p>Get a list of all maintenance tickets as transfer objects</p>
+   * @return the list of tickets
+   */
+  public static List<TOAssetType> getAssetTypes() {
+    List<AssetType> assetTypes = AssetPlusApplication.getAssetPlus().getAssetTypes();
+    List<TOAssetType> assetTypesTO = new ArrayList<>();
+
+    for (AssetType assetType: assetTypes) {
+      assetTypesTO.add(convertFromAssetType(assetType));
+    }
+
+    return assetTypesTO;
+  }
+
+  private static TOAssetType convertFromAssetType(AssetType assetType){
+
+    List<SpecificAsset> assets = assetType.getSpecificAssets();
+    
+    //After the TOSpecificAsset methods are implemented, then we can covert SpecifAssets to SpecificAssetsTO
+    List<TOSpecificAsset> TOassets= new ArrayList<>();
+
+    TOAssetType assetTypeTO = new TOAssetType(assetType.getName(), assetType.getExpectedLifeSpan());
+
+    for(TOSpecificAsset asset : TOassets){
+      assetTypeTO.addTOSpecificAsset(asset);
+    }
+
+    return assetTypeTO;
+  }
 
 }
