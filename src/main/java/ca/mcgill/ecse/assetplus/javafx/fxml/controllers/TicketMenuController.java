@@ -12,6 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.event.ActionEvent;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Hyperlink;
 
 public class TicketMenuController {
 
@@ -35,10 +38,10 @@ public class TicketMenuController {
     private TextField ticketNumberField;
 
     @FXML
-    private Button addTickeButton;
+    private Button cancelButton;
 
     @FXML
-    private Button canceButton;
+    private Button addTickeButton;
 
     @FXML
     private Button updateTicketButton;
@@ -47,9 +50,43 @@ public class TicketMenuController {
     private Button deleteTicketButton;
 
     @FXML
-    void initialize() {
-        
-    }
+    private Button addTicketButton;
+
+    @FXML
+    private ChoiceBox<?> assetNumberField;
+
+    @FXML
+    private TextField descriptionField;
+
+    @FXML
+    private TextField raiserField;
+
+    @FXML
+    private TextField raisedDateField;
+
+    @FXML
+    private TextField ticketNumberField1;
+
+    @FXML
+    private TextField ticketNumberField11;
+
+    @FXML
+    private TextField ticketNumberField12;
+
+    @FXML
+    private TextField ticketNumberField121;
+
+    @FXML
+    private TextField ticketNumberField13;
+
+    @FXML
+    private TextField ticketStatusField;
+
+    @FXML
+    private ChoiceBox<?> typeField;
+
+    @FXML
+    private Hyperlink urlField;
 
     @FXML
     void AddImage(ActionEvent event) {
@@ -57,26 +94,33 @@ public class TicketMenuController {
     }
 
     @FXML
-    void addTicketClicked(ActionEvent event){
-        
+    void addTicketClicked(ActionEvent event) {
+        int ticketNumebr = Integer.parseInt(ticketNumberField.getText());
+        String description = descriptionField.getText();
+        String raiser = raiserField.getText();
+        //figure out date picker
+        String raisedDate = raisedDateField.getText();
+
+
+
+
     }
 
     @FXML
-    void cancelClicked(ActionEvent event){
+    void cancelClicked(ActionEvent event) {
 
     }
 
     @FXML
-    void updateTicketClicked(ActionEvent event){
+    void deleteTicketClicked(ActionEvent event) {
 
     }
 
     @FXML
-    void deleteTicketClicked(ActionEvent event){
-        
+    void updateTicketClicked(ActionEvent event) {
+
     }
-
-
 
 }
+
 
