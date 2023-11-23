@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.assetplus.controller;
 import java.util.*;
 
-// line 63 "../../../../../../AssetPlusTransferObjects.ump"
+// line 71 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOManager extends TOHotelStaff
 {
 
@@ -19,7 +19,7 @@ public class TOManager extends TOHotelStaff
   // CONSTRUCTOR
   //------------------------
 
-  public TOManager(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised, List<Integer> aTicketFixed, List<Integer> aTicketApproved)
+  public TOManager(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised, List<Integer> aTicketFixed, List<Integer> aTicketApproved)
   {
     super(aEmail, aName, aPassword, aPhoneNumber, aTicketsRaised, aTicketFixed);
     ticketApproved = aTicketApproved;

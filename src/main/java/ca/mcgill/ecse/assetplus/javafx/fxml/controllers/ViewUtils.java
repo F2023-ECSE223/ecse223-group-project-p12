@@ -107,5 +107,7 @@ public class ViewUtils {
     return AssetPlusFeatureSet1Controller.getUsername(email);
   }
 
-
+  public static List<TOHotelStaff> getHotelStaffs() {
+    return AssetPlusFeatureSet1Controller.getHotelStaffs();
+  }
 }

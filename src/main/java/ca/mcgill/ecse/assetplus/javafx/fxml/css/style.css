@@ -52,6 +52,7 @@ Stylesheet of our UI
 .menuButton:hover
 {
     -fx-background-color: #F7F6FE;
+    -fx-cursor: hand;
 }
 
 /* Action buttons are the buttons like AddImage that needs to be purple*/
@@ -77,6 +78,11 @@ Stylesheet of our UI
 {
     -fx-pref-width: 150px;
     -fx-pref-height: 50px;
+}
+
+.currentMenuButton:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #8768F2;
 }
 
 .usernameContainer

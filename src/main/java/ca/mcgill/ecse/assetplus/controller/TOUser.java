@@ -17,13 +17,13 @@ public abstract class TOUser
   private String name;
   private String password;
   private String phoneNumber;
-  private List<String> ticketsRaised;
+  private List<Integer> ticketsRaised;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOUser(String aEmail, String aName, String aPassword, String aPhoneNumber, List<String> aTicketsRaised)
+  public TOUser(String aEmail, String aName, String aPassword, String aPhoneNumber, List<Integer> aTicketsRaised)
   {
     email = aEmail;
     name = aName;
@@ -56,7 +56,7 @@ public abstract class TOUser
     return phoneNumber;
   }
 
-  public List<String> getTicketsRaised()
+  public List<Integer> getTicketsRaised()
   {
     return ticketsRaised;
   }

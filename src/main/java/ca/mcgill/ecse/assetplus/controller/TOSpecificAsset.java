@@ -5,7 +5,7 @@ package ca.mcgill.ecse.assetplus.controller;
 import java.sql.Date;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 
-// line 69 "../../../../../../AssetPlusTransferObjects.ump"
+// line 79 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOSpecificAsset
 {
 
