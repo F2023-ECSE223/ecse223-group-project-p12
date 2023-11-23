@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController">
+   <children>
+      <Pane layoutX="-2.0" layoutY="72.0" prefHeight="328.0" prefWidth="300.0">
+         <children>
+            <Label layoutX="25.0" layoutY="45.0" prefHeight="18.0" prefWidth="132.0" text="%key.TicketMenu_TicketNumber" />
+            <Label layoutX="25.0" layoutY="105.0" prefHeight="18.0" prefWidth="123.0" text="%key.TicketMenu_Status" />
+            <Label layoutX="25.0" layoutY="165.0" prefHeight="28.0" prefWidth="119.0" text="%key.TicketMenu_AddDescription" />
+            <Button fx:id="cancelButton" layoutX="205.0" layoutY="264.0" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="74.0" text="%key.TicketMenu_Cancel" />
+            <TextField fx:id="ticketNumberField" layoutX="157.0" layoutY="41.0" prefHeight="26.0" prefWidth="97.0" />
+            <TextField fx:id="descriptionField" layoutX="130.0" layoutY="165.0" prefHeight="70.0" prefWidth="150.0" />
+            <Label layoutX="124.0" layoutY="105.0" prefHeight="21.0" prefWidth="111.0" text="%key.TicketMenu_StatusOpen" />
+         </children>
+      </Pane>
+      <Pane layoutX="300.0" layoutY="72.0" prefHeight="328.0" prefWidth="300.0">
+         <children>
+            <Label layoutX="25.0" layoutY="45.0" prefHeight="39.0" prefWidth="150.0" text="%key.TicketMenu_AddAssetType" />
+            <Label layoutX="25.0" layoutY="100.0" prefHeight="40.0" prefWidth="141.0" text="%key.TicketMenu_AddAssetNumber" />
+            <Label layoutX="25.0" layoutY="210.0" prefHeight="17.0" prefWidth="132.0" text="%key.TicketMenu_AddRaiser" />
+            <Label layoutX="25.0" layoutY="155.0" prefHeight="17.0" prefWidth="150.0" text="%key.TicketMenu_AddRaisedDate" />
+            <Button fx:id="addTicketButton" layoutX="29.0" layoutY="264.0" mnemonicParsing="false" onAction="#addTicketClicked" prefHeight="31.0" prefWidth="74.0" text="%key.TicketMenu_Create" />
+            <ChoiceBox fx:id="typeField" layoutX="187.0" layoutY="47.0" prefHeight="29.0" prefWidth="86.0" />
+            <ChoiceBox fx:id="assetNumberField" layoutX="196.0" layoutY="107.0" prefHeight="23.0" prefWidth="55.0" />
+            <DatePicker fx:id="raisedDateField" layoutX="157.0" layoutY="149.0" prefHeight="26.0" prefWidth="111.0" />
+            <TextField fx:id="raiserField" layoutX="180.0" layoutY="205.0" prefHeight="23.0" prefWidth="97.0" />
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="174.0" layoutY="20.0" prefHeight="28.0" prefWidth="252.0" text="%key.TicketMenu_EnterAdd" />
+      <Label fx:id="addTicketError" layoutX="294.0" layoutY="63.0" text="Label" />
+   </children>
+</Pane>
