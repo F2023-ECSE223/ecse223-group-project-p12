@@ -13,12 +13,14 @@ import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -28,7 +30,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class AssetMenuController {
-
 
     @FXML
     private ResourceBundle resources;
@@ -64,56 +65,81 @@ public class AssetMenuController {
     private TableColumn<TOSpecificAsset, String> purchaseDateColumn;
 
     @FXML
-    private TableColumn<TOSpecificAsset, String> lifeExpectancyColumn;
+    private TableColumn<TOSpecificAsset, Integer> lifeExpectancyColumn;
 
     @FXML
     private TableColumn<TOSpecificAsset, String> maintenaceHistoryColumn;
 
     @FXML
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
-    
-
-    private ObservableList<TOMaintenanceTicket> ticketList;
 
     private ObservableList<TOSpecificAsset> assetList;
 
     @FXML
     void initialize() {
+        List<TOSpecificAsset> assets = AssetPlusFeatureTOController.getSpecificAssets();
+        assetList = FXCollections.observableList(assets);
+        assetTable.setItems(assetList);
+
         resources = AssetPlusFXMLView.getInstance().getBundle();
-
-        /*
-        statusChoiceBox.getItems().addAll(
-            resources.getString("key.Open"),
-            resources.getString("key.Assigned"),
-            resources.getString("key.InProgress"),
-            resources.getString("key.Resolved"),
-            resources.getString("key.Closed"),
-            resources.getString("key.ShowAll")
-        );
-         
-
-        statusChoiceBox.setValue(resources.getString("key.SelectStatus"));
-        statusChoiceBox.setOnAction(event -> filterTableView(statusChoiceBox.getValue()));
-
-         */
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
         assetNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAssetNumber()).asObject());
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetType().getName()));
+        lifeExpectancyColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAssetType().getExpectedLifeSpan()).asObject());
         floorColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRoomNumber()).asObject());
         roomColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFloorNumber()).asObject());
         purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getPurchaseDate())));
+        
         //maintenaceHistoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
 
-        List<TOSpecificAsset> assets = AssetPlusFeatureTOController.getSpecificAssets();
-        assetList = FXCollections.observableList(assets);
-        assetTable.setItems(assetList);
+         actionColumn.setCellValueFactory(cellData -> {
+        // Create an HBox with three SVGPath objects representing icons
+        Button imgBtn = new Button();
+        imgBtn.getStyleClass().add("icon-image");
+        imgBtn.setPickOnBounds(true);
+        imgBtn.setOnAction(event -> handleImageButtonClicked());
+
+        Button editBtn = new Button();
+        editBtn.getStyleClass().add("icon-edit");
+        editBtn.setPickOnBounds(true);
+        editBtn.setOnAction(event -> handleEditButtonClicked());
+
+        Button trashBtn = new Button();
+        trashBtn.getStyleClass().add("icon-trash");
+        trashBtn.setPickOnBounds(true);
+        trashBtn.setOnAction(event -> handleTrashButtonClicked());
+
+        HBox hbox = new HBox(imgBtn, editBtn, trashBtn);
+        hbox.setSpacing(10);
+        hbox.setAlignment(Pos.CENTER);
+
+        return new SimpleObjectProperty<>(hbox);
+    });
 
     }
 
+    private void handleImageButtonClicked() {
+        AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
+    }
 
+    private void handleEditButtonClicked() {
+        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "editTab");
+    }
+
+    private void handleTrashButtonClicked() {
+        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
+    }
+    
 }
+
+
+        
+
+    
+
+
 
 
 
