@@ -78,12 +78,6 @@ public class AssetTypesController {
     @FXML
     private FlowPane grid;
 
-
-    @FXML
-    void initialize() {
-    
-    }
-
     @FXML
     void AddImage(ActionEvent event) {
 
@@ -94,6 +88,11 @@ public class AssetTypesController {
       String name = AssetTypeAddName.getText();
       int lifespan = Integer.valueOf(AssetTypeAddLifespan.getText());
       AssetPlusFeatureSet2Controller.addAssetType(name, lifespan);
+      showAssetTypes();
+    }
+
+    @FXML
+    void initialize() {
       showAssetTypes();
     }
 
@@ -160,7 +159,9 @@ public class AssetTypesController {
         Label name = new Label(assetType.getName());
         name.setFont(new Font(15));
         String nbYears = Integer.toString(assetType.getExpectedLifeSpan());
-        Label lifeExp = new Label(" Life expenctancy: " + nbYears + " years");  
+        String intro = AssetPlusFXMLView.getInstance().getBundle().getString("key.AssetType_LifeExpectancy");
+        String end = AssetPlusFXMLView.getInstance().getBundle().getString("key.AssetType_Years");
+        Label lifeExp = new Label(intro + nbYears + " "+ end);  
         vbox.getChildren().add(name);
         vbox.getChildren().add(lifeExp);
         vbox.getChildren().add(hbox);
@@ -172,10 +173,14 @@ public class AssetTypesController {
 
     private void pencilBtnClicked(String name){
         System.out.println("Updating with name: " + name);
+        AssetPlusFeatureSet2Controller.updateAssetType(name, AssetTypeAddName.getText(), Integer.valueOf(AssetTypeAddLifespan.getText()));
+        showAssetTypes();
     }
 
     private void trashBtnClicked(String name){
       System.out.println("Deleting with name: " + name);
+      AssetPlusFeatureSet2Controller.deleteAssetType(name);
+      showAssetTypes();
     }
 
     private void assetBtnClicked(String name){
