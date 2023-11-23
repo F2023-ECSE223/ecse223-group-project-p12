@@ -82,6 +82,7 @@ class TOSpecificAsset {
   int floorNumber;
   int roomNumber;
   Date purchaseDate;
+  AssetType assetType;
 }
 
 class TOAssetType {
