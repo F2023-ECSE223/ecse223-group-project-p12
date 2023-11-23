@@ -56,8 +56,8 @@
                         <fx:include source="../components/UserTopSection.fxml" />
                         <HBox alignment="CENTER_LEFT" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label text="%key.CurrentImagesForTicket" />
-                              <TextField fx:id="ticketNumberField" alignment="CENTER" onKeyPressed="#TicketNumberEntered" promptText="%key.TicketNumber" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;">
+                              <Label text="%key.AddImage_CurrentImagesForTicket" />
+                              <TextField fx:id="ticketNumberField" alignment="CENTER" onKeyPressed="#TicketNumberEntered" promptText="%key.AddImage_TicketNumber" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
