@@ -34,6 +34,8 @@ class TOMaintenanceNote {
 }
 
 class TOUser {
+  depend java.util.*;
+
   abstract;
   immutable;
   String email;
@@ -43,24 +45,32 @@ class TOUser {
   List<Integer> ticketsRaised;
 }
 
-class TOGuest{
+class TOGuest {
+  depend java.util.*;
+
   immutable;
   isA TOUser;
 }
 
-class TOHotelStaff{
+class TOHotelStaff {
+  depend java.util.*;
+
   abstract;
   immutable;
   isA TOUser;
   List<Integer> ticketFixed;
 }
 
-class TOEmployee{
+class TOEmployee {
+  depend java.util.*;
+
   immutable;
   isA TOHotelStaff;
 }
 
-class TOManager{
+class TOManager {
+  depend java.util.*;
+
   immutable;
   isA TOHotelStaff;
   List<Integer> ticketApproved;

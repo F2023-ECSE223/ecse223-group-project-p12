@@ -1,10 +1,6 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
-
-import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

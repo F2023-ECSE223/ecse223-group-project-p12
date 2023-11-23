@@ -2,7 +2,6 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 
 import java.util.ResourceBundle;
-import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
