@@ -26,6 +26,7 @@ public class AssetPlusFXMLView extends Application {
   private List<Node> refreshableNodes = new ArrayList<>();
   private Stage stage;
   private Stage popUp;
+  private Object currentController;
   private String currentPage;
   private String language = "en";
   private final String BUNDLE_PATH = "ca.mcgill.ecse.assetplus.javafx.resources.languages.Bundle";
@@ -58,6 +59,8 @@ public class AssetPlusFXMLView extends Application {
       primaryStage.setTitle("AssetPlus");
       //primaryStage.initStyle(StageStyle.TRANSPARENT);
       primaryStage.show();
+
+      
 
       // Initializes the other pages
 
@@ -126,8 +129,10 @@ public class AssetPlusFXMLView extends Application {
   public void changeTab(String fxml)
   {
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
+    currentController = loader.getController();
     Parent root;
     currentPage = fxml;
+    
     try 
     {
         root = (Parent) loader.load();
@@ -144,6 +149,10 @@ public class AssetPlusFXMLView extends Application {
         e.printStackTrace();
     }
 
+  }
+
+  public Object getCurrentController() {
+    return currentController;
   }
 
   public String getCurrentPage() {
