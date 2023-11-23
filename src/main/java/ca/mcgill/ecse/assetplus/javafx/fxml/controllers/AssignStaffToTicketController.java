@@ -24,7 +24,7 @@ public class AssignStaffToTicketController {
     @FXML
     void handleSave(ActionEvent event) {
       // Saving Logic
-      AssetPlusFXMLView.getInstance().closePopUpWindow();
+      //AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
 
 }

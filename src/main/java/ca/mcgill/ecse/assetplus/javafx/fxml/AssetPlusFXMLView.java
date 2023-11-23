@@ -30,6 +30,7 @@ public class AssetPlusFXMLView extends Application {
   private List<Node> refreshableNodes = new ArrayList<>();
   private Stage stage;
   private Stage popUpStage;
+  private Object currentController;
   private String currentPage;
   private String language = "en";
   private final String BUNDLE_PATH = "ca.mcgill.ecse.assetplus.javafx.resources.languages.Bundle";
@@ -50,6 +51,7 @@ public class AssetPlusFXMLView extends Application {
     instance = this;
     try {
       stage = primaryStage;
+      popUpStage = null;
       currentPage = "pages/TicketStatus.fxml";
       var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
 
@@ -61,6 +63,8 @@ public class AssetPlusFXMLView extends Application {
       primaryStage.setTitle("AssetPlus");
       //primaryStage.initStyle(StageStyle.TRANSPARENT);
       primaryStage.show();
+
+      
 
       // Initializes the other pages
 
@@ -98,9 +102,8 @@ public class AssetPlusFXMLView extends Application {
     return instance;
   }
 
-  public void loadPopupWindow(String fxml, String title) {
-
-    this.popUpStage = new Stage();
+  public Object loadPopupWindow(String fxml, String title) {
+    popUpStage = new Stage();
     popUpStage.initModality(Modality.APPLICATION_MODAL);
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
@@ -114,11 +117,16 @@ public class AssetPlusFXMLView extends Application {
       popUpStage.setScene(scene);
       popUpStage.setTitle(title);
       popUpStage.show();
+      
+      // Return the controller of the pop up window
+      return loader.getController();
+
     }
     catch (IOException e)
     {
         e.printStackTrace();
     }
+    return null;
   }
 
   public void closePopUpWindow() {
@@ -130,8 +138,10 @@ public class AssetPlusFXMLView extends Application {
   public void changeTab(String fxml)
   {
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
+    currentController = loader.getController();
     Parent root;
     currentPage = fxml;
+    
     try 
     {
         root = (Parent) loader.load();
@@ -171,6 +181,10 @@ public class AssetPlusFXMLView extends Application {
     {
         e.printStackTrace();
     }
+  }
+
+  public Object getCurrentController() {
+    return currentController;
   }
 
   public String getCurrentPage() {
