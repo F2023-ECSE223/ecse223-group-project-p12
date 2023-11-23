@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="427.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="532.0" prefWidth="734.0">
+      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="332.0" prefWidth="454.0">
          <children>
-            <Button fx:id="AddAssetTypeCancelButton" layoutX="215.0" layoutY="261.0" mnemonicParsing="false" onAction="#AddAssetTypeCancelButtonClicked" styleClass="cancelButton" text="Cancel" />
-            <TextField fx:id="AddAssetTypeName" layoutX="215.0" layoutY="146.0" promptText="Name" styleClass="text-field" />
-            <TextField fx:id="AddAssetTypeLifespan" layoutX="215.0" layoutY="200.0" promptText="Expected lifespan" styleClass="text-field" />
-            <Button fx:id="AddAssetTypeCreateButton" layoutX="324.0" layoutY="261.0" mnemonicParsing="false" onAction="#AddAssetTypeCreateButtonClicked" styleClass="actionButton" text="Create" />
-            <Label fx:id="replaceMe" layoutX="157.0" layoutY="97.0" text="Enter details below to add a new asset type" />
+            <VBox alignment="CENTER" layoutX="71.0" layoutY="60.0" spacing="40.0">
+               <children>
+                  <Label fx:id="replaceMe" contentDisplay="CENTER" text="%key.AssetTypeAddPopUpMessage" textAlignment="CENTER" />
+                  <TextField fx:id="AddAssetTypeName" promptText="%key.AssetTypeAddPopUpName" styleClass="text-field" />
+                  <TextField fx:id="AddAssetTypeLifespan" promptText="%key.AssetTypeAddPopUpLifespan" styleClass="text-field" />
+                  <HBox spacing="30.0">
+                     <children>
+                        <Button fx:id="AddAssetTypeCreateButton" mnemonicParsing="false" onAction="#AddAssetTypeCreateButtonClicked" styleClass="actionButton" text="%key.Create" />
+                        <Button fx:id="AddAssetTypeCancelButton" mnemonicParsing="false" onAction="#AddAssetTypeCancelButtonClicked" styleClass="cancelButton" text="%key.Cancel" />
+                     </children>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </AnchorPane>
    </children>
 </VBox>
