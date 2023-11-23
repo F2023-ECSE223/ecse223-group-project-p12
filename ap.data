@@ -33,12 +33,38 @@
                     ],
                     "ticketImages": [
                       {
-                        "TicketImage": {
-                          "imageURL": "https://img.freepik.com/premium-photo/green-scratched-metal-background-texture_88281-1787.jpg",
-                          "ticket": {
-                            "@reference": "../../.."
+                        "TicketImage": [
+                          {
+                            "imageURL": "https://img.freepik.com/premium-photo/green-scratched-metal-background-texture_88281-1787.jpg",
+                            "ticket": {
+                              "@reference": "../../.."
+                            }
+                          },
+                          {
+                            "imageURL": "https://i.pinimg.com/564x/9b/f9/f0/9bf9f03b394e9d09d9fa74f0caa7c6a2.jpg",
+                            "ticket": {
+                              "@reference": "../../.."
+                            }
+                          },
+                          {
+                            "imageURL": "https://i.pinimg.com/564x/91/25/91/91259136a39ae1fd27d64b5df01c0fd1.jpg",
+                            "ticket": {
+                              "@reference": "../../.."
+                            }
+                          },
+                          {
+                            "imageURL": "https://i.pinimg.com/564x/71/f2/cd/71f2cdc21506a8dad64989a5009b1b6a.jpg",
+                            "ticket": {
+                              "@reference": "../../.."
+                            }
+                          },
+                          {
+                            "imageURL": "https://i.pinimg.com/564x/e3/57/1e/e3571ee4e2f93fd1143a3c15e8f6751f.jpg",
+                            "ticket": {
+                              "@reference": "../../.."
+                            }
                           }
-                        }
+                        ]
                       }
                     ],
                     "assetPlus": {

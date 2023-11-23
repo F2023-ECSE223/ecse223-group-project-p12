@@ -34,6 +34,12 @@ Stylesheet of our UI
     -fx-effect: none;
 }
 
+.errorMessage
+{
+    -fx-text-fill: #614de38c;
+    -fx-font-size: 16;
+}
+
 /* Buttons(Tabs) in the dashboard on the left for the different*/
 .menuButton
 {
