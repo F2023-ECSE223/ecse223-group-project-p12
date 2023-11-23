@@ -2,6 +2,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
@@ -14,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 
 public class TicketMenuController {
@@ -62,7 +64,10 @@ public class TicketMenuController {
     private TextField raiserField;
 
     @FXML
-    private TextField raisedDateField;
+    private DatePicker raisedDateField;
+
+    @FXML
+    private Label addTicketError;
 
     @FXML
     private TextField ticketNumberField1;
@@ -95,12 +100,20 @@ public class TicketMenuController {
 
     @FXML
     void addTicketClicked(ActionEvent event) {
-        int ticketNumebr = Integer.parseInt(ticketNumberField.getText());
+        Integer ticketNumber = Integer.parseInt(ticketNumberField.getText());
         String description = descriptionField.getText();
         String raiser = raiserField.getText();
         //figure out date picker
-        String raisedDate = raisedDateField.getText();
+        LocalDate raisedDate = raisedDateField.getValue();
 
+
+        if (ticketNumber == null || description == null || raiser == null || raisedDate == null){
+                addTicketError.setText("All required fields are not entered. Try again!");
+        }
+        else{
+            //reset all the fields
+            
+        }
 
 
 
@@ -121,6 +134,20 @@ public class TicketMenuController {
 
     }
 
+     /** Calls the controller and returns true on success. This method is included for readability. */
+    public static boolean successful(String controllerResult) {
+        return callController(controllerResult);
+    }
+
+    /** Calls the controller and shows an error, if applicable. */
+    public static boolean callController(String result) {
+        if (result.isEmpty()) {
+            BtmsFxmlView.getInstance().refresh();
+        return true;
+         }
+        showError(result);
+        return false;
+  }
 }
 
 
