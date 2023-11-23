@@ -2,7 +2,6 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.model.User;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -244,7 +243,7 @@ public class TicketStatusController {
     private void handleStatusCellClicked(String status) {
         switch (status) {
             case "key.Open":
-                ViewUtils.loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+                AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
                 break;
         }
     }

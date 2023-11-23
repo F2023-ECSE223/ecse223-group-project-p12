@@ -60,9 +60,8 @@ public class AddImageController {
 
     @FXML
     void AddImage(ActionEvent event) {
-
         if (currentTicketNumber!=-1) {
-            AddImagePopUpController controller = (AddImagePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddImagePopUp.fxml");
+            AddImagePopUpController controller = (AddImagePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddImagePopUp.fxml", "Add Image");
             if (controller!=null)
                 controller.setTicketId(currentTicketNumber);
             else System.out.println("controller null");
@@ -71,7 +70,6 @@ public class AddImageController {
             errorMessage.setVisible(true);
             setErrorMessage("key.AddImage_EnterValidTicket");
         }
-
     }
 
     @FXML
