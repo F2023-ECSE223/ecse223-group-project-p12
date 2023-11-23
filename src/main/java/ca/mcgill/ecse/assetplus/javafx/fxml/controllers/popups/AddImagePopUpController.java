@@ -32,7 +32,7 @@ public class AddImagePopUpController {
   @FXML
   void AddImage(ActionEvent event) {
     String url = urlField.getText();
-    if ( (AssetPlusFeatureSet5Controller.addImageToMaintenanceTicket(url, ticketId)).isEmpty() ) {
+    if ( ViewUtils.callController((AssetPlusFeatureSet5Controller.addImageToMaintenanceTicket(url, ticketId))) ) {
       AssetPlusFXMLView.getInstance().closePopUp();
     }
     
