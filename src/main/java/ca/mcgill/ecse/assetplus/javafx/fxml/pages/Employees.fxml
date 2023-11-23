@@ -193,9 +193,23 @@
                         </Tab>
                         <Tab style="-fx-background-color: transparent;" text="Untitled Tab">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: f8f7ff;">
                                  <children>
-                                    <Button layoutX="245.0" layoutY="164.0" mnemonicParsing="false" onAction="#cancelCreateEmployee" text="Button" />
+                                    <VBox alignment="TOP_CENTER" prefHeight="335.0" prefWidth="750.0">
+                                       <children>
+                                          <Pane prefHeight="87.0" prefWidth="750.0" />
+                                          <Label alignment="CENTER" prefHeight="17.0" prefWidth="455.0" text="%key.AreYouSureYouWantToDelete" />
+                                          <Label fx:id="employeeNameDelete" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="202.0" />
+                                          <Pane prefHeight="75.0" prefWidth="750.0" />
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#deleteEmployee" styleClass="actionButton" stylesheets="@../css/style.css" text="%key.Delete" />
+                                                <Pane prefHeight="100.0" prefWidth="122.0" />
+                                                <Button mnemonicParsing="false" onAction="#cancelDeleteEmployee" styleClass="cancelButton" stylesheets="@../css/style.css" text="%key.Cancel" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
                                  </children>
                               </AnchorPane>
                           </content>

@@ -25,7 +25,9 @@ import java.util.*;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.resources.languages.*;
 import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 
 public class EmployeesController {
 
@@ -42,6 +44,9 @@ public class EmployeesController {
     private Button cancelCreateEmployeeButton;
 
     @FXML
+    private Button cancelDeleteEmployee;
+
+    @FXML
     private TextField createEmailField;
 
     @FXML
@@ -55,6 +60,12 @@ public class EmployeesController {
 
     @FXML
     private TextField createPhoneNumberField;
+
+    @FXML
+    private Button deleteEmployee;
+
+    @FXML
+    private Label employeeNameDelete;
 
     @FXML
     private TabPane employeeOptions;
@@ -102,13 +113,28 @@ public class EmployeesController {
     }
 
     @FXML
-    void deleteEmployeePopup(ActionEvent event) {
+    void deleteEmployeePopup(ActionEvent event, String email) {
         employeeOptions.getSelectionModel().select(3);
+        Employee employee = (Employee) User.getWithEmail(email);
+        employeeNameDelete.setText(employee.getName());
     }
 
     @FXML
     void initialize() {
-        showEmployees(ViewUtils.getAllEmployees());
+        showEmployees(AssetPlusFeatureTOController.getAllEmployees());
+    }
+
+    @FXML
+    void deleteEmployee(ActionEvent event) {
+        Employee employee = AssetPlusFeatureSet1Controller.getWithName(employeeNameDelete.getText());
+        employee.delete();
+        employeeOptions.getSelectionModel().select(0);
+        initialize(); 
+    }
+
+    @FXML
+    void cancelDeleteEmployee(ActionEvent event) {
+
     }
 
     private void showEmployees(List<TOEmployee> employees) {
@@ -172,7 +198,7 @@ public class EmployeesController {
             modify.setOnAction(e -> modifyEmployeePopup(e));
             Button deleteButton = new Button("Delete");
             deleteButton.setStyle("-fx-background-color: #a30d11;" + "-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-background-radius: 10px;");
-            deleteButton.setOnAction(e -> deleteEmployeePopup(e));
+            deleteButton.setOnAction(e -> deleteEmployeePopup(e, employee.getEmail()));
             Pane pane = new Pane();
             pane.setMinWidth(20);
             hBox.getChildren().addAll(modify, pane, deleteButton);

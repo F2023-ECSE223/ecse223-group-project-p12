@@ -242,5 +242,15 @@ public class AssetPlusFeatureSet1Controller {
     return error;
   }
 
+  public static Employee getWithName(String name) {
+    List<Employee> employees = AssetPlusApplication.getAssetPlus().getEmployees();
+    for (Employee employee : employees) {
+      if (employee.getName().equals(name)) {
+        return employee;
+      }
+    }
+    return null;
+  }
+
 
 }
