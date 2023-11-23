@@ -244,7 +244,7 @@ public class TicketStatusController {
     private void handleStatusCellClicked(String status) {
         switch (status) {
             case "key.Open":
-                ViewUtils.loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+                AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
                 break;
         }
     }

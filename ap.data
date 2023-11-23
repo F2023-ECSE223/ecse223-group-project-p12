@@ -192,8 +192,8 @@
                       }
                     ],
                     "assetType": {
-                      "name": "chair",
-                      "expectedLifeSpan": 3500,
+                      "name": "hello",
+                      "expectedLifeSpan": 234,
                       "assetPlus": {
                         "@reference": "../../../../../../.."
                       },
