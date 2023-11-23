@@ -8,18 +8,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController">
    <children>
-      <Label styleClass="popUpTitle" text="%key.EnterImage" />
+      <Label styleClass="popUpTitle" text="%key.AddImage_EnterImage" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label text="%key.ImageURL">
+            <Label text="%key.AddImage_ImageURL">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <TextField alignment="CENTER" promptText="url" styleClass="text-field" HBox.hgrow="ALWAYS">
+            <TextField fx:id="urlField" alignment="CENTER" promptText="url" styleClass="text-field" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -36,8 +35,8 @@
       </HBox>
       <HBox alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefWidth="100.0" styleClass="cancelButton" text="%key.Cancel" />
-            <Button mnemonicParsing="false" prefWidth="100.0" styleClass="actionButton" text="%key.AddImage">
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#Cancel" prefWidth="100.0" styleClass="cancelButton" text="%key.AddImage_Cancel" />
+            <Button fx:id="addImageButton" mnemonicParsing="false" onAction="#AddImage" prefWidth="100.0" styleClass="actionButton" text="%key.AddImage">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
