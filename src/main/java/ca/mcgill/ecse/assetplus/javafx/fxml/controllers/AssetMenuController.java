@@ -77,6 +77,14 @@ public class AssetMenuController {
 
     @FXML
     void initialize() {
+      showSpecificAsset();
+      assetTable.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
+        showSpecificAsset();
+      });
+      AssetPlusFXMLView.getInstance().registerRefreshEvent(assetTable);
+    }
+
+    public void showSpecificAsset(){
         List<TOSpecificAsset> assets = AssetPlusFeatureTOController.getSpecificAssets();
         assetList = FXCollections.observableList(assets);
         assetTable.setItems(assetList);
@@ -105,7 +113,6 @@ public class AssetMenuController {
             return new SimpleObjectProperty<>(hbox);
         });
         
-
         actionColumn.setCellValueFactory(cellData -> {
         // Create an HBox with three SVGPath objects representing icons
 
@@ -125,7 +132,6 @@ public class AssetMenuController {
 
         return new SimpleObjectProperty<>(hbox);
     });
-
     }
     
     private void handleEditButtonClicked(int assetNumber) {
