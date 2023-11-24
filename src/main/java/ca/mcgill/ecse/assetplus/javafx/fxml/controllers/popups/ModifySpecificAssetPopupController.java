@@ -4,10 +4,12 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -71,8 +73,63 @@ public class ModifySpecificAssetPopupController {
 
     @FXML
     void modify(ActionEvent event) {
+      StringBuilder error = new StringBuilder();
+      boolean hasError = false;
+      int room, floor;
+      String assetType;
 
+      if (roomChoice.getValue() != null){
+        if (roomChoice.getValue().contains("no") || roomChoice.getValue().contains("select")){
+              room = -1;
+            }
+      }
+
+      if (roomChoice.getValue().equals("Current")){
+        room = asset.getRoomNumber();
+      } else {
+        room = Integer.parseInt(roomChoice.getValue());
+      }
+
+
+      if (floorChoice.getValue() != null){
+        if (floorChoice.getValue().contains("no") || floorChoice.getValue().contains("select")){
+          floor = -1;
+        }
+      }
+      if (floorChoice.getValue().equals("Current")){
+        floor = asset.getFloorNumber();
+      } else {
+        floor =  Integer.parseInt(floorChoice.getValue());
+      }
+
+      
+
+      if (assetTypes.getValue().contains("Select")){
+        hasError = true;
+        error.append("\n Please select an asset type. \n\n");
+      }
+
+      if (assetTypes.getValue().contains("Current")){
+        assetType = asset.getAssetType().getName();
+      } else {
+        assetType = assetTypes.getValue();
+      }
+
+      if (dateChoice.getValue() == null){
+        hasError = true;
+        error.append("\n Please select a purchase date. \n\n");
+      }
+
+      if (hasError){
+        ViewUtils.showError(error.toString());
+      } else {
+        int number = asset.getAssetNumber();
+        AssetPlusFeatureSet3Controller.updateSpecificAsset(number, number, number, asset.getPurchaseDate(), assetType);
+        //AssetMenuController.refreshTables();
+        AssetPlusFXMLView.getInstance().closePopUpWindow();
+      }
     }
+
 
     public static void get(int assetNumber){
       for (TOSpecificAsset assets : AssetPlusFeatureTOController.getSpecificAssets()){
