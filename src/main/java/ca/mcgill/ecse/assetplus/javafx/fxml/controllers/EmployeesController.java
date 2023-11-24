@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import java.util.*;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.resources.languages.*;
+//import ca.mcgill.ecse.assetplus.javafx.resources.languages.*;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;

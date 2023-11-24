@@ -5,6 +5,7 @@ import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 
