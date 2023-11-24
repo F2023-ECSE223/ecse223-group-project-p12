@@ -7,7 +7,6 @@ import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssetMenuController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -98,12 +97,11 @@ public class AddSpecificAssetPopupController {
         ViewUtils.showError(error.toString());
       } else {
         int number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);
-        AssetPlusFeatureSet3Controller.updateSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), Integer.parseInt(roomChoice.getValue()), java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
-        //AssetMenuController.refreshTables();
+        AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), Integer.parseInt(roomChoice.getValue()), java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
+        //AssetMenuController.refre
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       }
     }
-    
     public void initialize() {
 
       assetNumber.setEditable(false);
