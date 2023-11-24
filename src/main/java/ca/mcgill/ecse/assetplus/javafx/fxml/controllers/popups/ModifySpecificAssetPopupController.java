@@ -90,20 +90,25 @@ public class ModifySpecificAssetPopupController {
 
       dateChoice.setEditable(false);
       
+      assetTypes.setPromptText("Current type: " + asset.getAssetType().getName());
+
       ArrayList<String> types = new ArrayList<>();
+      types.add("Current type: " + asset.getAssetType().getName());
       types.add("No asset type");
       for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
-        types.add(type.getName());
-      }
-      
+        if (!type.equals(asset.getAssetType().getName())){
+          types.add(type.getName());
+        } 
+
       ObservableList<String> typesList = FXCollections.observableArrayList(types);
       assetTypes.setItems(typesList);
 
-      assetTypes.setPromptText("Select an asset type");
-      
-      lifeExpectancyBox.setVisible(false);
+      lifeExpectancyBox.setVisible(true);
+      lifeExpectancy.setText(asset.getAssetType().getExpectedLifeSpan()+"");
 
       ArrayList<String> rooms = new ArrayList<>();
+      rooms.add("Current room: " + asset.getRoomNumber());
+      roomChoice.setPromptText("Current room: " + asset.getRoomNumber());
       rooms.add("No room");
       for (int i = 0; i <= 50; i++) {
         rooms.add(i+"");
@@ -112,9 +117,9 @@ public class ModifySpecificAssetPopupController {
       ObservableList<String> roomsList = FXCollections.observableArrayList(rooms);
       roomChoice.setItems(roomsList);
       
-      roomChoice.setPromptText("Select a room");
-
       ArrayList<String> floors = new ArrayList<>();
+      floors.add("Current floor: " + asset.getFloorNumber());
+      floorChoice.setPromptText("Current floor: " + asset.getFloorNumber());
       floors.add("No floor");
       for (int i = 0; i <= 20; i++) {
         floors.add(i+"");
@@ -122,14 +127,26 @@ public class ModifySpecificAssetPopupController {
 
       ObservableList<String> floorsList = FXCollections.observableArrayList(floors);
       floorChoice.setItems(floorsList);
-
-      floorChoice.setPromptText("Select a floor");
+    }
 
     }
 
     @FXML
-    void handleAssetType(ActionEvent event) {
+    private void handleAssetType(ActionEvent event) {
+      String selectedValue = assetTypes.getValue();
+      if (!selectedValue.equals("No asset type")){
+        lifeExpectancyBox.setVisible(true);
 
+        for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
+          if(selectedValue.equals(type.getName())){
+            lifeExpectancy.setText(type.getExpectedLifeSpan()+"");
+          }
+        }
+        
+      System.out.println("Selected: " + selectedValue);
+    } else {
+        lifeExpectancyBox.setVisible(false);
     }
+  }
 
 }

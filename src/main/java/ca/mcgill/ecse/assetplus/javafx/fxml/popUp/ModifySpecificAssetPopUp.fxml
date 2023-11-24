@@ -51,7 +51,7 @@
                   <Insets bottom="30.0" />
                </opaqueInsets>
             </VBox>
-            <ComboBox fx:id="assetTypes" onAction="#handleAssetType" prefHeight="28.0" prefWidth="179.0">
+            <ComboBox fx:id="assetTypes" onAction="#handleAssetType" prefHeight="28.0" prefWidth="228.0">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -81,7 +81,7 @@
                <children>
                   <StackPane prefHeight="86.0" prefWidth="358.0">
                      <children>
-                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="84.0" stroke="BLACK" strokeType="INSIDE" width="344.0" />
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="84.0" stroke="BLACK" strokeType="INSIDE" width="388.0" />
                         <VBox alignment="CENTER" prefHeight="80.0" prefWidth="362.0">
                            <children>
                               <Label text="%key.AssetMenu_Location">
@@ -91,9 +91,9 @@
                               </Label>
                               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <ComboBox fx:id="roomChoice" prefHeight="28.0" prefWidth="156.0" />
+                                    <ComboBox fx:id="roomChoice" prefHeight="28.0" prefWidth="170.0" />
                                     <Region maxHeight="10.0" maxWidth="20.0" minHeight="10.0" prefHeight="0.0" prefWidth="362.0" />
-                                    <ComboBox fx:id="floorChoice" prefHeight="28.0" prefWidth="155.0">
+                                    <ComboBox fx:id="floorChoice" prefHeight="28.0" prefWidth="172.0">
                                        <padding>
                                           <Insets left="20.0" />
                                        </padding>
