@@ -19,6 +19,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -76,6 +77,9 @@ public class TicketStatusController {
 
     @FXML
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
+
+    @FXML
+    private DatePicker datePickerBtn;
 
     private ObservableList<TOMaintenanceTicket> ticketList;
 
@@ -238,8 +242,7 @@ public class TicketStatusController {
         if (selectedStatus == null || selectedStatus.equals("key.ShowAll")) {
             ticketTable.setItems(ticketList);
         } else {
-            String status = selectedStatus.substring(selectedStatus.lastIndexOf(".") + 1);
-            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> ticket.getStatus().equals(status));
+            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> selectedStatus.contains(ticket.getStatus()));
             ticketTable.setItems(filteredList);
         }
     }
@@ -255,14 +258,14 @@ public class TicketStatusController {
     } 
 
     @FXML
-    void handleDatePicker() {
+    void handleDatePickerClicked(ActionEvent event) {
 
     }
 
     private void handleStatusCellClicked(String status) {
         switch (status) {
             case "key.Open":
-                AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+                AssignStaffToTicketController controller = (AssignStaffToTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
                 break;
         }
     }
