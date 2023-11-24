@@ -51,12 +51,12 @@
                   <Insets bottom="30.0" />
                </opaqueInsets>
             </VBox>
-            <ChoiceBox fx:id="assetTypes" prefHeight="28.0" prefWidth="278.0">
+            <ChoiceBox fx:id="assetTypes" prefHeight="28.0" prefWidth="278.0" onAction="#handleAssetType">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
             </ChoiceBox>
-            <VBox alignment="CENTER" prefHeight="53.0" prefWidth="482.0">
+            <VBox fx:id="lifeExpectancyBox" alignment="CENTER" prefHeight="53.0" prefWidth="482.0">
                <children>
                   <StackPane prefHeight="45.0" prefWidth="482.0">
                      <children>
