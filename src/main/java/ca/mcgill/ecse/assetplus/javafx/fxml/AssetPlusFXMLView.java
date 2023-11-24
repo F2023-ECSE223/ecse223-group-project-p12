@@ -105,6 +105,7 @@ public class AssetPlusFXMLView extends Application {
     Stage popUpStage = new Stage();
     popUpStages.push(popUpStage);
     popUpStage.initModality(Modality.APPLICATION_MODAL);
+    popUpStage.initStyle(StageStyle.UNDECORATED);
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
     Parent root;

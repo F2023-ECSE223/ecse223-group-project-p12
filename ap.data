@@ -112,6 +112,21 @@
                                 "assetType": {
                                   "@reference": "../../.."
                                 }
+                              },
+                              {
+                                "assetNumber": 6,
+                                "floorNumber": 2,
+                                "roomNumber": 1,
+                                "purchaseDate": "2023-11-16",
+                                "assetPlus": {
+                                  "@reference": "../../../../../../../../.."
+                                },
+                                "maintenanceTickets": [
+                                  ""
+                                ],
+                                "assetType": {
+                                  "@reference": "../../.."
+                                }
                               }
                             ]
                           }
@@ -178,8 +193,8 @@
                   },
                   "asset": {
                     "assetNumber": 1,
-                    "floorNumber": 5,
-                    "roomNumber": 501,
+                    "floorNumber": 1,
+                    "roomNumber": 1,
                     "purchaseDate": "2023-06-01",
                     "assetPlus": {
                       "@reference": "../../../../../.."
@@ -201,9 +216,6 @@
                         {
                           "SpecificAsset": [
                             {
-                              "@reference": "../../.."
-                            },
-                            {
                               "assetNumber": 4,
                               "floorNumber": 5,
                               "roomNumber": 502,
@@ -217,6 +229,9 @@
                               "assetType": {
                                 "@reference": "../../.."
                               }
+                            },
+                            {
+                              "@reference": "../../.."
                             }
                           ]
                         }
@@ -429,10 +444,13 @@
             "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket/asset"
           },
           {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]"
+            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset"
           },
           {
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]"
+          },
+          {
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[3]"
           }
         ]
       }
