@@ -2,6 +2,8 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.UpdateTicketPopUpController;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -216,7 +218,9 @@ public class TicketStatusController {
 
     @FXML
     void goToTicketMenu(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
+        //AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
+        AddTicketPopUpController controller = (AddTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
+            if (controller==null) System.out.println("controller null");
     }
 
     @FXML
@@ -252,8 +256,11 @@ public class TicketStatusController {
         AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
     }
 
-    private void handleEditButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "editTab");
+    private void handleEditButtonClicked(int ticketNumber) {
+        //AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "editTab");
+        UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
+            if (controller==null) System.out.println("controller null");
+
     }
 
     private void handleTrashButtonClicked() {

@@ -91,6 +91,13 @@ public class ViewUtils {
     return FXCollections.observableList(assetType);
   }
 
+   public static ObservableList<TOSpecificAsset> getSpecificAsset() {
+    List<TOSpecificAsset> asset = AssetPlusFeatureTOController.getSpecificAssets();
+    // as javafx works with observable list, we need to convert the java.util.List to
+    // javafx.collections.observableList
+    return FXCollections.observableList(asset);
+  }
+
   public static ObservableList<String> getTicketImages(int id) {
     TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(id);
 

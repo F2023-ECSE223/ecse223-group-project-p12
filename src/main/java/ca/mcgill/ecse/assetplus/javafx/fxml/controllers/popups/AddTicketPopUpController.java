@@ -71,18 +71,6 @@ public class AddTicketPopUpController {
     private TextField ticketNumberField1;
 
     @FXML
-    private TextField ticketNumberField11;
-
-    @FXML
-    private TextField ticketNumberField12;
-
-    @FXML
-    private TextField ticketNumberField121;
-
-    @FXML
-    private TextField ticketNumberField13;
-
-    @FXML
     private TextField ticketStatusField;
 
     @FXML
@@ -95,10 +83,18 @@ public class AddTicketPopUpController {
         for (TOAssetType type : list){
             typeField.getItems().add(type.getName());
         }
+
+        //get assets only for the selected type
         ObservableList<TOSpecificAsset> list2 = ViewUtils.getSpecificAsset();
         for (TOSpecificAsset asset : list2){
-            typeField.getItems().add(Integer.toString(asset.getAssetNumber()));
+            assetNumberField.getItems().add(Integer.toString(asset.getAssetNumber()));
         }
+        // set editable to false so that the user cannot choose from the calendar
+        raisedDateField.setEditable(false);
+        // set default value to today
+        raisedDateField.setValue(LocalDate.now());
+        addTicketError.setText(null);
+
     }
     
     
@@ -115,7 +111,7 @@ public class AddTicketPopUpController {
             assetNumber = Integer.parseInt(assetNumberField.getValue());
         }
 
-        if (ticketNumber == null || description == null || raiser == null || raisedDate == null){
+        if (ticketNumber == null || description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null){
                 addTicketError.setText("All required fields are not entered. Try again!");
         }
         else{
@@ -127,6 +123,8 @@ public class AddTicketPopUpController {
                 assetNumberField.setValue(null);
                 typeField.setValue(null);
                 raisedDateField.setValue(null);
+                addTicketError.setText(null);
+                addTicketError.setText("Your ticket has been created!");
             }
             else{
                 addTicketError.setText(err);
@@ -136,24 +134,9 @@ public class AddTicketPopUpController {
 
     @FXML
     void cancelClicked(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().closePopUp();
+        AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
 
-
-     /** Calls the controller and returns true on success. This method is included for readability. */
-    public static boolean successful(String controllerResult) {
-        return callController(controllerResult);
-    }
-
-    /** Calls the controller and shows an error, if applicable. */
-    public static boolean callController(String result) {
-        if (result.isEmpty()) {
-            //BtmsFxmlView.getInstance().refresh();
-        return true;
-         }
-        //showError(result);
-        return false;
-  }
 }
 
 
