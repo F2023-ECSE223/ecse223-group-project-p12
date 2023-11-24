@@ -1,11 +1,11 @@
-package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
+package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 
 import java.util.ResourceBundle;
 import javax.swing.text.View;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +22,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class ViewImagesController {
+public class AddImageController {
     private int currentTicketNumber;
 
     @FXML
@@ -38,7 +38,7 @@ public class ViewImagesController {
     private Button addImageButton;
 
     @FXML
-    private Label numberLabel;
+    private TextField ticketNumberField;
 
     @FXML
     private Label errorMessage;
@@ -49,7 +49,6 @@ public class ViewImagesController {
     @FXML
     public void initialize() {
         currentTicketNumber = -1;
-
         // the grid listen to the refresh event
         grid.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
             refreshView();
@@ -69,21 +68,31 @@ public class ViewImagesController {
         }
         else {
             errorMessage.setVisible(true);
-            setErrorMessage("key.ViewImages_EnterValidTicket");
+            setErrorMessage("key.AddImage_EnterValidTicket");
+        }
+    }
+
+    @FXML
+    void TicketNumberEntered(KeyEvent event) {
+        if( event.getCode() == KeyCode.ENTER ) {
+            refreshView();
         }
     }
 
     private void refreshView() {
         try {
-            ObservableList<String> imageList = ViewUtils.getTicketImages(currentTicketNumber);
+            int input = Integer.parseInt(ticketNumberField.getText());
+            ObservableList<String> imageList = ViewUtils.getTicketImages(input);
 
             if (imageList != null) {
+                currentTicketNumber=input;
                 errorMessage.setVisible(false);
                 showImages(imageList);
             }
             else {
+                currentTicketNumber=-1;
                 errorMessage.setVisible(true);
-                setErrorMessage("key.ViewImages_InvalidTicketNumber");
+                setErrorMessage("key.AddImage_InvalidTicketNumber");
                 grid.getChildren().clear();
             }
         }
@@ -95,15 +104,15 @@ public class ViewImagesController {
     private void showImages(ObservableList<String> list) {
         if (list.size()==0) {
             errorMessage.setVisible(true);
-            setErrorMessage("key.ViewImages_NoImagesWithTicket");
+            setErrorMessage("key.AddImage_NoImagesWithTicket");
         }
         grid.getChildren().clear();
         for (String imageURL : list) {
-            Rectangle rectangle = new Rectangle(0, 0, 120, 120);
+            Rectangle rectangle = new Rectangle(0, 0, 200, 200);
             rectangle.setArcWidth(30.0);
             rectangle.setArcHeight(30.0);
             
-            Image image = new Image(imageURL, 120, 120, true, true);
+            Image image = new Image(imageURL, 200, 200, true, true);
             // If the image was loaded without exceptions, consider it valid
             ImagePattern pattern;
             if (image.isError() == false) {
@@ -135,18 +144,11 @@ public class ViewImagesController {
     }
 
     private void trashBtnClicked(String url) {
-        DeleteViewImagesPopUpController controller = (DeleteViewImagesPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewImagesDeletePopUp.fxml", "Delete Image");
-        controller.setTicketIdAndURL(currentTicketNumber, url);
+        AssetPlusFeatureSet5Controller.deleteImageFromMaintenanceTicket(url, currentTicketNumber);
         ViewUtils.callController("");
     }
 
     private void setErrorMessage(String message) {
         errorMessage.setText(AssetPlusFXMLView.getInstance().getBundle().getString(message));
-    }
-
-    public void setTicketId(int ticketId) {
-        currentTicketNumber = ticketId;
-        numberLabel.setText(Integer.toString(ticketId));
-        refreshView();
     }
 }

@@ -94,7 +94,6 @@ public class AssetPlusFeatureSet3Controller {
 
         //Delete the specific asset from the AssetPlus application instance. 
         (SpecificAsset.getWithAssetNumber(assetNumber)).delete();
-        AssetPlusPersistence.save();
   }
 
   /**
