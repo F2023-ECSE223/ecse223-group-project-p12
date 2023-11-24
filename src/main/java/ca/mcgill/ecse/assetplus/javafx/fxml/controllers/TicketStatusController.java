@@ -2,6 +2,8 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.UpdateTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -202,7 +204,7 @@ public class TicketStatusController {
             Button editBtn = new Button();
             editBtn.getStyleClass().add("icon-edit");
             editBtn.setPickOnBounds(true);
-            editBtn.setOnAction(event -> handleEditButtonClicked());
+            editBtn.setOnAction(event -> handleEditButtonClicked(ticketId));
 
             Button trashBtn = new Button();
             trashBtn.getStyleClass().add("icon-trash");
@@ -228,7 +230,7 @@ public class TicketStatusController {
 
     @FXML
     void goToTicketMenu(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
+        AddTicketPopUpController controller = (AddTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
     }
 
     @FXML
@@ -270,8 +272,12 @@ public class TicketStatusController {
         controller.setTicketId(ticketId);
     }
 
-    private void handleEditButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "editTab");
+    private void handleEditButtonClicked(int ticketId) {
+        UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/UpdateTicketPopUp.fxml", "Update Ticket");
+            if (controller==null) System.out.println("controller null");
+        System.out.println("Updating with ticket number: " + Integer.toString(ticketId));
+        controller.setTicketId(ticketId);
+
     }
 
     private void handleTrashButtonClicked() {
