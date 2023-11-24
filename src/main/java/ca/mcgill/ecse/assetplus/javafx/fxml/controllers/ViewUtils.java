@@ -1,11 +1,13 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import static java.lang.Integer.SIZE;
+import java.util.ArrayList;
 import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.*;
-import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
