@@ -106,10 +106,18 @@ Stylesheet of our UI
     -fx-background-radius: 10px;
 }
 
+
 .text-field {
     -fx-background-color: #F7F6FE;
     -fx-background-radius: 50;
     -fx-border-radius: 50;
+    -fx-text-fill: #808080;
+}
+
+.descriptionBox{
+    -fx-background-color: #F7F6FE;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
     -fx-text-fill: #808080;
 }
 
