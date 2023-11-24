@@ -83,6 +83,7 @@ public class AssetMenuController {
     @FXML
     private Button addSpecificAssetBtn;
 
+
     @FXML
     void initialize() {
         List<TOSpecificAsset> assets = AssetPlusFeatureTOController.getSpecificAssets();

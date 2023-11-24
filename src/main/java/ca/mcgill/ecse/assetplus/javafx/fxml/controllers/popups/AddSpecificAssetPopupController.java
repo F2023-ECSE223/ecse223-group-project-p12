@@ -1,10 +1,13 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import java.nio.file.AtomicMoveNotSupportedException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssetMenuController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +21,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 
 public class AddSpecificAssetPopupController {
@@ -66,24 +72,36 @@ public class AddSpecificAssetPopupController {
 
     @FXML
     void create(ActionEvent event) {
+      StringBuilder error = new StringBuilder();
+      boolean hasError = false;
       int room, floor;
 
-      if (roomChoice.getValue().contains("no")){
+      if (roomChoice.getValue().contains("no") || roomChoice.getValue().contains("select")){
         room = -1;
       }
 
-      if (roomChoice.getValue().contains("no")){
+      if (floorChoice.getValue().contains("no") || floorChoice.getValue().contains("select")){
         floor = -1;
       }
 
       if (assetTypes.getValue().contains("Select")){
-        ViewUtils.showError("Please select an asset type.");
+        hasError = true;
+        error.append("\n Please select an asset type. \n\n");
       }
 
-      floorChoice.getValue();
-      assetTypes.getValue();
-      dateChoice.getValue();
+      if (dateChoice.getValue() == null){
+        hasError = true;
+        error.append("\n Please select a purchase date. \n\n");
+      }
 
+      if (hasError){
+        ViewUtils.showError(error.toString());
+      } else {
+        int number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);
+        AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), Integer.parseInt(roomChoice.getValue()), java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
+        //AssetMenuController.refreshTables();
+        AssetPlusFXMLView.getInstance().closePopUpWindow();
+      }
     }
     public void initialize() {
 
