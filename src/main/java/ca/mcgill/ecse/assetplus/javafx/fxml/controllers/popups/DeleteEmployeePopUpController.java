@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class DeleteEmployeePopupController {
+public class DeleteEmployeePopUpController {
 
     @FXML
     private Label employeeNameDelete;
@@ -20,3 +20,4 @@ public class DeleteEmployeePopupController {
     }
 
 }
+

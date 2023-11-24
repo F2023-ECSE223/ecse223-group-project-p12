@@ -23,7 +23,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import java.util.*;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-//import ca.mcgill.ecse.assetplus.javafx.resources.languages.*;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
@@ -34,8 +33,8 @@ import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureUtility;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddEmployeePopUpController;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteEmployeePopupController;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyEmployeePopupController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteEmployeePopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyEmployeePopUpController;
 
 public class EmployeesController {
 
@@ -52,28 +51,7 @@ public class EmployeesController {
     private Button addEmployeeButton;
 
     @FXML
-    private Button cancelCreateEmployeeButton;
-
-    @FXML
-    private Label createErrorMessage;
-
-    @FXML
     private Label modifyErrorMessage;
-
-    @FXML
-    private TextField createEmailField;
-
-    @FXML
-    private Button createEmployeeButton;
-
-    @FXML
-    private TextField createNameField;
-
-    @FXML
-    private TextField createPasswordField;
-
-    @FXML
-    private TextField createPhoneNumberField;
 
     @FXML
     private Label employeeNameDelete;
@@ -94,9 +72,6 @@ public class EmployeesController {
     private TextField modifyPhoneNumberField;
 
     @FXML
-    private GridPane popupCreateEmployee;
-
-    @FXML
     private TextField ticketEmployeeField;
 
     @FXML
@@ -108,35 +83,8 @@ public class EmployeesController {
 
     @FXML
     void AddEmployee(ActionEvent event) {
-        AddEmplo
+        AddEmployeePopUpController controller = (AddEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddEmployeePopUp.fxml", "Add Employee");
 
-    }
-
-    @FXML
-    void cancelCreateEmployee(ActionEvent event) {
-        createEmailField.clear();
-        createPhoneNumberField.clear();
-        createNameField.clear();
-        createPasswordField.clear();
-        createErrorMessage.setText("");
-        employeeOptions.getSelectionModel().select(0);
-    }
-
-    @FXML
-    void createEmployee(ActionEvent event) {
-        String err = AssetPlusFeatureSet1Controller.addEmployeeOrGuest(createEmailField.getText(), createPasswordField.getText(), createNameField.getText(), createPhoneNumberField.getText(), true);
-        if (err.isEmpty()) {
-            createEmailField.clear();
-            createPhoneNumberField.clear();
-            createNameField.clear();
-            createPasswordField.clear();
-            createErrorMessage.setText("");
-            employeeOptions.getSelectionModel().select(0);
-            showEmployees(AssetPlusFeatureTOController.getAllEmployees());
-        } else {
-            createErrorMessage.setText(translateErrorMessage(err));
-        }
-           
     }
 
     @FXML
@@ -178,6 +126,12 @@ public class EmployeesController {
     void initialize() {
         resources = AssetPlusFXMLView.getInstance().getBundle();
         showEmployees(AssetPlusFeatureTOController.getAllEmployees());
+        viewAllEmployees.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
+            showEmployees(AssetPlusFeatureTOController.getAllEmployees());
+        });
+
+        // let the application be aware of the refreshable node
+        AssetPlusFXMLView.getInstance().registerRefreshEvent(viewAllEmployees);
     }
 
     @FXML
@@ -288,7 +242,7 @@ public class EmployeesController {
 
     }
 
-    private String translateErrorMessage(String err) {
+    public String translateErrorMessage(String err) {
         resources = AssetPlusFXMLView.getInstance().getBundle();
         switch (err) {
             case "Email cannot be empty":
