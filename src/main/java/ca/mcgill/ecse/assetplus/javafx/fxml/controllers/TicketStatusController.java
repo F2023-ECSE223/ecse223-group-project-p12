@@ -2,6 +2,8 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -210,8 +212,16 @@ public class TicketStatusController {
         hbox.setAlignment(Pos.CENTER);
 
         return new SimpleObjectProperty<>(hbox);
-    });
+
+        });
         
+        setPercentageWidth(ticketNumberColumn, 15);
+        setPercentageWidth(assetColumn, 11); 
+        setPercentageWidth(reporterColumn, 11); 
+        setPercentageWidth(assigneeColumn, 11);
+        setPercentageWidth(dateStartedColumn, 21);
+        setPercentageWidth(statusColumn, 10);
+        setPercentageWidth(actionColumn, 20);
     }
 
     @FXML
@@ -240,6 +250,11 @@ public class TicketStatusController {
         return "defaultKey";
     } 
 
+    @FXML
+    void handleDatePicker() {
+
+    }
+
     private void handleStatusCellClicked(String status) {
         switch (status) {
             case "key.Open":
@@ -258,6 +273,10 @@ public class TicketStatusController {
 
     private void handleTrashButtonClicked() {
         AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
+    }
+
+    private void setPercentageWidth(TableColumn<?, ?> column, double percentage) {
+        column.prefWidthProperty().bind(ticketTable.widthProperty().multiply(percentage / 100.0));
     }
 
 }
