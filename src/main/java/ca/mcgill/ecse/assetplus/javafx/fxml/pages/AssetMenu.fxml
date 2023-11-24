@@ -54,14 +54,14 @@
                         <fx:include source="../components/UserTopSection.fxml" />
                         <HBox alignment="CENTER_LEFT" prefWidth="750.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <TextField fx:id="assetNumberField" alignment="CENTER" prefHeight="28.0" prefWidth="288.0" promptText="%key.SearchAsset" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;">
+                              <TextField fx:id="assetNumberField" alignment="CENTER" prefHeight="28.0" prefWidth="288.0" promptText="%key.AssetMenu_SearchAsset" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
                               </TextField>
                               <SVGPath content="m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z" fill="#8768f2" />
                               <Pane prefHeight="50.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                              <Button alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="162.0" styleClass="actionButton" text="%key.AddSpecificAsset">
+                              <Button fx:id="addSpecificAssetBtn" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addSpecificAsset" prefHeight="40.0" prefWidth="162.0" styleClass="actionButton" text="%key.AssetMenu_AddSpecificAsset">
                                  <graphic>
                                     <SVGPath content="M8.9 6.9v-5a1 1 0 1 0-2 0v5h-5a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5z" fill="WHITE" />
                                  </graphic>
@@ -81,14 +81,14 @@
                   </VBox>
                   <TableView id="ticketTable" fx:id="assetTable" prefHeight="380.0" prefWidth="392.0">
                      <columns>
-                        <TableColumn fx:id="assetNumberColumn" maxWidth="100.0" minWidth="-1.0" prefWidth="100.0" text="%key.AssetNumber" />
-                        <TableColumn fx:id="assetColumn" maxWidth="200.0" prefWidth="100.0" text="%key.Asset" />
-                        <TableColumn fx:id="roomColumn" maxWidth="200.0" prefWidth="73.70263671875" text="%key.Room" />
-                        <TableColumn fx:id="floorColumn" maxWidth="200.0" prefWidth="73.62078857421875" text="%key.Floor" />
-                        <TableColumn fx:id="purchaseDateColumn" maxWidth="200.0" prefWidth="153.8792724609375" text="%key.PurchaseDate" />
-                        <TableColumn fx:id="lifeExpectancyColumn" maxWidth="200.0" prefWidth="100.0" text="%key.LifeExpectancy" />
-                        <TableColumn fx:id="maintenanceHistoryColumn" prefWidth="75.0" text="%key.MaintenanceHistory" />
-                        <TableColumn fx:id="actionColumn" maxWidth="200.0" prefWidth="150.0" text="Action" />
+                        <TableColumn fx:id="assetNumberColumn" maxWidth="100.0" minWidth="-1.0" prefWidth="97.62446594238281" text="%key.AssetMenu_AssetNumber" />
+                        <TableColumn fx:id="assetColumn" maxWidth="200.0" prefWidth="57.875518798828125" text="%key.AssetMenu_Asset" />
+                        <TableColumn fx:id="roomColumn" maxWidth="200.0" prefWidth="64.31463623046875" text="%key.AssetMenu_Room" />
+                        <TableColumn fx:id="floorColumn" maxWidth="200.0" prefWidth="63.18328857421875" text="%key.AssetMenu_Floor" />
+                        <TableColumn fx:id="purchaseDateColumn" maxWidth="200.0" prefWidth="107.27969360351562" text="%key.AssetMenu_PurchaseDate" />
+                        <TableColumn fx:id="lifeExpectancyColumn" maxWidth="200.0" prefWidth="116.4090576171875" text="%key.AssetMenu_LifeExpectancy" />
+                        <TableColumn fx:id="maintenanceHistoryColumn" prefWidth="152.207275390625" text="%key.AssetMenu_MaintenanceHistory" />
+                        <TableColumn fx:id="actionColumn" maxWidth="222.06982421875" prefWidth="79.79266357421875" text="Action" />
                      </columns>
                   </TableView>
                </children>
