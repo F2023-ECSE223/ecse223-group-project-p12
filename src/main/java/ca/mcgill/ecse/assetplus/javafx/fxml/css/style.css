@@ -34,6 +34,11 @@ Stylesheet of our UI
     -fx-effect: none;
 }
 
+.toolbarDeleteButton:hover
+{
+    -fx-background-color: #a30d11;
+}
+
 .noticeMessage
 {
     -fx-text-fill: #8668f2a9;
