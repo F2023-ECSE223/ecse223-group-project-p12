@@ -106,5 +106,4 @@ public class TOSpecificAsset
             "  " + "purchaseDate" + "=" + (getPurchaseDate() != null ? !getPurchaseDate().equals(this)  ? getPurchaseDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "assetType" + "=" + (getAssetType() != null ? !getAssetType().equals(this)  ? getAssetType().toString().replaceAll("  ","    ") : "this" : "null");
   }
-  
 }
