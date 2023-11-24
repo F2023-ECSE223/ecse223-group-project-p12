@@ -90,7 +90,12 @@ public class AddSpecificAssetPopupController {
       if (hasError){
         ViewUtils.showError(error.toString());
       } else {
-        int number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);
+        int number;
+        if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
+          number = 1;
+        } else {
+          number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);   
+        }
         AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), Integer.parseInt(roomChoice.getValue()), java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
         ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
@@ -99,7 +104,12 @@ public class AddSpecificAssetPopupController {
     public void initialize() {
 
       assetNumber.setEditable(false);
-      assetNumber.setText((AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1)+"");
+      if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
+        assetNumber.setText(1+"");
+      } else {
+        assetNumber.setText((AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber() + 1) +"");
+      }
+      
       assetNumber.setFocusTraversable(false);
 
       dateChoice.setEditable(false);
