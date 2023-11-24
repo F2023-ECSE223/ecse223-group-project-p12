@@ -131,6 +131,23 @@ Stylesheet of our UI
     -fx-background-color: #F7F6FE; 
 }
 
+/* COMBO BOX STYLE */
+.combo-box {
+    -fx-background-color: white; 
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #808080;
+    -fx-border-width: 1px;
+}
+
+.combo-box .menu-item{
+    -fx-background-color: white;
+}
+
+.combo-box .menu-item:hover {
+    -fx-background-color: #F7F6FE; 
+}
+
 /* TABLE VIEW STYLE */
 .table-view {
     -fx-background-color: transparent;

@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -25,7 +26,7 @@ public class AddSpecificAssetPopupController {
     private TextField assetNumber;
 
     @FXML
-    private ChoiceBox<String> assetTypes;
+    private ComboBox<String> assetTypes;
 
     @FXML
     private Button cancelAssetBtn;
@@ -40,13 +41,13 @@ public class AddSpecificAssetPopupController {
     private Rectangle fieldBg;
 
     @FXML
-    private ChoiceBox<String> floorChoice;
+    private ComboBox<String> floorChoice;
 
     @FXML
     private TextField lifeExpectancy;
 
     @FXML
-    private ChoiceBox<String> roomChoice;
+    private ComboBox<String> roomChoice;
 
     @FXML
     private Label topPopups;
@@ -69,13 +70,15 @@ public class AddSpecificAssetPopupController {
       assetNumber.setEditable(false);
       assetNumber.setText((AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1)+"");
       assetNumber.setFocusTraversable(false);
+
+      dateChoice.setEditable(false);
       
       ArrayList<String> types = new ArrayList<>();
+      types.add("No asset type");
       for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
         types.add(type.getName());
       }
-      types.add("No asset type");
-
+      
       ObservableList<String> typesList = FXCollections.observableArrayList(types);
       assetTypes.setItems(typesList);
 
@@ -84,10 +87,10 @@ public class AddSpecificAssetPopupController {
       lifeExpectancyBox.setVisible(false);
 
       ArrayList<String> rooms = new ArrayList<>();
+      rooms.add("No room");
       for (int i = 0; i <= 50; i++) {
         rooms.add(i+"");
       }
-      rooms.add("No room");
 
       ObservableList<String> roomsList = FXCollections.observableArrayList(rooms);
       roomChoice.setItems(roomsList);
@@ -95,11 +98,11 @@ public class AddSpecificAssetPopupController {
       roomChoice.setValue("Select a room");
 
       ArrayList<String> floors = new ArrayList<>();
+      floors.add("No floor");
       for (int i = 0; i <= 20; i++) {
         floors.add(i+"");
       }
-      floors.add("No floor");
-      
+
       ObservableList<String> floorsList = FXCollections.observableArrayList(floors);
       floorChoice.setItems(floorsList);
 
@@ -110,9 +113,19 @@ public class AddSpecificAssetPopupController {
     @FXML
     private void handleAssetType(ActionEvent event) {
       String selectedValue = assetTypes.getValue();
-      System.out.println("Selected: " + selectedValue);
-      lifeExpectancyBox.setVisible(true);
+      if (!selectedValue.equals("No asset type")){
+        lifeExpectancyBox.setVisible(true);
 
+        for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
+          if(selectedValue.equals(type.getName())){
+            lifeExpectancy.setText(type.getExpectedLifeSpan()+"");
+          }
+        }
+        
+      System.out.println("Selected: " + selectedValue);
+   } else {
+      lifeExpectancyBox.setVisible(false);
    }
+}
 
 }
