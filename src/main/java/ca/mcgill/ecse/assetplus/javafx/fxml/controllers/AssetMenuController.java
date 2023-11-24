@@ -137,6 +137,7 @@ public class AssetMenuController {
     }
     
     private void handleEditButtonClicked(int assetNumber) {
+        ModifySpecificAssetPopupController.get(assetNumber);
         System.out.println(assetNumber);
         ModifySpecificAssetPopupController controller = (ModifySpecificAssetPopupController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifySpecificAssetPopUp.fxml", "Modify Specific Asset");
     }
