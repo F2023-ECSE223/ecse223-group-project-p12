@@ -22,9 +22,6 @@ public class DeleteSpecificAssetPopUpController {
     private Button deleteAssetBtn;
 
     @FXML
-    private TextField prompt;
-
-    @FXML
     private Label topPopups;
 
     public static TOSpecificAsset asset;
@@ -42,13 +39,12 @@ public class DeleteSpecificAssetPopUpController {
     }
 
     public void initialize() {
-      prompt.setEditable(false);
-      prompt.setFocusTraversable(false);
-
       assetNumber.setEditable(false);
       assetNumber.setFocusTraversable(false);
 
-      assetNumber.setText(asset.getAssetNumber()+"");
+      assetNumber.setText("#"+asset.getAssetNumber()+"");
+      assetNumber.setStyle("-fx-text-fill: #333333;");
+
     }
 
     
