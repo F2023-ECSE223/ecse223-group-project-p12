@@ -11,6 +11,8 @@ import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteAssetTypePopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyAssetTypePopUpController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -167,7 +169,7 @@ public class AssetTypesController {
         String nbYears = Integer.toString(assetType.getExpectedLifeSpan());
         String intro = AssetPlusFXMLView.getInstance().getBundle().getString("key.AssetType_LifeExpectancy");
         String end = AssetPlusFXMLView.getInstance().getBundle().getString("key.AssetType_Years");
-        Label lifeExp = new Label(intro + nbYears + " "+ end);  
+        Label lifeExp = new Label(intro + " "+ nbYears + " "+ end);  
         vbox.getChildren().add(name);
         vbox.getChildren().add(lifeExp);
         vbox.getChildren().add(hbox);
@@ -179,13 +181,15 @@ public class AssetTypesController {
 
     private void pencilBtnClicked(String name){
         System.out.println("Updating with name: " + name);
-        AssetPlusFeatureSet2Controller.updateAssetType(name, AssetTypeAddName.getText(), Integer.valueOf(AssetTypeAddLifespan.getText()));
+        ModifyAssetTypePopUpController controller = (ModifyAssetTypePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssetTypeModifyPopUp.fxml", "Modify Asset Type");
+        controller.setName(name);
         showAssetTypes();
     }
 
     private void trashBtnClicked(String name){
       System.out.println("Deleting with name: " + name);
-      AssetPlusFeatureSet2Controller.deleteAssetType(name);
+      DeleteAssetTypePopUpController controller = (DeleteAssetTypePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssetTypeDeletePopUp.fxml", "Delete Asset Type");
+      controller.setName(name);
       showAssetTypes();
     }
 
