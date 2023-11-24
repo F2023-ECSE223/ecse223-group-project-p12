@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.assetplus.controller;
 import java.util.*;
 
-// line 58 "../../../../../../AssetPlusTransferObjects.ump"
+// line 64 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOEmployee extends TOHotelStaff
 {
 

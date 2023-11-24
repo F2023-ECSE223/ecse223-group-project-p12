@@ -67,8 +67,14 @@ public class ViewUtils {
     dialog.show();
   }
 
-  public static void loadPopupWindow(String fxml) {
-    AssetPlusFXMLView.getInstance().loadPopupWindow(fxml);
+  public static void loadPopupWindow(String fxml, String title) { 
+    AssetPlusFXMLView.getInstance().loadPopupWindow(fxml, title);
+  }
+
+  public static void closePopupWindow(Stage popUp) {
+    if (popUp != null) {
+      popUp.close();
+    }
   }
 
   public static void showError(String message) {
@@ -77,6 +83,11 @@ public class ViewUtils {
 
   public static ObservableList<TOMaintenanceTicket> getMaintenanceTickets() {
     List<TOMaintenanceTicket> ticket = AssetPlusFeatureSet6Controller.getTickets();
+    return FXCollections.observableList(ticket);
+  }
+
+  public static ObservableList<TOAssetType> getAssetTypes() {
+    List<TOAssetType> ticket = AssetPlusFeatureTOController.getAssetTypes();
     // as javafx works with observable list, we need to convert the java.util.List to
     // javafx.collections.observableList
     return FXCollections.observableList(ticket);
@@ -91,9 +102,14 @@ public class ViewUtils {
     } 
     System.out.println("Exist!!");
 
-    // as javafx works with observable list, we need to convert the java.util.List to
-    // javafx.collections.observableList
     return FXCollections.observableList(ticket.getImageURLs());
   }
 
+  public static String getUsername(String email) {
+    return AssetPlusFeatureSet1Controller.getUsername(email);
+  }
+
+  public static List<TOHotelStaff> getHotelStaffs() {
+    return AssetPlusFeatureSet1Controller.getHotelStaffs();
+  }
 }

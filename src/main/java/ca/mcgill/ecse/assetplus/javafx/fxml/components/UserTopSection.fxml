@@ -46,7 +46,7 @@
       <VBox alignment="CENTER_RIGHT">
          <children>
             <Label styleClass="username" stylesheets="@../css/style.css" text="manager@ap.com" />
-            <Label text="%key.Manager" />
+            <Label text="%key.UserTopSection_Manager" />
          </children>
          <padding>
             <Insets right="20.0" />

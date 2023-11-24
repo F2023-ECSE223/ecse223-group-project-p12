@@ -22,16 +22,49 @@ public class AssetPlusFeatureTOController {
 
   /**
    * <p>Generate a list of specific asset transfer objects. </p>
-   * @return a hashmap with the keys being an asset number and the value being the associated specific asset transfer object.
+   * @return a list with the indexes holding the associated specific asset transfer object.
    */
-  public static HashMap<Integer, TOSpecificAsset> getSpecificAssets() {
-  List<SpecificAsset> assets = AssetPlusApplication.getAssetPlus().getSpecificAssets();
-  HashMap<Integer, TOSpecificAsset> TOassets = new HashMap<>();
+  public static List<TOSpecificAsset> getSpecificAssets() {
+    List<SpecificAsset> assets = 
+      AssetPlusApplication.getAssetPlus().getSpecificAssets();
+    List<TOSpecificAsset> convertedAssets = new ArrayList<>();
 
-  for (SpecificAsset asset : assets){
-    TOassets.put(asset.getAssetNumber(), new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate()));
+    for (SpecificAsset asset: assets) {
+      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), asset.getAssetType()));
+    }
+    return convertedAssets;
   }
-  return TOassets;
+
+
+  /**
+   * <p>Get a list of all maintenance tickets as transfer objects</p>
+   * @return the list of tickets
+   */
+  public static List<TOAssetType> getAssetTypes() {
+    List<AssetType> assetTypes = AssetPlusApplication.getAssetPlus().getAssetTypes();
+    List<TOAssetType> assetTypesTO = new ArrayList<>();
+
+    for (AssetType assetType: assetTypes) {
+      assetTypesTO.add(convertFromAssetType(assetType));
+    }
+
+    return assetTypesTO;
+  }
+
+  private static TOAssetType convertFromAssetType(AssetType assetType){
+
+    List<SpecificAsset> assets = assetType.getSpecificAssets();
+    
+    //After the TOSpecificAsset methods are implemented, then we can covert SpecifAssets to SpecificAssetsTO
+    List<TOSpecificAsset> TOassets= new ArrayList<>();
+
+    TOAssetType assetTypeTO = new TOAssetType(assetType.getName(), assetType.getExpectedLifeSpan());
+
+    for(TOSpecificAsset asset : TOassets){
+      assetTypeTO.addTOSpecificAsset(asset);
+    }
+
+    return assetTypeTO;
   }
 
   private static TOEmployee convertFromEmployee(
