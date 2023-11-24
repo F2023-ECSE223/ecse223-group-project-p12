@@ -5,6 +5,7 @@ import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import java.util.*;
@@ -275,7 +276,7 @@ public class AssetPlusFeatureSet1Controller {
 
       List<TOHotelStaff> staffs = new ArrayList<>();
       for (HotelStaff hotelStaff: hotelStaffs) {
-        //staffs.add(convertFromHotelStaff(hotelStaff);)
+        staffs.add(convertFromHotelStaff(hotelStaff));
       }
 
       return staffs;
@@ -290,8 +291,39 @@ public class AssetPlusFeatureSet1Controller {
       return staff;
     }
 
-    // private TOHotelStaff convertFromHotelStaff(HotelStaff hotelStaff) {
+    private static TOHotelStaff convertFromHotelStaff(HotelStaff hotelStaff) {
+      User user = (User) hotelStaff;
 
-    // }
+      return new TOEmployee(
+        user.getEmail(),
+        user.getName(),
+        user.getPassword(),
+        user.getPhoneNumber(),
+        convertFromMaintenanceTicket(user.getRaisedTickets()),
+        convertFromMaintenanceTicket(hotelStaff.getMaintenanceTasks())
+      );
+    }
+
+    private static List<Integer> convertFromMaintenanceTicket(List<MaintenanceTicket> maintenanceTickets) {
+      List<Integer> tickets = new ArrayList<>();
+      for (MaintenanceTicket ticket: maintenanceTickets) {
+        tickets.add(ticket.getId());
+      }
+
+      return tickets;
+    }
+
+    public static String getStaffEmailFromName(String name) {
+      List<HotelStaff> hotelStaffs = convertEmployeesIntoStaff(AssetPlusApplication.getAssetPlus().getEmployees());
+      hotelStaffs.add(AssetPlusApplication.getAssetPlus().getManager());
+
+      for (HotelStaff staff: hotelStaffs) {
+        if (staff.getName().equals(name)) {
+          return staff.getEmail();
+        }
+      }
+      
+      return "Email not found";
+    }
 
 }
