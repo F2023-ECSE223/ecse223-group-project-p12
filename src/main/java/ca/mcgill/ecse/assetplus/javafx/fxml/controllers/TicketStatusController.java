@@ -2,8 +2,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.UpdateTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -191,37 +190,35 @@ public class TicketStatusController {
         });
 
         actionColumn.setCellValueFactory(cellData -> {
-        // Create an HBox with three SVGPath objects representing icons
-        int ticketId = cellData.getValue().getId();
-        Button imgBtn = new Button();
-        imgBtn.getStyleClass().add("icon-image");
-        imgBtn.setPickOnBounds(true);
-        imgBtn.setOnAction(event -> handleImageButtonClicked());
+            int ticketId = cellData.getValue().getId();
+            // Create an HBox with three SVGPath objects representing icons
+            Button imgBtn = new Button();
+            imgBtn.getStyleClass().add("icon-image");
+            imgBtn.setPickOnBounds(true);
+            imgBtn.setOnAction(event -> handleImageButtonClicked(ticketId));
 
-        Button editBtn = new Button();
-        editBtn.getStyleClass().add("icon-edit");
-        editBtn.setPickOnBounds(true);
-        editBtn.setOnAction(event -> handleEditButtonClicked(ticketId));
+            Button editBtn = new Button();
+            editBtn.getStyleClass().add("icon-edit");
+            editBtn.setPickOnBounds(true);
+            editBtn.setOnAction(event -> handleEditButtonClicked());
 
-        Button trashBtn = new Button();
-        trashBtn.getStyleClass().add("icon-trash");
-        trashBtn.setPickOnBounds(true);
-        trashBtn.setOnAction(event -> handleTrashButtonClicked());
+            Button trashBtn = new Button();
+            trashBtn.getStyleClass().add("icon-trash");
+            trashBtn.setPickOnBounds(true);
+            trashBtn.setOnAction(event -> handleTrashButtonClicked());
 
-        HBox hbox = new HBox(imgBtn, editBtn, trashBtn);
-        hbox.setSpacing(10);
-        hbox.setAlignment(Pos.CENTER);
+            HBox hbox = new HBox(imgBtn, editBtn, trashBtn);
+            hbox.setSpacing(10);
+            hbox.setAlignment(Pos.CENTER);
 
-        return new SimpleObjectProperty<>(hbox);
-    });
+            return new SimpleObjectProperty<>(hbox);
+        });
         
     }
 
     @FXML
     void goToTicketMenu(ActionEvent event) {
-        //AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
-        AddTicketPopUpController controller = (AddTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
-            if (controller==null) System.out.println("controller null");
+        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
     }
 
     @FXML
@@ -253,8 +250,9 @@ public class TicketStatusController {
         }
     }
 
-    private void handleImageButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
+    private void handleImageButtonClicked(int ticketId) {
+        ViewImagesController controller = (ViewImagesController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewImages.fxml", "View Images");
+        controller.setTicketId(ticketId);
     }
 
     private void handleEditButtonClicked(int ticketId) {

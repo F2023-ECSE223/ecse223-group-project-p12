@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
 import java.util.Locale;
+import java.util.Stack;
 
 
 
@@ -29,7 +30,7 @@ public class AssetPlusFXMLView extends Application {
   private static AssetPlusFXMLView instance;
   private List<Node> refreshableNodes = new ArrayList<>();
   private Stage stage;
-  private Stage popUpStage;
+  private Stack<Stage> popUpStages;
   private Object currentController;
   private String currentPage;
   private String language = "en";
@@ -51,7 +52,7 @@ public class AssetPlusFXMLView extends Application {
     instance = this;
     try {
       stage = primaryStage;
-      popUpStage = null;
+      popUpStages = new Stack<>();
       currentPage = "pages/TicketStatus.fxml";
       var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
 
@@ -63,8 +64,6 @@ public class AssetPlusFXMLView extends Application {
       primaryStage.setTitle("AssetPlus");
       //primaryStage.initStyle(StageStyle.TRANSPARENT);
       primaryStage.show();
-
-      
 
       // Initializes the other pages
 
@@ -103,8 +102,10 @@ public class AssetPlusFXMLView extends Application {
   }
 
   public Object loadPopupWindow(String fxml, String title) {
-    popUpStage = new Stage();
+    Stage popUpStage = new Stage();
+    popUpStages.push(popUpStage);
     popUpStage.initModality(Modality.APPLICATION_MODAL);
+    popUpStage.initStyle(StageStyle.UNDECORATED);
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
     Parent root;
@@ -116,6 +117,7 @@ public class AssetPlusFXMLView extends Application {
       scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
       popUpStage.setScene(scene);
       popUpStage.setTitle(title);
+      popUpStage.setResizable(false);
       popUpStage.show();
       
       // Return the controller of the pop up window
@@ -130,8 +132,9 @@ public class AssetPlusFXMLView extends Application {
   }
 
   public void closePopUpWindow() {
-    if (this.popUpStage != null) {
-      this.popUpStage.close();
+    if (!this.popUpStages.isEmpty()) {
+      Stage stage = this.popUpStages.pop();
+      stage.close();
     }
   }
 
