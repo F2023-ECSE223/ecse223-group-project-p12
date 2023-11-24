@@ -8,7 +8,7 @@ Stylesheet of our UI
 
 
 /* General attributes for the whole document */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 .root
 {  
@@ -299,4 +299,43 @@ Stylesheet of our UI
     -fx-max-width: -size;
 
     -fx-shape: "M7 5h14v2H7V5m0 8v-2h14v2H7M4 4.5A1.5 1.5 0 0 1 5.5 6A1.5 1.5 0 0 1 4 7.5A1.5 1.5 0 0 1 2.5 6A1.5 1.5 0 0 1 4 4.5m0 6A1.5 1.5 0 0 1 5.5 12A1.5 1.5 0 0 1 4 13.5A1.5 1.5 0 0 1 2.5 12A1.5 1.5 0 0 1 4 10.5M7 19v-2h14v2H7m-3-2.5A1.5 1.5 0 0 1 5.5 18A1.5 1.5 0 0 1 4 19.5A1.5 1.5 0 0 1 2.5 18A1.5 1.5 0 0 1 4 16.5Z"
+}
+
+.icon-maintenancehistory:hover {
+    -icon-paint: black;
+}
+
+#fieldBg {
+    -fx-fill: #F7F6FE;
+    -fx-stroke: #F7F6FE;
+    -fx-stroke-width: 2;
+    -fx-arc-width: 50;
+    -fx-arc-height: 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(163,121,195,0.8), 2, 0, 0, 2);
+}
+
+/* DATE PICKER CSS*/
+.date-picker {
+    -fx-background-color: white; 
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #808080;
+    -fx-border-width: 1px;
+}
+
+.date-picker .text-field {
+    -fx-background-color: white;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: white;
+}
+
+.date-picker .date-cell:hover {
+    -fx-background-color: #F7F6FE;
+}
+
+#topPopups {
+    -fx-text-fill: #8768F2;
+    -fx-font-weight: bold;
 }

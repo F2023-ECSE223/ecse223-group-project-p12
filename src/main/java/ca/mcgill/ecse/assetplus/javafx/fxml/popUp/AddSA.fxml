@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AddSpecificAssetController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="-6.0" layoutY="2.0" prefHeight="410.0" prefWidth="502.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="topPopups" text="%key.AssetMenu_TitleAddSpecificAsset">
+               <VBox.margin>
+                  <Insets bottom="15.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <VBox alignment="CENTER" layoutX="20.0" layoutY="194.0" prefHeight="28.0" prefWidth="482.0">
+               <children>
+                  <StackPane prefHeight="35.0" prefWidth="482.0">
+                     <children>
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" stroke="BLACK" strokeType="INSIDE" width="344.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="%key.AssetMenu_AssetNumber">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField maxWidth="237.0" prefHeight="26.0" prefWidth="144.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </StackPane>
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="30.0" />
+               </opaqueInsets>
+            </VBox>
+            <ChoiceBox prefHeight="28.0" prefWidth="278.0">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </ChoiceBox>
+            <VBox alignment="CENTER" prefHeight="53.0" prefWidth="482.0">
+               <children>
+                  <StackPane prefHeight="45.0" prefWidth="482.0">
+                     <children>
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" stroke="BLACK" strokeType="INSIDE" width="344.0" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <TextField maxWidth="200.0" prefHeight="26.0" prefWidth="30.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </StackPane>
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="30.0" />
+               </opaqueInsets>
+            </VBox>
+            <Region maxHeight="20.0" maxWidth="20.0" minHeight="10.0" prefHeight="0.0" prefWidth="362.0" />
+            <VBox alignment="CENTER" prefHeight="96.0" prefWidth="394.0">
+               <children>
+                  <StackPane prefHeight="86.0" prefWidth="358.0">
+                     <children>
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="84.0" stroke="BLACK" strokeType="INSIDE" width="344.0" />
+                        <VBox alignment="CENTER" prefHeight="80.0" prefWidth="362.0">
+                           <children>
+                              <Label text="%key.AssetMenu_Location">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ChoiceBox prefWidth="150.0" />
+                                    <ChoiceBox prefWidth="150.0">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </ChoiceBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets bottom="15.0" />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </StackPane>
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="30.0" />
+               </opaqueInsets>
+            </VBox>
+            <Region maxHeight="10.0" maxWidth="20.0" minHeight="10.0" prefHeight="0.0" prefWidth="362.0" VBox.vgrow="ALWAYS" />
+            <VBox alignment="CENTER" layoutX="20.0" layoutY="185.0" prefHeight="96.0" prefWidth="394.0">
+               <children>
+                  <StackPane prefHeight="77.0" prefWidth="353.0">
+                     <children>
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="84.0" stroke="BLACK" strokeType="INSIDE" width="343.0" />
+                        <VBox alignment="CENTER" prefHeight="93.0" prefWidth="354.0">
+                           <children>
+                              <Label text="%key.AssetMenu_Date">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <DatePicker />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets bottom="15.0" />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </StackPane>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets bottom="20.0" top="20.0" />
+         </opaqueInsets>
+      </VBox>
+   </children>
+</AnchorPane>

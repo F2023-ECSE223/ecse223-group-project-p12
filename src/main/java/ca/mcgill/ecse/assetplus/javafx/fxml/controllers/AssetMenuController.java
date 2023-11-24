@@ -93,12 +93,12 @@ public class AssetMenuController {
         purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getPurchaseDate())));
         
         maintenanceHistoryColumn.setCellValueFactory(cellData -> {
-            Button editBtn = new Button();
-            editBtn.getStyleClass().add("icon-maintenancehistory");
-            editBtn.setPickOnBounds(true);
-            editBtn.setOnAction(event -> handleEditButtonClicked());
+            Button maintenanceBtn = new Button();
+            maintenanceBtn.getStyleClass().add("icon-maintenancehistory");
+            maintenanceBtn.setPickOnBounds(true);
+            maintenanceBtn.setOnAction(event -> handleMaintenanceHistoryClicked());
 
-            HBox hbox = new HBox(editBtn);
+            HBox hbox = new HBox(maintenanceBtn);
             hbox.setSpacing(10);
             hbox.setAlignment(Pos.CENTER);
 
@@ -134,6 +134,10 @@ public class AssetMenuController {
 
     private void handleTrashButtonClicked() {
         AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
+    }
+    
+    private void handleMaintenanceHistoryClicked() {
+
     }
     
 }
