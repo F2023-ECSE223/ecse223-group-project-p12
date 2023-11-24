@@ -27,7 +27,15 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureUtility;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddEmployeePopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteEmployeePopupController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyEmployeePopupController;
 
 public class EmployeesController {
 
@@ -45,6 +53,12 @@ public class EmployeesController {
 
     @FXML
     private Button cancelCreateEmployeeButton;
+
+    @FXML
+    private Label createErrorMessage;
+
+    @FXML
+    private Label modifyErrorMessage;
 
     @FXML
     private TextField createEmailField;
@@ -88,10 +102,13 @@ public class EmployeesController {
     @FXML
     private FlowPane viewAllEmployees;
 
+    @FXML
+    private Label showEmployeeError;
+
 
     @FXML
     void AddEmployee(ActionEvent event) {
-        employeeOptions.getSelectionModel().select(1);
+        AddEmplo
 
     }
 
@@ -101,6 +118,7 @@ public class EmployeesController {
         createPhoneNumberField.clear();
         createNameField.clear();
         createPasswordField.clear();
+        createErrorMessage.setText("");
         employeeOptions.getSelectionModel().select(0);
     }
 
@@ -108,10 +126,15 @@ public class EmployeesController {
     void createEmployee(ActionEvent event) {
         String err = AssetPlusFeatureSet1Controller.addEmployeeOrGuest(createEmailField.getText(), createPasswordField.getText(), createNameField.getText(), createPhoneNumberField.getText(), true);
         if (err.isEmpty()) {
+            createEmailField.clear();
+            createPhoneNumberField.clear();
+            createNameField.clear();
+            createPasswordField.clear();
+            createErrorMessage.setText("");
             employeeOptions.getSelectionModel().select(0);
-            initialize(); 
+            showEmployees(AssetPlusFeatureTOController.getAllEmployees());
         } else {
-
+            createErrorMessage.setText(translateErrorMessage(err));
         }
            
     }
@@ -128,15 +151,20 @@ public class EmployeesController {
 
     @FXML
     void modifyEmployee(ActionEvent event) {
-        AssetPlusFeatureSet1Controller.updateEmployeeOrGuest(modifyEmailField.getText(), modifyPasswordField.getText(), modifyNameField.getText(), modifyPhoneNumberField.getText());
-        employeeOptions.getSelectionModel().select(0);
-        initialize();  
+        String err = AssetPlusFeatureSet1Controller.updateEmployeeOrGuest(modifyEmailField.getText(), modifyPasswordField.getText(), modifyNameField.getText(), modifyPhoneNumberField.getText());
+        if (err.isEmpty()) {
+            modifyErrorMessage.setText("");
+            employeeOptions.getSelectionModel().select(0);
+            showEmployees(AssetPlusFeatureTOController.getAllEmployees());
+        } else {
+            modifyErrorMessage.setText(translateErrorMessage(err));
+        }
     }
 
     @FXML
     void cancelModifyEmployee(ActionEvent event) {
         employeeOptions.getSelectionModel().select(0);
-        initialize(); 
+        showEmployees(AssetPlusFeatureTOController.getAllEmployees());
     }
 
     @FXML
@@ -155,15 +183,30 @@ public class EmployeesController {
     @FXML
     void deleteEmployee(ActionEvent event) {
         Employee employee = AssetPlusFeatureSet1Controller.getWithName(employeeNameDelete.getText());
-        employee.delete();
+        AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(employee.getEmail());
         employeeOptions.getSelectionModel().select(0);
-        initialize(); 
+        showEmployees(AssetPlusFeatureTOController.getAllEmployees());
     }
 
     @FXML
     void cancelDeleteEmployee(ActionEvent event) {
         employeeOptions.getSelectionModel().select(0);
-        initialize(); 
+        showEmployees(AssetPlusFeatureTOController.getAllEmployees());
+    }
+
+    @FXML
+    void showSearchedEmployee(ActionEvent event) {
+        String err = AssetPlusFeatureUtility.isExistingUser(ticketEmployeeField.getText(), "");
+        if (err.isEmpty()) {
+            Employee employee = (Employee) User.getWithEmail(ticketEmployeeField.getText());
+            TOEmployee toEmployee = AssetPlusFeatureTOController.convertFromEmployee(employee);
+            List<TOEmployee> employees = new ArrayList<>();
+            employees.add(toEmployee);
+            showEmployees(employees);
+        } else {
+            showEmployeeError.setText(translateErrorMessage(err));
+            viewAllEmployees.getChildren().clear();
+        }
     }
 
     private void showEmployees(List<TOEmployee> employees) {
@@ -224,7 +267,7 @@ public class EmployeesController {
             Button modify = new Button(resources.getString("key.Modify"));
             modify.setStyle("-fx-text-fill: white;" + "-fx-background-color: #8768F2;" + "-fx-background-radius: 10px;" + "-fx-padding: 5px 10px 5px 10px");
             modify.setOnAction(e -> modifyEmployeePopup(e,employee.getEmail()));
-            Button deleteButton = new Button(resources.getString("key.Delete");
+            Button deleteButton = new Button(resources.getString("key.Delete"));
             deleteButton.setStyle("-fx-background-color: #a30d11;" + "-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-background-radius: 10px;");
             deleteButton.setOnAction(e -> deleteEmployeePopup(e, employee.getEmail()));
             Pane pane = new Pane();
@@ -243,6 +286,44 @@ public class EmployeesController {
             viewAllEmployees.getChildren().add(gridPane);
         }
 
+    }
+
+    private String translateErrorMessage(String err) {
+        resources = AssetPlusFXMLView.getInstance().getBundle();
+        switch (err) {
+            case "Email cannot be empty":
+                return resources.getString("key.EmailCannotBeEmpty");
+            case "Email cannot be manager@ap.com":
+                return resources.getString("key.EmailCannotBemanager@apcom");
+            case "Email already linked to an guest account":
+                return resources.getString("key.EmailAlreadyLinkedToAnGuestAccount");
+            case "Email already linked to an employee account":
+                return resources.getString("key.EmailAlreadyLinkedToAnEmployeeAccount");
+            case "Email domain cannot be @ap.com":
+                return resources.getString("key.EmailDomainCannotBe@apcom");
+            case "Email must not contain any spaces":
+                return resources.getString("key.EmailMustNotContainAnySpaces");
+            case "Invalid email":
+                return resources.getString("key.InvalidEmail");
+            case "Email domain must be @ap.com":
+                return resources.getString("key.EmailDomainMustBe@apcom");
+            case "Password cannot be empty":
+                return resources.getString("key.PasswordCannotBeEmpty");
+            case "Password must be at least four characters long":
+                return resources.getString("key.PasswordMustBeAtLeastFourCharactersLong");
+            case "Password must contain one character out of !#$":
+                return resources.getString("key.PasswordMustContainOneCharacterOutOf!#$");
+            case "Password must contain one lower-case character":
+                return resources.getString("key.PasswordMustContainOneLower-caseCharacter");
+            case "Password must contain one upper-case character":
+                return resources.getString("key.PasswordMustContainOneUpper-caseCharacter");
+            case "The ticket raiser does not exist":
+                return resources.getString("key.TheTicketRaiserDoesNotExist");
+            case "Error: user not found":
+                return resources.getString("key.ErrorUserNotFound");
+            default:
+                return resources.getString("key.Error");
+        }
     }
 
 }
