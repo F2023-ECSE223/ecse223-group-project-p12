@@ -4,6 +4,7 @@ import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,7 +35,7 @@ public class DeleteSpecificAssetPopUpController {
     @FXML
     void delete(ActionEvent event) {
         AssetPlusFeatureSet3Controller.deleteSpecificAsset(asset.getAssetNumber());
-        //AssetMenuController.refreshTables();
+        ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
 
@@ -47,7 +48,6 @@ public class DeleteSpecificAssetPopUpController {
 
     }
 
-    
     public static void get(int assetNumber){
       for (TOSpecificAsset assets : AssetPlusFeatureTOController.getSpecificAssets()){
         if(assetNumber == assets.getAssetNumber()){
