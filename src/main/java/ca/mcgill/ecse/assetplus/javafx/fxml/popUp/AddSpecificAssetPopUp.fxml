@@ -148,7 +148,12 @@
                   <Insets />
                </opaqueInsets>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <VBox fx:id="errorBox" alignment="CENTER" prefHeight="40.0" prefWidth="442.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="62.0" prefWidth="482.0">
                <children>
                   <Button fx:id="cancelAssetBtn" mnemonicParsing="false" onAction="#cancel" text="%key.AssetMenu_CancelAsset" />
                   <Button fx:id="createAssetBtn" mnemonicParsing="false" onAction="#create" text="%key.AssetMenu_CreateAsset">

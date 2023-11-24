@@ -54,8 +54,8 @@ public class AddSpecificAssetPopupController {
     @FXML
     private VBox lifeExpectancyBox;
 
-    @FXML
-    private Label errorMessage;
+    @FXML 
+    private VBox errorBox;
 
     @FXML
     void cancel(ActionEvent event) {
@@ -65,9 +65,9 @@ public class AddSpecificAssetPopupController {
 
     @FXML
     void create(ActionEvent event) {
-      StringBuilder error = new StringBuilder();
-      boolean hasError = false;
       int room, floor;
+      boolean hasErrorDate = false;
+      boolean hasErrorType = false;
 
       if (roomChoice.getValue().contains("no") || roomChoice.getValue().contains("select")){
         room = -1;
@@ -76,20 +76,35 @@ public class AddSpecificAssetPopupController {
       if (floorChoice.getValue().contains("no") || floorChoice.getValue().contains("select")){
         floor = -1;
       }
+      
+      errorBox.getChildren().clear();
 
-      if (assetTypes.getValue().contains("Select")){
-        hasError = true;
-        error.append("\n Please select an asset type. \n\n");
-      }
-
-      if (dateChoice.getValue() == null){
-        hasError = true;
-        error.append("\n Please select a purchase date. \n\n");
-      }
-
-      if (hasError){
-        ViewUtils.showError(error.toString());
+      Label errorType = new Label("Please select an asset type.\n");
+      if (assetTypes.getValue().contains("Select")) {
+          if (!hasErrorType) {
+              errorType.setStyle("-fx-text-fill: red;");
+              errorBox.getChildren().add(errorType);
+              errorBox.setVisible(true);
+              hasErrorType = true;
+          }
       } else {
+          hasErrorType = false;
+      }
+
+    
+    Label errorDate = new Label("Please select a purchase date.\n");
+    if (dateChoice.getValue() == null) {
+        if (!hasErrorDate) {
+            errorDate.setStyle("-fx-text-fill: red;");
+            errorBox.getChildren().add(errorDate);
+            errorBox.setVisible(true);
+            hasErrorDate = true;
+        }
+    } else {
+      hasErrorDate = false;
+    }
+
+      if(!hasErrorDate && !hasErrorType) {
         int number;
         if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
           number = 1;
@@ -101,8 +116,10 @@ public class AddSpecificAssetPopupController {
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       }
     }
-    public void initialize() {
 
+
+    public void initialize() {
+      errorBox.setVisible(false);
       assetNumber.setEditable(false);
       if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
         assetNumber.setText(1+"");
@@ -166,9 +183,8 @@ public class AddSpecificAssetPopupController {
    } else {
       lifeExpectancyBox.setVisible(false);
    }
-}
-  private void setErrorMessage(String message) {
-    errorMessage.setText(AssetPlusFXMLView.getInstance().getBundle().getString(message));
-  }
 
+  }
 }
+
+
