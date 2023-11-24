@@ -12,6 +12,7 @@ import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -74,6 +75,9 @@ public class AssetMenuController {
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
 
     private ObservableList<TOSpecificAsset> assetList;
+
+    @FXML
+    private Button addSpecificAssetBtn;
 
     @FXML
     void initialize() {
@@ -139,6 +143,13 @@ public class AssetMenuController {
     private void handleMaintenanceHistoryClicked() {
 
     }
+
+    @FXML
+     void addSpecificAsset(ActionEvent event) {
+        System.out.println("is anything happening?");
+        AddSpecificAssetPopupController controller = (AddSpecificAssetPopupController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddSpecificAssetPopUp.fxml", "Add Specific Asset");
+    }
+
     
 }
 

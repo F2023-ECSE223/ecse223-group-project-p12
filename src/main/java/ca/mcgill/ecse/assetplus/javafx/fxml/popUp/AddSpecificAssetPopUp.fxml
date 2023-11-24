@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -11,16 +12,19 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AddSpecificAssetController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AddSpecificAssetPopupController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="-6.0" layoutY="2.0" prefHeight="410.0" prefWidth="502.0" style="-fx-background-color: white;">
+      <VBox alignment="TOP_CENTER" layoutX="-6.0" layoutY="2.0" prefHeight="461.0" prefWidth="502.0" style="-fx-background-color: white;">
          <children>
             <Label fx:id="topPopups" text="%key.AssetMenu_TitleAddSpecificAsset">
                <VBox.margin>
                   <Insets bottom="15.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Label>
             <VBox alignment="CENTER" layoutX="20.0" layoutY="194.0" prefHeight="28.0" prefWidth="482.0">
                <children>
@@ -34,7 +38,7 @@
                                     <Insets left="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField maxWidth="237.0" prefHeight="26.0" prefWidth="144.0" />
+                              <TextField fx:id="assetNumber" maxWidth="237.0" prefHeight="26.0" prefWidth="144.0" />
                            </children>
                         </HBox>
                      </children>
@@ -47,7 +51,7 @@
                   <Insets bottom="30.0" />
                </opaqueInsets>
             </VBox>
-            <ChoiceBox prefHeight="28.0" prefWidth="278.0">
+            <ChoiceBox fx:id="assetTypes" prefHeight="28.0" prefWidth="278.0">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
@@ -59,7 +63,7 @@
                         <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" stroke="BLACK" strokeType="INSIDE" width="344.0" />
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <TextField maxWidth="200.0" prefHeight="26.0" prefWidth="30.0" />
+                              <TextField fx:id="lifeExpectancy" maxWidth="200.0" prefHeight="26.0" prefWidth="30.0" />
                            </children>
                         </VBox>
                      </children>
@@ -87,8 +91,8 @@
                               </Label>
                               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <ChoiceBox prefWidth="150.0" />
-                                    <ChoiceBox prefWidth="150.0">
+                                    <ChoiceBox fx:id="roomChoice" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="floorChoice" prefWidth="150.0">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -125,7 +129,7 @@
                               </Label>
                               <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <DatePicker />
+                                    <DatePicker fx:id="dateChoice" />
                                  </children>
                               </HBox>
                            </children>
@@ -143,6 +147,16 @@
                   <Insets />
                </opaqueInsets>
             </VBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="cancelAssetBtn" mnemonicParsing="false" onAction="#cancel" text="%key.AssetMenu_CancelAsset" />
+                  <Button fx:id="createAssetBtn" mnemonicParsing="false" onAction="#create" text="%key.AssetMenu_CreateAsset">
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
