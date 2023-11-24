@@ -34,6 +34,13 @@ Stylesheet of our UI
     -fx-effect: none;
 }
 
+.noticeMessage
+{
+    -fx-text-fill: #8668f2a9;
+    -fx-font-size: 20px;
+
+}
+
 /* Buttons(Tabs) in the dashboard on the left for the different*/
 .menuButton
 {

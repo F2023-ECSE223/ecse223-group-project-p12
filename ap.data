@@ -352,7 +352,14 @@
                   }
                 ],
                 "ticketImages": [
-                  ""
+                  {
+                    "TicketImage": {
+                      "imageURL": "https://i.pinimg.com/564x/69/5a/7a/695a7a20eb857c88117a74f2dae85a00.jpg",
+                      "ticket": {
+                        "@reference": "../../.."
+                      }
+                    }
+                  }
                 ],
                 "assetPlus": {
                   "@reference": "../../../../.."
