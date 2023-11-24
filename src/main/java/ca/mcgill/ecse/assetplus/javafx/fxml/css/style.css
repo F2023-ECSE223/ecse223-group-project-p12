@@ -372,7 +372,7 @@ Stylesheet of our UI
     -fx-background-radius: 10px;
 }
 
-#createAssetBtn 
+#createAssetBtn, #modifyAssetBtn
 {
     -fx-text-fill: white;
     -fx-background-color: #8768F2;

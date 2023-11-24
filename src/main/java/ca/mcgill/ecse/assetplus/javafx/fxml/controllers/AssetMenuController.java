@@ -14,6 +14,7 @@ import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddSpecificAssetPopupController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifySpecificAssetPopupController;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,8 +24,10 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -73,7 +76,7 @@ public class AssetMenuController {
     private TableColumn<TOSpecificAsset, HBox> maintenanceHistoryColumn;
 
     @FXML
-    private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
+    private TableColumn<TOSpecificAsset, HBox> actionColumn;
 
     private ObservableList<TOSpecificAsset> assetList;
 
@@ -111,18 +114,18 @@ public class AssetMenuController {
         });
         
 
-         actionColumn.setCellValueFactory(cellData -> {
+        actionColumn.setCellValueFactory(cellData -> {
         // Create an HBox with three SVGPath objects representing icons
 
         Button editBtn = new Button();
         editBtn.getStyleClass().add("icon-edit");
         editBtn.setPickOnBounds(true);
-        editBtn.setOnAction(event -> handleEditButtonClicked());
+        editBtn.setOnAction(event -> handleEditButtonClicked(cellData.getValue().getAssetNumber()));
 
         Button trashBtn = new Button();
         trashBtn.getStyleClass().add("icon-trash");
         trashBtn.setPickOnBounds(true);
-        trashBtn.setOnAction(event -> handleTrashButtonClicked());
+        trashBtn.setOnAction(event -> handleTrashButtonClicked(cellData.getValue().getAssetNumber()));
 
         HBox hbox = new HBox(editBtn, trashBtn);
         hbox.setSpacing(10);
@@ -132,13 +135,14 @@ public class AssetMenuController {
     });
 
     }
-
-    private void handleEditButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "editTab");
+    
+    private void handleEditButtonClicked(int assetNumber) {
+        System.out.println(assetNumber);
+        ModifySpecificAssetPopupController controller = (ModifySpecificAssetPopupController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifySpecificAssetPopUp.fxml", "Modify Specific Asset");
     }
 
-    private void handleTrashButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
+    private void handleTrashButtonClicked(int assetNumber) {
+        
     }
     
     private void handleMaintenanceHistoryClicked() {
