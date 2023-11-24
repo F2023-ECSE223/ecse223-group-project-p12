@@ -35,6 +35,9 @@ public class EmployeesController {
     private HBox DashboardAndContent;
 
     @FXML
+    private ResourceBundle resources;
+
+    @FXML
     private VBox TopContent;
 
     @FXML
@@ -103,13 +106,14 @@ public class EmployeesController {
 
     @FXML
     void createEmployee(ActionEvent event) {
-        AssetPlusFeatureSet1Controller.addEmployeeOrGuest(createEmailField.getText(), createPasswordField.getText(), createNameField.getText(), createPhoneNumberField.getText(), true);
-        createEmailField.clear();
-        createPhoneNumberField.clear();
-        createNameField.clear();
-        createPasswordField.clear();
-        employeeOptions.getSelectionModel().select(0);
-        initialize();   
+        String err = AssetPlusFeatureSet1Controller.addEmployeeOrGuest(createEmailField.getText(), createPasswordField.getText(), createNameField.getText(), createPhoneNumberField.getText(), true);
+        if (err.isEmpty()) {
+            employeeOptions.getSelectionModel().select(0);
+            initialize(); 
+        } else {
+
+        }
+           
     }
 
     @FXML
@@ -144,6 +148,7 @@ public class EmployeesController {
 
     @FXML
     void initialize() {
+        resources = AssetPlusFXMLView.getInstance().getBundle();
         showEmployees(AssetPlusFeatureTOController.getAllEmployees());
     }
 
@@ -162,7 +167,6 @@ public class EmployeesController {
     }
 
     private void showEmployees(List<TOEmployee> employees) {
-        //ResourceBundle resourceBundle = AssetPlusFXMLView.getInstance().getLanguage().equalsIgnoreCase("en") ? ResourceBundle.getBundle("Bundle_en.properties") : ResourceBundle.getBundle("Bundle_fr.properties");
 
         viewAllEmployees.getChildren().clear();
         for (TOEmployee employee : employees) {
@@ -177,7 +181,7 @@ public class EmployeesController {
             
             VBox vbox1 = new VBox();
             vbox1.setAlignment(Pos.CENTER_LEFT);
-            Label titleName = new Label("Name");
+            Label titleName = new Label(resources.getString("key.Name"));
             titleName.setStyle("-fx-text-fill: #8768F2;");
             Label Name = new Label(employee.getName());
             Name.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
@@ -187,7 +191,7 @@ public class EmployeesController {
 
             VBox vbox2 = new VBox();
             vbox2.setAlignment(Pos.CENTER_LEFT);
-            Label titlePhoneNumber = new Label("PhoneNumber");
+            Label titlePhoneNumber = new Label(resources.getString("key.PhoneNumber"));
             titlePhoneNumber.setStyle("-fx-text-fill: #8768F2;");
             Label phoneNumber = new Label(employee.getPhoneNumber());
             phoneNumber.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
@@ -197,7 +201,7 @@ public class EmployeesController {
 
             VBox vbox3 = new VBox();
             vbox3.setAlignment(Pos.CENTER_LEFT);
-            Label titleEmail = new Label("Email");
+            Label titleEmail = new Label(resources.getString("key.Email"));
             titleEmail.setStyle("-fx-text-fill: #8768F2;");
             Label email = new Label(employee.getEmail());
             email.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
@@ -207,7 +211,7 @@ public class EmployeesController {
 
             VBox vbox4 = new VBox();
             vbox4.setAlignment(Pos.CENTER_LEFT);
-            Label titleTickets = new Label("TicketsAssigned");
+            Label titleTickets = new Label(resources.getString("key.TicketsAssigned"));
             titleTickets.setStyle("-fx-text-fill: #8768F2;");
             Label tickets = new Label(employee.getTicketFixed().toString());
             tickets.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
@@ -217,10 +221,10 @@ public class EmployeesController {
             
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);
-            Button modify = new Button("Modify");
+            Button modify = new Button(resources.getString("key.Modify"));
             modify.setStyle("-fx-text-fill: white;" + "-fx-background-color: #8768F2;" + "-fx-background-radius: 10px;" + "-fx-padding: 5px 10px 5px 10px");
             modify.setOnAction(e -> modifyEmployeePopup(e,employee.getEmail()));
-            Button deleteButton = new Button("Delete");
+            Button deleteButton = new Button(resources.getString("key.Delete");
             deleteButton.setStyle("-fx-background-color: #a30d11;" + "-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-background-radius: 10px;");
             deleteButton.setOnAction(e -> deleteEmployeePopup(e, employee.getEmail()));
             Pane pane = new Pane();
