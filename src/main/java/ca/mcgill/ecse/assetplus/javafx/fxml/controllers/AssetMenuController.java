@@ -1,24 +1,22 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
-
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
-import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddSpecificAssetPopupController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteSpecificAssetPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifySpecificAssetPopupController;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -28,7 +26,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class AssetMenuController {
-
 
     @FXML
     private ResourceBundle resources;
@@ -64,56 +61,104 @@ public class AssetMenuController {
     private TableColumn<TOSpecificAsset, String> purchaseDateColumn;
 
     @FXML
-    private TableColumn<TOSpecificAsset, String> lifeExpectancyColumn;
+    private TableColumn<TOSpecificAsset, Integer> lifeExpectancyColumn;
 
     @FXML
-    private TableColumn<TOSpecificAsset, String> maintenaceHistoryColumn;
+    private TableColumn<TOSpecificAsset, HBox> maintenanceHistoryColumn;
 
     @FXML
-    private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
-    
-
-    private ObservableList<TOMaintenanceTicket> ticketList;
+    private TableColumn<TOSpecificAsset, HBox> actionColumn;
 
     private ObservableList<TOSpecificAsset> assetList;
 
     @FXML
+    private Button addSpecificAssetBtn;
+
+
+    @FXML
     void initialize() {
+        List<TOSpecificAsset> assets = AssetPlusFeatureTOController.getSpecificAssets();
+        assetList = FXCollections.observableList(assets);
+        assetTable.setItems(assetList);
+
         resources = AssetPlusFXMLView.getInstance().getBundle();
-
-        /*
-        statusChoiceBox.getItems().addAll(
-            resources.getString("key.Open"),
-            resources.getString("key.Assigned"),
-            resources.getString("key.InProgress"),
-            resources.getString("key.Resolved"),
-            resources.getString("key.Closed"),
-            resources.getString("key.ShowAll")
-        );
-         
-
-        statusChoiceBox.setValue(resources.getString("key.SelectStatus"));
-        statusChoiceBox.setOnAction(event -> filterTableView(statusChoiceBox.getValue()));
-
-         */
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
         assetNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAssetNumber()).asObject());
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetType().getName()));
+        lifeExpectancyColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAssetType().getExpectedLifeSpan()).asObject());
         floorColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRoomNumber()).asObject());
         roomColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFloorNumber()).asObject());
         purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getPurchaseDate())));
-        //maintenaceHistoryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
+        
+        maintenanceHistoryColumn.setCellValueFactory(cellData -> {
+            Button maintenanceBtn = new Button();
+            maintenanceBtn.getStyleClass().add("icon-maintenancehistory");
+            maintenanceBtn.setPickOnBounds(true);
+            maintenanceBtn.setOnAction(event -> handleMaintenanceHistoryClicked());
 
-        List<TOSpecificAsset> assets = AssetPlusFeatureTOController.getSpecificAssets();
-        assetList = FXCollections.observableList(assets);
-        assetTable.setItems(assetList);
+            HBox hbox = new HBox(maintenanceBtn);
+            hbox.setSpacing(10);
+            hbox.setAlignment(Pos.CENTER);
+
+            return new SimpleObjectProperty<>(hbox);
+        });
+        
+
+        actionColumn.setCellValueFactory(cellData -> {
+        // Create an HBox with three SVGPath objects representing icons
+
+        Button editBtn = new Button();
+        editBtn.getStyleClass().add("icon-edit");
+        editBtn.setPickOnBounds(true);
+        editBtn.setOnAction(event -> handleEditButtonClicked(cellData.getValue().getAssetNumber()));
+
+        Button trashBtn = new Button();
+        trashBtn.getStyleClass().add("icon-trash");
+        trashBtn.setPickOnBounds(true);
+        trashBtn.setOnAction(event -> handleTrashButtonClicked(cellData.getValue().getAssetNumber()));
+
+        HBox hbox = new HBox(editBtn, trashBtn);
+        hbox.setSpacing(10);
+        hbox.setAlignment(Pos.CENTER);
+
+        return new SimpleObjectProperty<>(hbox);
+    });
+
+    }
+    
+    private void handleEditButtonClicked(int assetNumber) {
+        ModifySpecificAssetPopupController.get(assetNumber);
+        System.out.println(assetNumber);
+        ModifySpecificAssetPopupController controller = (ModifySpecificAssetPopupController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifySpecificAssetPopUp.fxml", "Modify Specific Asset");
+    }
+
+    private void handleTrashButtonClicked(int assetNumber) {
+        DeleteSpecificAssetPopUpController.get(assetNumber);
+        System.out.println(assetNumber);
+        DeleteSpecificAssetPopUpController controller = (DeleteSpecificAssetPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteSpecificAssetPopUp.fxml", "Delete Specific Asset");        
+    }
+    
+    private void handleMaintenanceHistoryClicked() {
 
     }
 
+    @FXML
+     void addSpecificAsset(ActionEvent event) {
+        System.out.println("is anything happening?");
+        AddSpecificAssetPopupController controller = (AddSpecificAssetPopupController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddSpecificAssetPopUp.fxml", "Add Specific Asset");
+    }
 
+    
 }
+
+
+        
+
+    
+
+
 
 
 

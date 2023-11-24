@@ -3,9 +3,9 @@ package ca.mcgill.ecse.assetplus.controller;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
-import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import java.util.*;
@@ -240,9 +240,20 @@ public class AssetPlusFeatureSet1Controller {
         error = "Email already linked to a guest account";
       } else {
         error = "";
-      }
-      return error;
     }
+    return error;
+  }
+
+  public static Employee getWithName(String name) {
+    List<Employee> employees = AssetPlusApplication.getAssetPlus().getEmployees();
+    for (Employee employee : employees) {
+      if (employee.getName().equals(name)) {
+        return employee;
+      }
+    }
+    return null;
+  }
+
 
     public static String getUsername(String email) {
       User user = User.getWithEmail(email);

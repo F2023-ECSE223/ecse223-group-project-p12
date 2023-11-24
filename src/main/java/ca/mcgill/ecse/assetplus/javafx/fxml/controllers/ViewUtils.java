@@ -1,11 +1,13 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import static java.lang.Integer.SIZE;
+import java.util.ArrayList;
 import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.*;
-import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -85,10 +87,17 @@ public class ViewUtils {
   }
 
   public static ObservableList<TOAssetType> getAssetTypes() {
-    List<TOAssetType> ticket = AssetPlusFeatureTOController.getAssetTypes();
+    List<TOAssetType> assetType = AssetPlusFeatureTOController.getAssetTypes();
     // as javafx works with observable list, we need to convert the java.util.List to
     // javafx.collections.observableList
-    return FXCollections.observableList(ticket);
+    return FXCollections.observableList(assetType);
+  }
+
+   public static ObservableList<TOSpecificAsset> getSpecificAsset() {
+    List<TOSpecificAsset> asset = AssetPlusFeatureTOController.getSpecificAssets();
+    // as javafx works with observable list, we need to convert the java.util.List to
+    // javafx.collections.observableList
+    return FXCollections.observableList(asset);
   }
 
   public static ObservableList<String> getTicketImages(int id) {

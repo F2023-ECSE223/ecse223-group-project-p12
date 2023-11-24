@@ -2,7 +2,6 @@
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.controller;
-import ca.mcgill.ecse.assetplus.model.AssetType;
 import java.sql.Date;
 
 // line 78 "../../../../../../AssetPlusTransferObjects.ump"
@@ -18,13 +17,13 @@ public class TOSpecificAsset
   private int floorNumber;
   private int roomNumber;
   private Date purchaseDate;
-  private AssetType assetType;
+  private TOAssetType assetType;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOSpecificAsset(int aAssetNumber, int aFloorNumber, int aRoomNumber, Date aPurchaseDate, AssetType aAssetType)
+  public TOSpecificAsset(int aAssetNumber, int aFloorNumber, int aRoomNumber, Date aPurchaseDate, TOAssetType aAssetType)
   {
     assetNumber = aAssetNumber;
     floorNumber = aFloorNumber;
@@ -61,7 +60,7 @@ public class TOSpecificAsset
     return wasSet;
   }
 
-  public boolean setAssetType(AssetType aAssetType)
+  public boolean setAssetType(TOAssetType aAssetType)
   {
     boolean wasSet = false;
     assetType = aAssetType;
@@ -89,7 +88,7 @@ public class TOSpecificAsset
     return purchaseDate;
   }
 
-  public AssetType getAssetType()
+  public TOAssetType getAssetType()
   {
     return assetType;
   }
