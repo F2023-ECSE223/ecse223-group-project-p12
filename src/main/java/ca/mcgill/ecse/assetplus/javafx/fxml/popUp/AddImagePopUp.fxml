@@ -8,9 +8,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="350.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="350.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController">
    <children>
-      <Label styleClass="popUpTitle" text="%key.AddImage_EnterImage" />
+      <fx:include source="../components/PopUpToolBar.fxml" />
+      <Label styleClass="popUpTitle" text="%key.ViewImages_AddImage">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></Label>
+      <Label text="%key.AddImage_EnterImage" />
       <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0">
          <children>
             <Label text="%key.AddImage_ImageURL">

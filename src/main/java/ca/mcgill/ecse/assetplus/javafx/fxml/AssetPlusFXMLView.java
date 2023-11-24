@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -105,7 +106,7 @@ public class AssetPlusFXMLView extends Application {
     Stage popUpStage = new Stage();
     popUpStages.push(popUpStage);
     popUpStage.initModality(Modality.APPLICATION_MODAL);
-    popUpStage.initStyle(StageStyle.UNDECORATED);
+    popUpStage.initStyle(StageStyle.TRANSPARENT);
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(language)));
     Parent root;
@@ -114,7 +115,9 @@ public class AssetPlusFXMLView extends Application {
       root = (Parent) loader.load();
     
       var scene = new Scene(root);
+      scene.setFill(Color.TRANSPARENT);
       scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
+      scene.getRoot().getStyleClass().add("popUpWindow");
       popUpStage.setScene(scene);
       popUpStage.setTitle(title);
       popUpStage.setResizable(false);
@@ -259,4 +262,13 @@ public class AssetPlusFXMLView extends Application {
     this.stage.setY(y + yOffset);
   }
 
+  public void onPopUpToolbarPressed(double x, double y) {
+    xOffset = this.popUpStages.get(popUpStages.size()-1).getX() - x;
+    yOffset = this.popUpStages.get(popUpStages.size()-1).getY() - y;
+  }
+
+  public void onPopUpToolbarDragged(double x, double y) {
+    this.popUpStages.get(popUpStages.size()-1).setX(x + xOffset);
+    this.popUpStages.get(popUpStages.size()-1).setY(y + yOffset);
+  }
 }

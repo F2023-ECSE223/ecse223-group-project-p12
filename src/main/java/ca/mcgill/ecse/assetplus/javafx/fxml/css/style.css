@@ -34,6 +34,11 @@ Stylesheet of our UI
     -fx-effect: none;
 }
 
+.toolbarDeleteButton:hover
+{
+    -fx-background-color: #a30d11;
+}
+
 .noticeMessage
 {
     -fx-text-fill: #8668f2a9;
@@ -126,9 +131,15 @@ Stylesheet of our UI
 {
     -fx-text-fill: #8768F2;
     -fx-font-weight: bold;
-    -fx-font-size: 18px;
+    -fx-font-size: 16px;
 }
 
+.popUpWindow
+{
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-border-color:#d8d8d8;
+}
 
 /* CHOICE BOX STYLE */
 .choice-box {
