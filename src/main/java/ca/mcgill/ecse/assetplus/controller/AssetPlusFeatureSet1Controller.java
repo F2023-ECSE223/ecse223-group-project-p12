@@ -3,9 +3,11 @@ package ca.mcgill.ecse.assetplus.controller;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
+import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
+import java.util.*;
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
@@ -255,5 +257,30 @@ public class AssetPlusFeatureSet1Controller {
 
       return user.getName();
     }
+
+    public static List<TOHotelStaff> getHotelStaffs() {
+      List<HotelStaff> hotelStaffs = convertEmployeesIntoStaff(AssetPlusApplication.getAssetPlus().getEmployees());
+      hotelStaffs.add(AssetPlusApplication.getAssetPlus().getManager());
+
+      List<TOHotelStaff> staffs = new ArrayList<>();
+      for (HotelStaff hotelStaff: hotelStaffs) {
+        //staffs.add(convertFromHotelStaff(hotelStaff);)
+      }
+
+      return staffs;
+    }
+
+    private static List<HotelStaff> convertEmployeesIntoStaff(List<Employee> employees) {
+      List<HotelStaff> staff = new ArrayList<>();
+      for (Employee employee: employees) {
+        staff.add((HotelStaff) employee);
+      }
+
+      return staff;
+    }
+
+    // private TOHotelStaff convertFromHotelStaff(HotelStaff hotelStaff) {
+
+    // }
 
 }
