@@ -69,7 +69,7 @@ public class ViewImagesController {
         }
         else {
             errorMessage.setVisible(true);
-            setErrorMessage("key.AddImage_EnterValidTicket");
+            setErrorMessage("key.ViewImages_EnterValidTicket");
         }
     }
 
@@ -83,7 +83,7 @@ public class ViewImagesController {
             }
             else {
                 errorMessage.setVisible(true);
-                setErrorMessage("key.AddImage_InvalidTicketNumber");
+                setErrorMessage("key.ViewImages_InvalidTicketNumber");
                 grid.getChildren().clear();
             }
         }
@@ -95,7 +95,7 @@ public class ViewImagesController {
     private void showImages(ObservableList<String> list) {
         if (list.size()==0) {
             errorMessage.setVisible(true);
-            setErrorMessage("key.AddImage_NoImagesWithTicket");
+            setErrorMessage("key.ViewImages_NoImagesWithTicket");
         }
         grid.getChildren().clear();
         for (String imageURL : list) {
@@ -135,7 +135,8 @@ public class ViewImagesController {
     }
 
     private void trashBtnClicked(String url) {
-        AssetPlusFeatureSet5Controller.deleteImageFromMaintenanceTicket(url, currentTicketNumber);
+        DeleteViewImagesPopUpController controller = (DeleteViewImagesPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewImagesDeletePopUp.fxml", "Delete Image");
+        controller.setTicketIdAndURL(currentTicketNumber, url);
         ViewUtils.callController("");
     }
 
