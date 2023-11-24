@@ -78,31 +78,25 @@ public class ModifySpecificAssetPopupController {
       int room, floor;
       String assetType;
 
-      if (roomChoice.getValue() != null){
-        if (roomChoice.getValue().contains("no") || roomChoice.getValue().contains("select")){
-              room = -1;
-            }
+      if (roomChoice.getValue().contains("no") || roomChoice.getValue().contains("select")){
+        room = -1;
       }
 
-      if (roomChoice.getValue().equals("Current")){
+      if (roomChoice.getValue().contains("Current")){
         room = asset.getRoomNumber();
       } else {
         room = Integer.parseInt(roomChoice.getValue());
       }
 
-
-      if (floorChoice.getValue() != null){
-        if (floorChoice.getValue().contains("no") || floorChoice.getValue().contains("select")){
-          floor = -1;
-        }
+      if (floorChoice.getValue().contains("no") || floorChoice.getValue().contains("select")){
+        floor = -1;
       }
-      if (floorChoice.getValue().equals("Current")){
+  
+      if (floorChoice.getValue().contains("Current")){
         floor = asset.getFloorNumber();
       } else {
-        floor =  Integer.parseInt(floorChoice.getValue());
+        floor = Integer.parseInt(floorChoice.getValue());
       }
-
-      
 
       if (assetTypes.getValue().contains("Select")){
         hasError = true;
@@ -148,7 +142,7 @@ public class ModifySpecificAssetPopupController {
 
       dateChoice.setEditable(false);
       
-      assetTypes.setPromptText("Current type: " + asset.getAssetType().getName());
+      assetTypes.setValue("Current type: " + asset.getAssetType().getName());
 
       ArrayList<String> types = new ArrayList<>();
       types.add("Current type: " + asset.getAssetType().getName());
@@ -165,7 +159,7 @@ public class ModifySpecificAssetPopupController {
 
       ArrayList<String> rooms = new ArrayList<>();
       rooms.add("Current room: " + asset.getRoomNumber());
-      roomChoice.setPromptText("Current room: " + asset.getRoomNumber());
+      roomChoice.setValue("Current room: " + asset.getRoomNumber());
       rooms.add("No room");
       for (int i = 0; i <= 50; i++) {
         rooms.add(i+"");
@@ -176,7 +170,7 @@ public class ModifySpecificAssetPopupController {
       
       ArrayList<String> floors = new ArrayList<>();
       floors.add("Current floor: " + asset.getFloorNumber());
-      floorChoice.setPromptText("Current floor: " + asset.getFloorNumber());
+      floorChoice.setValue("Current floor: " + asset.getFloorNumber());
       floors.add("No floor");
       for (int i = 0; i <= 20; i++) {
         floors.add(i+"");
