@@ -5,6 +5,8 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.UpdateTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,6 +19,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -74,6 +77,9 @@ public class TicketStatusController {
 
     @FXML
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
+
+    @FXML
+    private DatePicker datePickerBtn;
 
     private ObservableList<TOMaintenanceTicket> ticketList;
 
@@ -214,8 +220,16 @@ public class TicketStatusController {
             hbox.setAlignment(Pos.CENTER);
 
             return new SimpleObjectProperty<>(hbox);
+    
         });
         
+        setPercentageWidth(ticketNumberColumn, 15);
+        setPercentageWidth(assetColumn, 11); 
+        setPercentageWidth(reporterColumn, 11); 
+        setPercentageWidth(assigneeColumn, 11);
+        setPercentageWidth(dateStartedColumn, 21);
+        setPercentageWidth(statusColumn, 10);
+        setPercentageWidth(actionColumn, 20);
     }
 
     @FXML
@@ -228,8 +242,7 @@ public class TicketStatusController {
         if (selectedStatus == null || selectedStatus.equals("key.ShowAll")) {
             ticketTable.setItems(ticketList);
         } else {
-            String status = selectedStatus.substring(selectedStatus.lastIndexOf(".") + 1);
-            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> ticket.getStatus().equals(status));
+            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> selectedStatus.contains(ticket.getStatus()));
             ticketTable.setItems(filteredList);
         }
     }
@@ -244,10 +257,15 @@ public class TicketStatusController {
         return "defaultKey";
     } 
 
+    @FXML
+    void handleDatePickerClicked(ActionEvent event) {
+
+    }
+
     private void handleStatusCellClicked(String status) {
         switch (status) {
             case "key.Open":
-                AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+                AssignStaffToTicketController controller = (AssignStaffToTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
                 break;
         }
     }
@@ -267,6 +285,10 @@ public class TicketStatusController {
 
     private void handleTrashButtonClicked() {
         AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
+    }
+
+    private void setPercentageWidth(TableColumn<?, ?> column, double percentage) {
+        column.prefWidthProperty().bind(ticketTable.widthProperty().multiply(percentage / 100.0));
     }
 
 }
