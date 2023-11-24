@@ -122,6 +122,7 @@ public class AssetPlusFeatureSet4Controller {
     MaintenanceTicket.getWithId(id).delete();
   }
 
+
   /**
    * <p>Check if the input number is a valid asset number to input in a ticket and returns an empty string if it is.</p>
    * @param assetNumber the number associated to an asset and can be -1 if there is not asset associated to the ticket

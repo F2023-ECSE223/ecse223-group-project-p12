@@ -78,25 +78,22 @@ public class ModifySpecificAssetPopupController {
       int room, floor;
       String assetType;
 
-      if (roomChoice.getValue().contains("no") || roomChoice.getValue().contains("select")){
-        room = -1;
-      }
-
-      if (roomChoice.getValue().contains("Current")){
+      if (roomChoice.getValue().contains("Current")) {
         room = asset.getRoomNumber();
-      } else {
+    } else if (!roomChoice.getValue().contains("no") && !roomChoice.getValue().contains("select")) {
         room = Integer.parseInt(roomChoice.getValue());
-      }
-
-      if (floorChoice.getValue().contains("no") || floorChoice.getValue().contains("select")){
-        floor = -1;
-      }
-  
-      if (floorChoice.getValue().contains("Current")){
+    } else {
+        room = -1;
+    }
+    
+    if (floorChoice.getValue().contains("Current")) {
         floor = asset.getFloorNumber();
-      } else {
+    } else if (!floorChoice.getValue().contains("no") && !floorChoice.getValue().contains("select")) {
         floor = Integer.parseInt(floorChoice.getValue());
-      }
+    } else {
+        floor = -1;
+    }
+    
 
       if (assetTypes.getValue().contains("Select")){
         hasError = true;
@@ -147,7 +144,7 @@ public class ModifySpecificAssetPopupController {
       ArrayList<String> types = new ArrayList<>();
       types.add("Current type: " + asset.getAssetType().getName());
       for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
-        if (!type.equals(asset.getAssetType().getName())){
+        if (!type.getName().equals(asset.getAssetType().getName())){
           types.add(type.getName());
         } 
 

@@ -393,3 +393,20 @@ Stylesheet of our UI
     -fx-background-radius: 10px;
     -fx-padding: 5px 10px 5px 10px
 }
+
+/*Ticket ADD POP UP BUTTONS*/
+#cancelButton
+{
+    -fx-background-color: #a30d11;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+}
+
+#addTicketButton 
+{
+    -fx-text-fill: white;
+    -fx-background-color: #8768F2;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px 10px 5px 10px
+}

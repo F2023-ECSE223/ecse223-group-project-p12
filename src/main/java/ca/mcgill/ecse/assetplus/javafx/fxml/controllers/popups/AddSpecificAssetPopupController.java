@@ -1,29 +1,22 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
-import java.nio.file.AtomicMoveNotSupportedException;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssetMenuController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 
 public class AddSpecificAssetPopupController {
@@ -98,12 +91,11 @@ public class AddSpecificAssetPopupController {
         ViewUtils.showError(error.toString());
       } else {
         int number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);
-        AssetPlusFeatureSet3Controller.updateSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), Integer.parseInt(roomChoice.getValue()), java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
-        //AssetMenuController.refreshTables();
+        AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), Integer.parseInt(roomChoice.getValue()), java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
+        //AssetMenuController.refre
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       }
     }
-    
     public void initialize() {
 
       assetNumber.setEditable(false);
