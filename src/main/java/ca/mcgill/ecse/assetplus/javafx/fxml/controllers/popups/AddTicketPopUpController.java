@@ -11,6 +11,7 @@ import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
+import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
@@ -93,6 +94,10 @@ public class AddTicketPopUpController {
         ObservableList<TOAssetType> list = ViewUtils.getAssetTypes();
         for (TOAssetType type : list){
             typeField.getItems().add(type.getName());
+        }
+        ObservableList<TOSpecificAsset> list2 = ViewUtils.getSpecificAsset();
+        for (TOSpecificAsset asset : list2){
+            typeField.getItems().add(Integer.toString(asset.getAssetNumber()));
         }
     }
     
