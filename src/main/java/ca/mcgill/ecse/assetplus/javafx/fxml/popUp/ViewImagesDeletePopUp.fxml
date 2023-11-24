@@ -6,22 +6,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="350.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteViewImagesPopUpController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteViewImagesPopUpController">
    <children>
-      <Label styleClass="popUpTitle" text="%key.DeleteImage_DeleteConfirmation" textAlignment="CENTER" wrapText="true">
+      <fx:include source="../components/PopUpToolBar.fxml" />
+      <Label styleClass="popUpTitle" text="%key.DeleteImage" textAlignment="CENTER" wrapText="true">
          <VBox.margin>
-            <Insets left="30.0" right="30.0" />
+            <Insets bottom="10.0" left="30.0" right="30.0" />
          </VBox.margin></Label>
-      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0">
+      <Label text="%key.DeleteImage_DeleteConfirmation" textAlignment="CENTER" wrapText="true" />
+      <VBox fx:id="imageToDelete" alignment="CENTER" prefHeight="120.0" prefWidth="100.0" />
+      <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
          <children>
-            <Label fx:id="urlText" text="url" wrapText="true">
+            <Label fx:id="urlText" text="url">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
          </children>
          <VBox.margin>
-            <Insets left="30.0" right="30.0" />
+            <Insets bottom="20.0" left="30.0" right="30.0" />
          </VBox.margin>
       </HBox>
       <HBox alignment="CENTER">
@@ -31,11 +34,14 @@
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#DeleteImage" prefWidth="100.0" styleClass="cancelButton" text="%key.Delete">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#DeleteImage" prefWidth="100.0" styleClass="actionButton" text="%key.Delete">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin></Button>
          </children>
       </HBox>
    </children>
+   <padding>
+      <Insets bottom="30.0" />
+   </padding>
 </VBox>
