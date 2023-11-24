@@ -2,9 +2,10 @@
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.controller;
+import ca.mcgill.ecse.assetplus.model.AssetType;
 import java.sql.Date;
 
-// line 78 "../../../../../../AssetPlusTransferObjects.ump"
+// line 79 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOSpecificAsset
 {
 

@@ -294,7 +294,7 @@ public class AssetPlusFeatureSet1Controller {
     private static TOHotelStaff convertFromHotelStaff(HotelStaff hotelStaff) {
       User user = (User) hotelStaff;
 
-      return new TOHotelStaff(
+      return new TOEmployee(
         user.getEmail(),
         user.getName(),
         user.getPassword(),

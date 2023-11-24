@@ -55,6 +55,7 @@ class TOGuest {
 class TOHotelStaff {
   depend java.util.*;
 
+  abstract;
   immutable;
   isA TOUser;
   List<Integer> ticketFixed;
