@@ -1,4 +1,4 @@
-package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
+package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import java.nio.file.AtomicMoveNotSupportedException;
 import java.util.ArrayList;
