@@ -55,7 +55,6 @@ class TOGuest {
 class TOHotelStaff {
   depend java.util.*;
 
-  abstract;
   immutable;
   isA TOUser;
   List<Integer> ticketFixed;
@@ -76,7 +75,9 @@ class TOManager {
   List<Integer> ticketApproved;
 }
 
-class TOSpecificAsset { 
+class TOSpecificAsset {
+  depend ca.mcgill.ecse.assetplus.model.AssetType;
+
   immutable
   int assetNumber;
   int floorNumber;

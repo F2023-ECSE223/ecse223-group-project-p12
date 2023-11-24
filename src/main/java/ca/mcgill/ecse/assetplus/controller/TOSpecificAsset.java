@@ -2,10 +2,10 @@
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 package ca.mcgill.ecse.assetplus.controller;
-import java.sql.Date;
 import ca.mcgill.ecse.assetplus.model.AssetType;
+import java.sql.Date;
 
-// line 79 "../../../../../../AssetPlusTransferObjects.ump"
+// line 78 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOSpecificAsset
 {
 
@@ -107,5 +107,4 @@ public class TOSpecificAsset
             "  " + "purchaseDate" + "=" + (getPurchaseDate() != null ? !getPurchaseDate().equals(this)  ? getPurchaseDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "assetType" + "=" + (getAssetType() != null ? !getAssetType().equals(this)  ? getAssetType().toString().replaceAll("  ","    ") : "this" : "null");
   }
-  
 }
