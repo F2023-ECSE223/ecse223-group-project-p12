@@ -50,6 +50,7 @@ public class AssetPlusFeatureTOController {
     return assetTypesTO;
   }
 
+
   private static TOAssetType convertFromAssetType(AssetType assetType){
 
     List<SpecificAsset> assets = assetType.getSpecificAssets();

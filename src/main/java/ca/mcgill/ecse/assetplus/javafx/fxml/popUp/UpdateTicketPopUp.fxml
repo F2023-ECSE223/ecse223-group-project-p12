@@ -31,7 +31,7 @@
             <Label layoutX="29.0" layoutY="210.0" prefHeight="18.0" prefWidth="92.0" text="%key.TicketMenu_RaisedDate" />
             <Button fx:id="updateTicketButton" layoutX="53.0" layoutY="267.0" mnemonicParsing="false" onAction="#updateTicketClicked" prefHeight="31.0" prefWidth="74.0" text="%key.TicketMenu_UpdateButton" />
             <TextField fx:id="ticketRaiserField" alignment="CENTER" layoutX="138.0" layoutY="148.0" onAction="#changeTicketRaiser" prefHeight="32.0" prefWidth="128.0" promptText="%key.TicketMenu_DisplayRaiser" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;" />
-            <DatePicker layoutX="144.0" layoutY="206.0" onAction="#changeRaisedDate" prefHeight="26.0" prefWidth="116.0" promptText="%key.TicketMenu_DisplayRaiser" />
+            <DatePicker fx:id="raisedDateField" layoutX="144.0" layoutY="206.0" onAction="#changeRaisedDate" prefHeight="26.0" prefWidth="116.0" promptText="%key.TicketMenu_DisplayRaiser" />
             <ChoiceBox fx:id="typeChoice" layoutX="190.0" layoutY="40.0" prefHeight="29.0" prefWidth="86.0" />
             <ChoiceBox fx:id="assetNumberChoice" layoutX="198.0" layoutY="99.0" onDragDetected="#changeAssetNumber" prefHeight="23.0" prefWidth="55.0" />
          </children>

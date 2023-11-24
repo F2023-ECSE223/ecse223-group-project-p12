@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
@@ -33,15 +34,6 @@ public class AddTicketPopUpController {
 
     @FXML
     private ResourceBundle resources;
-
-    @FXML
-    private HBox DashboardAndContent;
-
-    @FXML
-    private VBox TopContent;
-
-    @FXML
-    private Label replaceMe;
 
     @FXML
     private TextField ticketNumberField;
@@ -79,6 +71,10 @@ public class AddTicketPopUpController {
     @FXML
     void initialize(){
 
+        ticketNumberField.setEditable(false);
+        ticketNumberField.setText((AssetPlusFeatureSet6Controller.getTickets().get(AssetPlusFeatureSet6Controller.getTickets().size()-1).getId()+1)+"");
+        ticketNumberField.setFocusTraversable(false);
+
         ObservableList<TOAssetType> list = ViewUtils.getAssetTypes();
         for (TOAssetType type : list){
             typeField.getItems().add(type.getName());
@@ -113,6 +109,7 @@ public class AddTicketPopUpController {
 
         if (ticketNumber == null || description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null){
                 addTicketError.setText("All required fields are not entered. Try again!");
+                System.out.println("Ticket not added");
         }
         else{
             String err = AssetPlusFeatureSet4Controller.addMaintenanceTicket(assetNumber, (java.sql.Date)raisedDate, description, raiser, assetNumber);
@@ -125,6 +122,7 @@ public class AddTicketPopUpController {
                 raisedDateField.setValue(null);
                 addTicketError.setText(null);
                 addTicketError.setText("Your ticket has been created!");
+                System.out.println("Ticket added");
             }
             else{
                 addTicketError.setText(err);

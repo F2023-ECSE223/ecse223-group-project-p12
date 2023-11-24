@@ -256,9 +256,10 @@ public class TicketStatusController {
         AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
     }
 
-    private void handleEditButtonClicked(int ticketNumber) {
+    private void handleEditButtonClicked() {
         //AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "editTab");
-        UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
+        //System.out.println("Updating with ticket number: " + Integer.toString(ticketNumber));
+        UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/UpdateTicketPopUp.fxml", "Update Ticket");
             if (controller==null) System.out.println("controller null");
 
     }
