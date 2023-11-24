@@ -39,13 +39,13 @@
             <ChoiceBox fx:id="assetNumberField" layoutX="167.0" layoutY="118.0" prefHeight="26.0" prefWidth="74.0" />
             <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="38.0" layoutY="176.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
             <Label layoutX="62.0" layoutY="176.0" prefHeight="47.0" prefWidth="74.0" text="%key.TicketMenu_AddRaisedDate" textAlignment="CENTER" />
-            <DatePicker fx:id="raisedDateField" layoutX="132.0" layoutY="187.0" prefHeight="26.0" prefWidth="127.0" />
+            <DatePicker fx:id="raisedDateField" layoutX="148.0" layoutY="187.0" prefHeight="26.0" prefWidth="111.0" />
             <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="41.0" layoutY="248.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
             <Label layoutX="62.0" layoutY="247.0" prefHeight="47.0" prefWidth="97.0" text="%key.TicketMenu_AddRaiser" textAlignment="CENTER" />
             <TextField fx:id="raiserField" layoutX="158.0" layoutY="259.0" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: white;" />
             <Button fx:id="addTicketButton" layoutX="99.0" layoutY="330.0" mnemonicParsing="false" onAction="#addTicketClicked" prefHeight="31.0" prefWidth="127.0" text="%key.TicketMenu_Create" />
-            <Label layoutX="56.0" layoutY="179.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
-            <Label layoutX="56.0" layoutY="250.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
+            <Label layoutX="58.0" layoutY="183.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
+            <Label layoutX="55.0" layoutY="253.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
          </children>
       </Pane>
       <Label alignment="CENTER" layoutX="194.0" layoutY="26.0" prefHeight="28.0" prefWidth="275.0" text="%key.TicketMenu_EnterAdd" />

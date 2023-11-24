@@ -228,14 +228,7 @@
                                 ""
                               ],
                               "ticketImages": [
-                                {
-                                  "TicketImage": {
-                                    "imageURL": "https://img.freepik.com/free-photo/oxid-steel-texture_1194-8852.jpg",
-                                    "ticket": {
-                                      "@reference": "../../.."
-                                    }
-                                  }
-                                }
+                                ""
                               ],
                               "assetPlus": {
                                 "@reference": "../../../../../../../../../.."

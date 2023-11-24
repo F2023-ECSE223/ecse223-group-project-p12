@@ -257,10 +257,13 @@ public class TicketStatusController {
     }
 
     private void handleEditButtonClicked() {
+        //add parameter
+        //int ticketNumber=3;
         //AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "editTab");
-        //System.out.println("Updating with ticket number: " + Integer.toString(ticketNumber));
         UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/UpdateTicketPopUp.fxml", "Update Ticket");
             if (controller==null) System.out.println("controller null");
+        //System.out.println("Updating with ticket number: " + Integer.toString(ticketNumber));
+        //controller.setTicketId(ticketNumber);
 
     }
 

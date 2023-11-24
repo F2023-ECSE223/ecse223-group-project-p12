@@ -1,8 +1,10 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
+import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
+import ca.mcgill.ecse.assetplus.model.AssetType;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +19,10 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
@@ -41,6 +47,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 
 public class UpdateTicketPopUpController {
+
+    private int ticketId;
 
     @FXML
     private Label updateTicketError;
@@ -78,14 +86,19 @@ public class UpdateTicketPopUpController {
         raisedDateField.setEditable(false);
         ticketStatusField.setEditable(false);
         ticketNumberField.setEditable(false);
-        
-        ticketNumberField.setText("");
-        ticketStatusField.setText("");
-        ticketDescriptionField.setText("");
-        ticketRaiserField.setText("");
-        raisedDateField.setValue(null);
-        assetNumberChoice.setValue("");
-        typeChoice.setValue("");
+        TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(ticketId);
+        ticketNumberField.setText(Integer.toString(ticketId));
+        ticketStatusField.setText(ticket.getStatus().toString());
+        ticketDescriptionField.setText(ticket.getDescription());
+        ticketRaiserField.setText(ticket.getRaisedByEmail());
+        //raisedDateField.setValue(ticket.getRaisedOnDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        typeChoice.setValue(ticket.getAssetName());
+        if (ticket.getAssetName() == null){
+            assetNumberChoice.setValue(null);
+        }
+        else{
+            //assetNumberChoice.setValue());
+        }
 
         updateTicketError.setText(null);
 
@@ -130,5 +143,11 @@ public class UpdateTicketPopUpController {
     void updateTicketClicked(ActionEvent event) {
        
     }
+    public void setTicketId(int id) {
+    ticketId = id;
+    ticketNumberField.setText(Integer.toString(ticketId));
+    //String end = AssetPlusFXMLView.getInstance().getBundle().getString("key.AssetType_Years");
+    //AssetTypeDeleteLifespan.setText(Integer.toString(AssetType.getWithName(name).getExpectedLifeSpan())+ " " + end);
+  }
 
 }
