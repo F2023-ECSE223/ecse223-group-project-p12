@@ -116,6 +116,7 @@ public class AssetPlusFXMLView extends Application {
       scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
       popUpStage.setScene(scene);
       popUpStage.setTitle(title);
+      popUpStage.setResizable(false);
       popUpStage.show();
       
       // Return the controller of the pop up window
