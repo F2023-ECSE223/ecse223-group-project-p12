@@ -14,6 +14,7 @@ import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddSpecificAssetPopupController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteSpecificAssetPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifySpecificAssetPopupController;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -144,7 +145,9 @@ public class AssetMenuController {
     }
 
     private void handleTrashButtonClicked(int assetNumber) {
-        
+        DeleteSpecificAssetPopUpController.get(assetNumber);
+        System.out.println(assetNumber);
+        DeleteSpecificAssetPopUpController controller = (DeleteSpecificAssetPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteSpecificAssetPopUp.fxml", "Delete Specific Asset");        
     }
     
     private void handleMaintenanceHistoryClicked() {

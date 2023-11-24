@@ -66,12 +66,11 @@ public class ModifySpecificAssetPopupController {
 
     @FXML
     void cancel(ActionEvent event) {
-      System.out.println("is this cancelling?");
       AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
 
     @FXML
-    void create(ActionEvent event) {
+    void modify(ActionEvent event) {
 
     }
 

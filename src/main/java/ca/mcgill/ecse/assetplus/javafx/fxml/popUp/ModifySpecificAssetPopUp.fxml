@@ -151,7 +151,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="cancelAssetBtn" mnemonicParsing="false" onAction="#cancel" text="%key.AssetMenu_CancelAsset" />
-                  <Button fx:id="modifyAssetBtn" mnemonicParsing="false" onAction="#create" text="%key.AssetMenu_ModifyAsset">
+                  <Button fx:id="modifyAssetBtn" mnemonicParsing="false" onAction="#modify" text="%key.AssetMenu_ModifyAsset">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>

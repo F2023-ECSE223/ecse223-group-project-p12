@@ -103,6 +103,7 @@ public class AddSpecificAssetPopupController {
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       }
     }
+    
     public void initialize() {
 
       assetNumber.setEditable(false);
