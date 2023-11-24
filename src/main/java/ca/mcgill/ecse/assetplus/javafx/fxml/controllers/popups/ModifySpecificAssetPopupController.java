@@ -62,6 +62,8 @@ public class ModifySpecificAssetPopupController {
 
   public static TOSpecificAsset asset;
 
+  
+
     @FXML
     void cancel(ActionEvent event) {
       System.out.println("is this cancelling?");
@@ -94,7 +96,6 @@ public class ModifySpecificAssetPopupController {
 
       ArrayList<String> types = new ArrayList<>();
       types.add("Current type: " + asset.getAssetType().getName());
-      types.add("No asset type");
       for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
         if (!type.equals(asset.getAssetType().getName())){
           types.add(type.getName());
@@ -148,5 +149,7 @@ public class ModifySpecificAssetPopupController {
         lifeExpectancyBox.setVisible(false);
     }
   }
+
+  
 
 }

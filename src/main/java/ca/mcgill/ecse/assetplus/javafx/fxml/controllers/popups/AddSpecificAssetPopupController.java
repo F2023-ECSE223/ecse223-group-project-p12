@@ -56,6 +56,9 @@ public class AddSpecificAssetPopupController {
     private VBox lifeExpectancyBox;
 
     @FXML
+    private Label errorMessage;
+
+    @FXML
     void cancel(ActionEvent event) {
       System.out.println("is this cancelling?");
       AssetPlusFXMLView.getInstance().closePopUpWindow();
@@ -63,6 +66,23 @@ public class AddSpecificAssetPopupController {
 
     @FXML
     void create(ActionEvent event) {
+      int room, floor;
+
+      if (roomChoice.getValue().contains("no")){
+        room = -1;
+      }
+
+      if (roomChoice.getValue().contains("no")){
+        floor = -1;
+      }
+
+      if (assetTypes.getValue().contains("Select")){
+        ViewUtils.showError("Please select an asset type.");
+      }
+
+      floorChoice.getValue();
+      assetTypes.getValue();
+      dateChoice.getValue();
 
     }
     public void initialize() {
@@ -74,7 +94,6 @@ public class AddSpecificAssetPopupController {
       dateChoice.setEditable(false);
       
       ArrayList<String> types = new ArrayList<>();
-      types.add("No asset type");
       for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
         types.add(type.getName());
       }
@@ -127,5 +146,8 @@ public class AddSpecificAssetPopupController {
       lifeExpectancyBox.setVisible(false);
    }
 }
+  private void setErrorMessage(String message) {
+    errorMessage.setText(AssetPlusFXMLView.getInstance().getBundle().getString(message));
+  }
 
 }
