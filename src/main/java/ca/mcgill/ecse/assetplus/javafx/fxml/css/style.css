@@ -263,6 +263,13 @@ Stylesheet of our UI
     -icon-paint: black;
 }
 
+.tab-pane-2 {
+    -fx-tab-max-height: 0 ;
+} 
+.tab-pane-2 .tab-header-area-2 {
+    visibility: hidden ;
+}
+
 .icon-image {
     -icon-paint: #4488D8;
     -fx-background-color: -icon-paint;
