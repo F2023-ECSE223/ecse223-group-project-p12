@@ -9,6 +9,8 @@ import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -83,17 +85,20 @@ public class AssetTypesController {
 
     }
 
-    @FXML
-    void addAssetTypeClicked(ActionEvent event) {
-      String name = AssetTypeAddName.getText();
-      int lifespan = Integer.valueOf(AssetTypeAddLifespan.getText());
-      AssetPlusFeatureSet2Controller.addAssetType(name, lifespan);
-      showAssetTypes();
-    }
 
     @FXML
     void initialize() {
       showAssetTypes();
+      grid.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
+        showAssetTypes();
+      });
+      AssetPlusFXMLView.getInstance().registerRefreshEvent(grid);
+    }
+
+    @FXML
+    void addAssetTypeClicked(ActionEvent event) {
+
+      AddAssetTypePopUpController controller = (AddAssetTypePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssetTypeAddPopUp.fxml", "Add Asset Type");
     }
 
     public void showAssetTypes(){
@@ -108,6 +113,7 @@ public class AssetTypesController {
         vbox.setPrefSize(width, 280);
         vbox.setBackground(new Background(new BackgroundFill(Color.rgb(247, 246, 254), CornerRadii.EMPTY, Insets.EMPTY)));
         String nameAssetType = assetType.getName();
+        
 
         DropShadow ds = new DropShadow();
         ds.setOffsetX(3.0);
