@@ -24,7 +24,7 @@ public class AssignStaffToTicketController {
         this.staffChoiceBox.getItems().add(staff.getName());
       }
 
-      this.staffChoiceBox.setValue(resources.getString("TicketStatus_SelectStaff"));
+      this.staffChoiceBox.setValue(resources.getString("key.TicketStatus_SelectStaff"));
     }
 
     @FXML
