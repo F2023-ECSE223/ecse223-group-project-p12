@@ -34,6 +34,13 @@ Stylesheet of our UI
     -fx-effect: none;
 }
 
+.noticeMessage
+{
+    -fx-text-fill: #8668f2a9;
+    -fx-font-size: 20px;
+
+}
+
 /* Buttons(Tabs) in the dashboard on the left for the different*/
 .menuButton
 {
@@ -128,6 +135,23 @@ Stylesheet of our UI
 }
 
 .choice-box .menu-item:hover {
+    -fx-background-color: #F7F6FE; 
+}
+
+/* COMBO BOX STYLE */
+.combo-box {
+    -fx-background-color: white; 
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #808080;
+    -fx-border-width: 1px;
+}
+
+.combo-box .menu-item{
+    -fx-background-color: white;
+}
+
+.combo-box .menu-item:hover {
     -fx-background-color: #F7F6FE; 
 }
 
@@ -355,7 +379,7 @@ Stylesheet of our UI
     -fx-background-radius: 10px;
 }
 
-#createAssetBtn 
+#createAssetBtn, #modifyAssetBtn, #deleteAssetBtn
 {
     -fx-text-fill: white;
     -fx-background-color: #8768F2;

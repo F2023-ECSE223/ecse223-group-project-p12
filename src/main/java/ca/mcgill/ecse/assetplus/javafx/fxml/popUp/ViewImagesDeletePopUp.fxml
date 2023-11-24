@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="350.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteViewImagesPopUpController">
+   <children>
+      <Label styleClass="popUpTitle" text="%key.DeleteImage_DeleteConfirmation" textAlignment="CENTER" wrapText="true">
+         <VBox.margin>
+            <Insets left="30.0" right="30.0" />
+         </VBox.margin></Label>
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="urlText" text="url" wrapText="true">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets left="30.0" right="30.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#Cancel" prefWidth="100.0" styleClass="actionButton" text="%key.Cancel">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#DeleteImage" prefWidth="100.0" styleClass="cancelButton" text="%key.Delete">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
