@@ -16,6 +16,8 @@ public class AssignStaffToTicketController {
     @FXML
     private ChoiceBox<String> staffChoiceBox;
 
+    private int ticketId;
+
     @FXML
     void initialize() {
       resources = AssetPlusFXMLView.getInstance().getBundle();
@@ -35,8 +37,12 @@ public class AssignStaffToTicketController {
     @FXML
     void handleSave(ActionEvent event) {
       String staffSelected = this.staffChoiceBox.getValue();
-      //ViewUtils.assignTicketTo(staffSelected);
+      ViewUtils.assignTicketTo(staffSelected, ticketId);
       AssetPlusFXMLView.getInstance().closePopUpWindow();
+    }
+
+    public void setTicketId(int ticketId) {
+      this.ticketId = ticketId;
     }
 
 }

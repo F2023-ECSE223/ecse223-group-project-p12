@@ -5,6 +5,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.UpdateTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
+import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -126,8 +127,10 @@ public class TicketStatusController {
                         else {
                             setText(resources.getString("key." + item));
                             setStyle(getStatusStyle(resources.getString("key." + item)));
-                            setOnMouseClicked(event -> handleStatusCellClicked("key." + item));
                             setCursor(Cursor.HAND);
+
+                            //int ticketId = getTableRow().getItem().getId();
+                            setOnMouseClicked(event -> handleStatusCellClicked("key." + item));
                         }
                     }
 
@@ -203,7 +206,7 @@ public class TicketStatusController {
             Button imgBtn = new Button();
             imgBtn.getStyleClass().add("icon-image");
             imgBtn.setPickOnBounds(true);
-            imgBtn.setOnAction(event -> handleImageButtonClicked(ticketId));
+            imgBtn.setOnAction(event ->  handleImageButtonClicked(ticketId));
 
             Button editBtn = new Button();
             editBtn.getStyleClass().add("icon-edit");
@@ -263,9 +266,18 @@ public class TicketStatusController {
     }
 
     private void handleStatusCellClicked(String status) {
+        Object controller;
+
         switch (status) {
             case "key.Open":
-                AssignStaffToTicketController controller = (AssignStaffToTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+                controller = (AssignStaffToTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+                //controller.setTicketId(ticketId);
+                break;
+            case "key.Assigned":
+                controller = (StartAndCompleteWorkController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/StartWork.fxml", "Start Work");
+                break;
+            case "key.InProgress":
+                controller = (StartAndCompleteWorkController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/StartWork.fxml", "Start Work");
                 break;
         }
     }
