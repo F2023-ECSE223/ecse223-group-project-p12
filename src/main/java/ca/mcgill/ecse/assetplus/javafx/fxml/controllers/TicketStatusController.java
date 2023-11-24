@@ -192,6 +192,7 @@ public class TicketStatusController {
 
         actionColumn.setCellValueFactory(cellData -> {
         // Create an HBox with three SVGPath objects representing icons
+        int ticketId = cellData.getValue().getId();
         Button imgBtn = new Button();
         imgBtn.getStyleClass().add("icon-image");
         imgBtn.setPickOnBounds(true);
@@ -200,7 +201,7 @@ public class TicketStatusController {
         Button editBtn = new Button();
         editBtn.getStyleClass().add("icon-edit");
         editBtn.setPickOnBounds(true);
-        editBtn.setOnAction(event -> handleEditButtonClicked());
+        editBtn.setOnAction(event -> handleEditButtonClicked(ticketId));
 
         Button trashBtn = new Button();
         trashBtn.getStyleClass().add("icon-trash");
@@ -256,14 +257,14 @@ public class TicketStatusController {
         AssetPlusFXMLView.getInstance().changeTab("pages/AddImage.fxml");
     }
 
-    private void handleEditButtonClicked() {
+    private void handleEditButtonClicked(int ticketId) {
         //add parameter
         //int ticketNumber=3;
         //AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "editTab");
         UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/UpdateTicketPopUp.fxml", "Update Ticket");
             if (controller==null) System.out.println("controller null");
-        //System.out.println("Updating with ticket number: " + Integer.toString(ticketNumber));
-        //controller.setTicketId(ticketNumber);
+        System.out.println("Updating with ticket number: " + Integer.toString(ticketId));
+        controller.setTicketId(ticketId);
 
     }
 
