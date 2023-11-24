@@ -258,8 +258,9 @@ public class TicketStatusController {
     }
 
     private void handleEditButtonClicked(int ticketId) {
+        System.out.println("is anything happening?");
         UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/UpdateTicketPopUp.fxml", "Update Ticket");
-            if (controller==null) System.out.println("controller null");
+           // if (controller==null) System.out.println("controller null");
         System.out.println("Updating with ticket number: " + Integer.toString(ticketId));
         controller.setTicketId(ticketId);
 

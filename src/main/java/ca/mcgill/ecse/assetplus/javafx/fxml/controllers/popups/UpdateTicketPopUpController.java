@@ -13,10 +13,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 
 public class UpdateTicketPopUpController {
+
+    @FXML
+    private ResourceBundle resources;
 
     private int ticketId;
 
