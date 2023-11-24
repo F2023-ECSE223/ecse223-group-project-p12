@@ -1,7 +1,5 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
-import java.nio.file.AtomicMoveNotSupportedException;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
@@ -13,16 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 
 public class AddSpecificAssetPopupController {

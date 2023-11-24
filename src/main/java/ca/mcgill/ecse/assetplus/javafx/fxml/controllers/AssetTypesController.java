@@ -1,22 +1,15 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
-
-import java.net.URL;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteAssetTypePopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyAssetTypePopUpController;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;

@@ -3,17 +3,11 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
-import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import javafx.collections.ObservableList;
@@ -22,12 +16,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.event.ActionEvent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Hyperlink;
 
 public class AddTicketPopUpController {
 

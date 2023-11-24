@@ -3,7 +3,6 @@
 
 package ca.mcgill.ecse.assetplus.controller;
 import java.sql.Date;
-import ca.mcgill.ecse.assetplus.model.AssetType;
 
 // line 79 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOSpecificAsset
@@ -18,13 +17,13 @@ public class TOSpecificAsset
   private int floorNumber;
   private int roomNumber;
   private Date purchaseDate;
-  private AssetType assetType;
+  private TOAssetType assetType;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOSpecificAsset(int aAssetNumber, int aFloorNumber, int aRoomNumber, Date aPurchaseDate, AssetType aAssetType)
+  public TOSpecificAsset(int aAssetNumber, int aFloorNumber, int aRoomNumber, Date aPurchaseDate, TOAssetType aAssetType)
   {
     assetNumber = aAssetNumber;
     floorNumber = aFloorNumber;
@@ -61,7 +60,7 @@ public class TOSpecificAsset
     return wasSet;
   }
 
-  public boolean setAssetType(AssetType aAssetType)
+  public boolean setAssetType(TOAssetType aAssetType)
   {
     boolean wasSet = false;
     assetType = aAssetType;
@@ -89,7 +88,7 @@ public class TOSpecificAsset
     return purchaseDate;
   }
 
-  public AssetType getAssetType()
+  public TOAssetType getAssetType()
   {
     return assetType;
   }

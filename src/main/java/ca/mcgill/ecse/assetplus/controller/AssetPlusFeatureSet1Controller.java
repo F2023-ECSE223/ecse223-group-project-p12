@@ -4,7 +4,6 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
-import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 import java.util.*;
