@@ -172,32 +172,72 @@
                         "phoneNumber": "514-444-5555",
                         "raisedTickets": [
                           {
-                            "MaintenanceTicket": {
-                              "id": 5,
-                              "raisedOnDate": "2023-11-09",
-                              "description": "carpet is stained",
-                              "status": "Open",
-                              "ticketNotes": [
-                                ""
-                              ],
-                              "ticketImages": [
-                                {
-                                  "TicketImage": {
-                                    "imageURL": "https://img.freepik.com/free-photo/oxid-steel-texture_1194-8852.jpg",
-                                    "ticket": {
-                                      "@reference": "../../.."
+                            "MaintenanceTicket": [
+                              {
+                                "id": 5,
+                                "raisedOnDate": "2023-11-09",
+                                "description": "carpet is stained",
+                                "status": "Open",
+                                "ticketNotes": [
+                                  ""
+                                ],
+                                "ticketImages": [
+                                  {
+                                    "TicketImage": {
+                                      "imageURL": "https://img.freepik.com/free-photo/oxid-steel-texture_1194-8852.jpg",
+                                      "ticket": {
+                                        "@reference": "../../.."
+                                      }
                                     }
                                   }
+                                ],
+                                "assetPlus": {
+                                  "@reference": "../../../../../../../../../.."
+                                },
+                                "ticketRaiser": {
+                                  "@class": "Manager",
+                                  "@reference": "../../.."
                                 }
-                              ],
-                              "assetPlus": {
-                                "@reference": "../../../../../../../../../.."
                               },
-                              "ticketRaiser": {
-                                "@class": "Manager",
-                                "@reference": "../../.."
+                              {
+                                "id": 6,
+                                "raisedOnDate": "2023-11-24",
+                                "description": "abc",
+                                "status": "Open",
+                                "ticketNotes": [
+                                  ""
+                                ],
+                                "ticketImages": [
+                                  ""
+                                ],
+                                "assetPlus": {
+                                  "@reference": "../../../../../../../../../.."
+                                },
+                                "ticketRaiser": {
+                                  "@class": "Manager",
+                                  "@reference": "../../.."
+                                }
+                              },
+                              {
+                                "id": 7,
+                                "raisedOnDate": "2023-11-25",
+                                "description": "abc",
+                                "status": "Open",
+                                "ticketNotes": [
+                                  ""
+                                ],
+                                "ticketImages": [
+                                  ""
+                                ],
+                                "assetPlus": {
+                                  "@reference": "../../../../../../../../../.."
+                                },
+                                "ticketRaiser": {
+                                  "@class": "Manager",
+                                  "@reference": "../../.."
+                                }
                               }
-                            }
+                            ]
                           }
                         ],
                         "maintenanceNotes": [
@@ -266,6 +306,12 @@
           },
           {
             "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket"
+          },
+          {
+            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket[2]"
+          },
+          {
+            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket[3]"
           }
         ]
       }

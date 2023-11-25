@@ -92,6 +92,7 @@ public class AddSpecificAssetPopupController {
       } else {
         int number;
         if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
+          
           number = 1;
         } else {
           number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);   

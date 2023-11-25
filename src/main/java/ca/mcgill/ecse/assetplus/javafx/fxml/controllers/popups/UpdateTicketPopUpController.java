@@ -22,7 +22,7 @@ public class UpdateTicketPopUpController {
     @FXML
     private ResourceBundle resources;
 
-    private int ticketId;
+    private static int ticketId;
 
     @FXML
     private Label updateTicketError;
@@ -37,7 +37,7 @@ public class UpdateTicketPopUpController {
     private TextField ticketDescriptionField;
 
     @FXML
-    private TextField ticketNumberField;
+    private static TextField ticketNumberField;
 
     @FXML
     private TextField ticketRaiserField;
@@ -56,26 +56,7 @@ public class UpdateTicketPopUpController {
 
     @FXML
     void initialize(){
-        // set editable to false so that the user cannot choose from the calendar
-        raisedDateField.setEditable(false);
-        ticketStatusField.setEditable(false);
-        ticketNumberField.setEditable(false);
-        TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(ticketId);
-        ticketNumberField.setText(Integer.toString(ticketId));
-        ticketStatusField.setText(ticket.getStatus().toString());
-        ticketDescriptionField.setText(ticket.getDescription());
-        ticketRaiserField.setText(ticket.getRaisedByEmail());
-        //raisedDateField.setValue(ticket.getRaisedOnDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        typeChoice.setValue(ticket.getAssetName());
-        if (ticket.getAssetName() == null){
-            assetNumberChoice.setValue(null);
-        }
-        else{
-            //assetNumberChoice.setValue());
-        }
-
-        updateTicketError.setText(null);
-
+        
     }
 
     @FXML
@@ -118,10 +99,27 @@ public class UpdateTicketPopUpController {
        
     }
     public void setTicketId(int id) {
-    ticketId = id;
-    ticketNumberField.setText(Integer.toString(ticketId));
-    //String end = AssetPlusFXMLView.getInstance().getBundle().getString("key.AssetType_Years");
-    //AssetTypeDeleteLifespan.setText(Integer.toString(AssetType.getWithName(name).getExpectedLifeSpan())+ " " + end);
+        ticketId = id;
+    // set editable to false so that the user cannot choose from the calendar
+        raisedDateField.setEditable(false);
+        ticketStatusField.setEditable(false);
+        ticketNumberField.setEditable(false);
+        TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(ticketId);
+        ticketNumberField.setText(Integer.toString(ticketId));
+        ticketStatusField.setText(ticket.getStatus().toString());
+        ticketDescriptionField.setText(ticket.getDescription());
+        ticketRaiserField.setText(ticket.getRaisedByEmail());
+        //raisedDateField.setValue(ticket.getRaisedOnDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        typeChoice.setValue(ticket.getAssetName());
+        if (ticket.getAssetName() == null){
+            assetNumberChoice.setValue(null);
+        }
+        else{
+            //assetNumberChoice.setValue());
+        }
+
+        updateTicketError.setText(null);
+
   }
 
 }
