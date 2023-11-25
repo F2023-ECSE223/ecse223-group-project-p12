@@ -17,7 +17,7 @@
       <VBox fx:id="imageToDelete" alignment="CENTER" prefHeight="120.0" prefWidth="100.0" />
       <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0">
          <children>
-            <Label fx:id="urlText" text="url">
+            <Label fx:id="urlText" styleClass="fieldBg" text="url">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

@@ -371,6 +371,15 @@ Stylesheet of our UI
     -fx-effect: dropshadow(three-pass-box, rgba(163,121,195,0.8), 2, 0, 0, 2);
 }
 
+.fieldBg {
+    -fx-fill: #F7F6FE;
+    -fx-stroke: #F7F6FE;
+    -fx-stroke-width: 2;
+    -fx-arc-width: 50;
+    -fx-arc-height: 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(163,121,195,0.8), 2, 0, 0, 2);
+}
+
 /* DATE PICKER CSS*/
 .date-picker {
     -fx-background-color: white; 
