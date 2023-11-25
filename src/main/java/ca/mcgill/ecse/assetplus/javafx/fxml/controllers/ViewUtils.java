@@ -122,19 +122,20 @@ public class ViewUtils {
     return AssetPlusFeatureSet1Controller.getHotelStaffs();
   }
 
-  public static void assignTicketTo(String staffName, int ticketId) {
+  public static void assignTicketTo(String staffName, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate) {
     String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
     TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(ticketId);
-
-    System.out.println("DOES THIS PRINT?? " + ticket.getPriority());
-    PriorityLevel priority = PriorityLevel.valueOf(ticket.getPriority());
-    System.out.println("PRIORITY IS: " + priority);
-
-    TimeEstimate timeEstimate = TimeEstimate.valueOf(ticket.getTimeToResolve());
     boolean approvalRequired = ticket.getApprovalRequired();
     
     AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(email, priority, timeEstimate, approvalRequired, ticketId);
-    System.out.println("SUCCESS! Ticket " + ticketId + " is now: " + ticket.getStatus());
+  }
+
+  public static void startWork(int ticketId) {
+    AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticketId);
+  }
+
+  public static void completeWork(int ticketId) {
+    AssetPlusFeatureMaintenanceTicketController.completeTicket(ticketId);
   }
   
 }

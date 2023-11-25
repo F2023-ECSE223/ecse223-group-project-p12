@@ -264,7 +264,7 @@ public class AssetPlusFeatureSet1Controller {
           return AssetPlusApplication.getAssetPlus().getManager().getName();
         }
 
-        return "No user found.";
+        return "";
       }
 
       return user.getName();

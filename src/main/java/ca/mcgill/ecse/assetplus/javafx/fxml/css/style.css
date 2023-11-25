@@ -193,7 +193,6 @@ Stylesheet of our UI
 
 .table-view .column-header-background {
     -fx-background-color: #8768F2;
-    -fx-background-radius: 7px 7px 0px 0px;
     -fx-background-insets: 0 11px 0 0;
     -fx-padding: 5px 0 5px 0;
 }
@@ -212,7 +211,6 @@ Stylesheet of our UI
 
 .table-view .table-cell {
     -fx-background-insets: 10, 0, 0, 0;
-    -fx-background-radius: 20px;
     -fx-padding: 20px 0 10px 0;
     -fx-border-color: transparent;
     -fx-alignment: CENTER;

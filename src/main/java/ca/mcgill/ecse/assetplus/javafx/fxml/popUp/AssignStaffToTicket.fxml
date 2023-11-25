@@ -2,63 +2,43 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="473.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssignStaffToTicketController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.0" prefWidth="473.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AssignStaffToTicketController">
    <children>
       <Label styleClass="popUpTitle" text="%key.TicketStatus_AssignStaffToTicket" />
-      <VBox prefHeight="163.0" prefWidth="414.0">
-         <VBox.margin>
-            <Insets left="30.0" right="30.0" />
-         </VBox.margin>
+      <HBox prefHeight="146.0" prefWidth="473.0">
          <children>
-            <HBox alignment="CENTER" style="-fx-spacing: 50;">
+            <VBox alignment="TOP_CENTER" prefHeight="192.0" prefWidth="236.0" spacing="40.0">
                <children>
-                  <Label text="%key.TicketStatus_StaffMember">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="15.0" top="15.0" />
-                     </padding>
-                  </Label>
-                  <ChoiceBox fx:id="staffChoiceBox" prefWidth="150.0" />
+                  <Label text="%key.TicketStatus_StaffMember" />
+                  <Label text="%key.TicketStatus_PriorityLevel" />
+                  <Label text="%key.TicketStatus_TimeEstimate" />
                </children>
-            </HBox>
-            <HBox alignment="CENTER" style="-fx-spacing: 50;">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="171.0" prefWidth="241.0" spacing="25.0">
                <children>
-                  <Label text="%key.TicketStatus_PriorityLevel">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-                  <ChoiceBox fx:id="staffChoiceBox1" prefWidth="150.0" />
+                  <ComboBox fx:id="staffComboBox" prefWidth="150.0" />
+                  <ComboBox fx:id="priorityComboBox" prefWidth="150.0" />
+                  <ComboBox fx:id="timeEstimateComboBox" prefWidth="150.0" />
                </children>
-               <padding>
-                  <Insets bottom="15.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER" style="-fx-spacing: 50;">
-               <children>
-                  <Label text="%key.TicketStatus_TimeEstimate">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="15.0" />
-                     </padding>
-                  </Label>
-                  <ChoiceBox fx:id="staffChoiceBox11" prefWidth="150.0" />
-               </children>
-            </HBox>
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="10.0" />
-         </padding>
-      </VBox>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </HBox>
+      <Label fx:id="errorLabel" text="Label">
+         <VBox.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </VBox.margin>
+      </Label>
       <HBox alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" styleClass="cancelButton" text="%key.Cancel" />

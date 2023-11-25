@@ -15,7 +15,7 @@
                     "id": 1,
                     "raisedOnDate": "2023-11-05",
                     "description": "desk is scratched",
-                    "status": "Assigned",
+                    "status": "Closed",
                     "ticketNotes": [
                       {
                         "MaintenanceNote": {
@@ -79,24 +79,14 @@
               }
             ],
             "maintenanceTasks": [
-              ""
-            ],
-            "assetPlus": {
-              "@reference": "../../.."
-            }
-          },
-          {
-            "email": "e2@ap.com",
-            "name": "Nathan",
-            "password": "pwd2",
-            "phoneNumber": "514-444-5577",
-            "raisedTickets": [
               {
                 "MaintenanceTicket": {
                   "id": 2,
                   "raisedOnDate": "2023-11-06",
                   "description": "chair wheel jammed",
-                  "status": "Open",
+                  "timeToResolve": "LessThanADay",
+                  "priority": "Low",
+                  "status": "InProgress",
                   "ticketNotes": [
                     {
                       "MaintenanceNote": {
@@ -107,7 +97,30 @@
                         },
                         "noteTaker": {
                           "@class": "Employee",
-                          "@reference": "../../../../.."
+                          "email": "e2@ap.com",
+                          "name": "Nathan",
+                          "password": "pwd2",
+                          "phoneNumber": "514-444-5577",
+                          "raisedTickets": [
+                            {
+                              "MaintenanceTicket": {
+                                "@reference": "../../../../.."
+                              }
+                            }
+                          ],
+                          "maintenanceNotes": [
+                            {
+                              "MaintenanceNote": {
+                                "@reference": "../../.."
+                              }
+                            }
+                          ],
+                          "maintenanceTasks": [
+                            ""
+                          ],
+                          "assetPlus": {
+                            "@reference": "../../../../../../../.."
+                          }
                         }
                       }
                     }
@@ -120,24 +133,21 @@
                   },
                   "ticketRaiser": {
                     "@class": "Employee",
+                    "@reference": "../ticketNotes/MaintenanceNote/noteTaker"
+                  },
+                  "ticketFixer": {
+                    "@class": "Employee",
                     "@reference": "../../.."
                   }
                 }
               }
             ],
-            "maintenanceNotes": [
-              {
-                "MaintenanceNote": {
-                  "@reference": "../../raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote"
-                }
-              }
-            ],
-            "maintenanceTasks": [
-              ""
-            ],
             "assetPlus": {
               "@reference": "../../.."
             }
+          },
+          {
+            "@reference": "../Employee/maintenanceTasks/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker"
           }
         ]
       }
@@ -256,7 +266,7 @@
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket"
           },
           {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket"
+            "@reference": "../../employees/Employee/maintenanceTasks/MaintenanceTicket"
           },
           {
             "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket"
