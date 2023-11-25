@@ -314,7 +314,23 @@
               "@reference": "../../.."
             },
             "specificAssets": [
-              ""
+              {
+                "SpecificAsset": {
+                  "assetNumber": 1,
+                  "floorNumber": 3,
+                  "roomNumber": 3,
+                  "purchaseDate": "2023-11-25",
+                  "assetPlus": {
+                    "@reference": "../../../../.."
+                  },
+                  "maintenanceTickets": [
+                    ""
+                  ],
+                  "assetType": {
+                    "@reference": "../../.."
+                  }
+                }
+              }
             ]
           },
           {
@@ -331,7 +347,11 @@
       }
     ],
     "specificAssets": [
-      ""
+      {
+        "SpecificAsset": {
+          "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
+        }
+      }
     ]
   }
 }
