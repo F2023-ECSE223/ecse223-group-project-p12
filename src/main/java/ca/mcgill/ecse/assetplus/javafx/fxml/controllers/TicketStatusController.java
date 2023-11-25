@@ -24,6 +24,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
@@ -204,18 +205,35 @@ public class TicketStatusController {
             imgBtn.getStyleClass().add("icon-image");
             imgBtn.setPickOnBounds(true);
             imgBtn.setOnAction(event -> handleImageButtonClicked(ticketId));
+            Tooltip imgTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ViewImages"));
+            imgTooltip.setStyle("-fx-text-fill: #4488D8");
+            imgBtn.setTooltip(imgTooltip);
+
+            Button notesBtn = new Button();
+            notesBtn.getStyleClass().add("icon-notes");
+            notesBtn.setPickOnBounds(true);
+            notesBtn.setOnAction(event -> handleNotesButtonClicked(ticketId));
+            Tooltip noteTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ViewNotes"));
+            noteTooltip.setStyle("-fx-text-fill: #CD6200");
+            notesBtn.setTooltip(noteTooltip);
 
             Button editBtn = new Button();
             editBtn.getStyleClass().add("icon-edit");
             editBtn.setPickOnBounds(true);
             editBtn.setOnAction(event -> handleEditButtonClicked(ticketId));
+            Tooltip editTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ModifyTicket"));
+            editTooltip.setStyle("-fx-text-fill: #624DE3");
+            editBtn.setTooltip(editTooltip);
 
             Button trashBtn = new Button();
             trashBtn.getStyleClass().add("icon-trash");
             trashBtn.setPickOnBounds(true);
             trashBtn.setOnAction(event -> handleTrashButtonClicked());
+            Tooltip trashTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_DeleteTicket"));
+            trashTooltip.setStyle("-fx-text-fill: #A30D11");
+            trashBtn.setTooltip(trashTooltip);
 
-            HBox hbox = new HBox(imgBtn, editBtn, trashBtn);
+            HBox hbox = new HBox(imgBtn, notesBtn, editBtn, trashBtn);
             hbox.setSpacing(10);
             hbox.setAlignment(Pos.CENTER);
 
@@ -275,9 +293,16 @@ public class TicketStatusController {
         controller.setTicketId(ticketId);
     }
 
+    private void handleNotesButtonClicked(int ticketId) {
+        // To Do handle notes
+        //ViewImagesController controller = (ViewImagesController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewImages.fxml", "View Images");
+        //controller.setTicketId(ticketId);
+    }
+
     private void handleEditButtonClicked(int ticketId) {
+        System.out.println("is anything happening?");
         UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/UpdateTicketPopUp.fxml", "Update Ticket");
-            if (controller==null) System.out.println("controller null");
+           // if (controller==null) System.out.println("controller null");
         System.out.println("Updating with ticket number: " + Integer.toString(ticketId));
         controller.setTicketId(ticketId);
 

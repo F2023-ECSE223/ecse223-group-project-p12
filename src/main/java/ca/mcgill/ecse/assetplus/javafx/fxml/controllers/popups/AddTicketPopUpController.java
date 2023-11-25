@@ -2,10 +2,12 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
+import java.sql.Date;
 import java.util.ResourceBundle;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
@@ -91,18 +93,26 @@ public class AddTicketPopUpController {
         String raiser = raiserField.getText();
         //figure out date picker
         LocalDate date = raisedDateField.getValue();
-        Date raisedDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date raisedDate = Date.valueOf(date);
         int assetNumber = -1;
         if (assetNumberField.getValue() != null){
             assetNumber = Integer.parseInt(assetNumberField.getValue());
         }
 
         if (ticketNumber == null || description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null){
-                addTicketError.setText("All required fields are not entered. Try again!");
+                addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage"));
                 System.out.println("Ticket not added");
         }
         else{
-            String err = AssetPlusFeatureSet4Controller.addMaintenanceTicket(assetNumber, (java.sql.Date)raisedDate, description, raiser, assetNumber);
+            System.out.println(ticketNumber);
+            System.out.println(AssetPlusFeatureSet4Controller.isNotExistingTicket(ticketNumber));
+
+
+           // int number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);
+            String err = AssetPlusFeatureSet4Controller.addMaintenanceTicket(ticketNumber, (java.sql.Date)raisedDate, description, raiser, assetNumber);
+            ViewUtils.callController("");
+       // AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), Integer.parseInt(roomChoice.getValue()), java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
+            
             if (err == ""){
                 ticketNumberField.setText("");
                 descriptionField.setText("");
@@ -111,12 +121,14 @@ public class AddTicketPopUpController {
                 typeField.setValue(null);
                 raisedDateField.setValue(null);
                 addTicketError.setText(null);
-                addTicketError.setText("Your ticket has been created!");
+                //addTicketError.setText("Your ticket has been created!");
                 System.out.println("Ticket added");
+                AssetPlusFXMLView.getInstance().closePopUpWindow();    
             }
             else{
                 addTicketError.setText(err);
-            }      
+            }  
+
         }
     }
 
