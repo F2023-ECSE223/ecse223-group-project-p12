@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
+import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -112,10 +113,11 @@ public class ModifySpecificAssetPopupController {
       if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
         number = 1;
       } else {
-        number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);   
+        number = asset.getAssetNumber();   
       }
-      
-      AssetPlusFeatureSet3Controller.updateSpecificAsset(number, floor, room, java.sql.Date.valueOf(dateChoice.getValue()), type);
+      System.out.println(java.sql.Date.valueOf(dateChoice.getValue()));
+      String result = AssetPlusFeatureSet3Controller.updateSpecificAsset(number, floor, room, java.sql.Date.valueOf(dateChoice.getValue()), type);
+      System.out.println(result);
       ViewUtils.callController("");
       AssetPlusFXMLView.getInstance().closePopUpWindow();
 
@@ -123,13 +125,13 @@ public class ModifySpecificAssetPopupController {
 
 
     public void initialize() {
-
-      
       assetNumber.setEditable(false);
       assetNumber.setText(asset.getAssetNumber()+"");
       assetNumber.setFocusTraversable(false);
 
-      dateChoice.setEditable(false);
+      dateChoice.setEditable(true);
+      LocalDate localDate = asset.getPurchaseDate().toLocalDate();
+      dateChoice.setValue(localDate);
       
       assetTypes.setValue("Current type: " + asset.getAssetType().getName());
 

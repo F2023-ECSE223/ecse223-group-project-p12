@@ -123,7 +123,7 @@ public class AddSpecificAssetPopupController {
       hasErrorDate = false;
     }
 
-      if(!hasErrorDate && !hasErrorType) {
+      if(!hasErrorDate && !hasErrorType && !hasErrorFloor) {
         int number;
         if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
           number = 1;
@@ -132,11 +132,10 @@ public class AddSpecificAssetPopupController {
         }
 
         LocalDate date = dateChoice.getValue();
-        Date purchaseDate = Date.valueOf(date);
-        AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), room, (java.sql.Date)purchaseDate, assetTypes.getValue());
+        AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), room, (java.sql.Date.valueOf(date.toString())), assetTypes.getValue());
         ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
-      }
+      } 
     }
 
     public void initialize() {

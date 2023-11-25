@@ -1,6 +1,8 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -67,7 +69,7 @@ public class AssetMenuController {
     private TableColumn<TOSpecificAsset, String> purchaseDateColumn;
 
     @FXML
-    private TableColumn<TOSpecificAsset, Integer> lifeExpectancyColumn;
+    private TableColumn<TOSpecificAsset, String> lifeExpectancyColumn;
 
     @FXML
     private TableColumn<TOSpecificAsset, HBox> maintenanceHistoryColumn;
@@ -112,15 +114,19 @@ public class AssetMenuController {
     
         resources = AssetPlusFXMLView.getInstance().getBundle();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    
         assetNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAssetNumber()).asObject());
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetType().getName()));
-        lifeExpectancyColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAssetType().getExpectedLifeSpan()).asObject());
-        floorColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRoomNumber()).asObject());
-        roomColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFloorNumber()).asObject());
-        purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getPurchaseDate())));
-        
+        roomColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRoomNumber()).asObject());
+        floorColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFloorNumber()).asObject());
+        purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPurchaseDate().toLocalDate().format(formatter)));
+        lifeExpectancyColumn.setCellValueFactory(cellData -> {
+            String expectedLifeSpanString = cellData.getValue().getAssetType().getExpectedLifeSpan()+ "";
+            String concatenatedString = expectedLifeSpanString + " years";
+            return new SimpleStringProperty(concatenatedString);
+        });
+
         maintenanceHistoryColumn.setCellValueFactory(cellData -> {
             Button maintenanceBtn = new Button();
             maintenanceBtn.getStyleClass().add("icon-maintenancehistory");
@@ -153,6 +159,7 @@ public class AssetMenuController {
         return new SimpleObjectProperty<>(hbox);
     });
 
+    /*
     setPercentageWidth(assetNumberColumn, 15);
     setPercentageWidth(assetColumn, 10);
     setPercentageWidth(roomColumn, 5);
@@ -161,6 +168,7 @@ public class AssetMenuController {
     setPercentageWidth(lifeExpectancyColumn, 15);
     setPercentageWidth(maintenanceHistoryColumn, 15);
     setPercentageWidth(actionColumn, 30);
+     */
 
     }
     
@@ -182,7 +190,6 @@ public class AssetMenuController {
 
     @FXML
      void addSpecificAsset(ActionEvent event) {
-        System.out.println("is anything happening?");
         AddSpecificAssetPopupController controller = (AddSpecificAssetPopupController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddSpecificAssetPopUp.fxml", "Add Specific Asset");
     }
 
@@ -194,8 +201,8 @@ public class AssetMenuController {
     @FXML
     void filterTableView(String selectedType) {
         System.out.println(selectedType);
-        if (selectedType == null || selectedType.equals("key.ShowAll")) {
-            assetTable.setItems(assetList);
+        if (selectedType == null || selectedType.equals(resources.getString("key.ShowAll"))) {
+            showSpecificAsset();
         } else {
             FilteredList<TOSpecificAsset> filteredList = new FilteredList<>(assetList, asset -> selectedType.contains(asset.getAssetType().getName()));
             assetTable.setItems(filteredList);
