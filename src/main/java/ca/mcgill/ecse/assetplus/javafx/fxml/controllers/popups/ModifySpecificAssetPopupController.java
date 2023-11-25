@@ -146,7 +146,7 @@ public class ModifySpecificAssetPopupController {
       assetTypes.setItems(typesList);
 
       lifeExpectancyBox.setVisible(true);
-      lifeExpectancy.setText(asset.getAssetType().getExpectedLifeSpan()+"");
+      lifeExpectancy.setText(asset.getAssetType().getExpectedLifeSpan()+" years");
 
       ArrayList<String> rooms = new ArrayList<>();
       rooms.add("Current room: " + asset.getRoomNumber());

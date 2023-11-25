@@ -87,6 +87,9 @@
                                  <children>
                                     <TextField fx:id="lifeExpectancy" alignment="CENTER" maxWidth="100.0" prefHeight="26.0" prefWidth="136.0" />
                                  </children>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
                               </VBox>
                            </children>
                            <VBox.margin>
@@ -97,13 +100,16 @@
                      <opaqueInsets>
                         <Insets bottom="30.0" />
                      </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
                   </VBox>
                   <Region maxHeight="20.0" maxWidth="20.0" minHeight="10.0" prefHeight="0.0" prefWidth="362.0" />
                   <VBox alignment="CENTER" prefHeight="96.0" prefWidth="394.0">
                      <children>
                         <StackPane prefHeight="86.0" prefWidth="358.0">
                            <children>
-                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="84.0" stroke="BLACK" strokeType="INSIDE" width="344.0" />
+                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="84.0" stroke="BLACK" strokeType="INSIDE" width="365.0" />
                               <VBox alignment="CENTER" prefHeight="80.0" prefWidth="362.0">
                                  <children>
                                     <Label text="%key.AssetMenu_Location">
