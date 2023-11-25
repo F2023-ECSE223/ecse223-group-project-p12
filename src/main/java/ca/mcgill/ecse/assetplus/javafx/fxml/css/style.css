@@ -141,6 +141,11 @@ Stylesheet of our UI
     -fx-border-color:#d8d8d8;
 }
 
+.errorMessage
+{
+    -fx-text-fill: #e8363c;
+}
+
 /* CHOICE BOX STYLE */
 .choice-box {
     -fx-background-color: white; 
@@ -363,6 +368,15 @@ Stylesheet of our UI
 }
 
 #fieldBg {
+    -fx-fill: #F7F6FE;
+    -fx-stroke: #F7F6FE;
+    -fx-stroke-width: 2;
+    -fx-arc-width: 50;
+    -fx-arc-height: 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(163,121,195,0.8), 2, 0, 0, 2);
+}
+
+.fieldBg {
     -fx-fill: #F7F6FE;
     -fx-stroke: #F7F6FE;
     -fx-stroke-width: 2;
