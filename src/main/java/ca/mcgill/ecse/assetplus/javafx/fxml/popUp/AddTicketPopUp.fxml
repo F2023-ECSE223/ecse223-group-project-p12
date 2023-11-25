@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController">
    <children>
       <Pane layoutX="32.0" layoutY="45.0" prefHeight="375.0" prefWidth="299.0">
          <children>
@@ -18,7 +18,7 @@
             <TextField fx:id="ticketNumberField" layoutX="136.0" layoutY="47.0" prefHeight="26.0" prefWidth="85.0" />
             <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="120.0" layoutX="19.0" layoutY="176.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
             <Label layoutX="39.0" layoutY="183.0" prefHeight="26.0" prefWidth="127.0" text="%key.TicketMenu_AddDescription" />
-            <TextField fx:id="descriptionField" layoutX="30.0" layoutY="209.0" prefHeight="75.0" prefWidth="221.0" style="-fx-background-color: white;" />
+            <TextField fx:id="descriptionField" layoutX="30.0" layoutY="209.0" prefHeight="75.0" prefWidth="221.0" style="-fx-background-color: white;" styleClass="descriptionBox" />
             <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="19.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
             <Label layoutX="43.0" layoutY="122.0" prefHeight="18.0" prefWidth="97.0" text="%key.TicketMenu_Status" />
             <TextField fx:id="ticketStatusField" layoutX="130.0" layoutY="118.0" prefHeight="26.0" prefWidth="91.0" text="%key.TicketMenu_StatusOpen" />
@@ -26,7 +26,7 @@
             <Label layoutX="30.0" layoutY="52.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
             <Label layoutX="36.0" layoutY="122.0" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#e81a1a" />
             <Label layoutX="32.0" layoutY="188.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
-            <Label fx:id="addTicketError" layoutX="271.0" layoutY="6.0" text="Label" />
+            <Label fx:id="addTicketError" layoutX="270.0" layoutY="14.0" text="Label" />
          </children>
       </Pane>
       <Pane layoutX="318.0" layoutY="45.0" prefHeight="375.0" prefWidth="299.0">
@@ -48,6 +48,6 @@
             <Label layoutX="55.0" layoutY="253.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
          </children>
       </Pane>
-      <Label alignment="CENTER" layoutX="194.0" layoutY="26.0" prefHeight="28.0" prefWidth="275.0" text="%key.TicketMenu_EnterAdd" />
+      <Label alignment="CENTER" layoutX="194.0" layoutY="26.0" prefHeight="28.0" prefWidth="275.0" styleClass="popUpTitle" text="%key.TicketMenu_EnterAdd" />
    </children>
 </Pane>

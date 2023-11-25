@@ -119,4 +119,10 @@ public class ViewUtils {
   public static List<TOHotelStaff> getHotelStaffs() {
     return AssetPlusFeatureSet1Controller.getHotelStaffs();
   }
+
+  public static void assignTicketTo(String staffName, TOMaintenanceTicket ticket) {
+    String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
+    //return AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffName, null, null, false, SIZE)
+  }
+  
 }
