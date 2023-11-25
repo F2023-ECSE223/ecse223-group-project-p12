@@ -108,8 +108,18 @@ public class ViewUtils {
       return null;
     } 
     System.out.println("Exist!!");
-
     return FXCollections.observableList(ticket.getImageURLs());
+  }
+
+  public static ObservableList<TOMaintenanceNote> getTicketNotes(int id) {
+    TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(id);
+
+    if (ticket==null) {
+      System.out.println("The ticket does not exist");
+      return null;
+    } 
+    System.out.println("Exist!!");
+    return FXCollections.observableList(ticket.getNotes());
   }
 
   public static String getUsername(String email) {
