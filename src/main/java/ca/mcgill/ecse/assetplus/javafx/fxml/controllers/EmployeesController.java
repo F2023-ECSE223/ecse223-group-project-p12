@@ -51,27 +51,6 @@ public class EmployeesController {
     private Button addEmployeeButton;
 
     @FXML
-    private Label modifyErrorMessage;
-
-    @FXML
-    private Label employeeNameDelete;
-
-    @FXML
-    private TabPane employeeOptions;
-
-    @FXML
-    private TextField modifyEmailField;
-
-    @FXML
-    private TextField modifyNameField;
-
-    @FXML
-    private TextField modifyPasswordField;
-
-    @FXML
-    private TextField modifyPhoneNumberField;
-
-    @FXML
     private TextField ticketEmployeeField;
 
     @FXML
@@ -88,38 +67,15 @@ public class EmployeesController {
     }
 
     @FXML
-    void modifyEmployeePopup(ActionEvent event, String email) {
-        employeeOptions.getSelectionModel().select(2);
-        Employee employee = (Employee) Employee.getWithEmail(email);
-        modifyEmailField.setText(employee.getEmail());
-        modifyPasswordField.setText(employee.getPassword());
-        modifyNameField.setText(employee.getName());
-        modifyPhoneNumberField.setText(employee.getPhoneNumber());
+    void modifyEmployeePopup(ActionEvent event, String aEmail) {
+        ModifyEmployeePopUpController controller = (ModifyEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifyEmployeePopUp.fxml", "Modify Employee");
+        controller.email = aEmail;
     }
 
     @FXML
-    void modifyEmployee(ActionEvent event) {
-        String err = AssetPlusFeatureSet1Controller.updateEmployeeOrGuest(modifyEmailField.getText(), modifyPasswordField.getText(), modifyNameField.getText(), modifyPhoneNumberField.getText());
-        if (err.isEmpty()) {
-            modifyErrorMessage.setText("");
-            employeeOptions.getSelectionModel().select(0);
-            showEmployees(AssetPlusFeatureTOController.getAllEmployees());
-        } else {
-            modifyErrorMessage.setText(translateErrorMessage(err));
-        }
-    }
-
-    @FXML
-    void cancelModifyEmployee(ActionEvent event) {
-        employeeOptions.getSelectionModel().select(0);
-        showEmployees(AssetPlusFeatureTOController.getAllEmployees());
-    }
-
-    @FXML
-    void deleteEmployeePopup(ActionEvent event, String email) {
-        employeeOptions.getSelectionModel().select(3);
-        Employee employee = (Employee) User.getWithEmail(email);
-        employeeNameDelete.setText(employee.getName());
+    void deleteEmployeePopup(ActionEvent event, String aEmail) {
+        DeleteEmployeePopUpController controller = (DeleteEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteEmployeePopUp.fxml", "Delete Employee");
+        controller.email = aEmail;
     }
 
     @FXML
@@ -132,20 +88,6 @@ public class EmployeesController {
 
         // let the application be aware of the refreshable node
         AssetPlusFXMLView.getInstance().registerRefreshEvent(viewAllEmployees);
-    }
-
-    @FXML
-    void deleteEmployee(ActionEvent event) {
-        Employee employee = AssetPlusFeatureSet1Controller.getWithName(employeeNameDelete.getText());
-        AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(employee.getEmail());
-        employeeOptions.getSelectionModel().select(0);
-        showEmployees(AssetPlusFeatureTOController.getAllEmployees());
-    }
-
-    @FXML
-    void cancelDeleteEmployee(ActionEvent event) {
-        employeeOptions.getSelectionModel().select(0);
-        showEmployees(AssetPlusFeatureTOController.getAllEmployees());
     }
 
     @FXML

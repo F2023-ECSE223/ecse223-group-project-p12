@@ -38,13 +38,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.EmployeesController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="204.0" prefWidth="415.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.EmployeesController">
   <children>
       <VBox alignment="CENTER" prefHeight="542.0" prefWidth="960.0">
          <children>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="455.0" text="%key.AreYouSureYouWantToDelete" />
             <Label fx:id="employeeNameDelete" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="202.0" />
-            <Pane prefHeight="75.0" prefWidth="750.0" />
+            <Pane prefHeight="0.0" prefWidth="415.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#cancelDeleteEmployee" styleClass="cancelButton" stylesheets="@../css/style.css" text="%key.Cancel" />

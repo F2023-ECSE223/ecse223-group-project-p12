@@ -75,7 +75,7 @@ public class AddEmployeePopUpController {
            
     }
 
-    public String translateErrorMessage(String err) {
+    private String translateErrorMessage(String err) {
       resources = AssetPlusFXMLView.getInstance().getBundle();
       switch (err) {
           case "Email cannot be empty":
