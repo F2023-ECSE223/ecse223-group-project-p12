@@ -447,23 +447,6 @@ Stylesheet of our UI
     -fx-font-weight: bold;
 }
 
-/*SPECIFIC ASSET ADD POP UP BUTTONS*/
-#cancelAssetBtn
-{
-    -fx-background-color: #a30d11;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-radius: 10px;
-}
-
-#createAssetBtn, #modifyAssetBtn, #deleteAssetBtn
-{
-    -fx-text-fill: white;
-    -fx-background-color: #8768F2;
-    -fx-background-radius: 10px;
-    -fx-padding: 5px 10px 5px 10px
-}
-
 /*Ticket ADD POP UP BUTTONS*/
 #cancelButton
 {
