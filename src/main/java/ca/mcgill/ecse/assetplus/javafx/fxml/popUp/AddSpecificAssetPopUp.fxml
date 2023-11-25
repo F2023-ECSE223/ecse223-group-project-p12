@@ -63,7 +63,11 @@
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="5.0" text="*" textFill="#e81a1a" />
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#e81a1a">
+                           <HBox.margin>
+                              <Insets right="3.0" />
+                           </HBox.margin>
+                        </Label>
                         <ComboBox fx:id="assetTypes" onAction="#handleAssetType" prefHeight="28.0" prefWidth="179.0">
                            <HBox.margin>
                               <Insets />
@@ -111,6 +115,11 @@
                                        <children>
                                           <ComboBox fx:id="roomChoice" prefHeight="28.0" prefWidth="156.0" />
                                           <Region maxHeight="10.0" maxWidth="20.0" minHeight="10.0" prefHeight="0.0" prefWidth="362.0" />
+                                          <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#e81a1a">
+                                             <HBox.margin>
+                                                <Insets right="4.0" />
+                                             </HBox.margin>
+                                          </Label>
                                           <ComboBox fx:id="floorChoice" prefHeight="28.0" prefWidth="155.0">
                                              <padding>
                                                 <Insets left="20.0" />
@@ -141,11 +150,16 @@
                               <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="84.0" stroke="BLACK" strokeType="INSIDE" width="343.0" />
                               <VBox alignment="CENTER" prefHeight="93.0" prefWidth="354.0">
                                  <children>
-                                    <Label text="%key.AssetMenu_Date">
-                                       <VBox.margin>
-                                          <Insets bottom="15.0" top="10.0" />
-                                       </VBox.margin>
-                                    </Label>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="409.0">
+                                       <children>
+                                          <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#e81a1a">
+                                             <HBox.margin>
+                                                <Insets right="3.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label text="%key.AssetMenu_Date" />
+                                       </children>
+                                    </HBox>
                                     <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <DatePicker fx:id="dateChoice" />
