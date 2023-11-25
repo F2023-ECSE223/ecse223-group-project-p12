@@ -8,6 +8,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.StartAndCompleteWorkController">
    <children>
+      <fx:include source="../components/PopUpToolBar.fxml" />
       <Label fx:id="title" styleClass="popUpTitle" text="%key.TicketStatus_StartWork" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 50;">
          <children>

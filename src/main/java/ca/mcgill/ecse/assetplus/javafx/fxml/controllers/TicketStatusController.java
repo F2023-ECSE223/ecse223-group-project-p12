@@ -106,7 +106,7 @@ public class TicketStatusController {
             resources.getString("key.TicketStatus_InProgress"),
             resources.getString("key.TicketStatus_Resolved"),
             resources.getString("key.TicketStatus_Closed"),
-            resources.getString("key.TicketStatus_ShowAll")
+            resources.getString("key.ShowAll")
         );
 
         statusChoiceBox.setValue(resources.getString("key.TicketStatus_SelectStatus"));
@@ -120,7 +120,7 @@ public class TicketStatusController {
 
     @FXML
     void filterTableView(String selectedStatus) {
-        if (selectedStatus == null || selectedStatus.equals("key.TicketStatus_ShowAll")) {
+        if (selectedStatus == null || selectedStatus.equals("key.ShowAll")) {
             ticketTable.setItems(ticketList);
         } else {
             FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> selectedStatus.contains(ticket.getStatus()));
@@ -157,7 +157,11 @@ public class TicketStatusController {
             String status = cellData.getValue().getStatus();
             Button statusButton = new Button(resources.getString("key.TicketStatus_" + status));
             statusButton.setStyle(getStyle(status));
+            setCursor(statusButton);
             statusButton.setOnAction(event -> handleStatusCellClicked("key.TicketStatus_" + status, ticketId));
+            Tooltip statusToolTip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ChangeStatus"));
+            statusToolTip.setStyle("-fx-text-fill: #808080");
+            statusButton.setTooltip(statusToolTip);
     
             return new SimpleObjectProperty<>(statusButton);
         });
@@ -209,6 +213,7 @@ public class TicketStatusController {
             imgBtn.getStyleClass().add("icon-image");
             imgBtn.setPickOnBounds(true);
             imgBtn.setOnAction(event -> handleImageButtonClicked(ticketId));
+            setCursor(imgBtn);
             Tooltip imgTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ViewImages"));
             imgTooltip.setStyle("-fx-text-fill: #4488D8");
             imgBtn.setTooltip(imgTooltip);
@@ -217,6 +222,7 @@ public class TicketStatusController {
             notesBtn.getStyleClass().add("icon-notes");
             notesBtn.setPickOnBounds(true);
             notesBtn.setOnAction(event -> handleNotesButtonClicked(ticketId));
+            setCursor(notesBtn);
             Tooltip noteTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ViewNotes"));
             noteTooltip.setStyle("-fx-text-fill: #CD6200");
             notesBtn.setTooltip(noteTooltip);
@@ -225,6 +231,7 @@ public class TicketStatusController {
             editBtn.getStyleClass().add("icon-edit");
             editBtn.setPickOnBounds(true);
             editBtn.setOnAction(event -> handleEditButtonClicked(ticketId));
+            setCursor(editBtn);
             Tooltip editTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ModifyTicket"));
             editTooltip.setStyle("-fx-text-fill: #624DE3");
             editBtn.setTooltip(editTooltip);
@@ -233,6 +240,7 @@ public class TicketStatusController {
             trashBtn.getStyleClass().add("icon-trash");
             trashBtn.setPickOnBounds(true);
             trashBtn.setOnAction(event -> handleTrashButtonClicked());
+            setCursor(trashBtn);
             Tooltip trashTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_DeleteTicket"));
             trashTooltip.setStyle("-fx-text-fill: #A30D11");
             trashBtn.setTooltip(trashTooltip);
@@ -245,13 +253,13 @@ public class TicketStatusController {
     
         });
         
-        setPercentageWidth(ticketNumberColumn, 15);
-        setPercentageWidth(assetColumn, 10); 
-        setPercentageWidth(reporterColumn, 10); 
-        setPercentageWidth(assigneeColumn, 10);
-        setPercentageWidth(dateStartedColumn, 20);
-        setPercentageWidth(statusColumn, 14);
-        setPercentageWidth(actionColumn, 20);
+        // setPercentageWidth(ticketNumberColumn, 15);
+        // setPercentageWidth(assetColumn, 10); 
+        // setPercentageWidth(reporterColumn, 10); 
+        // setPercentageWidth(assigneeColumn, 10);
+        // setPercentageWidth(dateStartedColumn, 20);
+        // setPercentageWidth(statusColumn, 14);
+        // setPercentageWidth(actionColumn, 20);
     }
 
     private void handleStatusCellClicked(String status, int ticketId) {
@@ -270,6 +278,7 @@ public class TicketStatusController {
                 sharedController.setTicketId(ticketId);
                 break;
             case "key.TicketStatus_Resolved":
+
                 
         }
     }
@@ -294,11 +303,7 @@ public class TicketStatusController {
     }
 
     private void handleTrashButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
-    }
-
-    private void setPercentageWidth(TableColumn<?, ?> column, double percentage) {
-        column.prefWidthProperty().bind(ticketTable.widthProperty().multiply(percentage / 100.0));
+        
     }
 
     private String getStyle(String status) {
@@ -316,5 +321,10 @@ public class TicketStatusController {
             default: 
                 return "";
         }
+    }
+
+    private void setCursor(Button button) {
+        button.setOnMouseEntered(event -> button.setCursor(Cursor.HAND));
+        button.setOnMouseExited(event -> button.setCursor(Cursor.DEFAULT));
     }
 }

@@ -184,6 +184,8 @@ Stylesheet of our UI
 .table-view {
     -fx-background-color: transparent;
     -fx-alignment: CENTER;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
 }
 
 .table-view .column-header-background, .table-view .filler {
@@ -214,6 +216,8 @@ Stylesheet of our UI
     -fx-padding: 20px 0 10px 0;
     -fx-border-color: transparent;
     -fx-alignment: CENTER;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
 }
 
 .table-row-cell:odd{
