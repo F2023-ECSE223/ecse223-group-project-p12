@@ -4,6 +4,7 @@ import static java.lang.Integer.highestOneBit;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
@@ -63,6 +64,9 @@ public class AddSpecificAssetPopupController {
     private VBox errorBox;
 
     @FXML
+    private ResourceBundle resources;
+
+    @FXML
     void cancel(ActionEvent event) {
       System.out.println("is this cancelling?");
       AssetPlusFXMLView.getInstance().closePopUpWindow();
@@ -83,7 +87,7 @@ public class AddSpecificAssetPopupController {
 
       errorBox.getChildren().clear();
 
-      Label errorFloor = new Label("Please select a floor.\n");
+      Label errorFloor = new Label(resources.getString("key.AssetMenu_ErrorFloor"));
       if (floorChoice.getValue().contains("Select")) {
           if (!hasErrorFloor) {
               errorFloor.setStyle("-fx-text-fill: red;");
@@ -95,7 +99,7 @@ public class AddSpecificAssetPopupController {
           hasErrorFloor = false;
       }
 
-      Label errorType = new Label("Please select an asset type.\n");
+      Label errorType = new Label(resources.getString("key.AssetMenu_ErrorType"));
       if (assetTypes.getValue().contains("Select")) {
           if (!hasErrorType) {
               errorType.setStyle("-fx-text-fill: red;");
@@ -107,7 +111,7 @@ public class AddSpecificAssetPopupController {
           hasErrorType = false;
       }
     
-    Label errorDate = new Label("Please select a purchase date.\n");
+    Label errorDate = new Label(resources.getString("key.AssetMenu_ErrorDate"));
     if (dateChoice.getValue() == null) {
         if (!hasErrorDate) {
             errorDate.setStyle("-fx-text-fill: red;");

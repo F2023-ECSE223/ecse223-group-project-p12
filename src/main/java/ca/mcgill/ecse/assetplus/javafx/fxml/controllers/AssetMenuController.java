@@ -96,7 +96,7 @@ public class AssetMenuController {
 
     public void showSpecificAsset(){
         typeChoice.setValue(resources.getString("key.AssetMenu_SelectType"));
-        typeChoice.setOnAction(event -> filterTableView(getKey(typeChoice.getValue())));
+        typeChoice.setOnAction(event -> filterTableView(typeChoice.getValue()));
 
         ArrayList<String> types = new ArrayList<>();
         for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
@@ -193,6 +193,7 @@ public class AssetMenuController {
 
     @FXML
     void filterTableView(String selectedType) {
+        System.out.println(selectedType);
         if (selectedType == null || selectedType.equals("key.ShowAll")) {
             assetTable.setItems(assetList);
         } else {
