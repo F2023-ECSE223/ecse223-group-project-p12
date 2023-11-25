@@ -61,11 +61,19 @@
                         <Insets bottom="30.0" />
                      </opaqueInsets>
                   </VBox>
-                  <ComboBox fx:id="assetTypes" onAction="#handleAssetType" prefHeight="28.0" prefWidth="179.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="5.0" text="*" textFill="#e81a1a" />
+                        <ComboBox fx:id="assetTypes" onAction="#handleAssetType" prefHeight="28.0" prefWidth="179.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ComboBox>
+                     </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="15.0" />
                      </VBox.margin>
-                  </ComboBox>
+                  </HBox>
                   <VBox fx:id="lifeExpectancyBox" alignment="CENTER" prefHeight="53.0" prefWidth="482.0">
                      <children>
                         <StackPane prefHeight="45.0" prefWidth="482.0">

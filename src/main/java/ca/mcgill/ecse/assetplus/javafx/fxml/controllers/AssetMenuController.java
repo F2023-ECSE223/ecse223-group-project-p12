@@ -159,17 +159,6 @@ public class AssetMenuController {
         return new SimpleObjectProperty<>(hbox);
     });
 
-    /*
-    setPercentageWidth(assetNumberColumn, 15);
-    setPercentageWidth(assetColumn, 10);
-    setPercentageWidth(roomColumn, 5);
-    setPercentageWidth(floorColumn, 5);
-    setPercentageWidth(purchaseDateColumn, 20);
-    setPercentageWidth(lifeExpectancyColumn, 15);
-    setPercentageWidth(maintenanceHistoryColumn, 15);
-    setPercentageWidth(actionColumn, 30);
-     */
-
     }
     
     private void handleEditButtonClicked(int assetNumber) {
@@ -208,17 +197,6 @@ public class AssetMenuController {
             assetTable.setItems(filteredList);
         }
     }
-
-    private String getKey(String text) {
-        for (String key: resources.keySet()) {
-            if (resources.getString(key).equals(text)) {
-                return key;
-            }
-        }
-
-        return "defaultKey";
-    } 
-
     
 }
 
