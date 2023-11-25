@@ -139,11 +139,11 @@ public class TicketStatusController {
 
     @FXML
     void handleDatePickerClicked(ActionEvent event) {
-
+        
     }
 
     private void showTableView() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
         ticketNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));

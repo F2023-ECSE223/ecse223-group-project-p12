@@ -17,7 +17,7 @@
             <Label layoutX="25.0" layoutY="105.0" prefHeight="18.0" prefWidth="120.0" text="%key.TicketMenu_Status" />
             <Label layoutX="25.0" layoutY="165.0" prefHeight="18.0" prefWidth="99.0" text="%key.TicketMenu_EditDescription" />
             <VBox />
-            <Button fx:id="cancelButton" layoutX="185.0" layoutY="267.0" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="74.0" text="%key.TicketMenu_Cancel" />
+            <Button fx:id="cancelButton" layoutX="185.0" layoutY="267.0" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="74.0" text="%key.Cancel" />
             <TextField fx:id="ticketNumberField" alignment="CENTER" layoutX="159.0" layoutY="40.0" prefHeight="28.0" prefWidth="99.0" promptText="%key.TicketMenu_DisplayTicketNumber" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;" />
             <TextField fx:id="ticketStatusField" alignment="CENTER" layoutX="146.0" layoutY="100.0" prefHeight="18.0" prefWidth="128.0" promptText="%key.TicketMenu_DisplayStatus" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;" />
             <TextField fx:id="ticketDescriptionField" alignment="CENTER" layoutX="140.0" layoutY="160.0" onAction="#changeDescription" prefHeight="26.0" prefWidth="140.0" promptText="%key.TicketMenu_DisplayDescription" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;" />

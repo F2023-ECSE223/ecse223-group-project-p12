@@ -284,16 +284,6 @@
       {
         "AssetType": [
           {
-            "name": "hello",
-            "expectedLifeSpan": 234,
-            "assetPlus": {
-              "@reference": "../../.."
-            },
-            "specificAssets": [
-              ""
-            ]
-          },
-          {
             "name": "desk",
             "expectedLifeSpan": 4500,
             "assetPlus": {
