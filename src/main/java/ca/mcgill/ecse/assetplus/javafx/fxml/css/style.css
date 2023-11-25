@@ -141,6 +141,11 @@ Stylesheet of our UI
     -fx-border-color:#d8d8d8;
 }
 
+.errorMessage
+{
+    -fx-text-fill: #e8363c;
+}
+
 /* CHOICE BOX STYLE */
 .choice-box {
     -fx-background-color: white; 
