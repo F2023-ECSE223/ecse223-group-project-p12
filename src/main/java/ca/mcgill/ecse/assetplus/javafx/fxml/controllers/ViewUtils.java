@@ -104,10 +104,8 @@ public class ViewUtils {
     TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(id);
 
     if (ticket==null) {
-      System.out.println("The ticket does not exist");
       return null;
     } 
-    System.out.println("Exist!!");
     return FXCollections.observableList(ticket.getImageURLs());
   }
 
@@ -115,10 +113,8 @@ public class ViewUtils {
     TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(id);
 
     if (ticket==null) {
-      System.out.println("The ticket does not exist");
       return null;
-    } 
-    System.out.println("Exist!!");
+    }
     return FXCollections.observableList(ticket.getNotes());
   }
 
