@@ -160,7 +160,6 @@ public class ModifySpecificAssetPopupController {
       ArrayList<String> floors = new ArrayList<>();
       floors.add("Current floor: " + asset.getFloorNumber());
       floorChoice.setValue("Current floor: " + asset.getFloorNumber());
-
       for (int i = 0; i <= 20; i++) {
         floors.add(i+"");
       }

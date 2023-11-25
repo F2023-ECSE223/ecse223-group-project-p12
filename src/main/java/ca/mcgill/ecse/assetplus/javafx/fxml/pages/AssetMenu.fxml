@@ -49,7 +49,7 @@
             <fx:include source="../components/Dashboard.fxml" />
             <VBox prefHeight="540.0" prefWidth="750.0" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox fx:id="TopContent" prefHeight="180.0" prefWidth="750.0">
+                  <VBox fx:id="TopContent" prefHeight="153.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                      <children>
                         <fx:include source="../components/UserTopSection.fxml" />
                         <HBox alignment="CENTER_LEFT" prefWidth="750.0" VBox.vgrow="ALWAYS">
@@ -79,18 +79,22 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <TableView id="ticketTable" fx:id="assetTable" prefHeight="380.0" prefWidth="392.0">
-                     <columns>
-                        <TableColumn fx:id="assetNumberColumn" maxWidth="100.0" minWidth="-1.0" prefWidth="97.62446594238281" text="%key.AssetMenu_AssetNumber" />
-                        <TableColumn fx:id="assetColumn" maxWidth="200.0" prefWidth="57.875518798828125" text="%key.AssetMenu_Asset" />
-                        <TableColumn fx:id="roomColumn" maxWidth="200.0" prefWidth="64.31463623046875" text="%key.AssetMenu_Room" />
-                        <TableColumn fx:id="floorColumn" maxWidth="200.0" prefWidth="63.18328857421875" text="%key.AssetMenu_Floor" />
-                        <TableColumn fx:id="purchaseDateColumn" maxWidth="200.0" prefWidth="107.27969360351562" text="%key.AssetMenu_PurchaseDate" />
-                        <TableColumn fx:id="lifeExpectancyColumn" maxWidth="200.0" prefWidth="116.4090576171875" text="%key.AssetMenu_LifeExpectancy" />
-                        <TableColumn fx:id="maintenanceHistoryColumn" prefWidth="152.207275390625" text="%key.AssetMenu_MaintenanceHistory" />
-                        <TableColumn fx:id="actionColumn" maxWidth="222.06982421875" prefWidth="79.79266357421875" text="Action" />
-                     </columns>
-                  </TableView>
+                  <HBox prefHeight="359.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TableView id="ticketTable" fx:id="assetTable" prefHeight="359.0" prefWidth="766.0" HBox.hgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="assetNumberColumn" maxWidth="100.0" minWidth="-1.0" prefWidth="97.62446594238281" text="%key.AssetMenu_AssetNumber" />
+                              <TableColumn fx:id="assetColumn" maxWidth="200.0" prefWidth="57.875518798828125" text="%key.AssetMenu_Asset" />
+                              <TableColumn fx:id="roomColumn" maxWidth="200.0" prefWidth="64.31463623046875" text="%key.AssetMenu_Room" />
+                              <TableColumn fx:id="floorColumn" maxWidth="200.0" prefWidth="63.18328857421875" text="%key.AssetMenu_Floor" />
+                              <TableColumn fx:id="purchaseDateColumn" maxWidth="200.0" prefWidth="107.27969360351562" text="%key.AssetMenu_PurchaseDate" />
+                              <TableColumn fx:id="lifeExpectancyColumn" maxWidth="200.0" prefWidth="116.4090576171875" text="%key.AssetMenu_LifeExpectancy" />
+                              <TableColumn fx:id="maintenanceHistoryColumn" prefWidth="152.207275390625" text="%key.AssetMenu_MaintenanceHistory" />
+                              <TableColumn fx:id="actionColumn" maxWidth="222.06982421875" prefWidth="79.79266357421875" text="Action" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

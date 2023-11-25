@@ -280,55 +280,7 @@
               "@reference": "../../.."
             },
             "specificAssets": [
-              {
-                "SpecificAsset": [
-                  {
-                    "assetNumber": 2,
-                    "floorNumber": 15,
-                    "roomNumber": 41,
-                    "purchaseDate": "2022-07-16",
-                    "assetPlus": {
-                      "@reference": "../../../../.."
-                    },
-                    "maintenanceTickets": [
-                      ""
-                    ],
-                    "assetType": {
-                      "@reference": "../../.."
-                    }
-                  },
-                  {
-                    "assetNumber": 3,
-                    "floorNumber": 15,
-                    "roomNumber": 21,
-                    "purchaseDate": "2023-09-13",
-                    "assetPlus": {
-                      "@reference": "../../../../.."
-                    },
-                    "maintenanceTickets": [
-                      ""
-                    ],
-                    "assetType": {
-                      "@reference": "../../.."
-                    }
-                  },
-                  {
-                    "assetNumber": 4,
-                    "floorNumber": 14,
-                    "roomNumber": 5,
-                    "purchaseDate": "2023-11-15",
-                    "assetPlus": {
-                      "@reference": "../../../../.."
-                    },
-                    "maintenanceTickets": [
-                      ""
-                    ],
-                    "assetType": {
-                      "@reference": "../../.."
-                    }
-                  }
-                ]
-              }
+              ""
             ]
           },
           {
@@ -372,20 +324,9 @@
     ],
     "specificAssets": [
       {
-        "SpecificAsset": [
-          {
-            "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
-          },
-          {
-            "@reference": "../../assetTypes/AssetType/specificAssets/SpecificAsset"
-          },
-          {
-            "@reference": "../../assetTypes/AssetType/specificAssets/SpecificAsset[2]"
-          },
-          {
-            "@reference": "../../assetTypes/AssetType/specificAssets/SpecificAsset[3]"
-          }
-        ]
+        "SpecificAsset": {
+          "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
+        }
       }
     ]
   }

@@ -114,7 +114,6 @@ public class AssetMenuController {
         });
         
         actionColumn.setCellValueFactory(cellData -> {
-        // Create an HBox with three SVGPath objects representing icons
 
         Button editBtn = new Button();
         editBtn.getStyleClass().add("icon-edit");
@@ -132,6 +131,16 @@ public class AssetMenuController {
 
         return new SimpleObjectProperty<>(hbox);
     });
+
+        setPercentageWidth(assetNumberColumn, 15);
+        setPercentageWidth(assetColumn, 10); 
+        setPercentageWidth(roomColumn, 5); 
+        setPercentageWidth(floorColumn,5);
+        setPercentageWidth(purchaseDateColumn, 20);
+        setPercentageWidth(lifeExpectancyColumn, 15);
+        setPercentageWidth(maintenanceHistoryColumn, 15);
+        setPercentageWidth(actionColumn, 20);
+
     }
     
     private void handleEditButtonClicked(int assetNumber) {
@@ -154,6 +163,10 @@ public class AssetMenuController {
      void addSpecificAsset(ActionEvent event) {
         System.out.println("is anything happening?");
         AddSpecificAssetPopupController controller = (AddSpecificAssetPopupController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddSpecificAssetPopUp.fxml", "Add Specific Asset");
+    }
+
+    private void setPercentageWidth(TableColumn<?, ?> column, double percentage) {
+        column.prefWidthProperty().bind(assetTable.widthProperty().multiply(percentage / 100.0));
     }
 
     

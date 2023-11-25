@@ -11,9 +11,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteSpecificAssetPopUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="446.0" styleClass="popUpWindow" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteSpecificAssetPopUpController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="-6.0" layoutY="2.0" prefHeight="156.0" prefWidth="415.0" style="-fx-background-color: white;">
+      <VBox alignment="TOP_CENTER" layoutX="39.0" layoutY="4.0" prefHeight="146.0" prefWidth="364.0" style="-fx-background-color: white;">
          <children>
             <Label fx:id="topPopups" text="%key.AssetMenu_TitleDeletePrompt">
                <VBox.margin>
@@ -23,19 +23,19 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <VBox alignment="CENTER" prefHeight="96.0" prefWidth="394.0">
+            <VBox alignment="CENTER" prefHeight="56.0" prefWidth="331.0">
                <children>
-                  <StackPane prefHeight="86.0" prefWidth="358.0">
+                  <StackPane prefHeight="49.0" prefWidth="354.0">
                      <children>
-                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="45.0" stroke="BLACK" strokeType="INSIDE" width="364.0" />
-                        <HBox alignment="CENTER" prefHeight="65.0" prefWidth="374.0">
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="45.0" stroke="BLACK" strokeType="INSIDE" width="335.0" />
+                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="333.0">
                            <children>
                               <Label text="%key.AssetMenu_DeleteConfirmation">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="assetNumber" alignment="CENTER" maxWidth="50.0" prefHeight="26.0" prefWidth="57.0" />
+                              <TextField fx:id="assetNumber" maxWidth="50.0" prefHeight="26.0" prefWidth="40.0" />
                            </children>
                         </HBox>
                      </children>

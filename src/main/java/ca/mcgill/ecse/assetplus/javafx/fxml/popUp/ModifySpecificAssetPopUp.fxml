@@ -14,9 +14,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifySpecificAssetPopupController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="496.0" styleClass="popUpWindow" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifySpecificAssetPopupController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="-6.0" layoutY="2.0" prefHeight="461.0" prefWidth="502.0" style="-fx-background-color: white;">
+      <VBox alignment="TOP_CENTER" layoutX="26.0" layoutY="15.0" prefHeight="433.0" prefWidth="444.0" style="-fx-background-color: white;">
          <children>
             <Label fx:id="topPopups" text="%key.AssetMenu_TitleAddSpecificAsset">
                <VBox.margin>
