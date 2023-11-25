@@ -89,18 +89,18 @@ public class TicketStatusController {
         resources = AssetPlusFXMLView.getInstance().getBundle();
 
         statusChoiceBox.getItems().addAll(
-            resources.getString("key.Open"),
-            resources.getString("key.Assigned"),
-            resources.getString("key.InProgress"),
-            resources.getString("key.Resolved"),
-            resources.getString("key.Closed"),
-            resources.getString("key.ShowAll")
+            resources.getString("key.TicketStatus_Open"),
+            resources.getString("key.TicketStatus_Assigned"),
+            resources.getString("key.TicketStatus_InProgress"),
+            resources.getString("key.TicketStatus_Resolved"),
+            resources.getString("key.TicketStatus_Closed"),
+            resources.getString("key.TicketStatus_ShowAll")
         );
 
-        statusChoiceBox.setValue(resources.getString("key.SelectStatus"));
+        statusChoiceBox.setValue(resources.getString("key.TicketStatus_SelectStatus"));
         statusChoiceBox.setOnAction(event -> filterTableView(getKey(statusChoiceBox.getValue())));
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
 
         ticketNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
@@ -125,12 +125,21 @@ public class TicketStatusController {
                             setCursor(Cursor.DEFAULT);
                         }
                         else {
-                            setText(resources.getString("key." + item));
-                            setStyle(getStatusStyle(resources.getString("key." + item)));
+                            setText(resources.getString("key.TicketStatus_" + item));
+                            setStyle(getStatusStyle(resources.getString("key.TicketStatus_" + item)));
                             setCursor(Cursor.HAND);
 
-                            //int ticketId = getTableRow().getItem().getId();
-                            setOnMouseClicked(event -> handleStatusCellClicked("key." + item));
+                            int rowIndex = getIndex();
+                            TOMaintenanceTicket ticket = null;
+
+                            if (rowIndex >= 0 && rowIndex < getTableView().getItems().size()) {
+                                ticket = getTableView().getItems().get(rowIndex);
+                            }
+
+                            if (ticket != null) {
+                                int ticketId = ticket.getId();
+                                setOnMouseClicked(event -> handleStatusCellClicked("key." + item, ticketId));
+                            }
                         }
                     }
 
@@ -242,7 +251,7 @@ public class TicketStatusController {
 
     @FXML
     void filterTableView(String selectedStatus) {
-        if (selectedStatus == null || selectedStatus.equals("key.ShowAll")) {
+        if (selectedStatus == null || selectedStatus.equals("key.TicketStatus_ShowAll")) {
             ticketTable.setItems(ticketList);
         } else {
             FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> selectedStatus.contains(ticket.getStatus()));
@@ -265,19 +274,18 @@ public class TicketStatusController {
 
     }
 
-    private void handleStatusCellClicked(String status) {
-        Object controller;
-
+    private void handleStatusCellClicked(String status, int ticketId) {
+        StartAndCompleteWorkController sharedController;
         switch (status) {
-            case "key.Open":
-                controller = (AssignStaffToTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+            case "key.TicketStatus_Open":
+                AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
                 //controller.setTicketId(ticketId);
                 break;
-            case "key.Assigned":
-                controller = (StartAndCompleteWorkController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/StartWork.fxml", "Start Work");
+            case "key.TicketStatus_Assigned":
+                sharedController = (StartAndCompleteWorkController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/StartWork.fxml", "Start Work");
                 break;
-            case "key.InProgress":
-                controller = (StartAndCompleteWorkController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/StartWork.fxml", "Start Work");
+            case "key.TicketStatus_InProgress":
+                sharedController = (StartAndCompleteWorkController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/StartWork.fxml", "Start Work");
                 break;
         }
     }

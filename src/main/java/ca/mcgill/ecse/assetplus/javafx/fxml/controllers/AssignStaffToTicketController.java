@@ -3,7 +3,6 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.TOHotelStaff;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;

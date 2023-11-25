@@ -6,12 +6,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.StartAndCompletWorkController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.StartAndCompleteWorkController">
    <children>
-      <Label styleClass="popUpTitle" text="%key.TicketStatus_StartWork" />
+      <Label styleClass="popUpTitle" text="%key.TicketStatus_ApproveTicket" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 50;">
          <children>
-            <Label prefHeight="17.0" prefWidth="335.0" text="%key.TicketStatus_StartWorkLabel">
+            <Label prefHeight="17.0" prefWidth="335.0" text="%key.TicketStatus_ApproveTicketLabel">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
