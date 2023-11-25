@@ -40,7 +40,16 @@ public class AssetPlusFeatureSet4Controller {
 
     //Add the specific ticket to the AssetPlus application instance.
     try {
-        MaintenanceTicket newTicket = AssetPlusApplication.getAssetPlus().addMaintenanceTicket(id, raisedOnDate, description, User.getWithEmail(email));
+        User raiser;
+        if (email.equals(AssetPlusApplication.getAssetPlus().getManager().getEmail())){
+            raiser = AssetPlusApplication.getAssetPlus().getManager();
+        }
+        else{
+            raiser = User.getWithEmail(email);
+        }
+        
+        MaintenanceTicket newTicket = AssetPlusApplication.getAssetPlus().addMaintenanceTicket(id, raisedOnDate, description, raiser);
+        
         if (assetNumber != -1) {
           SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
           newTicket.setAsset(asset);
@@ -50,7 +59,8 @@ public class AssetPlusFeatureSet4Controller {
           newTicket.setAsset(null);
         }
         AssetPlusApplication.getAssetPlus().addMaintenanceTicket(newTicket);
-      }
+      
+    }
     catch (RuntimeException e){
         return e.getMessage();
     }
@@ -141,7 +151,7 @@ public class AssetPlusFeatureSet4Controller {
    * @param id the ticket id associated to a maintenance ticket
    * @return an empty string or an error message
    */
-  private static String isNotExistingTicket(int id){
+  public static String isNotExistingTicket(int id){
     if (MaintenanceTicket.hasWithId(id)){
       return "Ticket id already exists";
     }
