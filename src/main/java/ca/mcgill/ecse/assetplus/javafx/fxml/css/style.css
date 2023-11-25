@@ -481,6 +481,20 @@ Stylesheet of our UI
     -fx-padding: 5px 10px 5px 10px
 }
 
+/* View Notes */
+.note
+{
+    -fx-background-color: #FEF2E5;
+    -fx-border-width: 0;
+    -fx-effect: none;
+    -fx-background-radius: 10px;
+}
+
+.noteText
+{
+    -fx-text-fill: #CD6200;
+}
+
 /* Radio button */
 
 .radio-button .radio {

@@ -7,6 +7,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AssignStaffToTick
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.StartAndCompleteWorkController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.UpdateTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewNotesController;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -279,9 +280,8 @@ public class TicketStatusController {
     }
 
     private void handleNotesButtonClicked(int ticketId) {
-        // To Do handle notes
-        //ViewImagesController controller = (ViewImagesController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewImages.fxml", "View Images");
-        //controller.setTicketId(ticketId);
+        ViewNotesController controller = (ViewNotesController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewNotes.fxml", "View Notes");
+        controller.setTicketId(ticketId);
     }
 
     private void handleEditButtonClicked(int ticketId) {
