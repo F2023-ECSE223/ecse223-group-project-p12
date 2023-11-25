@@ -64,8 +64,18 @@ public class ModifySpecificAssetPopupController {
 
   public static TOSpecificAsset asset;
 
-  
+  @FXML 
+  private VBox errorBox;
 
+
+  public static void get(int assetNumber){
+    for (TOSpecificAsset assets : AssetPlusFeatureTOController.getSpecificAssets()){
+      if (assets.getAssetNumber() == assetNumber){
+        asset = assets;
+      }
+    }
+  }
+  
     @FXML
     void cancel(ActionEvent event) {
       AssetPlusFXMLView.getInstance().closePopUpWindow();
@@ -73,62 +83,44 @@ public class ModifySpecificAssetPopupController {
 
     @FXML
     void modify(ActionEvent event) {
-      StringBuilder error = new StringBuilder();
-      boolean hasError = false;
-      int room, floor;
-      String assetType;
+      int room = 0;
+      int floor = 0;
+      String type = "";
+    
 
-      if (roomChoice.getValue().contains("Current")) {
-        room = asset.getRoomNumber();
-    } else if (!roomChoice.getValue().contains("no") && !roomChoice.getValue().contains("select")) {
-        room = Integer.parseInt(roomChoice.getValue());
-    } else {
+      if (roomChoice.getValue().contains("No")){
         room = -1;
-    }
-    
-    if (floorChoice.getValue().contains("Current")) {
+      } else if (roomChoice.getValue().contains("Current")) {
+        room = asset.getRoomNumber();
+      } else {
+        room = Integer.parseInt(roomChoice.getValue());
+      }
+
+      if (floorChoice.getValue().contains("Current")) {
         floor = asset.getFloorNumber();
-    } else if (!floorChoice.getValue().contains("no") && !floorChoice.getValue().contains("select")) {
+      } else {
         floor = Integer.parseInt(floorChoice.getValue());
-    } else {
-        floor = -1;
-    }
-    
-
-      if (assetTypes.getValue().contains("Select")){
-        hasError = true;
-        error.append("\n Please select an asset type. \n\n");
       }
 
-      if (assetTypes.getValue().contains("Current")){
-        assetType = asset.getAssetType().getName();
+      if (assetTypes.getValue().contains("Current")) {
+        type = asset.getAssetType().getName();
       } else {
-        assetType = assetTypes.getValue();
+        type = assetTypes.getValue();
       }
 
-      if (dateChoice.getValue() == null){
-        hasError = true;
-        error.append("\n Please select a purchase date. \n\n");
-      }
-
-      if (hasError){
-        ViewUtils.showError(error.toString());
+      int number;
+      if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
+        number = 1;
       } else {
-        int number = asset.getAssetNumber();
-        AssetPlusFeatureSet3Controller.updateSpecificAsset(number, number, number, asset.getPurchaseDate(), assetType);
-        //AssetMenuController.refreshTables();
-        AssetPlusFXMLView.getInstance().closePopUpWindow();
+        number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);   
       }
-    }
+      
+      AssetPlusFeatureSet3Controller.updateSpecificAsset(number, floor, room, java.sql.Date.valueOf(dateChoice.getValue()), type);
+      ViewUtils.callController("");
+      AssetPlusFXMLView.getInstance().closePopUpWindow();
 
-
-    public static void get(int assetNumber){
-      for (TOSpecificAsset assets : AssetPlusFeatureTOController.getSpecificAssets()){
-        if(assetNumber == assets.getAssetNumber()){
-          asset = assets;
-        }
       }
-    }
+
 
     public void initialize() {
 
@@ -168,7 +160,7 @@ public class ModifySpecificAssetPopupController {
       ArrayList<String> floors = new ArrayList<>();
       floors.add("Current floor: " + asset.getFloorNumber());
       floorChoice.setValue("Current floor: " + asset.getFloorNumber());
-      floors.add("No floor");
+
       for (int i = 0; i <= 20; i++) {
         floors.add(i+"");
       }

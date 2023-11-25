@@ -1,6 +1,8 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import static java.lang.Integer.highestOneBit;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
@@ -122,7 +124,10 @@ public class AddSpecificAssetPopupController {
         } else {
           number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);   
         }
-        AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), room, java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
+
+        LocalDate date = dateChoice.getValue();
+        Date purchaseDate = Date.valueOf(date);
+        AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), room, (java.sql.Date)purchaseDate, assetTypes.getValue());
         ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       }

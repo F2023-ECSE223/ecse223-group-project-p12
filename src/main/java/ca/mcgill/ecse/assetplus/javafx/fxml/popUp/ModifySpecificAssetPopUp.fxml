@@ -148,6 +148,7 @@
                   <Insets />
                </opaqueInsets>
             </VBox>
+            <VBox fx:id="errorBox" prefHeight="46.0" prefWidth="482.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="cancelAssetBtn" mnemonicParsing="false" onAction="#cancel" styleClass="cancelButton" text="%key.AssetMenu_CancelAsset" />
