@@ -50,8 +50,8 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="55.0" prefWidth="482.0">
                <children>
-                  <Button fx:id="cancelAssetBtn" mnemonicParsing="false" onAction="#cancel" text="%key.AssetMenu_CancelAsset" />
-                  <Button fx:id="deleteAssetBtn" mnemonicParsing="false" onAction="#delete" text="%key.AssetMenu_DeleteAsset">
+                  <Button fx:id="cancelAssetBtn" mnemonicParsing="false" onAction="#cancel" styleClass="cancelButton" text="%key.AssetMenu_CancelAsset" />
+                  <Button fx:id="deleteAssetBtn" mnemonicParsing="false" onAction="#delete" styleClass="actionButton" text="%key.AssetMenu_DeleteAsset">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>

@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
+import static java.lang.Integer.highestOneBit;
 import java.util.ArrayList;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
@@ -65,16 +66,20 @@ public class AddSpecificAssetPopupController {
 
     @FXML
     void create(ActionEvent event) {
-      int room, floor;
+      int room = 0, floor = 0;
       boolean hasErrorDate = false;
       boolean hasErrorType = false;
 
-      if (roomChoice.getValue().contains("no") || roomChoice.getValue().contains("select")){
+      if (roomChoice.getValue().contains("No") || roomChoice.getValue().contains("select")){
         room = -1;
+      } else {
+        room = Integer.parseInt(roomChoice.getValue());
       }
 
-      if (floorChoice.getValue().contains("no") || floorChoice.getValue().contains("select")){
-        floor = -1;
+      if (floorChoice.getValue().contains("No") || floorChoice.getValue().contains("select")){
+        floor = 0;
+      } else {
+        floor = Integer.parseInt(floorChoice.getValue());
       }
       
       errorBox.getChildren().clear();
@@ -111,12 +116,11 @@ public class AddSpecificAssetPopupController {
         } else {
           number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);   
         }
-        AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), Integer.parseInt(roomChoice.getValue()), java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
+        AssetPlusFeatureSet3Controller.addSpecificAsset(number, floor, room, java.sql.Date.valueOf(dateChoice.getValue()), assetTypes.getValue());
         ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       }
     }
-
 
     public void initialize() {
       errorBox.setVisible(false);

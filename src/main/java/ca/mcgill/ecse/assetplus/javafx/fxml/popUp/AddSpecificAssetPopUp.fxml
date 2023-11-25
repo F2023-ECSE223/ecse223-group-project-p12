@@ -155,8 +155,8 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="482.0">
                <children>
-                  <Button fx:id="cancelAssetBtn" mnemonicParsing="false" onAction="#cancel" text="%key.AssetMenu_CancelAsset" />
-                  <Button fx:id="createAssetBtn" mnemonicParsing="false" onAction="#create" text="%key.AssetMenu_CreateAsset">
+                  <Button fx:id="cancelAssetBtn" mnemonicParsing="false" onAction="#cancel" styleClass="cancelButton" text="%key.AssetMenu_CancelAsset" />
+                  <Button fx:id="createAssetBtn" mnemonicParsing="false" onAction="#create" styleClass="actionButton" text="%key.AssetMenu_CreateAsset">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
