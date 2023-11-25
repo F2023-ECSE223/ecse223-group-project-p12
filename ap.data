@@ -217,25 +217,6 @@
                                   "@class": "Manager",
                                   "@reference": "../../.."
                                 }
-                              },
-                              {
-                                "id": 7,
-                                "raisedOnDate": "2023-11-25",
-                                "description": "abc",
-                                "status": "Open",
-                                "ticketNotes": [
-                                  ""
-                                ],
-                                "ticketImages": [
-                                  ""
-                                ],
-                                "assetPlus": {
-                                  "@reference": "../../../../../../../../../.."
-                                },
-                                "ticketRaiser": {
-                                  "@class": "Manager",
-                                  "@reference": "../../.."
-                                }
                               }
                             ]
                           }
@@ -309,9 +290,6 @@
           },
           {
             "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket[2]"
-          },
-          {
-            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket[3]"
           }
         ]
       }

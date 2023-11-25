@@ -121,9 +121,13 @@ Stylesheet of our UI
 
 .descriptionBox{
     -fx-background-color: #F7F6FE;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
     -fx-text-fill: #808080;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-inner-border: transparent;
+    -fx-border-color: transparent;
 }
 
 /* Pop Up Style */

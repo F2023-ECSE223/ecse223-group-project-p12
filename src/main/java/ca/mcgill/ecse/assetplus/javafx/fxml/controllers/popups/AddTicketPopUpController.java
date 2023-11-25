@@ -17,8 +17,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 
 public class AddTicketPopUpController {
@@ -37,10 +40,10 @@ public class AddTicketPopUpController {
     private Button addTicketButton;
 
     @FXML
-    private ChoiceBox<String> assetNumberField;
+    private ComboBox<String> assetNumberField;
 
     @FXML
-    private TextField descriptionField;
+    private TextArea descriptionField;
 
     @FXML
     private TextField raiserField;
@@ -58,7 +61,8 @@ public class AddTicketPopUpController {
     private TextField ticketStatusField;
 
     @FXML
-    private ChoiceBox<String> typeField;
+    private ComboBox<String> typeField;
+
 
     @FXML
     void initialize(){
@@ -66,6 +70,9 @@ public class AddTicketPopUpController {
         ticketNumberField.setEditable(false);
         ticketNumberField.setText((AssetPlusFeatureSet6Controller.getTickets().get(AssetPlusFeatureSet6Controller.getTickets().size()-1).getId()+1)+"");
         ticketNumberField.setFocusTraversable(false);
+        ticketStatusField.setEditable(false);
+        ticketStatusField.setFocusTraversable(false);
+
 
         ObservableList<TOAssetType> list = ViewUtils.getAssetTypes();
         for (TOAssetType type : list){
@@ -88,7 +95,7 @@ public class AddTicketPopUpController {
     
     @FXML
     void addTicketClicked(ActionEvent event) {
-        Integer ticketNumber = Integer.parseInt(ticketNumberField.getText());
+        String ticketNumberString = ticketNumberField.getText();
         String description = descriptionField.getText();
         String raiser = raiserField.getText();
         //figure out date picker
@@ -99,11 +106,12 @@ public class AddTicketPopUpController {
             assetNumber = Integer.parseInt(assetNumberField.getValue());
         }
 
-        if (ticketNumber == null || description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null){
+        if (ticketNumberString == null || description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null){
                 addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage"));
                 System.out.println("Ticket not added");
         }
         else{
+            int ticketNumber = Integer.parseInt(ticketNumberString);
             System.out.println(ticketNumber);
             System.out.println(AssetPlusFeatureSet4Controller.isNotExistingTicket(ticketNumber));
 
@@ -137,6 +145,13 @@ public class AddTicketPopUpController {
         AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
 
+    //@FXML
+    //void startNewline(ScrollEvent event) {
+        //descriptionField.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Scroll to the end when text changes
+           // descriptionField.setScrollLeft(Double.MAX_VALUE);
+       // });
+   // }
 }
 
 
