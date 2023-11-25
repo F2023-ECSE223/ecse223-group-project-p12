@@ -76,7 +76,9 @@ class TOManager {
   List<Integer> ticketApproved;
 }
 
-class TOSpecificAsset { 
+class TOSpecificAsset {
+  depend ca.mcgill.ecse.assetplus.model.AssetType;
+
   immutable
   int assetNumber;
   int floorNumber;

@@ -34,6 +34,11 @@ Stylesheet of our UI
     -fx-effect: none;
 }
 
+.toolbarDeleteButton:hover
+{
+    -fx-background-color: #a30d11;
+}
+
 .noticeMessage
 {
     -fx-text-fill: #8668f2a9;
@@ -126,9 +131,15 @@ Stylesheet of our UI
 {
     -fx-text-fill: #8768F2;
     -fx-font-weight: bold;
-    -fx-font-size: 18px;
+    -fx-font-size: 16px;
 }
 
+.popUpWindow
+{
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-border-color:#d8d8d8;
+}
 
 /* CHOICE BOX STYLE */
 .choice-box {
@@ -379,6 +390,18 @@ Stylesheet of our UI
 
 .date-picker .date-cell:hover {
     -fx-background-color: #F7F6FE;
+}
+
+.icon-date-picker {
+    -icon-paint:  #8768F2;
+    -fx-background-color: -icon-paint;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+    -size: 25;
+
+    -fx-shape: "M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2zM5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z";
 }
 
 #topPopups {

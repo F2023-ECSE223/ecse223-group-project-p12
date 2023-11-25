@@ -86,6 +86,9 @@ public class AssetPlusFeatureUtility {
 
     String error = "";
 
+    if (email.equals("manager@ap.com")){
+         return "";
+    }
     if (!User.hasWithEmail(email)) {
       switch (subject) {
         case "hotel staff":
@@ -98,6 +101,7 @@ public class AssetPlusFeatureUtility {
           error = "Error: user not found";
       }
     }
+    
     return error;
   }
 

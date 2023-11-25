@@ -32,7 +32,6 @@ public class AddImagePopUpController {
     if ( ViewUtils.callController((AssetPlusFeatureSet5Controller.addImageToMaintenanceTicket(url, ticketId))) ) {
       AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
-    
   }
 
   @FXML
