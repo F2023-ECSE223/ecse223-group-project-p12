@@ -11,7 +11,6 @@ import java.util.*;
  */
 // line 4 "../../../../../../MaintenanceTicket.ump"
 // line 45 "../../../../../../AssetPlus.ump"
-// line 21 "../../../../../../AssetPlusPersistence.ump"
 public class MaintenanceTicket
 {
 
@@ -686,14 +685,6 @@ public class MaintenanceTicket
    private void doDisapproveWork(Date date, String desc){
     MaintenanceNote newNote = addTicketNote(date, desc, AssetPlusApplication.getAssetPlus().getManager());
     addTicketNote(newNote);
-  }
-
-  // line 23 "../../../../../../AssetPlusPersistence.ump"
-   public static  void reinitializeUniqueTickets(List<MaintenanceTicket> tickets){
-    maintenanceticketsById.clear();
-        for (var ticket : tickets) {
-            maintenanceticketsById.put(ticket.getId(), ticket);
-        }
   }
 
 

@@ -40,7 +40,7 @@ public class AssetPlusPersistence {
     if (ap == null) {
       ap = new AssetPlus();
     } else {
-      ap.reinitialize();
+      //ap.reinitialize();
     }
     return ap;
   }
