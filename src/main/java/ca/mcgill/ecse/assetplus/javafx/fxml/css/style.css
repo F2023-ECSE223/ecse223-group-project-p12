@@ -119,12 +119,17 @@ Stylesheet of our UI
     -fx-text-fill: #808080;
 }
 
-.descriptionBox
+.text-field-white
 {
     -fx-background-color: #F7F6FE;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
     -fx-text-fill: #808080;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-inner-border: transparent;
+    -fx-border-color: transparent;
+    -fx-background-color: white;
 }
 
 .text-area .scroll-pane .viewport{
@@ -429,6 +434,14 @@ Stylesheet of our UI
     -fx-arc-width: 50;
     -fx-arc-height: 50;
     -fx-effect: dropshadow(three-pass-box, rgba(163,121,195,0.8), 2, 0, 0, 2);
+}
+
+.fieldBgDelete{
+    -fx-fill: #F7F6FE;
+    -fx-stroke: #F7F6FE;
+    -fx-stroke-width: 2;
+    -fx-arc-width: 40;
+    -fx-arc-height: 40;
 }
 
 /* DATE PICKER CSS*/

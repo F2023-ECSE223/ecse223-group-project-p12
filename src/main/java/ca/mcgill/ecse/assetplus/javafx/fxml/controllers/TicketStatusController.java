@@ -6,7 +6,8 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpCon
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ApproveTicketController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AssignStaffToTicketController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.StartAndCompleteWorkController;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.UpdateTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewNotesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewTicketPopUpController;
@@ -42,6 +43,7 @@ import java.util.ResourceBundle;
 import com.google.common.collect.Table;
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import javafx.stage.Stage;;
 
 public class TicketStatusController {
@@ -151,6 +153,11 @@ public class TicketStatusController {
 
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
         reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getRaisedByEmail())));
+        assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFixedByEmail()));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPurchaseDate().toLocalDate().format(formatter)));
+        dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedOnDate().toLocalDate().format(formatter)));
+        statusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getFixedByEmail())));
         dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getRaisedOnDate())));
         
@@ -225,7 +232,7 @@ public class TicketStatusController {
             Button trashBtn = new Button();
             trashBtn.getStyleClass().add("icon-trash");
             trashBtn.setPickOnBounds(true);
-            trashBtn.setOnAction(event -> handleTrashButtonClicked());
+            trashBtn.setOnAction(event -> handleTrashButtonClicked(ticketId));
             setCursor(trashBtn);
             Tooltip trashTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_DeleteTicket"));
             trashTooltip.setStyle("-fx-text-fill: #A30D11");
@@ -273,14 +280,18 @@ public class TicketStatusController {
     }
 
     private void handleEditButtonClicked(int ticketId) {
-        System.out.println("is anything happening?");
-        UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/UpdateTicketPopUp.fxml", "Update Ticket");
-           // if (controller==null) System.out.println("controller null");
+        ModifyTicketPopUpController controller = (ModifyTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifyTicketPopUp.fxml", "Update Ticket");
+        if (controller==null) System.out.println("controller null");
         System.out.println("Updating with ticket number: " + Integer.toString(ticketId));
         controller.setTicketId(ticketId);
 
     }
 
+    private void handleTrashButtonClicked(int ticketId) {
+        DeleteTicketPopUpController.setId(ticketId);
+        DeleteTicketPopUpController controller = (DeleteTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteTicketPopUp.fxml", "Delete Ticket");
+        if (controller==null) System.out.println("controller null");
+        System.out.println("Deleting with ticket number: " + Integer.toString(ticketId));
     private void handleTrashButtonClicked() {
         
     }

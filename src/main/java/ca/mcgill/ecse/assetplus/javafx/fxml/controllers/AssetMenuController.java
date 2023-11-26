@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
+import static java.lang.Integer.numberOfLeadingZeros;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,10 +27,12 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -83,8 +86,33 @@ public class AssetMenuController {
     private Button addSpecificAssetBtn;
 
     @FXML
-    private ComboBox<String> typeChoice;
+    private TextField assetNumberSearch;
 
+    @FXML
+    private TextField assetSearch;
+
+     @FXML
+    private DatePicker dateSearch;
+
+    @FXML
+    private TextField floorSearch;
+
+    @FXML
+    private TextField lifeSearch;
+
+    @FXML
+    private TextField roomSearch;
+
+    @FXML
+    private GridPane searchPane;
+
+    @FXML
+    private Button searchBtn;
+
+    @FXML
+    void search(ActionEvent event) {
+        searchPane.setVisible(true);
+    }
 
     @FXML
     void initialize() {
@@ -97,16 +125,7 @@ public class AssetMenuController {
     }
 
     public void showSpecificAsset(){
-        typeChoice.setValue(resources.getString("key.AssetMenu_SelectType"));
-        typeChoice.setOnAction(event -> filterTableView(typeChoice.getValue()));
-
-        ArrayList<String> types = new ArrayList<>();
-        for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
-            types.add(type.getName());
-        }
-        ObservableList<String> typesList = FXCollections.observableArrayList(types);
-        typesList.add(resources.getString("key.ShowAll"));
-        typeChoice.setItems(typesList);
+        searchPane.setVisible(false);
 
         List<TOSpecificAsset> assets = AssetPlusFeatureTOController.getSpecificAssets();
         assetList = FXCollections.observableList(assets);
@@ -159,7 +178,43 @@ public class AssetMenuController {
         return new SimpleObjectProperty<>(hbox);
     });
 
+    assetNumberSearch.setOnKeyReleased(event -> performSearch());
+    assetSearch.setOnKeyReleased(event -> performSearch());
+    dateSearch.setOnAction(event -> performSearch());
+    floorSearch.setOnKeyReleased(event -> performSearch());
+    lifeSearch.setOnKeyReleased(event -> performSearch());
+    roomSearch.setOnKeyReleased(event -> performSearch());
+
     }
+
+    private void performSearch() {
+        int assetNumberText = assetNumberSearch.getText().isEmpty() ? 0 : Integer.parseInt(assetNumberSearch.getText().toLowerCase().trim());
+        String assetName = assetSearch.getText().toLowerCase().trim();
+        LocalDate searchDate = dateSearch.getValue();
+        String floorText = floorSearch.getText().toLowerCase().trim();
+        int floorNumber = floorText.isEmpty() ? 0 : Integer.parseInt(floorText);
+        String roomText = roomSearch.getText().toLowerCase().trim();
+        int roomNumber = roomText.isEmpty() ? 0 : Integer.parseInt(roomText);
+        String lifeText = lifeSearch.getText().toLowerCase().trim();
+        int lifeNumber = lifeText.isEmpty() ? 0 : Integer.parseInt(lifeText);
+    
+        FilteredList<TOSpecificAsset> filteredAssets = new FilteredList<>(assetList);
+
+        filteredAssets.setPredicate(asset -> {
+            boolean assetNumberMatch = assetNumberText == 0 || asset.getAssetNumber() == assetNumberText;
+            boolean assetNameMatch = assetName.isEmpty() || asset.getAssetType().getName().toLowerCase().contains(assetName);
+            boolean dateMatch = searchDate == null || asset.getPurchaseDate().toLocalDate().isEqual(searchDate);
+            boolean floorMatch = floorText.isEmpty() || (asset.getFloorNumber() == floorNumber);
+            boolean lifeExpectancyMatch = lifeNumber == 0 || (asset.getAssetType().getExpectedLifeSpan() == lifeNumber);
+            boolean roomMatch = roomText.isEmpty() || (asset.getRoomNumber() == roomNumber);
+
+            return assetNumberMatch && assetNameMatch && dateMatch && floorMatch && lifeExpectancyMatch && roomMatch;
+        });
+
+        assetTable.setItems(filteredAssets);
+    }
+    
+    
     
     private void handleEditButtonClicked(int assetNumber) {
         ModifySpecificAssetPopupController.get(assetNumber);
@@ -180,22 +235,6 @@ public class AssetMenuController {
     @FXML
      void addSpecificAsset(ActionEvent event) {
         AddSpecificAssetPopupController controller = (AddSpecificAssetPopupController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddSpecificAssetPopUp.fxml", "Add Specific Asset");
-    }
-
-    private void setPercentageWidth(TableColumn<?, ?> column, double percentage) {
-        DoubleBinding widthBinding = assetTable.widthProperty().multiply(percentage / 100.0);
-        column.prefWidthProperty().bind(widthBinding);
-    }
-
-    @FXML
-    void filterTableView(String selectedType) {
-        System.out.println(selectedType);
-        if (selectedType == null || selectedType.equals(resources.getString("key.ShowAll"))) {
-            showSpecificAsset();
-        } else {
-            FilteredList<TOSpecificAsset> filteredList = new FilteredList<>(assetList, asset -> selectedType.contains(asset.getAssetType().getName()));
-            assetTable.setItems(filteredList);
-        }
     }
     
 }
