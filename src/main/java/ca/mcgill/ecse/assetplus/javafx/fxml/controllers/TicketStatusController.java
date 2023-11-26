@@ -3,11 +3,13 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ApproveTicketController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AssignStaffToTicketController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.StartAndCompleteWorkController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.UpdateTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewNotesController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewTicketPopUpController;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -24,6 +26,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -65,7 +68,7 @@ public class TicketStatusController {
     private TableView<TOMaintenanceTicket> ticketTable;
 
     @FXML
-    private TableColumn<TOMaintenanceTicket, Integer> ticketNumberColumn;
+    private TableColumn<TOMaintenanceTicket, Hyperlink> ticketNumberColumn;
 
     @FXML
     private TableColumn<TOMaintenanceTicket, String> assetColumn;
@@ -146,7 +149,6 @@ public class TicketStatusController {
     private void showTableView() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
-        ticketNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
         reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getRaisedByEmail())));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getFixedByEmail())));
@@ -169,29 +171,13 @@ public class TicketStatusController {
         ticketList = ViewUtils.getMaintenanceTickets();
         ticketTable.setItems(ticketList);
         
+        ticketNumberColumn.setCellValueFactory(cellData -> {
+            int ticketId = cellData.getValue().getId();
+            Hyperlink link = new Hyperlink("#" + String.valueOf(ticketId));
+            link.setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
+            link.setOnAction(event -> handleTicketClicked(ticketId));
 
-        ticketNumberColumn.setCellFactory(col -> {
-            TableCell<TOMaintenanceTicket, Integer> cell = new TableCell<TOMaintenanceTicket, Integer>() {
-                @Override
-                protected void updateItem(Integer item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                        setStyle(null);
-                    } else {
-                        setText("#" + String.valueOf(item));
-                        setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
-                    }
-                }
-            };
-        
-            cell.setOnMouseClicked(event -> {
-                if (!cell.isEmpty()) {
-                    System.out.println("Ticket number " + cell.getItem() + " clicked!");
-                }
-            });
-        
-            return cell;
+            return new SimpleObjectProperty<>(link);
         });
 
         actionColumn.setCellFactory(col -> new TableCell<>() {
@@ -252,22 +238,14 @@ public class TicketStatusController {
             return new SimpleObjectProperty<>(hbox);
     
         });
-        
-        // setPercentageWidth(ticketNumberColumn, 15);
-        // setPercentageWidth(assetColumn, 10); 
-        // setPercentageWidth(reporterColumn, 10); 
-        // setPercentageWidth(assigneeColumn, 10);
-        // setPercentageWidth(dateStartedColumn, 20);
-        // setPercentageWidth(statusColumn, 14);
-        // setPercentageWidth(actionColumn, 20);
     }
 
     private void handleStatusCellClicked(String status, int ticketId) {
         StartAndCompleteWorkController sharedController;
         switch (status) {
             case "key.TicketStatus_Open":
-                AssignStaffToTicketController controller = (AssignStaffToTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
-                controller.setTicketId(ticketId);
+                AssignStaffToTicketController controller1 = (AssignStaffToTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+                controller1.setTicketId(ticketId);
                 break;
             case "key.TicketStatus_Assigned":
                 sharedController = (StartAndCompleteWorkController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/StartWork.fxml", "Start Work");
@@ -278,8 +256,9 @@ public class TicketStatusController {
                 sharedController.setTicketId(ticketId);
                 break;
             case "key.TicketStatus_Resolved":
-
-                
+                ApproveTicketController controller2 = (ApproveTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ApproveTicket.fxml", "Approve Ticket");
+                controller2.setTicketId(ticketId);
+                break;
         }
     }
 
@@ -304,6 +283,11 @@ public class TicketStatusController {
 
     private void handleTrashButtonClicked() {
         
+    }
+
+    private void handleTicketClicked(int ticketId) {
+        ViewTicketPopUpController controller = (ViewTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewTicketPopUp.fxml", "View Ticket");
+        controller.setTicketId(ticketId);
     }
 
     private String getStyle(String status) {

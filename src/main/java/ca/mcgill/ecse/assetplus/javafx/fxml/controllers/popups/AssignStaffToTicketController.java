@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import java.util.ResourceBundle;
+import com.google.common.base.MoreObjects.ToStringHelper;
 import ca.mcgill.ecse.assetplus.controller.TOHotelStaff;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
@@ -10,11 +11,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 
 public class AssignStaffToTicketController {
 
     @FXML
     private ResourceBundle resources;
+
+    @FXML
+    private RadioButton approveRadioButton;
+
+    @FXML
+    private RadioButton disapproveRadioButton;
 
     @FXML
     private Label errorLabel;
@@ -29,6 +38,8 @@ public class AssignStaffToTicketController {
     private ComboBox<String> timeEstimateComboBox;
 
     private int ticketId;
+
+    private ToggleGroup group;
 
     @FXML
     void initialize() {
@@ -56,6 +67,10 @@ public class AssignStaffToTicketController {
 
       errorLabel.setVisible(false);
 
+      group = new ToggleGroup();
+      approveRadioButton.setToggleGroup(group);
+      disapproveRadioButton.setToggleGroup(group);
+      disapproveRadioButton.setSelected(true);
     }
 
     @FXML
@@ -67,7 +82,7 @@ public class AssignStaffToTicketController {
     void handleSave(ActionEvent event) {
       if (isValidSelection()) {
         String staffSelected = this.staffComboBox.getValue();
-        ViewUtils.assignTicketTo(staffSelected, ticketId, getPriority(), getTimeEstimate());
+        ViewUtils.assignTicketTo(staffSelected, ticketId, getPriority(), getTimeEstimate(), approveRadioButton.isSelected());
         ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       } else {

@@ -20,7 +20,9 @@
                     "id": 2,
                     "raisedOnDate": "2023-07-10",
                     "description": "This is a dummy description 2",
-                    "status": "Open",
+                    "timeToResolve": "LessThanADay",
+                    "priority": "Low",
+                    "status": "Closed",
                     "ticketNotes": [
                       {
                         "MaintenanceNote": {
@@ -65,7 +67,7 @@
                               "description": "This is a dummy description 1",
                               "timeToResolve": "LessThanADay",
                               "priority": "Low",
-                              "status": "InProgress",
+                              "status": "Closed",
                               "ticketNotes": [
                                 {
                                   "MaintenanceNote": [
@@ -92,7 +94,9 @@
                                                 "id": 3,
                                                 "raisedOnDate": "2023-07-20",
                                                 "description": "It is noisy",
-                                                "status": "Open",
+                                                "timeToResolve": "LessThanADay",
+                                                "priority": "Normal",
+                                                "status": "Resolved",
                                                 "ticketNotes": [
                                                   ""
                                                 ],
@@ -104,6 +108,13 @@
                                                 },
                                                 "ticketRaiser": {
                                                   "@class": "Manager",
+                                                  "@reference": "../../.."
+                                                },
+                                                "ticketFixer": {
+                                                  "@class": "Employee",
+                                                  "@reference": "../../../../../../../../.."
+                                                },
+                                                "fixApprover": {
                                                   "@reference": "../../.."
                                                 }
                                               }
@@ -124,7 +135,16 @@
                                           "@reference": "../../../../../../../../../../../../.."
                                         },
                                         "ticketsForApproval": [
-                                          ""
+                                          {
+                                            "MaintenanceTicket": [
+                                              {
+                                                "@reference": "../../../../../../../../.."
+                                              },
+                                              {
+                                                "@reference": "../../raisedTickets/MaintenanceTicket[2]"
+                                              }
+                                            ]
+                                          }
                                         ]
                                       }
                                     }
@@ -236,17 +256,32 @@
                       ],
                       "maintenanceTasks": [
                         {
-                          "MaintenanceTicket": {
-                            "@reference": "../../maintenanceNotes/MaintenanceNote/ticket"
-                          }
+                          "MaintenanceTicket": [
+                            {
+                              "@reference": "../../maintenanceNotes/MaintenanceNote/ticket"
+                            },
+                            {
+                              "@reference": "../../.."
+                            },
+                            {
+                              "@reference": "../../maintenanceNotes/MaintenanceNote/ticket/ticketNotes/MaintenanceNote[2]/noteTaker/raisedTickets/MaintenanceTicket[2]"
+                            }
+                          ]
                         }
                       ],
                       "assetPlus": {
                         "@reference": "../../../../../../.."
                       }
                     },
+                    "ticketFixer": {
+                      "@class": "Employee",
+                      "@reference": "../ticketRaiser"
+                    },
                     "asset": {
                       "@reference": "../ticketRaiser/maintenanceNotes/MaintenanceNote/ticket/asset/assetType/specificAssets/SpecificAsset[3]"
+                    },
+                    "fixApprover": {
+                      "@reference": "../ticketRaiser/maintenanceNotes/MaintenanceNote/ticket/ticketNotes/MaintenanceNote[2]/noteTaker"
                     }
                   },
                   "noteTaker": {

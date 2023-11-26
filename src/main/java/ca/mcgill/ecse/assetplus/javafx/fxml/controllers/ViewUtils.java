@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.sql.Date;
 
 public class ViewUtils {
   
@@ -128,10 +129,9 @@ public class ViewUtils {
     return AssetPlusFeatureSet1Controller.getHotelStaffs();
   }
 
-  public static void assignTicketTo(String staffName, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate) {
+  public static void assignTicketTo(String staffName, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate, boolean approvalRequired) {
     String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
     TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(ticketId);
-    boolean approvalRequired = ticket.getApprovalRequired();
     
     AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(email, priority, timeEstimate, approvalRequired, ticketId);
   }
@@ -142,6 +142,18 @@ public class ViewUtils {
 
   public static void completeWork(int ticketId) {
     AssetPlusFeatureMaintenanceTicketController.completeTicket(ticketId);
+  }
+
+  public static void approveTicket(int ticketId) {
+    AssetPlusFeatureMaintenanceTicketController.approveTicket(ticketId);
+  }
+
+  public static void disapproveTicket(int ticketId, Date date, String reason) {
+    AssetPlusFeatureMaintenanceTicketController.disapproveTicket(ticketId, date, reason);
+  }
+
+  public static TOMaintenanceTicket getTicket(int ticketId) {
+    return AssetPlusFeatureSet6Controller.getTicket(ticketId);
   }
   
 }
