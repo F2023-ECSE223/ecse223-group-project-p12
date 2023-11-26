@@ -67,16 +67,6 @@ public class ViewUtils {
     dialog.show();
   }
 
-  public static void loadPopupWindow(String fxml, String title) { 
-    AssetPlusFXMLView.getInstance().loadPopupWindow(fxml, title);
-  }
-
-  public static void closePopupWindow(Stage popUp) {
-    if (popUp != null) {
-      popUp.close();
-    }
-  }
-
   public static void showError(String message) {
     makePopupWindow("Error", message);
   }
@@ -130,5 +120,17 @@ public class ViewUtils {
     String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
     //return AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffName, null, null, false, SIZE)
   }
+
+  public static TOAssetType getWithAssetName(String name){
+  List<TOAssetType> list = getAssetTypes();
+        for (TOAssetType type : list){
+            if (type.getName().equals(name)){
+              return type;
+            }
+        }
+        return null;
+  }
+
+  
   
 }

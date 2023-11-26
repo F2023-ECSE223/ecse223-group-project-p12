@@ -23,6 +23,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+
 public class ViewNotesController {
     private int currentTicketNumber;
 
@@ -161,14 +162,16 @@ public class ViewNotesController {
     }
 
     private void updateBtnClicked(int index) {
-        //DeleteViewNotesPopUpController controller = (DeleteViewNotesPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewNotesDeletePopUp.fxml", "Delete Note");
-        //controller.setTicketIdAndIndex(currentTicketNumber, index);
+        ModifyNotePopUpController controller = (ModifyNotePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewNotesModifyNotePopUp.fxml", "Modify Note");
+        if (controller != null)
+            controller.setTicketIdAndIndex(currentTicketNumber, index);
         ViewUtils.callController("");
     }
 
     private void trashBtnClicked(int index) {
         DeleteViewNotesPopUpController controller = (DeleteViewNotesPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewNotesDeletePopUp.fxml", "Delete Note");
-        controller.setTicketIdAndIndex(currentTicketNumber, index);
+        if (controller != null)
+            controller.setTicketIdAndIndex(currentTicketNumber, index);
         ViewUtils.callController("");
     }
 

@@ -47,11 +47,41 @@
                     "ticketRaiser": {
                       "@class": "Employee",
                       "@reference": "../../.."
+                    },
+                    "asset": {
+                      "assetNumber": 3,
+                      "floorNumber": 19,
+                      "roomNumber": 3,
+                      "purchaseDate": "2018-11-14",
+                      "assetPlus": {
+                        "@reference": "../../../../../.."
+                      },
+                      "maintenanceTickets": [
+                        {
+                          "MaintenanceTicket": {
+                            "@reference": "../../.."
+                          }
+                        }
+                      ],
+                      "assetType": {
+                        "name": "carpet",
+                        "expectedLifeSpan": 6000,
+                        "assetPlus": {
+                          "@reference": "../../../../../../.."
+                        },
+                        "specificAssets": [
+                          {
+                            "SpecificAsset": {
+                              "@reference": "../../.."
+                            }
+                          }
+                        ]
+                      }
                     }
                   },
                   {
                     "id": 4,
-                    "raisedOnDate": "2023-11-08",
+                    "raisedOnDate": "2023-07-05",
                     "description": "desk is wobbly",
                     "status": "Open",
                     "ticketNotes": [
@@ -91,46 +121,10 @@
             "password": "pwd2",
             "phoneNumber": "514-444-5577",
             "raisedTickets": [
-              {
-                "MaintenanceTicket": {
-                  "id": 2,
-                  "raisedOnDate": "2023-11-06",
-                  "description": "chair wheel jammed",
-                  "status": "Open",
-                  "ticketNotes": [
-                    {
-                      "MaintenanceNote": {
-                        "date": "2023-11-06",
-                        "description": "wheels are on backorder",
-                        "ticket": {
-                          "@reference": "../../.."
-                        },
-                        "noteTaker": {
-                          "@class": "Employee",
-                          "@reference": "../../../../.."
-                        }
-                      }
-                    }
-                  ],
-                  "ticketImages": [
-                    ""
-                  ],
-                  "assetPlus": {
-                    "@reference": "../../../../.."
-                  },
-                  "ticketRaiser": {
-                    "@class": "Employee",
-                    "@reference": "../../.."
-                  }
-                }
-              }
+              ""
             ],
             "maintenanceNotes": [
-              {
-                "MaintenanceNote": {
-                  "@reference": "../../raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote"
-                }
-              }
+              ""
             ],
             "maintenanceTasks": [
               ""
@@ -256,9 +250,6 @@
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket"
           },
           {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket"
-          },
-          {
             "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket"
           },
           {
@@ -326,30 +317,7 @@
             ]
           },
           {
-            "name": "carpet",
-            "expectedLifeSpan": 6000,
-            "assetPlus": {
-              "@reference": "../../.."
-            },
-            "specificAssets": [
-              {
-                "SpecificAsset": {
-                  "assetNumber": 3,
-                  "floorNumber": 19,
-                  "roomNumber": 3,
-                  "purchaseDate": "2018-11-14",
-                  "assetPlus": {
-                    "@reference": "../../../../.."
-                  },
-                  "maintenanceTickets": [
-                    ""
-                  ],
-                  "assetType": {
-                    "@reference": "../../.."
-                  }
-                }
-              }
-            ]
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType"
           },
           {
             "name": "lamp",
@@ -460,7 +428,7 @@
             "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
           },
           {
-            "@reference": "../../assetTypes/AssetType[3]/specificAssets/SpecificAsset"
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset"
           },
           {
             "@reference": "../../assetTypes/AssetType[6]/specificAssets/SpecificAsset"
