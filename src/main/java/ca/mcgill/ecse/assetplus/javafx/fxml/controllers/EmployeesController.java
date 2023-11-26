@@ -66,7 +66,7 @@ public class EmployeesController {
 
     @FXML
     void createEmployee(ActionEvent event) {
-        
+
     }
 
 
@@ -173,6 +173,7 @@ public class EmployeesController {
             
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);
+            Button test = new Button("test");
             Button modify = new Button(resources.getString("key.Modify"));
             modify.setStyle("-fx-text-fill: white;" + "-fx-background-color: #8768F2;" + "-fx-background-radius: 10px;" + "-fx-padding: 5px 10px 5px 10px");
             modify.setOnAction(e -> modifyEmployeePopup(e,employee.getEmail()));
