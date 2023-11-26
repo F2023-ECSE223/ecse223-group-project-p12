@@ -99,7 +99,14 @@ public class AssetPlusFeatureSet4Controller {
         MaintenanceTicket currentTicket = MaintenanceTicket.getWithId(id);
         currentTicket.setRaisedOnDate(newRaisedOnDate);
         currentTicket.setDescription(newDescription);
-        currentTicket.setTicketRaiser(User.getWithEmail(newEmail));
+        User raiser;
+        if (newEmail.equals(AssetPlusApplication.getAssetPlus().getManager().getEmail())){
+            raiser = AssetPlusApplication.getAssetPlus().getManager();
+        }
+        else{
+            raiser = User.getWithEmail(newEmail);
+        }
+        currentTicket.setTicketRaiser(raiser);
         if (newAssetNumber != -1){
           SpecificAsset asset = SpecificAsset.getWithAssetNumber(newAssetNumber);
           currentTicket.setAsset(asset);
@@ -130,6 +137,7 @@ public class AssetPlusFeatureSet4Controller {
 
     //Delete the specific ticket from the AssetPlus application instance. 
     MaintenanceTicket.getWithId(id).delete();
+    return;
   }
 
 
