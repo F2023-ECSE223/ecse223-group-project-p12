@@ -4,6 +4,7 @@ import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -228,7 +229,7 @@ public class TicketStatusController {
             Button trashBtn = new Button();
             trashBtn.getStyleClass().add("icon-trash");
             trashBtn.setPickOnBounds(true);
-            trashBtn.setOnAction(event -> handleTrashButtonClicked());
+            trashBtn.setOnAction(event -> handleTrashButtonClicked(ticketId));
             Tooltip trashTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_DeleteTicket"));
             trashTooltip.setStyle("-fx-text-fill: #A30D11");
             trashBtn.setTooltip(trashTooltip);
@@ -301,6 +302,7 @@ public class TicketStatusController {
 
     private void handleEditButtonClicked(int ticketId) {
         System.out.println("is anything happening?");
+
         ModifyTicketPopUpController controller = (ModifyTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifyTicketPopUp.fxml", "Update Ticket");
            // if (controller==null) System.out.println("controller null");
         System.out.println("Updating with ticket number: " + Integer.toString(ticketId));
@@ -308,8 +310,11 @@ public class TicketStatusController {
 
     }
 
-    private void handleTrashButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
+    private void handleTrashButtonClicked(int ticketId) {
+        System.out.println("is anything happening?");
+        DeleteTicketPopUpController.setId(ticketId);
+        DeleteTicketPopUpController controller = (DeleteTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteTicketPopUp.fxml", "Delete Ticket");
+        System.out.println("Deleting with ticket number: " + Integer.toString(ticketId));
     }
 
     private void setPercentageWidth(TableColumn<?, ?> column, double percentage) {

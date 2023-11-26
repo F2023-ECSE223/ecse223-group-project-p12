@@ -124,5 +124,17 @@ public class ViewUtils {
     String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
     //return AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffName, null, null, false, SIZE)
   }
+
+  public static TOAssetType getWithAssetName(String name){
+  List<TOAssetType> list = getAssetTypes();
+        for (TOAssetType type : list){
+            if (type.getName().equals(name)){
+              return type;
+            }
+        }
+        return null;
+  }
+
+  
   
 }

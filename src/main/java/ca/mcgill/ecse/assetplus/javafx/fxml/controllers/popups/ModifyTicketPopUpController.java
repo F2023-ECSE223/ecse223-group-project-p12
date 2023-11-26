@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import java.util.List;
 import java.util.ResourceBundle;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
@@ -29,7 +30,7 @@ public class ModifyTicketPopUpController {
 
     private int ticketId;
 
-    public static TOMaintenanceTicket ticket;
+    private static TOMaintenanceTicket ticket;
 
     @FXML
     private ComboBox<String> assetNumberField;
@@ -81,16 +82,16 @@ public class ModifyTicketPopUpController {
 
     @FXML
     void initialize(){
-        ticketNumberField.setEditable(false);
-        ticketNumberField.setText(((Integer)ticketId).toString());
+        //ticketNumberField.setEditable(false);
+        //ticketNumberField.setText(((Integer)ticketId).toString());
         ticketNumberField.setFocusTraversable(false);
-        ticketStatusField.setEditable(false);
+        //ticketStatusField.setEditable(false);
         //ticketStatusField.setText(.toString());
         ticketStatusField.setFocusTraversable(false);
 
-        Button pencilBtn = new Button();
-        pencilBtn.getStyleClass().add("icon-pencil");
-        pencilBtn.setPickOnBounds(true);
+        //Button pencilBtn = new Button();
+        //pencilBtn.getStyleClass().add("icon-pencil");
+        //pencilBtn.setPickOnBounds(true);
         //pencilBtn.setOnAction(e -> pencilBtnClicked());
 
         ObservableList<TOAssetType> list = ViewUtils.getAssetTypes();
@@ -104,7 +105,7 @@ public class ModifyTicketPopUpController {
             assetNumberField.getItems().add(Integer.toString(asset.getAssetNumber()));
         }
         // set editable to false so that the user cannot choose from the calendar
-        raisedDateField.setEditable(false);
+        //raisedDateField.setEditable(false);
         updateTicketError.setText(null);
         
     }
@@ -115,24 +116,45 @@ public class ModifyTicketPopUpController {
     }
 
     @FXML
-    void changeAssetNumber(MouseEvent event) {
-        ObservableList<TOAssetType> list = ViewUtils.getAssetTypes();
-        for (TOAssetType type : list){
-            typeField.getItems().add(type.getName());
-        }
-
-        //get assets only for the selected type
-        ObservableList<TOSpecificAsset> list2 = ViewUtils.getSpecificAsset();
-        for (TOSpecificAsset asset : list2){
-            assetNumberField.getItems().add(Integer.toString(asset.getAssetNumber()));
-        }
-
-    }
-
-    @FXML
     void updateTicketClicked(ActionEvent event) {
-       
+        String ticketNumberString = ticketNumberField.getText();
+        String description = descriptionField.getText();
+        String raiser = raiserField.getText();
+        //figure out date picker
+        LocalDate date = raisedDateField.getValue();
+        Date raisedDate = Date.valueOf(date);
+        int assetNumber = -1;
+        if (assetNumberField.getValue() != null){
+            assetNumber = Integer.parseInt(assetNumberField.getValue());
+        }
+
+        if (ticketNumberString == null || description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null){
+                updateTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage"));
+                System.out.println("Ticket not updated");
+        }
+        else{
+            int ticketNumber = Integer.parseInt(ticketNumberString);
+            String err = AssetPlusFeatureSet4Controller.updateMaintenanceTicket(ticketNumber, (java.sql.Date)raisedDate, description, raiser, assetNumber);
+            ViewUtils.callController("");   
+            if (err == ""){
+                ticketNumberField.setText("");
+                descriptionField.setText("");
+                raiserField.setText("");
+                assetNumberField.setValue(null);
+                typeField.setValue(null);
+                raisedDateField.setValue(null);
+                updateTicketError.setText(null);
+                //addTicketError.setText("Your ticket has been created!");
+                System.out.println("Ticket updated");
+                AssetPlusFXMLView.getInstance().closePopUpWindow();    
+            }
+            else{
+                updateTicketError.setText(err);
+            }  
+
+        }
     }
+
     public void setTicketId(int id) {
         ticketId = id;
     // set editable to false so that the user cannot choose from the calendar

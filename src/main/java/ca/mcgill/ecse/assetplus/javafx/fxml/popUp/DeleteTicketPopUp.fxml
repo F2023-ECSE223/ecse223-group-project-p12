@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<HBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteTicketPopUpController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0">
+         <children>
+            <VBox layoutX="3.0" layoutY="47.0" AnchorPane.bottomAnchor="233.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="47.0">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="20.0" prefWidth="497.0" styleClass="popUpTitle" text="%key.TicketMenu_DeleteTitle" textAlignment="CENTER" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutY="140.0" prefHeight="60.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Rectangle fx:id="fieldBgDelete" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="60.0" stroke="BLACK" strokeType="INSIDE" styleClass="fieldBgDelete" width="461.0" />
+               </children>
+            </VBox>
+            <Pane layoutX="10.0" layoutY="10.0" />
+            <Label contentDisplay="CENTER" layoutX="48.0" layoutY="154.0" prefHeight="31.0" prefWidth="376.0" text="%key.TicketMenu_DeleteMessage1" textAlignment="CENTER" />
+            <TextField fx:id="ticketNumberField" layoutX="420.0" layoutY="157.0" prefHeight="26.0" prefWidth="42.0" />
+            <HBox alignment="CENTER" layoutX="-1.0" layoutY="232.0" prefHeight="31.0" prefWidth="500.0">
+               <children>
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="127.0" text="%key.TicketMenu_Cancel" />
+                  <Button fx:id="deleteTicketButton" mnemonicParsing="false" onAction="#deleteTicketClicked" prefHeight="31.0" prefWidth="127.0" styleClass="actionButton" text="%key.TicketMenu_DeleteButton">
+                     <HBox.margin>
+                        <Insets left="70.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox layoutX="3.0" layoutY="75.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="493.0" styleClass="errorMessage" text="%key.TicketMenu_DeleteMessage2" textAlignment="CENTER" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
