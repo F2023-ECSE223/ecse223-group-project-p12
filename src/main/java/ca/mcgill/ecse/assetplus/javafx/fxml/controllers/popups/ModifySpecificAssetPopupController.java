@@ -13,6 +13,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -146,7 +147,7 @@ public class ModifySpecificAssetPopupController {
       assetTypes.setItems(typesList);
 
       lifeExpectancyBox.setVisible(true);
-      lifeExpectancy.setText(asset.getAssetType().getExpectedLifeSpan()+"");
+      lifeExpectancy.setText(asset.getAssetType().getExpectedLifeSpan()+" years");
 
       ArrayList<String> rooms = new ArrayList<>();
       rooms.add("Current room: " + asset.getRoomNumber());

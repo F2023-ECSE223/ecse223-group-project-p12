@@ -280,7 +280,23 @@
               "@reference": "../../.."
             },
             "specificAssets": [
-              ""
+              {
+                "SpecificAsset": {
+                  "assetNumber": 1,
+                  "floorNumber": 16,
+                  "roomNumber": 4,
+                  "purchaseDate": "2023-11-08",
+                  "assetPlus": {
+                    "@reference": "../../../../.."
+                  },
+                  "maintenanceTickets": [
+                    ""
+                  ],
+                  "assetType": {
+                    "@reference": "../../.."
+                  }
+                }
+              }
             ]
           },
           {
@@ -290,7 +306,23 @@
               "@reference": "../../.."
             },
             "specificAssets": [
-              ""
+              {
+                "SpecificAsset": {
+                  "assetNumber": 2,
+                  "floorNumber": 16,
+                  "roomNumber": -1,
+                  "purchaseDate": "2022-10-10",
+                  "assetPlus": {
+                    "@reference": "../../../../.."
+                  },
+                  "maintenanceTickets": [
+                    ""
+                  ],
+                  "assetType": {
+                    "@reference": "../../.."
+                  }
+                }
+              }
             ]
           },
           {
@@ -300,14 +332,150 @@
               "@reference": "../../.."
             },
             "specificAssets": [
+              {
+                "SpecificAsset": {
+                  "assetNumber": 3,
+                  "floorNumber": 19,
+                  "roomNumber": 3,
+                  "purchaseDate": "2018-11-14",
+                  "assetPlus": {
+                    "@reference": "../../../../.."
+                  },
+                  "maintenanceTickets": [
+                    ""
+                  ],
+                  "assetType": {
+                    "@reference": "../../.."
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "lamp",
+            "expectedLifeSpan": 20,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              {
+                "SpecificAsset": [
+                  {
+                    "assetNumber": 5,
+                    "floorNumber": 20,
+                    "roomNumber": 3,
+                    "purchaseDate": "2023-11-03",
+                    "assetPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "maintenanceTickets": [
+                      ""
+                    ],
+                    "assetType": {
+                      "@reference": "../../.."
+                    }
+                  },
+                  {
+                    "assetNumber": 7,
+                    "floorNumber": 18,
+                    "roomNumber": 14,
+                    "purchaseDate": "2023-11-25",
+                    "assetPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "maintenanceTickets": [
+                      ""
+                    ],
+                    "assetType": {
+                      "@reference": "../../.."
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "bed",
+            "expectedLifeSpan": 20,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
               ""
+            ]
+          },
+          {
+            "name": "speaker",
+            "expectedLifeSpan": 15,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              {
+                "SpecificAsset": [
+                  {
+                    "assetNumber": 4,
+                    "floorNumber": 20,
+                    "roomNumber": 49,
+                    "purchaseDate": "2023-11-03",
+                    "assetPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "maintenanceTickets": [
+                      ""
+                    ],
+                    "assetType": {
+                      "@reference": "../../.."
+                    }
+                  },
+                  {
+                    "assetNumber": 6,
+                    "floorNumber": 3,
+                    "roomNumber": 6,
+                    "purchaseDate": "2023-11-07",
+                    "assetPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "maintenanceTickets": [
+                      ""
+                    ],
+                    "assetType": {
+                      "@reference": "../../.."
+                    }
+                  }
+                ]
+              }
             ]
           }
         ]
       }
     ],
     "specificAssets": [
-      ""
+      {
+        "SpecificAsset": [
+          {
+            "@reference": "../../assetTypes/AssetType/specificAssets/SpecificAsset"
+          },
+          {
+            "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
+          },
+          {
+            "@reference": "../../assetTypes/AssetType[3]/specificAssets/SpecificAsset"
+          },
+          {
+            "@reference": "../../assetTypes/AssetType[6]/specificAssets/SpecificAsset"
+          },
+          {
+            "@reference": "../../assetTypes/AssetType[4]/specificAssets/SpecificAsset"
+          },
+          {
+            "@reference": "../../assetTypes/AssetType[6]/specificAssets/SpecificAsset[2]"
+          },
+          {
+            "@reference": "../../assetTypes/AssetType[4]/specificAssets/SpecificAsset[2]"
+          }
+        ]
+      }
     ]
   }
 }
