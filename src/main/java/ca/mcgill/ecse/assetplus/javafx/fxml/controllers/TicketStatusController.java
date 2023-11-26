@@ -6,6 +6,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpCon
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewNotesController;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -136,23 +137,18 @@ public class TicketStatusController {
                     private String getStatusStyle(String status) {
                         switch (status) {
                             case "Open":
-                                return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969;";
                             case "Ouvert":
                                 return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969;";
                             case "Assigned":
-                                return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC";
                             case "Assigné":
                                 return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC";
                             case "In Progress":
-                                return "-fx-background-color: #FEF2E5; -fx-text-fill: #CD6200";
                             case "En progrès":
-                                return "-fx-background-color: #FEF2E5; -fx-text-fill: #FFD700";
+                                return "-fx-background-color: #FEF2E5; -fx-text-fill: #CD6200";
                             case "Resolved":
-                                return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254";
                             case "Résolu":
                                 return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254";
                             case "Closed":
-                                return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11";
                             case "Fermé":
                                 return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11";
                             default: 
@@ -295,9 +291,8 @@ public class TicketStatusController {
     }
 
     private void handleNotesButtonClicked(int ticketId) {
-        // To Do handle notes
-        //ViewImagesController controller = (ViewImagesController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewImages.fxml", "View Images");
-        //controller.setTicketId(ticketId);
+        ViewNotesController controller = (ViewNotesController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewNotes.fxml", "View Notes");
+        controller.setTicketId(ticketId);
     }
 
     private void handleEditButtonClicked(int ticketId) {

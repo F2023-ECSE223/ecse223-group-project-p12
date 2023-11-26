@@ -119,7 +119,8 @@ Stylesheet of our UI
     -fx-text-fill: #808080;
 }
 
-.descriptionBox{
+.descriptionBox
+{
     -fx-background-color: #F7F6FE;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
@@ -128,6 +129,23 @@ Stylesheet of our UI
     -fx-faint-focus-color: transparent;
     -fx-inner-border: transparent;
     -fx-border-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-area
+{
+    -fx-background-color: #F7F6FE;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-text-fill: #808080;
 }
 
 /* Pop Up Style */
@@ -476,6 +494,20 @@ Stylesheet of our UI
     -fx-background-color: #8768F2;
     -fx-background-radius: 10px;
     -fx-padding: 5px 10px 5px 10px
+}
+
+/* View Notes */
+.note
+{
+    -fx-background-color: #FEF2E5;
+    -fx-border-width: 0;
+    -fx-effect: none;
+    -fx-background-radius: 10px;
+}
+
+.noteText
+{
+    -fx-text-fill: #CD6200;
 }
 
 /* Radio button */

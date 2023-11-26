@@ -10,29 +10,73 @@
             "phoneNumber": "514-444-5566",
             "raisedTickets": [
               {
-                "MaintenanceTicket": {
-                  "id": 4,
-                  "raisedOnDate": "2023-11-08",
-                  "description": "desk is wobbly",
-                  "status": "Open",
-                  "ticketNotes": [
-                    ""
-                  ],
-                  "ticketImages": [
-                    ""
-                  ],
-                  "assetPlus": {
-                    "@reference": "../../../../.."
+                "MaintenanceTicket": [
+                  {
+                    "id": 1,
+                    "raisedOnDate": "2023-11-05",
+                    "description": "desk is scratched",
+                    "status": "Assigned",
+                    "ticketNotes": [
+                      {
+                        "MaintenanceNote": {
+                          "date": "2023-11-05",
+                          "description": "this is an easy issue to address",
+                          "ticket": {
+                            "@reference": "../../.."
+                          },
+                          "noteTaker": {
+                            "@class": "Employee",
+                            "@reference": "../../../../.."
+                          }
+                        }
+                      }
+                    ],
+                    "ticketImages": [
+                      {
+                        "TicketImage": {
+                          "imageURL": "https://img.freepik.com/premium-photo/green-scratched-metal-background-texture_88281-1787.jpg",
+                          "ticket": {
+                            "@reference": "../../.."
+                          }
+                        }
+                      }
+                    ],
+                    "assetPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "ticketRaiser": {
+                      "@class": "Employee",
+                      "@reference": "../../.."
+                    }
                   },
-                  "ticketRaiser": {
-                    "@class": "Employee",
-                    "@reference": "../../.."
+                  {
+                    "id": 4,
+                    "raisedOnDate": "2023-11-08",
+                    "description": "desk is wobbly",
+                    "status": "Open",
+                    "ticketNotes": [
+                      ""
+                    ],
+                    "ticketImages": [
+                      ""
+                    ],
+                    "assetPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "ticketRaiser": {
+                      "@class": "Employee",
+                      "@reference": "../../.."
+                    }
                   }
-                }
+                ]
               }
             ],
             "maintenanceNotes": [
-              ""
+              {
+                "MaintenanceNote": {
+                  "@reference": "../../raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote"
+                }
+              }
             ],
             "maintenanceTasks": [
               ""
@@ -77,157 +121,6 @@
                   "ticketRaiser": {
                     "@class": "Employee",
                     "@reference": "../../.."
-                  },
-                  "asset": {
-                    "assetNumber": 2,
-                    "floorNumber": 4,
-                    "roomNumber": 1,
-                    "purchaseDate": "2023-11-25",
-                    "assetPlus": {
-                      "@reference": "../../../../../.."
-                    },
-                    "maintenanceTickets": [
-                      {
-                        "MaintenanceTicket": {
-                          "@reference": "../../.."
-                        }
-                      }
-                    ],
-                    "assetType": {
-                      "name": "desk",
-                      "expectedLifeSpan": 4500,
-                      "assetPlus": {
-                        "@reference": "../../../../../../.."
-                      },
-                      "specificAssets": [
-                        {
-                          "SpecificAsset": [
-                            {
-                              "assetNumber": 1,
-                              "floorNumber": 3,
-                              "roomNumber": 3,
-                              "purchaseDate": "2023-11-25",
-                              "assetPlus": {
-                                "@reference": "../../../../../../../../.."
-                              },
-                              "maintenanceTickets": [
-                                {
-                                  "MaintenanceTicket": {
-                                    "id": 3,
-                                    "raisedOnDate": "2023-11-07",
-                                    "description": "very noisy after 10pm",
-                                    "status": "Open",
-                                    "ticketNotes": [
-                                      {
-                                        "MaintenanceNote": {
-                                          "date": "2023-11-07",
-                                          "description": "cannot do much about it",
-                                          "ticket": {
-                                            "@reference": "../../.."
-                                          },
-                                          "noteTaker": {
-                                            "@class": "Manager",
-                                            "email": "manager@ap.com",
-                                            "name": "Jane",
-                                            "password": "manager",
-                                            "phoneNumber": "514-444-5555",
-                                            "raisedTickets": [
-                                              {
-                                                "MaintenanceTicket": {
-                                                  "id": 5,
-                                                  "raisedOnDate": "2023-11-09",
-                                                  "description": "carpet is stained",
-                                                  "status": "Open",
-                                                  "ticketNotes": [
-                                                    ""
-                                                  ],
-                                                  "ticketImages": [
-                                                    {
-                                                      "TicketImage": {
-                                                        "imageURL": "https://img.freepik.com/free-photo/oxid-steel-texture_1194-8852.jpg",
-                                                        "ticket": {
-                                                          "@reference": "../../.."
-                                                        }
-                                                      }
-                                                    }
-                                                  ],
-                                                  "assetPlus": {
-                                                    "@reference": "../../../../../../../../../../../../../../../.."
-                                                  },
-                                                  "ticketRaiser": {
-                                                    "@class": "Manager",
-                                                    "@reference": "../../.."
-                                                  }
-                                                }
-                                              }
-                                            ],
-                                            "maintenanceNotes": [
-                                              {
-                                                "MaintenanceNote": {
-                                                  "@reference": "../../.."
-                                                }
-                                              }
-                                            ],
-                                            "maintenanceTasks": [
-                                              ""
-                                            ],
-                                            "assetPlus": {
-                                              "@reference": "../../../../../../../../../../../../../.."
-                                            },
-                                            "ticketsForApproval": [
-                                              ""
-                                            ]
-                                          }
-                                        }
-                                      }
-                                    ],
-                                    "ticketImages": [
-                                      {
-                                        "TicketImage": {
-                                          "imageURL": "https://i.pinimg.com/564x/69/5a/7a/695a7a20eb857c88117a74f2dae85a00.jpg",
-                                          "ticket": {
-                                            "@reference": "../../.."
-                                          }
-                                        }
-                                      }
-                                    ],
-                                    "assetPlus": {
-                                      "@reference": "../../../../../../../../../../.."
-                                    },
-                                    "ticketRaiser": {
-                                      "@class": "Guest",
-                                      "email": "g@google.com",
-                                      "name": "George",
-                                      "password": "secret",
-                                      "phoneNumber": "514-888-9000",
-                                      "raisedTickets": [
-                                        {
-                                          "MaintenanceTicket": {
-                                            "@reference": "../../.."
-                                          }
-                                        }
-                                      ],
-                                      "assetPlus": {
-                                        "@reference": "../../../../../../../../../../../.."
-                                      }
-                                    },
-                                    "asset": {
-                                      "@reference": "../../.."
-                                    }
-                                  }
-                                }
-                              ],
-                              "assetType": {
-                                "@reference": "../../.."
-                              }
-                            },
-                            {
-                              "@reference": "../../.."
-                            }
-                          ]
-                        }
-                      ]
-                    }
                   }
                 }
               }
@@ -252,27 +145,127 @@
     "guests": [
       {
         "Guest": {
-          "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset/maintenanceTickets/MaintenanceTicket/ticketRaiser"
+          "email": "g@google.com",
+          "name": "George",
+          "password": "secret",
+          "phoneNumber": "514-888-9000",
+          "raisedTickets": [
+            {
+              "MaintenanceTicket": {
+                "id": 3,
+                "raisedOnDate": "2023-11-07",
+                "description": "very noisy after 10pm",
+                "status": "Open",
+                "ticketNotes": [
+                  {
+                    "MaintenanceNote": {
+                      "date": "2023-11-07",
+                      "description": "cannot do much about it",
+                      "ticket": {
+                        "@reference": "../../.."
+                      },
+                      "noteTaker": {
+                        "@class": "Manager",
+                        "email": "manager@ap.com",
+                        "name": "Jane",
+                        "password": "manager",
+                        "phoneNumber": "514-444-5555",
+                        "raisedTickets": [
+                          {
+                            "MaintenanceTicket": {
+                              "id": 5,
+                              "raisedOnDate": "2023-11-09",
+                              "description": "carpet is stained",
+                              "status": "Open",
+                              "ticketNotes": [
+                                ""
+                              ],
+                              "ticketImages": [
+                                {
+                                  "TicketImage": {
+                                    "imageURL": "https://img.freepik.com/free-photo/oxid-steel-texture_1194-8852.jpg",
+                                    "ticket": {
+                                      "@reference": "../../.."
+                                    }
+                                  }
+                                }
+                              ],
+                              "assetPlus": {
+                                "@reference": "../../../../../../../../../.."
+                              },
+                              "ticketRaiser": {
+                                "@class": "Manager",
+                                "@reference": "../../.."
+                              }
+                            }
+                          }
+                        ],
+                        "maintenanceNotes": [
+                          {
+                            "MaintenanceNote": {
+                              "@reference": "../../.."
+                            }
+                          }
+                        ],
+                        "maintenanceTasks": [
+                          ""
+                        ],
+                        "assetPlus": {
+                          "@reference": "../../../../../../../.."
+                        },
+                        "ticketsForApproval": [
+                          ""
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "ticketImages": [
+                  {
+                    "TicketImage": {
+                      "imageURL": "https://i.pinimg.com/564x/69/5a/7a/695a7a20eb857c88117a74f2dae85a00.jpg",
+                      "ticket": {
+                        "@reference": "../../.."
+                      }
+                    }
+                  }
+                ],
+                "assetPlus": {
+                  "@reference": "../../../../.."
+                },
+                "ticketRaiser": {
+                  "@class": "Guest",
+                  "@reference": "../../.."
+                }
+              }
+            }
+          ],
+          "assetPlus": {
+            "@reference": "../../.."
+          }
         }
       }
     ],
     "manager": {
-      "@reference": "../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset/maintenanceTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker"
+      "@reference": "../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker"
     },
     "maintenanceTickets": [
       {
         "MaintenanceTicket": [
           {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket"
-          },
-          {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset/maintenanceTickets/MaintenanceTicket"
-          },
-          {
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket"
           },
           {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset/maintenanceTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket"
+            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket"
+          },
+          {
+            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket"
+          },
+          {
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket[2]"
+          },
+          {
+            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket"
           }
         ]
       }
@@ -287,27 +280,18 @@
               "@reference": "../../.."
             },
             "specificAssets": [
-              {
-                "SpecificAsset": {
-                  "assetNumber": 3,
-                  "floorNumber": 1,
-                  "roomNumber": 6,
-                  "purchaseDate": "2023-11-25",
-                  "assetPlus": {
-                    "@reference": "../../../../.."
-                  },
-                  "maintenanceTickets": [
-                    ""
-                  ],
-                  "assetType": {
-                    "@reference": "../../.."
-                  }
-                }
-              }
+              ""
             ]
           },
           {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType"
+            "name": "desk",
+            "expectedLifeSpan": 4500,
+            "assetPlus": {
+              "@reference": "../../.."
+            },
+            "specificAssets": [
+              ""
+            ]
           },
           {
             "name": "carpet",
@@ -323,19 +307,7 @@
       }
     ],
     "specificAssets": [
-      {
-        "SpecificAsset": [
-          {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset"
-          },
-          {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset"
-          },
-          {
-            "@reference": "../../assetTypes/AssetType/specificAssets/SpecificAsset"
-          }
-        ]
-      }
+      ""
     ]
   }
 }
