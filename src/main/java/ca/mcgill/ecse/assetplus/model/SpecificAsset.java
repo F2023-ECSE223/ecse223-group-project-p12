@@ -314,4 +314,11 @@ public class SpecificAsset
             "  " + "assetPlus = "+(getAssetPlus()!=null?Integer.toHexString(System.identityHashCode(getAssetPlus())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "assetType = "+(getAssetType()!=null?Integer.toHexString(System.identityHashCode(getAssetType())):"null");
   }
+
+  public static  void reinitializeUniqueAssets(List<SpecificAsset> assets){
+    specificassetsByAssetNumber.clear();
+        for (var asset : assets) {
+            specificassetsByAssetNumber.put(asset.getAssetNumber(), asset);
+        }
+  }
 }

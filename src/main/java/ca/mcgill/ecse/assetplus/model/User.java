@@ -242,4 +242,14 @@ public abstract class User
             "password" + ":" + getPassword()+ "," +
             "phoneNumber" + ":" + getPhoneNumber()+ "]";
   }
+
+  public static  void reinitializeUniqueUsers(List<Employee> employees, List<Guest> guests){
+    usersByEmail.clear();
+        for (var guest : guests) {
+            usersByEmail.put(guest.getEmail(), guest);
+        }
+        for (var employee : employees){
+            usersByEmail.put(employee.getEmail(), employee);
+        }
+  }
 }

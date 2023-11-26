@@ -702,4 +702,11 @@ public class MaintenanceTicket
             "  " + "asset = "+(getAsset()!=null?Integer.toHexString(System.identityHashCode(getAsset())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "fixApprover = "+(getFixApprover()!=null?Integer.toHexString(System.identityHashCode(getFixApprover())):"null");
   }
+
+  public static  void reinitializeUniqueTickets(List<MaintenanceTicket> tickets){
+    maintenanceticketsById.clear();
+        for (var ticket : tickets) {
+            maintenanceticketsById.put(ticket.getId(), ticket);
+        }
+  }
 }

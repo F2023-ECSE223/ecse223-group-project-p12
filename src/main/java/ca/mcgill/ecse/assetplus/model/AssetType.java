@@ -294,4 +294,11 @@ public class AssetType
             "  " + "assetTypeImage = "+(getAssetTypeImage()!=null?Integer.toHexString(System.identityHashCode(getAssetTypeImage())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "assetPlus = "+(getAssetPlus()!=null?Integer.toHexString(System.identityHashCode(getAssetPlus())):"null");
   }
+
+  public static  void reinitializeUniqueTypes(List<AssetType> types){
+    assettypesByName.clear();
+        for (var type : types) {
+            assettypesByName.put(type.getName(), type);
+        }
+  }
 }

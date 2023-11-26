@@ -629,7 +629,13 @@ public class AssetPlus
       aSpecificAsset.delete();
       specificAssets.remove(aSpecificAsset);
     }
-    
+  }
+
+  public void reinitialize(){
+    AssetType.reinitializeUniqueTypes(getAssetTypes());
+        MaintenanceTicket.reinitializeUniqueTickets(getMaintenanceTickets());
+        SpecificAsset.reinitializeUniqueAssets(getSpecificAssets());
+        User.reinitializeUniqueUsers(getEmployees(), getGuests());
   }
 
 }
