@@ -20,6 +20,9 @@ public class AddNotePopUpController {
   private Date date;
 
   @FXML
+  private Label instructionLabel;
+
+  @FXML
   private Button addNoteButton;
 
   @FXML
@@ -79,4 +82,7 @@ public class AddNotePopUpController {
     ticketId = id;
   }
 
+  public void setDisapproveReason() {
+    instructionLabel.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.AddNote_WhyDisapprove"));
+  }
 }

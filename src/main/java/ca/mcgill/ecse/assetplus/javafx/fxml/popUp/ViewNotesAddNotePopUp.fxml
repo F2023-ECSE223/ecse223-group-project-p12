@@ -17,7 +17,7 @@
          <VBox.margin>
             <Insets top="-15.0" />
          </VBox.margin></Label>
-      <Label text="%key.AddNote_EnterNote" />
+      <Label fx:id="instructionLabel" text="%key.AddNote_EnterNote" />
       <StackPane>
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="fieldBg" width="250.0" />
