@@ -86,8 +86,8 @@
                 <content>
                   <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="358.0" prefWidth="734.0" style="-fx-background-color: white;">
                            <children>
-                              <FlowPane fx:id="viewAllEmployees" hgap="10.0" prefHeight="365.0" prefWidth="734.0" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                               <Label fx:id="showEmployeeError" alignment="CENTER" prefHeight="365.0" prefWidth="734.0" textFill="#a1a1a1" />
+                              <FlowPane fx:id="viewAllEmployees" hgap="10.0" prefHeight="365.0" prefWidth="734.0" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                 </content>

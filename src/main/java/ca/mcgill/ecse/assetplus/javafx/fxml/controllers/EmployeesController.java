@@ -59,6 +59,8 @@ public class EmployeesController {
     @FXML
     private Label showEmployeeError;
 
+    public static String email;
+
     @FXML
     void cancelCreateEmployee(ActionEvent event) {
 
@@ -80,15 +82,17 @@ public class EmployeesController {
     @FXML
     void modifyEmployeePopup(ActionEvent event, String aEmail) {
         System.out.println("modify");
+        email = aEmail;
         ModifyEmployeePopUpController controller = (ModifyEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifyEmployeePopUp.fxml", "Modify Employee");
-        controller.email = aEmail;
+        
     }
 
     @FXML
     void deleteEmployeePopup(ActionEvent event, String aEmail) {
         System.out.println("delete");
+        email = aEmail;
         DeleteEmployeePopUpController controller = (DeleteEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteEmployeePopUp.fxml", "Delete Employee");
-        controller.email = aEmail;
+        
     }
 
     @FXML
@@ -105,16 +109,21 @@ public class EmployeesController {
 
     @FXML
     void showSearchedEmployee(ActionEvent event) {
-        String err = AssetPlusFeatureUtility.isExistingUser(ticketEmployeeField.getText(), "");
-        if (err.isEmpty()) {
-            Employee employee = (Employee) User.getWithEmail(ticketEmployeeField.getText());
-            TOEmployee toEmployee = AssetPlusFeatureTOController.convertFromEmployee(employee);
-            List<TOEmployee> employees = new ArrayList<>();
-            employees.add(toEmployee);
-            showEmployees(employees);
+        if (ticketEmployeeField.getText().isEmpty()) {
+            showEmployees(AssetPlusFeatureTOController.getAllEmployees());
         } else {
-            showEmployeeError.setText(translateErrorMessage(err));
-            viewAllEmployees.getChildren().clear();
+
+            String err = AssetPlusFeatureUtility.isExistingUser(ticketEmployeeField.getText(), "");
+            if (err.isEmpty()) {
+                Employee employee = (Employee) User.getWithEmail(ticketEmployeeField.getText());
+                TOEmployee toEmployee = AssetPlusFeatureTOController.convertFromEmployee(employee);
+                List<TOEmployee> employees = new ArrayList<>();
+                employees.add(toEmployee);
+                showEmployees(employees);
+            } else {
+                showEmployeeError.setText(translateErrorMessage(err));
+                viewAllEmployees.getChildren().clear();
+            }
         }
     }
 
@@ -173,7 +182,6 @@ public class EmployeesController {
             
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);
-            Button test = new Button("test");
             Button modify = new Button(resources.getString("key.Modify"));
             modify.setStyle("-fx-text-fill: white;" + "-fx-background-color: #8768F2;" + "-fx-background-radius: 10px;" + "-fx-padding: 5px 10px 5px 10px");
             modify.setOnAction(e -> modifyEmployeePopup(e,employee.getEmail()));

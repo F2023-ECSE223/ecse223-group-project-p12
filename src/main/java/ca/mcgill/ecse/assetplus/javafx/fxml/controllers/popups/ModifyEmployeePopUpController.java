@@ -33,7 +33,7 @@ public class ModifyEmployeePopUpController {
     @FXML
     private ResourceBundle resources;
 
-    public String email;
+    public String aEmail;
 
     @FXML
     void cancelModifyEmployee(ActionEvent event) {
@@ -55,7 +55,8 @@ public class ModifyEmployeePopUpController {
     @FXML
     void initialize() {
         resources = AssetPlusFXMLView.getInstance().getBundle();
-        Employee employee = (Employee) Employee.getWithEmail(email);
+        aEmail = EmployeesController.email;
+        Employee employee = (Employee) Employee.getWithEmail(aEmail);
         modifyEmailField.setText(employee.getEmail());
         modifyPasswordField.setText(employee.getPassword());
         modifyNameField.setText(employee.getName());

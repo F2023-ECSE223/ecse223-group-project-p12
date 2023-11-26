@@ -17,7 +17,7 @@ public class DeleteEmployeePopUpController {
     @FXML
     private Label employeeNameDelete;
 
-    public String email;
+    public static String aEmail;
 
     @FXML
     void cancelDeleteEmployee(ActionEvent event) {
@@ -35,7 +35,8 @@ public class DeleteEmployeePopUpController {
 
     @FXML
     void initialize() {
-      Employee employee = (Employee) User.getWithEmail(email);
+      aEmail = EmployeesController.email;
+      Employee employee = (Employee) User.getWithEmail(aEmail);
       employeeNameDelete.setText(employee.getName());
 
     }
