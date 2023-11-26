@@ -248,7 +248,7 @@ public class TicketStatusController {
 
     @FXML
     void goToTicketMenu(ActionEvent event) {
-        AddTicketPopUpController controller = (AddTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
+        //AddTicketPopUpController controller = (AddTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
     }
 
     @FXML
@@ -304,7 +304,7 @@ public class TicketStatusController {
     }
 
     private void handleTrashButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
+        //AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
     }
 
     private void setPercentageWidth(TableColumn<?, ?> column, double percentage) {
