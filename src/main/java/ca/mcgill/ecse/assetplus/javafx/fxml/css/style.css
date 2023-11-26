@@ -119,10 +119,28 @@ Stylesheet of our UI
     -fx-text-fill: #808080;
 }
 
-.descriptionBox{
+.descriptionBox
+{
     -fx-background-color: #F7F6FE;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
+    -fx-text-fill: #808080;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-area
+{
+    -fx-background-color: #F7F6FE;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
     -fx-text-fill: #808080;
 }
 
