@@ -51,7 +51,7 @@
                   },
                   {
                     "id": 4,
-                    "raisedOnDate": "2023-11-08",
+                    "raisedOnDate": "2023-07-05",
                     "description": "desk is wobbly",
                     "status": "Open",
                     "ticketNotes": [
@@ -91,46 +91,10 @@
             "password": "pwd2",
             "phoneNumber": "514-444-5577",
             "raisedTickets": [
-              {
-                "MaintenanceTicket": {
-                  "id": 2,
-                  "raisedOnDate": "2023-11-06",
-                  "description": "chair wheel jammed",
-                  "status": "Open",
-                  "ticketNotes": [
-                    {
-                      "MaintenanceNote": {
-                        "date": "2023-11-06",
-                        "description": "wheels are on backorder",
-                        "ticket": {
-                          "@reference": "../../.."
-                        },
-                        "noteTaker": {
-                          "@class": "Employee",
-                          "@reference": "../../../../.."
-                        }
-                      }
-                    }
-                  ],
-                  "ticketImages": [
-                    ""
-                  ],
-                  "assetPlus": {
-                    "@reference": "../../../../.."
-                  },
-                  "ticketRaiser": {
-                    "@class": "Employee",
-                    "@reference": "../../.."
-                  }
-                }
-              }
+              ""
             ],
             "maintenanceNotes": [
-              {
-                "MaintenanceNote": {
-                  "@reference": "../../raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote"
-                }
-              }
+              ""
             ],
             "maintenanceTasks": [
               ""
@@ -254,9 +218,6 @@
         "MaintenanceTicket": [
           {
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket"
-          },
-          {
-            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket"
           },
           {
             "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket"
