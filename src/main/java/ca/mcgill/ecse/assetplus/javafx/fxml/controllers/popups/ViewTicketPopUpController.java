@@ -38,7 +38,6 @@ public class ViewTicketPopUpController {
     private TOMaintenanceTicket ticket;
 
     public void setTicketId(int ticketId) {
-      System.out.println("HELLOO");
       this.ticketId = ticketId;
       initializeLabels();
     }

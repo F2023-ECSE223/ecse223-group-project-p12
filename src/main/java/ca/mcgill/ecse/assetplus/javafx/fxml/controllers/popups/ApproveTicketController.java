@@ -25,7 +25,8 @@ public class ApproveTicketController {
     void handleSave(ActionEvent event) {
       if (disapproveRadioButton.isSelected()) {
         // Get controller and set ticket id for the next controller
-        AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DisapproveNotePopUp.fxml", "Reason for Disapproval");
+        DisapproveTicketController controller = (DisapproveTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DisapproveTicket.fxml", "Reason for Disapproval");
+        controller.setTicketId(ticketId);
 
       } else {
         ViewUtils.approveTicket(ticketId);
