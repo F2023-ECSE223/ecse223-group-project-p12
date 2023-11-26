@@ -88,11 +88,7 @@ public class DashboardController {
 
     @FXML
     void ChangeToLogOutTab(ActionEvent event) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText(null);
-        alert.setContentText("You have been logged out.");
-        alert.showAndWait();
+        AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/LogOutPopUp.fxml", "Log Out");
     }
 
     @FXML
