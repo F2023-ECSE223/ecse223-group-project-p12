@@ -67,19 +67,11 @@ public class ViewUtils {
     dialog.show();
   }
 
-  public static void loadPopupWindow(String fxml, String title) { 
-    AssetPlusFXMLView.getInstance().loadPopupWindow(fxml, title);
-  }
-
-  public static void closePopupWindow(Stage popUp) {
-    if (popUp != null) {
-      popUp.close();
-    }
-  }
-
   public static void showError(String message) {
     makePopupWindow("Error", message);
   }
+
+  public static String
 
   public static ObservableList<TOMaintenanceTicket> getMaintenanceTickets() {
     List<TOMaintenanceTicket> ticket = AssetPlusFeatureSet6Controller.getTickets();
