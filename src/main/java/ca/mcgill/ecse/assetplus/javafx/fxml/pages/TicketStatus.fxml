@@ -67,7 +67,7 @@
                                  <children>
                                     <ChoiceBox fx:id="statusChoiceBox" layoutX="108.0" layoutY="11.0" />
                                  </children></Pane>
-                              <Button fx:id="addTicketButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToTicketMenu" prefHeight="40.0" styleClass="actionButton" text="%key.AddTicket">
+                              <Button fx:id="addTicketButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToTicketMenu" prefHeight="40.0" styleClass="actionButton" text="%key.TicketStatus_AddTicket">
                                  <graphic>
                                     <SVGPath content="M8.9 6.9v-5a1 1 0 1 0-2 0v5h-5a1 1 0 1 0 0 2h5v5a1 1 0 1 0 2 0v-5h5a1 1 0 1 0 0-2h-5z" fill="WHITE" />
                                  </graphic>
@@ -89,14 +89,17 @@
                      <children>
                         <TableView id="ticketTable" fx:id="ticketTable" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn fx:id="ticketNumberColumn" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="-1.0" text="%key.TicketStatus_TicketNumber" />
-                            <TableColumn fx:id="assetColumn" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="-1.0" text="%key.Asset" />
-                              <TableColumn fx:id="reporterColumn" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="-1.0" text="%key.Reporter" />
-                              <TableColumn fx:id="assigneeColumn" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="-1.0" text="%key.Assignee" />
-                              <TableColumn fx:id="dateStartedColumn" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="-1.0" text="%key.DateStarted" />
-                              <TableColumn fx:id="statusColumn" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="-1.0" style="-fx-padding: 0 0 0 0;" text="%key.Status" />
-                              <TableColumn fx:id="actionColumn" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="-1.0" text="Action" />
+                              <TableColumn fx:id="ticketNumberColumn" maxWidth="270.0" prefWidth="150.0" text="%key.TicketStatus_TicketNumber" />
+                              <TableColumn fx:id="assetColumn" maxWidth="150.0" prefWidth="100.0" text="%key.TicketStatus_Asset" />
+                              <TableColumn fx:id="reporterColumn" maxWidth="200.0" prefWidth="150.0" text="%key.TicketStatus_Reporter" />
+                              <TableColumn fx:id="assigneeColumn" maxWidth="200.0" prefWidth="150.0" text="%key.TicketStatus_Assignee" />
+                              <TableColumn fx:id="dateStartedColumn" maxWidth="280.0" prefWidth="200.0" text="%key.TicketStatus_DateRaised" />
+                              <TableColumn fx:id="statusColumn" maxWidth="300.0" prefWidth="200.0" style="-fx-padding: 0 0 0 0;" text="%key.TicketStatus_Status" />
+                              <TableColumn fx:id="actionColumn" maxWidth="350.0" prefWidth="270.0" text="Action" />
                           </columns>
+                          <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </HBox>

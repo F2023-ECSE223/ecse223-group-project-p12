@@ -3,10 +3,15 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ApproveTicketController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AssignStaffToTicketController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.StartAndCompleteWorkController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewNotesController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewTicketPopUpController;
+import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -22,11 +27,14 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
@@ -34,6 +42,7 @@ import javafx.util.Callback;
 import java.util.ResourceBundle;
 import com.google.common.collect.Table;
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import javafx.stage.Stage;;
@@ -62,7 +71,7 @@ public class TicketStatusController {
     private TableView<TOMaintenanceTicket> ticketTable;
 
     @FXML
-    private TableColumn<TOMaintenanceTicket, Integer> ticketNumberColumn;
+    private TableColumn<TOMaintenanceTicket, Hyperlink> ticketNumberColumn;
 
     @FXML
     private TableColumn<TOMaintenanceTicket, String> assetColumn;
@@ -77,7 +86,7 @@ public class TicketStatusController {
     private TableColumn<TOMaintenanceTicket, String> dateStartedColumn;
 
     @FXML
-    private TableColumn<TOMaintenanceTicket, String> statusColumn;
+    private TableColumn<TOMaintenanceTicket, Button> statusColumn;
 
     @FXML
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
@@ -91,99 +100,99 @@ public class TicketStatusController {
     void initialize() {
         resources = AssetPlusFXMLView.getInstance().getBundle();
 
+        showTableView();
+        ticketTable.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
+            showTableView();
+        });
+        AssetPlusFXMLView.getInstance().registerRefreshEvent(ticketTable);
+
         statusChoiceBox.getItems().addAll(
-            resources.getString("key.Open"),
-            resources.getString("key.Assigned"),
-            resources.getString("key.InProgress"),
-            resources.getString("key.Resolved"),
-            resources.getString("key.Closed"),
+            resources.getString("key.TicketStatus_Open"),
+            resources.getString("key.TicketStatus_Assigned"),
+            resources.getString("key.TicketStatus_InProgress"),
+            resources.getString("key.TicketStatus_Resolved"),
+            resources.getString("key.TicketStatus_Closed"),
             resources.getString("key.ShowAll")
         );
 
-        statusChoiceBox.setValue(resources.getString("key.SelectStatus"));
+        statusChoiceBox.setValue(resources.getString("key.TicketStatus_SelectStatus"));
         statusChoiceBox.setOnAction(event -> filterTableView(getKey(statusChoiceBox.getValue())));
+    }
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+    @FXML
+    void goToTicketMenu(ActionEvent event) {
+        AddTicketPopUpController controller = (AddTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
+    }
 
-        ticketNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+    @FXML
+    void filterTableView(String selectedStatus) {
+        ObservableList<TOMaintenanceTicket> items = ticketTable.getItems();
+
+        if (selectedStatus == null || selectedStatus.equals("key.ShowAll")) {
+            ticketTable.setItems(items);
+        } else {
+            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> selectedStatus.contains(ticket.getStatus()));
+            ticketTable.setItems(filteredList);
+        }
+    }
+
+    private String getKey(String text) {
+        for (String key: resources.keySet()) {
+            if (resources.getString(key).equals(text)) {
+                return key;
+            }
+        }
+
+        return "defaultKey";
+    } 
+
+    @FXML
+    void handleDatePickerClicked(ActionEvent event) {
+        ObservableList<TOMaintenanceTicket> items = ticketTable.getItems();
+
+
+        if (datePickerBtn.getValue() != null) {
+            Date date = Date.valueOf(datePickerBtn.getValue());
+            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> ticket.getRaisedOnDate().equals(date));
+            ticketTable.setItems(filteredList);
+        } else {
+            ticketTable.setItems(items);
+        }
+    }
+
+    private void showTableView() {
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
         reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getRaisedByEmail())));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFixedByEmail()));
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        //purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPurchaseDate().toLocalDate().format(formatter)));
         dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedOnDate().toLocalDate().format(formatter)));
-        statusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
+        assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getFixedByEmail())));
+        
+        statusColumn.setCellValueFactory(cellData -> {
+            int ticketId = cellData.getValue().getId();
+            String status = cellData.getValue().getStatus();
+            Button statusButton = new Button(resources.getString("key.TicketStatus_" + status));
+            statusButton.setStyle(getStyle(status));
+            setCursor(statusButton);
+            statusButton.setOnAction(event -> handleStatusCellClicked("key.TicketStatus_" + status, ticketId));
+            Tooltip statusToolTip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ChangeStatus"));
+            statusToolTip.setStyle("-fx-text-fill: #808080");
+            statusButton.setTooltip(statusToolTip);
+    
+            return new SimpleObjectProperty<>(statusButton);
+        });
 
         ticketList = ViewUtils.getMaintenanceTickets();
         ticketTable.setItems(ticketList);
         
-        statusColumn.setCellFactory(new Callback<TableColumn<TOMaintenanceTicket,String>,TableCell<TOMaintenanceTicket,String>>() {
-            @Override
-            public TableCell<TOMaintenanceTicket, String> call(TableColumn<TOMaintenanceTicket, String> param) {
-                return new TableCell<TOMaintenanceTicket, String>() {
-                    @Override
-                    protected void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty || item == null) {
-                            setText(null);
-                            setStyle(null);
-                            setCursor(Cursor.DEFAULT);
-                        }
-                        else {
-                            setText(resources.getString("key." + item));
-                            setStyle(getStatusStyle(resources.getString("key." + item)));
-                            setOnMouseClicked(event -> handleStatusCellClicked("key." + item));
-                            setCursor(Cursor.HAND);
-                        }
-                    }
+        ticketNumberColumn.setCellValueFactory(cellData -> {
+            int ticketId = cellData.getValue().getId();
+            Hyperlink link = new Hyperlink("#" + String.valueOf(ticketId));
+            link.setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
+            link.setOnAction(event -> handleTicketClicked(ticketId));
 
-                    private String getStatusStyle(String status) {
-                        switch (status) {
-                            case "Open":
-                            case "Ouvert":
-                                return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969;";
-                            case "Assigned":
-                            case "Assigné":
-                                return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC";
-                            case "In Progress":
-                            case "En progrès":
-                                return "-fx-background-color: #FEF2E5; -fx-text-fill: #CD6200";
-                            case "Resolved":
-                            case "Résolu":
-                                return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254";
-                            case "Closed":
-                            case "Fermé":
-                                return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11";
-                            default: 
-                                return "";
-                        }
-                    }
-                };
-            }
-        });
-
-        ticketNumberColumn.setCellFactory(col -> {
-            TableCell<TOMaintenanceTicket, Integer> cell = new TableCell<TOMaintenanceTicket, Integer>() {
-                @Override
-                protected void updateItem(Integer item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                        setStyle(null);
-                    } else {
-                        setText("#" + String.valueOf(item));
-                        setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
-                    }
-                }
-            };
-        
-            cell.setOnMouseClicked(event -> {
-                if (!cell.isEmpty()) {
-                    System.out.println("Ticket number " + cell.getItem() + " clicked!");
-                }
-            });
-        
-            return cell;
+            return new SimpleObjectProperty<>(link);
         });
 
         actionColumn.setCellFactory(col -> new TableCell<>() {
@@ -205,6 +214,7 @@ public class TicketStatusController {
             imgBtn.getStyleClass().add("icon-image");
             imgBtn.setPickOnBounds(true);
             imgBtn.setOnAction(event -> handleImageButtonClicked(ticketId));
+            setCursor(imgBtn);
             Tooltip imgTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ViewImages"));
             imgTooltip.setStyle("-fx-text-fill: #4488D8");
             imgBtn.setTooltip(imgTooltip);
@@ -213,6 +223,7 @@ public class TicketStatusController {
             notesBtn.getStyleClass().add("icon-notes");
             notesBtn.setPickOnBounds(true);
             notesBtn.setOnAction(event -> handleNotesButtonClicked(ticketId));
+            setCursor(notesBtn);
             Tooltip noteTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ViewNotes"));
             noteTooltip.setStyle("-fx-text-fill: #CD6200");
             notesBtn.setTooltip(noteTooltip);
@@ -221,6 +232,7 @@ public class TicketStatusController {
             editBtn.getStyleClass().add("icon-edit");
             editBtn.setPickOnBounds(true);
             editBtn.setOnAction(event -> handleEditButtonClicked(ticketId));
+            setCursor(editBtn);
             Tooltip editTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_ModifyTicket"));
             editTooltip.setStyle("-fx-text-fill: #624DE3");
             editBtn.setTooltip(editTooltip);
@@ -229,6 +241,7 @@ public class TicketStatusController {
             trashBtn.getStyleClass().add("icon-trash");
             trashBtn.setPickOnBounds(true);
             trashBtn.setOnAction(event -> handleTrashButtonClicked(ticketId));
+            setCursor(trashBtn);
             Tooltip trashTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_DeleteTicket"));
             trashTooltip.setStyle("-fx-text-fill: #A30D11");
             trashBtn.setTooltip(trashTooltip);
@@ -240,52 +253,26 @@ public class TicketStatusController {
             return new SimpleObjectProperty<>(hbox);
     
         });
-        
-        setPercentageWidth(ticketNumberColumn, 15);
-        setPercentageWidth(assetColumn, 11); 
-        setPercentageWidth(reporterColumn, 11); 
-        setPercentageWidth(assigneeColumn, 11);
-        setPercentageWidth(dateStartedColumn, 21);
-        setPercentageWidth(statusColumn, 10);
-        setPercentageWidth(actionColumn, 20);
-        
     }
 
-    @FXML
-    void goToTicketMenu(ActionEvent event) {
-        AddTicketPopUpController controller = (AddTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
-        if (controller==null) System.out.println("controller null");
-    }
-
-    @FXML
-    void filterTableView(String selectedStatus) {
-        if (selectedStatus == null || selectedStatus.equals("key.ShowAll")) {
-            ticketTable.setItems(ticketList);
-        } else {
-            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> selectedStatus.contains(ticket.getStatus()));
-            ticketTable.setItems(filteredList);
-        }
-    }
-
-    private String getKey(String text) {
-        for (String key: resources.keySet()) {
-            if (resources.getString(key).equals(text)) {
-                return key;
-            }
-        }
-
-        return "defaultKey";
-    } 
-
-    @FXML
-    void handleDatePickerClicked(ActionEvent event) {
-
-    }
-
-    private void handleStatusCellClicked(String status) {
+    private void handleStatusCellClicked(String status, int ticketId) {
+        StartAndCompleteWorkController sharedController;
         switch (status) {
-            case "key.Open":
-                AssignStaffToTicketController controller = (AssignStaffToTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+            case "key.TicketStatus_Open":
+                AssignStaffToTicketController controller1 = (AssignStaffToTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssignStaffToTicket.fxml", "Assign Staff To Ticket");
+                controller1.setTicketId(ticketId);
+                break;
+            case "key.TicketStatus_Assigned":
+                sharedController = (StartAndCompleteWorkController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/StartWork.fxml", "Start Work");
+                sharedController.setTicketId(ticketId);
+                break;
+            case "key.TicketStatus_InProgress":
+                sharedController = (StartAndCompleteWorkController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/CompleteWork.fxml", "Complete Work");
+                sharedController.setTicketId(ticketId);
+                break;
+            case "key.TicketStatus_Resolved":
+                ApproveTicketController controller2 = (ApproveTicketController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ApproveTicket.fxml", "Approve Ticket");
+                controller2.setTicketId(ticketId);
                 break;
         }
     }
@@ -315,8 +302,30 @@ public class TicketStatusController {
         System.out.println("Deleting with ticket number: " + Integer.toString(ticketId));
     }
 
-    private void setPercentageWidth(TableColumn<?, ?> column, double percentage) {
-        column.prefWidthProperty().bind(ticketTable.widthProperty().multiply(percentage / 100.0));
+    private void handleTicketClicked(int ticketId) {
+        ViewTicketPopUpController controller = (ViewTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewTicketPopUp.fxml", "View Ticket");
+        controller.setTicketId(ticketId);
     }
 
+    public static String getStyle(String status) {
+        switch (status) {
+            case "Open":
+                return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969; fx-background-radius: 50px; -fx-border-radius: 50px";
+            case "Assigned":
+                return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC; fx-background-radius: 50px; -fx-border-radius: 50px";
+            case "InProgress":
+                return "-fx-background-color: #FEF2E5; -fx-text-fill: #CD6200; fx-background-radius: 50px; -fx-border-radius: 50px";
+            case "Resolved":
+                return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254; fx-background-radius: 50px; -fx-border-radius: 50px";
+            case "Closed":
+                return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11; fx-background-radius: 50px; -fx-border-radius: 50px";
+            default: 
+                return "";
+        }
+    }
+
+    private void setCursor(Button button) {
+        button.setOnMouseEntered(event -> button.setCursor(Cursor.HAND));
+        button.setOnMouseExited(event -> button.setCursor(Cursor.DEFAULT));
+    }
 }
