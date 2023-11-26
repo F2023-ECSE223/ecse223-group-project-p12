@@ -30,11 +30,11 @@
                   <Label layoutX="37.0" layoutY="337.0" text="%key.TicketMenu_Description" />
                   <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="19.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
                   <Label layoutX="43.0" layoutY="127.0" text="%key.TicketMenu_Status" />
-                  <Button fx:id="statusButton" layoutX="195.0" layoutY="123.0" mnemonicParsing="false" text="Button" />
+                  <Button fx:id="statusButton" layoutX="171.0" layoutY="123.0" mnemonicParsing="false" text="Button" />
                   <TextArea fx:id="descriptionField" editable="false" layoutX="27.0" layoutY="359.0" prefHeight="77.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10;" styleClass="descriptionBox" stylesheets="@../css/style.css" />
                   <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="19.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
                   <Label layoutX="43.0" layoutY="193.0" text="%key.TicketStatus_Priority" />
-                  <Button fx:id="priorityButton" layoutX="195.0" layoutY="189.0" mnemonicParsing="false" text="Button" />
+                  <Button fx:id="priorityButton" layoutX="171.0" layoutY="189.0" mnemonicParsing="false" text="Button" />
                   <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="14.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="295.0" />
                   <Label layoutX="38.0" layoutY="267.0" prefHeight="17.0" prefWidth="137.0" text="%key.TicketStatus_TimeToResolve" />
                   <TextField fx:id="timeEstimateField" editable="false" layoutX="163.0" layoutY="262.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: white;" />

@@ -42,6 +42,7 @@ import javafx.util.Callback;
 import java.util.ResourceBundle;
 import com.google.common.collect.Table;
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import javafx.stage.Stage;;
@@ -125,8 +126,10 @@ public class TicketStatusController {
 
     @FXML
     void filterTableView(String selectedStatus) {
+        ObservableList<TOMaintenanceTicket> items = ticketTable.getItems();
+
         if (selectedStatus == null || selectedStatus.equals("key.ShowAll")) {
-            ticketTable.setItems(ticketList);
+            ticketTable.setItems(items);
         } else {
             FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> selectedStatus.contains(ticket.getStatus()));
             ticketTable.setItems(filteredList);
@@ -145,20 +148,26 @@ public class TicketStatusController {
 
     @FXML
     void handleDatePickerClicked(ActionEvent event) {
-        
+        ObservableList<TOMaintenanceTicket> items = ticketTable.getItems();
+
+
+        if (datePickerBtn.getValue() != null) {
+            Date date = Date.valueOf(datePickerBtn.getValue());
+            FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> ticket.getRaisedOnDate().equals(date));
+            ticketTable.setItems(filteredList);
+        } else {
+            ticketTable.setItems(items);
+        }
     }
 
     private void showTableView() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
         reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getRaisedByEmail())));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFixedByEmail()));
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        //purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPurchaseDate().toLocalDate().format(formatter)));
         dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedOnDate().toLocalDate().format(formatter)));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getFixedByEmail())));
-        dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getRaisedOnDate())));
         
         statusColumn.setCellValueFactory(cellData -> {
             int ticketId = cellData.getValue().getId();
@@ -305,15 +314,15 @@ public class TicketStatusController {
     public static String getStyle(String status) {
         switch (status) {
             case "Open":
-                return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969; fx-background-radius: 50px";
+                return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969; fx-background-radius: 50px; -fx-border-radius: 50px";
             case "Assigned":
-                return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC; fx-background-radius: 50px";
+                return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC; fx-background-radius: 50px; -fx-border-radius: 50px";
             case "InProgress":
-                return "-fx-background-color: #FEF2E5; -fx-text-fill: #CD6200; fx-background-radius: 50px";
+                return "-fx-background-color: #FEF2E5; -fx-text-fill: #CD6200; fx-background-radius: 50px; -fx-border-radius: 50px";
             case "Resolved":
-                return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254; fx-background-radius: 50px";
+                return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254; fx-background-radius: 50px; -fx-border-radius: 50px";
             case "Closed":
-                return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11; fx-background-radius: 50px";
+                return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11; fx-background-radius: 50px; -fx-border-radius: 50px";
             default: 
                 return "";
         }

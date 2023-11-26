@@ -93,7 +93,7 @@
                               <TableColumn fx:id="assetColumn" maxWidth="150.0" prefWidth="100.0" text="%key.TicketStatus_Asset" />
                               <TableColumn fx:id="reporterColumn" maxWidth="200.0" prefWidth="150.0" text="%key.TicketStatus_Reporter" />
                               <TableColumn fx:id="assigneeColumn" maxWidth="200.0" prefWidth="150.0" text="%key.TicketStatus_Assignee" />
-                              <TableColumn fx:id="dateStartedColumn" maxWidth="280.0" prefWidth="200.0" text="%key.TicketStatus_DateStarted" />
+                              <TableColumn fx:id="dateStartedColumn" maxWidth="280.0" prefWidth="200.0" text="%key.TicketStatus_DateRaised" />
                               <TableColumn fx:id="statusColumn" maxWidth="300.0" prefWidth="200.0" style="-fx-padding: 0 0 0 0;" text="%key.TicketStatus_Status" />
                               <TableColumn fx:id="actionColumn" maxWidth="350.0" prefWidth="270.0" text="Action" />
                           </columns>

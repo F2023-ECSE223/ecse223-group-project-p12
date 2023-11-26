@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.StartAndCompleteWorkController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.StartAndCompleteWorkController">
    <children>
       <fx:include source="../components/PopUpToolBar.fxml" />
-      <Label fx:id="title" styleClass="popUpTitle" text="%key.TicketStatus_StartWork" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 50;">
+      <Label fx:id="title" prefHeight="21.0" prefWidth="202.0" styleClass="popUpTitle" text="%key.TicketStatus_StartWork" textAlignment="CENTER" />
+      <HBox alignment="CENTER" prefHeight="69.0" prefWidth="340.0" style="-fx-spacing: 50;">
          <children>
-            <Label prefHeight="17.0" prefWidth="335.0" text="%key.TicketStatus_StartWorkLabel">
+            <Label prefHeight="33.0" prefWidth="335.0" text="%key.TicketStatus_StartWorkLabel">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -22,7 +22,7 @@
             <Insets left="30.0" right="30.0" />
          </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="64.0" prefWidth="400.0">
          <children>
             <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" styleClass="cancelButton" text="%key.Cancel" />
             <Button mnemonicParsing="false" onAction="#handleYes" prefWidth="100.0" styleClass="actionButton" text="%key.Yes">
