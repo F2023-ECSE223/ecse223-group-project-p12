@@ -97,7 +97,13 @@ public class AddTicketPopUpController {
         System.out.println("selecteddd");
         String selectedType = typeField.getValue();
         // Update the items of the second ComboBox based on the selected category
-        updateAssetComboBox(selectedType);
+        if (selectedType == null || selectedType.equals("")){
+             updateAssetComboBox(selectedType);
+        }
+        else{
+            addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_AssetErrorMessage"));
+            assetNumberField.getItems().clear();
+        }
     }
     
     

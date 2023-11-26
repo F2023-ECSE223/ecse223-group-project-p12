@@ -40,7 +40,7 @@
                   <TextField fx:id="ticketStatusField" editable="false" layoutX="130.0" layoutY="118.0" prefHeight="26.0" prefWidth="105.0" text="%key.TicketMenu_StatusOpen" />
                   <Button fx:id="cancelButton" layoutX="81.0" layoutY="330.0" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="127.0" text="%key.TicketMenu_Cancel" />
                   <Label layoutX="35.0" layoutY="185.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
-                  <TextArea fx:id="descriptionField" layoutX="33.0" layoutY="209.0" prefHeight="77.0" prefWidth="214.0" stylesheets="@../css/style.css" />
+                  <TextArea fx:id="descriptionField" layoutX="33.0" layoutY="209.0" prefHeight="77.0" prefWidth="214.0" style="-fx-wrap-text: true;" stylesheets="@../css/style.css" />
                </children>
             </Pane>
             <Pane prefHeight="370.0" prefWidth="299.0">
@@ -58,8 +58,8 @@
                   <Button fx:id="addTicketButton" layoutX="99.0" layoutY="330.0" mnemonicParsing="false" onAction="#addTicketClicked" prefHeight="31.0" prefWidth="127.0" text="%key.TicketMenu_Create" />
                   <Label layoutX="56.0" layoutY="180.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
                   <Label layoutX="54.0" layoutY="254.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
-                  <ComboBox fx:id="typeField" layoutX="148.0" layoutY="47.0" onAction="#handleTypeSelection" prefWidth="111.0" />
-                  <ComboBox fx:id="assetNumberField" layoutX="173.0" layoutY="117.0" prefWidth="85.0" />
+                  <ComboBox fx:id="typeField" layoutX="148.0" layoutY="47.0" prefWidth="111.0" />
+                  <ComboBox fx:id="assetNumberField" layoutX="173.0" layoutY="117.0" onAction="#handleTypeSelection" prefWidth="85.0" />
                </children>
             </Pane>
          </children>
