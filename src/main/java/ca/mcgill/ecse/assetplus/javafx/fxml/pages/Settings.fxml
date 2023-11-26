@@ -69,9 +69,9 @@
                   </VBox>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="532.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" layoutY="52.0" prefHeight="379.0" prefWidth="750.0">
+                        <HBox alignment="CENTER" layoutY="52.0" prefHeight="379.0" prefWidth="750.0">
                            <children>
-                              <Pane prefHeight="431.0" prefWidth="29.0" />
+                              <Pane prefHeight="431.0" prefWidth="30.0" />
                               <VBox prefHeight="431.0" prefWidth="306.0" spacing="20.0">
                                  <children>
                                     <Label prefHeight="17.0" prefWidth="292.0" styleClass="logo" stylesheets="@../css/style.css" text="%key.LanguageSettings" />
@@ -83,7 +83,7 @@
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <Pane prefHeight="431.0" prefWidth="65.0" />
+                              <Pane prefHeight="431.0" prefWidth="30.0" />
                               <VBox prefHeight="431.0" prefWidth="247.0">
                                  <children>
                                     <Label prefHeight="17.0" prefWidth="353.0" styleClass="logo" stylesheets="@../css/style.css" text="%key.ManagerAccount" />
