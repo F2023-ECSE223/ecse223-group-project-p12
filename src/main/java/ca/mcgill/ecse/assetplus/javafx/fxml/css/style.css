@@ -119,7 +119,7 @@ Stylesheet of our UI
     -fx-text-fill: #808080;
 }
 
-.descriptionBox
+.text-field-white
 {
     -fx-background-color: #F7F6FE;
     -fx-background-radius: 10;
@@ -129,6 +129,7 @@ Stylesheet of our UI
     -fx-faint-focus-color: transparent;
     -fx-inner-border: transparent;
     -fx-border-color: transparent;
+    -fx-background-color: white;
 }
 
 .text-area .scroll-pane .viewport{

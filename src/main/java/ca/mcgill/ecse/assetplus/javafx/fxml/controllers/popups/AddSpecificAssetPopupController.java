@@ -195,7 +195,7 @@ public class AddSpecificAssetPopupController {
 
         for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
           if(selectedValue.equals(type.getName())){
-            lifeExpectancy.setText(type.getExpectedLifeSpan()+"");
+            lifeExpectancy.setText(type.getExpectedLifeSpan()+" years");
           }
         }
         
