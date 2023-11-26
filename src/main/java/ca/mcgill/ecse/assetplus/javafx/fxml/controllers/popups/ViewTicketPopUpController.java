@@ -1,40 +1,55 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
+import ca.mcgill.ecse.assetplus.controller.TOMaintenanceNote;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.shape.Rectangle;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.TicketStatusController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 
 public class ViewTicketPopUpController {
 
-    @FXML
-    private Label approvalRequiredLabel;
+  @FXML
+  private TextField approvalRequiredField;
 
-    @FXML
-    private Label assetNumberLabel;
+  @FXML
+  private TextField assetNumberField;
 
-    @FXML
-    private Label assetTypeLabel;
+  @FXML
+  private TextField assetTypeField;
 
-    @FXML
-    private Label assigneeLabel;
+  @FXML
+  private TextField assigneeField;
 
-    @FXML
-    private Label priorityLabel;
+  @FXML
+  private TextArea descriptionField;
 
-    @FXML
-    private Label raisedOnDateLabel;
+  @FXML
+  private Rectangle fieldBg;
 
-    @FXML
-    private Label reporterLabel;
+  @FXML
+  private Button priorityButton;
 
-    @FXML
-    private Label ticketStatusLabel;
+  @FXML
+  private TextField raisedOnDateField;
 
-    @FXML
-    private Label timeEstimateLabel;
+  @FXML
+  private Button statusButton;
+
+  @FXML
+  private TextField ticketNumberField;
+
+  @FXML
+  private TextField ticketRaiserField;
+
+  @FXML
+  private TextField timeEstimateField;
 
     private int ticketId;
+
     private TOMaintenanceTicket ticket;
 
     public void setTicketId(int ticketId) {
@@ -44,18 +59,43 @@ public class ViewTicketPopUpController {
 
     private void initializeLabels() {
       ticket = ViewUtils.getTicket(ticketId);
-      if (ticket.getApprovalRequired()) {
-        approvalRequiredLabel.setText("Yes");
+      String text = ticket.getApprovalRequired() ? "Yes" : "No";
+      approvalRequiredField.setText(text);
+
+      // TODO when we have the asset number
+      //assetNumberField.setText()
+
+      assetTypeField.setText(ticket.getAssetName());
+      descriptionField.setText(ticket.getDescription());
+
+      priorityButton.setText(ticket.getPriority());
+      if (!ticket.getPriority().isEmpty()) {
+        priorityButton.setStyle(getPriorityStyle(ticket.getPriority()));
       } else {
-        approvalRequiredLabel.setText("No");
+        priorityButton.setVisible(false);
       }
 
-      assetTypeLabel.setText(ticket.getAssetName());
-      assigneeLabel.setText(ViewUtils.getUsername(ticket.getFixedByEmail()));
-      priorityLabel.setText(ticket.getPriority());
-      raisedOnDateLabel.setText(ticket.getRaisedOnDate().toString());
-      reporterLabel.setText(ViewUtils.getUsername(ticket.getRaisedByEmail()));
-      ticketStatusLabel.setText(ticket.getStatus());
-      timeEstimateLabel.setText(ticket.getTimeToResolve());
+      statusButton.setText(ticket.getStatus());
+      statusButton.setStyle(TicketStatusController.getStyle(ticket.getStatus()));
+
+      raisedOnDateField.setText(ticket.getRaisedOnDate().toString());
+      ticketNumberField.setText(String.valueOf(ticket.getId()));
+      ticketRaiserField.setText(ViewUtils.getUsername(ticket.getRaisedByEmail()));
+      assigneeField.setText(ViewUtils.getUsername(ticket.getFixedByEmail()));
+      timeEstimateField.setText(ticket.getTimeToResolve());
     }
+
+    private String getPriorityStyle(String priority) {
+      switch (priority) {
+        case "Low":
+          return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969; fx-background-radius: 50px";
+        case "Normal":
+          return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254; fx-background-radius: 50px";
+        case "Urgent":
+          return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11; fx-background-radius: 50px";
+      }
+      return "";
+    }
+
 }
+

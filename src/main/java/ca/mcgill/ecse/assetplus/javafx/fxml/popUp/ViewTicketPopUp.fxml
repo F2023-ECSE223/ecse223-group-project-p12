@@ -1,128 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
-  All rights reserved. Use is subject to license terms.
-
-  This file is available and licensed under the following license:
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-
-  - Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the distribution.
-  - Neither the name of Oracle Corporation nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewTicketPopUpController">
-  <children>
-      <VBox alignment="TOP_RIGHT">
-         <children>
-            <fx:include source="../components/PopUpToolBar.fxml" HBox.hgrow="ALWAYS" />
-         </children>
-      </VBox>
-      <HBox alignment="CENTER" prefHeight="200.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
-         <children>
-            <Label styleClass="popUpTitle" text="%key.ViewTicket_Title" />
-         </children>
-         <padding>
-            <Insets left="20.0" right="20.0" />
-         </padding>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="419.0" prefWidth="600.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="246.0" prefWidth="304.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <Label style="-fx-text-fill: #624DE3;" text="%key.TicketStatus_Reporter" />
-                        <Label fx:id="reporterLabel" text="Label" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <Label style="-fx-text-fill: #624DE3;" text="%key.TicketStatus_Assignee" />
-                        <Label fx:id="assigneeLabel" text="Label" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <Label style="-fx-text-fill: #624DE3;" text="%key.TicketMenu_RaisedDate" />
-                        <Label fx:id="raisedOnDateLabel" text="Label" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <Label style="-fx-text-fill: #624DE3;" text="%key.TicketMenu_AddAssetNumber" />
-                        <Label fx:id="assetNumberLabel" text="Label" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <Label style="-fx-text-fill: #624DE3;" text="%key.TicketMenu_AddAssetType" />
-                        <Label fx:id="assetTypeLabel" text="Label" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox prefHeight="246.0" prefWidth="288.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <Label style="-fx-text-fill: #624DE3;" text="%key.TicketMenu_Status" />
-                        <Label fx:id="ticketStatusLabel" text="Label" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <Label style="-fx-text-fill: #624DE3;" text="%key.TicketStatus_Priority" />
-                        <Label fx:id="priorityLabel" text="Label" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <Label style="-fx-text-fill: #624DE3;" text="%key.TicketStatus_TimeToResolve" />
-                        <Label fx:id="timeEstimateLabel" text="Label" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <Label style="-fx-text-fill: #624DE3;" text="%key.TicketStatus_ApprovalRequired" />
-                        <Label fx:id="approvalRequiredLabel" text="Label" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
+<VBox alignment="CENTER" prefHeight="548.0" prefWidth="648.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewTicketPopUpController">
+   <children>
+      <fx:include source="../components/PopUpToolBar.fxml" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="152.0" styleClass="popUpTitle" text="%key.ViewTicket_Title" textAlignment="CENTER">
          <VBox.margin>
-            <Insets bottom="20.0" top="20.0" />
+            <Insets />
          </VBox.margin>
+      </Label>
+      <HBox prefHeight="492.0" prefWidth="598.0">
+         <children>
+            <Pane prefHeight="370.0" prefWidth="299.0">
+               <children>
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="19.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <Pane />
+                  <Label layoutX="43.0" layoutY="51.0" text="%key.TicketMenu_TicketNumber" />
+                  <TextField fx:id="ticketNumberField" editable="false" layoutX="171.0" layoutY="48.0" prefHeight="26.0" prefWidth="53.0" style="-fx-background-color: white;" />
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="124.0" layoutX="13.0" layoutY="326.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <Label layoutX="37.0" layoutY="337.0" text="%key.TicketMenu_Description" />
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="19.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <Label layoutX="43.0" layoutY="127.0" text="%key.TicketMenu_Status" />
+                  <Button fx:id="statusButton" layoutX="195.0" layoutY="123.0" mnemonicParsing="false" text="Button" />
+                  <TextArea fx:id="descriptionField" editable="false" layoutX="27.0" layoutY="359.0" prefHeight="77.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10;" styleClass="descriptionBox" stylesheets="@../css/style.css" />
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="19.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <Label layoutX="43.0" layoutY="193.0" text="%key.TicketStatus_Priority" />
+                  <Button fx:id="priorityButton" layoutX="195.0" layoutY="189.0" mnemonicParsing="false" text="Button" />
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="14.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="295.0" />
+                  <Label layoutX="38.0" layoutY="267.0" prefHeight="17.0" prefWidth="137.0" text="%key.TicketStatus_TimeToResolve" />
+                  <TextField fx:id="timeEstimateField" editable="false" layoutX="163.0" layoutY="262.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: white;" />
+               </children>
+            </Pane>
+            <Pane prefHeight="370.0" prefWidth="299.0">
+               <children>
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="29.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <Label layoutX="53.0" layoutY="52.0" text="%key.TicketMenu_AddAssetType" />
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="28.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <Label layoutX="52.0" layoutY="126.0" text="%key.TicketMenu_AddAssetNumber" />
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="29.0" layoutY="178.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <TextField fx:id="raisedOnDateField" editable="false" layoutX="141.0" layoutY="189.0" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: white;" />
+                  <Label layoutX="53.0" layoutY="185.0" prefHeight="38.0" prefWidth="74.0" style="-fx-wrap-text: true;" text="%key.TicketMenu_AddRaisedDate" textAlignment="CENTER" />
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="32.0" layoutY="248.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <Label layoutX="56.0" layoutY="253.0" prefHeight="38.0" prefWidth="91.0" style="-fx-wrap-text: true;" text="%key.TicketMenu_AddRaiser" textAlignment="CENTER" />
+                  <TextField fx:id="ticketRaiserField" editable="false" layoutX="147.0" layoutY="259.0" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: white;" />
+                  <TextField fx:id="assetNumberField" editable="false" layoutX="202.0" layoutY="122.0" prefHeight="26.0" prefWidth="53.0" style="-fx-background-color: white;" />
+                  <TextField fx:id="assetTypeField" editable="false" layoutX="164.0" layoutY="47.0" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: white;" />
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="32.0" layoutY="317.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <Label layoutX="56.0" layoutY="322.0" prefHeight="38.0" prefWidth="91.0" style="-fx-wrap-text: true;" text="%key.TicketMenu_AddRaiser" textAlignment="CENTER" />
+                  <TextField fx:id="assigneeField" editable="false" layoutX="149.0" layoutY="328.0" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: white;" />
+                  <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="32.0" layoutY="383.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                  <Label layoutX="65.0" layoutY="398.0" text="%key.TicketStatus_ApprovalRequired" />
+                  <TextField fx:id="approvalRequiredField" editable="false" layoutX="221.0" layoutY="393.0" prefHeight="26.0" prefWidth="53.0" style="-fx-background-color: white;" />
+               </children>
+            </Pane>
+         </children>
       </HBox>
-  </children>
+   </children>
    <padding>
-      <Insets bottom="30.0" />
+      <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
    </padding>
 </VBox>

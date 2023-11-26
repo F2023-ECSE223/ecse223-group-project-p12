@@ -157,7 +157,6 @@ public class TicketStatusController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         //purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPurchaseDate().toLocalDate().format(formatter)));
         dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedOnDate().toLocalDate().format(formatter)));
-        statusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getFixedByEmail())));
         dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getRaisedOnDate())));
         
@@ -292,6 +291,8 @@ public class TicketStatusController {
         DeleteTicketPopUpController controller = (DeleteTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteTicketPopUp.fxml", "Delete Ticket");
         if (controller==null) System.out.println("controller null");
         System.out.println("Deleting with ticket number: " + Integer.toString(ticketId));
+    }
+    
     private void handleTrashButtonClicked() {
         
     }
@@ -301,7 +302,7 @@ public class TicketStatusController {
         controller.setTicketId(ticketId);
     }
 
-    private String getStyle(String status) {
+    public static String getStyle(String status) {
         switch (status) {
             case "Open":
                 return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969; fx-background-radius: 50px";

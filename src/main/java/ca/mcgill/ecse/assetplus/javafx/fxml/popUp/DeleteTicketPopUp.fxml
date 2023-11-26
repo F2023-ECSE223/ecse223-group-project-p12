@@ -48,7 +48,7 @@
                   <Pane layoutX="10.0" layoutY="10.0" />
                   <HBox alignment="CENTER" layoutX="-1.0" layoutY="195.0" prefHeight="68.0" prefWidth="500.0">
                      <children>
-                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="127.0" text="%key.TicketMenu_Cancel" />
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="127.0" text="%key.Cancel" />
                         <Button fx:id="deleteTicketButton" mnemonicParsing="false" onAction="#deleteTicketClicked" prefHeight="31.0" prefWidth="127.0" styleClass="actionButton" text="%key.TicketMenu_DeleteButton">
                            <HBox.margin>
                               <Insets left="70.0" />
