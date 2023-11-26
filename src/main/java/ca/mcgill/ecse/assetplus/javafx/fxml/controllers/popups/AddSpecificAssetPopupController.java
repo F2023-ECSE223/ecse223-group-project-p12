@@ -126,6 +126,7 @@ public class AddSpecificAssetPopupController {
       if(!hasErrorDate && !hasErrorType && !hasErrorFloor) {
         int number;
         if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
+          
           number = 1;
         } else {
           number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);   
@@ -194,7 +195,7 @@ public class AddSpecificAssetPopupController {
 
         for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()){
           if(selectedValue.equals(type.getName())){
-            lifeExpectancy.setText(type.getExpectedLifeSpan()+"");
+            lifeExpectancy.setText(type.getExpectedLifeSpan()+" years");
           }
         }
         

@@ -3,8 +3,10 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.UpdateTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewNotesController;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -33,6 +35,7 @@ import java.util.ResourceBundle;
 import com.google.common.collect.Table;
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import javafx.stage.Stage;;
 
 public class TicketStatusController {
@@ -106,7 +109,9 @@ public class TicketStatusController {
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
         reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getRaisedByEmail())));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFixedByEmail()));
-        dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getRaisedOnDate())));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPurchaseDate().toLocalDate().format(formatter)));
+        dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedOnDate().toLocalDate().format(formatter)));
         statusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
 
         ticketList = ViewUtils.getMaintenanceTickets();
@@ -135,23 +140,18 @@ public class TicketStatusController {
                     private String getStatusStyle(String status) {
                         switch (status) {
                             case "Open":
-                                return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969;";
                             case "Ouvert":
                                 return "-fx-background-color: #D3D3D3; -fx-text-fill: #696969;";
                             case "Assigned":
-                                return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC";
                             case "Assigné":
                                 return "-fx-background-color: #E6F7FF; -fx-text-fill: #0066CC";
                             case "In Progress":
-                                return "-fx-background-color: #FEF2E5; -fx-text-fill: #CD6200";
                             case "En progrès":
-                                return "-fx-background-color: #FEF2E5; -fx-text-fill: #FFD700";
+                                return "-fx-background-color: #FEF2E5; -fx-text-fill: #CD6200";
                             case "Resolved":
-                                return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254";
                             case "Résolu":
                                 return "-fx-background-color: #EBF9F1; -fx-text-fill: #1F9254";
                             case "Closed":
-                                return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11";
                             case "Fermé":
                                 return "-fx-background-color: #FBE7E8; -fx-text-fill: #A30D11";
                             default: 
@@ -228,7 +228,7 @@ public class TicketStatusController {
             Button trashBtn = new Button();
             trashBtn.getStyleClass().add("icon-trash");
             trashBtn.setPickOnBounds(true);
-            trashBtn.setOnAction(event -> handleTrashButtonClicked());
+            trashBtn.setOnAction(event -> handleTrashButtonClicked(ticketId));
             Tooltip trashTooltip = new Tooltip(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketStatus_DeleteTicket"));
             trashTooltip.setStyle("-fx-text-fill: #A30D11");
             trashBtn.setTooltip(trashTooltip);
@@ -248,11 +248,13 @@ public class TicketStatusController {
         setPercentageWidth(dateStartedColumn, 21);
         setPercentageWidth(statusColumn, 10);
         setPercentageWidth(actionColumn, 20);
+        
     }
 
     @FXML
     void goToTicketMenu(ActionEvent event) {
         AddTicketPopUpController controller = (AddTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
+        if (controller==null) System.out.println("controller null");
     }
 
     @FXML
@@ -294,22 +296,23 @@ public class TicketStatusController {
     }
 
     private void handleNotesButtonClicked(int ticketId) {
-        // To Do handle notes
-        //ViewImagesController controller = (ViewImagesController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewImages.fxml", "View Images");
-        //controller.setTicketId(ticketId);
+        ViewNotesController controller = (ViewNotesController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewNotes.fxml", "View Notes");
+        controller.setTicketId(ticketId);
     }
 
     private void handleEditButtonClicked(int ticketId) {
-        System.out.println("is anything happening?");
-        UpdateTicketPopUpController controller = (UpdateTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/UpdateTicketPopUp.fxml", "Update Ticket");
-           // if (controller==null) System.out.println("controller null");
+        ModifyTicketPopUpController controller = (ModifyTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifyTicketPopUp.fxml", "Update Ticket");
+        if (controller==null) System.out.println("controller null");
         System.out.println("Updating with ticket number: " + Integer.toString(ticketId));
         controller.setTicketId(ticketId);
 
     }
 
-    private void handleTrashButtonClicked() {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml", "deleteTab");
+    private void handleTrashButtonClicked(int ticketId) {
+        DeleteTicketPopUpController.setId(ticketId);
+        DeleteTicketPopUpController controller = (DeleteTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteTicketPopUp.fxml", "Delete Ticket");
+        if (controller==null) System.out.println("controller null");
+        System.out.println("Deleting with ticket number: " + Integer.toString(ticketId));
     }
 
     private void setPercentageWidth(TableColumn<?, ?> column, double percentage) {

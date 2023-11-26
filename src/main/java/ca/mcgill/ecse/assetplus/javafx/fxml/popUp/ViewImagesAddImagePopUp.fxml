@@ -11,7 +11,7 @@
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="350.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddImagePopUpController">
    <children>
       <fx:include source="../components/PopUpToolBar.fxml" />
-      <Label styleClass="popUpTitle" text="%key.ViewImages_AddImage">
+      <Label styleClass="popUpTitle" text="%key.AddImage_AddImage">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin></Label>
@@ -42,7 +42,7 @@
       <HBox alignment="CENTER">
          <children>
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#Cancel" prefWidth="100.0" styleClass="cancelButton" text="%key.AddImage_Cancel" />
-            <Button fx:id="addImageButton" mnemonicParsing="false" onAction="#AddImage" prefWidth="100.0" styleClass="actionButton" text="%key.ViewImages_AddImage">
+            <Button fx:id="addImageButton" mnemonicParsing="false" onAction="#AddImage" prefWidth="100.0" styleClass="actionButton" text="%key.AddImage_AddImage">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>

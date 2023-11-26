@@ -119,10 +119,33 @@ Stylesheet of our UI
     -fx-text-fill: #808080;
 }
 
-.descriptionBox{
+.text-field-white
+{
     -fx-background-color: #F7F6FE;
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: #808080;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-inner-border: transparent;
+    -fx-border-color: transparent;
+    -fx-background-color: white;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-area
+{
+    -fx-background-color: #F7F6FE;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
     -fx-text-fill: #808080;
 }
 
@@ -411,6 +434,14 @@ Stylesheet of our UI
     -fx-effect: dropshadow(three-pass-box, rgba(163,121,195,0.8), 2, 0, 0, 2);
 }
 
+.fieldBgDelete{
+    -fx-fill: #F7F6FE;
+    -fx-stroke: #F7F6FE;
+    -fx-stroke-width: 2;
+    -fx-arc-width: 40;
+    -fx-arc-height: 40;
+}
+
 /* DATE PICKER CSS*/
 .date-picker {
     -fx-background-color: white; 
@@ -469,6 +500,19 @@ Stylesheet of our UI
 .errorMessage
 {
     -fx-text-fill: #a30d11;
+}
+/* View Notes */
+.note
+{
+    -fx-background-color: #FEF2E5;
+    -fx-border-width: 0;
+    -fx-effect: none;
+    -fx-background-radius: 10px;
+}
+
+.noteText
+{
+    -fx-text-fill: #CD6200;
 }
 
 /* Radio button */
