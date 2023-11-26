@@ -128,8 +128,8 @@ public class ModifyTicketPopUpController {
             assetNumber = Integer.parseInt(assetNumberField.getValue());
         }
 
-        if (ticketNumberString == null || description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null){
-                updateTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage"));
+        if (description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null || raisedDate == null){
+                updateTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage1"));
                 System.out.println("Ticket not updated");
         }
         else{
@@ -149,7 +149,8 @@ public class ModifyTicketPopUpController {
                 AssetPlusFXMLView.getInstance().closePopUpWindow();    
             }
             else{
-                updateTicketError.setText(err);
+                updateTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage2"));
+                System.out.println("Ticket not updated");
             }  
 
         }

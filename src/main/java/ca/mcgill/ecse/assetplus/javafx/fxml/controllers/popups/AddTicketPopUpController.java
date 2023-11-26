@@ -120,8 +120,8 @@ public class AddTicketPopUpController {
             assetNumber = Integer.parseInt(assetNumberField.getValue());
         }
 
-        if (ticketNumberString == null || description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null){
-                addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage"));
+        if (description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null || raisedDate == null){
+                addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage1"));
                 System.out.println("Ticket not added");
         }
         else{
@@ -141,7 +141,8 @@ public class AddTicketPopUpController {
                 AssetPlusFXMLView.getInstance().closePopUpWindow();    
             }
             else{
-                addTicketError.setText(err);
+                addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage2"));
+                System.out.println("Ticket not added");
             }  
 
         }

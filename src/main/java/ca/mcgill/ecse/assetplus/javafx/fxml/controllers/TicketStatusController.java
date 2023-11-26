@@ -35,6 +35,7 @@ import java.util.ResourceBundle;
 import com.google.common.collect.Table;
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import javafx.stage.Stage;;
 
 public class TicketStatusController {
@@ -108,7 +109,9 @@ public class TicketStatusController {
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
         reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getRaisedByEmail())));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFixedByEmail()));
-        dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(dateFormat.format(cellData.getValue().getRaisedOnDate())));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        //purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPurchaseDate().toLocalDate().format(formatter)));
+        dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedOnDate().toLocalDate().format(formatter)));
         statusColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatus()));
 
         ticketList = ViewUtils.getMaintenanceTickets();
@@ -245,6 +248,7 @@ public class TicketStatusController {
         setPercentageWidth(dateStartedColumn, 21);
         setPercentageWidth(statusColumn, 10);
         setPercentageWidth(actionColumn, 20);
+        
     }
 
     @FXML
