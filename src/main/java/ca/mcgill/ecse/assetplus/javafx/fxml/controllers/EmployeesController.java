@@ -59,21 +59,34 @@ public class EmployeesController {
     @FXML
     private Label showEmployeeError;
 
+    @FXML
+    void cancelCreateEmployee(ActionEvent event) {
+
+    }
+
+    @FXML
+    void createEmployee(ActionEvent event) {
+        
+    }
+
 
     @FXML
     void AddEmployee(ActionEvent event) {
+        System.out.println("add");
         AddEmployeePopUpController controller = (AddEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddEmployeePopUp.fxml", "Add Employee");
 
     }
 
     @FXML
     void modifyEmployeePopup(ActionEvent event, String aEmail) {
+        System.out.println("modify");
         ModifyEmployeePopUpController controller = (ModifyEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifyEmployeePopUp.fxml", "Modify Employee");
         controller.email = aEmail;
     }
 
     @FXML
     void deleteEmployeePopup(ActionEvent event, String aEmail) {
+        System.out.println("delete");
         DeleteEmployeePopUpController controller = (DeleteEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteEmployeePopUp.fxml", "Delete Employee");
         controller.email = aEmail;
     }
@@ -168,7 +181,7 @@ public class EmployeesController {
             deleteButton.setOnAction(e -> deleteEmployeePopup(e, employee.getEmail()));
             Pane pane = new Pane();
             pane.setMinWidth(20);
-            hBox.getChildren().addAll(modify, pane, deleteButton);
+            hBox.getChildren().addAll(deleteButton, pane, modify);
             gridPane.add(hBox, 0, 4);
 
             DropShadow ds = new DropShadow();
