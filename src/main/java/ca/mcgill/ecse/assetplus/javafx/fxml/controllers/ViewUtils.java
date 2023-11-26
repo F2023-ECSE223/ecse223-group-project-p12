@@ -71,8 +71,6 @@ public class ViewUtils {
     makePopupWindow("Error", message);
   }
 
-  public static String
-
   public static ObservableList<TOMaintenanceTicket> getMaintenanceTickets() {
     List<TOMaintenanceTicket> ticket = AssetPlusFeatureSet6Controller.getTickets();
     return FXCollections.observableList(ticket);
