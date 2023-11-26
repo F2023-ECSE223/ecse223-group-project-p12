@@ -136,7 +136,8 @@ public class ViewImagesController {
 
     private void trashBtnClicked(String url) {
         DeleteViewImagesPopUpController controller = (DeleteViewImagesPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewImagesDeletePopUp.fxml", "Delete Image");
-        controller.setTicketIdAndURL(currentTicketNumber, url);
+        if (controller != null)
+            controller.setTicketIdAndURL(currentTicketNumber, url);
         ViewUtils.callController("");
     }
 

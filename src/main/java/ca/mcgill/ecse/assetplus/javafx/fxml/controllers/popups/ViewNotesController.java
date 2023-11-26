@@ -163,13 +163,15 @@ public class ViewNotesController {
 
     private void updateBtnClicked(int index) {
         ModifyNotePopUpController controller = (ModifyNotePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewNotesModifyNotePopUp.fxml", "Modify Note");
-        controller.setTicketIdAndIndex(currentTicketNumber, index);
+        if (controller != null)
+            controller.setTicketIdAndIndex(currentTicketNumber, index);
         ViewUtils.callController("");
     }
 
     private void trashBtnClicked(int index) {
         DeleteViewNotesPopUpController controller = (DeleteViewNotesPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewNotesDeletePopUp.fxml", "Delete Note");
-        controller.setTicketIdAndIndex(currentTicketNumber, index);
+        if (controller != null)
+            controller.setTicketIdAndIndex(currentTicketNumber, index);
         ViewUtils.callController("");
     }
 
