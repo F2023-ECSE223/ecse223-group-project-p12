@@ -57,7 +57,7 @@
                      </children>
                   </HBox>
                   <VBox layoutX="3.0" layoutY="75.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" />
-                  <Label alignment="CENTER" layoutX="3.0" layoutY="137.0" prefHeight="49.0" prefWidth="493.0" styleClass="errorMessage" text="%key.TicketMenu_DeleteMessage2" textAlignment="CENTER" />
+                  <Label alignment="CENTER" layoutX="126.0" layoutY="137.0" prefHeight="49.0" prefWidth="248.0" style="-fx-wrap-text: true;" styleClass="errorMessage" text="%key.TicketMenu_DeleteMessage2" textAlignment="CENTER" />
                </children>
             </AnchorPane>
          </children>

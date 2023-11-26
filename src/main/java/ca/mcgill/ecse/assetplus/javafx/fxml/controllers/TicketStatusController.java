@@ -254,6 +254,7 @@ public class TicketStatusController {
     @FXML
     void goToTicketMenu(ActionEvent event) {
         AddTicketPopUpController controller = (AddTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddTicketPopUp.fxml", "Add Ticket");
+        if (controller==null) System.out.println("controller null");
     }
 
     @FXML
@@ -300,19 +301,17 @@ public class TicketStatusController {
     }
 
     private void handleEditButtonClicked(int ticketId) {
-        System.out.println("is anything happening?");
-
         ModifyTicketPopUpController controller = (ModifyTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifyTicketPopUp.fxml", "Update Ticket");
-           // if (controller==null) System.out.println("controller null");
+        if (controller==null) System.out.println("controller null");
         System.out.println("Updating with ticket number: " + Integer.toString(ticketId));
         controller.setTicketId(ticketId);
 
     }
 
     private void handleTrashButtonClicked(int ticketId) {
-        System.out.println("is anything happening?");
         DeleteTicketPopUpController.setId(ticketId);
         DeleteTicketPopUpController controller = (DeleteTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteTicketPopUp.fxml", "Delete Ticket");
+        if (controller==null) System.out.println("controller null");
         System.out.println("Deleting with ticket number: " + Integer.toString(ticketId));
     }
 

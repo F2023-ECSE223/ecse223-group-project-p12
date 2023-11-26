@@ -82,30 +82,16 @@ public class ModifyTicketPopUpController {
 
     @FXML
     void initialize(){
-        //ticketNumberField.setEditable(false);
-        //ticketNumberField.setText(((Integer)ticketId).toString());
         ticketNumberField.setFocusTraversable(false);
-        //ticketStatusField.setEditable(false);
-        //ticketStatusField.setText(.toString());
         ticketStatusField.setFocusTraversable(false);
-
-        //Button pencilBtn = new Button();
-        //pencilBtn.getStyleClass().add("icon-pencil");
-        //pencilBtn.setPickOnBounds(true);
-        //pencilBtn.setOnAction(e -> pencilBtnClicked());
-
         ObservableList<TOAssetType> list = ViewUtils.getAssetTypes();
         for (TOAssetType type : list){
             typeField.getItems().add(type.getName());
         }
-
-        //get assets only for the selected type
         ObservableList<TOSpecificAsset> list2 = ViewUtils.getSpecificAsset();
         for (TOSpecificAsset asset : list2){
             assetNumberField.getItems().add(Integer.toString(asset.getAssetNumber()));
         }
-        // set editable to false so that the user cannot choose from the calendar
-        //raisedDateField.setEditable(false);
         updateTicketError.setText(null);
         
     }
@@ -120,7 +106,6 @@ public class ModifyTicketPopUpController {
         String ticketNumberString = ticketNumberField.getText();
         String description = descriptionField.getText();
         String raiser = raiserField.getText();
-        //figure out date picker
         LocalDate date = raisedDateField.getValue();
         Date raisedDate = Date.valueOf(date);
         int assetNumber = -1;
@@ -144,7 +129,6 @@ public class ModifyTicketPopUpController {
                 typeField.setValue(null);
                 raisedDateField.setValue(null);
                 updateTicketError.setText(null);
-                //addTicketError.setText("Your ticket has been created!");
                 System.out.println("Ticket updated");
                 AssetPlusFXMLView.getInstance().closePopUpWindow();    
             }
@@ -158,7 +142,7 @@ public class ModifyTicketPopUpController {
 
     public void setTicketId(int id) {
         ticketId = id;
-    // set editable to false so that the user cannot choose from the calendar
+        // set editable to false so that the user cannot choose from the calendar
         raisedDateField.setEditable(false);
         ticketStatusField.setEditable(false);
         ticketNumberField.setEditable(false);
@@ -169,7 +153,6 @@ public class ModifyTicketPopUpController {
         ticketStatusField.setText(ticket.getStatus().toString());
         descriptionField.setText(ticket.getDescription());
         raiserField.setText(ticket.getRaisedByEmail());
-        //raisedDateField.setValue(ticket.getRaisedOnDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         typeField.setValue(ticket.getAssetName());
         raisedDateField.setValue(ticket.getRaisedOnDate().toLocalDate());
         if (ticket.getAssetName() == null){

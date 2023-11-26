@@ -74,20 +74,15 @@ public class AddTicketPopUpController {
         ticketNumberField.setFocusTraversable(false);
         ticketStatusField.setEditable(false);
         ticketStatusField.setFocusTraversable(false);
-
-
         ObservableList<TOAssetType> list = ViewUtils.getAssetTypes();
         for (TOAssetType type : list){
             typeField.getItems().add(type.getName());
         }
-
         //get assets only for the selected type
-    
         ObservableList<TOSpecificAsset> list2 = ViewUtils.getSpecificAsset();
         for (TOSpecificAsset asset : list2){
             assetNumberField.getItems().add(Integer.toString(asset.getAssetNumber()));
         }
-    
         // set editable to false so that the user cannot choose from the calendar
         raisedDateField.setEditable(false);
         // set default value to today
@@ -101,7 +96,6 @@ public class AddTicketPopUpController {
         // Get the selected category from the first ComboBox
         System.out.println("selecteddd");
         String selectedType = typeField.getValue();
-
         // Update the items of the second ComboBox based on the selected category
         updateAssetComboBox(selectedType);
     }
@@ -136,7 +130,6 @@ public class AddTicketPopUpController {
                 typeField.setValue(null);
                 raisedDateField.setValue(null);
                 addTicketError.setText(null);
-                //addTicketError.setText("Your ticket has been created!");
                 System.out.println("Ticket added");
                 AssetPlusFXMLView.getInstance().closePopUpWindow();    
             }
