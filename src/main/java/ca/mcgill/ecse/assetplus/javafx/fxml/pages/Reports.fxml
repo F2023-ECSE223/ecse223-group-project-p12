@@ -85,7 +85,7 @@
                                                     <CategoryAxis side="BOTTOM" />
                                                   </xAxis>
                                                   <yAxis>
-                                                    <NumberAxis side="LEFT" />
+                                                    <NumberAxis fx:id="yAxis" side="LEFT" />
                                                   </yAxis>
                                                    <VBox.margin>
                                                       <Insets />

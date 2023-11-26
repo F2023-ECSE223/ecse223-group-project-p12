@@ -52,7 +52,8 @@ public class ReportsController {
 
     private HashMap<String, Integer> counts;
 
-    private XYChart.Series<String, Number> series;
+    @FXML
+    private NumberAxis yAxis;
 
     @FXML
     void initialize() {
@@ -63,6 +64,7 @@ public class ReportsController {
         oneLastYear.setToggleGroup(toggleGroup);
         allTime.setToggleGroup(toggleGroup);
 
+        yAxis.setTickUnit(1);
         fixChart(0);
                 
     }
@@ -125,7 +127,7 @@ public class ReportsController {
     public void fixChart(int condition){
         counts = getCounts(condition);
 
-        
+
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         for (String asset : counts.keySet()) {
