@@ -73,7 +73,7 @@
                   </VBox>
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="750.0" VBox.vgrow="NEVER">
                      <children>
-                        <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#search" styleClass="actionButton" text="Search" />
+                        <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="27.0" prefWidth="66.0" styleClass="actionButton" text="%key.AssetMenu_AssetSearch" />
                         <GridPane fx:id="searchPane" prefHeight="63.0" prefWidth="473.0" HBox.hgrow="ALWAYS">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.1263427734375" minWidth="10.0" prefWidth="102.1263427734375" />
@@ -88,26 +88,26 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label alignment="CENTER" text="Asset Number" GridPane.hgrow="ALWAYS" />
-                              <Label text="Asset" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" text="%key.AssetMenu_AssetNumber" GridPane.hgrow="ALWAYS" />
+                              <Label text="%key.AssetMenu_Asset" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
                               <TextField fx:id="assetNumberSearch" GridPane.columnIndex="1" />
                               <TextField fx:id="assetSearch" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="17.0" text="Room" GridPane.columnIndex="2">
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="17.0" text="%key.AssetMenu_Room" GridPane.columnIndex="2">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <Label layoutX="145.0" layoutY="17.0" text="Floor" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Label layoutX="145.0" layoutY="17.0" text="%key.AssetMenu_Floor" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <Label layoutX="145.0" layoutY="48.0" text="Purchase Date" GridPane.columnIndex="4">
+                              <Label layoutX="145.0" layoutY="48.0" text="%key.AssetMenu_PurchaseDate" GridPane.columnIndex="4">
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>
                               </Label>
-                              <Label layoutX="245.0" layoutY="17.0" text="Life Expectancy" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                              <Label layoutX="245.0" layoutY="17.0" text="%key.AssetMenu_LifeExpectancy" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                  <padding>
                                     <Insets left="5.0" />
                                  </padding>
