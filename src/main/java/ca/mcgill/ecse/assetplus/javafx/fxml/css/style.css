@@ -499,6 +499,10 @@ Stylesheet of our UI
     -fx-padding: 5px 10px 5px 10px
 }
 
+.errorMessage
+{
+    -fx-text-fill: #a30d11;
+}
 /* View Notes */
 .note
 {
