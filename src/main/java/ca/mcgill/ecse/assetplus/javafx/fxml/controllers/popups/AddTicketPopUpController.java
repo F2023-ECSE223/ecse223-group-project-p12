@@ -97,13 +97,10 @@ public class AddTicketPopUpController {
         System.out.println("selecteddd");
         String selectedType = typeField.getValue();
         // Update the items of the second ComboBox based on the selected category
-        if (selectedType == null || selectedType.equals("")){
+        //if (selectedType == null || selectedType.equals("")){
              updateAssetComboBox(selectedType);
-        }
-        else{
-            addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_AssetErrorMessage"));
-            assetNumberField.getItems().clear();
-        }
+        //}
+    
     }
     
     
@@ -156,15 +153,25 @@ public class AddTicketPopUpController {
     private void updateAssetComboBox(String typeSelected) {
         // Simulate different items based on the selected category
         System.out.println("listtt again");
+        System.out.println(typeSelected);
         TOAssetType assetType = ViewUtils.getWithAssetName(typeSelected);
         if (assetType != null){
+            assetNumberField.getItems().clear();
             System.out.println("listtt");
-            ObservableList<TOSpecificAsset>  assets = FXCollections.observableArrayList(assetType.getTOSpecificAssets());
-            ObservableList<String> list = FXCollections.observableArrayList();
+            List<TOSpecificAsset>  assets = (assetType.getTOSpecificAssets());
+            System.out.println(assetType.getName());
+            System.out.println(assetType.getTOSpecificAssets());
+            //ObservableList<String> list = FXCollections.observableArrayList();
+            
             for (TOSpecificAsset asset : assets){
-                list.add(Integer.toString(asset.getAssetNumber()));
+                //list.add(Integer.toString(asset.getAssetNumber()));
+                System.out.println(Integer.toString(asset.getAssetNumber()));
             }
-            assetNumberField.setItems(list);
+            //assetNumberField.setItems(list);
+        }
+        else{
+            addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_AssetErrorMessage"));
+            //assetNumberField.getItems().clear();
         }
         //else{
             //addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_AssetErrorMessage"));
