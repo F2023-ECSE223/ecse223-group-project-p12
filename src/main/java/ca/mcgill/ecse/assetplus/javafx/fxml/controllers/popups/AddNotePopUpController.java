@@ -69,7 +69,8 @@ public class AddNotePopUpController {
     if (email == null) {
       errorMessage.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.AddNote_ErrorAuthor"));
     } else if (isDisapproveNote) {
-
+      ViewUtils.disapproveTicket(ticketId, date, desc);
+      AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
     else if (AssetPlusFeatureSet7Controller.addMaintenanceNote(date, desc, ticketId, email).isEmpty()) {
       errorMessage.setText("");

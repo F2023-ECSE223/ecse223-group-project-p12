@@ -301,10 +301,6 @@ public class TicketStatusController {
         if (controller==null) System.out.println("controller null");
         System.out.println("Deleting with ticket number: " + Integer.toString(ticketId));
     }
-    
-    private void handleTrashButtonClicked() {
-        
-    }
 
     private void handleTicketClicked(int ticketId) {
         ViewTicketPopUpController controller = (ViewTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewTicketPopUp.fxml", "View Ticket");
