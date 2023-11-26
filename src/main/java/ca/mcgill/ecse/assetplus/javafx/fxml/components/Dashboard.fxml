@@ -39,7 +39,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="Dashboard" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="210.0" style="-fx-border-color: f0f0f0;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.DashboardController">
+<VBox fx:id="Dashboard" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" prefWidth="210.0" style="-fx-border-color: f0f0f0;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.DashboardController">
    <children>
 <Label alignment="CENTER" minWidth="60.0" prefHeight="75.0" prefWidth="210.0" style="-fx-text-fill: #8768F2;" styleClass="logo" text="AssetPlus" textAlignment="CENTER" textFill="#8768f2" wrapText="false">
          <graphic>
@@ -74,7 +74,7 @@
                   <SVGPath content="m14.56 4l2.67 8H6.78l2.66-8h5.12M16 2H8L4 14h16L16 2m-5 13h2v5h5v2H6v-2h5v-5Z" fill="GREY" styleClass="icon" />
                </graphic>
             </Button>
-            <Button fx:id="tabTicketMenu" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeTabToTicketMenu" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="%key.Dashboard_TicketMenu">
+            <Button fx:id="tabReports" alignment="CENTER" mnemonicParsing="false" onAction="#ChangeTabToReports" prefHeight="50.0" prefWidth="210.0" styleClass="menuButton" text="%key.Dashboard_Reports">
                <graphic>
                   <SVGPath content="M9 10a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1Zm12 1a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1a1 1 0 0 1 0 2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1a1 1 0 0 1 0-2Zm-1-1.82a3 3 0 0 0 0 5.64V17H10a1 1 0 0 0-2 0H4v-2.18a3 3 0 0 0 0-5.64V7h4a1 1 0 0 0 2 0h10Z" fill="GREY" styleClass="icon" />
                </graphic>
