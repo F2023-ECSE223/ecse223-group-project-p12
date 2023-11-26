@@ -82,7 +82,7 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-              <ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="750.0" style="-fx-background-color: white;">
+              <ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="750.0" style="-fx-background-color: white; -fx-fit-to-width: true; -fx-fit-to-height: true;">
                 <content>
                   <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="358.0" prefWidth="734.0" style="-fx-background-color: white;">
                            <children>
