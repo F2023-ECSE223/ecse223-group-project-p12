@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="350.0" spacing="10.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyNotePopUpController">
    <children>
@@ -26,17 +27,30 @@
                <children>
                   <Label prefWidth="130.0" text="%key.ModifyNote_ModificationDate" />
                   <DatePicker fx:id="datePicker" prefWidth="120.0" />
+                  <SVGPath fx:id="pencilType" content="m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z" fill="#8768f2">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </SVGPath>
                </children>
             </HBox>
          </children>
       </StackPane>
       <StackPane>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="fieldBg" width="250.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="fieldBg" width="260.0" />
             <HBox alignment="CENTER">
                <children>
                   <Label prefWidth="60.0" text="%key.ViewNotes_Author" />
-                  <ComboBox fx:id="authorEmail" prefWidth="150.0" />
+                  <ComboBox fx:id="authorEmail" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></ComboBox>
+                  <SVGPath fx:id="pencilType1" content="m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z" fill="#8768f2">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </SVGPath>
                </children>
             </HBox>
          </children>
@@ -46,7 +60,16 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" styleClass="fieldBg" width="250.0" />
             <VBox spacing="5.0">
                <children>
-                  <Label prefHeight="47.0" text="%key.ViewNotes_Description" textAlignment="CENTER" />
+                  <HBox>
+                     <children>
+                        <Label prefHeight="47.0" text="%key.ViewNotes_Description" textAlignment="CENTER" />
+                        <SVGPath fx:id="pencilType2" content="m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z" fill="#8768f2">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </SVGPath>
+                     </children>
+                  </HBox>
                   <TextArea fx:id="descriptionField" prefHeight="200.0" prefWidth="200.0" />
                </children>
                <padding>

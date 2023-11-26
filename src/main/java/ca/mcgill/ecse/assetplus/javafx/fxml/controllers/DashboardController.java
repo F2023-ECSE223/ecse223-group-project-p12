@@ -29,7 +29,7 @@ public class DashboardController {
     private Button tabSettings;
 
     @FXML
-    private Button tabTicketMenu;
+    private Button tabReports;
 
     @FXML
     private Button tabTicketStatus;
@@ -39,7 +39,7 @@ public class DashboardController {
         tabAssetMenu.getStyleClass().remove("currentMenuButton");
         tabEmployees.getStyleClass().remove("currentMenuButton");
         tabSettings.getStyleClass().remove("currentMenuButton");
-        tabTicketMenu.getStyleClass().remove("currentMenuButton");
+        tabReports.getStyleClass().remove("currentMenuButton");
         tabTicketStatus.getStyleClass().remove("currentMenuButton");
     }
 
@@ -60,8 +60,8 @@ public class DashboardController {
             case "pages/Settings.fxml":
                 tabSettings.getStyleClass().add("currentMenuButton");
                 break;
-            case "pages/TicketMenu.fxml":
-                tabTicketMenu.getStyleClass().add("currentMenuButton");
+            case "pages/Reports.fxml":
+                tabReports.getStyleClass().add("currentMenuButton");
                 break;
             case "pages/TicketStatus.fxml":
                 tabTicketStatus.getStyleClass().add("currentMenuButton");
@@ -77,8 +77,8 @@ public class DashboardController {
     }
 
     @FXML
-    void ChangeTabToTicketMenu(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/TicketMenu.fxml");
+    void ChangeTabToReports(ActionEvent event) {
+        AssetPlusFXMLView.getInstance().changeTab("pages/Reports.fxml");
     }
 
     @FXML
@@ -88,11 +88,7 @@ public class DashboardController {
 
     @FXML
     void ChangeToLogOutTab(ActionEvent event) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText(null);
-        alert.setContentText("You have been logged out.");
-        alert.showAndWait();
+        AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/LogOutPopUp.fxml", "Log Out");
     }
 
     @FXML
