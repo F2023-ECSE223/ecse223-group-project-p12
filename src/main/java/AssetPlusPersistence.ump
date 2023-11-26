@@ -1,0 +1,51 @@
+namespace ca.mcgill.ecse.assetplus.model;
+
+class AssetPlus {
+    public void reinitialize() {
+        AssetType.reinitializeUniqueTypes(getAssetTypes());
+        MaintenanceTicket.reinitializeUniqueTickets(getMaintenanceTickets());
+        SpecificAsset.reinitializeUniqueAssets(getSpecificAssets());
+        User.reinitializeUniqueUsers(getEmployees(), getGuests());
+    }
+}
+
+class AssetType {
+    public static void reinitializeUniqueTypes(List<AssetType> types) {
+        assettypesByName.clear();
+        for (var type : types) {
+            assettypesByName.put(type.getName(), type);
+        }
+    }
+}
+
+class MaintenanceTicket {
+    public static void reinitializeUniqueTickets(List<MaintenanceTicket> tickets) {
+        maintenanceticketsById.clear();
+        for (var ticket : tickets) {
+            maintenanceticketsById.put(ticket.getId(), ticket);
+        }
+    }
+}
+
+class SpecificAsset {
+    public static void reinitializeUniqueAssets(List<SpecificAsset> assets) {
+        specificassetsByAssetNumber.clear();
+        for (var asset : assets) {
+            specificassetsByAssetNumber.put(asset.getAssetNumber(), asset);
+        }
+    }
+}
+
+class User {
+    public static void reinitializeUniqueUsers(List<Employee> employees, List<Guest> guests) {
+        usersByEmail.clear();
+        for (var guest : guests) {
+            usersByEmail.put(guest.getEmail(), guest);
+        }
+        for (var employee : employees){
+            usersByEmail.put(employee.getEmail(), employee);
+        }
+    }
+}
+
+
