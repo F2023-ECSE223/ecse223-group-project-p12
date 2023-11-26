@@ -88,7 +88,7 @@ public class DashboardController {
 
     @FXML
     void ChangeToLogOutTab(ActionEvent event) {
-        AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/Logout.fxml", "Log Out");
+        AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/LogOutPopUp.fxml", "Log Out");
     }
 
     @FXML

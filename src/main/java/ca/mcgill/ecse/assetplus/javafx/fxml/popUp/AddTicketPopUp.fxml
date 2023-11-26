@@ -40,7 +40,7 @@
                   <TextField fx:id="ticketStatusField" editable="false" layoutX="130.0" layoutY="118.0" prefHeight="26.0" prefWidth="105.0" text="%key.TicketMenu_StatusOpen" />
                   <Button fx:id="cancelButton" layoutX="81.0" layoutY="330.0" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="127.0" text="%key.Cancel" />
                   <Label layoutX="35.0" layoutY="185.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
-                  <TextArea fx:id="descriptionField" layoutX="33.0" layoutY="209.0" prefHeight="77.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10;" styleClass="descriptionBox" stylesheets="@../css/style.css" />
+                  <TextArea fx:id="descriptionField" layoutX="33.0" layoutY="209.0" prefHeight="77.0" prefWidth="214.0" stylesheets="@../css/style.css" />
                   <Label layoutX="43.0" layoutY="122.0" prefHeight="18.0" prefWidth="97.0" text="%key.TicketMenu_Status" />
                   <TextField fx:id="ticketStatusField" layoutX="130.0" layoutY="118.0" prefHeight="26.0" prefWidth="91.0" text="%key.TicketMenu_StatusOpen" />
                   <Button fx:id="cancelButton" layoutX="81.0" layoutY="330.0" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="127.0" text="%key.Cancel" />
@@ -64,14 +64,17 @@
                   <Button fx:id="addTicketButton" layoutX="99.0" layoutY="330.0" mnemonicParsing="false" onAction="#addTicketClicked" prefHeight="31.0" prefWidth="127.0" text="%key.TicketMenu_Create" />
                   <Label layoutX="56.0" layoutY="180.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
                   <Label layoutX="54.0" layoutY="254.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
-                  <ComboBox fx:id="typeField" editable="true" layoutX="148.0" layoutY="47.0" onAction="#handleTypeSelection" prefWidth="111.0" />
-                  <ComboBox fx:id="assetNumberField" editable="true" layoutX="173.0" layoutY="117.0" prefWidth="74.0" />
+                  <ComboBox fx:id="typeField" layoutX="148.0" layoutY="47.0" onAction="#handleTypeSelection" prefWidth="111.0" />
+                  <ComboBox fx:id="assetNumberField" layoutX="173.0" layoutY="117.0" prefWidth="85.0" />
                </children>
             </Pane>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
       </HBox>
    </children>
-   <padding>
-      <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-   </padding>
 </VBox>

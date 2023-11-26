@@ -50,6 +50,36 @@
                       "@class": "Employee",
                       "@reference": "../../.."
                     },
+                    "asset": {
+                      "assetNumber": 3,
+                      "floorNumber": 19,
+                      "roomNumber": 3,
+                      "purchaseDate": "2018-11-14",
+                      "assetPlus": {
+                        "@reference": "../../../../../.."
+                      },
+                      "maintenanceTickets": [
+                        {
+                          "MaintenanceTicket": {
+                            "@reference": "../../.."
+                          }
+                        }
+                      ],
+                      "assetType": {
+                        "name": "carpet",
+                        "expectedLifeSpan": 6000,
+                        "assetPlus": {
+                          "@reference": "../../../../../../.."
+                        },
+                        "specificAssets": [
+                          {
+                            "SpecificAsset": {
+                              "@reference": "../../.."
+                            }
+                          }
+                        ]
+                      }
+                    },
                     "ticketFixer": {
                       "@class": "Employee",
                       "email": "e2@ap.com",
@@ -455,13 +485,20 @@
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset"
           },
           {
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset"
+          },
+          {
+            "@reference": "../../assetTypes/AssetType[6]/specificAssets/SpecificAsset"
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/ticketFixer/raisedTickets/MaintenanceTicket/fixApprover/raisedTickets/MaintenanceTicket/asset"
           },
           {
-            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/ticketFixer/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]"
+            "@reference": "../../assetTypes/AssetType[4]/specificAssets/SpecificAsset"
           },
           {
-            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]"
+            "@reference": "../../assetTypes/AssetType[6]/specificAssets/SpecificAsset[2]"
+          },
+          {
+            "@reference": "../../assetTypes/AssetType[4]/specificAssets/SpecificAsset[2]"
           }
         ]
       }
