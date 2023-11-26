@@ -8,6 +8,8 @@ import ca.mcgill.ecse.assetplus.controller.*;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.sql.Date;
 
 public class ViewUtils {
   
@@ -116,9 +119,31 @@ public class ViewUtils {
     return AssetPlusFeatureSet1Controller.getHotelStaffs();
   }
 
-  public static void assignTicketTo(String staffName, TOMaintenanceTicket ticket) {
+  public static void assignTicketTo(String staffName, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate, boolean approvalRequired) {
     String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
-    //return AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffName, null, null, false, SIZE)
+    TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(ticketId);
+    
+    AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(email, priority, timeEstimate, approvalRequired, ticketId);
+  }
+
+  public static void startWork(int ticketId) {
+    AssetPlusFeatureMaintenanceTicketController.startWorkingOnTicket(ticketId);
+  }
+
+  public static void completeWork(int ticketId) {
+    AssetPlusFeatureMaintenanceTicketController.completeTicket(ticketId);
+  }
+
+  public static void approveTicket(int ticketId) {
+    AssetPlusFeatureMaintenanceTicketController.approveTicket(ticketId);
+  }
+
+  public static void disapproveTicket(int ticketId, Date date, String reason) {
+    AssetPlusFeatureMaintenanceTicketController.disapproveTicket(ticketId, date, reason);
+  }
+
+  public static TOMaintenanceTicket getTicket(int ticketId) {
+    return AssetPlusFeatureSet6Controller.getTicket(ticketId);
   }
 
   public static TOAssetType getWithAssetName(String name){
