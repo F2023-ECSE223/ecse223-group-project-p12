@@ -2,22 +2,25 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet7Controller;
 import ca.mcgill.ecse.assetplus.controller.TOHotelStaff;
+import ca.mcgill.ecse.assetplus.controller.TOMaintenanceNote;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-
+import static java.lang.Integer.valueOf;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class AddNotePopUpController {
+public class ModifyNotePopUpController {
 
   private int ticketId;
-  private Date date;
+  private int index;
 
   @FXML
   private Button addNoteButton;
@@ -29,7 +32,7 @@ public class AddNotePopUpController {
   private Button cancelButton;
 
   @FXML
-  private Label currDate;
+  private DatePicker datePicker;
 
   @FXML
   private TextArea descriptionField;
@@ -43,24 +46,21 @@ public class AddNotePopUpController {
     ticketId = -1;
     errorMessage.setText("");
 
-    LocalDate localDate = LocalDate.now();
-    date = Date.valueOf(localDate);
-    currDate.setText(date.toString());
-
     for (TOHotelStaff staff: ViewUtils.getHotelStaffs()) {
       this.authorEmail.getItems().add(staff.getEmail());
     }
   }
 
   @FXML
-  void AddNote(ActionEvent event) {
+  void UpdateNote(ActionEvent event) {
     String desc = descriptionField.getText();
     String email = authorEmail.getValue();
+    Date date = Date.valueOf(datePicker.getValue());
 
     if (email == null) {
       errorMessage.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.AddNote_ErrorAuthor"));
     }
-    else if (AssetPlusFeatureSet7Controller.addMaintenanceNote(date, desc, ticketId, email).isEmpty()) {
+    else if (AssetPlusFeatureSet7Controller.updateMaintenanceNote(ticketId,index,date,desc,email).isEmpty()) {
       errorMessage.setText("");
       ViewUtils.callController("");
       AssetPlusFXMLView.getInstance().closePopUpWindow();
@@ -75,8 +75,14 @@ public class AddNotePopUpController {
     AssetPlusFXMLView.getInstance().closePopUpWindow();
   }
 
-  public void setTicketId(int id) {
-    ticketId = id;
+  public void setTicketIdAndIndex(int id, int index) {
+    this.ticketId = id;
+    this.index = index;
+
+    TOMaintenanceNote note = ViewUtils.getTicketNotes(id).get(index);
+    datePicker.setValue(note.getDate().toLocalDate());
+    authorEmail.setValue(note.getNoteTakerEmail());
+    descriptionField.setText(note.getDescription());
   }
 
 }
