@@ -124,6 +124,7 @@ public class ViewImagesController {
 
         for (javafx.concurrent.Task<Image> task : tasks) { 
             task.setOnSucceeded(event -> {
+                errorMessage.setVisible(false);
                 Rectangle rectangle = new Rectangle(0, 0, sizeImg, sizeImg);
                 rectangle.setArcWidth(30.0);
                 rectangle.setArcHeight(30.0);

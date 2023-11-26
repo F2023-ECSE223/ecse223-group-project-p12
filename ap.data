@@ -47,6 +47,36 @@
                     "ticketRaiser": {
                       "@class": "Employee",
                       "@reference": "../../.."
+                    },
+                    "asset": {
+                      "assetNumber": 3,
+                      "floorNumber": 19,
+                      "roomNumber": 3,
+                      "purchaseDate": "2018-11-14",
+                      "assetPlus": {
+                        "@reference": "../../../../../.."
+                      },
+                      "maintenanceTickets": [
+                        {
+                          "MaintenanceTicket": {
+                            "@reference": "../../.."
+                          }
+                        }
+                      ],
+                      "assetType": {
+                        "name": "carpet",
+                        "expectedLifeSpan": 6000,
+                        "assetPlus": {
+                          "@reference": "../../../../../../.."
+                        },
+                        "specificAssets": [
+                          {
+                            "SpecificAsset": {
+                              "@reference": "../../.."
+                            }
+                          }
+                        ]
+                      }
                     }
                   },
                   {
@@ -287,30 +317,7 @@
             ]
           },
           {
-            "name": "carpet",
-            "expectedLifeSpan": 6000,
-            "assetPlus": {
-              "@reference": "../../.."
-            },
-            "specificAssets": [
-              {
-                "SpecificAsset": {
-                  "assetNumber": 3,
-                  "floorNumber": 19,
-                  "roomNumber": 3,
-                  "purchaseDate": "2018-11-14",
-                  "assetPlus": {
-                    "@reference": "../../../../.."
-                  },
-                  "maintenanceTickets": [
-                    ""
-                  ],
-                  "assetType": {
-                    "@reference": "../../.."
-                  }
-                }
-              }
-            ]
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType"
           },
           {
             "name": "lamp",
@@ -421,7 +428,7 @@
             "@reference": "../../assetTypes/AssetType[2]/specificAssets/SpecificAsset"
           },
           {
-            "@reference": "../../assetTypes/AssetType[3]/specificAssets/SpecificAsset"
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset"
           },
           {
             "@reference": "../../assetTypes/AssetType[6]/specificAssets/SpecificAsset"
