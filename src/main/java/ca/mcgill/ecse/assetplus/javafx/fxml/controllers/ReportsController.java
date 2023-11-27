@@ -71,14 +71,9 @@ public class ReportsController {
         assetTypeIssues.setLegendVisible(false);
         yAxis.setTickUnit(1);
         fixChart(0);
+        fixColors();
 
-        String barColor = "rgb(135, 104, 242)"; 
-        for (XYChart.Series<String, Number> series : assetTypeIssues.getData()) {
-            for (XYChart.Data<String, Number> data : series.getData()) {
-                javafx.scene.Node node = data.getNode();
-                node.setStyle("-fx-bar-fill: " + barColor + ";");
-            }
-        }
+        
                 
     }
 
@@ -152,29 +147,42 @@ public class ReportsController {
     }
     
 
+    public void fixColors(){
+        String barColor = "rgb(135, 104, 242)"; 
+        for (XYChart.Series<String, Number> series : assetTypeIssues.getData()) {
+            for (XYChart.Data<String, Number> data : series.getData()) {
+                javafx.scene.Node node = data.getNode();
+                node.setStyle("-fx-bar-fill: " + barColor + ";");
+            }
+        }
+    }
+
     @FXML
     void allTimeBtn(ActionEvent event) {
         assetTypeIssues.getData().clear();
         fixChart(0);
-         System.out.println("All time");
+        fixColors();
     }
 
     @FXML
     void oneLastFiveBtn(ActionEvent event) {
         assetTypeIssues.getData().clear();
         fixChart(4);
+        fixColors();
     }
 
     @FXML
     void oneLastMonthBtn(ActionEvent event) {
         assetTypeIssues.getData().clear();
         fixChart(2);
+        fixColors();
     }
 
     @FXML
     void oneLastWeekBtn(ActionEvent event) {
         assetTypeIssues.getData().clear();
         fixChart(1);
+        fixColors();
     }
 
     @FXML
@@ -182,6 +190,7 @@ public class ReportsController {
         assetTypeIssues.getData().clear();
         fixChart(3);
          System.out.println("1 year");
+         fixColors();
     }
 
 }
