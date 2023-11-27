@@ -46,7 +46,7 @@ public class AssignStaffToTicketController {
       resources = AssetPlusFXMLView.getInstance().getBundle();
 
       for (TOHotelStaff staff: ViewUtils.getHotelStaffs()) {
-        this.staffComboBox.getItems().add(staff.getName());
+        this.staffComboBox.getItems().add(staff.getEmail());
       }
 
       this.staffComboBox.setValue(resources.getString("key.TicketStatus_SelectStaff"));
@@ -83,7 +83,7 @@ public class AssignStaffToTicketController {
       if (isValidSelection()) {
         String staffSelected = this.staffComboBox.getValue();
         ViewUtils.assignTicketTo(staffSelected, ticketId, getPriority(), getTimeEstimate(), approveRadioButton.isSelected());
-        ViewUtils.callController("");
+        AssetPlusFXMLView.getInstance().refresh();
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       } else {
         errorLabel.setText(resources.getString("key.TicketStatus_Error_FillAllPrompts"));

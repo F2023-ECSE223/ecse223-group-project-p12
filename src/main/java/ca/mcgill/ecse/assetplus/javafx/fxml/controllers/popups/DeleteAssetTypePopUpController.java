@@ -2,6 +2,10 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.TicketStatusController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
+import ca.mcgill.ecse.assetplus.javafx.fxml.events.AssetTypeDeletedEvent;
+import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,13 +31,15 @@ public class DeleteAssetTypePopUpController {
 
   @FXML
   void initialize(){
-    name ="";
+    name = "";
   }
 
   @FXML
   void DeleteClicked(ActionEvent event) {
+    AssetTypeDeletedEvent assetTypeDeletedEvent = new AssetTypeDeletedEvent(ViewUtils.getTicketsFromAssetType(name));
     AssetPlusFeatureSet2Controller.deleteAssetType(name);
     AssetPlusFXMLView.getInstance().refresh();
+    AssetPlusFXMLView.getInstance().fireEvent(assetTypeDeletedEvent);
     AssetPlusFXMLView.getInstance().closePopUpWindow();
   }
 
