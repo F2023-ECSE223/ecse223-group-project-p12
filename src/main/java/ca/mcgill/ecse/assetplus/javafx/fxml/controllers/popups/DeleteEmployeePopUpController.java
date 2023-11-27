@@ -29,8 +29,7 @@ public class DeleteEmployeePopUpController {
     @FXML
     void deleteEmployee(ActionEvent event) {
       EmployeeDeletedEvent employeeDeletedEvent = new EmployeeDeletedEvent(ViewUtils.getTicketsFromEmployee(aEmail));
-      Employee employee = AssetPlusFeatureSet1Controller.getWithName(employeeNameDelete.getText());
-      AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(employee.getEmail());
+      AssetPlusFeatureSet6Controller.deleteEmployeeOrGuest(aEmail);
       AssetPlusFXMLView.getInstance().fireEvent(employeeDeletedEvent);
       ViewUtils.callController("");
       AssetPlusFXMLView.getInstance().closePopUpWindow();
