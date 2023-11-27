@@ -62,6 +62,7 @@ public class AssetPlusFeatureSet5Controller {
     for (TicketImage image : MaintenanceTicket.getWithId(ticketID).getTicketImages() ) {
       if (imageURL.equals(image.getImageURL())) {
         image.delete();
+        AssetPlusPersistence.save();
         return;
       }
     }

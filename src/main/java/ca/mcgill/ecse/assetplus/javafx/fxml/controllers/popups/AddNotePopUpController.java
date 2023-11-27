@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.DatePicker;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -17,7 +18,6 @@ import java.time.LocalDate;
 public class AddNotePopUpController {
 
   private int ticketId;
-  private Date date;
 
   @FXML
   private Label instructionLabel;
@@ -32,7 +32,7 @@ public class AddNotePopUpController {
   private Button cancelButton;
 
   @FXML
-  private Label currDate;
+  private DatePicker datePicker;
 
   @FXML
   private TextArea descriptionField;
@@ -49,8 +49,7 @@ public class AddNotePopUpController {
     errorMessage.setText("");
 
     LocalDate localDate = LocalDate.now();
-    date = Date.valueOf(localDate);
-    currDate.setText(date.toString());
+    datePicker.setValue(localDate);
 
     for (TOHotelStaff staff: ViewUtils.getHotelStaffs()) {
       this.authorEmail.getItems().add(staff.getEmail());
@@ -65,10 +64,15 @@ public class AddNotePopUpController {
   void AddNote(ActionEvent event) {
     String desc = descriptionField.getText();
     String email = authorEmail.getValue();
+    Date date = Date.valueOf(datePicker.getValue());
 
     if (email == null) {
       errorMessage.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.AddNote_ErrorAuthor"));
     } else if (isDisapproveNote) {
+      ViewUtils.disapproveTicket(ticketId, date, desc);
+      AssetPlusFXMLView.getInstance().closePopUpWindow();
+    }
+    else if (isDisapproveNote) {
       ViewUtils.disapproveTicket(ticketId, date, desc);
       AssetPlusFXMLView.getInstance().closePopUpWindow();
     }

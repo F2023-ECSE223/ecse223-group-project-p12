@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.controller;
 
 import java.sql.Date;
+import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
@@ -35,7 +36,7 @@ public class AssetPlusFeatureSet7Controller {
 
         try {
           MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-          HotelStaff hotelStaff =  (HotelStaff) User.getWithEmail(email);
+          HotelStaff hotelStaff =  email.equals("manager@ap.com") ? (HotelStaff) AssetPlusApplication.getAssetPlus().getManager() : (HotelStaff) User.getWithEmail(email);
           MaintenanceNote note = ticket.addTicketNote(date, description, hotelStaff);
           ticket.addTicketNote(note);
 
@@ -74,7 +75,7 @@ public class AssetPlusFeatureSet7Controller {
           note.setDate(newDate);
           note.setDescription(newDescription);
 
-          HotelStaff staff = (HotelStaff) User.getWithEmail(newEmail);
+          HotelStaff staff = newEmail.equals("manager@ap.com") ? (HotelStaff) AssetPlusApplication.getAssetPlus().getManager() : (HotelStaff) User.getWithEmail(newEmail);
           note.setNoteTaker(staff);
         }
         AssetPlusPersistence.save();
