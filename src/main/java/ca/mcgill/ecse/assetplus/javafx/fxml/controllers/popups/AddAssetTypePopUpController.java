@@ -6,6 +6,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssetTypesController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class AddAssetTypePopUpController {
@@ -24,17 +25,35 @@ public class AddAssetTypePopUpController {
   @FXML
   private TextField AssetTypeAddLifespan;
 
+  @FXML
+  private Label errorMessage;
+
 
   @FXML
   void initialize(){
     name = "";
+    errorMessage.setText("");
   }
 
   @FXML
   void CreateClicked(ActionEvent event) {
+    
     String name = AssetTypeAddName.getText();
+
+    if(AssetTypeAddLifespan.getText().isEmpty()){
+      errorMessage.setText("Lifespan field cannot be empty");
+      return;
+    }
+
     int lifespan = Integer.valueOf(AssetTypeAddLifespan.getText());
-    AssetPlusFeatureSet2Controller.addAssetType(name, lifespan);
+
+    String err = AssetPlusFeatureSet2Controller.addAssetType(name, lifespan);
+
+    if(!err.isEmpty()){
+      errorMessage.setText(err);
+      return;
+    }
+
     AssetPlusFXMLView.getInstance().refresh();
     AssetPlusFXMLView.getInstance().closePopUpWindow();
   }

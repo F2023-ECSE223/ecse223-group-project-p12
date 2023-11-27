@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="427.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="407.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController">
    <children>
-      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="332.0" prefWidth="454.0">
+      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="332.0" prefWidth="408.0">
          <children>
-            <VBox alignment="CENTER" layoutX="71.0" layoutY="31.0" spacing="40.0">
+            <VBox alignment="CENTER" layoutX="55.0" layoutY="31.0" prefHeight="266.0" prefWidth="307.0" spacing="30.0">
                <children>
                   <Label fx:id="topPopups" text="%key.AssetTypeAddPopUpTitle">
                      <font>
@@ -23,13 +23,14 @@
                   <Label fx:id="replaceMe" contentDisplay="CENTER" text="%key.AssetTypeAddPopUpMessage" textAlignment="CENTER" />
                   <TextField fx:id="AssetTypeAddName" promptText="%key.AssetTypeAddPopUpName" styleClass="text-field" />
                   <TextField fx:id="AssetTypeAddLifespan" promptText="%key.AssetTypeAddPopUpLifespan" styleClass="text-field" />
+                  <Label fx:id="errorMessage" textFill="RED" />
                   <HBox spacing="30.0">
                      <children>
                         <Button fx:id="CancelAssetTypeButton" mnemonicParsing="false" onAction="#CancelClicked" styleClass="cancelButton" text="%key.Cancel" />
                         <Button fx:id="CreateAssetTypeButton" mnemonicParsing="false" onAction="#CreateClicked" styleClass="actionButton" text="%key.Create" />
                      </children>
                      <padding>
-                        <Insets left="60.0" />
+                        <Insets left="75.0" />
                      </padding>
                   </HBox>
                </children>
