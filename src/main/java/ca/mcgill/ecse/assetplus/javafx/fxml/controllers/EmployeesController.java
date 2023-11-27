@@ -148,11 +148,13 @@ public class EmployeesController {
     @FXML
     void showSearchedEmployee(ActionEvent event) {
         if (ticketEmployeeField.getText().isEmpty()) {
+            showEmployeeError.setText("");
             showEmployees(AssetPlusFeatureTOController.getAllEmployees());
         } else {
 
             String err = AssetPlusFeatureUtility.isExistingUser(ticketEmployeeField.getText(), "");
             if (err.isEmpty()) {
+                showEmployeeError.setText("");
                 Employee employee = (Employee) User.getWithEmail(ticketEmployeeField.getText());
                 TOEmployee toEmployee = AssetPlusFeatureTOController.convertFromEmployee(employee);
                 List<TOEmployee> employees = new ArrayList<>();
@@ -161,6 +163,28 @@ public class EmployeesController {
             } else {
                 showEmployeeError.setText(translateErrorMessage(err));
                 viewAllEmployees.getChildren().clear();
+            }
+        }
+    }
+
+    @FXML
+    void showSearchedGuest(ActionEvent event) {
+        if (ticketGuestField.getText().isEmpty()) {
+            showGuestError.setText("");
+            showGuests(AssetPlusFeatureTOController.getAllGuests());
+        } else {
+
+            String err = AssetPlusFeatureUtility.isExistingUser(ticketGuestField.getText(), "");
+            if (err.isEmpty()) {
+                showGuestError.setText("");
+                Guest guest = (Guest) User.getWithEmail(ticketGuestField.getText());
+                TOGuest toGuest = AssetPlusFeatureTOController.convertFromGuest(guest);
+                List<TOGuest> guests = new ArrayList<>();
+                guests.add(toGuest);
+                showGuests(guests);
+            } else {
+                showGuestError.setText(translateErrorMessage(err));
+                viewAllGuests.getChildren().clear();
             }
         }
     }

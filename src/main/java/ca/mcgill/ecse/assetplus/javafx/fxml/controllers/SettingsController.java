@@ -41,6 +41,9 @@ public class SettingsController {
     @FXML
     private Label updateManagerPasswordError;
 
+    @FXML
+    private Label updateManagerPasswordSuccess;
+
     private ToggleGroup languageToggleGroup;
 
     @FXML
@@ -75,8 +78,10 @@ public class SettingsController {
         String err = AssetPlusFeatureSet1Controller.updateManager(updateManagerPasswordField.getText());
         if (err.isEmpty()) {
             updateManagerPasswordError.setText("");
+            updateManagerPasswordSuccess.setText(resources.getString("key.PasswordChangedSuccesfuly"));
         } else {
             updateManagerPasswordError.setText(translateErrorMessage(err));
+            updateManagerPasswordSuccess.setText("");
         }
     }
 
