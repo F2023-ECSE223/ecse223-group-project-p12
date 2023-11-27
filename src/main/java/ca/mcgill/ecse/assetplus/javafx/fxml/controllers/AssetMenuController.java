@@ -137,7 +137,10 @@ public class AssetMenuController {
     
         assetNumberColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAssetNumber()).asObject());
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetType().getName()));
-        roomColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRoomNumber()).asObject());
+        roomColumn.setCellValueFactory(cellData -> {
+            int roomNumber = cellData.getValue().getRoomNumber();
+            return new SimpleObjectProperty<>(roomNumber != -1 ? roomNumber : null);
+        });
         floorColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getFloorNumber()).asObject());
         purchaseDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPurchaseDate().toLocalDate().format(formatter)));
         lifeExpectancyColumn.setCellValueFactory(cellData -> {

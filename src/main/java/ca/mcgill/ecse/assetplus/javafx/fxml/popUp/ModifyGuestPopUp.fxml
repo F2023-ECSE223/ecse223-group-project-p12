@@ -44,7 +44,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="430.0" prefWidth="473.0" styleClass="popUpWindow" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyEmployeePopUpController">
+<AnchorPane prefHeight="430.0" prefWidth="473.0" styleClass="popUpWindow" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyGuestPopUpController">
    <children>
       <VBox layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="471.0" stylesheets="@../css/style.css">
         <children>
@@ -114,11 +114,11 @@
                   </HBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="384.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="%key.EnterDetailsBelowToModifyEmployee" />
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="394.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="%key.EnterDetailsBelowToModifyGuest" />
                         <Label fx:id="modifyErrorMessage" alignment="CENTER" prefHeight="17.0" prefWidth="696.0" styleClass="errorMessage" stylesheets="@../css/style.css" />
                      </children>
                   </VBox>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="369.0" styleClass="popUpTitle" stylesheets="@../css/style.css" text="%key.ModifyEmployee" textAlignment="CENTER" GridPane.columnIndex="1" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="369.0" styleClass="popUpTitle" stylesheets="@../css/style.css" text="%key.ModifyGuest" GridPane.columnIndex="1" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

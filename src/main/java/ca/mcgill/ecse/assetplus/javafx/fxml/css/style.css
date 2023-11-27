@@ -16,6 +16,7 @@ Stylesheet of our UI
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
     -fx-background-color: #FFFFFF;
+    -fx-font-size: 12px; 
 
 }
 
@@ -105,10 +106,10 @@ Stylesheet of our UI
 
 .cancelButton
 {
-    -fx-background-color: #a30d11;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
+    -fx-background-color: #a30d11;
     -fx-background-radius: 10px;
+    -fx-padding: 5px 10px 5px 10px
 }
 
 
@@ -611,4 +612,24 @@ Stylesheet of our UI
 
 .bar-chart .chart-bar:hover .chart-bar-fill {
     -fx-bar-fill: #624DE3;
+}
+
+.assetTextfields {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-text-fill: #808080;
+}
+
+.assetTextfields
+{
+    -fx-background-color: #fefefe;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: #808080;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-inner-border: transparent;
+    -fx-border-color: #9e9797;;
+    -fx-background-color: white;
 }

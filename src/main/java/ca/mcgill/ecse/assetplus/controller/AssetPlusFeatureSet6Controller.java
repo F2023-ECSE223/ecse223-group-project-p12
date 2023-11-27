@@ -8,6 +8,7 @@ import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
@@ -148,4 +149,16 @@ public class AssetPlusFeatureSet6Controller {
     return imageURLS;
   }
 
+  public static TOSpecificAsset getSpecificAssetFromTicket(TOMaintenanceTicket ticket) {
+    if (ticket.getAssetName() != null) {
+      for (SpecificAsset asset: AssetPlusApplication.getAssetPlus().getSpecificAssets()) {
+        if (asset.getAssetType().getName().equals(ticket.getAssetName()) 
+            && asset.getFloorNumber() == ticket.getFloorNumber() && asset.getRoomNumber() == ticket.getRoomNumber()) {
+          return new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan()));
+        }
+      }
+    }
+
+    return null;
+  }
 }
