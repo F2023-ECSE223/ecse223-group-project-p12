@@ -55,6 +55,16 @@ public class AssetPlusFeatureTOController {
     return list;
 }
 
+public static ArrayList<Integer> getAssetNumberFromType(String typeName){
+  HashMap<String, List<TOSpecificAsset>> list = AssetPlusFeatureTOController.getAssetToType();
+  List<TOSpecificAsset> assets = list.get(typeName);
+  ArrayList<Integer> assetNumbers = new ArrayList<Integer>();
+  for (TOSpecificAsset asset: assets){
+    assetNumbers.add((Integer)asset.getAssetNumber());
+  }
+  return assetNumbers;
+} 
+
   /**
    * <p>Get a list of all maintenance tickets as transfer objects</p>
    * @return the list of tickets
