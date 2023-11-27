@@ -75,7 +75,7 @@
                               <VBox prefHeight="431.0" prefWidth="306.0" spacing="20.0">
                                  <children>
                                     <Label prefHeight="17.0" prefWidth="292.0" styleClass="logo" stylesheets="@../css/style.css" text="%key.LanguageSettings" />
-                                    <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="275.0" text="%key.SelectThePreferedLanguageForTheApplication" wrapText="true" />
+                                    <Label alignment="TOP_LEFT" prefHeight="57.0" prefWidth="275.0" text="%key.SelectThePreferedLanguageForTheApplication" wrapText="true" />
                                     <RadioButton fx:id="enRadioButton" mnemonicParsing="false" text="English" />
                                     <RadioButton fx:id="frRadioButton" mnemonicParsing="false" text="Français" />
                                     <Pane prefHeight="18.0" prefWidth="291.0" />
@@ -88,7 +88,7 @@
                                  <children>
                                     <Label prefHeight="17.0" prefWidth="353.0" styleClass="logo" stylesheets="@../css/style.css" text="%key.ManagerAccount" />
                                     <Pane prefHeight="20.0" prefWidth="247.0" />
-                                    <Label text="%key.ChangeTheManagerPassword" />
+                                    <Label prefHeight="58.0" prefWidth="281.0" text="%key.ChangeTheManagerPassword" wrapText="true" />
                                     <Pane prefHeight="40.0" prefWidth="247.0" />
                                     <TextField fx:id="updateManagerPasswordField" prefHeight="25.0" prefWidth="370.0" />
                                     <AnchorPane>
