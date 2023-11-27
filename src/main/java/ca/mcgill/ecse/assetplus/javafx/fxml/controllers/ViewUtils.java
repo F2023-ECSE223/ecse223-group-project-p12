@@ -111,10 +111,6 @@ public class ViewUtils {
     return FXCollections.observableList(ticket.getNotes());
   }
 
-  public static String getUsername(String email) {
-    return AssetPlusFeatureSet1Controller.getUsername(email);
-  }
-
   public static List<TOHotelStaff> getHotelStaffs() {
     return AssetPlusFeatureSet1Controller.getHotelStaffs();
   }
