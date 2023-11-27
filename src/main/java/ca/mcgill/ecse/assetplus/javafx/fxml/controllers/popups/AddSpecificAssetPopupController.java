@@ -89,10 +89,13 @@ public class AddSpecificAssetPopupController {
       errorRoom.setStyle("-fx-text-fill: red;");
       if (roomChoice.getText().matches(regex)){
         room = Integer.parseInt(roomChoice.getText().trim());
-        if (room < -1){
+        if (room < 0){
           errorBox.getChildren().add(errorRoom);
           errorBox.setVisible(true);
         }
+      } else if (roomChoice.getText().equals("")) {
+        room = -1;
+        hasErrorRoom = false;
       } else {
         if (!hasErrorRoom) {
               errorBox.getChildren().add(errorRoom);
@@ -144,6 +147,7 @@ public class AddSpecificAssetPopupController {
       if(!hasErrorDate && !hasErrorType && !hasErrorFloor && !hasErrorRoom) {
         int number;
         if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
+          
           number = 1;
         } else {
           number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);   

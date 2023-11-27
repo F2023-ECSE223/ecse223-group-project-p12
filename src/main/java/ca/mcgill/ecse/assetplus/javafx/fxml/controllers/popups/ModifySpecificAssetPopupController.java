@@ -187,7 +187,7 @@ public class ModifySpecificAssetPopupController {
       lifeExpectancy.setText(asset.getAssetType().getExpectedLifeSpan()+" years");
 
       roomChoice.setPromptText("Current room: " + asset.getRoomNumber());
-      floorChoice.setPromptText("Current room: " + asset.getFloorNumber());
+      floorChoice.setPromptText("Current floor: " + asset.getFloorNumber());
     }
 
     @FXML
