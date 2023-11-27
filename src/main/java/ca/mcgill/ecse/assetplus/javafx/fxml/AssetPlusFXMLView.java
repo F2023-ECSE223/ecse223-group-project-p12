@@ -22,6 +22,8 @@ import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
 import java.util.Locale;
 import java.util.Stack;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.TicketStatusController;
+import javafx.event.EventHandler;
 
 
 
@@ -84,6 +86,10 @@ public class AssetPlusFXMLView extends Application {
     for (var node: nodes) {
       refreshableNodes.add(node);
     }
+  }
+
+  public <T extends Event> void registerEventHandler(EventType<T> eventType, EventHandler<T> eventHandler) {
+    stage.addEventHandler(eventType, eventHandler);
   }
 
   // remove the node from receiving refresh events
@@ -241,5 +247,10 @@ public class AssetPlusFXMLView extends Application {
   public void onPopUpToolbarDragged(double x, double y) {
     this.popUpStages.get(popUpStages.size()-1).setX(x + xOffset);
     this.popUpStages.get(popUpStages.size()-1).setY(y + yOffset);
+  }
+
+  public void fireEvent(Event event) {
+    System.out.println("Tell me this works");
+    stage.fireEvent(event);
   }
 }

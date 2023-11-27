@@ -106,10 +106,10 @@ Stylesheet of our UI
 
 .cancelButton
 {
-    -fx-background-color: #a30d11;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
+    -fx-background-color: #a30d11;
     -fx-background-radius: 10px;
+    -fx-padding: 5px 10px 5px 10px
 }
 
 

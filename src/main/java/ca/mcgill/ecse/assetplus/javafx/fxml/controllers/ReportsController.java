@@ -22,9 +22,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sound.midi.Soundbank;
+import org.codehaus.jettison.Node;
 
 
 public class ReportsController {
+
+    private int maxNumberOfTicketForAnAsset;
 
     @FXML
     private HBox DashboardAndContent;
@@ -57,16 +60,19 @@ public class ReportsController {
 
     @FXML
     void initialize() {
+        maxNumberOfTicketForAnAsset = 1;
         ToggleGroup toggleGroup = new ToggleGroup();
-        oneLastFive.setToggleGroup(toggleGroup);
+        oneLastFive.setToggleGroup(toggleGroup) ;
         oneLastMonth.setToggleGroup(toggleGroup);
         oneLastWeek.setToggleGroup(toggleGroup);
         oneLastYear.setToggleGroup(toggleGroup);
         allTime.setToggleGroup(toggleGroup);
 
-        yAxis.setTickUnit(1);
         fixChart(0);
-                
+        fixColors();
+
+        assetTypeIssues.setAnimated(false);
+        assetTypeIssues.setLegendVisible(false);
     }
 
     private static boolean isWithinRange(LocalDate dateToCheck, LocalDate currentDate, long amount, ChronoUnit unit) {
@@ -127,41 +133,59 @@ public class ReportsController {
     public void fixChart(int condition){
         counts = getCounts(condition);
 
-
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         for (String asset : counts.keySet()) {
-            series.getData().add(new XYChart.Data<>(asset, counts.get(asset)));
+            int numberOfTicketForAnAsset = counts.get(asset);
+            series.getData().add(new XYChart.Data<>(asset, numberOfTicketForAnAsset));
+
+            if (numberOfTicketForAnAsset > maxNumberOfTicketForAnAsset) {
+                maxNumberOfTicketForAnAsset = numberOfTicketForAnAsset;
+            }
         }
 
         assetTypeIssues.getData().add(series);
-
+        assetTypeIssues.setCategoryGap(300/series.getData().size());
+        yAxis.setUpperBound(maxNumberOfTicketForAnAsset+1);
     }
     
+
+    public void fixColors(){
+        String barColor = "rgb(135, 104, 242)"; 
+        for (XYChart.Series<String, Number> series : assetTypeIssues.getData()) {
+            for (XYChart.Data<String, Number> data : series.getData()) {
+                javafx.scene.Node node = data.getNode();
+                node.setStyle("-fx-bar-fill: " + barColor + ";");
+            }
+        }
+    }
 
     @FXML
     void allTimeBtn(ActionEvent event) {
         assetTypeIssues.getData().clear();
         fixChart(0);
-         System.out.println("All time");
+        fixColors();
     }
 
     @FXML
     void oneLastFiveBtn(ActionEvent event) {
         assetTypeIssues.getData().clear();
         fixChart(4);
+        fixColors();
     }
 
     @FXML
     void oneLastMonthBtn(ActionEvent event) {
         assetTypeIssues.getData().clear();
         fixChart(2);
+        fixColors();
     }
 
     @FXML
     void oneLastWeekBtn(ActionEvent event) {
         assetTypeIssues.getData().clear();
         fixChart(1);
+        fixColors();
     }
 
     @FXML
@@ -169,6 +193,7 @@ public class ReportsController {
         assetTypeIssues.getData().clear();
         fixChart(3);
          System.out.println("1 year");
+         fixColors();
     }
 
 }
