@@ -169,7 +169,17 @@ public class ViewUtils {
     for (TOMaintenanceTicket ticket: AssetPlusFeatureSet6Controller.getTickets()) {
       String assetName = ticket.getAssetName();
       if (assetName != null && assetName.equals(assetType)) {
-        System.out.println("SHOULD GO HERE WITH ID 2: " + ticket.getId());
+        ticketIds.add(ticket.getId());
+      }
+    }
+    return ticketIds;
+  }
+
+  public static List<Integer> getTicketsFromEmployee(String email) {
+    List<Integer> ticketIds = new ArrayList<>();
+    for (TOMaintenanceTicket ticket: AssetPlusFeatureSet6Controller.getTickets()) {
+      String employeeEmail = ticket.getRaisedByEmail();
+      if (employeeEmail != null && employeeEmail.equals(email)) {
         ticketIds.add(ticket.getId());
       }
     }

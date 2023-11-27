@@ -12,6 +12,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesControl
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewNotesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.events.AssetTypeDeletedEvent;
+import ca.mcgill.ecse.assetplus.javafx.fxml.events.EmployeeDeletedEvent;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -114,7 +115,11 @@ public class TicketStatusController {
 
         AssetPlusFXMLView.getInstance().registerEventHandler(
             AssetTypeDeletedEvent.ASSET_TYPE_DELETED,
-            e -> handleAssetTypeDeleted(((AssetTypeDeletedEvent) e).getTicketsToDelete()));
+            e -> handleDeleted(((AssetTypeDeletedEvent) e).getTicketsToDelete()));
+        
+        AssetPlusFXMLView.getInstance().registerEventHandler(
+            EmployeeDeletedEvent.EMPLOYEE_DELETED,
+            e -> handleDeleted(((EmployeeDeletedEvent) e).getTicketsToDelete()));
 
         statusChoiceBox.getItems().addAll(
             resources.getString("key.TicketStatus_Open"),
@@ -172,12 +177,12 @@ public class TicketStatusController {
 
     private void showTableView() {
         assetColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAssetName()));
-        reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getRaisedByEmail())));
+        reporterColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedByEmail()));
         assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFixedByEmail()));
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         dateStartedColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRaisedOnDate().toLocalDate().format(formatter)));
-        assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ViewUtils.getUsername(cellData.getValue().getFixedByEmail())));
+        assigneeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFixedByEmail()));
         
         statusColumn.setCellValueFactory(cellData -> {
             int ticketId = cellData.getValue().getId();
@@ -332,9 +337,7 @@ public class TicketStatusController {
         AssetPlusFXMLView.getInstance().changeTab("pages/AssetMenu.fxml");
     }
 
-    private void handleAssetTypeDeleted(List<Integer> ticketIdsToDelete) {
-        System.out.println("COME ON THIS WORKED BEFORE?");
-        System.out.println("WHAT IS THE LENGTH: " + ticketIdsToDelete.size());
+    private void handleDeleted(List<Integer> ticketIdsToDelete) {
         ViewUtils.deleteTicketsWithIds(ticketIdsToDelete);
         AssetPlusFXMLView.getInstance().refresh();
     }
