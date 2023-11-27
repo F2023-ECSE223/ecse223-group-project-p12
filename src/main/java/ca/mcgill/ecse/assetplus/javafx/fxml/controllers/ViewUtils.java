@@ -119,9 +119,9 @@ public class ViewUtils {
     return AssetPlusFeatureSet1Controller.getHotelStaffs();
   }
 
-  public static void assignTicketTo(String staffName, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate, boolean approvalRequired) {
-    String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
-    AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(email, priority, timeEstimate, approvalRequired, ticketId);
+  public static void assignTicketTo(String staffEmail, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate, boolean approvalRequired) {
+    //this is not needed String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
+    String result = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffEmail, priority, timeEstimate, approvalRequired, ticketId);
   }
 
   public static void startWork(int ticketId) {
