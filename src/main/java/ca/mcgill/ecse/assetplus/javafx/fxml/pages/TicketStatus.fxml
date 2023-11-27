@@ -60,7 +60,7 @@
                         <fx:include source="../components/UserTopSection.fxml" />
                         <HBox alignment="CENTER" minHeight="60.0" prefHeight="100.0" prefWidth="750.0">
                            <children>
-                              <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="27.0" prefWidth="72.0" styleClass="actionButton" text="%key.AssetMenu_AssetSearch">
+                              <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="27.0" prefWidth="114.0" styleClass="actionButton" text="%key.AssetMenu_AssetSearch">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
