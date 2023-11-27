@@ -106,7 +106,12 @@ public class ModifySpecificAssetPopupController {
 
       Label errorRoom= new Label(resources.getString("key.AssetMenu_ErrorRoom"));
       errorRoom.setStyle("-fx-text-fill: red;");
-      if (roomChoice.getText().matches(regex)){
+      
+      if (roomChoice.getText().equals("")) {
+        room = asset.getRoomNumber();
+      } else if (roomChoice.getText().equals("-1")){
+        room = -1;
+      } else if (roomChoice.getText().matches(regex)){
         room = Integer.parseInt(roomChoice.getText().trim());
         if (room < -1){
           errorBox.getChildren().add(errorRoom);
@@ -114,15 +119,13 @@ public class ModifySpecificAssetPopupController {
           hasErrorRoom=true;
         }
         hasErrorRoom=false;
-      } else if (roomChoice.getText().equals("")) {
-        room = asset.getRoomNumber();
       } else {
-        if (!hasErrorRoom) {
-              errorBox.getChildren().add(errorRoom);
-              errorBox.setVisible(true);
-              hasErrorRoom = true;
-          }
-      }
+          if (!hasErrorRoom) {
+                errorBox.getChildren().add(errorRoom);
+                errorBox.setVisible(true);
+                hasErrorRoom = true;
+            }
+        }
 
       Label errorFloor = new Label(resources.getString("key.AssetMenu_ErrorFloor"));
       errorFloor.setStyle("-fx-text-fill: red;");

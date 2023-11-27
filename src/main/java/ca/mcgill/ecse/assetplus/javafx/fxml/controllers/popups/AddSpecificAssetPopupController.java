@@ -93,7 +93,7 @@ public class AddSpecificAssetPopupController {
           errorBox.getChildren().add(errorRoom);
           errorBox.setVisible(true);
         }
-      } else if (roomChoice.getText().equals("")) {
+      } else if (roomChoice.getText().equals("") || roomChoice.getText().equals("-1")) {
         room = -1;
         hasErrorRoom = false;
       } else {
