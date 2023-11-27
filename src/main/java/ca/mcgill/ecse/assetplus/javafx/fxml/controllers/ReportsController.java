@@ -57,6 +57,8 @@ public class ReportsController {
 
     @FXML
     void initialize() {
+        
+
         ToggleGroup toggleGroup = new ToggleGroup();
         oneLastFive.setToggleGroup(toggleGroup);
         oneLastMonth.setToggleGroup(toggleGroup);
@@ -64,6 +66,7 @@ public class ReportsController {
         oneLastYear.setToggleGroup(toggleGroup);
         allTime.setToggleGroup(toggleGroup);
 
+        assetTypeIssues.setAnimated(false);
         yAxis.setTickUnit(1);
         fixChart(0);
                 
