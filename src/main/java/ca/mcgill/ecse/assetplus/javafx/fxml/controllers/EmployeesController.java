@@ -271,7 +271,7 @@ public class EmployeesController {
             deleteButton.setPickOnBounds(true);
             deleteButton.setOnAction(e -> deleteEmployeePopup(e, employee.getEmail()));
             Pane pane = new Pane();
-            pane.setMinWidth(20);
+            pane.setMinWidth(40);
             hBox.getChildren().addAll(deleteButton, pane, modify);
             gridPane.add(hBox, 0, 4);
 
@@ -333,6 +333,8 @@ public class EmployeesController {
 
             VBox vbox4 = new VBox();
             vbox4.setAlignment(Pos.CENTER_LEFT);
+            vbox4.setMinHeight(30);
+            vbox4.setMinWidth(189);
             gridPane.add(vbox4, 0, 3);
             
             HBox hBox = new HBox();
@@ -341,11 +343,12 @@ public class EmployeesController {
             modify.getStyleClass().add("icon-pencil");
             modify.setPickOnBounds(true);
             modify.setOnAction(e -> modifyGuestPopup(e,guest.getEmail()));
-            Button deleteButton = new Button(resources.getString("key.Delete"));
-            deleteButton.setStyle("-fx-background-color: #a30d11;" + "-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-background-radius: 10px;");
+            Button deleteButton = new Button();
+            deleteButton.getStyleClass().add("icon-trash");
+            deleteButton.setPickOnBounds(true);
             deleteButton.setOnAction(e -> deleteGuestPopup(e, guest.getEmail()));
             Pane pane = new Pane();
-            pane.setMinWidth(20);
+            pane.setMinWidth(40);
             hBox.getChildren().addAll(deleteButton, pane, modify);
             gridPane.add(hBox, 0, 4);
 
