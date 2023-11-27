@@ -46,7 +46,7 @@ public class AssignStaffToTicketController {
       resources = AssetPlusFXMLView.getInstance().getBundle();
 
       for (TOHotelStaff staff: ViewUtils.getHotelStaffs()) {
-        this.staffComboBox.getItems().add(staff.getName());
+        this.staffComboBox.getItems().add(staff.getEmail());
       }
 
       this.staffComboBox.setValue(resources.getString("key.TicketStatus_SelectStaff"));

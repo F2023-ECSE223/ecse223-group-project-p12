@@ -16,7 +16,7 @@ Stylesheet of our UI
     -fx-accent: #8768F2;
     -fx-focus-color: #8768F2;
     -fx-background-color: #FFFFFF;
-    -fx-font-size: 18px; 
+    -fx-font-size: 12px; 
 
 }
 
@@ -106,10 +106,10 @@ Stylesheet of our UI
 
 .cancelButton
 {
-    -fx-background-color: #a30d11;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
+    -fx-background-color: #a30d11;
     -fx-background-radius: 10px;
+    -fx-padding: 5px 10px 5px 10px
 }
 
 

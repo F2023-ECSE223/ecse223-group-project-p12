@@ -44,16 +44,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="435.0" styleClass="popUpWindow" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddEmployeePopUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="435.0" styleClass="popUpWindow" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddGuestPopUpController">
    <children>
       <VBox layoutX="-3.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="435.0" stylesheets="@../css/style.css">
         <children>
             <fx:include source="../components/PopUpToolBar.fxml" />
             <GridPane fx:id="popupCreateEmployee" alignment="TOP_CENTER" prefHeight="545.0" prefWidth="960.0" vgap="20.0">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.5" minWidth="10.0" prefWidth="30.5" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.5" minWidth="10.0" prefWidth="391.5" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="30.5" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.5" minWidth="10.0" prefWidth="30.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="402.0" minWidth="10.0" prefWidth="388.5" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="30.0" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
@@ -74,7 +74,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <VBox prefHeight="66.0" prefWidth="402.0">
+                        <VBox prefHeight="66.0" prefWidth="397.0">
                            <children>
                               <Label text="%key.Name" />
                               <TextField fx:id="createNameField" prefHeight="25.0" prefWidth="332.0" style="-fx-background-color: f8f7ff;" />
@@ -84,7 +84,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="74.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <VBox prefHeight="66.0" prefWidth="395.0">
+                        <VBox prefHeight="66.0" prefWidth="401.0">
                            <children>
                               <Label text="%key.PhoneNumber" />
                               <TextField fx:id="createPhoneNumberField" prefHeight="25.0" prefWidth="330.0" style="-fx-background-color: f8f7ff;" />
@@ -94,7 +94,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="74.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <VBox prefHeight="66.0" prefWidth="393.0">
+                        <VBox prefHeight="66.0" prefWidth="391.0">
                            <children>
                               <Label text="%key.Email" />
                               <TextField fx:id="createEmailField" prefHeight="23.0" prefWidth="251.0" style="-fx-background-color: f8f7ff;" />
@@ -104,7 +104,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <VBox prefHeight="66.0" prefWidth="391.0">
+                        <VBox prefHeight="66.0" prefWidth="406.0">
                            <children>
                               <Label text="%key.Password" />
                               <TextField fx:id="createPasswordField" style="-fx-background-color: f8f7ff;" />
@@ -114,11 +114,11 @@
                   </HBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label alignment="CENTER" prefHeight="41.0" prefWidth="391.0" text="%key.EnterDetailsBelowToAddANewEmployee" textAlignment="CENTER" />
-                        <Label fx:id="createErrorMessage" alignment="CENTER" prefHeight="17.0" prefWidth="391.0" style="-fx-text-fill: A30D11;" />
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="397.0" text="%key.EnterDetailsBelowToAddANewGuest" textAlignment="CENTER" />
+                        <Label fx:id="createErrorMessage" alignment="CENTER" prefHeight="17.0" prefWidth="394.0" style="-fx-text-fill: A30D11;" />
                      </children>
                   </VBox>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="374.0" styleClass="popUpTitle" stylesheets="@../css/style.css" text="%key.AddEmployee" GridPane.columnIndex="1" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="382.0" styleClass="popUpTitle" stylesheets="@../css/style.css" text="%key.AddGuest" GridPane.columnIndex="1" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />

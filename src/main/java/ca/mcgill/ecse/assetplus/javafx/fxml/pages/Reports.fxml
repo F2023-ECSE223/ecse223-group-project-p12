@@ -50,7 +50,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ReportsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ReportsController">
   <children>
       <HBox fx:id="DashboardAndContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <children>
@@ -86,7 +86,7 @@
                                                     <CategoryAxis side="BOTTOM" />
                                                   </xAxis>
                                                   <yAxis>
-                                                    <NumberAxis fx:id="yAxis" side="LEFT" />
+                                                    <NumberAxis fx:id="yAxis" animated="false" autoRanging="false" minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" side="LEFT" tickUnit="1.0" upperBound="5.0" />
                                                   </yAxis>
                                                    <VBox.margin>
                                                       <Insets />
