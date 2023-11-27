@@ -47,7 +47,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.TicketStatusController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.TicketStatusController">
   <children>
       <HBox fx:id="DashboardAndContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <children>
@@ -60,17 +60,12 @@
                         <fx:include source="../components/UserTopSection.fxml" />
                         <HBox alignment="CENTER" minHeight="60.0" prefHeight="100.0" prefWidth="750.0">
                            <children>
-                              <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#search" prefHeight="27.0" prefWidth="132.0" styleClass="actionButton" text="%key.AssetMenu_AssetSearch">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Button>
                               <GridPane fx:id="searchPane" prefHeight="60.0" prefWidth="457.0" HBox.hgrow="ALWAYS">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.1263427734375" minWidth="10.0" prefWidth="102.1263427734375" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.84353637695312" minWidth="10.0" prefWidth="97.84353637695312" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.41912841796875" minWidth="9.0" prefWidth="103.0218505859375" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.8939208984375" minWidth="8.1595458984375" prefWidth="193.9781494140625" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.41912841796875" minWidth="9.0" prefWidth="76.5" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="8.1595458984375" prefWidth="322.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -94,6 +89,9 @@
                                     <DatePicker fx:id="dateSearch" prefHeight="28.0" prefWidth="139.0" GridPane.columnIndex="3" />
                                     <ChoiceBox fx:id="statusChoiceBox" prefHeight="28.0" prefWidth="135.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                  </children>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </GridPane>
                               <Button fx:id="addTicketButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToTicketMenu" prefHeight="30.0" prefWidth="126.0" styleClass="actionButton" text="%key.TicketStatus_AddTicket">
                                  <graphic>
