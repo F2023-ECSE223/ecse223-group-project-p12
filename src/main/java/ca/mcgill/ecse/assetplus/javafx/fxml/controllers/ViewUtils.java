@@ -111,17 +111,14 @@ public class ViewUtils {
     return FXCollections.observableList(ticket.getNotes());
   }
 
-  public static String getUsername(String email) {
-    return AssetPlusFeatureSet1Controller.getUsername(email);
-  }
-
   public static List<TOHotelStaff> getHotelStaffs() {
     return AssetPlusFeatureSet1Controller.getHotelStaffs();
   }
 
   public static void assignTicketTo(String staffEmail, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate, boolean approvalRequired) {
     //this is not needed String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
-    String result = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffEmail, priority, timeEstimate, approvalRequired, ticketId);
+    AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffEmail, priority, timeEstimate, approvalRequired, ticketId);
+    System.out.println("THE STATUS IS NOW: " + AssetPlusFeatureSet6Controller.getTicket(ticketId).getStatus());
   }
 
   public static void startWork(int ticketId) {
