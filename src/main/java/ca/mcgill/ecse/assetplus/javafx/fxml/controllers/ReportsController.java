@@ -22,6 +22,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sound.midi.Soundbank;
+import org.codehaus.jettison.Node;
 
 
 public class ReportsController {
@@ -67,8 +68,17 @@ public class ReportsController {
         allTime.setToggleGroup(toggleGroup);
 
         assetTypeIssues.setAnimated(false);
+        assetTypeIssues.setLegendVisible(false);
         yAxis.setTickUnit(1);
         fixChart(0);
+
+        String barColor = "rgb(135, 104, 242)"; 
+        for (XYChart.Series<String, Number> series : assetTypeIssues.getData()) {
+            for (XYChart.Data<String, Number> data : series.getData()) {
+                javafx.scene.Node node = data.getNode();
+                node.setStyle("-fx-bar-fill: " + barColor + ";");
+            }
+        }
                 
     }
 
