@@ -154,7 +154,13 @@ public class AssetPlusFeatureSet6Controller {
       for (SpecificAsset asset: AssetPlusApplication.getAssetPlus().getSpecificAssets()) {
         if (asset.getAssetType().getName().equals(ticket.getAssetName()) 
             && asset.getFloorNumber() == ticket.getFloorNumber() && asset.getRoomNumber() == ticket.getRoomNumber()) {
-          return new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan()));
+
+              String assetTypeImageURL = "";
+              if(asset.getAssetType().hasAssetTypeImage()){
+                assetTypeImageURL = asset.getAssetType().getAssetTypeImage().getImageURL();
+              }
+
+          return new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan(),assetTypeImageURL));
         }
       }
     }
