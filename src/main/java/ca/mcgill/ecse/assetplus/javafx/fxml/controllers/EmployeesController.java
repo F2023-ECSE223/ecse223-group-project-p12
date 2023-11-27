@@ -250,7 +250,11 @@ public class EmployeesController {
             vbox4.setAlignment(Pos.CENTER_LEFT);
             Label titleTickets = new Label(resources.getString("key.TicketsAssigned"));
             titleTickets.setStyle("-fx-text-fill: #8768F2;");
-            Label tickets = new Label(employee.getTicketFixed().toString());
+            String str = "";
+            for (Integer integer: employee.getTicketFixed()) {
+                str = str + integer.toString() + ", ";
+            }
+            Label tickets = new Label(str);
             tickets.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
             tickets.setMinWidth(189);
             vbox4.getChildren().addAll(titleTickets, tickets);
