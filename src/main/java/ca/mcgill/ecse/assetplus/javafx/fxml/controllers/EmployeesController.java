@@ -155,13 +155,20 @@ public class EmployeesController {
             String err = AssetPlusFeatureUtility.isExistingUser(ticketEmployeeField.getText(), "");
             if (err.isEmpty()) {
                 showEmployeeError.setText("");
-                Employee employee = (Employee) User.getWithEmail(ticketEmployeeField.getText());
+                Employee employee;
+                try {
+                    employee = (Employee) Employee.getWithEmail(ticketEmployeeField.getText());
+                } catch (Exception e) {
+                    showEmployeeError.setText(resources.getString("key.EmployeeNotFound"));
+                    viewAllEmployees.getChildren().clear();
+                    return;
+                }
                 TOEmployee toEmployee = AssetPlusFeatureTOController.convertFromEmployee(employee);
                 List<TOEmployee> employees = new ArrayList<>();
                 employees.add(toEmployee);
                 showEmployees(employees);
             } else {
-                showEmployeeError.setText(translateErrorMessage(err));
+                showEmployeeError.setText(resources.getString("key.EmployeeNotFound"));
                 viewAllEmployees.getChildren().clear();
             }
         }
@@ -177,7 +184,14 @@ public class EmployeesController {
             String err = AssetPlusFeatureUtility.isExistingUser(ticketGuestField.getText(), "");
             if (err.isEmpty()) {
                 showGuestError.setText("");
-                Guest guest = (Guest) User.getWithEmail(ticketGuestField.getText());
+                Guest guest;
+                try{
+                    guest = (Guest) User.getWithEmail(ticketGuestField.getText());
+                } catch (Exception e) {
+                    showGuestError.setText(resources.getString("key.GuestNotFound"));
+                    viewAllGuests.getChildren().clear();
+                    return;
+                }
                 TOGuest toGuest = AssetPlusFeatureTOController.convertFromGuest(guest);
                 List<TOGuest> guests = new ArrayList<>();
                 guests.add(toGuest);
