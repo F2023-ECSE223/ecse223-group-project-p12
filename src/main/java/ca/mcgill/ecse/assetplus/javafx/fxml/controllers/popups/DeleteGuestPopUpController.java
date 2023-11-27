@@ -11,9 +11,10 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.EmployeesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.User;
 
-public class DeleteEmployeePopUpController {
+public class DeleteGuestPopUpController {
 
     @FXML
     private TextField employeeNameDelete;
@@ -35,7 +36,7 @@ public class DeleteEmployeePopUpController {
 
     @FXML
     void initialize() {
-      aEmail = EmployeesController.email;
+      aEmail = EmployeesController.guestEmail;
       employeeNameDelete.setText(aEmail);
       employeeNameDelete.setEditable(false);
       employeeNameDelete.setFocusTraversable(false);
@@ -44,4 +45,3 @@ public class DeleteEmployeePopUpController {
     }
 
 }
-

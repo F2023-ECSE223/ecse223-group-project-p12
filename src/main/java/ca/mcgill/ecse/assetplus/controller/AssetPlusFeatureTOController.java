@@ -1,10 +1,12 @@
 package ca.mcgill.ecse.assetplus.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.Employee;
+import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
@@ -30,6 +32,23 @@ public class AssetPlusFeatureTOController {
     return convertedAssets;
   }
 
+  public static HashMap<String, List<TOSpecificAsset>> getAssetToType() {
+    HashMap<String, List<TOSpecificAsset>> list = new HashMap<>();
+
+    for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()) {
+        list.put(type.getName(), new ArrayList<>());
+    }
+
+    for (TOSpecificAsset asset : AssetPlusFeatureTOController.getSpecificAssets()) {
+        String assetType = asset.getAssetType().getName();
+        
+        if (list.containsKey(assetType)) {
+            list.get(assetType).add(asset);
+        }
+    }
+
+    return list;
+}
 
   /**
    * <p>Get a list of all maintenance tickets as transfer objects</p>
@@ -96,6 +115,35 @@ public class AssetPlusFeatureTOController {
       toEmployees.add(convertFromEmployee(employee));
     }
     return toEmployees;
+  }
+
+  public static TOGuest convertFromGuest(
+      Guest guest) {
+    List<MaintenanceTicket> ticketsRaisedList = guest.getRaisedTickets();
+
+
+    String email = guest.getEmail();
+    String name = guest.getName();
+    String password = guest.getPassword();
+    String phoneNumber = guest.getPhoneNumber();
+    List<Integer> ticketsRaised = new ArrayList<>();
+    
+    for (int i = 0; i < ticketsRaisedList.size(); i++) {
+      ticketsRaised.add(ticketsRaisedList.get(i).getId());
+    }
+    
+    return new TOGuest(email, name, password, phoneNumber, ticketsRaised);
+
+  }
+
+  public static List<TOGuest> getAllGuests() {
+    List<Guest> guests = AssetPlusApplication.getAssetPlus().getGuests();
+    List<TOGuest> toGuests = new ArrayList<>();
+
+    for (Guest guest: guests) {
+      toGuests.add(convertFromGuest(guest));
+    }
+    return toGuests;
   }
 
   

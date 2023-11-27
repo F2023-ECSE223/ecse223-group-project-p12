@@ -82,7 +82,7 @@
                   </VBox>
                   <VBox VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-fit-to-height: true; -fx-fit-to-width: true;">
                            <content>
                               <FlowPane fx:id="grid" hgap="10.0" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" vgap="10.0" />
                            </content>

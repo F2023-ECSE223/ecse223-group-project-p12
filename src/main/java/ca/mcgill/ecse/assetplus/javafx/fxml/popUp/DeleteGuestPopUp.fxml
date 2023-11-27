@@ -11,9 +11,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="577.0" styleClass="popUpWindow" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteEmployeePopUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="577.0" styleClass="popUpWindow" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteGuestPopUpController">
    <children>
-      <VBox layoutX="1.0" prefHeight="196.0" prefWidth="577.0">
+      <VBox layoutX="1.0" prefHeight="207.0" prefWidth="577.0">
          <children>
             <VBox prefHeight="36.0" prefWidth="388.0">
                <children>
@@ -25,7 +25,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="146.0" prefWidth="364.0" style="-fx-background-color: white;">
                <children>
-                  <Label fx:id="topPopups" text="%key.DeletingEmployee">
+                  <Label fx:id="topPopups" text="%key.DeletingGuest">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -37,15 +37,15 @@
                      <children>
                         <StackPane prefHeight="49.0" prefWidth="354.0">
                            <children>
-                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" stroke="BLACK" strokeType="INSIDE" width="481.0" />
+                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="72.0" stroke="BLACK" strokeType="INSIDE" width="474.0" />
                               <HBox alignment="CENTER" prefHeight="56.0" prefWidth="333.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="248.0" text="%key.AreYouSureYouWantToDeleteThisEmployee" wrapText="true">
+                                    <Label alignment="CENTER" prefHeight="67.0" prefWidth="235.0" text="%key.AreYouSureYouWantToDeleteThisGuest" wrapText="true">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField fx:id="employeeNameDelete" editable="false" maxWidth="195.0" prefHeight="26.0" prefWidth="195.0" />
+                                    <TextField fx:id="employeeNameDelete" maxWidth="199.0" prefHeight="26.0" prefWidth="199.0" />
                                  </children>
                                  <StackPane.margin>
                                     <Insets bottom="5.0" />
