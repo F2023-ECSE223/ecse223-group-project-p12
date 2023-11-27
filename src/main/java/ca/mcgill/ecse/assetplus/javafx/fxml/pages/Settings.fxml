@@ -69,9 +69,9 @@
                   </VBox>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="532.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" layoutY="52.0" prefHeight="379.0" prefWidth="750.0">
+                        <HBox alignment="CENTER" layoutY="52.0" prefHeight="379.0" prefWidth="750.0">
                            <children>
-                              <Pane prefHeight="431.0" prefWidth="29.0" />
+                              <Pane prefHeight="431.0" prefWidth="30.0" />
                               <VBox prefHeight="431.0" prefWidth="306.0" spacing="20.0">
                                  <children>
                                     <Label prefHeight="17.0" prefWidth="292.0" styleClass="logo" stylesheets="@../css/style.css" text="%key.LanguageSettings" />
@@ -83,7 +83,7 @@
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
-                              <Pane prefHeight="431.0" prefWidth="65.0" />
+                              <Pane prefHeight="431.0" prefWidth="30.0" />
                               <VBox prefHeight="431.0" prefWidth="247.0">
                                  <children>
                                     <Label prefHeight="17.0" prefWidth="353.0" styleClass="logo" stylesheets="@../css/style.css" text="%key.ManagerAccount" />
@@ -91,8 +91,13 @@
                                     <Label text="%key.ChangeTheManagerPassword" />
                                     <Pane prefHeight="40.0" prefWidth="247.0" />
                                     <TextField fx:id="updateManagerPasswordField" prefHeight="25.0" prefWidth="370.0" />
-                                    <Label fx:id="updateManagerPasswordError" alignment="TOP_LEFT" prefHeight="59.0" prefWidth="281.0" styleClass="errorMessage" stylesheets="@../css/style.css" wrapText="true" />
-                                    <Button mnemonicParsing="false" onAction="#updateManagerPassword" prefHeight="27.0" prefWidth="105.0" styleClass="actionButton" stylesheets="@../css/style.css" text="%key.update" />
+                                    <AnchorPane>
+                                       <children>
+                                          <Label fx:id="updateManagerPasswordError" alignment="TOP_LEFT" prefHeight="59.0" prefWidth="281.0" styleClass="errorMessage" stylesheets="@../css/style.css" wrapText="true" />
+                                          <Label fx:id="updateManagerPasswordSuccess" prefHeight="17.0" prefWidth="281.0" style="-fx-text-fill: #8768F2;" />
+                                       </children>
+                                    </AnchorPane>
+                                    <Button mnemonicParsing="false" onAction="#updateManagerPassword" prefHeight="27.0" prefWidth="105.0" styleClass="actionButton" stylesheets="@../css/style.css" text="%key.Modify" />
                                  </children>
                               </VBox>
                            </children>

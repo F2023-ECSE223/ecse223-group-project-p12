@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="169.0" prefWidth="426.0" styleClass="popUpWindow" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteEmployeePopUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="169.0" prefWidth="426.0" styleClass="popUpWindow" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteGuestPopUpController">
    <children>
       <VBox layoutX="1.0" prefHeight="159.0" prefWidth="426.0">
          <children>
@@ -25,7 +25,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="146.0" prefWidth="364.0" style="-fx-background-color: white;">
                <children>
-                  <Label fx:id="topPopups" text="%key.DeletingEmployee">
+                  <Label fx:id="topPopups" text="%key.DeletingGuest">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
@@ -40,7 +40,7 @@
                               <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="45.0" stroke="BLACK" strokeType="INSIDE" width="335.0" />
                               <HBox alignment="CENTER" prefHeight="56.0" prefWidth="333.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="39.0" prefWidth="167.0" text="%key.AreYouSureYouWantToDeleteThisEmployee" wrapText="true">
+                                    <Label alignment="CENTER" prefHeight="39.0" prefWidth="167.0" text="%key.AreYouSureYouWantToDeleteThisGuest" wrapText="true">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>

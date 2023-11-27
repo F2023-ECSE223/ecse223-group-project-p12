@@ -44,7 +44,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane styleClass="popUpWindow" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyEmployeePopUpController">
+<AnchorPane styleClass="popUpWindow" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyGuestPopUpController">
    <children>
       <VBox layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="298.0" prefWidth="471.0" stylesheets="@../css/style.css">
         <children>
@@ -113,7 +113,7 @@
                   </HBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="319.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="%key.EnterDetailsBelowToModifyEmployee" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="319.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="%key.EnterDetailsBelowToModifyGuest" />
                         <Label fx:id="modifyErrorMessage" alignment="CENTER" prefHeight="17.0" prefWidth="696.0" styleClass="errorMessage" stylesheets="@../css/style.css" />
                      </children>
                   </VBox>
