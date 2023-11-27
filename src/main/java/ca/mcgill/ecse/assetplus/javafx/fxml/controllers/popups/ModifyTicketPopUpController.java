@@ -161,6 +161,7 @@ public class ModifyTicketPopUpController {
         else{
             TOAssetType type = ViewUtils.getWithAssetName(ticket.getAssetName());
             List<TOSpecificAsset>  assets = type.getTOSpecificAssets();
+            assetNumberField.setValue(((Integer) ViewUtils.getSpecificAssetFromTicket(ticket)).toString());
             //complete this
         }
 
