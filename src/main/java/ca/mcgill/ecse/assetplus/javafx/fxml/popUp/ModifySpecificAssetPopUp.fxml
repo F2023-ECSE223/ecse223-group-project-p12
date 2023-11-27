@@ -96,18 +96,14 @@
                                  <children>
                                     <Label text="%key.AssetMenu_Location">
                                        <VBox.margin>
-                                          <Insets bottom="15.0" top="10.0" />
+                                          <Insets bottom="5.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <ComboBox fx:id="roomChoice" prefHeight="28.0" prefWidth="170.0" />
-                                          <Region maxHeight="10.0" maxWidth="20.0" minHeight="10.0" prefHeight="0.0" prefWidth="362.0" />
-                                          <ComboBox fx:id="floorChoice" prefHeight="28.0" prefWidth="172.0">
-                                             <padding>
-                                                <Insets left="20.0" />
-                                             </padding>
-                                          </ComboBox>
+                                          <TextField fx:id="roomChoice" prefHeight="28.0" prefWidth="139.0" styleClass="assetTextfields" />
+                                          <Region prefHeight="42.0" prefWidth="31.0" />
+                                          <TextField fx:id="floorChoice" prefHeight="28.0" prefWidth="137.0" styleClass="assetTextfields" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -125,7 +121,7 @@
                         <Insets bottom="30.0" />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets />
                      </VBox.margin>
                   </VBox>
                   <Region maxHeight="10.0" maxWidth="20.0" minHeight="10.0" prefHeight="0.0" prefWidth="362.0" VBox.vgrow="ALWAYS" />
@@ -164,8 +160,11 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox fx:id="errorBox" prefHeight="46.0" prefWidth="482.0" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <VBox fx:id="errorBox" alignment="CENTER" prefHeight="46.0" prefWidth="416.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></VBox>
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="416.0">
                      <children>
                         <Button fx:id="cancelAssetBtn" mnemonicParsing="false" onAction="#cancel" styleClass="cancelButton" text="%key.AssetMenu_CancelAsset" />
                         <Button fx:id="modifyAssetBtn" mnemonicParsing="false" onAction="#modify" styleClass="actionButton" text="%key.AssetMenu_ModifyAsset">

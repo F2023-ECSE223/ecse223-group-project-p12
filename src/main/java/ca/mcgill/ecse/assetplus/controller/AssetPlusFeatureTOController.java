@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
@@ -30,6 +31,23 @@ public class AssetPlusFeatureTOController {
     return convertedAssets;
   }
 
+  public static HashMap<String, List<TOSpecificAsset>> getAssetToType() {
+    HashMap<String, List<TOSpecificAsset>> list = new HashMap<>();
+
+    for (TOAssetType type : AssetPlusFeatureTOController.getAssetTypes()) {
+        list.put(type.getName(), new ArrayList<>());
+    }
+
+    for (TOSpecificAsset asset : AssetPlusFeatureTOController.getSpecificAssets()) {
+        String assetType = asset.getAssetType().getName();
+        
+        if (list.containsKey(assetType)) {
+            list.get(assetType).add(asset);
+        }
+    }
+
+    return list;
+}
 
   /**
    * <p>Get a list of all maintenance tickets as transfer objects</p>

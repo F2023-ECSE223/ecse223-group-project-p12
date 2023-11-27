@@ -46,13 +46,13 @@ public class AddSpecificAssetPopupController {
     private Rectangle fieldBg;
 
     @FXML
-    private ComboBox<String> floorChoice;
+    private TextField floorChoice;
 
     @FXML
     private TextField lifeExpectancy;
 
     @FXML
-    private ComboBox<String> roomChoice;
+    private TextField roomChoice;
 
     @FXML
     private Label topPopups;
@@ -75,28 +75,46 @@ public class AddSpecificAssetPopupController {
     @FXML
     void create(ActionEvent event) {
       int room = 0;
+      int floor = 0;
       boolean hasErrorDate = false;
       boolean hasErrorType = false;
       boolean hasErrorFloor = false;
-
-      if (roomChoice.getValue().contains("No") || roomChoice.getValue().contains("Select")){
-        room = -1;
-      } else {
-        room = Integer.parseInt(roomChoice.getValue());
-      }
+      boolean hasErrorRoom = false;
 
       errorBox.getChildren().clear();
 
+      String regex = "\\d+";
+
+      Label errorRoom= new Label(resources.getString("key.AssetMenu_ErrorRoom"));
+      errorRoom.setStyle("-fx-text-fill: red;");
+      if (roomChoice.getText().matches(regex)){
+        room = Integer.parseInt(roomChoice.getText().trim());
+        if (room < -1){
+          errorBox.getChildren().add(errorRoom);
+          errorBox.setVisible(true);
+        }
+      } else {
+        if (!hasErrorRoom) {
+              errorBox.getChildren().add(errorRoom);
+              errorBox.setVisible(true);
+              hasErrorRoom = true;
+          }
+      }
+
       Label errorFloor = new Label(resources.getString("key.AssetMenu_ErrorFloor"));
-      if (floorChoice.getValue().contains("Select")) {
-          if (!hasErrorFloor) {
-              errorFloor.setStyle("-fx-text-fill: red;");
+      errorFloor.setStyle("-fx-text-fill: red;");
+      if (floorChoice.getText().matches(regex)){
+        floor = Integer.parseInt(floorChoice.getText().trim());
+        if (floor < 0){
+          errorBox.getChildren().add(errorFloor);
+          errorBox.setVisible(true);
+        }
+      } else {
+        if (!hasErrorFloor) {
               errorBox.getChildren().add(errorFloor);
               errorBox.setVisible(true);
               hasErrorFloor = true;
           }
-      } else {
-          hasErrorFloor = false;
       }
 
       Label errorType = new Label(resources.getString("key.AssetMenu_ErrorType"));
@@ -123,23 +141,24 @@ public class AddSpecificAssetPopupController {
       hasErrorDate = false;
     }
 
-      if(!hasErrorDate && !hasErrorType && !hasErrorFloor) {
+      if(!hasErrorDate && !hasErrorType && !hasErrorFloor && !hasErrorRoom) {
         int number;
         if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
-          
           number = 1;
         } else {
           number = (AssetPlusFeatureTOController.getSpecificAssets().get(AssetPlusFeatureTOController.getSpecificAssets().size()-1).getAssetNumber()+1);   
         }
 
         LocalDate date = dateChoice.getValue();
-        AssetPlusFeatureSet3Controller.addSpecificAsset(number, Integer.parseInt(floorChoice.getValue()), room, (java.sql.Date.valueOf(date.toString())), assetTypes.getValue());
+        AssetPlusFeatureSet3Controller.addSpecificAsset(number, floor, room, (java.sql.Date.valueOf(date.toString())), assetTypes.getValue());
         ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       } 
     }
 
     public void initialize() {
+      floorChoice.setPromptText("Enter floor");
+      roomChoice.setPromptText(("Enter room"));
       errorBox.setVisible(false);
       assetNumber.setEditable(false);
       if (AssetPlusFeatureTOController.getSpecificAssets().size() == 0){
@@ -164,26 +183,6 @@ public class AddSpecificAssetPopupController {
       
       lifeExpectancyBox.setVisible(false);
 
-      ArrayList<String> rooms = new ArrayList<>();
-      rooms.add("No room");
-      for (int i = 0; i <= 50; i++) {
-        rooms.add(i+"");
-      }
-
-      ObservableList<String> roomsList = FXCollections.observableArrayList(rooms);
-      roomChoice.setItems(roomsList);
-      
-      roomChoice.setValue("Select a room");
-
-      ArrayList<String> floors = new ArrayList<>();
-      for (int i = 0; i <= 20; i++) {
-        floors.add(i+"");
-      }
-
-      ObservableList<String> floorsList = FXCollections.observableArrayList(floors);
-      floorChoice.setItems(floorsList);
-
-      floorChoice.setValue("Select a floor");
 
     }
 
