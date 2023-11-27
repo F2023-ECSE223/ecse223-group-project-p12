@@ -44,9 +44,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane styleClass="popUpWindow" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyGuestPopUpController">
+<AnchorPane prefHeight="494.0" prefWidth="473.0" styleClass="popUpWindow" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyGuestPopUpController">
    <children>
-      <VBox layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="298.0" prefWidth="471.0" stylesheets="@../css/style.css">
+      <VBox layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="471.0" stylesheets="@../css/style.css">
         <children>
             <fx:include source="../components/PopUpToolBar.fxml" />
             <GridPane prefHeight="543.0" prefWidth="960.0" vgap="10.0">
@@ -56,8 +56,8 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.5" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="83.5" minHeight="10.0" prefHeight="83.5" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="57.5" minHeight="10.0" prefHeight="40.5" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -113,7 +113,7 @@
                   </HBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="319.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="%key.EnterDetailsBelowToModifyGuest" />
+                        <Label alignment="CENTER" prefHeight="57.0" prefWidth="369.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="%key.EnterDetailsBelowToModifyGuest" textAlignment="CENTER" wrapText="true" />
                         <Label fx:id="modifyErrorMessage" alignment="CENTER" prefHeight="17.0" prefWidth="696.0" styleClass="errorMessage" stylesheets="@../css/style.css" />
                      </children>
                   </VBox>
