@@ -42,6 +42,7 @@ public class AddAssetTypePopUpController {
   void CreateClicked(ActionEvent event) {
 
     String name = AssetTypeAddName.getText();
+    String imageURL = AssetTypeAddImageURL.getText();
 
     if(AssetTypeAddLifespan.getText().isEmpty()){
       errorMessage.setText("Lifespan field cannot be empty");
@@ -50,7 +51,7 @@ public class AddAssetTypePopUpController {
 
     int lifespan = Integer.valueOf(AssetTypeAddLifespan.getText());
 
-    String err = AssetPlusFeatureSet2Controller.addAssetType(name, lifespan);
+    String err = AssetPlusFeatureSet2Controller.addAssetType(name, lifespan, imageURL);
 
     if(!err.isEmpty()){
       errorMessage.setText(err);

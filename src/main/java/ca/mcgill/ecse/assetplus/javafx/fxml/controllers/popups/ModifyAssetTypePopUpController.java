@@ -41,6 +41,7 @@ public class ModifyAssetTypePopUpController {
   @FXML
   void ModifyClicked(ActionEvent event) {
     String newName = AssetTypeModifyName.getText();
+    String newImageURL = AssetTypeModifyImageURL.getText();
 
     if(AssetTypeModifyLifespan.getText().isEmpty()){
       errorMessage.setText("Lifespan field cannot be empty");
@@ -48,7 +49,7 @@ public class ModifyAssetTypePopUpController {
     }
 
     int newLifespan = Integer.valueOf(AssetTypeModifyLifespan.getText());
-    String err = AssetPlusFeatureSet2Controller.updateAssetType(name, newName, newLifespan);
+    String err = AssetPlusFeatureSet2Controller.updateAssetType(name, newName, newLifespan, newImageURL);
 
     if(!err.isEmpty()){
       errorMessage.setText(err);

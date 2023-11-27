@@ -2,6 +2,7 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
+import ca.mcgill.ecse.assetplus.model.AssetTypeImage;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
@@ -16,11 +17,11 @@ public class AssetPlusFeatureSet2Controller {
    * @param expectedLifeSpanInDays the expected life span of the asset type
    * @return an empty string or an error message
    */
-  public static String addAssetType(String name, int expectedLifeSpanInDays) {
+  public static String addAssetType(String name, int expectedLifeSpanInDays, String imageURL) {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(name, "name", "must not") + 
                  isGreaterThanZero(expectedLifeSpanInDays, "expected life span") +
-                 isNotExistingAssetType(name);
+                 isNotExistingAssetType(name) + isStartingWithHttpOrHttps(imageURL);
 
     if(!err.isEmpty()){
       return err;
@@ -28,6 +29,10 @@ public class AssetPlusFeatureSet2Controller {
 
     try {
       AssetType type = AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpanInDays);
+      if(!imageURL.isEmpty()){
+        AssetTypeImage image = new AssetTypeImage(imageURL, type);
+        type.setAssetTypeImage(image);
+      }
       AssetPlusApplication.getAssetPlus().addAssetType(type);
     } 
     catch (RuntimeException e) {
@@ -44,11 +49,11 @@ public class AssetPlusFeatureSet2Controller {
    * @param newExpectedLifeSpanInDays the new expected life span of this asset type
    * @return an empty string or an error message
    */
-  public static String updateAssetType(String oldName, String newName, int newExpectedLifeSpanInDays) {
+  public static String updateAssetType(String oldName, String newName, int newExpectedLifeSpanInDays, String newImageURL) {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(newName, "name", "must not") +
                  isGreaterThanZero(newExpectedLifeSpanInDays, "expected life span") +
-                 AssetPlusFeatureUtility.isExistingAssetType(oldName);
+                 AssetPlusFeatureUtility.isExistingAssetType(oldName) + isStartingWithHttpOrHttps(newImageURL);
 
     if(!err.isEmpty()){
       return err;
@@ -67,6 +72,10 @@ public class AssetPlusFeatureSet2Controller {
       AssetType type = AssetType.getWithName(oldName);
       type.setName(newName);
       type.setExpectedLifeSpan(newExpectedLifeSpanInDays);
+      if(!newImageURL.isEmpty()){
+        AssetTypeImage image = new AssetTypeImage(newImageURL, type);
+        type.setAssetTypeImage(image);
+      }
     }
     catch (RuntimeException e) {
       return e.getMessage();
@@ -139,6 +148,22 @@ public class AssetPlusFeatureSet2Controller {
       }
   }
 
-  
+  /**
+   * <p>Check if the input string is a valid URL starting with "http://" or "https://" and returns an empty string if it is.</p>
+   * @param imageURL the URL of the image
+   * @return an empty string or an error message
+   */
+  private static String isStartingWithHttpOrHttps(String imageURL) {
+
+    if(imageURL.isEmpty()){
+      return ""; //The image URL can be empty for assetType, since it's optional.
+    }
+
+    if (imageURL.startsWith("http://") || imageURL.startsWith("https://")){
+      return "";
+    } else {
+      return "Error: Image URL must start with http:// or https://.\n";
+    }
+  }
 
 }

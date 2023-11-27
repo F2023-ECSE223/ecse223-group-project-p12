@@ -27,7 +27,12 @@ public class AssetPlusFeatureTOController {
     List<TOSpecificAsset> convertedAssets = new ArrayList<>();
 
     for (SpecificAsset asset: assets) {
-      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan())));
+
+      String assetTypeImageURL = "";
+      if(asset.getAssetType().hasAssetTypeImage()){
+        assetTypeImageURL = asset.getAssetType().getAssetTypeImage().getImageURL();
+      }
+      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan(),assetTypeImageURL)));
     }
     return convertedAssets;
   }
@@ -73,7 +78,14 @@ public class AssetPlusFeatureTOController {
     //After the TOSpecificAsset methods are implemented, then we can covert SpecifAssets to SpecificAssetsTO
     List<TOSpecificAsset> TOassets= new ArrayList<>();
 
-    TOAssetType assetTypeTO = new TOAssetType(assetType.getName(), assetType.getExpectedLifeSpan());
+    //The image for asset type is optional, so we need to handle that
+    String imageURL = "";
+  
+    if(assetType.hasAssetTypeImage()){
+      imageURL = assetType.getAssetTypeImage().getImageURL();
+    }
+
+    TOAssetType assetTypeTO = new TOAssetType(assetType.getName(), assetType.getExpectedLifeSpan(), imageURL);
 
     for(TOSpecificAsset asset : TOassets){
       assetTypeTO.addTOSpecificAsset(asset);

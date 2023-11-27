@@ -109,6 +109,7 @@ public class AssetTypesController {
         ds.setOffsetY(3.0);
         ds.setColor(Color.GRAY);
 
+        
         ImageView imageView;
         String imageUrl = "https://www.ikea.com/ca/en/images/products/blidvaeder-table-lamp-off-white-ceramic-beige__1059591_pe849714_s5.jpg";      
         Image image = new Image(imageUrl, 200, 200, true, true);
@@ -118,7 +119,7 @@ public class AssetTypesController {
             imageView = new ImageView(image);          
         }
         else {
-            imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.png",width, width, true, true));
+            imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/No_Picture.jpg",width, width, true, true));
         }
 
         HBox hbox = new HBox();
