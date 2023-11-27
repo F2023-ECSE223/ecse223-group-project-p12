@@ -63,7 +63,7 @@ public class AssetPlusFeatureTOController {
     return assetTypeTO;
   }
 
-  private static TOEmployee convertFromEmployee(
+  public static TOEmployee convertFromEmployee(
       Employee employee) {
     List<MaintenanceTicket> ticketsFixedList = employee.getMaintenanceTasks();
     List<MaintenanceTicket> ticketsRaisedList = employee.getRaisedTickets();
