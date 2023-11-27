@@ -114,23 +114,19 @@
                                  <children>
                                     <Label text="%key.AssetMenu_Location">
                                        <VBox.margin>
-                                          <Insets bottom="15.0" top="10.0" />
+                                          <Insets bottom="5.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <ComboBox fx:id="roomChoice" prefHeight="28.0" prefWidth="156.0" />
+                                          <TextField fx:id="roomChoice" prefHeight="28.0" prefWidth="140.0" styleClass="assetTextfields" />
                                           <Region maxHeight="10.0" maxWidth="20.0" minHeight="10.0" prefHeight="0.0" prefWidth="362.0" />
                                           <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="17.0" prefWidth="5.0" text="*" textFill="#e81a1a">
                                              <HBox.margin>
                                                 <Insets right="4.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <ComboBox fx:id="floorChoice" prefHeight="28.0" prefWidth="155.0">
-                                             <padding>
-                                                <Insets left="20.0" />
-                                             </padding>
-                                          </ComboBox>
+                                          <TextField fx:id="floorChoice" prefHeight="28.0" prefWidth="129.0" styleClass="assetTextfields" />
                                        </children>
                                     </HBox>
                                  </children>

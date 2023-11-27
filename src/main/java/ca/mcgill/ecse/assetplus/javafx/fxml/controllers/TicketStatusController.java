@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
+import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ApproveTicketController;
@@ -40,6 +41,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -48,6 +50,7 @@ import com.google.common.collect.Table;
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javafx.stage.Stage;;
 
@@ -104,9 +107,27 @@ public class TicketStatusController {
     private ObservableList<TOMaintenanceTicket> ticketList;
 
     @FXML
+    private TextField raiserSearch;
+
+    private void performSearch() {
+        String raiser = raiserSearch.getText().toLowerCase().trim();
+    
+        FilteredList<TOMaintenanceTicket> filteredAssets = new FilteredList<>(ticketList);
+
+        filteredAssets.setPredicate(ticket -> {
+            boolean raiserMatch = raiser.isEmpty() || ticket.getRaisedByEmail().toLowerCase().contains(raiser);
+
+            return raiserMatch;
+        });
+
+        ticketTable.setItems(filteredAssets);
+    }
+    
+    @FXML
     void initialize() {
         resources = AssetPlusFXMLView.getInstance().getBundle();
 
+        raiserSearch.setOnKeyReleased(event -> performSearch());
         showTableView();
         ticketTable.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
             showTableView();

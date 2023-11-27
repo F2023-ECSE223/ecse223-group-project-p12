@@ -612,3 +612,23 @@ Stylesheet of our UI
 .bar-chart .chart-bar:hover .chart-bar-fill {
     -fx-bar-fill: #624DE3;
 }
+
+.assetTextfields {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-text-fill: #808080;
+}
+
+.assetTextfields
+{
+    -fx-background-color: #fefefe;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: #808080;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-inner-border: transparent;
+    -fx-border-color: #9e9797;;
+    -fx-background-color: white;
+}
