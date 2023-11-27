@@ -160,35 +160,6 @@ public class AssetPlusFXMLView extends Application {
     }
   }
 
-  public void changeTab(String fxml, String tabId)
-  {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
-    Parent root;
-    currentPage = fxml;
-    try 
-    {
-        root = (Parent) loader.load();
-        Scene scene = new Scene(root, this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
-        this.stage.setScene(scene);
-        System.out.println("DOES IT HAPPEN HERE??");
-
-        TabPane tabPane = (TabPane) scene.lookup("#tabPane"); // Replace with the actual ID or use other means to get the reference
-
-        // Find the tab with the specified ID
-        for (Tab tab : tabPane.getTabs()) {
-          System.out.println("The tab is: " + tab);
-            if (tab.getId().equals(tabId)) {
-                tabPane.getSelectionModel().select(tab);
-                break; // Stop searching once the tab is found
-            }
-        }
-    }
-    catch (IOException e)
-    {
-        e.printStackTrace();
-    }
-  }
-
   public Object getCurrentController() {
     return currentController;
   }

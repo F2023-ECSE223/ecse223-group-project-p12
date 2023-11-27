@@ -34,13 +34,16 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.SettingsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.SettingsController">
   <children>
       <HBox fx:id="DashboardAndContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <children>
@@ -66,13 +69,34 @@
                   </VBox>
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="532.0">
                      <children>
-                        <Button fx:id="saveSettingsButton" layoutX="327.0" layoutY="288.0" mnemonicParsing="false" onAction="#saveSettings" prefHeight="40.0" prefWidth="127.0" styleClass="actionButton" text="%key.SaveSettings" />
-                        <VBox layoutX="174.0" layoutY="52.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                        <HBox alignment="CENTER_LEFT" layoutY="52.0" prefHeight="379.0" prefWidth="750.0">
                            <children>
-                              <RadioButton fx:id="enRadioButton" mnemonicParsing="false" text="English" />
-                              <RadioButton fx:id="frRadioButton" mnemonicParsing="false" text="Français" />
+                              <Pane prefHeight="431.0" prefWidth="29.0" />
+                              <VBox prefHeight="431.0" prefWidth="306.0" spacing="20.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="292.0" styleClass="logo" stylesheets="@../css/style.css" text="%key.LanguageSettings" />
+                                    <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="275.0" text="%key.SelectThePreferedLanguageForTheApplication" wrapText="true" />
+                                    <RadioButton fx:id="enRadioButton" mnemonicParsing="false" text="English" />
+                                    <RadioButton fx:id="frRadioButton" mnemonicParsing="false" text="Français" />
+                                    <Pane prefHeight="18.0" prefWidth="291.0" />
+                                    <Button fx:id="saveSettingsButton" mnemonicParsing="false" onAction="#saveSettings" prefHeight="40.0" prefWidth="127.0" styleClass="actionButton" text="%key.SaveSettings" />
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <Pane prefHeight="431.0" prefWidth="65.0" />
+                              <VBox prefHeight="431.0" prefWidth="247.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="353.0" styleClass="logo" stylesheets="@../css/style.css" text="%key.ManagerAccount" />
+                                    <Pane prefHeight="20.0" prefWidth="247.0" />
+                                    <Label text="%key.ChangeTheManagerPassword" />
+                                    <Pane prefHeight="40.0" prefWidth="247.0" />
+                                    <TextField fx:id="updateManagerPasswordField" prefHeight="25.0" prefWidth="370.0" />
+                                    <Label fx:id="updateManagerPasswordError" alignment="TOP_LEFT" prefHeight="59.0" prefWidth="281.0" styleClass="errorMessage" stylesheets="@../css/style.css" wrapText="true" />
+                                    <Button mnemonicParsing="false" onAction="#updateManagerPassword" prefHeight="27.0" prefWidth="105.0" styleClass="actionButton" stylesheets="@../css/style.css" text="%key.update" />
+                                 </children>
+                              </VBox>
                            </children>
-                        </VBox>
+                        </HBox>
                      </children>
                   </AnchorPane>
                </children>

@@ -39,6 +39,7 @@ public class AssetPlusFeatureSet6Controller {
       Guest guest = (Guest) userToDelete;
       guest.delete();
     }
+    AssetPlusPersistence.save();
 
   }
 
@@ -101,7 +102,6 @@ public class AssetPlusFeatureSet6Controller {
       roomNumber = maintenanceTicket.getAsset().getRoomNumber();
     }
 
-    AssetPlusPersistence.save();
     return new TOMaintenanceTicket(
       maintenanceTicket.getId(), 
       maintenanceTicket.getRaisedOnDate(),
