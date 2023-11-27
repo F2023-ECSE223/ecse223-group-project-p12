@@ -36,6 +36,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
@@ -68,7 +69,7 @@ public class TicketStatusController {
     private ChoiceBox<String> statusChoiceBox;
 
     @FXML
-    private TextField ticketNumberField;
+    private TextField ticketSearch;
 
     @FXML
     private TableView<TOMaintenanceTicket> ticketTable;
@@ -95,32 +96,51 @@ public class TicketStatusController {
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
 
     @FXML
-    private DatePicker datePickerBtn;
+    private DatePicker dateSearch;
 
     private ObservableList<TOMaintenanceTicket> ticketList;
 
     @FXML
+    private GridPane searchPane;
+
+    @FXML
+    private Button searchBtn;
+
+    @FXML
     private TextField raiserSearch;
+
+    @FXML
+    void search(ActionEvent event) {
+        searchPane.setVisible(true);
+    }
 
     private void performSearch() {
         String raiser = raiserSearch.getText().toLowerCase().trim();
+        int number = ticketSearch.getText().isEmpty() ? 0 : Integer.parseInt(ticketSearch.getText().toLowerCase().trim());
+        LocalDate searchDate = dateSearch.getValue();
     
-        FilteredList<TOMaintenanceTicket> filteredAssets = new FilteredList<>(ticketList);
+        FilteredList<TOMaintenanceTicket> filteredTickets = new FilteredList<>(ticketList);
 
-        filteredAssets.setPredicate(ticket -> {
+        filteredTickets.setPredicate(ticket -> {
             boolean raiserMatch = raiser.isEmpty() || ticket.getRaisedByEmail().toLowerCase().contains(raiser);
+            boolean ticketNumberMatch = number == 0 || ticket.getId() == number;
+            boolean dateMatch = searchDate == null || ticket.getRaisedOnDate().toLocalDate().isEqual(searchDate);
 
-            return raiserMatch;
+            return raiserMatch && ticketNumberMatch && dateMatch;
         });
 
-        ticketTable.setItems(filteredAssets);
+        ticketTable.setItems(filteredTickets);
     }
     
     @FXML
     void initialize() {
+        raiserSearch.setOnKeyReleased(event -> performSearch());
+        ticketSearch.setOnKeyReleased(event -> performSearch());
+        dateSearch.setOnAction(event -> performSearch());
+        
+        searchPane.setVisible(false);
         resources = AssetPlusFXMLView.getInstance().getBundle();
 
-        raiserSearch.setOnKeyReleased(event -> performSearch());
         showTableView();
         ticketTable.addEventHandler(AssetPlusFXMLView.REFRESH_EVENT, e -> {
             showTableView();
@@ -170,10 +190,8 @@ public class TicketStatusController {
     @FXML
     void handleDatePickerClicked(ActionEvent event) {
         ObservableList<TOMaintenanceTicket> items = ticketTable.getItems();
-
-
-        if (datePickerBtn.getValue() != null) {
-            Date date = Date.valueOf(datePickerBtn.getValue());
+        if (dateSearch.getValue() != null) {
+            Date date = Date.valueOf(dateSearch.getValue());
             FilteredList<TOMaintenanceTicket> filteredList = new FilteredList<>(ticketList, ticket -> ticket.getRaisedOnDate().equals(date));
             ticketTable.setItems(filteredList);
         } else {
