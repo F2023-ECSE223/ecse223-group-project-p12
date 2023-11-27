@@ -14,8 +14,16 @@
             <Insets left="30.0" right="30.0" />
          </VBox.margin>
          <children>
-            <Label fx:id="title" prefHeight="55.0" prefWidth="202.0" styleClass="popUpTitle" text="%key.TicketStatus_StartWork" textAlignment="CENTER" />
-            <Label alignment="CENTER" prefHeight="33.0" prefWidth="335.0" text="%key.TicketStatus_StartWorkLabel" textAlignment="CENTER" />
+            <HBox alignment="CENTER">
+               <children>
+                  <Label fx:id="title" prefHeight="55.0" prefWidth="202.0" styleClass="popUpTitle" text="%key.TicketStatus_StartWork" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="33.0" prefWidth="335.0" text="%key.TicketStatus_StartWorkLabel" textAlignment="CENTER" />
+               </children>
+            </HBox>
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="64.0" prefWidth="400.0">
