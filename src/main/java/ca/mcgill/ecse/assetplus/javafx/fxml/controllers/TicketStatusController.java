@@ -11,6 +11,7 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteTicketPopUp
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewImagesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewNotesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewTicketPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.events.AssetTypeDeletedEvent;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -39,7 +40,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Callback;
+import java.util.List;
 import java.util.ResourceBundle;
+import javax.swing.event.HyperlinkListener;
 import com.google.common.collect.Table;
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 import java.sql.Date;
@@ -74,6 +77,9 @@ public class TicketStatusController {
     private TableColumn<TOMaintenanceTicket, Hyperlink> ticketNumberColumn;
 
     @FXML
+    private TableColumn<TOMaintenanceTicket, Hyperlink> assetNumberColumn;
+
+    @FXML
     private TableColumn<TOMaintenanceTicket, String> assetColumn;
 
     @FXML
@@ -105,6 +111,10 @@ public class TicketStatusController {
             showTableView();
         });
         AssetPlusFXMLView.getInstance().registerRefreshEvent(ticketTable);
+
+        AssetPlusFXMLView.getInstance().registerEventHandler(
+            AssetTypeDeletedEvent.ASSET_TYPE_DELETED,
+            e -> handleAssetTypeDeleted(((AssetTypeDeletedEvent) e).getTicketsToDelete()));
 
         statusChoiceBox.getItems().addAll(
             resources.getString("key.TicketStatus_Open"),
@@ -189,8 +199,19 @@ public class TicketStatusController {
         ticketNumberColumn.setCellValueFactory(cellData -> {
             int ticketId = cellData.getValue().getId();
             Hyperlink link = new Hyperlink("#" + String.valueOf(ticketId));
-            link.setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
             link.setOnAction(event -> handleTicketClicked(ticketId));
+
+            return new SimpleObjectProperty<>(link);
+        });
+
+        assetNumberColumn.setCellValueFactory(cellData -> {
+            int assetNumber = ViewUtils.getSpecificAssetFromTicket(cellData.getValue());
+            Hyperlink link = new Hyperlink("#" + assetNumber);
+            if (assetNumber == -1) {
+                link.setVisible(false);
+            }
+            link.setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
+            link.setOnAction(event -> handleAssetNumberClicked(assetNumber));
 
             return new SimpleObjectProperty<>(link);
         });
@@ -305,6 +326,17 @@ public class TicketStatusController {
     private void handleTicketClicked(int ticketId) {
         ViewTicketPopUpController controller = (ViewTicketPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ViewTicketPopUp.fxml", "View Ticket");
         controller.setTicketId(ticketId);
+    }
+
+    private void handleAssetNumberClicked(int assetNumber) {
+        AssetPlusFXMLView.getInstance().changeTab("pages/AssetMenu.fxml");
+    }
+
+    private void handleAssetTypeDeleted(List<Integer> ticketIdsToDelete) {
+        System.out.println("COME ON THIS WORKED BEFORE?");
+        System.out.println("WHAT IS THE LENGTH: " + ticketIdsToDelete.size());
+        ViewUtils.deleteTicketsWithIds(ticketIdsToDelete);
+        AssetPlusFXMLView.getInstance().refresh();
     }
 
     public static String getStyle(String status) {

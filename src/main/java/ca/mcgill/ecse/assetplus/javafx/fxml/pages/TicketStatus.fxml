@@ -83,7 +83,8 @@
                      <children>
                         <TableView id="ticketTable" fx:id="ticketTable" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                           <columns>
-                              <TableColumn fx:id="ticketNumberColumn" maxWidth="270.0" prefWidth="150.0" text="%key.TicketStatus_TicketNumber" />
+                              <TableColumn fx:id="ticketNumberColumn" maxWidth="250.0" prefWidth="130.0" text="%key.TicketStatus_TicketNumber" />
+                              <TableColumn fx:id="assetNumberColumn" maxWidth="250.0" prefWidth="130.0" text="%key.AssetMenu_AssetNumber" />
                               <TableColumn fx:id="assetColumn" maxWidth="150.0" prefWidth="100.0" text="%key.TicketStatus_Asset" />
                               <TableColumn fx:id="reporterColumn" maxWidth="200.0" prefWidth="150.0" text="%key.TicketStatus_Reporter" />
                               <TableColumn fx:id="assigneeColumn" maxWidth="200.0" prefWidth="150.0" text="%key.TicketStatus_Assignee" />

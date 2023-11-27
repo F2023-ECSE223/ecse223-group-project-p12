@@ -156,6 +156,32 @@ public class ViewUtils {
         return null;
   }
 
+  public static int getSpecificAssetFromTicket(TOMaintenanceTicket ticket) {
+    TOSpecificAsset asset = AssetPlusFeatureSet6Controller.getSpecificAssetFromTicket(ticket);
+    if (asset != null) {
+      return asset.getAssetNumber();
+    }
+    return -1;
+  }
+
+  public static List<Integer> getTicketsFromAssetType(String assetType) {
+    List<Integer> ticketIds = new ArrayList<>();
+    for (TOMaintenanceTicket ticket: AssetPlusFeatureSet6Controller.getTickets()) {
+      String assetName = ticket.getAssetName();
+      if (assetName != null && assetName.equals(assetType)) {
+        System.out.println("SHOULD GO HERE WITH ID 2: " + ticket.getId());
+        ticketIds.add(ticket.getId());
+      }
+    }
+    return ticketIds;
+  }
+
+  public static void deleteTicketsWithIds(List<Integer> ticketIds) {
+    for (int id: ticketIds) {
+      System.out.println("IT GOES HERE TOO");
+      AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(id);
+    }
+  }
   
   
 }
