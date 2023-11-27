@@ -108,18 +108,10 @@ public class TicketStatusController {
     private ObservableList<TOMaintenanceTicket> ticketList;
 
     @FXML
-    private GridPane searchPane;
-
-    @FXML
     private Button searchBtn;
 
     @FXML
     private TextField raiserSearch;
-
-    @FXML
-    void search(ActionEvent event) {
-        searchPane.setVisible(true);
-    }
 
     private void performSearch() {
         String raiser = raiserSearch.getText().toLowerCase().trim();
@@ -145,7 +137,6 @@ public class TicketStatusController {
         ticketSearch.setOnKeyReleased(event -> performSearch());
         dateSearch.setOnAction(event -> performSearch());
         
-        searchPane.setVisible(false);
         resources = AssetPlusFXMLView.getInstance().getBundle();
 
         showTableView();

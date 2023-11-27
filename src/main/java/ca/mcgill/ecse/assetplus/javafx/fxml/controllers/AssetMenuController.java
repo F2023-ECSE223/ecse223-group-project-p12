@@ -104,16 +104,9 @@ public class AssetMenuController {
     @FXML
     private TextField roomSearch;
 
-    @FXML
-    private GridPane searchPane;
 
     @FXML
     private Button searchBtn;
-
-    @FXML
-    void search(ActionEvent event) {
-        searchPane.setVisible(true);
-    }
 
     @FXML
     void initialize() {
@@ -126,7 +119,6 @@ public class AssetMenuController {
     }
 
     public void showSpecificAsset(){
-        searchPane.setVisible(false);
 
         List<TOSpecificAsset> assets = AssetPlusFeatureTOController.getSpecificAssets();
         assetList = FXCollections.observableList(assets);
