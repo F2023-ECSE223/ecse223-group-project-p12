@@ -119,11 +119,9 @@ public class ViewUtils {
     return AssetPlusFeatureSet1Controller.getHotelStaffs();
   }
 
-  public static void assignTicketTo(String staffName, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate, boolean approvalRequired) {
-    String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
-    TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(ticketId);
-    
-    AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(email, priority, timeEstimate, approvalRequired, ticketId);
+  public static void assignTicketTo(String staffEmail, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate, boolean approvalRequired) {
+    //this is not needed String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
+    String result = AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffEmail, priority, timeEstimate, approvalRequired, ticketId);
   }
 
   public static void startWork(int ticketId) {
@@ -156,6 +154,42 @@ public class ViewUtils {
         return null;
   }
 
+  public static int getSpecificAssetFromTicket(TOMaintenanceTicket ticket) {
+    TOSpecificAsset asset = AssetPlusFeatureSet6Controller.getSpecificAssetFromTicket(ticket);
+    if (asset != null) {
+      return asset.getAssetNumber();
+    }
+    return -1;
+  }
+
+  public static List<Integer> getTicketsFromAssetType(String assetType) {
+    List<Integer> ticketIds = new ArrayList<>();
+    for (TOMaintenanceTicket ticket: AssetPlusFeatureSet6Controller.getTickets()) {
+      String assetName = ticket.getAssetName();
+      if (assetName != null && assetName.equals(assetType)) {
+        ticketIds.add(ticket.getId());
+      }
+    }
+    return ticketIds;
+  }
+
+  public static List<Integer> getTicketsFromEmployee(String email) {
+    List<Integer> ticketIds = new ArrayList<>();
+    for (TOMaintenanceTicket ticket: AssetPlusFeatureSet6Controller.getTickets()) {
+      String employeeEmail = ticket.getRaisedByEmail();
+      if (employeeEmail != null && employeeEmail.equals(email)) {
+        ticketIds.add(ticket.getId());
+      }
+    }
+    return ticketIds;
+  }
+
+  public static void deleteTicketsWithIds(List<Integer> ticketIds) {
+    for (int id: ticketIds) {
+      System.out.println("IT GOES HERE TOO");
+      AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(id);
+    }
+  }
   
   
 }
