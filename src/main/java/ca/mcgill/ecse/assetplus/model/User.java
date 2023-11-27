@@ -234,15 +234,18 @@ public abstract class User
     }
   }
 
-  // line 41 "../../../../../../AssetPlusPersistence.ump"
-   public static  void reinitializeUniqueUsers(List<Employee> employees, List<Guest> guests){
-    usersByEmail.clear();
-        for (var guest : guests) {
-            usersByEmail.put(guest.getEmail(), guest);
-        }
-        for (var employee : employees){
-            usersByEmail.put(employee.getEmail(), employee);
-        }
+  // line 13 "AssetPlusPersistence.ump"
+  public static  void reinitializeUniqueEmail(Manager manager, List<Employee> employees, List<Guest> guests){
+    usersByEmail = new HashMap<String, User>();
+    if (manager != null) {
+      usersByEmail.put(manager.getEmail(), manager);
+    }
+    for (Employee e : employees) {
+      usersByEmail.put(e.getEmail(), e);
+    }
+    for (Guest g : guests) {
+      usersByEmail.put(g.getEmail(), g);
+    }
   }
 
 

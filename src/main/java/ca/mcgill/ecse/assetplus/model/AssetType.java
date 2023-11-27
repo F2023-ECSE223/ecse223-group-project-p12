@@ -240,12 +240,12 @@ public class AssetType
     }
   }
 
-  // line 14 "../../../../../../AssetPlusPersistence.ump"
-   public static  void reinitializeUniqueTypes(List<AssetType> types){
-    assettypesByName.clear();
-        for (var type : types) {
-            assettypesByName.put(type.getName(), type);
-        }
+  // line 46 "AssetPlusPersistence.ump"
+  public static  void reinitializeUniqueName(List<AssetType> types){
+    assettypesByName = new HashMap<String, AssetType>();
+    for (AssetType t : types) {
+      assettypesByName.put(t.getName(), t);
+    }
   }
 
 

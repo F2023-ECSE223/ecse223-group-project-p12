@@ -633,12 +633,12 @@ public class AssetPlus
     
   }
 
-  // line 5 "../../../../../../AssetPlusPersistence.ump"
-   public void reinitialize(){
-    AssetType.reinitializeUniqueTypes(getAssetTypes());
-        MaintenanceTicket.reinitializeUniqueTickets(getMaintenanceTickets());
-        SpecificAsset.reinitializeUniqueAssets(getSpecificAssets());
-        User.reinitializeUniqueUsers(getEmployees(), getGuests());
+  // line 4 "AssetPlusPersistence.ump"
+  public void reinitialize(){
+    User.reinitializeUniqueEmail(this.getManager(), this.getEmployees(), this.getGuests());
+    MaintenanceTicket.reinitializeUniqueId(this.getMaintenanceTickets());
+    SpecificAsset.reinitializeUniqueAssetNumber(this.getSpecificAssets());
+    AssetType.reinitializeUniqueName(this.getAssetTypes());
   }
 
 }
