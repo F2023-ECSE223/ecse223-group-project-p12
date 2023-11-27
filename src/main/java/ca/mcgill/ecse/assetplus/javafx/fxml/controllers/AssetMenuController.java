@@ -14,6 +14,7 @@ import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddSpecificAssetPopupController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteSpecificAssetPopUpController;
+import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.MaintenanceHistoryPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifySpecificAssetPopupController;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -153,7 +154,7 @@ public class AssetMenuController {
             Button maintenanceBtn = new Button();
             maintenanceBtn.getStyleClass().add("icon-maintenancehistory");
             maintenanceBtn.setPickOnBounds(true);
-            maintenanceBtn.setOnAction(event -> handleMaintenanceHistoryClicked());
+            maintenanceBtn.setOnAction(event -> handleMaintenanceHistoryClicked(cellData.getValue()));
 
             HBox hbox = new HBox(maintenanceBtn);
             hbox.setSpacing(10);
@@ -221,18 +222,17 @@ public class AssetMenuController {
     
     private void handleEditButtonClicked(int assetNumber) {
         ModifySpecificAssetPopupController.get(assetNumber);
-        System.out.println(assetNumber);
         ModifySpecificAssetPopupController controller = (ModifySpecificAssetPopupController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifySpecificAssetPopUp.fxml", "Modify Specific Asset");
     }
 
     private void handleTrashButtonClicked(int assetNumber) {
         DeleteSpecificAssetPopUpController.get(assetNumber);
-        System.out.println(assetNumber);
         DeleteSpecificAssetPopUpController controller = (DeleteSpecificAssetPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteSpecificAssetPopUp.fxml", "Delete Specific Asset");        
     }
     
-    private void handleMaintenanceHistoryClicked() {
-
+    private void handleMaintenanceHistoryClicked(TOSpecificAsset asset) {
+        MaintenanceHistoryPopUpController.get(asset);
+        MaintenanceHistoryPopUpController controller = (MaintenanceHistoryPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/MaintenanceHistoryPopUp.fxml", "Maintenance History");       
     }
 
     @FXML

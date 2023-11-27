@@ -303,6 +303,14 @@ public class SpecificAsset
     }
   }
 
+  // line 37 "AssetPlusPersistence.ump"
+  public static  void reinitializeUniqueAssetNumber(List<SpecificAsset> assets){
+    specificassetsByAssetNumber = new HashMap<Integer, SpecificAsset>();
+    for (SpecificAsset a : assets) {
+      specificassetsByAssetNumber.put(a.getAssetNumber(), a);
+    }
+  }
+
 
   public String toString()
   {
@@ -315,10 +323,4 @@ public class SpecificAsset
             "  " + "assetType = "+(getAssetType()!=null?Integer.toHexString(System.identityHashCode(getAssetType())):"null");
   }
 
-  public static  void reinitializeUniqueAssets(List<SpecificAsset> assets){
-    specificassetsByAssetNumber.clear();
-        for (var asset : assets) {
-            specificassetsByAssetNumber.put(asset.getAssetNumber(), asset);
-        }
-  }
 }

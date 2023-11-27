@@ -83,7 +83,7 @@ public class AssignStaffToTicketController {
       if (isValidSelection()) {
         String staffSelected = this.staffComboBox.getValue();
         ViewUtils.assignTicketTo(staffSelected, ticketId, getPriority(), getTimeEstimate(), approveRadioButton.isSelected());
-        AssetPlusFXMLView.getInstance().refresh();
+        ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       } else {
         errorLabel.setText(resources.getString("key.TicketStatus_Error_FillAllPrompts"));

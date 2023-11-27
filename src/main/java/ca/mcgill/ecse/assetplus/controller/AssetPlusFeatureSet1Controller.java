@@ -253,23 +253,6 @@ public class AssetPlusFeatureSet1Controller {
     }
     return null;
   }
-
-
-    public static String getUsername(String email) {
-      User user = User.getWithEmail(email);
-
-      if (user == null) {
-        // Check if it's manager
-        if (email.equals("manager@ap.com")) {
-          return AssetPlusApplication.getAssetPlus().getManager().getName();
-        }
-
-        return "";
-      }
-
-      return user.getName();
-    }
-
     public static List<TOHotelStaff> getHotelStaffs() {
       List<HotelStaff> hotelStaffs = convertEmployeesIntoStaff(AssetPlusApplication.getAssetPlus().getEmployees());
       hotelStaffs.add(AssetPlusApplication.getAssetPlus().getManager());

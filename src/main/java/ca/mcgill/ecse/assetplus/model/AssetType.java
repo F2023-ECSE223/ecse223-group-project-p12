@@ -285,6 +285,14 @@ public class AssetType
     }
   }
 
+  // line 46 "AssetPlusPersistence.ump"
+  public static  void reinitializeUniqueName(List<AssetType> types){
+    assettypesByName = new HashMap<String, AssetType>();
+    for (AssetType t : types) {
+      assettypesByName.put(t.getName(), t);
+    }
+  }
+
 
   public String toString()
   {

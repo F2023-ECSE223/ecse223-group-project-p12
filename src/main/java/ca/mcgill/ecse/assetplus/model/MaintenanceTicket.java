@@ -687,6 +687,14 @@ public class MaintenanceTicket
     addTicketNote(newNote);
   }
 
+  // line 28 "AssetPlusPersistence.ump"
+  public static  void reinitializeUniqueId(List<MaintenanceTicket> tickets){
+    maintenanceticketsById = new HashMap<Integer, MaintenanceTicket>();
+    for (MaintenanceTicket t : tickets) {
+      maintenanceticketsById.put(t.getId(), t);
+    }
+  }
+
 
   public String toString()
   {
@@ -703,10 +711,4 @@ public class MaintenanceTicket
             "  " + "fixApprover = "+(getFixApprover()!=null?Integer.toHexString(System.identityHashCode(getFixApprover())):"null");
   }
 
-  public static  void reinitializeUniqueTickets(List<MaintenanceTicket> tickets){
-    maintenanceticketsById.clear();
-        for (var ticket : tickets) {
-            maintenanceticketsById.put(ticket.getId(), ticket);
-        }
-  }
 }
