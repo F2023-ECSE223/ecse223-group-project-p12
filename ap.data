@@ -400,9 +400,23 @@
     ],
     "guests": [
       {
-        "Guest": {
-          "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote[2]/noteTaker/maintenanceNotes/MaintenanceNote/ticket/ticketRaiser"
-        }
+        "Guest": [
+          {
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote[2]/noteTaker/maintenanceNotes/MaintenanceNote/ticket/ticketRaiser"
+          },
+          {
+            "email": "Someone@gmail.com",
+            "name": "abc",
+            "password": "abc",
+            "phoneNumber": 450,
+            "raisedTickets": [
+              ""
+            ],
+            "assetPlus": {
+              "@reference": "../../.."
+            }
+          }
+        ]
       }
     ],
     "manager": {
