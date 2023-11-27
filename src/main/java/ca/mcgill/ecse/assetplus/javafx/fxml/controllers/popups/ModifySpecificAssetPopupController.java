@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
@@ -25,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class ModifySpecificAssetPopupController {
 
@@ -50,13 +52,13 @@ public class ModifySpecificAssetPopupController {
   private Rectangle fieldBg;
 
   @FXML
-  private ComboBox<String> floorChoice;
+  private TextField floorChoice;
 
   @FXML
   private TextField lifeExpectancy;
 
   @FXML
-  private ComboBox<String> roomChoice;
+  private TextField roomChoice;
 
   @FXML
   private Label topPopups;
@@ -68,6 +70,9 @@ public class ModifySpecificAssetPopupController {
 
   @FXML 
   private VBox errorBox;
+
+      @FXML
+    private ResourceBundle resources;
 
 
   public static void get(int assetNumber){
@@ -88,26 +93,58 @@ public class ModifySpecificAssetPopupController {
       int room = 0;
       int floor = 0;
       String type = "";
-    
+      boolean hasErrorFloor = false;
+      boolean hasErrorRoom = false;
 
-      if (roomChoice.getValue().contains("No")){
-        room = -1;
-      } else if (roomChoice.getValue().contains("Current")) {
-        room = asset.getRoomNumber();
-      } else {
-        room = Integer.parseInt(roomChoice.getValue());
-      }
-
-      if (floorChoice.getValue().contains("Current")) {
-        floor = asset.getFloorNumber();
-      } else {
-        floor = Integer.parseInt(floorChoice.getValue());
-      }
-
-      if (assetTypes.getValue().contains("Current")) {
+      if (assetTypes.getValue().contains("Current")){
         type = asset.getAssetType().getName();
       } else {
         type = assetTypes.getValue();
+      }
+
+      String regex = "\\d+";
+
+      Label errorRoom= new Label(resources.getString("key.AssetMenu_ErrorRoom"));
+      errorRoom.setStyle("-fx-text-fill: red;");
+      
+      if (roomChoice.getText().equals("")) {
+        room = asset.getRoomNumber();
+      } else if (roomChoice.getText().equals("-1")){
+        room = -1;
+      } else if (roomChoice.getText().matches(regex)){
+        room = Integer.parseInt(roomChoice.getText().trim());
+        if (room < -1){
+          errorBox.getChildren().add(errorRoom);
+          errorBox.setVisible(true);
+          hasErrorRoom=true;
+        }
+        hasErrorRoom=false;
+      } else {
+          if (!hasErrorRoom) {
+                errorBox.getChildren().add(errorRoom);
+                errorBox.setVisible(true);
+                hasErrorRoom = true;
+            }
+        }
+
+      Label errorFloor = new Label(resources.getString("key.AssetMenu_ErrorFloor"));
+      errorFloor.setStyle("-fx-text-fill: red;");
+      if (floorChoice.getText().matches(regex)){
+        floor = Integer.parseInt(floorChoice.getText().trim());
+        if (floor < 0){
+          errorBox.getChildren().add(errorFloor);
+          errorBox.setVisible(true);
+          hasErrorRoom=true;
+        }
+        hasErrorRoom=false;
+      } else if (floorChoice.getText().equals("")) {
+        floor = asset.getFloorNumber();
+      } else {
+        if (!hasErrorFloor) {
+              errorBox.getChildren().add(errorFloor);
+              errorBox.setVisible(true);
+              hasErrorFloor = true;
+          }
       }
 
       int number;
@@ -116,13 +153,16 @@ public class ModifySpecificAssetPopupController {
       } else {
         number = asset.getAssetNumber();   
       }
-      System.out.println(java.sql.Date.valueOf(dateChoice.getValue()));
-      String result = AssetPlusFeatureSet3Controller.updateSpecificAsset(number, floor, room, java.sql.Date.valueOf(dateChoice.getValue()), type);
-      System.out.println(result);
-      ViewUtils.callController("");
-      AssetPlusFXMLView.getInstance().closePopUpWindow();
 
+      System.out.println(hasErrorFloor + " and " + hasErrorRoom);
+      if (!hasErrorFloor && !hasErrorRoom){
+        System.out.println("is this reached");
+        String result = AssetPlusFeatureSet3Controller.updateSpecificAsset(number, floor, room, java.sql.Date.valueOf(dateChoice.getValue()), type);
+        System.out.println(result);
+        ViewUtils.callController("");
+        AssetPlusFXMLView.getInstance().closePopUpWindow();
       }
+    }
 
 
     public void initialize() {
@@ -142,35 +182,15 @@ public class ModifySpecificAssetPopupController {
         if (!type.getName().equals(asset.getAssetType().getName())){
           types.add(type.getName());
         } 
-
+      }
       ObservableList<String> typesList = FXCollections.observableArrayList(types);
       assetTypes.setItems(typesList);
 
       lifeExpectancyBox.setVisible(true);
       lifeExpectancy.setText(asset.getAssetType().getExpectedLifeSpan()+" years");
 
-      ArrayList<String> rooms = new ArrayList<>();
-      rooms.add("Current room: " + asset.getRoomNumber());
-      roomChoice.setValue("Current room: " + asset.getRoomNumber());
-      rooms.add("No room");
-      for (int i = 0; i <= 50; i++) {
-        rooms.add(i+"");
-      }
-
-      ObservableList<String> roomsList = FXCollections.observableArrayList(rooms);
-      roomChoice.setItems(roomsList);
-      
-      ArrayList<String> floors = new ArrayList<>();
-      floors.add("Current floor: " + asset.getFloorNumber());
-      floorChoice.setValue("Current floor: " + asset.getFloorNumber());
-      for (int i = 0; i <= 20; i++) {
-        floors.add(i+"");
-      }
-
-      ObservableList<String> floorsList = FXCollections.observableArrayList(floors);
-      floorChoice.setItems(floorsList);
-    }
-
+      roomChoice.setPromptText("Current room: " + asset.getRoomNumber());
+      floorChoice.setPromptText("Current floor: " + asset.getFloorNumber());
     }
 
     @FXML
