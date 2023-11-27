@@ -38,13 +38,13 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
-<?import javafx.scene.control.TextField?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.TicketStatusController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.TicketStatusController">
   <children>
       <HBox fx:id="DashboardAndContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <children>
@@ -85,14 +85,14 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </VBox>
-                  <HBox HBox.hgrow="ALWAYS">
+                  <HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                      <children>
                         <TableView id="ticketTable" fx:id="ticketTable" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                           <columns>
                               <TableColumn fx:id="ticketNumberColumn" maxWidth="250.0" prefWidth="130.0" text="%key.TicketStatus_TicketNumber" />
                               <TableColumn fx:id="assetNumberColumn" maxWidth="250.0" prefWidth="130.0" text="%key.AssetMenu_AssetNumber" />
                               <TableColumn fx:id="assetColumn" maxWidth="150.0" prefWidth="100.0" text="%key.TicketStatus_Asset" />
-                              <TableColumn fx:id="reporterColumn" maxWidth="200.0" prefWidth="150.0" text="%key.TicketStatus_Reporter" />
+                              <TableColumn fx:id="reporterColumn" maxWidth="200.0" prefWidth="150.0" text="%key.TicketStatus_Raiser" />
                               <TableColumn fx:id="assigneeColumn" maxWidth="200.0" prefWidth="150.0" text="%key.TicketStatus_Assignee" />
                               <TableColumn fx:id="dateStartedColumn" maxWidth="280.0" prefWidth="200.0" text="%key.TicketStatus_DateRaised" />
                               <TableColumn fx:id="statusColumn" maxWidth="300.0" prefWidth="200.0" style="-fx-padding: 0 0 0 0;" text="%key.TicketStatus_Status" />
