@@ -26,6 +26,9 @@ public class AddAssetTypePopUpController {
   private TextField AssetTypeAddLifespan;
 
   @FXML
+  private TextField AssetTypeAddImageURL;
+
+  @FXML
   private Label errorMessage;
 
 
@@ -37,7 +40,7 @@ public class AddAssetTypePopUpController {
 
   @FXML
   void CreateClicked(ActionEvent event) {
-    
+
     String name = AssetTypeAddName.getText();
 
     if(AssetTypeAddLifespan.getText().isEmpty()){

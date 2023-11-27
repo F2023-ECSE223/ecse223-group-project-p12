@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="407.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="407.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController">
    <children>
       <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="332.0" prefWidth="408.0">
          <children>
@@ -23,6 +23,7 @@
                   <Label fx:id="replaceMe" contentDisplay="CENTER" text="%key.AssetTypeAddPopUpMessage" textAlignment="CENTER" />
                   <TextField fx:id="AssetTypeAddName" promptText="%key.AssetTypeAddPopUpName" styleClass="text-field" />
                   <TextField fx:id="AssetTypeAddLifespan" promptText="%key.AssetTypeAddPopUpLifespan" styleClass="text-field" />
+                  <TextField fx:id="AssetTypeAddImageURL" layoutX="10.0" layoutY="153.0" promptText="%key.AssetTypeAddPopUpOptionalURL" styleClass="text-field" />
                   <Label fx:id="errorMessage" textFill="RED" />
                   <HBox spacing="30.0">
                      <children>

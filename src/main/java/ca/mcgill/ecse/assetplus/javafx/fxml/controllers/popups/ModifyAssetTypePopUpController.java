@@ -25,6 +25,9 @@ public class ModifyAssetTypePopUpController {
   @FXML
   private TextField AssetTypeModifyLifespan;
 
+  @FXML
+  private TextField AssetTypeModifyImageURL;
+
   @FXML 
   private Label errorMessage;
 
