@@ -262,11 +262,13 @@ public class EmployeesController {
             
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);
-            Button modify = new Button(resources.getString("key.Modify"));
-            modify.setStyle("-fx-text-fill: white;" + "-fx-background-color: #8768F2;" + "-fx-background-radius: 10px;" + "-fx-padding: 5px 10px 5px 10px");
+            Button modify = new Button();
+            modify.getStyleClass().add("icon-pencil");
+            modify.setPickOnBounds(true);
             modify.setOnAction(e -> modifyEmployeePopup(e,employee.getEmail()));
-            Button deleteButton = new Button(resources.getString("key.Delete"));
-            deleteButton.setStyle("-fx-background-color: #a30d11;" + "-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-background-radius: 10px;");
+            Button deleteButton = new Button();
+            deleteButton.getStyleClass().add("icon-trash");
+            deleteButton.setPickOnBounds(true);
             deleteButton.setOnAction(e -> deleteEmployeePopup(e, employee.getEmail()));
             Pane pane = new Pane();
             pane.setMinWidth(20);
@@ -335,8 +337,9 @@ public class EmployeesController {
             
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);
-            Button modify = new Button(resources.getString("key.Modify"));
-            modify.setStyle("-fx-text-fill: white;" + "-fx-background-color: #8768F2;" + "-fx-background-radius: 10px;" + "-fx-padding: 5px 10px 5px 10px");
+            Button modify = new Button();
+            modify.getStyleClass().add("icon-pencil");
+            modify.setPickOnBounds(true);
             modify.setOnAction(e -> modifyGuestPopup(e,guest.getEmail()));
             Button deleteButton = new Button(resources.getString("key.Delete"));
             deleteButton.setStyle("-fx-background-color: #a30d11;" + "-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-background-radius: 10px;");
