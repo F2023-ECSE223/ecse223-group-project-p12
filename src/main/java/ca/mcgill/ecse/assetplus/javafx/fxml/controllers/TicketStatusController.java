@@ -321,6 +321,7 @@ public class TicketStatusController {
     }
 
     private void handleStatusCellClicked(String status, int ticketId) {
+        System.out.println("DOES IT GO IN STATUS HANDLER?: " + status);
         StartAndCompleteWorkController sharedController;
         switch (status) {
             case "key.TicketStatus_Open":

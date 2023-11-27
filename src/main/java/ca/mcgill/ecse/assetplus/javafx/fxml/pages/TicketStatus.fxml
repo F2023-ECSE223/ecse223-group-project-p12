@@ -94,10 +94,6 @@
                                     <DatePicker fx:id="dateSearch" prefHeight="28.0" prefWidth="139.0" GridPane.columnIndex="3" />
                                     <ChoiceBox fx:id="statusChoiceBox" prefHeight="28.0" prefWidth="135.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                  </children>
-                              <TextField fx:id="raiserSearch" layoutX="40.0" layoutY="20.0" promptText="%key.RaiserSearch" style="-fx-background-color: f0f0f0; -fx-background-radius: 10px; -fx-border-color: white;">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
                               </GridPane>
                               <Button fx:id="addTicketButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToTicketMenu" prefHeight="30.0" prefWidth="126.0" styleClass="actionButton" text="%key.TicketStatus_AddTicket">
                                  <graphic>

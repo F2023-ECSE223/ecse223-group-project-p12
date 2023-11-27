@@ -121,8 +121,6 @@ public class ViewUtils {
 
   public static void assignTicketTo(String staffName, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate, boolean approvalRequired) {
     String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
-    TOMaintenanceTicket ticket = AssetPlusFeatureSet6Controller.getTicket(ticketId);
-    
     AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(email, priority, timeEstimate, approvalRequired, ticketId);
   }
 
