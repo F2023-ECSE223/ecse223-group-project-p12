@@ -1,51 +1,51 @@
-namespace ca.mcgill.ecse.assetplus.model;
 
 class AssetPlus {
-    public void reinitialize() {
-        AssetType.reinitializeUniqueTypes(getAssetTypes());
-        MaintenanceTicket.reinitializeUniqueTickets(getMaintenanceTickets());
-        SpecificAsset.reinitializeUniqueAssets(getSpecificAssets());
-        User.reinitializeUniqueUsers(getEmployees(), getGuests());
-    }
-}
-
-class AssetType {
-    public static void reinitializeUniqueTypes(List<AssetType> types) {
-        assettypesByName.clear();
-        for (var type : types) {
-            assettypesByName.put(type.getName(), type);
-        }
-    }
-}
-
-class MaintenanceTicket {
-    public static void reinitializeUniqueTickets(List<MaintenanceTicket> tickets) {
-        maintenanceticketsById.clear();
-        for (var ticket : tickets) {
-            maintenanceticketsById.put(ticket.getId(), ticket);
-        }
-    }
-}
-
-class SpecificAsset {
-    public static void reinitializeUniqueAssets(List<SpecificAsset> assets) {
-        specificassetsByAssetNumber.clear();
-        for (var asset : assets) {
-            specificassetsByAssetNumber.put(asset.getAssetNumber(), asset);
-        }
-    }
+  public void reinitialize() {
+    User.reinitializeUniqueEmail(this.getManager(), this.getEmployees(), this.getGuests());
+    MaintenanceTicket.reinitializeUniqueId(this.getMaintenanceTickets());
+    SpecificAsset.reinitializeUniqueAssetNumber(this.getSpecificAssets());
+    AssetType.reinitializeUniqueName(this.getAssetTypes());
+  }
 }
 
 class User {
-    public static void reinitializeUniqueUsers(List<Employee> employees, List<Guest> guests) {
-        usersByEmail.clear();
-        for (var guest : guests) {
-            usersByEmail.put(guest.getEmail(), guest);
-        }
-        for (var employee : employees){
-            usersByEmail.put(employee.getEmail(), employee);
-        }
+  public static void reinitializeUniqueEmail(Manager manager, List<Employee> employees, List<Guest> guests) {
+    usersByEmail = new HashMap<String, User>();
+    if (manager != null) {
+      usersByEmail.put(manager.getEmail(), manager);
     }
+    for (Employee e : employees) {
+      usersByEmail.put(e.getEmail(), e);
+    }
+    for (Guest g : guests) {
+      usersByEmail.put(g.getEmail(), g);
+    }
+  }
 }
 
+class MaintenanceTicket {
+  public static void reinitializeUniqueId(List<MaintenanceTicket> tickets) {
+    maintenanceticketsById = new HashMap<Integer, MaintenanceTicket>();
+    for (MaintenanceTicket t : tickets) {
+      maintenanceticketsById.put(t.getId(), t);
+    }
+  }
+}
 
+class SpecificAsset {
+  public static void reinitializeUniqueAssetNumber(List<SpecificAsset> assets) {
+    specificassetsByAssetNumber = new HashMap<Integer, SpecificAsset>();
+    for (SpecificAsset a : assets) {
+      specificassetsByAssetNumber.put(a.getAssetNumber(), a);
+    }
+  }
+}
+
+class AssetType {
+  public static void reinitializeUniqueName(List<AssetType> types) {
+    assettypesByName = new HashMap<String, AssetType>();
+    for (AssetType t : types) {
+      assettypesByName.put(t.getName(), t);
+    }
+  }
+}
