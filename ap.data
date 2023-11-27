@@ -316,26 +316,6 @@
           },
           {
             "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket/asset/assetType"
-          },
-          {
-            "name": "tv",
-            "expectedLifeSpan": 200,
-            "assetPlus": {
-              "@reference": "../../.."
-            },
-            "specificAssets": [
-              ""
-            ]
-          },
-          {
-            "name": "table",
-            "expectedLifeSpan": 100,
-            "assetPlus": {
-              "@reference": "../../.."
-            },
-            "specificAssets": [
-              ""
-            ]
           }
         ]
       }
