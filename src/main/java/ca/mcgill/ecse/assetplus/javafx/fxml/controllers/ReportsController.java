@@ -27,6 +27,8 @@ import org.codehaus.jettison.Node;
 
 public class ReportsController {
 
+    private int maxNumberOfTicketForAnAsset;
+
     @FXML
     private HBox DashboardAndContent;
 
@@ -58,23 +60,19 @@ public class ReportsController {
 
     @FXML
     void initialize() {
-        
-
+        maxNumberOfTicketForAnAsset = 1;
         ToggleGroup toggleGroup = new ToggleGroup();
-        oneLastFive.setToggleGroup(toggleGroup);
+        oneLastFive.setToggleGroup(toggleGroup) ;
         oneLastMonth.setToggleGroup(toggleGroup);
         oneLastWeek.setToggleGroup(toggleGroup);
         oneLastYear.setToggleGroup(toggleGroup);
         allTime.setToggleGroup(toggleGroup);
 
-        assetTypeIssues.setAnimated(false);
-        assetTypeIssues.setLegendVisible(false);
-        yAxis.setTickUnit(1);
         fixChart(0);
         fixColors();
 
-        
-                
+        assetTypeIssues.setAnimated(false);
+        assetTypeIssues.setLegendVisible(false);
     }
 
     private static boolean isWithinRange(LocalDate dateToCheck, LocalDate currentDate, long amount, ChronoUnit unit) {
@@ -135,15 +133,20 @@ public class ReportsController {
     public void fixChart(int condition){
         counts = getCounts(condition);
 
-
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         for (String asset : counts.keySet()) {
-            series.getData().add(new XYChart.Data<>(asset, counts.get(asset)));
+            int numberOfTicketForAnAsset = counts.get(asset);
+            series.getData().add(new XYChart.Data<>(asset, numberOfTicketForAnAsset));
+
+            if (numberOfTicketForAnAsset > maxNumberOfTicketForAnAsset) {
+                maxNumberOfTicketForAnAsset = numberOfTicketForAnAsset;
+            }
         }
 
         assetTypeIssues.getData().add(series);
-
+        assetTypeIssues.setCategoryGap(300/series.getData().size());
+        yAxis.setUpperBound(maxNumberOfTicketForAnAsset+1);
     }
     
 

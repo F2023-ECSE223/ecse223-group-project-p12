@@ -37,7 +37,7 @@
                   <Button fx:id="priorityButton" layoutX="171.0" layoutY="189.0" mnemonicParsing="false" text="Button" />
                   <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="14.0" layoutY="252.0" stroke="BLACK" strokeType="INSIDE" width="295.0" />
                   <Label layoutX="38.0" layoutY="267.0" prefHeight="17.0" prefWidth="137.0" text="%key.TicketStatus_TimeToResolve" />
-                  <TextField fx:id="timeEstimateField" editable="false" layoutX="163.0" layoutY="262.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: white;" />
+                  <TextField fx:id="timeEstimateField" editable="false" layoutX="148.0" layoutY="262.0" prefHeight="26.0" prefWidth="152.0" style="-fx-background-color: white;" />
                </children>
             </Pane>
             <Pane prefHeight="370.0" prefWidth="299.0">
@@ -55,7 +55,7 @@
                   <TextField fx:id="assetNumberField" editable="false" layoutX="202.0" layoutY="122.0" prefHeight="26.0" prefWidth="53.0" style="-fx-background-color: white;" />
                   <TextField fx:id="assetTypeField" editable="false" layoutX="164.0" layoutY="47.0" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: white;" />
                   <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="32.0" layoutY="317.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
-                  <Label layoutX="56.0" layoutY="322.0" prefHeight="38.0" prefWidth="91.0" style="-fx-wrap-text: true;" text="%key.TicketMenu_AddRaiser" textAlignment="CENTER" />
+                  <Label layoutX="56.0" layoutY="322.0" prefHeight="38.0" prefWidth="91.0" style="-fx-wrap-text: true;" text="%key.TicketMenu_Fixer" textAlignment="CENTER" />
                   <TextField fx:id="assigneeField" editable="false" layoutX="149.0" layoutY="328.0" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: white;" />
                   <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="32.0" layoutY="383.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
                   <Label layoutX="65.0" layoutY="398.0" text="%key.TicketStatus_ApprovalRequired" />

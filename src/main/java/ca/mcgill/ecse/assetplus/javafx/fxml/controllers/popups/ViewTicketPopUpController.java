@@ -62,9 +62,7 @@ public class ViewTicketPopUpController {
       String text = ticket.getApprovalRequired() ? "Yes" : "No";
       approvalRequiredField.setText(text);
 
-      // TODO when we have the asset number
-      //assetNumberField.setText()
-
+      assetNumberField.setText(String.valueOf(ViewUtils.getSpecificAssetFromTicket(ViewUtils.getTicket(ticketId))));
       assetTypeField.setText(ticket.getAssetName());
       descriptionField.setText(ticket.getDescription());
 
@@ -80,8 +78,8 @@ public class ViewTicketPopUpController {
 
       raisedOnDateField.setText(ticket.getRaisedOnDate().toString());
       ticketNumberField.setText(String.valueOf(ticket.getId()));
-      ticketRaiserField.setText(ViewUtils.getUsername(ticket.getRaisedByEmail()));
-      assigneeField.setText(ViewUtils.getUsername(ticket.getFixedByEmail()));
+      ticketRaiserField.setText(ticket.getRaisedByEmail());
+      assigneeField.setText(ticket.getFixedByEmail());
       timeEstimateField.setText(ticket.getTimeToResolve());
     }
 

@@ -243,6 +243,7 @@ public class TicketStatusController {
         ticketNumberColumn.setCellValueFactory(cellData -> {
             int ticketId = cellData.getValue().getId();
             Hyperlink link = new Hyperlink("#" + String.valueOf(ticketId));
+            link.setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
             link.setOnAction(event -> handleTicketClicked(ticketId));
 
             return new SimpleObjectProperty<>(link);
