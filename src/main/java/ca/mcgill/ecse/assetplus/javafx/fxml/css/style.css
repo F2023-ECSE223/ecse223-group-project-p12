@@ -207,6 +207,8 @@ Stylesheet of our UI
 .table-view {
     -fx-background-color: transparent;
     -fx-alignment: CENTER;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
 }
 
 .table-view .column-header-background, .table-view .filler {
@@ -216,7 +218,6 @@ Stylesheet of our UI
 
 .table-view .column-header-background {
     -fx-background-color: #8768F2;
-    -fx-background-radius: 7px 7px 0px 0px;
     -fx-background-insets: 0 11px 0 0;
     -fx-padding: 5px 0 5px 0;
 }
@@ -235,10 +236,11 @@ Stylesheet of our UI
 
 .table-view .table-cell {
     -fx-background-insets: 10, 0, 0, 0;
-    -fx-background-radius: 20px;
     -fx-padding: 20px 0 10px 0;
     -fx-border-color: transparent;
     -fx-alignment: CENTER;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
 }
 
 .table-row-cell:odd{
@@ -497,6 +499,10 @@ Stylesheet of our UI
     -fx-padding: 5px 10px 5px 10px
 }
 
+.errorMessage
+{
+    -fx-text-fill: #a30d11;
+}
 /* View Notes */
 .note
 {
@@ -541,4 +547,68 @@ Stylesheet of our UI
 
 .radio-button:selected .radio {
     -fx-mark-color: #8768F2;
+}
+
+/* Bar Chart */
+.bar-chart {
+    -fx-background-color: #FFFFFF;
+}
+
+.bar-chart .axis-label {
+    -fx-text-fill: #808080;
+}
+
+.bar-chart .bar {
+    -fx-bar-fill: #8768F2;
+    -fx-bar-gap: 5px; /* Adjust the gap between bars */
+}
+
+.bar-chart .bar:hover {
+    -fx-bar-fill: #624DE3; /* Change color on hover if desired */
+    -fx-cursor: hand;
+}
+
+.bar-chart .chart-title {
+    -fx-text-fill: #8768F2;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.bar-chart .axis {
+    -fx-tick-label-fill: #808080;
+    -fx-tick-mark-visible: true;
+}
+
+.bar-chart .axis .tick-mark {
+    -fx-stroke: #808080;
+}
+
+.bar-chart .axis .tick-label {
+    -fx-text-fill: #808080;
+}
+
+/* Legend styling */
+.bar-chart .legend {
+    -fx-background-color: transparent;
+}
+
+.bar-chart .legend-item-symbol {
+    -fx-background-radius: 0;
+}
+
+.bar-chart .legend-item-text {
+    -fx-text-fill: #808080;
+}
+
+.bar-chart .legend .label {
+    -fx-font-size: 12px;
+}
+
+/* Tooltip styling for bar chart */
+.bar-chart .chart-bar:hover .chart-bar-clip {
+    -fx-background-color: #F7F6FE;
+}
+
+.bar-chart .chart-bar:hover .chart-bar-fill {
+    -fx-bar-fill: #624DE3;
 }

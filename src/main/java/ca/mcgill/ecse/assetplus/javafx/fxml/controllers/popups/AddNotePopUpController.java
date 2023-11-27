@@ -40,6 +40,8 @@ public class AddNotePopUpController {
   @FXML
   private Label errorMessage;
 
+  private boolean isDisapproveNote = false;
+
   
   @FXML
   public void initialize() {
@@ -52,6 +54,10 @@ public class AddNotePopUpController {
     for (TOHotelStaff staff: ViewUtils.getHotelStaffs()) {
       this.authorEmail.getItems().add(staff.getEmail());
     }
+
+    if (isDisapproveNote) {
+      setDisapproveReason();
+    }
   }
 
   @FXML
@@ -62,6 +68,9 @@ public class AddNotePopUpController {
 
     if (email == null) {
       errorMessage.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.AddNote_ErrorAuthor"));
+    } else if (isDisapproveNote) {
+      ViewUtils.disapproveTicket(ticketId, date, desc);
+      AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
     else if (isDisapproveNote) {
       ViewUtils.disapproveTicket(ticketId, date, desc);
@@ -88,5 +97,11 @@ public class AddNotePopUpController {
 
   public void setDisapproveReason() {
     instructionLabel.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.AddNote_WhyDisapprove"));
+    this.authorEmail.setValue("manager@ap.com");
+    this.authorEmail.setEditable(false);
+  }
+
+  public void setDisapproveNote(boolean isDisapproveNote) {
+    this.isDisapproveNote = isDisapproveNote;
   }
 }
