@@ -60,16 +60,18 @@
                         <fx:include source="../components/UserTopSection.fxml" />
                         <HBox alignment="CENTER" minHeight="60.0" prefHeight="100.0" prefWidth="750.0">
                            <children>
-                              <GridPane fx:id="searchPane" prefHeight="60.0" prefWidth="457.0" HBox.hgrow="ALWAYS">
+                              <GridPane fx:id="searchPane" prefHeight="60.0" prefWidth="541.0" HBox.hgrow="ALWAYS">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.1263427734375" minWidth="10.0" prefWidth="102.1263427734375" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.84353637695312" minWidth="10.0" prefWidth="97.84353637695312" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.41912841796875" minWidth="9.0" prefWidth="76.5" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="8.1595458984375" prefWidth="322.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.1263427734375" minWidth="10.0" prefWidth="77.70700073242188" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.84353637695312" minWidth="10.0" prefWidth="90.79299926757812" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.41912841796875" minWidth="9.0" prefWidth="84.8853759765625" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="8.1595458984375" prefWidth="128.6146240234375" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="96.54132080078125" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="183.1146240234375" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="29.200637817382812" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.799362182617188" minHeight="10.0" prefHeight="30.799362182617188" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
                                     <Label alignment="CENTER" text="%key.TicketStatus_TicketNumber" GridPane.hgrow="ALWAYS" />
@@ -88,6 +90,16 @@
                                     </Label>
                                     <DatePicker fx:id="dateSearch" prefHeight="28.0" prefWidth="139.0" GridPane.columnIndex="3" />
                                     <ChoiceBox fx:id="statusChoiceBox" prefHeight="28.0" prefWidth="135.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label text="Asset Number" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <TextField fx:id="assetNumberSearch" prefHeight="23.0" prefWidth="121.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets right="70.0" />
+                                       </GridPane.margin>
+                                    </TextField>
                                  </children>
                                  <HBox.margin>
                                     <Insets left="10.0" />
@@ -124,6 +136,9 @@
                           <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
                         </TableView>
                      </children>
                   </HBox>

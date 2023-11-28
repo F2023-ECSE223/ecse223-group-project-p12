@@ -103,6 +103,9 @@ public class TicketStatusController {
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
 
     @FXML
+    private TextField assetNumberSearch;
+
+    @FXML
     private DatePicker dateSearch;
 
     private ObservableList<TOMaintenanceTicket> ticketList;
@@ -117,18 +120,25 @@ public class TicketStatusController {
         String raiser = raiserSearch.getText().toLowerCase().trim();
         int number = ticketSearch.getText().isEmpty() ? 0 : Integer.parseInt(ticketSearch.getText().toLowerCase().trim());
         LocalDate searchDate = dateSearch.getValue();
+        int assetNumberText = assetNumberSearch.getText().isEmpty() ? 0 : Integer.parseInt(assetNumberSearch.getText().toLowerCase().trim());
     
         FilteredList<TOMaintenanceTicket> filteredTickets = new FilteredList<>(ticketList);
 
         filteredTickets.setPredicate(ticket -> {
+            boolean assetNumberMatch = assetNumberText == 0 || ViewUtils.getSpecificAssetFromTicket(ticket) == assetNumberText;
             boolean raiserMatch = raiser.isEmpty() || ticket.getRaisedByEmail().toLowerCase().contains(raiser);
             boolean ticketNumberMatch = number == 0 || ticket.getId() == number;
             boolean dateMatch = searchDate == null || ticket.getRaisedOnDate().toLocalDate().isEqual(searchDate);
 
-            return raiserMatch && ticketNumberMatch && dateMatch;
+            return raiserMatch && ticketNumberMatch && dateMatch & assetNumberMatch;
         });
 
         ticketTable.setItems(filteredTickets);
+    }
+
+    public void setAssetNumber(int assetNumber) {
+        assetNumberSearch.setText(String.valueOf(assetNumber));
+        performSearch();
     }
     
     @FXML
