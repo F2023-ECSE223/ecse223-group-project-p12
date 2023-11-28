@@ -82,7 +82,7 @@ public class TicketStatusController {
     private TableColumn<TOMaintenanceTicket, Hyperlink> ticketNumberColumn;
 
     @FXML
-    private TableColumn<TOMaintenanceTicket, Hyperlink> assetNumberColumn;
+    public TableColumn<TOMaintenanceTicket, Hyperlink> assetNumberColumn;
 
     @FXML
     private TableColumn<TOMaintenanceTicket, String> assetColumn;
@@ -313,7 +313,6 @@ public class TicketStatusController {
     }
 
     private void handleStatusCellClicked(String status, int ticketId) {
-        System.out.println("DOES IT GO IN STATUS HANDLER?: " + status);
         StartAndCompleteWorkController sharedController;
         switch (status) {
             case "key.TicketStatus_Open":
