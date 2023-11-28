@@ -389,7 +389,7 @@
       }
     ],
     "manager": {
-      "@reference": "../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker"
+      "@reference": "../employees/Employee/raisedTickets/MaintenanceTicket/ticketFixer/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote[2]/noteTaker"
     },
     "maintenanceTickets": [
       {
@@ -401,13 +401,13 @@
             "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket"
           },
           {
-            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket"
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/ticketFixer/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote[2]/noteTaker/maintenanceNotes/MaintenanceNote/ticket"
           },
           {
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]/maintenanceTickets/MaintenanceTicket"
           },
           {
-            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket"
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/ticketFixer/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote[2]/noteTaker/raisedTickets/MaintenanceTicket"
           }
         ]
       }
@@ -422,7 +422,7 @@
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType"
           },
           {
-            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket/asset/assetType"
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/ticketFixer/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote[2]/noteTaker/raisedTickets/MaintenanceTicket/asset/assetType"
           }
         ]
       }
@@ -437,7 +437,7 @@
             "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset"
           },
           {
-            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket/asset"
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/ticketFixer/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote[2]/noteTaker/raisedTickets/MaintenanceTicket/asset"
           },
           {
             "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]"

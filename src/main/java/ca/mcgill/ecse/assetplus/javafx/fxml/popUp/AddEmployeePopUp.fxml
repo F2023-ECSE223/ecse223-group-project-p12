@@ -46,7 +46,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="435.0" styleClass="popUpWindow" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddEmployeePopUpController">
    <children>
-      <VBox layoutX="-3.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="435.0" stylesheets="@../css/style.css">
+      <VBox layoutX="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="435.0" stylesheets="@../css/style.css">
         <children>
             <fx:include source="../components/PopUpToolBar.fxml" />
             <GridPane fx:id="popupCreateEmployee" alignment="TOP_CENTER" prefHeight="545.0" prefWidth="960.0" vgap="20.0">
