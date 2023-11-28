@@ -58,9 +58,6 @@ public class FrontPageController {
   @FXML
   private Label ticketCount;
 
-  @FXML
-  private Button closeButton;
-
  @FXML
     void initialize() {
       gradient.widthProperty().bind(frontPage.widthProperty());
@@ -119,11 +116,6 @@ public class FrontPageController {
       AssetPlusFXMLView.getInstance().changeTab("pages/TicketStatus.fxml");
     }
 
-
-    @FXML
-    void CloseWindow(ActionEvent event) {
-      AssetPlusFXMLView.getInstance().closeWindow();
-    }
 }
 
 

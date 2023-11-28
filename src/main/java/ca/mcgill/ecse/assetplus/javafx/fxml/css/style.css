@@ -37,14 +37,7 @@ Stylesheet of our UI
 
 .toolbarDeleteButton:hover
 {
-    /*-fx-background-color: #a30d11;*/
-}
-
-.frontPageToolbar
-{
-    -fx-border-color: transparent;
-    -fx-background-color: transparent;
-
+    -fx-background-color: #a30d11;
 }
 
 .noticeMessage
