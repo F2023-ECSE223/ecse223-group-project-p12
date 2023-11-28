@@ -657,4 +657,11 @@ Stylesheet of our UI
     -fx-inner-border: transparent;
     -fx-border-color: #9e9797;;
     -fx-background-color: white;
+
+}
+
+.frontPageText {
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
 }
