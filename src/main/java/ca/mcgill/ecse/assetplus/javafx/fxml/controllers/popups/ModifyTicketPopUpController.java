@@ -75,19 +75,17 @@ public class ModifyTicketPopUpController {
     private TextField ticketStatusField;
     
     @FXML
-    private ComboBox<String> typeField;
+    private TextField typeField;
     
     @FXML
     private Label updateTicketError;
 
     @FXML
     void initialize(){
+        
         ticketNumberField.setFocusTraversable(false);
         ticketStatusField.setFocusTraversable(false);
-        ObservableList<TOAssetType> list = ViewUtils.getAssetTypes();
-        for (TOAssetType type : list){
-            typeField.getItems().add(type.getName());
-        }
+       
         ObservableList<TOSpecificAsset> list2 = ViewUtils.getSpecificAsset();
         for (TOSpecificAsset asset : list2){
             assetNumberField.getItems().add(Integer.toString(asset.getAssetNumber()));
@@ -126,7 +124,7 @@ public class ModifyTicketPopUpController {
                 descriptionField.setText("");
                 raiserField.setText("");
                 assetNumberField.setValue(null);
-                typeField.setValue(null);
+                typeField.setText(null);
                 raisedDateField.setValue(null);
                 updateTicketError.setText(null);
                 System.out.println("Ticket updated");
@@ -146,6 +144,8 @@ public class ModifyTicketPopUpController {
         raisedDateField.setEditable(false);
         ticketStatusField.setEditable(false);
         ticketNumberField.setEditable(false);
+        typeField.setEditable(false);
+        typeField.setFocusTraversable(false);
         
         ticket = AssetPlusFeatureSet6Controller.getTicket(ticketId);
         
@@ -153,47 +153,30 @@ public class ModifyTicketPopUpController {
         ticketStatusField.setText(ticket.getStatus().toString());
         descriptionField.setText(ticket.getDescription());
         raiserField.setText(ticket.getRaisedByEmail());
-        typeField.setValue(ticket.getAssetName());
+        typeField.setText(ticket.getAssetName());
         raisedDateField.setValue(ticket.getRaisedOnDate().toLocalDate());
-        if (ticket.getAssetName() == null){
-            assetNumberField.setValue(null);
-        }
-        else{
-            TOAssetType type = ViewUtils.getWithAssetName(ticket.getAssetName());
-            List<TOSpecificAsset>  assets = type.getTOSpecificAssets();
-            assetNumberField.setValue(((Integer) ViewUtils.getSpecificAssetFromTicket(ticket)).toString());
-        }
+        
+        TOAssetType type = ViewUtils.getWithAssetName(ticket.getAssetName());
+        List<TOSpecificAsset>  assets = type.getTOSpecificAssets();
+        assetNumberField.setValue(((Integer) ViewUtils.getSpecificAssetFromTicket(ticket)).toString());
 
         updateTicketError.setText(null);
 
   }
-  private void updateAssetComboBox(String typeSelected) {
-    // Simulate different items based on the selected category
-    TOAssetType assetType = ViewUtils.getWithAssetName(typeSelected);
-    if (assetType != null){
-        assetNumberField.getItems().clear();
-        List<Integer> assets = AssetPlusFeatureTOController.getAssetNumberFromType(typeSelected);
-        
-        for (Integer asset : assets){
-            assetNumberField.getItems().add(Integer.toString(asset));
+ 
+
+@FXML
+void handleSelection(ActionEvent event) {
+    int assetNumberSelected = Integer.parseInt(assetNumberField.getValue());
+        if (assetNumberField.getValue() != null){
+        ObservableList<TOSpecificAsset> list = ViewUtils.getSpecificAsset();
+        for (TOSpecificAsset asset : list){
+           if(asset.getAssetNumber() == assetNumberSelected){
+                typeField.setText(asset.getAssetType().getName());
+           }
         }
-    }
-   
-}
-
-@FXML
-void assetNumberClicked(MouseEvent event) {
-    if (typeField.getValue() == null){
-        updateTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_AssetErrorMessage"));
-    }
-}
-
-@FXML
-private void handleTypeSelection(ActionEvent event) {
-    String selectedType = typeField.getValue();
-    updateAssetComboBox(selectedType);
-
-
+    
+        }
 }
 
 }
