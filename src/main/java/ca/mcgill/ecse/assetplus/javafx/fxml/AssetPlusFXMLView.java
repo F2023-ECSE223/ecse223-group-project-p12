@@ -65,7 +65,7 @@ public class AssetPlusFXMLView extends Application {
       primaryStage.setMinWidth(960);
       primaryStage.setMinHeight(540);
       primaryStage.setTitle("AssetPlus");
-      //primaryStage.initStyle(StageStyle.TRANSPARENT);
+      primaryStage.initStyle(StageStyle.TRANSPARENT);
       primaryStage.show();
 
       // Initializes the other pages
