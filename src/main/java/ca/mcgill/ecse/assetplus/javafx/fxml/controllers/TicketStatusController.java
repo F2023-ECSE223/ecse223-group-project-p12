@@ -366,7 +366,8 @@ public class TicketStatusController {
     }
 
     private void handleAssetNumberClicked(int assetNumber) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/AssetMenu.fxml");
+        AssetMenuController controller = (AssetMenuController) AssetPlusFXMLView.getInstance().changeTab("pages/AssetMenu.fxml");
+        controller.setAssetNumber(assetNumber);
     }
 
     private void handleDeleted(List<Integer> ticketIdsToDelete) {
