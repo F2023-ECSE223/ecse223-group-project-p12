@@ -56,7 +56,7 @@ public class AssetPlusFXMLView extends Application {
     try {
       stage = primaryStage;
       popUpStages = new Stack<>();
-      currentPage = "pages/TicketStatus.fxml";
+      currentPage = "pages/FrontPage.fxml";
       var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
 
       var scene = new Scene(root);
