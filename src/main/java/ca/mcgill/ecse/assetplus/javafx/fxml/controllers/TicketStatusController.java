@@ -233,7 +233,7 @@ public class TicketStatusController {
         
         ticketNumberColumn.setCellValueFactory(cellData -> {
             int ticketId = cellData.getValue().getId();
-            Hyperlink link = new Hyperlink("#" + String.valueOf(ticketId));
+            Hyperlink link = new Hyperlink(String.valueOf(ticketId));
             link.setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
             link.setOnAction(event -> handleTicketClicked(ticketId));
 
@@ -242,7 +242,7 @@ public class TicketStatusController {
 
         assetNumberColumn.setCellValueFactory(cellData -> {
             int assetNumber = ViewUtils.getSpecificAssetFromTicket(cellData.getValue());
-            Hyperlink link = new Hyperlink("#" + assetNumber);
+            Hyperlink link = new Hyperlink(String.valueOf(assetNumber));
             if (assetNumber == -1) {
                 link.setVisible(false);
             }
