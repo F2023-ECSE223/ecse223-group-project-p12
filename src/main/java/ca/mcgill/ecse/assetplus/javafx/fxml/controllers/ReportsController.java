@@ -6,11 +6,14 @@ import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -59,6 +62,12 @@ public class ReportsController {
     private NumberAxis yAxis;
 
     @FXML
+    private PieChart priorityPieChart;
+
+    @FXML
+    private PieChart statusPieChart;
+
+    @FXML
     void initialize() {
         maxNumberOfTicketForAnAsset = 1;
         ToggleGroup toggleGroup = new ToggleGroup();
@@ -73,6 +82,9 @@ public class ReportsController {
 
         assetTypeIssues.setAnimated(false);
         assetTypeIssues.setLegendVisible(false);
+
+        setStatusPieChart();
+        setPriorityPieChart();
     }
 
     private static boolean isWithinRange(LocalDate dateToCheck, LocalDate currentDate, long amount, ChronoUnit unit) {
@@ -194,6 +206,84 @@ public class ReportsController {
         fixChart(3);
          System.out.println("1 year");
          fixColors();
+    }
+
+    private void setStatusPieChart() {
+        statusPieChart.setTitle("Ticket Statuses");
+
+        int openCount = ViewUtils.getNumberOfTickets("Open"); 
+        int assignedCount = ViewUtils.getNumberOfTickets("Assigned");
+        int inProgressCount = ViewUtils.getNumberOfTickets("InProgress");
+        int resolvedCount = ViewUtils.getNumberOfTickets("Resolved");
+        int closedCount = ViewUtils.getNumberOfTickets("Closed");
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        addData(pieChartData, openCount, "Open");
+        addData(pieChartData, assignedCount, "Assigned");
+        addData(pieChartData, inProgressCount, "In Progress");
+        addData(pieChartData, resolvedCount, "Resolved");
+        addData(pieChartData, closedCount, "Closed");
+
+        statusPieChart.setData(pieChartData);
+        statusPieChart.setLegendVisible(false);
+
+        for (PieChart.Data data : pieChartData) {
+            switch (data.getName()) {
+                case "Open":
+                    data.getNode().setStyle("-fx-pie-color: #696969;");
+                    break;
+                case "Assigned":
+                    data.getNode().setStyle("-fx-pie-color: #0066CC");
+                    break;
+                case "In Progress":
+                    data.getNode().setStyle("-fx-pie-color: #CD6200;");
+                    break;
+                case "Resolved":
+                    data.getNode().setStyle("-fx-pie-color: #1F9254;");
+                    break;
+                case "Closed":
+                    data.getNode().setStyle("-fx-pie-color: #A30D11;");
+                    break;
+            }
+        }
+    }
+
+    private void addData(ObservableList<PieChart.Data> data, int count, String name) {
+        if (count > 0) {
+            data.add(new PieChart.Data(name, count));
+        }
+    }
+
+    private void setPriorityPieChart() {
+        priorityPieChart.setTitle("Ticket Priority");
+
+        int lowCount = ViewUtils.getNumberOfTickets("Low"); 
+        int normalCount = ViewUtils.getNumberOfTickets("Normal");
+        int urgentCount = ViewUtils.getNumberOfTickets("Urgent");
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        addData(pieChartData, lowCount, "Low");
+        addData(pieChartData, normalCount, "Normal");
+        addData(pieChartData, urgentCount, "Urgent");
+
+        priorityPieChart.setData(pieChartData);
+        priorityPieChart.setLegendVisible(false);
+
+        for (PieChart.Data data : pieChartData) {
+            switch (data.getName()) {
+                case "Low":
+                    data.getNode().setStyle("-fx-pie-color: #696969;");
+                    break;
+                case "Normal":
+                    data.getNode().setStyle("-fx-pie-color: #1F9254");
+                    break;
+                case "Urgent":
+                    data.getNode().setStyle("-fx-pie-color: #A30D11;");
+                    break;
+            }
+        }
     }
 
 }

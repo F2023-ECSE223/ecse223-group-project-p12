@@ -187,5 +187,17 @@ public class ViewUtils {
     }
   }
   
+  public static int getNumberOfTickets(String statusOrPriority) {
+    int count = 0;
+    List<TOMaintenanceTicket> tickets = AssetPlusFeatureSet6Controller.getTickets();
+
+    for (TOMaintenanceTicket ticket: tickets) {
+      if (ticket.getStatus().toString().equals(statusOrPriority) || ticket.getPriority().equals(statusOrPriority)) {
+        count++;
+      }
+    }
+    
+    return count;
+  }
   
 }

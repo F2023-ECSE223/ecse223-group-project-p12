@@ -3,13 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="468.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ApproveTicketController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="468.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ApproveTicketController">
    <children>
       <fx:include source="../components/PopUpToolBar.fxml" />
-      <Label alignment="CENTER" prefHeight="28.0" prefWidth="270.0" styleClass="popUpTitle" text="%key.TicketStatus_StartWork">
+      <Label alignment="CENTER" prefHeight="28.0" prefWidth="270.0" styleClass="popUpTitle" text="%key.TicketStatus_ApproveTicket">
          <VBox.margin>
             <Insets bottom="20.0" />
          </VBox.margin></Label>
@@ -21,6 +22,8 @@
             <HBox alignment="CENTER" prefHeight="53.0" prefWidth="525.0" spacing="20.0">
                <children>
                   <Label text="%key.TicketStatus_ApproveTicketText" />
+                  <RadioButton fx:id="approveRadioButton" mnemonicParsing="false" text="%key.Yes" />
+                  <RadioButton fx:id="disapproveRadioButton" mnemonicParsing="false" text="%key.No" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="31.0" prefWidth="525.0" />
