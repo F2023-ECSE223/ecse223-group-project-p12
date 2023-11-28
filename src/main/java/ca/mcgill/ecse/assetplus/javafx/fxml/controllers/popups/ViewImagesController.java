@@ -132,7 +132,7 @@ public class ViewImagesController {
                 Image image = task.getValue();
                 // If the image was loaded without exceptions, consider it valid
                 ImagePattern pattern;
-                if (image.isError() == false) {
+                if (!image.isError()) {
                     pattern = new ImagePattern(image);
                 }
                 else {
