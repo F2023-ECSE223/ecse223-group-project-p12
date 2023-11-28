@@ -209,7 +209,11 @@ public class AssetMenuController {
 
         assetTable.setItems(filteredAssets);
     }
-    
+
+    public void setAssetNumber(int assetNumber) {
+        assetNumberSearch.setText(String.valueOf(assetNumber));
+        performSearch();
+    }
     
     
     private void handleEditButtonClicked(int assetNumber) {

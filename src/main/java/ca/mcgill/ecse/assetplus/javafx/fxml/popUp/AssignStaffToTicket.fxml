@@ -8,13 +8,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="525.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AssignStaffToTicketController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="525.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AssignStaffToTicketController">
    <children>
       <fx:include source="../components/PopUpToolBar.fxml" />
-      <Label prefHeight="28.0" prefWidth="474.0" styleClass="popUpTitle" text="%key.TicketStatus_AssignStaffToTicket">
+      <Label alignment="CENTER" prefHeight="28.0" prefWidth="474.0" styleClass="popUpTitle" text="%key.TicketStatus_AssignStaffToTicket">
          <VBox.margin>
             <Insets bottom="20.0" />
          </VBox.margin></Label>
+      <Label text="%key.TicketStatus_AssignStaffToTicketLabel">
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </Label>
       <VBox>
          <VBox.margin>
             <Insets />
