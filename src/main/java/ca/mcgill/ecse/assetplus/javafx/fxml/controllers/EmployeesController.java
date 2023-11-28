@@ -21,6 +21,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 import java.util.*;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.model.Employee;
@@ -42,6 +48,8 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteGuestPopUpC
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyGuestPopUpController;
 
 public class EmployeesController {
+    int gradientRotation;
+    List<Pair<String, String>> colorPairs = new ArrayList<>();
 
     @FXML
     private HBox DashboardAndContent;
@@ -143,6 +151,8 @@ public class EmployeesController {
         // let the application be aware of the refreshable node
         AssetPlusFXMLView.getInstance().registerRefreshEvent(viewAllEmployees);
         AssetPlusFXMLView.getInstance().registerRefreshEvent(viewAllGuests);
+
+        gradientRotation = 0;
     }
 
     @FXML
@@ -204,61 +214,74 @@ public class EmployeesController {
     }
 
     private void showEmployees(List<TOEmployee> employees) {
-
+        gradientRotation = 0;
         viewAllEmployees.getChildren().clear();
         for (TOEmployee employee : employees) {
-            GridPane gridPane = new GridPane();
-            gridPane.setMinSize(166, 220);
-            gridPane.setPadding(new Insets(10, 10, 10, 10));
-            gridPane.setVgap(10);
-            gridPane.setAlignment(Pos.CENTER);
-            gridPane.setStyle("-fx-background-color:#f8f7ff;" +  
-            "-fx-background-radius: 10px;");
+            VBox container = new VBox();
+            container.setMinSize(166, 190);
+            container.setPadding(new Insets(10, 10, 10, 10));
+            container.setSpacing(15);
+            container.setAlignment(Pos.TOP_CENTER);
+            container.setStyle("-fx-background-color:#8768F211;" +  
+            "-fx-background-radius: 20px;");
             
-            
-            VBox vbox1 = new VBox();
-            vbox1.setAlignment(Pos.CENTER_LEFT);
-            Label titleName = new Label(resources.getString("key.Name"));
-            titleName.setStyle("-fx-text-fill: #8768F2;");
-            Label Name = new Label(employee.getName());
-            Name.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
-            Name.setMinWidth(189);
-            vbox1.getChildren().addAll(titleName, Name);
-            gridPane.add(vbox1, 0, 0);
 
-            VBox vbox2 = new VBox();
-            vbox2.setAlignment(Pos.CENTER_LEFT);
-            Label titlePhoneNumber = new Label(resources.getString("key.PhoneNumber"));
-            titlePhoneNumber.setStyle("-fx-text-fill: #8768F2;");
+            HBox hBox1 = new HBox();
+            hBox1.setAlignment(Pos.CENTER_LEFT);
+            hBox1.setSpacing(15);
+            Circle iconEmployee = new Circle();
+            iconEmployee.setRadius(15);
+            iconEmployee.getStyleClass().add("userCircle");
+            
+
+            // Create the linear gradient
+            LinearGradient linearGradient = getGradient();
+            iconEmployee.setFill(linearGradient);
+            Label name = new Label(employee.getName());
+            name.setStyle("-fx-font-size: 14px");
+            hBox1.getChildren().addAll(iconEmployee, name);
+
+            container.getChildren().add(hBox1);
+
+            HBox hBox2 = new HBox();
+            hBox2.setAlignment(Pos.CENTER_LEFT);
+            hBox2.setSpacing(5);
+            Button iconPhone = new Button();
+            iconPhone.getStyleClass().add("icon-phone");
             Label phoneNumber = new Label(employee.getPhoneNumber());
-            phoneNumber.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
-            phoneNumber.setMinWidth(189);
-            vbox2.getChildren().addAll(titlePhoneNumber, phoneNumber);
-            gridPane.add(vbox2, 0, 1);
+            hBox2.getChildren().addAll(iconPhone, phoneNumber);
+            container.getChildren().add(hBox2);
 
-            VBox vbox3 = new VBox();
-            vbox3.setAlignment(Pos.CENTER_LEFT);
-            Label titleEmail = new Label(resources.getString("key.Email"));
-            titleEmail.setStyle("-fx-text-fill: #8768F2;");
+
+            HBox hBox3 = new HBox();
+            hBox3.setAlignment(Pos.CENTER_LEFT);
+            hBox3.setSpacing(5);
+            Button iconEmail = new Button();
+            iconEmail.getStyleClass().add("icon-email");
             Label email = new Label(employee.getEmail());
-            email.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
-            email.setMinWidth(189);
-            vbox3.getChildren().addAll(titleEmail, email);
-            gridPane.add(vbox3, 0, 2);
+            hBox3.getChildren().addAll(iconEmail, email);
+            container.getChildren().add(hBox3);
 
             VBox vbox4 = new VBox();
             vbox4.setAlignment(Pos.CENTER_LEFT);
             Label titleTickets = new Label(resources.getString("key.TicketsAssigned"));
             titleTickets.setStyle("-fx-text-fill: #8768F2;");
             String str = "";
-            for (Integer integer: employee.getTicketFixed()) {
-                str = str + integer.toString() + ", ";
+            for (int i=0; i<employee.getTicketFixed().size(); i++) {
+                int ticketId = employee.getTicketFixed().get(i);
+
+                if (i==employee.getTicketFixed().size()-1) 
+                    str = str + ticketId;
+                else
+                    str = str + ticketId + ", ";
+
             }
             Label tickets = new Label(str);
+            tickets.setPadding(new Insets(5));
             tickets.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
             tickets.setMinWidth(189);
             vbox4.getChildren().addAll(titleTickets, tickets);
-            gridPane.add(vbox4, 0, 3);
+            container.getChildren().add(vbox4);
             
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);
@@ -273,69 +296,67 @@ public class EmployeesController {
             Pane pane = new Pane();
             pane.setMinWidth(40);
             hBox.getChildren().addAll(deleteButton, pane, modify);
-            gridPane.add(hBox, 0, 4);
+            container.getChildren().add(hBox);
 
             DropShadow ds = new DropShadow();
             ds.setOffsetX(3.0);
             ds.setOffsetY(3.0);
             ds.setColor(Color.GRAY);
+            //container.setEffect(ds);
 
-            gridPane.setEffect(ds);
-
-
-            viewAllEmployees.getChildren().add(gridPane);
+            viewAllEmployees.getChildren().add(container);
         }
 
     }
 
     private void showGuests(List<TOGuest> guests) {
-
+        gradientRotation = 0;
         viewAllGuests.getChildren().clear();
         for (TOGuest guest : guests) {
-            GridPane gridPane = new GridPane();
-            gridPane.setMinSize(166, 220);
-            gridPane.setPadding(new Insets(10, 10, 10, 10));
-            gridPane.setVgap(10);
-            gridPane.setAlignment(Pos.CENTER);
-            gridPane.setStyle("-fx-background-color:#f8f7ff;" +  
-            "-fx-background-radius: 10px;");
+            VBox container = new VBox();
+            container.setMinSize(166, 150);
+            container.setPadding(new Insets(10, 10, 10, 10));
+            container.setSpacing(15);
+            container.setAlignment(Pos.TOP_CENTER);
+            container.setStyle("-fx-background-color:#8768F222;" +  
+            "-fx-background-radius: 20px;");
             
-            
-            VBox vbox1 = new VBox();
-            vbox1.setAlignment(Pos.CENTER_LEFT);
-            Label titleName = new Label(resources.getString("key.Name"));
-            titleName.setStyle("-fx-text-fill: #8768F2;");
-            Label Name = new Label(guest.getName());
-            Name.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
-            Name.setMinWidth(189);
-            vbox1.getChildren().addAll(titleName, Name);
-            gridPane.add(vbox1, 0, 0);
 
-            VBox vbox2 = new VBox();
-            vbox2.setAlignment(Pos.CENTER_LEFT);
-            Label titlePhoneNumber = new Label(resources.getString("key.PhoneNumber"));
-            titlePhoneNumber.setStyle("-fx-text-fill: #8768F2;");
+            HBox hBox1 = new HBox();
+            hBox1.setAlignment(Pos.CENTER_LEFT);
+            hBox1.setSpacing(15);
+            Circle iconEmployee = new Circle();
+            iconEmployee.setRadius(15);
+            iconEmployee.getStyleClass().add("userCircle");
+            
+
+            // Create the linear gradient
+            LinearGradient linearGradient = getGradient();
+            iconEmployee.setFill(linearGradient);
+            Label name = new Label(guest.getName());
+            name.setStyle("-fx-font-size: 14px");
+            hBox1.getChildren().addAll(iconEmployee, name);
+
+            container.getChildren().add(hBox1);
+
+            HBox hBox2 = new HBox();
+            hBox2.setAlignment(Pos.CENTER_LEFT);
+            hBox2.setSpacing(5);
+            Button iconPhone = new Button();
+            iconPhone.getStyleClass().add("icon-phone");
             Label phoneNumber = new Label(guest.getPhoneNumber());
-            phoneNumber.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
-            phoneNumber.setMinWidth(189);
-            vbox2.getChildren().addAll(titlePhoneNumber, phoneNumber);
-            gridPane.add(vbox2, 0, 1);
+            hBox2.getChildren().addAll(iconPhone, phoneNumber);
+            container.getChildren().add(hBox2);
 
-            VBox vbox3 = new VBox();
-            vbox3.setAlignment(Pos.CENTER_LEFT);
-            Label titleEmail = new Label(resources.getString("key.Email"));
-            titleEmail.setStyle("-fx-text-fill: #8768F2;");
+
+            HBox hBox3 = new HBox();
+            hBox3.setAlignment(Pos.CENTER_LEFT);
+            hBox3.setSpacing(5);
+            Button iconEmail = new Button();
+            iconEmail.getStyleClass().add("icon-email");
             Label email = new Label(guest.getEmail());
-            email.setStyle("-fx-background-color:white;" + "-fx-background-radius:5px;");
-            email.setMinWidth(189);
-            vbox3.getChildren().addAll(titleEmail, email);
-            gridPane.add(vbox3, 0, 2);
-
-            VBox vbox4 = new VBox();
-            vbox4.setAlignment(Pos.CENTER_LEFT);
-            vbox4.setMinHeight(30);
-            vbox4.setMinWidth(189);
-            gridPane.add(vbox4, 0, 3);
+            hBox3.getChildren().addAll(iconEmail, email);
+            container.getChildren().add(hBox3);
             
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER);
@@ -350,22 +371,21 @@ public class EmployeesController {
             Pane pane = new Pane();
             pane.setMinWidth(40);
             hBox.getChildren().addAll(deleteButton, pane, modify);
-            gridPane.add(hBox, 0, 4);
+            container.getChildren().add(hBox);
 
             DropShadow ds = new DropShadow();
             ds.setOffsetX(3.0);
             ds.setOffsetY(3.0);
             ds.setColor(Color.GRAY);
+            //container.setEffect(ds);
 
-            gridPane.setEffect(ds);
 
-
-            viewAllGuests.getChildren().add(gridPane);
+            viewAllGuests.getChildren().add(container);
         }
 
     }
 
-    public String translateErrorMessage(String err) {
+    private String translateErrorMessage(String err) {
         resources = AssetPlusFXMLView.getInstance().getBundle();
         switch (err) {
             case "Email cannot be empty":
@@ -403,4 +423,23 @@ public class EmployeesController {
         }
     }
 
+    private LinearGradient getGradient() {
+        colorPairs.add(new Pair<>("#A7C957", "#386641"));
+        colorPairs.add(new Pair<>("#FBD1A2", "#D84727"));
+        colorPairs.add(new Pair<>("#81ADC8", "#1282A2"));
+        colorPairs.add(new Pair<>("#F2B7C6", "#CC76A1"));
+        colorPairs.add(new Pair<>("#FF8EA8", "#D64045"));
+        colorPairs.add(new Pair<>("#FFFFA0", "#D1BF38"));
+        
+        Pair<String, String> colors = colorPairs.get(gradientRotation % colorPairs.size());
+        
+        // Create stops for the gradient (color transition points)
+        Stop[] stops = new Stop[]{
+                new Stop(0, Color.valueOf(colors.getKey())),     // Start color at 0 position
+                new Stop(1, Color.valueOf(colors.getValue()))     // End color at 1 position
+        };
+
+        gradientRotation++;
+        return new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, stops);
+    }
 }
