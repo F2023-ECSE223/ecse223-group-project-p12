@@ -46,7 +46,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.EmployeesController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.EmployeesController">
   <children>
       <HBox fx:id="DashboardAndContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <children>
@@ -95,7 +95,7 @@
                                     <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" style="-fx-background-color: white;">
                                              <children>
                                                 <Label fx:id="showEmployeeError" alignment="CENTER" prefHeight="300.0" prefWidth="745.0" textFill="#a1a1a1" />
-                                                <FlowPane fx:id="viewAllEmployees" hgap="20.0" prefHeight="300.0" prefWidth="745.0" vgap="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <FlowPane fx:id="viewAllEmployees" hgap="20.0" prefHeight="300.0" prefWidth="745.0" vgap="20.0" AnchorPane.bottomAnchor="8.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="0.0">
                                                    <padding>
                                                       <Insets left="20.0" right="20.0" />
                                                    </padding>
@@ -141,7 +141,7 @@
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
                                                    <children>
                                                       <Label fx:id="showGuestError" alignment="CENTER" prefHeight="332.0" prefWidth="750.0" textFill="#a1a1a1" />
-                                                      <FlowPane fx:id="viewAllGuests" hgap="20.0" prefHeight="332.0" prefWidth="750.0" vgap="20.0">
+                                                      <FlowPane fx:id="viewAllGuests" hgap="20.0" prefHeight="332.0" prefWidth="750.0" vgap="20.0" AnchorPane.bottomAnchor="-3.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                                                          <padding>
                                                             <Insets left="20.0" right="20.0" />
                                                          </padding>
