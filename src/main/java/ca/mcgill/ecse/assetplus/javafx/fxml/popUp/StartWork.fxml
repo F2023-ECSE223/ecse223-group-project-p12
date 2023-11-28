@@ -6,33 +6,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.StartAndCompleteWorkController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="468.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.StartAndCompleteWorkController">
    <children>
       <fx:include source="../components/PopUpToolBar.fxml" />
-      <VBox alignment="CENTER">
+      <Label fx:id="title" alignment="CENTER" prefHeight="28.0" prefWidth="270.0" styleClass="popUpTitle" text="%key.TicketStatus_StartWork">
          <VBox.margin>
-            <Insets left="30.0" right="30.0" />
+            <Insets bottom="20.0" />
+         </VBox.margin></Label>
+      <VBox prefHeight="57.0" prefWidth="525.0">
+         <VBox.margin>
+            <Insets />
          </VBox.margin>
          <children>
-            <HBox alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="53.0" prefWidth="525.0" spacing="20.0">
                <children>
-                  <Label fx:id="title" prefHeight="55.0" prefWidth="202.0" styleClass="popUpTitle" text="%key.TicketStatus_StartWork" textAlignment="CENTER" />
+                  <Label text="%key.TicketStatus_StartWorkLabel" />
                </children>
             </HBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" prefHeight="33.0" prefWidth="335.0" text="%key.TicketStatus_StartWorkLabel" textAlignment="CENTER" />
-               </children>
-            </HBox>
+            <HBox alignment="CENTER" prefHeight="31.0" prefWidth="525.0" />
          </children>
       </VBox>
-      <HBox alignment="CENTER" prefHeight="64.0" prefWidth="400.0">
+      <HBox alignment="CENTER" prefHeight="94.0" prefWidth="468.0">
          <children>
             <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" styleClass="cancelButton" text="%key.Cancel" />
             <Button mnemonicParsing="false" onAction="#handleYes" prefWidth="100.0" styleClass="actionButton" text="%key.Yes">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
             </Button>
          </children>
       </HBox>
