@@ -11,7 +11,6 @@ import java.util.*;
  */
 // line 4 "../../../../../../MaintenanceTicket.ump"
 // line 45 "../../../../../../AssetPlus.ump"
-// line 21 "../../../../../../AssetPlusPersistence.ump"
 public class MaintenanceTicket
 {
 
@@ -711,4 +710,5 @@ public class MaintenanceTicket
             "  " + "asset = "+(getAsset()!=null?Integer.toHexString(System.identityHashCode(getAsset())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "fixApprover = "+(getFixApprover()!=null?Integer.toHexString(System.identityHashCode(getFixApprover())):"null");
   }
+
 }

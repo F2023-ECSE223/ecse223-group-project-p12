@@ -162,11 +162,38 @@ public class ModifyTicketPopUpController {
             TOAssetType type = ViewUtils.getWithAssetName(ticket.getAssetName());
             List<TOSpecificAsset>  assets = type.getTOSpecificAssets();
             assetNumberField.setValue(((Integer) ViewUtils.getSpecificAssetFromTicket(ticket)).toString());
-            //complete this
         }
 
         updateTicketError.setText(null);
 
   }
+  private void updateAssetComboBox(String typeSelected) {
+    // Simulate different items based on the selected category
+    TOAssetType assetType = ViewUtils.getWithAssetName(typeSelected);
+    if (assetType != null){
+        assetNumberField.getItems().clear();
+        List<Integer> assets = AssetPlusFeatureTOController.getAssetNumberFromType(typeSelected);
+        
+        for (Integer asset : assets){
+            assetNumberField.getItems().add(Integer.toString(asset));
+        }
+    }
+   
+}
+
+@FXML
+void assetNumberClicked(MouseEvent event) {
+    if (typeField.getValue() == null){
+        updateTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_AssetErrorMessage"));
+    }
+}
+
+@FXML
+private void handleTypeSelection(ActionEvent event) {
+    String selectedType = typeField.getValue();
+    updateAssetComboBox(selectedType);
+
+
+}
 
 }

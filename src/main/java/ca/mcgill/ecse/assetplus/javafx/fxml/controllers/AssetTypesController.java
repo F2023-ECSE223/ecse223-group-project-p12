@@ -109,16 +109,18 @@ public class AssetTypesController {
         ds.setOffsetY(3.0);
         ds.setColor(Color.GRAY);
 
+        
         ImageView imageView;
-        String imageUrl = "https://www.ikea.com/ca/en/images/products/blidvaeder-table-lamp-off-white-ceramic-beige__1059591_pe849714_s5.jpg";      
-        Image image = new Image(imageUrl, 200, 200, true, true);
-        // If the image was loaded without exceptions, consider it valid
-        if (image.isError() == false) {
-            System.out.println("Image valid");
-            imageView = new ImageView(image);          
+        String imageUrl = assetType.getImageURL();
+        if(imageUrl.isEmpty()){
+          imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/No_Picture.jpg",width, width, false, true));
         }
-        else {
-            imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.png",width, width, true, true));
+        else{
+          Image image = new Image(imageUrl, 200, 200, true, true);
+          if(image.isError()){
+            imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.jpg",width, width, false, true));
+          }
+          imageView = new ImageView(image); 
         }
 
         HBox hbox = new HBox();

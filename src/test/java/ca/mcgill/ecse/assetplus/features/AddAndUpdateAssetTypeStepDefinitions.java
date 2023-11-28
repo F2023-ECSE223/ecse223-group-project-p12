@@ -46,7 +46,7 @@ public class AddAndUpdateAssetTypeStepDefinitions {
   @When("the manager attempts to add a new asset type to the system with name {string} and expected life span of {string} days \\(p14)")
   public void the_manager_attempts_to_add_a_new_asset_type_to_the_system_with_name_and_expected_life_span_of_days_p14(
       String name, String expectedLifeSpan) {
-    error = AssetPlusFeatureSet2Controller.addAssetType(name, parseInt(expectedLifeSpan));
+    error = AssetPlusFeatureSet2Controller.addAssetType(name, parseInt(expectedLifeSpan), "");
   }
 
   /**
@@ -60,7 +60,7 @@ public class AddAndUpdateAssetTypeStepDefinitions {
   public void the_manager_attempts_to_update_an_asset_type_in_the_system_with_name_to_have_name_and_expected_life_span_of_days_p14(
       String oldName, String newName, String expectedLifeSpan) {
     error = AssetPlusFeatureSet2Controller.updateAssetType(oldName, newName,
-        parseInt(expectedLifeSpan));
+        parseInt(expectedLifeSpan), "");
   }
 
   /**
