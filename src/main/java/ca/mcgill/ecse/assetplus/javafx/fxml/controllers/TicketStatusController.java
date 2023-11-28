@@ -82,7 +82,7 @@ public class TicketStatusController {
     private TableColumn<TOMaintenanceTicket, Hyperlink> ticketNumberColumn;
 
     @FXML
-    private TableColumn<TOMaintenanceTicket, Hyperlink> assetNumberColumn;
+    public TableColumn<TOMaintenanceTicket, Hyperlink> assetNumberColumn;
 
     @FXML
     private TableColumn<TOMaintenanceTicket, String> assetColumn;
