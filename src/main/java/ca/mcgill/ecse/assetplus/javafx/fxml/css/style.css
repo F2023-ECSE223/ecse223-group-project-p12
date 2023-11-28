@@ -409,6 +409,31 @@ Stylesheet of our UI
     -icon-paint: black;
 }
 
+.icon-phone
+{
+    -icon-paint: #624DE3;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "m16.556 12.906l-.455.453s-1.083 1.076-4.038-1.862s-1.872-4.014-1.872-4.014l.286-.286c.707-.702.774-1.83.157-2.654L9.374 2.86C8.61 1.84 7.135 1.705 6.26 2.575l-1.57 1.56c-.433.432-.723.99-.688 1.61c.09 1.587.808 5 4.812 8.982c4.247 4.222 8.232 4.39 9.861 4.238c.516-.048.964-.31 1.325-.67l1.42-1.412c.96-.953.69-2.588-.538-3.255l-1.91-1.039c-.806-.437-1.787-.309-2.417.317"
+}
+
+.icon-email
+{
+    -icon-paint: #624DE3;
+    -fx-background-color: -icon-paint;
+    -fx-min-height: 10;
+    -fx-min-width: 15;
+    -fx-max-height: 10;
+    -fx-max-width: 15;
+
+    -fx-shape: "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25a.85.85 0 1 1 .9-1.44L12 11l6.7-4.19a.85.85 0 1 1 .9 1.44z"
+}
+
 .tooltip {
     -fx-background: white;
     -fx-text-fill: #8768F2;

@@ -16,6 +16,7 @@ public class TOAssetType
   //TOAssetType Attributes
   private String name;
   private int expectedLifeSpan;
+  private String imageURL;
 
   //TOAssetType Associations
   private List<TOSpecificAsset> tOSpecificAssets;
@@ -24,10 +25,11 @@ public class TOAssetType
   // CONSTRUCTOR
   //------------------------
 
-  public TOAssetType(String aName, int aExpectedLifeSpan)
+  public TOAssetType(String aName, int aExpectedLifeSpan, String aImageURL)
   {
     name = aName;
     expectedLifeSpan = aExpectedLifeSpan;
+    imageURL = aImageURL;
     tOSpecificAssets = new ArrayList<TOSpecificAsset>();
   }
 
@@ -51,6 +53,14 @@ public class TOAssetType
     return wasSet;
   }
 
+  public boolean setImageURL(String aImageURL)
+  {
+    boolean wasSet = false;
+    imageURL = aImageURL;
+    wasSet = true;
+    return wasSet;
+  }
+
   public String getName()
   {
     return name;
@@ -59,6 +69,11 @@ public class TOAssetType
   public int getExpectedLifeSpan()
   {
     return expectedLifeSpan;
+  }
+
+  public String getImageURL()
+  {
+    return imageURL;
   }
   /* Code from template association_GetMany */
   public TOSpecificAsset getTOSpecificAsset(int index)
@@ -158,6 +173,7 @@ public class TOAssetType
   {
     return super.toString() + "["+
             "name" + ":" + getName()+ "," +
-            "expectedLifeSpan" + ":" + getExpectedLifeSpan()+ "]";
+            "expectedLifeSpan" + ":" + getExpectedLifeSpan()+ "," +
+            "imageURL" + ":" + getImageURL()+ "]";
   }
 }

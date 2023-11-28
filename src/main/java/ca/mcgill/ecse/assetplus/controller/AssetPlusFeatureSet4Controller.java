@@ -40,15 +40,7 @@ public class AssetPlusFeatureSet4Controller {
 
     //Add the specific ticket to the AssetPlus application instance.
     try {
-        User raiser;
-        if (email.equals(AssetPlusApplication.getAssetPlus().getManager().getEmail())){
-            raiser = AssetPlusApplication.getAssetPlus().getManager();
-        }
-        else{
-            raiser = User.getWithEmail(email);
-        }
-        
-        MaintenanceTicket newTicket = AssetPlusApplication.getAssetPlus().addMaintenanceTicket(id, raisedOnDate, description, raiser);
+        MaintenanceTicket newTicket = AssetPlusApplication.getAssetPlus().addMaintenanceTicket(id, raisedOnDate, description, User.getWithEmail(email));
         
         if (assetNumber != -1) {
           SpecificAsset asset = SpecificAsset.getWithAssetNumber(assetNumber);
@@ -99,14 +91,7 @@ public class AssetPlusFeatureSet4Controller {
         MaintenanceTicket currentTicket = MaintenanceTicket.getWithId(id);
         currentTicket.setRaisedOnDate(newRaisedOnDate);
         currentTicket.setDescription(newDescription);
-        User raiser;
-        if (newEmail.equals(AssetPlusApplication.getAssetPlus().getManager().getEmail())){
-            raiser = AssetPlusApplication.getAssetPlus().getManager();
-        }
-        else{
-            raiser = User.getWithEmail(newEmail);
-        }
-        currentTicket.setTicketRaiser(raiser);
+        currentTicket.setTicketRaiser( User.getWithEmail(newEmail));
         if (newAssetNumber != -1){
           SpecificAsset asset = SpecificAsset.getWithAssetNumber(newAssetNumber);
           currentTicket.setAsset(asset);

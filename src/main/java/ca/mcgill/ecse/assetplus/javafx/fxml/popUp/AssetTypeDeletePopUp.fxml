@@ -10,9 +10,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="372.0" prefWidth="437.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteAssetTypePopUpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="437.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteAssetTypePopUpController">
    <children>
-      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="400.0" prefWidth="500.0">
+      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="427.0" prefWidth="437.0">
          <children>
             <VBox alignment="CENTER" layoutX="4.0" layoutY="24.0" prefHeight="324.0" prefWidth="429.0" spacing="40.0">
                <children>
@@ -21,7 +21,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="replaceMe" contentDisplay="CENTER" maxHeight="200.0" prefHeight="200.0" prefWidth="400.0" text="%key.AssetTypePopUpDeleteTopMessage" textAlignment="CENTER" />
+                  <Label fx:id="replaceMe" maxHeight="200.0" minHeight="-Infinity" prefHeight="38.0" prefWidth="350.0" text="%key.AssetTypePopUpDeleteTopMessage" wrapText="true" />
                   <VBox alignment="CENTER" prefHeight="28.0" prefWidth="482.0">
                      <children>
                         <StackPane prefHeight="35.0" prefWidth="482.0">
@@ -79,7 +79,7 @@
                         <Button fx:id="DeleteAssetTypeButton" mnemonicParsing="false" onAction="#DeleteClicked" styleClass="actionButton" text="%key.Delete" />
                      </children>
                      <padding>
-                        <Insets left="125.0" />
+                        <Insets left="145.0" />
                      </padding>
                   </HBox>
                </children>

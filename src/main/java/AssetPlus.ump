@@ -70,6 +70,11 @@ class TicketImage
   String imageURL;
 }
 
+class AssetTypeImage
+{
+  String imageURL;
+}
+
 class SpecificAsset
 {
   unique Integer assetNumber;
@@ -82,6 +87,7 @@ class AssetType
 {
   unique String name;
   Integer expectedLifeSpan;
+  1 assetType <@>- 0..1 AssetTypeImage assetTypeImage;
 }
 
 association 

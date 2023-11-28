@@ -6,7 +6,6 @@ import java.util.*;
 import java.sql.Date;
 
 // line 15 "../../../../../../AssetPlus.ump"
-// line 39 "../../../../../../AssetPlusPersistence.ump"
 public abstract class User
 {
 
@@ -257,4 +256,5 @@ public abstract class User
             "password" + ":" + getPassword()+ "," +
             "phoneNumber" + ":" + getPhoneNumber()+ "]";
   }
+
 }

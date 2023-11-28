@@ -5,8 +5,7 @@ package ca.mcgill.ecse.assetplus.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 93 "../../../../../../AssetPlus.ump"
-// line 30 "../../../../../../AssetPlusPersistence.ump"
+// line 77 "../../../../../../AssetPlus.ump"
 public class SpecificAsset
 {
 
@@ -323,4 +322,5 @@ public class SpecificAsset
             "  " + "assetPlus = "+(getAssetPlus()!=null?Integer.toHexString(System.identityHashCode(getAssetPlus())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "assetType = "+(getAssetType()!=null?Integer.toHexString(System.identityHashCode(getAssetType())):"null");
   }
+
 }

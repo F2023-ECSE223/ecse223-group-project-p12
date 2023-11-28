@@ -6,7 +6,6 @@ import java.util.*;
 import java.sql.Date;
 
 // line 5 "../../../../../../AssetPlus.ump"
-// line 3 "../../../../../../AssetPlusPersistence.ump"
 public class AssetPlus
 {
 
@@ -630,7 +629,6 @@ public class AssetPlus
       aSpecificAsset.delete();
       specificAssets.remove(aSpecificAsset);
     }
-    
   }
 
   // line 4 "AssetPlusPersistence.ump"
