@@ -66,6 +66,12 @@
                       "assetType": {
                         "name": "desk",
                         "expectedLifeSpan": 4500,
+                        "assetTypeImage": {
+                          "imageURL": "https://www.ikea.com/ca/en/images/products/malm-desk-brown-stained-ash-veneer__0657142_pe709629_s5.jpg?f=xs",
+                          "assetType": {
+                            "@reference": "../.."
+                          }
+                        },
                         "assetPlus": {
                           "@reference": "../../../../../../.."
                         },
@@ -194,6 +200,12 @@
                     "assetType": {
                       "name": "chair",
                       "expectedLifeSpan": 3500,
+                      "assetTypeImage": {
+                        "imageURL": "https://www.ikea.com/ca/en/images/products/ekenaeset-armchair-kelinge-gray-turquoise__1179059_pe895832_s5.jpg?f=xs",
+                        "assetType": {
+                          "@reference": "../.."
+                        }
+                      },
                       "assetPlus": {
                         "@reference": "../../../../../../.."
                       },
@@ -316,6 +328,12 @@
                                 "assetType": {
                                   "name": "carpet",
                                   "expectedLifeSpan": 6000,
+                                  "assetTypeImage": {
+                                    "imageURL": "https://www.ikea.com/ca/en/images/products/vonsbaek-rug-low-pile-dark-blue__1080041_pe857840_s5.jpg?f=xl",
+                                    "assetType": {
+                                      "@reference": "../.."
+                                    }
+                                  },
                                   "assetPlus": {
                                     "@reference": "../../../../../../../../../../../.."
                                   },

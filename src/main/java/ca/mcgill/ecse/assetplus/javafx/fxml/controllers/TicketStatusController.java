@@ -82,7 +82,7 @@ public class TicketStatusController {
     private TableColumn<TOMaintenanceTicket, Hyperlink> ticketNumberColumn;
 
     @FXML
-    private TableColumn<TOMaintenanceTicket, Hyperlink> assetNumberColumn;
+    public TableColumn<TOMaintenanceTicket, Hyperlink> assetNumberColumn;
 
     @FXML
     private TableColumn<TOMaintenanceTicket, String> assetColumn;
@@ -233,7 +233,7 @@ public class TicketStatusController {
         
         ticketNumberColumn.setCellValueFactory(cellData -> {
             int ticketId = cellData.getValue().getId();
-            Hyperlink link = new Hyperlink("#" + String.valueOf(ticketId));
+            Hyperlink link = new Hyperlink(String.valueOf(ticketId));
             link.setStyle("-fx-text-fill: #8768F2; -fx-underline: true; -fx-cursor: hand;");
             link.setOnAction(event -> handleTicketClicked(ticketId));
 
@@ -242,7 +242,7 @@ public class TicketStatusController {
 
         assetNumberColumn.setCellValueFactory(cellData -> {
             int assetNumber = ViewUtils.getSpecificAssetFromTicket(cellData.getValue());
-            Hyperlink link = new Hyperlink("#" + assetNumber);
+            Hyperlink link = new Hyperlink(String.valueOf(assetNumber));
             if (assetNumber == -1) {
                 link.setVisible(false);
             }
@@ -313,7 +313,6 @@ public class TicketStatusController {
     }
 
     private void handleStatusCellClicked(String status, int ticketId) {
-        System.out.println("DOES IT GO IN STATUS HANDLER?: " + status);
         StartAndCompleteWorkController sharedController;
         switch (status) {
             case "key.TicketStatus_Open":
@@ -366,7 +365,8 @@ public class TicketStatusController {
     }
 
     private void handleAssetNumberClicked(int assetNumber) {
-        AssetPlusFXMLView.getInstance().changeTab("pages/AssetMenu.fxml");
+        AssetMenuController controller = (AssetMenuController) AssetPlusFXMLView.getInstance().changeTab("pages/AssetMenu.fxml");
+        controller.setAssetNumber(assetNumber);
     }
 
     private void handleDeleted(List<Integer> ticketIdsToDelete) {

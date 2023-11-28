@@ -65,7 +65,7 @@ public class AddTicketPopUpController {
     private TextField ticketStatusField;
 
     @FXML
-    private ComboBox<String> typeField;
+    private TextField typeField;
 
 
     @FXML
@@ -76,10 +76,8 @@ public class AddTicketPopUpController {
         ticketNumberField.setFocusTraversable(false);
         ticketStatusField.setEditable(false);
         ticketStatusField.setFocusTraversable(false);
-        ObservableList<TOAssetType> list = ViewUtils.getAssetTypes();
-        for (TOAssetType type : list){
-            typeField.getItems().add(type.getName());
-        }
+        typeField.setEditable(false);
+        typeField.setFocusTraversable(false);
         //get assets only for the selected type
         ObservableList<TOSpecificAsset> list2 = ViewUtils.getSpecificAsset();
         for (TOSpecificAsset asset : list2){
@@ -92,15 +90,6 @@ public class AddTicketPopUpController {
         addTicketError.setText(null);
 
     }
-
-    @FXML
-    private void handleTypeSelection(ActionEvent event) {
-        String selectedType = typeField.getValue();
-        updateAssetComboBox(selectedType);
-
-    
-    }
-    
     
     @FXML
     void addTicketClicked(ActionEvent event) {
@@ -127,7 +116,7 @@ public class AddTicketPopUpController {
                 descriptionField.setText("");
                 raiserField.setText("");
                 assetNumberField.setValue(null);
-                typeField.setValue(null);
+                typeField.setText(null);
                 raisedDateField.setValue(null);
                 addTicketError.setText(null);
                 System.out.println("Ticket added");
@@ -146,25 +135,18 @@ public class AddTicketPopUpController {
         AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
 
-
-    private void updateAssetComboBox(String typeSelected) {
-        // Simulate different items based on the selected category
-        TOAssetType assetType = ViewUtils.getWithAssetName(typeSelected);
-        if (assetType != null){
-            assetNumberField.getItems().clear();
-            List<Integer> assets = AssetPlusFeatureTOController.getAssetNumberFromType(typeSelected);
-            
-            for (Integer asset : assets){
-                assetNumberField.getItems().add(Integer.toString(asset));
-            }
+   
+    @FXML
+    void handleAssetNumberSelection(ActionEvent event) {
+        int assetNumberSelected = Integer.parseInt(assetNumberField.getValue());
+        if (assetNumberField.getValue() != null){
+        ObservableList<TOSpecificAsset> list = ViewUtils.getSpecificAsset();
+        for (TOSpecificAsset asset : list){
+           if(asset.getAssetNumber() == assetNumberSelected){
+                typeField.setText(asset.getAssetType().getName());
+           }
         }
-       
-    }
-
-   @FXML
-   void assetNumberClicked(MouseEvent event) {
-        if (typeField.getValue() == null){
-            addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_AssetErrorMessage"));
+    
         }
     }
 }

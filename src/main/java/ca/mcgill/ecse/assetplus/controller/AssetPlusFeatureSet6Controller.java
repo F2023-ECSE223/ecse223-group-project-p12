@@ -150,21 +150,22 @@ public class AssetPlusFeatureSet6Controller {
   }
 
   public static TOSpecificAsset getSpecificAssetFromTicket(TOMaintenanceTicket ticket) {
-    if (ticket.getAssetName() != null) {
-      for (SpecificAsset asset: AssetPlusApplication.getAssetPlus().getSpecificAssets()) {
-        if (asset.getAssetType().getName().equals(ticket.getAssetName()) 
-            && asset.getFloorNumber() == ticket.getFloorNumber() && asset.getRoomNumber() == ticket.getRoomNumber()) {
+    MaintenanceTicket maintenanceTicket = MaintenanceTicket.getWithId(ticket.getId());
+    if (maintenanceTicket.getAsset() != null) {
+      SpecificAsset asset = maintenanceTicket.getAsset();
+      String assetTypeImageURL = "";
 
-              String assetTypeImageURL = "";
-              if(asset.getAssetType().hasAssetTypeImage()){
-                assetTypeImageURL = asset.getAssetType().getAssetTypeImage().getImageURL();
-              }
-
-          return new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan(),assetTypeImageURL));
-        }
+      if (asset.getAssetType().hasAssetTypeImage()) {
+        assetTypeImageURL = asset.getAssetType().getAssetTypeImage().getImageURL();
       }
-    }
 
+      TOAssetType assetType = new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan(),assetTypeImageURL);
+      TOSpecificAsset toAsset = new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), assetType);
+
+      return toAsset;
+    }
+    
     return null;
+
   }
 }

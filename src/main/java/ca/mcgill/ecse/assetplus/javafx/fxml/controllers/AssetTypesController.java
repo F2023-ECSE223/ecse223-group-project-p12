@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
@@ -31,7 +32,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
 public class AssetTypesController {
-
 
     @FXML
     private ResourceBundle resources;
@@ -95,33 +95,50 @@ public class AssetTypesController {
       grid.getChildren().clear();
       List<TOAssetType> assetTypes = AssetPlusFeatureTOController.getAssetTypes();
       int width = 200;
+      int height = 280;
       
-      for(TOAssetType assetType:assetTypes){
-
-        VBox vbox = new VBox(8); // spacing = 8
-        vbox.setPrefSize(width, 280);
-        vbox.setBackground(new Background(new BackgroundFill(Color.rgb(247, 246, 254), CornerRadii.EMPTY, Insets.EMPTY)));
-        String nameAssetType = assetType.getName();
+      for (TOAssetType assetType : assetTypes) {
         
 
+        VBox vbox = new VBox(8); // spacing = 8
+        vbox.setPrefSize(width, height);
+        vbox.setBackground(new Background(new BackgroundFill(Color.rgb(247, 246, 254), CornerRadii.EMPTY, Insets.EMPTY)));
+        vbox.setVisible(false);
+        
+        String imageURL = assetType.getImageURL();
+        
+        javafx.concurrent.Task<Image> task = new javafx.concurrent.Task<>() {
+            @Override
+            protected Image call() throws Exception {
+              if(imageURL.isEmpty()){
+                return new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/noImage.png", width, width, false, true);
+              }
+
+              return new Image(imageURL, width, width, true, true);
+            }
+        };
+
+        task.setOnSucceeded(event -> {
+            ImageView imageView;
+            Image image = task.getValue();
+            if(image.isError()){
+              imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.jpg",width, width, false, true));
+            }
+            else {
+              imageView = new ImageView(image);
+            }
+            vbox.getChildren().add(0, imageView);
+            vbox.setVisible(true);
+          });
+    
+        new Thread(task).start();
+        
+        String nameAssetType = assetType.getName();
+        
         DropShadow ds = new DropShadow();
         ds.setOffsetX(3.0);
         ds.setOffsetY(3.0);
         ds.setColor(Color.GRAY);
-
-        
-        ImageView imageView;
-        String imageUrl = assetType.getImageURL();
-        if(imageUrl.isEmpty()){
-          imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/No_Picture.jpg",width, width, false, true));
-        }
-        else{
-          Image image = new Image(imageUrl, 200, 200, true, true);
-          if(image.isError()){
-            imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.jpg",width, width, false, true));
-          }
-          imageView = new ImageView(image); 
-        }
 
         HBox hbox = new HBox();
         hbox.setPrefSize(width, 15);
@@ -151,8 +168,7 @@ public class AssetTypesController {
         hbox.getChildren().add(pencilBtn);
         hbox.getChildren().add(trashBtn);
       
-
-        vbox.getChildren().add(imageView);
+        
         Label name = new Label(assetType.getName());
         name.setFont(new Font(15));
         String nbYears = Integer.toString(assetType.getExpectedLifeSpan());
@@ -165,6 +181,8 @@ public class AssetTypesController {
         vbox.setEffect(ds);
         grid.getChildren().add(vbox);
       }
+
+      
 
     }
 

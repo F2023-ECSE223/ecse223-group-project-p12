@@ -60,8 +60,8 @@
                   <Button fx:id="addTicketButton" layoutX="99.0" layoutY="330.0" mnemonicParsing="false" onAction="#addTicketClicked" prefHeight="31.0" prefWidth="127.0" text="%key.TicketMenu_Create" />
                   <Label layoutX="56.0" layoutY="180.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
                   <Label layoutX="54.0" layoutY="254.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
-                  <ComboBox fx:id="typeField" layoutX="148.0" layoutY="47.0" onAction="#handleTypeSelection" prefWidth="111.0" />
-                  <ComboBox fx:id="assetNumberField" layoutX="173.0" layoutY="117.0" onMouseClicked="#assetNumberClicked" prefWidth="85.0" />
+                  <ComboBox fx:id="assetNumberField" layoutX="173.0" layoutY="117.0" onAction="#handleAssetNumberSelection" prefWidth="85.0" />
+                  <TextField fx:id="typeField" layoutX="138.0" layoutY="48.0" prefHeight="26.0" prefWidth="98.0" />
                </children>
             </Pane>
          </children>

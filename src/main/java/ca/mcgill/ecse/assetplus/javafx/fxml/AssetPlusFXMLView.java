@@ -56,7 +56,7 @@ public class AssetPlusFXMLView extends Application {
     try {
       stage = primaryStage;
       popUpStages = new Stack<>();
-      currentPage = "pages/TicketStatus.fxml";
+      currentPage = "pages/FrontPage.fxml";
       var root = (Pane) FXMLLoader.load(getClass().getResource(currentPage), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
 
       var scene = new Scene(root);
@@ -147,7 +147,7 @@ public class AssetPlusFXMLView extends Application {
     }
   }
 
-  public void changeTab(String fxml)
+  public Object changeTab(String fxml)
   {
     FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle(BUNDLE_PATH, new Locale(this.language)));
     currentController = loader.getController();
@@ -159,11 +159,15 @@ public class AssetPlusFXMLView extends Application {
         root = (Parent) loader.load();
         Scene scene = new Scene(root, this.stage.getScene().getWidth(), this.stage.getScene().getHeight());
         this.stage.setScene(scene);
+
+        return loader.getController();
     }
     catch (IOException e)
     {
         e.printStackTrace();
     }
+
+    return null;
   }
 
   public Object getCurrentController() {

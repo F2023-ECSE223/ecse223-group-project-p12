@@ -255,13 +255,13 @@ public class AssetPlusFeatureSet1Controller {
   }
     public static List<TOHotelStaff> getHotelStaffs() {
       List<HotelStaff> hotelStaffs = convertEmployeesIntoStaff(AssetPlusApplication.getAssetPlus().getEmployees());
-      hotelStaffs.add(AssetPlusApplication.getAssetPlus().getManager());
 
       List<TOHotelStaff> staffs = new ArrayList<>();
       for (HotelStaff hotelStaff: hotelStaffs) {
         staffs.add(convertFromHotelStaff(hotelStaff));
       }
 
+      staffs.add(convertFromHotelStaff((HotelStaff) AssetPlusApplication.getAssetPlus().getManager()));
       return staffs;
     }
 
