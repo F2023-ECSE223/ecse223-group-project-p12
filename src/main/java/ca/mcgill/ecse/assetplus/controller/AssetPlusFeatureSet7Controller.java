@@ -36,7 +36,7 @@ public class AssetPlusFeatureSet7Controller {
 
         try {
           MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
-          HotelStaff hotelStaff =  email.equals("manager@ap.com") ? (HotelStaff) AssetPlusApplication.getAssetPlus().getManager() : (HotelStaff) User.getWithEmail(email);
+          HotelStaff hotelStaff =  (HotelStaff) User.getWithEmail(email);
           MaintenanceNote note = ticket.addTicketNote(date, description, hotelStaff);
           ticket.addTicketNote(note);
 
@@ -75,7 +75,7 @@ public class AssetPlusFeatureSet7Controller {
           note.setDate(newDate);
           note.setDescription(newDescription);
 
-          HotelStaff staff = newEmail.equals("manager@ap.com") ? (HotelStaff) AssetPlusApplication.getAssetPlus().getManager() : (HotelStaff) User.getWithEmail(newEmail);
+          HotelStaff staff = (HotelStaff) User.getWithEmail(newEmail);
           note.setNoteTaker(staff);
         }
         AssetPlusPersistence.save();
