@@ -6,7 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -34,68 +34,73 @@
                </stops>
             </LinearGradient>
          </fill>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
       </Rectangle>
       <VBox fx:id="infoPane" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Region prefHeight="150.0" prefWidth="960.0" />
+            <fx:include source="../components/FrontPageToolBar.fxml" />
+            <Pane prefHeight="30.0" prefWidth="960.0" VBox.vgrow="ALWAYS" />
             <ImageView fx:id="image" fitHeight="540.0" fitWidth="540.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/Images/AssetPlus.png" />
                </image>
             </ImageView>
-            <HBox alignment="TOP_CENTER" prefHeight="261.0" prefWidth="967.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="960.0" VBox.vgrow="NEVER">
                <children>
-                  <Region prefHeight="145.0" prefWidth="56.0" HBox.hgrow="ALWAYS" />
-                  <VBox fx:id="guestBox" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <Pane prefHeight="50.0" prefWidth="100.0" />
+                  <VBox fx:id="guestBox" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="guestCount" prefHeight="45.0" prefWidth="197.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="Label">
+                        <Label fx:id="guestCount" prefHeight="45.0" prefWidth="200.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="Label">
                            <VBox.margin>
                               <Insets bottom="-10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="208.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="%key.HomePage_Guests" />
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="45.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="%key.HomePage_Guests" />
                      </children>
                   </VBox>
-                  <VBox fx:id="employeeBox" layoutX="444.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="employeeBox" alignment="TOP_CENTER" layoutX="444.0" layoutY="10.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="employeeCount" prefHeight="43.0" prefWidth="206.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="Label">
+                        <Label fx:id="employeeCount" prefHeight="45.0" prefWidth="200.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="Label">
                            <VBox.margin>
                               <Insets bottom="-10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" prefHeight="48.0" prefWidth="211.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="%key.HomePage_Employees" />
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="%key.HomePage_Employees" />
                      </children>
                   </VBox>
-                  <VBox fx:id="ticketBox" layoutX="494.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="ticketBox" alignment="TOP_CENTER" layoutX="494.0" layoutY="10.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="ticketCount" prefHeight="42.0" prefWidth="236.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="Label">
+                        <Label fx:id="ticketCount" prefHeight="45.0" prefWidth="200.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="Label">
                            <VBox.margin>
                               <Insets bottom="-10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" prefHeight="47.0" prefWidth="208.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="%key.HomePage_Tickets" />
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="%key.HomePage_Tickets" />
                      </children>
                   </VBox>
-                  <VBox fx:id="assetBox" layoutX="544.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="assetBox" alignment="TOP_CENTER" layoutX="544.0" layoutY="10.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="assetCount" prefHeight="42.0" prefWidth="236.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="Label">
+                        <Label fx:id="assetCount" prefHeight="45.0" prefWidth="200.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="Label">
                            <VBox.margin>
                               <Insets bottom="-10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="209.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="%key.HomePage_Assets" />
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="200.0" styleClass="frontPageText" stylesheets="@../css/style.css" text="%key.HomePage_Assets" />
                      </children>
                   </VBox>
                </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
             </HBox>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="967.0">
-               <children>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#logIn" prefHeight="36.0" prefWidth="91.0" styleClass="actionButton" text="%key.HomePage_LogIn" VBox.vgrow="ALWAYS">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-               </children></VBox>
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#logIn" prefHeight="36.0" prefWidth="91.0" styleClass="actionButton" text="%key.HomePage_LogIn" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Pane prefHeight="40.0" prefWidth="960.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </children>
