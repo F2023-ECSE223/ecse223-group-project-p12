@@ -25,11 +25,11 @@ public class TOAssetType
   // CONSTRUCTOR
   //------------------------
 
-  public TOAssetType(String aName, int aExpectedLifeSpan, String aImageURL)
+  public TOAssetType(String aName, int aExpectedLifeSpan)
   {
     name = aName;
     expectedLifeSpan = aExpectedLifeSpan;
-    imageURL = aImageURL;
+    imageURL = null;
     tOSpecificAssets = new ArrayList<TOSpecificAsset>();
   }
 

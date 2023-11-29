@@ -1,12 +1,10 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteAssetTypePopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyAssetTypePopUpController;
 import javafx.event.ActionEvent;
@@ -86,8 +84,7 @@ public class AssetTypesController {
 
     @FXML
     void addAssetTypeClicked(ActionEvent event) {
-
-      AddAssetTypePopUpController controller = (AddAssetTypePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssetTypeAddPopUp.fxml", "Add Asset Type");
+      AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssetTypeAddPopUp.fxml", "Add Asset Type");
     }
 
     public void showAssetTypes(){
@@ -110,7 +107,7 @@ public class AssetTypesController {
         javafx.concurrent.Task<Image> task = new javafx.concurrent.Task<>() {
             @Override
             protected Image call() throws Exception {
-              if(imageURL.isEmpty()){
+              if(imageURL == null || imageURL.isEmpty()){
                 return new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/noImage.png", width, width, false, true);
               }
 
@@ -122,7 +119,7 @@ public class AssetTypesController {
             ImageView imageView;
             Image image = task.getValue();
             if(image.isError()){
-              imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.jpg",width, width, false, true));
+              imageView = new ImageView(new Image("ca/mcgill/ecse/assetplus/javafx/resources/Images/warning.png",width, width, true, true));
             }
             else {
               imageView = new ImageView(image);
@@ -134,6 +131,8 @@ public class AssetTypesController {
         new Thread(task).start();
         
         String nameAssetType = assetType.getName();
+        int lifeExpAssetType = assetType.getExpectedLifeSpan();
+        String urlAssetType = assetType.getImageURL();
         
         DropShadow ds = new DropShadow();
         ds.setOffsetX(3.0);
@@ -150,7 +149,7 @@ public class AssetTypesController {
         Button pencilBtn = new Button();
         pencilBtn.getStyleClass().add("icon-pencil");
         pencilBtn.setPickOnBounds(true);
-        pencilBtn.setOnAction(e -> pencilBtnClicked(nameAssetType));
+        pencilBtn.setOnAction(e -> pencilBtnClicked(nameAssetType, lifeExpAssetType, urlAssetType));
 
         Button assetBtn = new Button();
         assetBtn.getStyleClass().add("icon-asset");
@@ -160,7 +159,7 @@ public class AssetTypesController {
         Button trashBtn = new Button();
         trashBtn.getStyleClass().add("icon-trash");
         trashBtn.setPickOnBounds(true);
-        trashBtn.setOnAction(e -> trashBtnClicked(nameAssetType));
+        trashBtn.setOnAction(e -> trashBtnClicked(nameAssetType, lifeExpAssetType, urlAssetType));
 
 
         hbox.getChildren().add(rOffset);
@@ -186,18 +185,16 @@ public class AssetTypesController {
 
     }
 
-    private void pencilBtnClicked(String name){
+    private void pencilBtnClicked(String name, int lifeExp, String url){
         System.out.println("Updating with name: " + name);
         ModifyAssetTypePopUpController controller = (ModifyAssetTypePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssetTypeModifyPopUp.fxml", "Modify Asset Type");
-        controller.setName(name);
-        showAssetTypes();
+        controller.setAssetTypeInfo(name, lifeExp, url);
     }
 
-    private void trashBtnClicked(String name){
+    private void trashBtnClicked(String name, int lifeExp, String url){
       System.out.println("Deleting with name: " + name);
       DeleteAssetTypePopUpController controller = (DeleteAssetTypePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssetTypeDeletePopUp.fxml", "Delete Asset Type");
-      controller.setName(name);
-      showAssetTypes();
+      controller.setAssetTypeInfo(name, lifeExp, url);
     }
 
     private void assetBtnClicked(String name){

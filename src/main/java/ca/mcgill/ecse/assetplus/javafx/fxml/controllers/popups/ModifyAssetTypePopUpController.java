@@ -2,7 +2,6 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssetTypesController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -41,7 +40,7 @@ public class ModifyAssetTypePopUpController {
   @FXML
   void ModifyClicked(ActionEvent event) {
     String newName = AssetTypeModifyName.getText();
-    String newImageURL = AssetTypeModifyImageURL.getText();
+    String newImageURL = AssetTypeModifyImageURL.getText().isEmpty() ? null : AssetTypeModifyImageURL.getText();
 
     if(AssetTypeModifyLifespan.getText().isEmpty()){
       errorMessage.setText("Lifespan field cannot be empty");
@@ -65,8 +64,12 @@ public class ModifyAssetTypePopUpController {
     AssetPlusFXMLView.getInstance().closePopUpWindow();
   }
 
-  public void setName(String nameToSet) {
-    name = nameToSet;
+  public void setAssetTypeInfo(String name, int lifeExp, String url) {
+    this.name = name;
+    AssetTypeModifyName.setText(name);
+    AssetTypeModifyLifespan.setText(Integer.toString(lifeExp));
+    if (url != null)
+      AssetTypeModifyImageURL.setText(url);
   }
   
 }
