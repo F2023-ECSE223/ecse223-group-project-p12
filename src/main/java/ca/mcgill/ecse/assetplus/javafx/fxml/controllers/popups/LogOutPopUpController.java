@@ -14,6 +14,7 @@ public class LogOutPopUpController {
     @FXML
     void OkClicked(ActionEvent event) {
       AssetPlusFXMLView.getInstance().closePopUpWindow();
+      AssetPlusFXMLView.getInstance().changeTab("pages/FrontPage.fxml");
     }
 
 }
