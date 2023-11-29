@@ -201,26 +201,9 @@ public class AssetTypesController {
     }
 
     private void assetBtnClicked(String name){
-      System.out.println("Showing asset with asset type: " + name);
+      AssetMenuController controller = (AssetMenuController) AssetPlusFXMLView.getInstance().changeTab("pages/AssetMenu.fxml");
+      controller.setAssetName(name);
     }
-
-
-
-    class CustomEvent extends Event {
-
-    private String assetTypeName;
-
-    public static final EventType<CustomEvent> CUSTOM = new EventType(ANY, "CUSTOM");
-    public CustomEvent(String assetTypeName) {
-        super(CustomEvent.CUSTOM);
-        this.assetTypeName = assetTypeName;
-    }
-
-    public String getAssetTypeName() {
-        return this.assetTypeName;
-    }
-
-}
       
 }
 
