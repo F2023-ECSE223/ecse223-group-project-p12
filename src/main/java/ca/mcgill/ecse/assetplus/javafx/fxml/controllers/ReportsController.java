@@ -209,7 +209,6 @@ public class ReportsController {
     }
 
     private void setStatusPieChart() {
-        statusPieChart.setTitle("Ticket Statuses");
 
         int openCount = ViewUtils.getNumberOfTickets("Open"); 
         int assignedCount = ViewUtils.getNumberOfTickets("Assigned");
@@ -256,7 +255,6 @@ public class ReportsController {
     }
 
     private void setPriorityPieChart() {
-        priorityPieChart.setTitle("Ticket Priority");
 
         int lowCount = ViewUtils.getNumberOfTickets("Low"); 
         int normalCount = ViewUtils.getNumberOfTickets("Normal");
