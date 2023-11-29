@@ -11,11 +11,16 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="407.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController">
    <children>
-      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="332.0" prefWidth="408.0">
+      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="365.0" prefWidth="378.0" styleClass="popUpWindow">
          <children>
-            <VBox alignment="CENTER" layoutX="55.0" layoutY="31.0" prefHeight="266.0" prefWidth="307.0" spacing="30.0">
+            <VBox prefHeight="52.0" prefWidth="407.0">
                <children>
-                  <Label fx:id="topPopups" text="%key.AssetTypeAddPopUpTitle">
+                  <fx:include source="../components/PopUpToolBar.fxml" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="55.0" layoutY="31.0" prefHeight="332.0" prefWidth="307.0" spacing="30.0">
+               <children>
+                  <Label fx:id="topPopups" styleClass="popUpTitle" text="%key.AssetTypeAddPopUpTitle">
                      <font>
                         <Font size="15.0" />
                      </font>

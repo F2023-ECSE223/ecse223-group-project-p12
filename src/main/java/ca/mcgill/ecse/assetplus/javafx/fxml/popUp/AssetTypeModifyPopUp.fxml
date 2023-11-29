@@ -24,7 +24,7 @@
                   <TextField fx:id="AssetTypeModifyName" promptText="%key.AssetTypeAddPopUpName" styleClass="text-field" />
                   <TextField fx:id="AssetTypeModifyLifespan" promptText="%key.AssetTypeAddPopUpLifespan" styleClass="text-field" />
                   <TextField fx:id="AssetTypeModifyImageURL" promptText="%key.AssetTypeAddPopUpOptionalURL" />
-                  <Label fx:id="errorMessage" textFill="RED" />
+                  <Label fx:id="errorMessage" minHeight="-Infinity" minWidth="-Infinity" textFill="RED" wrapText="true" />
                   <HBox spacing="30.0">
                      <children>
                         <Button fx:id="CancelAssetTypeButton" mnemonicParsing="false" onAction="#CancelClicked" styleClass="cancelButton" text="%key.Cancel" />
