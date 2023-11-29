@@ -43,7 +43,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.SettingsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.SettingsController">
   <children>
       <HBox fx:id="DashboardAndContent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <children>
@@ -79,7 +79,7 @@
                                     <RadioButton fx:id="enRadioButton" mnemonicParsing="false" text="English" />
                                     <RadioButton fx:id="frRadioButton" mnemonicParsing="false" text="Français" />
                                     <Pane prefHeight="18.0" prefWidth="291.0" />
-                                    <Button fx:id="saveSettingsButton" mnemonicParsing="false" onAction="#saveSettings" prefHeight="40.0" prefWidth="127.0" styleClass="actionButton" text="%key.SaveSettings" />
+                                    <Button fx:id="saveSettingsButton" mnemonicParsing="false" onAction="#saveSettings" prefHeight="27.0" prefWidth="107.0" styleClass="actionButton" text="%key.SaveSettings" />
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />
