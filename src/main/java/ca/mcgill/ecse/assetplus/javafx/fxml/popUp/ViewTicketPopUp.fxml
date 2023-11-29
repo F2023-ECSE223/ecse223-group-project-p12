@@ -59,7 +59,7 @@
                   <TextField fx:id="assigneeField" editable="false" layoutX="149.0" layoutY="328.0" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: white;" />
                   <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="32.0" layoutY="383.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
                   <Label layoutX="65.0" layoutY="398.0" text="%key.TicketStatus_ApprovalRequired" />
-                  <TextField fx:id="approvalRequiredField" editable="false" layoutX="221.0" layoutY="393.0" prefHeight="26.0" prefWidth="53.0" style="-fx-background-color: white;" />
+                  <TextField fx:id="approvalRequiredField" editable="false" layoutX="202.0" layoutY="394.0" prefHeight="26.0" prefWidth="53.0" style="-fx-background-color: white;" />
                </children>
             </Pane>
          </children>
