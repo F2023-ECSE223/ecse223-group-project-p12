@@ -146,6 +146,7 @@ public class TicketStatusController {
         raiserSearch.setOnKeyReleased(event -> performSearch());
         ticketSearch.setOnKeyReleased(event -> performSearch());
         dateSearch.setOnAction(event -> performSearch());
+        assetNumberSearch.setOnKeyReleased(event -> performSearch());
         
         resources = AssetPlusFXMLView.getInstance().getBundle();
 

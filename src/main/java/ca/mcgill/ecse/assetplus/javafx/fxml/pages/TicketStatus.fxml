@@ -92,7 +92,7 @@
                                     <ChoiceBox fx:id="statusChoiceBox" prefHeight="28.0" prefWidth="135.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                     <Label text="Asset Number" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                        <GridPane.margin>
-                                          <Insets />
+                                          <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Label>
                                     <TextField fx:id="assetNumberSearch" prefHeight="23.0" prefWidth="121.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
