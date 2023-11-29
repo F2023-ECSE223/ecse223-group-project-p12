@@ -58,7 +58,7 @@ public class ModifyGuestPopUpController {
     void initialize() {
         resources = AssetPlusFXMLView.getInstance().getBundle();
         aEmail = EmployeesController.guestEmail;
-        ToGuest toGuest = AssetPlusFeatureTOController.convertFromGuest(aEmail);
+        TOGuest toGuest = AssetPlusFeatureTOController.convertFromGuest(aEmail);
         modifyEmailField.setText(toGuest.getEmail());
         modifyPasswordField.setText(toGuest.getPassword());
         modifyNameField.setText(toGuest.getName());
