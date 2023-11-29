@@ -69,7 +69,7 @@
                   </VBox>
                   <TabPane prefHeight="419.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                     <tabs>
-                        <Tab text="Asset Type Issues">
+                        <Tab text="%key.Reports_AssetTypeIssuesTitle">
                            <content>
                               <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-fit-to-height: true; -fx-fit-to-width: true;">
                                  <content>
@@ -160,12 +160,12 @@
                               </ScrollPane>
                            </content>
                         </Tab>
-                      <Tab text="Ticket Status Overview">
+                      <Tab text="%key.Reports_TicketAnalytics">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <PieChart fx:id="statusPieChart" prefWidth="400.0" />
-                                    <PieChart fx:id="priorityPieChart" layoutX="375.0" prefWidth="400.0" />
+                                    <PieChart fx:id="statusPieChart" prefWidth="400.0" title="%key.Reports_TicketStatuses" />
+                                    <PieChart fx:id="priorityPieChart" layoutX="375.0" prefWidth="400.0" title="%key.Reports_TicketPriority" />
                                  </children></AnchorPane>
                         </content>
                       </Tab>
