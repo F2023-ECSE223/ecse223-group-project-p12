@@ -3,12 +3,10 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
+import ca.mcgill.ecse.assetplus.controller.TOGuest;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.EmployeesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
-import ca.mcgill.ecse.assetplus.model.Employee;
-import ca.mcgill.ecse.assetplus.model.Guest;
-import ca.mcgill.ecse.assetplus.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -57,11 +55,11 @@ public class ModifyGuestPopUpController {
     void initialize() {
         resources = AssetPlusFXMLView.getInstance().getBundle();
         aEmail = EmployeesController.guestEmail;
-        Guest guest = (Guest) Guest.getWithEmail(aEmail);
-        modifyEmailField.setText(guest.getEmail());
-        modifyPasswordField.setText(guest.getPassword());
-        modifyNameField.setText(guest.getName());
-        modifyPhoneNumberField.setText(guest.getPhoneNumber());
+        TOGuest toGuest = AssetPlusFeatureTOController.convertFromGuest(aEmail);
+        modifyEmailField.setText(toGuest.getEmail());
+        modifyPasswordField.setText(toGuest.getPassword());
+        modifyNameField.setText(toGuest.getName());
+        modifyPhoneNumberField.setText(toGuest.getPhoneNumber());
     }
 
     private String translateErrorMessage(String err) {

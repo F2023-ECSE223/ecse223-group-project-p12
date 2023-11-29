@@ -29,9 +29,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 import java.util.*;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.model.Employee;
-import ca.mcgill.ecse.assetplus.model.Guest;
-import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
@@ -165,15 +162,14 @@ public class EmployeesController {
             String err = AssetPlusFeatureUtility.isExistingUser(ticketEmployeeField.getText(), "");
             if (err.isEmpty()) {
                 showEmployeeError.setText("");
-                Employee employee;
+                TOEmployee toEmployee;
                 try {
-                    employee = (Employee) Employee.getWithEmail(ticketEmployeeField.getText());
+                    toEmployee = AssetPlusFeatureTOController.convertFromEmployee(ticketEmployeeField.getText());
                 } catch (Exception e) {
                     showEmployeeError.setText(resources.getString("key.EmployeeNotFound"));
                     viewAllEmployees.getChildren().clear();
                     return;
                 }
-                TOEmployee toEmployee = AssetPlusFeatureTOController.convertFromEmployee(employee);
                 List<TOEmployee> employees = new ArrayList<>();
                 employees.add(toEmployee);
                 showEmployees(employees);
@@ -194,15 +190,14 @@ public class EmployeesController {
             String err = AssetPlusFeatureUtility.isExistingUser(ticketGuestField.getText(), "");
             if (err.isEmpty()) {
                 showGuestError.setText("");
-                Guest guest;
+                TOGuest toGuest;
                 try{
-                    guest = (Guest) User.getWithEmail(ticketGuestField.getText());
+                    toGuest = AssetPlusFeatureTOController.convertFromGuest(ticketGuestField.getText());
                 } catch (Exception e) {
                     showGuestError.setText(resources.getString("key.GuestNotFound"));
                     viewAllGuests.getChildren().clear();
                     return;
                 }
-                TOGuest toGuest = AssetPlusFeatureTOController.convertFromGuest(guest);
                 List<TOGuest> guests = new ArrayList<>();
                 guests.add(toGuest);
                 showGuests(guests);
