@@ -153,13 +153,11 @@ public class AssetPlusFeatureSet6Controller {
     MaintenanceTicket maintenanceTicket = MaintenanceTicket.getWithId(ticket.getId());
     if (maintenanceTicket.getAsset() != null) {
       SpecificAsset asset = maintenanceTicket.getAsset();
-      String assetTypeImageURL = "";
 
-      if (asset.getAssetType().hasAssetTypeImage()) {
-        assetTypeImageURL = asset.getAssetType().getAssetTypeImage().getImageURL();
-      }
-
-      TOAssetType assetType = new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan(),assetTypeImageURL);
+      TOAssetType assetType = new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan());
+      if (asset.getAssetType().getImage() != null && !asset.getAssetType().getImage().isEmpty())
+        assetType.setImageURL(asset.getAssetType().getImage());
+        
       TOSpecificAsset toAsset = new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), assetType);
 
       return toAsset;

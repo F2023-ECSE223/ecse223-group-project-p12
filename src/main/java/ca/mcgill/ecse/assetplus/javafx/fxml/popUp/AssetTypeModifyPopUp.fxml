@@ -4,42 +4,89 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="427.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyAssetTypePopUpController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyAssetTypePopUpController">
    <children>
-      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="332.0" prefWidth="454.0">
+      <fx:include source="../components/PopUpToolBar.fxml" />
+      <VBox alignment="CENTER" spacing="30.0">
          <children>
-            <VBox alignment="CENTER" layoutX="80.0" layoutY="52.0" spacing="30.0">
+            <Label fx:id="topPopups" text="%key.AssetTypeModifyPopUpTitle">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="replaceMe" contentDisplay="CENTER" text="%key.AssetTypeModifyPopUpMessage" textAlignment="CENTER" />
+            <HBox alignment="CENTER">
                <children>
-                  <Label fx:id="topPopups" text="%key.AssetTypeModifyPopUpTitle">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
+                  <Label text="%key.AssetTypeAddPopUpName" />
+                  <TextField fx:id="AssetTypeModifyName" styleClass="text-field">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <SVGPath fx:id="pencilType" content="m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z" fill="#8768f2">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </SVGPath>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="%key.AssetTypeAddPopUpLifespan" />
+                  <TextField fx:id="AssetTypeModifyLifespan" styleClass="text-field">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <SVGPath fx:id="pencilType1" content="m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z" fill="#8768f2">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </SVGPath>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="%key.AssetTypeAddPopUpOptionalURL" />
+                  <TextField fx:id="AssetTypeModifyImageURL">
+                     <HBox.margin>
+                        <Insets left="15.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <SVGPath fx:id="pencilType2" content="m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z" fill="#8768f2">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </SVGPath>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <Label fx:id="errorMessage" textFill="RED">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </Label>
-                  <Label fx:id="replaceMe" contentDisplay="CENTER" text="%key.AssetTypeModifyPopUpMessage" textAlignment="CENTER" />
-                  <TextField fx:id="AssetTypeModifyName" promptText="%key.AssetTypeAddPopUpName" styleClass="text-field" />
-                  <TextField fx:id="AssetTypeModifyLifespan" promptText="%key.AssetTypeAddPopUpLifespan" styleClass="text-field" />
-                  <TextField fx:id="AssetTypeModifyImageURL" promptText="%key.AssetTypeAddPopUpOptionalURL" />
-                  <Label fx:id="errorMessage" minHeight="-Infinity" minWidth="-Infinity" textFill="RED" wrapText="true" />
-                  <HBox spacing="30.0">
+                  <HBox alignment="CENTER" spacing="100.0">
                      <children>
                         <Button fx:id="CancelAssetTypeButton" mnemonicParsing="false" onAction="#CancelClicked" styleClass="cancelButton" text="%key.Cancel" />
                         <Button fx:id="ModifyAssetTypeButton" mnemonicParsing="false" onAction="#ModifyClicked" styleClass="actionButton" text="%key.Modify" />
                      </children>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets top="-20.0" />
+               </VBox.margin>
             </VBox>
          </children>
          <VBox.margin>
-            <Insets />
+            <Insets left="20.0" right="20.0" />
          </VBox.margin>
-      </AnchorPane>
+      </VBox>
    </children>
 </VBox>

@@ -29,11 +29,11 @@ public class AssetPlusFeatureTOController {
 
     for (SpecificAsset asset: assets) {
 
-      String assetTypeImageURL = "";
-      if(asset.getAssetType().hasAssetTypeImage()){
-        assetTypeImageURL = asset.getAssetType().getAssetTypeImage().getImageURL();
+      TOAssetType assetType = new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan());
+      if(asset.getAssetType().getImage() != null && !asset.getAssetType().getImage().isEmpty()){
+        assetType.setImageURL(asset.getAssetType().getImage());
       }
-      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan(),assetTypeImageURL)));
+      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), assetType));
     }
     return convertedAssets;
   }
@@ -83,20 +83,14 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
 
 
   private static TOAssetType convertFromAssetType(AssetType assetType){
-
-    List<SpecificAsset> assets = assetType.getSpecificAssets();
     
     //After the TOSpecificAsset methods are implemented, then we can covert SpecifAssets to SpecificAssetsTO
     List<TOSpecificAsset> TOassets= new ArrayList<>();
-
-    //The image for asset type is optional, so we need to handle that
-    String imageURL = "";
   
-    if(assetType.hasAssetTypeImage()){
-      imageURL = assetType.getAssetTypeImage().getImageURL();
+    TOAssetType assetTypeTO = new TOAssetType(assetType.getName(), assetType.getExpectedLifeSpan());
+    if(assetType.getImage() != null && !assetType.getImage().isEmpty()){
+      assetTypeTO.setImageURL(assetType.getImage());
     }
-
-    TOAssetType assetTypeTO = new TOAssetType(assetType.getName(), assetType.getExpectedLifeSpan(), imageURL);
 
     for(TOSpecificAsset asset : TOassets){
       assetTypeTO.addTOSpecificAsset(asset);

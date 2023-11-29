@@ -5,7 +5,8 @@ package ca.mcgill.ecse.assetplus.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 85 "../../../../../../AssetPlus.ump"
+// line 44 "../../../../../../AssetPlusPersistence.ump"
+// line 81 "../../../../../../AssetPlus.ump"
 public class AssetType
 {
 
@@ -22,9 +23,9 @@ public class AssetType
   //AssetType Attributes
   private String name;
   private int expectedLifeSpan;
+  private String image;
 
   //AssetType Associations
-  private AssetTypeImage assetTypeImage;
   private AssetPlus assetPlus;
   private List<SpecificAsset> specificAssets;
 
@@ -35,6 +36,7 @@ public class AssetType
   public AssetType(String aName, int aExpectedLifeSpan, AssetPlus aAssetPlus)
   {
     expectedLifeSpan = aExpectedLifeSpan;
+    image = null;
     if (!setName(aName))
     {
       throw new RuntimeException("Cannot create due to duplicate name. See http://manual.umple.org?RE003ViolationofUniqueness.html");
@@ -78,6 +80,14 @@ public class AssetType
     return wasSet;
   }
 
+  public boolean setImage(String aImage)
+  {
+    boolean wasSet = false;
+    image = aImage;
+    wasSet = true;
+    return wasSet;
+  }
+
   public String getName()
   {
     return name;
@@ -97,16 +107,10 @@ public class AssetType
   {
     return expectedLifeSpan;
   }
-  /* Code from template association_GetOne */
-  public AssetTypeImage getAssetTypeImage()
-  {
-    return assetTypeImage;
-  }
 
-  public boolean hasAssetTypeImage()
+  public String getImage()
   {
-    boolean has = assetTypeImage != null;
-    return has;
+    return image;
   }
   /* Code from template association_GetOne */
   public AssetPlus getAssetPlus()
@@ -142,33 +146,6 @@ public class AssetType
   {
     int index = specificAssets.indexOf(aSpecificAsset);
     return index;
-  }
-  /* Code from template association_SetOptionalOneToOne */
-  public boolean setAssetTypeImage(AssetTypeImage aNewAssetTypeImage)
-  {
-    boolean wasSet = false;
-    if (assetTypeImage != null && !assetTypeImage.equals(aNewAssetTypeImage) && equals(assetTypeImage.getAssetType()))
-    {
-      //Unable to setAssetTypeImage, as existing assetTypeImage would become an orphan
-      return wasSet;
-    }
-
-    assetTypeImage = aNewAssetTypeImage;
-    AssetType anOldAssetType = aNewAssetTypeImage != null ? aNewAssetTypeImage.getAssetType() : null;
-
-    if (!this.equals(anOldAssetType))
-    {
-      if (anOldAssetType != null)
-      {
-        anOldAssetType.assetTypeImage = null;
-      }
-      if (assetTypeImage != null)
-      {
-        assetTypeImage.setAssetType(this);
-      }
-    }
-    wasSet = true;
-    return wasSet;
   }
   /* Code from template association_SetOneToMany */
   public boolean setAssetPlus(AssetPlus aAssetPlus)
@@ -265,13 +242,6 @@ public class AssetType
   public void delete()
   {
     assettypesByName.remove(getName());
-    AssetTypeImage existingAssetTypeImage = assetTypeImage;
-    assetTypeImage = null;
-    if (existingAssetTypeImage != null)
-    {
-      existingAssetTypeImage.delete();
-      existingAssetTypeImage.setAssetType(null);
-    }
     AssetPlus placeholderAssetPlus = assetPlus;
     this.assetPlus = null;
     if(placeholderAssetPlus != null)
@@ -285,8 +255,8 @@ public class AssetType
     }
   }
 
-  // line 46 "AssetPlusPersistence.ump"
-  public static  void reinitializeUniqueName(List<AssetType> types){
+  // line 46 "../../../../../../AssetPlusPersistence.ump"
+   public static  void reinitializeUniqueName(List<AssetType> types){
     assettypesByName = new HashMap<String, AssetType>();
     for (AssetType t : types) {
       assettypesByName.put(t.getName(), t);
@@ -298,15 +268,8 @@ public class AssetType
   {
     return super.toString() + "["+
             "name" + ":" + getName()+ "," +
-            "expectedLifeSpan" + ":" + getExpectedLifeSpan()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "assetTypeImage = "+(getAssetTypeImage()!=null?Integer.toHexString(System.identityHashCode(getAssetTypeImage())):"null") + System.getProperties().getProperty("line.separator") +
+            "expectedLifeSpan" + ":" + getExpectedLifeSpan()+ "," +
+            "image" + ":" + getImage()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "assetPlus = "+(getAssetPlus()!=null?Integer.toHexString(System.identityHashCode(getAssetPlus())):"null");
-  }
-
-  public static  void reinitializeUniqueTypes(List<AssetType> types){
-    assettypesByName.clear();
-        for (var type : types) {
-            assettypesByName.put(type.getName(), type);
-        }
   }
 }

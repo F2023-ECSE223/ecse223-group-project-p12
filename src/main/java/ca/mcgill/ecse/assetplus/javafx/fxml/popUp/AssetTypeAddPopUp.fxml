@@ -4,47 +4,49 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="407.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="350.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddAssetTypePopUpController">
    <children>
-      <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="365.0" prefWidth="378.0" styleClass="popUpWindow">
+      <fx:include source="../components/PopUpToolBar.fxml" />
+      <VBox alignment="CENTER" prefWidth="307.0" spacing="30.0">
          <children>
-            <VBox prefHeight="52.0" prefWidth="407.0">
+            <Label fx:id="topPopups" text="%key.AssetTypeAddPopUpTitle">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="replaceMe" contentDisplay="CENTER" text="%key.AssetTypeAddPopUpMessage" textAlignment="CENTER" />
+            <TextField fx:id="AssetTypeAddName" promptText="%key.AssetTypeAddPopUpName" styleClass="text-field" />
+            <TextField fx:id="AssetTypeAddLifespan" promptText="%key.AssetTypeAddPopUpLifespan" styleClass="text-field" />
+            <TextField fx:id="AssetTypeAddImageURL" layoutX="10.0" layoutY="153.0" promptText="%key.AssetTypeAddPopUpOptionalURL" styleClass="text-field" />
+            <VBox alignment="TOP_CENTER">
                <children>
-                  <fx:include source="../components/PopUpToolBar.fxml" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="55.0" layoutY="31.0" prefHeight="332.0" prefWidth="307.0" spacing="30.0">
-               <children>
-                  <Label fx:id="topPopups" styleClass="popUpTitle" text="%key.AssetTypeAddPopUpTitle">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
+                  <Label fx:id="errorMessage" minWidth="200.0" textFill="RED">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </Label>
-                  <Label fx:id="replaceMe" contentDisplay="CENTER" text="%key.AssetTypeAddPopUpMessage" textAlignment="CENTER" />
-                  <TextField fx:id="AssetTypeAddName" promptText="%key.AssetTypeAddPopUpName" styleClass="text-field" />
-                  <TextField fx:id="AssetTypeAddLifespan" promptText="%key.AssetTypeAddPopUpLifespan" styleClass="text-field" />
-                  <TextField fx:id="AssetTypeAddImageURL" layoutX="10.0" layoutY="153.0" promptText="%key.AssetTypeAddPopUpOptionalURL" styleClass="text-field" />
-                  <Label fx:id="errorMessage" textFill="RED" />
-                  <HBox spacing="30.0">
+                  <HBox alignment="CENTER" spacing="100.0">
                      <children>
                         <Button fx:id="CancelAssetTypeButton" mnemonicParsing="false" onAction="#CancelClicked" styleClass="cancelButton" text="%key.Cancel" />
                         <Button fx:id="CreateAssetTypeButton" mnemonicParsing="false" onAction="#CreateClicked" styleClass="actionButton" text="%key.Create" />
                      </children>
-                     <padding>
-                        <Insets left="75.0" />
-                     </padding>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets top="-10.0" />
+               </VBox.margin>
             </VBox>
          </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+         </padding>
          <VBox.margin>
             <Insets />
          </VBox.margin>
-      </AnchorPane>
+      </VBox>
    </children>
 </VBox>

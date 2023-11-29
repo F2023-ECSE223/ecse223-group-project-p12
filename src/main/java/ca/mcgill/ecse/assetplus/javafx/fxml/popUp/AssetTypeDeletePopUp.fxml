@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="437.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteAssetTypePopUpController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="437.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteAssetTypePopUpController">
    <children>
       <AnchorPane id="Content" fx:id="AddAssetTypePane" minHeight="-1.0" minWidth="-1.0" prefHeight="427.0" prefWidth="437.0">
          <children>
@@ -26,7 +26,7 @@
                      <children>
                         <StackPane prefHeight="35.0" prefWidth="482.0">
                            <children>
-                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" stroke="BLACK" strokeType="INSIDE" width="186.0" />
+                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" stroke="BLACK" strokeType="INSIDE" width="202.0" />
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                  <children>
                                     <Label text="%key.AssetTypeDeletePopUpName">
@@ -34,7 +34,7 @@
                                           <Insets left="25.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="AssetTypeDeleteName" text="Label" />
+                                    <Label fx:id="AssetTypeDeleteName" minWidth="100.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
@@ -51,7 +51,7 @@
                      <children>
                         <StackPane prefHeight="35.0" prefWidth="482.0">
                            <children>
-                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" stroke="BLACK" strokeType="INSIDE" width="186.0" />
+                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="31.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                  <children>
                                     <Label text="%key.AssetTypeDeletePopUpLifespan">
@@ -59,7 +59,7 @@
                                           <Insets left="25.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="AssetTypeDeleteLifespan" text="Label" />
+                                    <Label fx:id="AssetTypeDeleteLifespan" minWidth="80.0" text="Label" />
                                  </children>
                               </HBox>
                            </children>
