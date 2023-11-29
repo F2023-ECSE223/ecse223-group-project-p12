@@ -169,14 +169,19 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
     switch (timeEstimate) {
       case "Less than a day":
         estimate = TimeEstimate.LessThanADay;
+        break;
       case "1-3 days":
         estimate = TimeEstimate.OneToThreeDays;
+        break;
       case "3-7 days":
         estimate = TimeEstimate.ThreeToSevenDays;
+        break;
       case "1-3 weeks":
         estimate = TimeEstimate.OneToThreeWeeks;
+        break;
       case "3 or more weeks":
         estimate = TimeEstimate.ThreeOrMoreWeeks;
+        break;
     }
 
     AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffEmail, priorityLevel, estimate, approvalRequired, ticketId);
