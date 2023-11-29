@@ -10,9 +10,6 @@ import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.EmployeesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
-import ca.mcgill.ecse.assetplus.model.Employee;
-import ca.mcgill.ecse.assetplus.model.Guest;
-import ca.mcgill.ecse.assetplus.model.User;
 
 public class DeleteGuestPopUpController {
 

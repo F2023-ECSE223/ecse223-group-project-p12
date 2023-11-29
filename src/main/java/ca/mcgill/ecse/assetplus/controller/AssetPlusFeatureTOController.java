@@ -10,6 +10,7 @@ import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
+import ca.mcgill.ecse.assetplus.model.User;
 
 
 /**
@@ -104,13 +105,13 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
     return assetTypeTO;
   }
 
-  public static TOEmployee convertFromEmployee(
-      Employee employee) {
+  public static TOEmployee convertFromEmployee(String email) {
+    Employee employee = (Employee) User.getWithEmail(email);
     List<MaintenanceTicket> ticketsFixedList = employee.getMaintenanceTasks();
     List<MaintenanceTicket> ticketsRaisedList = employee.getRaisedTickets();
 
 
-    String email = employee.getEmail();
+    String aEmail = employee.getEmail();
     String name = employee.getName();
     String password = employee.getPassword();
     String phoneNumber = employee.getPhoneNumber();
@@ -125,7 +126,7 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
       ticketsRaised.add(ticketsRaisedList.get(i).getId());
     }
     
-    return new TOEmployee(email, name, password, phoneNumber, ticketsRaised, ticketFixed);
+    return new TOEmployee(aEmail, name, password, phoneNumber, ticketsRaised, ticketFixed);
 
   }
 
@@ -134,17 +135,18 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
     List<TOEmployee> toEmployees = new ArrayList<>();
 
     for (Employee employee: employees) {
-      toEmployees.add(convertFromEmployee(employee));
+      String email = employee.getEmail();
+      toEmployees.add(convertFromEmployee(email));
     }
     return toEmployees;
   }
 
-  public static TOGuest convertFromGuest(
-      Guest guest) {
+  public static TOGuest convertFromGuest(String email) {
+    Guest guest = (Guest) User.getWithEmail(email);
     List<MaintenanceTicket> ticketsRaisedList = guest.getRaisedTickets();
 
 
-    String email = guest.getEmail();
+    String aEmail = guest.getEmail();
     String name = guest.getName();
     String password = guest.getPassword();
     String phoneNumber = guest.getPhoneNumber();
@@ -154,7 +156,7 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
       ticketsRaised.add(ticketsRaisedList.get(i).getId());
     }
     
-    return new TOGuest(email, name, password, phoneNumber, ticketsRaised);
+    return new TOGuest(aEmail, name, password, phoneNumber, ticketsRaised);
 
   }
 
@@ -163,7 +165,8 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
     List<TOGuest> toGuests = new ArrayList<>();
 
     for (Guest guest: guests) {
-      toGuests.add(convertFromGuest(guest));
+      String email = guest.getEmail();
+      toGuests.add(convertFromGuest(email));
     }
     return toGuests;
   }
