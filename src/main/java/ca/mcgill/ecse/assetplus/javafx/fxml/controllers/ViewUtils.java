@@ -1,17 +1,9 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
-import static java.lang.Integer.SIZE;
 import java.util.ArrayList;
 import java.util.List;
-import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.*;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.model.Employee;
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
-import javafx.beans.Observable;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -113,11 +105,6 @@ public class ViewUtils {
 
   public static List<TOHotelStaff> getHotelStaffs() {
     return AssetPlusFeatureSet1Controller.getHotelStaffs();
-  }
-
-  public static void assignTicketTo(String staffEmail, int ticketId, PriorityLevel priority, TimeEstimate timeEstimate, boolean approvalRequired) {
-    //this is not needed String email = AssetPlusFeatureSet1Controller.getStaffEmailFromName(staffName);
-    AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffEmail, priority, timeEstimate, approvalRequired, ticketId);
   }
 
   public static void startWork(int ticketId) {

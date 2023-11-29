@@ -7,8 +7,9 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
-import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 
 
@@ -168,6 +169,22 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
     return toGuests;
   }
 
-  
+  public static void assignTicketTo(String staffEmail, int ticketId, String priority, String timeEstimate, boolean approvalRequired) {
+    PriorityLevel priorityLevel = PriorityLevel.valueOf(priority);
+    TimeEstimate estimate = null;
+    switch (timeEstimate) {
+      case "Less than a day":
+        estimate = TimeEstimate.LessThanADay;
+      case "1-3 days":
+        estimate = TimeEstimate.OneToThreeDays;
+      case "3-7 days":
+        estimate = TimeEstimate.ThreeToSevenDays;
+      case "1-3 weeks":
+        estimate = TimeEstimate.OneToThreeWeeks;
+      case "3 or more weeks":
+        estimate = TimeEstimate.ThreeOrMoreWeeks;
+    }
 
+    AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffEmail, priorityLevel, estimate, approvalRequired, ticketId);
+  }
 }
