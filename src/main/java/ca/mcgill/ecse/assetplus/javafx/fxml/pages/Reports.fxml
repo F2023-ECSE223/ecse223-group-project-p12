@@ -46,7 +46,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -71,18 +70,18 @@
                     <tabs>
                         <Tab text="%key.Reports_AssetTypeIssuesTitle">
                            <content>
-                              <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-fit-to-height: true; -fx-fit-to-width: true;">
+                              <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-fit-to-height: true; -fx-fit-to-width: true; -fx-background-color: white;">
                                  <content>
-                                    <HBox prefHeight="386.0" prefWidth="750.0">
+                                    <HBox prefHeight="386.0" prefWidth="750.0" style="-fx-background-color: white;">
                                        <children>
-                                          <VBox alignment="CENTER" prefHeight="390.0" prefWidth="751.0" HBox.hgrow="ALWAYS">
+                                          <VBox alignment="CENTER" prefHeight="400.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <Label text="%key.Reports_AssetTypeIssues">
+                                                <Label styleClass="chart-title" text="%key.Reports_AssetTypeIssues">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
                                                 </Label>
-                                                <BarChart fx:id="assetTypeIssues" prefHeight="309.0" prefWidth="772.0" VBox.vgrow="ALWAYS">
+                                                <BarChart fx:id="assetTypeIssues" prefHeight="300.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
                                                   <xAxis>
                                                     <CategoryAxis side="BOTTOM" />
                                                   </xAxis>
@@ -98,9 +97,8 @@
                                                 </BarChart>
                                              </children>
                                           </VBox>
-                                          <VBox alignment="CENTER" prefHeight="391.0" prefWidth="301.0" HBox.hgrow="ALWAYS">
+                                          <VBox alignment="CENTER" prefHeight="300.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <Region prefHeight="83.0" prefWidth="150.0" />
                                                 <Label text="%key.ReportsOptions1">
                                                    <VBox.margin>
                                                       <Insets bottom="10.0" />
@@ -151,12 +149,14 @@
                                                       </RadioButton>
                                                    </children>
                                                 </GridPane>
-                                                <Region prefHeight="149.0" prefWidth="150.0" />
                                              </children>
                                           </VBox>
                                        </children>
                                     </HBox>
                                  </content>
+                                 <padding>
+                                    <Insets bottom="20.0" left="40.0" right="20.0" top="20.0" />
+                                 </padding>
                               </ScrollPane>
                            </content>
                         </Tab>
