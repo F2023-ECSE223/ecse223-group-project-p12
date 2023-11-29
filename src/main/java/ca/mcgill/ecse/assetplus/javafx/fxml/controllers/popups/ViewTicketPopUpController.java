@@ -1,6 +1,5 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
-import ca.mcgill.ecse.assetplus.controller.TOMaintenanceNote;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,12 +1,10 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import java.util.ResourceBundle;
-import com.google.common.base.MoreObjects.ToStringHelper;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOHotelStaff;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
-import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -82,7 +80,7 @@ public class AssignStaffToTicketController {
     void handleSave(ActionEvent event) {
       if (isValidSelection()) {
         String staffSelected = this.staffComboBox.getValue();
-        ViewUtils.assignTicketTo(staffSelected, ticketId, getPriority(), getTimeEstimate(), approveRadioButton.isSelected());
+        AssetPlusFeatureTOController.assignTicketTo(staffSelected, ticketId, getPriority(), getTimeEstimate(), approveRadioButton.isSelected());
         ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       } else {
@@ -106,25 +104,12 @@ public class AssignStaffToTicketController {
       this.ticketId = ticketId;
     }
 
-    private PriorityLevel getPriority() {
-      return PriorityLevel.valueOf(this.priorityComboBox.getValue());
+    private String getPriority() {
+      return this.priorityComboBox.getValue();
     }
 
-    private TimeEstimate getTimeEstimate() {
-      switch (this.timeEstimateComboBox.getValue()) {
-        case "Less than a day":
-          return TimeEstimate.LessThanADay;
-        case "1-3 days":
-          return TimeEstimate.OneToThreeDays;
-        case "3-7 days":
-          return TimeEstimate.ThreeToSevenDays;
-        case "1-3 weeks":
-          return TimeEstimate.OneToThreeWeeks;
-        case "3 or more weeks":
-          return TimeEstimate.ThreeOrMoreWeeks;
-      }
-
-      return null;
+    private String getTimeEstimate() {
+      return this.timeEstimateComboBox.getValue();
     }
 
 }
