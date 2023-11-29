@@ -70,12 +70,13 @@
                      <children>
                         <StackPane prefHeight="45.0" prefWidth="482.0">
                            <children>
-                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" stroke="BLACK" strokeType="INSIDE" width="190.0" />
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="33.0" stroke="BLACK" strokeType="INSIDE" width="227.0" />
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <TextField fx:id="lifeExpectancy" alignment="CENTER" maxWidth="100.0" prefHeight="26.0" prefWidth="136.0" />
+                                    <Label text="%key.AssetMenu_LifeExpectancy" />
+                                    <TextField fx:id="lifeExpectancy" maxWidth="100.0" prefHeight="26.0" prefWidth="87.0" />
                                  </children>
-                              </VBox>
+                              </HBox>
                            </children>
                            <VBox.margin>
                               <Insets />
