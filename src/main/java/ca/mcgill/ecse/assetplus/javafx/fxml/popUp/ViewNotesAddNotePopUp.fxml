@@ -65,7 +65,7 @@
       <HBox alignment="CENTER">
          <children>
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#Cancel" prefWidth="100.0" styleClass="cancelButton" text="%key.AddNote_Cancel" />
-            <Button fx:id="addNoteButton" mnemonicParsing="false" onAction="#AddNote" prefWidth="100.0" styleClass="actionButton" text="%key.ViewNotes_AddNote">
+            <Button fx:id="addNoteButton" mnemonicParsing="false" onAction="#AddNote" prefWidth="100.0" styleClass="actionButton" text="%key.AddNote_Add">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
