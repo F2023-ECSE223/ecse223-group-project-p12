@@ -1,7 +1,6 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceTicket;
-import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ApproveTicketController;
@@ -14,17 +13,12 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewNotesControll
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ViewTicketPopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.events.AssetTypeDeletedEvent;
 import ca.mcgill.ecse.assetplus.javafx.fxml.events.EmployeeDeletedEvent;
-import ca.mcgill.ecse.assetplus.model.AssetPlus;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -33,27 +27,16 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.SVGPath;
-import javafx.scene.text.Text;
-import javafx.util.Callback;
 import java.util.List;
 import java.util.ResourceBundle;
-import javax.swing.event.HyperlinkListener;
-import com.google.common.collect.Table;
-import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import javafx.stage.Stage;;
 
 public class TicketStatusController {
 
@@ -103,6 +86,9 @@ public class TicketStatusController {
     private TableColumn<TOMaintenanceTicket, HBox> actionColumn;
 
     @FXML
+    private TextField assetNumberSearch;
+
+    @FXML
     private DatePicker dateSearch;
 
     private ObservableList<TOMaintenanceTicket> ticketList;
@@ -117,18 +103,25 @@ public class TicketStatusController {
         String raiser = raiserSearch.getText().toLowerCase().trim();
         int number = ticketSearch.getText().isEmpty() ? 0 : Integer.parseInt(ticketSearch.getText().toLowerCase().trim());
         LocalDate searchDate = dateSearch.getValue();
+        int assetNumberText = assetNumberSearch.getText().isEmpty() ? 0 : Integer.parseInt(assetNumberSearch.getText().toLowerCase().trim());
     
         FilteredList<TOMaintenanceTicket> filteredTickets = new FilteredList<>(ticketList);
 
         filteredTickets.setPredicate(ticket -> {
+            boolean assetNumberMatch = assetNumberText == 0 || ViewUtils.getSpecificAssetFromTicket(ticket) == assetNumberText;
             boolean raiserMatch = raiser.isEmpty() || ticket.getRaisedByEmail().toLowerCase().contains(raiser);
             boolean ticketNumberMatch = number == 0 || ticket.getId() == number;
             boolean dateMatch = searchDate == null || ticket.getRaisedOnDate().toLocalDate().isEqual(searchDate);
 
-            return raiserMatch && ticketNumberMatch && dateMatch;
+            return raiserMatch && ticketNumberMatch && dateMatch & assetNumberMatch;
         });
 
         ticketTable.setItems(filteredTickets);
+    }
+
+    public void setAssetNumber(int assetNumber) {
+        assetNumberSearch.setText(String.valueOf(assetNumber));
+        performSearch();
     }
     
     @FXML
@@ -136,6 +129,7 @@ public class TicketStatusController {
         raiserSearch.setOnKeyReleased(event -> performSearch());
         ticketSearch.setOnKeyReleased(event -> performSearch());
         dateSearch.setOnAction(event -> performSearch());
+        assetNumberSearch.setOnKeyReleased(event -> performSearch());
         
         resources = AssetPlusFXMLView.getInstance().getBundle();
 

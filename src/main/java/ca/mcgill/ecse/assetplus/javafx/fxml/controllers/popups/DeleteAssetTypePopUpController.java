@@ -2,16 +2,12 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.TicketStatusController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import ca.mcgill.ecse.assetplus.javafx.fxml.events.AssetTypeDeletedEvent;
-import ca.mcgill.ecse.assetplus.model.AssetPlus;
-import ca.mcgill.ecse.assetplus.model.AssetType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 public class DeleteAssetTypePopUpController {
 
@@ -48,11 +44,11 @@ public class DeleteAssetTypePopUpController {
     AssetPlusFXMLView.getInstance().closePopUpWindow();
   }
 
-  public void setName(String nameToSet) {
-    name = nameToSet;
+  public void setAssetTypeInfo(String name, int lifeExp, String url) {
+    this.name = name;
     AssetTypeDeleteName.setText(name);
-    String end = AssetPlusFXMLView.getInstance().getBundle().getString("key.AssetType_Years");
-    AssetTypeDeleteLifespan.setText(Integer.toString(AssetType.getWithName(name).getExpectedLifeSpan())+ " " + end);
+    AssetTypeDeleteLifespan.setText(Integer.toString(lifeExp));
+    /* if (url != null)
+      AssetTypeDeleteImageURL.setText(url); */
   }
-  
 }

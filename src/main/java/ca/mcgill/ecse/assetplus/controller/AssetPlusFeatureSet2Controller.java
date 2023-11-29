@@ -2,7 +2,6 @@ package ca.mcgill.ecse.assetplus.controller;
 
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
-import ca.mcgill.ecse.assetplus.model.AssetTypeImage;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 /**
@@ -30,8 +29,7 @@ public class AssetPlusFeatureSet2Controller {
     try {
       AssetType type = AssetPlusApplication.getAssetPlus().addAssetType(name, expectedLifeSpanInDays);
       if(!imageURL.isEmpty()){
-        AssetTypeImage image = new AssetTypeImage(imageURL, type);
-        type.setAssetTypeImage(image);
+        type.setImage(imageURL);
       }
       AssetPlusApplication.getAssetPlus().addAssetType(type);
     } 
@@ -72,10 +70,7 @@ public class AssetPlusFeatureSet2Controller {
       AssetType type = AssetType.getWithName(oldName);
       type.setName(newName);
       type.setExpectedLifeSpan(newExpectedLifeSpanInDays);
-      if(!newImageURL.isEmpty()){
-        AssetTypeImage image = new AssetTypeImage(newImageURL, type);
-        type.setAssetTypeImage(image);
-      }
+      type.setImage(newImageURL);
     }
     catch (RuntimeException e) {
       return e.getMessage();
@@ -155,7 +150,7 @@ public class AssetPlusFeatureSet2Controller {
    */
   private static String isStartingWithHttpOrHttps(String imageURL) {
 
-    if(imageURL.isEmpty()){
+    if(imageURL == null || imageURL.isEmpty()){
       return ""; //The image URL can be empty for assetType, since it's optional.
     }
 

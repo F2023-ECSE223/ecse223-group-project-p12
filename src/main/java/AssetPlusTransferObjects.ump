@@ -91,5 +91,5 @@ class TOAssetType {
   String name;
   Integer expectedLifeSpan;
   1 -> * TOSpecificAsset;
-  String imageURL;
+  lazy String imageURL;
 }

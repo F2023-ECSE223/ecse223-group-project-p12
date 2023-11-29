@@ -7,8 +7,9 @@ import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
-import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.User;
 
@@ -29,11 +30,11 @@ public class AssetPlusFeatureTOController {
 
     for (SpecificAsset asset: assets) {
 
-      String assetTypeImageURL = "";
-      if(asset.getAssetType().hasAssetTypeImage()){
-        assetTypeImageURL = asset.getAssetType().getAssetTypeImage().getImageURL();
+      TOAssetType assetType = new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan());
+      if(asset.getAssetType().getImage() != null && !asset.getAssetType().getImage().isEmpty()){
+        assetType.setImageURL(asset.getAssetType().getImage());
       }
-      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan(),assetTypeImageURL)));
+      convertedAssets.add(new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), assetType));
     }
     return convertedAssets;
   }
@@ -83,20 +84,14 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
 
 
   private static TOAssetType convertFromAssetType(AssetType assetType){
-
-    List<SpecificAsset> assets = assetType.getSpecificAssets();
     
     //After the TOSpecificAsset methods are implemented, then we can covert SpecifAssets to SpecificAssetsTO
     List<TOSpecificAsset> TOassets= new ArrayList<>();
-
-    //The image for asset type is optional, so we need to handle that
-    String imageURL = "";
   
-    if(assetType.hasAssetTypeImage()){
-      imageURL = assetType.getAssetTypeImage().getImageURL();
+    TOAssetType assetTypeTO = new TOAssetType(assetType.getName(), assetType.getExpectedLifeSpan());
+    if(assetType.getImage() != null && !assetType.getImage().isEmpty()){
+      assetTypeTO.setImageURL(assetType.getImage());
     }
-
-    TOAssetType assetTypeTO = new TOAssetType(assetType.getName(), assetType.getExpectedLifeSpan(), imageURL);
 
     for(TOSpecificAsset asset : TOassets){
       assetTypeTO.addTOSpecificAsset(asset);
@@ -171,6 +166,22 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
     return toGuests;
   }
 
-  
+  public static void assignTicketTo(String staffEmail, int ticketId, String priority, String timeEstimate, boolean approvalRequired) {
+    PriorityLevel priorityLevel = PriorityLevel.valueOf(priority);
+    TimeEstimate estimate = null;
+    switch (timeEstimate) {
+      case "Less than a day":
+        estimate = TimeEstimate.LessThanADay;
+      case "1-3 days":
+        estimate = TimeEstimate.OneToThreeDays;
+      case "3-7 days":
+        estimate = TimeEstimate.ThreeToSevenDays;
+      case "1-3 weeks":
+        estimate = TimeEstimate.OneToThreeWeeks;
+      case "3 or more weeks":
+        estimate = TimeEstimate.ThreeOrMoreWeeks;
+    }
 
+    AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffEmail, priorityLevel, estimate, approvalRequired, ticketId);
+  }
 }
