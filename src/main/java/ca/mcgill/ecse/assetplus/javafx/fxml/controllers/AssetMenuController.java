@@ -28,6 +28,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -145,7 +146,7 @@ public class AssetMenuController {
             Button maintenanceBtn = new Button();
             maintenanceBtn.getStyleClass().add("icon-maintenancehistory");
             maintenanceBtn.setPickOnBounds(true);
-            maintenanceBtn.setOnAction(event -> handleMaintenanceHistoryClicked(cellData.getValue()));
+            maintenanceBtn.setOnAction(event -> handleMaintenanceHistoryClicked(cellData.getValue().getAssetNumber()));
 
             HBox hbox = new HBox(maintenanceBtn);
             hbox.setSpacing(10);
@@ -153,6 +154,7 @@ public class AssetMenuController {
 
             return new SimpleObjectProperty<>(hbox);
         });
+
         
         actionColumn.setCellValueFactory(cellData -> {
 
@@ -213,6 +215,11 @@ public class AssetMenuController {
         assetNumberSearch.setText(String.valueOf(assetNumber));
         performSearch();
     }
+
+    public void setAssetName(String assetName){
+        assetSearch.setText(assetName);
+        performSearch();
+    }
     
     
     private void handleEditButtonClicked(int assetNumber) {
@@ -225,7 +232,9 @@ public class AssetMenuController {
         DeleteSpecificAssetPopUpController controller = (DeleteSpecificAssetPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteSpecificAssetPopUp.fxml", "Delete Specific Asset");        
     }
     
-    private void handleMaintenanceHistoryClicked(TOSpecificAsset asset) {
+    private void handleMaintenanceHistoryClicked(int assetNumber) {
+        TicketStatusController controller = (TicketStatusController) AssetPlusFXMLView.getInstance().changeTab("pages/TicketStatus.fxml");
+        controller.setAssetNumber(assetNumber);
    
     }
 

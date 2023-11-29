@@ -2,29 +2,19 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import java.time.LocalDate;
 import java.sql.Date;
-import java.util.List;
 import java.util.ResourceBundle;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet3Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
-import ca.mcgill.ecse.assetplus.controller.TOAssetType;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 
@@ -83,6 +73,7 @@ public class AddTicketPopUpController {
         for (TOSpecificAsset asset : list2){
             assetNumberField.getItems().add(Integer.toString(asset.getAssetNumber()));
         }
+        assetNumberField.getItems().add("No asset");
         // set editable to false so that the user cannot choose from the calendar
         raisedDateField.setEditable(false);
         // set default value to today
@@ -99,16 +90,18 @@ public class AddTicketPopUpController {
         LocalDate date = raisedDateField.getValue();
         Date raisedDate = Date.valueOf(date);
         int assetNumber = -1;
-        if (assetNumberField.getValue() != null){
+        if (assetNumberField.getValue() != null && !assetNumberField.getValue().equals("No asset")){
             assetNumber = Integer.parseInt(assetNumberField.getValue());
         }
-
         if (description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null || raisedDate == null){
                 addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage1"));
                 System.out.println("Ticket not added");
         }
         else{
-            int ticketNumber = Integer.parseInt(ticketNumberString);
+            int ticketNumber = 0;
+            if (ticketNumberString != null) {
+                ticketNumber = Integer.parseInt(ticketNumberString);
+            }
             String err = AssetPlusFeatureSet4Controller.addMaintenanceTicket(ticketNumber, (java.sql.Date)raisedDate, description, raiser, assetNumber);
             ViewUtils.callController("");
             if (err == ""){
@@ -135,18 +128,18 @@ public class AddTicketPopUpController {
         AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
 
-   
     @FXML
     void handleAssetNumberSelection(ActionEvent event) {
+        if (assetNumberField.getValue() != null && !assetNumberField.getValue().equals("No asset")){
+            //if (!assetNumberField.getValue().equals("No asset")){
         int assetNumberSelected = Integer.parseInt(assetNumberField.getValue());
-        if (assetNumberField.getValue() != null){
         ObservableList<TOSpecificAsset> list = ViewUtils.getSpecificAsset();
         for (TOSpecificAsset asset : list){
            if(asset.getAssetNumber() == assetNumberSelected){
                 typeField.setText(asset.getAssetType().getName());
            }
+        //}
         }
-    
         }
     }
 }
