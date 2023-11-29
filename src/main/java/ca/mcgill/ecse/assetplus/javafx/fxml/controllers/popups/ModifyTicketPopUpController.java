@@ -14,16 +14,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import java.util.List;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet4Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet6Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOSpecificAsset;
 
 public class ModifyTicketPopUpController {
@@ -82,14 +79,13 @@ public class ModifyTicketPopUpController {
 
     @FXML
     void initialize(){
-        
         ticketNumberField.setFocusTraversable(false);
-        ticketStatusField.setFocusTraversable(false);
-       
+        ticketStatusField.setFocusTraversable(false);   
         ObservableList<TOSpecificAsset> list2 = ViewUtils.getSpecificAsset();
         for (TOSpecificAsset asset : list2){
             assetNumberField.getItems().add(Integer.toString(asset.getAssetNumber()));
         }
+        assetNumberField.getItems().add("No asset");
         updateTicketError.setText(null);
         
     }
@@ -107,7 +103,7 @@ public class ModifyTicketPopUpController {
         LocalDate date = raisedDateField.getValue();
         Date raisedDate = Date.valueOf(date);
         int assetNumber = -1;
-        if (assetNumberField.getValue() != null){
+        if (assetNumberField.getValue() != null && !assetNumberField.getValue().equals("No asset")){
             assetNumber = Integer.parseInt(assetNumberField.getValue());
         }
 
@@ -163,12 +159,11 @@ public class ModifyTicketPopUpController {
         updateTicketError.setText(null);
 
   }
- 
 
 @FXML
 void handleSelection(ActionEvent event) {
-    int assetNumberSelected = Integer.parseInt(assetNumberField.getValue());
-        if (assetNumberField.getValue() != null){
+        if (assetNumberField.getValue() != null && !assetNumberField.getValue().equals("No asset")){
+        int assetNumberSelected = Integer.parseInt(assetNumberField.getValue());
         ObservableList<TOSpecificAsset> list = ViewUtils.getSpecificAsset();
         for (TOSpecificAsset asset : list){
            if(asset.getAssetNumber() == assetNumberSelected){
