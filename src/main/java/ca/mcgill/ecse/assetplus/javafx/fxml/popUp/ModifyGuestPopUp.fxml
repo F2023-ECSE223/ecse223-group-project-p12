@@ -62,6 +62,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="17.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -105,7 +106,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
                         <Button mnemonicParsing="false" onAction="#cancelModifyEmployee" styleClass="cancelButton" stylesheets="@../css/style.css" text="%key.Cancel" />
                         <Pane prefHeight="43.0" prefWidth="99.0" />
@@ -115,10 +116,10 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label alignment="CENTER" prefHeight="27.0" prefWidth="394.0" style="-fx-background-color: white; -fx-background-radius: 5px;" text="%key.EnterDetailsBelowToModifyGuest" />
-                        <Label fx:id="modifyErrorMessage" alignment="CENTER" prefHeight="17.0" prefWidth="696.0" styleClass="errorMessage" stylesheets="@../css/style.css" />
                      </children>
                   </VBox>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="369.0" styleClass="popUpTitle" stylesheets="@../css/style.css" text="%key.ModifyGuest" GridPane.columnIndex="1" />
+                  <Label fx:id="modifyErrorMessage" alignment="CENTER" prefHeight="17.0" prefWidth="696.0" styleClass="errorMessage" stylesheets="@../css/style.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

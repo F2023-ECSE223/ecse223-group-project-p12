@@ -62,10 +62,11 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="17.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
                         <Button fx:id="cancelCreateEmployeeButton" mnemonicParsing="false" onAction="#cancelCreateEmployee" styleClass="cancelButton" stylesheets="@../css/style.css" text="%key.Cancel" />
                         <Pane prefHeight="64.0" prefWidth="82.0" />
@@ -115,10 +116,10 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label alignment="CENTER" prefHeight="27.0" prefWidth="397.0" text="%key.EnterDetailsBelowToAddANewGuest" textAlignment="CENTER" />
-                        <Label fx:id="createErrorMessage" alignment="CENTER" prefHeight="17.0" prefWidth="394.0" style="-fx-text-fill: A30D11;" />
                      </children>
                   </VBox>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="382.0" styleClass="popUpTitle" stylesheets="@../css/style.css" text="%key.AddGuest" GridPane.columnIndex="1" />
+                  <Label fx:id="createErrorMessage" alignment="CENTER" prefHeight="17.0" prefWidth="394.0" style="-fx-text-fill: A30D11;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
