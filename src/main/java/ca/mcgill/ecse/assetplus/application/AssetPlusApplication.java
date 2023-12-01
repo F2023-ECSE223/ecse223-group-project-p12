@@ -15,6 +15,7 @@ public class AssetPlusApplication {
     Application.launch(AssetPlusFXMLView.class, args);
   }
 
+  
   public static AssetPlus getAssetPlus() {
     if (assetPlus == null) {
       // these attributes are default, you should set them later with the setters
