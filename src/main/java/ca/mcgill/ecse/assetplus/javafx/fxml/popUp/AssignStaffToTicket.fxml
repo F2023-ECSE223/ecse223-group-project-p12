@@ -55,7 +55,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="31.0" prefWidth="525.0">
                <children>
-                  <Label fx:id="errorLabel" text="%key.TicketStatus_AssignStaffToTIcketError" />
+                  <Label fx:id="errorLabel"/>
                </children>
             </HBox>
          </children>
