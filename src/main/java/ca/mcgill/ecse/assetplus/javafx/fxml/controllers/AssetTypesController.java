@@ -8,8 +8,6 @@ import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.DeleteAssetTypePopUpController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.ModifyAssetTypePopUpController;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -71,7 +69,6 @@ public class AssetTypesController {
     void AddImage(ActionEvent event) {
 
     }
-
 
     @FXML
     void initialize() {
