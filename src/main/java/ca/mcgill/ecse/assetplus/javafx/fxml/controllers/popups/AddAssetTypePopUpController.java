@@ -95,7 +95,7 @@ public class AddAssetTypePopUpController {
             return resources.getString("key.NameMustNotBeEmpty");
         case "Lifespan field cannot be empty":
             return resources.getString("key.LifespanMustNotBeEmpty");
-        case "The lifespan must be greater than 0.":
+        case "The expected life span must be greater than 0 days":
             return resources.getString("key.LifeSpanMustBeGreaterThan0");
         case "Error: Image URL must start with http:// or https://.\n":
             return resources.getString("key.InvalidImageURL");
