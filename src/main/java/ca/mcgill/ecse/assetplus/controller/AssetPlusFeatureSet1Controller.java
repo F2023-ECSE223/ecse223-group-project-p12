@@ -260,7 +260,7 @@ public class AssetPlusFeatureSet1Controller {
         staffs.add(convertFromHotelStaff(hotelStaff));
       }
 
-      staffs.add(convertFromHotelStaff((HotelStaff) AssetPlusApplication.getAssetPlus().getManager()));
+      staffs.add(convertFromHotelStaff(AssetPlusApplication.getAssetPlus().getManager()));
       return staffs;
     }
 
