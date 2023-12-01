@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import java.util.ResourceBundle;
 
 public class AddAssetTypePopUpController {
 
@@ -32,7 +33,9 @@ public class AddAssetTypePopUpController {
 
   @FXML
   private Label errorMessage;
-
+  
+  @FXML
+  private ResourceBundle resources;
 
   @FXML
   void initialize(){
@@ -42,7 +45,9 @@ public class AddAssetTypePopUpController {
 
   @FXML
   void CreateClicked(ActionEvent event) {
-
+    
+    boolean errorLife = false;
+    
     String name = AssetTypeAddName.getText();
     String imageURL = AssetTypeAddImageURL.getText();
 
@@ -51,12 +56,22 @@ public class AddAssetTypePopUpController {
       return;
     }
 
-    int lifespan = Integer.valueOf(AssetTypeAddLifespan.getText());
+    int lifespan = 0;
+    String regex = "\\d+";
+
+    if (AssetTypeAddLifespan.getText().matches(regex)){
+      lifespan = Integer.valueOf(AssetTypeAddLifespan.getText());
+    } else {
+      errorLife = true;
+      errorMessage.setText(resources.getString("key.AssetTypeAddPopUpLifespanError"));
+    }
 
     String err = AssetPlusFeatureSet2Controller.addAssetType(name, lifespan, imageURL);
 
     if(!err.isEmpty()){
-      errorMessage.setText(translateErrorMessage(err));
+      if (!errorLife){
+        errorMessage.setText(translateErrorMessage(err));
+      }
       return;
     }
 
