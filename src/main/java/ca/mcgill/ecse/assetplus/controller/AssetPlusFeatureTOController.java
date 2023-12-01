@@ -8,6 +8,7 @@ import ca.mcgill.ecse.assetplus.model.AssetType;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.Manager;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.PriorityLevel;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket.TimeEstimate;
 import ca.mcgill.ecse.assetplus.model.SpecificAsset;
@@ -188,5 +189,29 @@ public static ArrayList<Integer> getAssetNumberFromType(String typeName){
     }
 
     AssetPlusFeatureMaintenanceTicketController.assignStaffToMaintenanceTicket(staffEmail, priorityLevel, estimate, approvalRequired, ticketId);
+  }
+
+  public static TOManager convertFromManager() {
+    Manager manager = AssetPlusApplication.getAssetPlus().getManager();
+    List<MaintenanceTicket> ticketsFixedList = manager.getMaintenanceTasks();
+    List<MaintenanceTicket> ticketsRaisedList = manager.getRaisedTickets();
+    List<MaintenanceTicket> ticketsApprovedList = manager.getTicketsForApproval();
+    List<Integer> ticketsRaised = new ArrayList<>();
+    List<Integer> ticketFixed = new ArrayList<>();
+    List<Integer> ticketsApproved = new ArrayList<>();
+    
+    for (int i = 0; i < ticketsFixedList.size(); i++) {
+      ticketFixed.add(ticketsFixedList.get(i).getId());
+    }
+
+    for (int i = 0; i < ticketsRaisedList.size(); i++) {
+      ticketsRaised.add(ticketsRaisedList.get(i).getId());
+    }
+
+    for (int i = 0; i < ticketsApprovedList.size(); i++) {
+      ticketsApproved.add(ticketsApprovedList.get(i).getId());
+    }
+    TOManager toManager = new TOManager(manager.getEmail(), manager.getName(), manager.getPassword(), manager.getPhoneNumber(), ticketsRaised, ticketFixed, ticketsApproved);
+    return toManager;
   }
 }

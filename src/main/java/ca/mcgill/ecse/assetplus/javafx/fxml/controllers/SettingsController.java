@@ -3,8 +3,9 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
+import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
+import ca.mcgill.ecse.assetplus.controller.TOManager;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.model.Manager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -59,8 +60,8 @@ public class SettingsController {
             frRadioButton.setSelected(true);
         }
 
-        Manager manager = AssetPlusApplication.getAssetPlus().getManager();
-        updateManagerPasswordField.setText(manager.getPassword());
+        TOManager toManager = AssetPlusFeatureTOController.convertFromManager();
+        updateManagerPasswordField.setText(toManager.getPassword());
     }
 
     @FXML
