@@ -77,6 +77,7 @@ public class ReportsController {
         oneLastYear.setToggleGroup(toggleGroup);
         allTime.setToggleGroup(toggleGroup);
 
+        allTime.setSelected(true);
         fixChart(0);
         fixColors();
 
