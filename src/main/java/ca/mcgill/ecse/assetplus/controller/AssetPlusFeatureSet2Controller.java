@@ -19,7 +19,7 @@ public class AssetPlusFeatureSet2Controller {
   public static String addAssetType(String name, int expectedLifeSpanInDays, String imageURL) {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(name, "name", "must not") + 
-                 isGreaterThanZero(expectedLifeSpanInDays, "expected life span") +
+                 isGreaterThanZero(expectedLifeSpanInDays, "lifespan") +
                  isNotExistingAssetType(name) + isStartingWithHttpOrHttps(imageURL);
 
     if(!err.isEmpty()){
@@ -50,7 +50,7 @@ public class AssetPlusFeatureSet2Controller {
   public static String updateAssetType(String oldName, String newName, int newExpectedLifeSpanInDays, String newImageURL) {
     //Input validation
     String err = AssetPlusFeatureUtility.isStringValid(newName, "name", "must not") +
-                 isGreaterThanZero(newExpectedLifeSpanInDays, "expected life span") +
+                 isGreaterThanZero(newExpectedLifeSpanInDays, "lifespan") +
                  AssetPlusFeatureUtility.isExistingAssetType(oldName) + isStartingWithHttpOrHttps(newImageURL);
 
     if(!err.isEmpty()){
@@ -110,7 +110,7 @@ public class AssetPlusFeatureSet2Controller {
    */
   private static String isGreaterThanZero(int number, String subject){
     if (number <= 0) {
-      return "The "+ subject + " must be greater than 0 days";
+      return "The "+ subject + " must be greater than 0.";
     }
     return "";
   }

@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
+import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import javafx.event.ActionEvent;
@@ -43,7 +44,7 @@ public class ModifyAssetTypePopUpController {
     String newImageURL = AssetTypeModifyImageURL.getText().isEmpty() ? null : AssetTypeModifyImageURL.getText();
 
     if(AssetTypeModifyLifespan.getText().isEmpty()){
-      errorMessage.setText("Lifespan field cannot be empty");
+      errorMessage.setText(translateErrorMessage("Lifespan field cannot be empty"));
       return;
     }
 
@@ -51,7 +52,7 @@ public class ModifyAssetTypePopUpController {
     String err = AssetPlusFeatureSet2Controller.updateAssetType(name, newName, newLifespan, newImageURL);
 
     if(!err.isEmpty()){
-      errorMessage.setText(err);
+      errorMessage.setText(translateErrorMessage(err));
       return;
     }
 
@@ -70,6 +71,22 @@ public class ModifyAssetTypePopUpController {
     AssetTypeModifyLifespan.setText(Integer.toString(lifeExp));
     if (url != null)
       AssetTypeModifyImageURL.setText(url);
+  }  private String translateErrorMessage(String err) {
+    ResourceBundle resources = AssetPlusFXMLView.getInstance().getBundle();
+    switch (err) {
+        case "The name must not be empty":
+            return resources.getString("key.NameMustNotBeEmpty");
+        case "Lifespan field cannot be empty":
+            return resources.getString("key.LifespanMustNotBeEmpty");
+        case "The lifespan must be greater than 0.":
+            return resources.getString("key.LifeSpanMustBeGreaterThan0");
+        case "Error: Image URL must start with http:// or https://.\n":
+            return resources.getString("key.InvalidImageURL");
+        default:
+            return "Error";
+    }
   }
+
+
   
 }
