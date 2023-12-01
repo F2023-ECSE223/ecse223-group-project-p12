@@ -104,7 +104,20 @@ public class TicketStatusController {
         int number = ticketSearch.getText().isEmpty() ? 0 : Integer.parseInt(ticketSearch.getText().toLowerCase().trim());
         LocalDate searchDate = dateSearch.getValue();
         int assetNumberText = assetNumberSearch.getText().isEmpty() ? 0 : Integer.parseInt(assetNumberSearch.getText().toLowerCase().trim());
-        String statusText = statusChoiceBox.getValue();
+        StringBuilder statusText = new StringBuilder("");
+        if (statusChoiceBox.getValue().equals("Ouvert")) {
+            statusText.append("Open");
+        } else if (statusChoiceBox.getValue().equals("Assigné")) {
+            statusText.append("Assigned");
+        } else if (statusChoiceBox.getValue().equals("En progrès") || statusChoiceBox.getValue().equals("In Progress")){
+            statusText.append("InProgress");
+        } else if (statusChoiceBox.getValue().equals("Résolu")){
+            statusText.append("Resolved");
+        } else if (statusChoiceBox.getValue().equals("Fermé")){
+            statusText.append("Closed");
+        }else {
+            statusText.append(statusChoiceBox.getValue());
+        }
         
         FilteredList<TOMaintenanceTicket> filteredTickets = new FilteredList<>(ticketList);
     
@@ -113,12 +126,14 @@ public class TicketStatusController {
             boolean raiserMatch = raiser.isEmpty() || ticket.getRaisedByEmail().toLowerCase().contains(raiser);
             boolean ticketNumberMatch = number == 0 || ticket.getId() == number;
             boolean dateMatch = searchDate == null || ticket.getRaisedOnDate().toLocalDate().isEqual(searchDate);
-            boolean statusMatch = statusText.equals("key.ShowAll") || "Show All".equals(statusText) || statusText.equals(ticket.getStatus()); 
+           
+            boolean statusMatch = "Tous les billets".equals(statusChoiceBox.getValue()) || "Show All".equals(statusChoiceBox.getValue()) || statusText.toString().equals(ticket.getStatus()); 
     
             return raiserMatch && ticketNumberMatch && dateMatch && assetNumberMatch && statusMatch;
         });
     
         ticketTable.setItems(filteredTickets);
+        statusText.setLength(0);
     }    
 
     public void setAssetNumber(int assetNumber) {
