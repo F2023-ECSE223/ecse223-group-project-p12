@@ -1,38 +1,437 @@
 {
   "AssetPlus": {
     "employees": [
-      ""
+      {
+        "Employee": [
+          {
+            "email": "e1@ap.com",
+            "name": "Mary",
+            "password": "pwd1",
+            "phoneNumber": "514-444-5566",
+            "raisedTickets": [
+              {
+                "MaintenanceTicket": [
+                  {
+                    "id": 1,
+                    "raisedOnDate": "2023-11-05",
+                    "description": "desk is scratched",
+                    "status": "Open",
+                    "ticketNotes": [
+                      {
+                        "MaintenanceNote": {
+                          "date": "2023-11-05",
+                          "description": "this is an easy issue to address",
+                          "ticket": {
+                            "@reference": "../../.."
+                          },
+                          "noteTaker": {
+                            "@class": "Employee",
+                            "@reference": "../../../../.."
+                          }
+                        }
+                      }
+                    ],
+                    "ticketImages": [
+                      {
+                        "TicketImage": {
+                          "imageURL": "https://img.freepik.com/premium-photo/green-scratched-metal-background-texture_88281-1787.jpg",
+                          "ticket": {
+                            "@reference": "../../.."
+                          }
+                        }
+                      }
+                    ],
+                    "assetPlus": {
+                      "@reference": "../../../../.."
+                    },
+                    "ticketRaiser": {
+                      "@class": "Employee",
+                      "@reference": "../../.."
+                    },
+                    "asset": {
+                      "assetNumber": 2,
+                      "floorNumber": 5,
+                      "roomNumber": 501,
+                      "purchaseDate": "2023-07-10",
+                      "assetPlus": {
+                        "@reference": "../../../../../.."
+                      },
+                      "maintenanceTickets": [
+                        {
+                          "MaintenanceTicket": {
+                            "@reference": "../../.."
+                          }
+                        }
+                      ],
+                      "assetType": {
+                        "name": "desk",
+                        "expectedLifeSpan": 4500,
+                        "image": "https://www.ikea.com/ca/en/images/products/malm-desk-brown-stained-ash-veneer__0657142_pe709629_s5.jpg?f=xs",
+                        "assetPlus": {
+                          "@reference": "../../../../../../.."
+                        },
+                        "specificAssets": [
+                          {
+                            "SpecificAsset": [
+                              {
+                                "@reference": "../../.."
+                              },
+                              {
+                                "assetNumber": 5,
+                                "floorNumber": 5,
+                                "roomNumber": 502,
+                                "purchaseDate": "2023-07-10",
+                                "assetPlus": {
+                                  "@reference": "../../../../../../../../.."
+                                },
+                                "maintenanceTickets": [
+                                  {
+                                    "MaintenanceTicket": {
+                                      "id": 4,
+                                      "raisedOnDate": "2023-11-08",
+                                      "description": "desk is wobbly",
+                                      "status": "Open",
+                                      "ticketNotes": [
+                                        ""
+                                      ],
+                                      "ticketImages": [
+                                        ""
+                                      ],
+                                      "assetPlus": {
+                                        "@reference": "../../../../../../../../../../.."
+                                      },
+                                      "ticketRaiser": {
+                                        "@class": "Employee",
+                                        "@reference": "../../../../../../../../.."
+                                      },
+                                      "asset": {
+                                        "@reference": "../../.."
+                                      }
+                                    }
+                                  }
+                                ],
+                                "assetType": {
+                                  "@reference": "../../.."
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "@reference": "../MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]/maintenanceTickets/MaintenanceTicket"
+                  }
+                ]
+              }
+            ],
+            "maintenanceNotes": [
+              {
+                "MaintenanceNote": {
+                  "@reference": "../../raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote"
+                }
+              }
+            ],
+            "maintenanceTasks": [
+              ""
+            ],
+            "assetPlus": {
+              "@reference": "../../.."
+            }
+          },
+          {
+            "email": "e2@ap.com",
+            "name": "Nathan",
+            "password": "pwd2",
+            "phoneNumber": "514-444-5577",
+            "raisedTickets": [
+              {
+                "MaintenanceTicket": {
+                  "id": 2,
+                  "raisedOnDate": "2023-11-06",
+                  "description": "chair wheel jammed",
+                  "status": "Open",
+                  "ticketNotes": [
+                    {
+                      "MaintenanceNote": {
+                        "date": "2023-11-06",
+                        "description": "wheels are on backorder",
+                        "ticket": {
+                          "@reference": "../../.."
+                        },
+                        "noteTaker": {
+                          "@class": "Employee",
+                          "@reference": "../../../../.."
+                        }
+                      }
+                    }
+                  ],
+                  "ticketImages": [
+                    ""
+                  ],
+                  "assetPlus": {
+                    "@reference": "../../../../.."
+                  },
+                  "ticketRaiser": {
+                    "@class": "Employee",
+                    "@reference": "../../.."
+                  },
+                  "asset": {
+                    "assetNumber": 1,
+                    "floorNumber": 5,
+                    "roomNumber": 501,
+                    "purchaseDate": "2023-06-01",
+                    "assetPlus": {
+                      "@reference": "../../../../../.."
+                    },
+                    "maintenanceTickets": [
+                      {
+                        "MaintenanceTicket": {
+                          "@reference": "../../.."
+                        }
+                      }
+                    ],
+                    "assetType": {
+                      "name": "chair",
+                      "expectedLifeSpan": 3500,
+                      "image": "https://www.ikea.com/ca/en/images/products/ekenaeset-armchair-kelinge-gray-turquoise__1179059_pe895832_s5.jpg?f=xs",
+                      "assetPlus": {
+                        "@reference": "../../../../../../.."
+                      },
+                      "specificAssets": [
+                        {
+                          "SpecificAsset": [
+                            {
+                              "@reference": "../../.."
+                            },
+                            {
+                              "assetNumber": 4,
+                              "floorNumber": 5,
+                              "roomNumber": 502,
+                              "purchaseDate": "2023-06-01",
+                              "assetPlus": {
+                                "@reference": "../../../../../../../../.."
+                              },
+                              "maintenanceTickets": [
+                                ""
+                              ],
+                              "assetType": {
+                                "@reference": "../../.."
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "maintenanceNotes": [
+              {
+                "MaintenanceNote": {
+                  "@reference": "../../raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote"
+                }
+              }
+            ],
+            "maintenanceTasks": [
+              ""
+            ],
+            "assetPlus": {
+              "@reference": "../../.."
+            }
+          }
+        ]
+      }
     ],
     "guests": [
-      ""
+      {
+        "Guest": {
+          "email": "g@google.com",
+          "name": "George",
+          "password": "secret",
+          "phoneNumber": "514-888-9000",
+          "raisedTickets": [
+            {
+              "MaintenanceTicket": {
+                "id": 3,
+                "raisedOnDate": "2023-11-07",
+                "description": "very noisy after 10pm",
+                "status": "Open",
+                "ticketNotes": [
+                  {
+                    "MaintenanceNote": {
+                      "date": "2023-11-07",
+                      "description": "cannot do much about it",
+                      "ticket": {
+                        "@reference": "../../.."
+                      },
+                      "noteTaker": {
+                        "@class": "Manager",
+                        "email": "manager@ap.com",
+                        "name": "Jane",
+                        "password": "manager",
+                        "phoneNumber": "514-444-5555",
+                        "raisedTickets": [
+                          {
+                            "MaintenanceTicket": {
+                              "id": 5,
+                              "raisedOnDate": "2023-11-09",
+                              "description": "carpet is stained",
+                              "status": "Open",
+                              "ticketNotes": [
+                                ""
+                              ],
+                              "ticketImages": [
+                                {
+                                  "TicketImage": {
+                                    "imageURL": "https://img.freepik.com/free-photo/oxid-steel-texture_1194-8852.jpg",
+                                    "ticket": {
+                                      "@reference": "../../.."
+                                    }
+                                  }
+                                }
+                              ],
+                              "assetPlus": {
+                                "@reference": "../../../../../../../../../.."
+                              },
+                              "ticketRaiser": {
+                                "@class": "Manager",
+                                "@reference": "../../.."
+                              },
+                              "asset": {
+                                "assetNumber": 3,
+                                "floorNumber": 5,
+                                "roomNumber": -1,
+                                "purchaseDate": "2023-08-05",
+                                "assetPlus": {
+                                  "@reference": "../../../../../../../../../../.."
+                                },
+                                "maintenanceTickets": [
+                                  {
+                                    "MaintenanceTicket": {
+                                      "@reference": "../../.."
+                                    }
+                                  }
+                                ],
+                                "assetType": {
+                                  "name": "carpet",
+                                  "expectedLifeSpan": 6000,
+                                  "image": "https://www.ikea.com/ca/en/images/products/vonsbaek-rug-low-pile-dark-blue__1080041_pe857840_s5.jpg?f=xl",
+                                  "assetPlus": {
+                                    "@reference": "../../../../../../../../../../../.."
+                                  },
+                                  "specificAssets": [
+                                    {
+                                      "SpecificAsset": {
+                                        "@reference": "../../.."
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ],
+                        "maintenanceNotes": [
+                          {
+                            "MaintenanceNote": {
+                              "@reference": "../../.."
+                            }
+                          }
+                        ],
+                        "maintenanceTasks": [
+                          ""
+                        ],
+                        "assetPlus": {
+                          "@reference": "../../../../../../../.."
+                        },
+                        "ticketsForApproval": [
+                          ""
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "ticketImages": [
+                  ""
+                ],
+                "assetPlus": {
+                  "@reference": "../../../../.."
+                },
+                "ticketRaiser": {
+                  "@class": "Guest",
+                  "@reference": "../../.."
+                }
+              }
+            }
+          ],
+          "assetPlus": {
+            "@reference": "../../.."
+          }
+        }
+      }
     ],
     "manager": {
-      "email": "manager@ap.com",
-      "password": "$aA3",
-      "raisedTickets": [
-        ""
-      ],
-      "maintenanceNotes": [
-        ""
-      ],
-      "maintenanceTasks": [
-        ""
-      ],
-      "assetPlus": {
-        "@reference": "../.."
-      },
-      "ticketsForApproval": [
-        ""
-      ]
+      "@reference": "../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker"
     },
     "maintenanceTickets": [
-      ""
+      {
+        "MaintenanceTicket": [
+          {
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket"
+          },
+          {
+            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket"
+          },
+          {
+            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket"
+          },
+          {
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]/maintenanceTickets/MaintenanceTicket"
+          },
+          {
+            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket"
+          }
+        ]
+      }
     ],
     "assetTypes": [
-      ""
+      {
+        "AssetType": [
+          {
+            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType"
+          },
+          {
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType"
+          },
+          {
+            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket/asset/assetType"
+          }
+        ]
+      }
     ],
     "specificAssets": [
-      ""
+      {
+        "SpecificAsset": [
+          {
+            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset"
+          },
+          {
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset"
+          },
+          {
+            "@reference": "../../guests/Guest/raisedTickets/MaintenanceTicket/ticketNotes/MaintenanceNote/noteTaker/raisedTickets/MaintenanceTicket/asset"
+          },
+          {
+            "@reference": "../../employees/Employee[2]/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]"
+          },
+          {
+            "@reference": "../../employees/Employee/raisedTickets/MaintenanceTicket/asset/assetType/specificAssets/SpecificAsset[2]"
+          }
+        ]
+      }
     ]
   }
 }
