@@ -104,20 +104,22 @@ public class TicketStatusController {
         int number = ticketSearch.getText().isEmpty() ? 0 : Integer.parseInt(ticketSearch.getText().toLowerCase().trim());
         LocalDate searchDate = dateSearch.getValue();
         int assetNumberText = assetNumberSearch.getText().isEmpty() ? 0 : Integer.parseInt(assetNumberSearch.getText().toLowerCase().trim());
-    
+        String statusText = statusChoiceBox.getValue();
+        
         FilteredList<TOMaintenanceTicket> filteredTickets = new FilteredList<>(ticketList);
-
+    
         filteredTickets.setPredicate(ticket -> {
             boolean assetNumberMatch = assetNumberText == 0 || ViewUtils.getSpecificAssetFromTicket(ticket) == assetNumberText;
             boolean raiserMatch = raiser.isEmpty() || ticket.getRaisedByEmail().toLowerCase().contains(raiser);
             boolean ticketNumberMatch = number == 0 || ticket.getId() == number;
             boolean dateMatch = searchDate == null || ticket.getRaisedOnDate().toLocalDate().isEqual(searchDate);
-
-            return raiserMatch && ticketNumberMatch && dateMatch & assetNumberMatch;
+            boolean statusMatch = statusText.equals("key.ShowAll") || "Show All".equals(statusText) || statusText.equals(ticket.getStatus()); 
+    
+            return raiserMatch && ticketNumberMatch && dateMatch && assetNumberMatch && statusMatch;
         });
-
+    
         ticketTable.setItems(filteredTickets);
-    }
+    }    
 
     public void setAssetNumber(int assetNumber) {
         assetNumberSearch.setText(String.valueOf(assetNumber));
@@ -130,6 +132,7 @@ public class TicketStatusController {
         ticketSearch.setOnKeyReleased(event -> performSearch());
         dateSearch.setOnAction(event -> performSearch());
         assetNumberSearch.setOnKeyReleased(event -> performSearch());
+        statusChoiceBox.setOnAction(event -> performSearch());
         
         resources = AssetPlusFXMLView.getInstance().getBundle();
 
@@ -156,8 +159,7 @@ public class TicketStatusController {
             resources.getString("key.ShowAll")
         );
 
-        statusChoiceBox.setValue(resources.getString("key.TicketStatus_SelectStatus"));
-        statusChoiceBox.setOnAction(event -> filterTableView(getKey(statusChoiceBox.getValue())));
+        statusChoiceBox.setValue(resources.getString("key.ShowAll"));
     }
 
     @FXML
