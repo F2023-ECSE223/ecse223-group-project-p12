@@ -3,8 +3,11 @@ package ca.mcgill.ecse.assetplus.controller;
 import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
+import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.HotelStaff;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
+import java.util.*;
 
 /**
  * <p>Feature 1 - Update manager password / add employee or guest / update employee or guest</p>
@@ -236,8 +239,73 @@ public class AssetPlusFeatureSet1Controller {
         error = "Email already linked to a guest account";
       } else {
         error = "";
+    }
+    return error;
+  }
+
+  public static Employee getWithName(String name) {
+    List<Employee> employees = AssetPlusApplication.getAssetPlus().getEmployees();
+    for (Employee employee : employees) {
+      if (employee.getName().equals(name)) {
+        return employee;
       }
-      return error;
+    }
+    return null;
+  }
+    public static List<TOHotelStaff> getHotelStaffs() {
+      List<HotelStaff> hotelStaffs = convertEmployeesIntoStaff(AssetPlusApplication.getAssetPlus().getEmployees());
+
+      List<TOHotelStaff> staffs = new ArrayList<>();
+      for (HotelStaff hotelStaff: hotelStaffs) {
+        staffs.add(convertFromHotelStaff(hotelStaff));
+      }
+
+      staffs.add(convertFromHotelStaff(AssetPlusApplication.getAssetPlus().getManager()));
+      return staffs;
+    }
+
+    private static List<HotelStaff> convertEmployeesIntoStaff(List<Employee> employees) {
+      List<HotelStaff> staff = new ArrayList<>();
+      for (Employee employee: employees) {
+        staff.add((HotelStaff) employee);
+      }
+
+      return staff;
+    }
+
+    private static TOHotelStaff convertFromHotelStaff(HotelStaff hotelStaff) {
+      User user = (User) hotelStaff;
+
+      return new TOEmployee(
+        user.getEmail(),
+        user.getName(),
+        user.getPassword(),
+        user.getPhoneNumber(),
+        convertFromMaintenanceTicket(user.getRaisedTickets()),
+        convertFromMaintenanceTicket(hotelStaff.getMaintenanceTasks())
+      );
+    }
+
+    private static List<Integer> convertFromMaintenanceTicket(List<MaintenanceTicket> maintenanceTickets) {
+      List<Integer> tickets = new ArrayList<>();
+      for (MaintenanceTicket ticket: maintenanceTickets) {
+        tickets.add(ticket.getId());
+      }
+
+      return tickets;
+    }
+
+    public static String getStaffEmailFromName(String name) {
+      List<HotelStaff> hotelStaffs = convertEmployeesIntoStaff(AssetPlusApplication.getAssetPlus().getEmployees());
+      hotelStaffs.add(AssetPlusApplication.getAssetPlus().getManager());
+
+      for (HotelStaff staff: hotelStaffs) {
+        if (staff.getName().equals(name)) {
+          return staff.getEmail();
+        }
+      }
+      
+      return "Email not found";
     }
 
 }

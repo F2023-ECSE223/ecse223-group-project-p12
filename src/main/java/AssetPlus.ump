@@ -1,6 +1,7 @@
 namespace ca.mcgill.ecse.assetplus.model;
 
 use MaintenanceTicket.ump;
+use AssetPlusPersistence.ump;
 
 class AssetPlus
 {
@@ -81,6 +82,7 @@ class AssetType
 {
   unique String name;
   Integer expectedLifeSpan;
+  lazy String image;
 }
 
 association 

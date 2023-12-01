@@ -1,0 +1,674 @@
+/*
+
+Stylesheet of our UI
+
+@author - Julia B.Grenier, Tayba Jusab
+
+*/
+
+
+/* General attributes for the whole document */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.root
+{  
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-accent: #8768F2;
+    -fx-focus-color: #8768F2;
+    -fx-background-color: #FFFFFF;
+    -fx-font-size: 12px; 
+
+}
+
+.logo, .username
+{
+    -fx-font-size: 24px;
+    -fx-text-fill: #8768F2;
+}
+
+.toolbarButton
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-effect: none;
+}
+
+.toolbarDeleteButton:hover
+{
+    /*-fx-background-color: #a30d11;*/
+}
+
+.frontPageToolbar
+{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+
+}
+
+.noticeMessage
+{
+    -fx-text-fill: #8668f2a9;
+    -fx-font-size: 20px;
+
+}
+
+/* Buttons(Tabs) in the dashboard on the left for the different*/
+.menuButton
+{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-effect: none;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #808080;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
+}
+
+/* Colors of the buttons(Tabs) in the dashboard on the left when the mouse hoves(go over) it*/
+.menuButton:hover
+{
+    -fx-background-color: #F7F6FE;
+    -fx-cursor: hand;
+}
+
+/* Action buttons are the buttons like AddImage that needs to be purple*/
+.actionButton, .currentMenuButton
+{
+    -fx-text-fill: white;
+    -fx-background-color: #8768F2;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px 10px 5px 10px
+}
+
+.currentMenuButton .icon 
+{
+    -fx-fill: white;
+}
+
+.menuButton.icon
+{
+    -fx-translate-x: -20;
+}
+
+.currentMenuButton
+{
+    -fx-pref-width: 150px;
+    -fx-pref-height: 50px;
+}
+
+.currentMenuButton:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #8768F2;
+}
+
+.usernameContainer
+{
+    -fx-pref-width: -1;
+    -fx-pref-height: -1;
+}
+
+.cancelButton
+{
+    -fx-text-fill: white;
+    -fx-background-color: #a30d11;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px 10px 5px 10px
+}
+
+
+.text-field {
+    -fx-background-color: #F7F6FE;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-text-fill: #808080;
+}
+
+.text-field-white
+{
+    -fx-background-color: #F7F6FE;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: #808080;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-inner-border: transparent;
+    -fx-border-color: transparent;
+    -fx-background-color: white;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-area
+{
+    -fx-background-color: #F7F6FE;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-text-fill: #808080;
+}
+
+/* Pop Up Style */
+.popUpTitle
+{
+    -fx-text-fill: #8768F2;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.popUpWindow
+{
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-border-color:#d8d8d8;
+}
+
+.errorMessage
+{
+    -fx-text-fill: #e8363c;
+}
+
+/* CHOICE BOX STYLE */
+.choice-box {
+    -fx-background-color: white; 
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #808080;
+    -fx-border-width: 1px;
+}
+
+.choice-box .menu-item{
+    -fx-background-color: white;
+}
+
+.choice-box .menu-item:hover {
+    -fx-background-color: #F7F6FE; 
+}
+
+/* COMBO BOX STYLE */
+.combo-box {
+    -fx-background-color: white; 
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #808080;
+    -fx-border-width: 1px;
+}
+
+.combo-box .menu-item{
+    -fx-background-color: white;
+}
+
+.combo-box .menu-item:hover {
+    -fx-background-color: #F7F6FE; 
+}
+
+/* TABLE VIEW STYLE */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.table-view .column-header-background, .table-view .filler {
+    -fx-background-color: white;
+    /* HOW DO I REMOVE THE EXTRA FILLER COLUMN */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #8768F2;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 5px 0 5px 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-view .table-cell {
+    -fx-background-insets: 10, 0, 0, 0;
+    -fx-padding: 20px 0 10px 0;
+    -fx-border-color: transparent;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: white;
+}
+
+.table-row-cell:even{
+    -fx-background-color: #F7F6FE;
+}
+
+/* TAB STYLE */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+    -fx-background-color: white;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 90px;
+}
+
+.tab {
+    -fx-background-insets: 0 1 0 1, 0, 0;
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: #F7F6FE;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #8768F2;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #808080;
+    -fx-font-size: 12px;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+/* Asset Type */
+.icon-pencil {
+    -icon-paint:  #8768F2;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "m11.52 14.929l5.917-5.917a8.232 8.232 0 0 1-2.661-1.787a8.232 8.232 0 0 1-1.788-2.662L7.07 10.48c-.462.462-.693.692-.891.947a5.24 5.24 0 0 0-.599.969c-.139.291-.242.601-.449 1.22l-1.088 3.267a.848.848 0 0 0 1.073 1.073l3.266-1.088c.62-.207.93-.31 1.221-.45a5.19 5.19 0 0 0 .969-.598c.255-.199.485-.43.947-.891Zm7.559-7.559a3.146 3.146 0 0 0-4.45-4.449l-.71.71l.031.09c.26.749.751 1.732 1.674 2.655A7.003 7.003 0 0 0 18.37 8.08l.71-.71Z";
+}
+
+.icon-pencil:hover {
+    -icon-paint: black;
+}
+
+.icon-asset {
+    -icon-paint:  #808080;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "m14.56 4l2.67 8H6.78l2.66-8h5.12M16 2H8L4 14h16L16 2m-5 13h2v5h5v2H6v-2h5v-5Z";
+}
+
+.icon-asset:hover {
+    -icon-paint: black;
+}
+
+
+.icon-trash {
+    -icon-paint:  #A30D11;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24ZM100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0Zm48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0Z";
+}
+
+.icon-trash:hover {
+    -icon-paint: black;
+}
+
+.tab-pane-2 {
+    -fx-tab-max-height: 0 ;
+} 
+.tab-pane-2 .tab-header-area-2 {
+    visibility: hidden ;
+}
+
+.icon-image {
+    -icon-paint: #4488D8;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-5.04 9.29l-2.75 3.54l-1.96-2.36L6.5 17h11l-3.54-4.71Z";
+}
+
+.icon-image:hover {
+    -icon-paint: black;
+}
+
+.icon-notes {
+    -icon-paint: #CD6200;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "m16.394 2.021l.066.018c1.1.295 1.971.528 2.656.776c.701.253 1.273.542 1.744.983a4.75 4.75 0 0 1 1.378 2.389c.147.628.112 1.268-.02 2.001c-.127.718-.36 1.589-.655 2.688l-.536 1.999c-.294 1.099-.528 1.97-.775 2.655c-.254.701-.543 1.273-.984 1.744a4.75 4.75 0 0 1-2.302 1.358a4.75 4.75 0 0 1-1.106 1.567c-.471.441-1.043.73-1.744.984c-.685.248-1.556.481-2.655.776l-.067.018c-1.1.294-1.97.527-2.688.656c-.733.131-1.373.166-2.002.02a4.75 4.75 0 0 1-2.388-1.38c-.44-.47-.73-1.042-.984-1.743c-.247-.685-.48-1.556-.775-2.656l-.536-1.998c-.294-1.1-.528-1.97-.656-2.688c-.131-.733-.166-1.373-.02-2.002a4.75 4.75 0 0 1 1.38-2.388c.47-.44 1.042-.73 1.743-.984c.685-.247 1.556-.48 2.655-.775l.034-.01l.751-.2c.392-1.399.736-2.388 1.408-3.105a4.75 4.75 0 0 1 2.388-1.379c.629-.146 1.268-.111 2.002.02c.717.128 1.588.362 2.688.656ZM7.455 7.503c-1.093.293-1.876.505-2.478.722c-.61.22-.967.424-1.227.668a3.25 3.25 0 0 0-.944 1.634c-.08.348-.079.76.036 1.397c.115.647.332 1.457.637 2.597l.518 1.932c.305 1.14.523 1.95.746 2.567c.22.61.424.968.668 1.228a3.25 3.25 0 0 0 1.634.944c.347.08.76.078 1.397-.036c.647-.115 1.457-.332 2.597-.637c1.14-.306 1.95-.523 2.568-.747c.609-.22.967-.424 1.227-.667c.138-.13.263-.27.376-.419a10.077 10.077 0 0 1-.554-.095c-.672-.134-1.48-.35-2.475-.617l-.058-.015c-1.099-.295-1.97-.528-2.655-.776c-.701-.253-1.273-.542-1.744-.983a4.75 4.75 0 0 1-1.379-2.389c-.146-.628-.111-1.268.02-2.002c.128-.717.362-1.588.656-2.687l.434-1.62Zm5.987-4.661c-.638-.115-1.05-.117-1.397-.036a3.25 3.25 0 0 0-1.634.944c-.436.465-.705 1.185-1.171 2.893c-.076.278-.156.577-.243.902l-.518 1.932c-.305 1.14-.522 1.95-.637 2.597c-.115.637-.117 1.05-.036 1.397a3.25 3.25 0 0 0 .944 1.634c.26.244.618.447 1.227.668c.618.223 1.428.44 2.568.746c1.025.275 1.785.478 2.403.6c.615.123 1.033.153 1.375.111c.075-.01.146-.022.216-.038a3.25 3.25 0 0 0 1.634-.944c.244-.26.448-.618.668-1.227c.223-.618.44-1.428.746-2.568l.518-1.932c.305-1.14.522-1.95.637-2.597c.114-.637.117-1.05.036-1.397a3.25 3.25 0 0 0-.944-1.634c-.26-.244-.618-.447-1.227-.668c-.619-.223-1.428-.44-2.568-.746c-1.14-.305-1.95-.522-2.597-.637Zm-2.39 6.964a.75.75 0 0 1 .919-.53l4.83 1.294a.75.75 0 0 1-.389 1.448l-4.83-1.294a.75.75 0 0 1-.53-.918Zm-.777 2.898a.75.75 0 0 1 .92-.53l2.897.776a.75.75 0 0 1-.388 1.449l-2.898-.777a.75.75 0 0 1-.53-.918Z"
+}
+
+.icon-notes:hover {
+    -icon-paint: black;
+}
+
+.icon-edit {
+    -icon-paint: #624DE3;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "m7 17.013l4.413-.015l9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583l-1.597 1.582l-1.586-1.585l1.594-1.58zM9 13.417l6.03-5.973l1.586 1.586l-6.029 5.971L9 15.006v-1.589zM5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01c-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"
+}
+
+.icon-edit:hover {
+    -icon-paint: black;
+}
+
+.icon-maintenancehistory {
+    -icon-paint: #624DE3;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "M7 5h14v2H7V5m0 8v-2h14v2H7M4 4.5A1.5 1.5 0 0 1 5.5 6A1.5 1.5 0 0 1 4 7.5A1.5 1.5 0 0 1 2.5 6A1.5 1.5 0 0 1 4 4.5m0 6A1.5 1.5 0 0 1 5.5 12A1.5 1.5 0 0 1 4 13.5A1.5 1.5 0 0 1 2.5 12A1.5 1.5 0 0 1 4 10.5M7 19v-2h14v2H7m-3-2.5A1.5 1.5 0 0 1 5.5 18A1.5 1.5 0 0 1 4 19.5A1.5 1.5 0 0 1 2.5 18A1.5 1.5 0 0 1 4 16.5Z"
+}
+
+.icon-maintenancehistory:hover {
+    -icon-paint: black;
+}
+
+.icon-phone
+{
+    -icon-paint: #624DE3;
+    -fx-background-color: -icon-paint;
+    -size: 15;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-shape: "m16.556 12.906l-.455.453s-1.083 1.076-4.038-1.862s-1.872-4.014-1.872-4.014l.286-.286c.707-.702.774-1.83.157-2.654L9.374 2.86C8.61 1.84 7.135 1.705 6.26 2.575l-1.57 1.56c-.433.432-.723.99-.688 1.61c.09 1.587.808 5 4.812 8.982c4.247 4.222 8.232 4.39 9.861 4.238c.516-.048.964-.31 1.325-.67l1.42-1.412c.96-.953.69-2.588-.538-3.255l-1.91-1.039c-.806-.437-1.787-.309-2.417.317"
+}
+
+.icon-email
+{
+    -icon-paint: #624DE3;
+    -fx-background-color: -icon-paint;
+    -fx-min-height: 10;
+    -fx-min-width: 15;
+    -fx-max-height: 10;
+    -fx-max-width: 15;
+
+    -fx-shape: "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25a.85.85 0 1 1 .9-1.44L12 11l6.7-4.19a.85.85 0 1 1 .9 1.44z"
+}
+
+.tooltip {
+    -fx-background: white;
+    -fx-text-fill: #8768F2;
+    -fx-background-color: white;
+    -fx-background-radius: 6px;
+    -fx-background-insets: 0;
+    -fx-padding: 0.667em 0.75em 0.667em 0.75em; /* 10px */
+    -fx-font-size: 0.85em;
+}
+
+#fieldBg {
+    -fx-fill: #F7F6FE;
+    -fx-stroke: #F7F6FE;
+    -fx-stroke-width: 2;
+    -fx-arc-width: 50;
+    -fx-arc-height: 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(163,121,195,0.8), 2, 0, 0, 2);
+}
+
+.fieldBg {
+    -fx-fill: #F7F6FE;
+    -fx-stroke: #F7F6FE;
+    -fx-stroke-width: 2;
+    -fx-arc-width: 50;
+    -fx-arc-height: 50;
+    -fx-effect: dropshadow(three-pass-box, rgba(163,121,195,0.8), 2, 0, 0, 2);
+}
+
+.fieldBgDelete{
+    -fx-fill: #F7F6FE;
+    -fx-stroke: #F7F6FE;
+    -fx-stroke-width: 2;
+    -fx-arc-width: 40;
+    -fx-arc-height: 40;
+}
+
+/* DATE PICKER CSS*/
+.date-picker {
+    -fx-background-color: white; 
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #808080;
+    -fx-border-width: 1px;
+}
+
+.date-picker .text-field {
+    -fx-background-color: white;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: white;
+}
+
+.date-picker .date-cell:hover {
+    -fx-background-color: #F7F6FE;
+}
+
+.icon-date-picker {
+    -icon-paint:  #8768F2;
+    -fx-background-color: -icon-paint;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+    -size: 25;
+
+    -fx-shape: "M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2zM5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z";
+}
+
+#topPopups {
+    -fx-text-fill: #8768F2;
+    -fx-font-weight: bold;
+}
+
+/*Ticket ADD POP UP BUTTONS*/
+#cancelButton
+{
+    -fx-background-color: #a30d11;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+}
+
+#addTicketButton 
+{
+    -fx-text-fill: white;
+    -fx-background-color: #8768F2;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px 10px 5px 10px
+}
+
+.errorMessage
+{
+    -fx-text-fill: #a30d11;
+}
+/* View Notes */
+.note
+{
+    -fx-background-color: #FEF2E5;
+    -fx-border-width: 0;
+    -fx-effect: none;
+    -fx-background-radius: 10px;
+}
+
+.noteText
+{
+    -fx-text-fill: #CD6200;
+}
+
+/* Radio button */
+
+.radio-button .radio {
+    -fx-border-color: #8768F2;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+}
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 15px;
+}
+
+.radio-button:selected .radio {
+    -fx-mark-color: #8768F2;
+}
+
+/* Bar Chart */
+.bar-chart {
+    -fx-background-color: #FFFFFF;
+}
+
+.bar-chart .axis-label {
+    -fx-text-fill: #808080;
+}
+
+.bar-chart .bar {
+    -fx-bar-fill: #8768F2;
+    -fx-bar-gap: 5px; /* Adjust the gap between bars */
+}
+
+.bar-chart .bar:hover {
+    -fx-bar-fill: #624DE3; /* Change color on hover if desired */
+    -fx-cursor: hand;
+}
+
+.bar-chart .chart-title {
+    -fx-text-fill: #8768F2;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.bar-chart .axis {
+    -fx-tick-label-fill: #808080;
+    -fx-tick-mark-visible: true;
+}
+
+.bar-chart .axis .tick-mark {
+    -fx-stroke: #808080;
+}
+
+.bar-chart .axis .tick-label {
+    -fx-text-fill: #808080;
+}
+
+/* Legend styling */
+.bar-chart .legend {
+    -fx-background-color: transparent;
+}
+
+.bar-chart .legend-item-symbol {
+    -fx-background-radius: 0;
+}
+
+.bar-chart .legend-item-text {
+    -fx-text-fill: #808080;
+}
+
+.bar-chart .legend .label {
+    -fx-font-size: 12px;
+}
+
+/* Tooltip styling for bar chart */
+.bar-chart .chart-bar:hover .chart-bar-clip {
+    -fx-background-color: #F7F6FE;
+}
+
+.bar-chart .chart-bar:hover .chart-bar-fill {
+    -fx-bar-fill: #624DE3;
+}
+
+.assetTextfields {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-text-fill: #808080;
+}
+
+.assetTextfields
+{
+    -fx-background-color: #fefefe;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: #808080;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-inner-border: transparent;
+    -fx-border-color: #9e9797;;
+    -fx-background-color: white;
+
+}
+
+.frontPageText {
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}

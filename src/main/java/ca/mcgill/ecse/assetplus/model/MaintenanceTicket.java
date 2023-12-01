@@ -11,7 +11,6 @@ import java.util.*;
  */
 // line 4 "../../../../../../MaintenanceTicket.ump"
 // line 45 "../../../../../../AssetPlus.ump"
-// line 21 "../../../../../../AssetPlusPersistence.ump"
 public class MaintenanceTicket
 {
 
@@ -688,12 +687,12 @@ public class MaintenanceTicket
     addTicketNote(newNote);
   }
 
-  // line 23 "../../../../../../AssetPlusPersistence.ump"
-   public static  void reinitializeUniqueTickets(List<MaintenanceTicket> tickets){
-    maintenanceticketsById.clear();
-        for (var ticket : tickets) {
-            maintenanceticketsById.put(ticket.getId(), ticket);
-        }
+  // line 28 "AssetPlusPersistence.ump"
+  public static  void reinitializeUniqueId(List<MaintenanceTicket> tickets){
+    maintenanceticketsById = new HashMap<Integer, MaintenanceTicket>();
+    for (MaintenanceTicket t : tickets) {
+      maintenanceticketsById.put(t.getId(), t);
+    }
   }
 
 
@@ -711,4 +710,5 @@ public class MaintenanceTicket
             "  " + "asset = "+(getAsset()!=null?Integer.toHexString(System.identityHashCode(getAsset())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "fixApprover = "+(getFixApprover()!=null?Integer.toHexString(System.identityHashCode(getFixApprover())):"null");
   }
+
 }

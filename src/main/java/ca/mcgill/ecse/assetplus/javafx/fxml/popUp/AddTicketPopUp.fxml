@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<VBox alignment="CENTER" prefHeight="478.0" prefWidth="608.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups.AddTicketPopUpController">
+   <children>
+      <fx:include source="../components/PopUpToolBar.fxml" />
+      <Label alignment="CENTER" layoutY="-10.0" styleClass="popUpTitle" text="%key.TicketMenu_AddTicket" textAlignment="CENTER" VBox.vgrow="ALWAYS" />
+      <HBox prefHeight="386.0" prefWidth="627.0">
+         <children>
+            <VBox>
+               <children>
+                  <VBox>
+                     <children>
+                        <Pane prefHeight="370.0" prefWidth="291.0">
+                           <children>
+                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="19.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                              <Pane />
+                              <Label layoutX="43.0" layoutY="51.0" text="%key.TicketMenu_TicketNumber" />
+                              <TextField fx:id="ticketNumberField" layoutX="143.0" layoutY="48.0" prefHeight="26.0" prefWidth="98.0" />
+                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="124.0" layoutX="19.0" layoutY="176.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                              <Label layoutX="43.0" layoutY="187.0" text="%key.TicketMenu_Description" />
+                              <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="19.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                              <Label layoutX="43.0" layoutY="122.0" text="%key.TicketMenu_Status" />
+                              <TextField fx:id="ticketStatusField" editable="false" layoutX="130.0" layoutY="118.0" prefHeight="26.0" prefWidth="105.0" text="%key.TicketMenu_StatusOpen" />
+                              <Button fx:id="cancelButton" layoutX="100.0" layoutY="345.0" mnemonicParsing="false" onAction="#cancelClicked" prefHeight="31.0" prefWidth="127.0" text="%key.Cancel" />
+                              <Label layoutX="35.0" layoutY="185.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
+                              <TextArea fx:id="descriptionField" layoutX="33.0" layoutY="209.0" prefHeight="77.0" prefWidth="214.0" stylesheets="@../css/style.css" />
+                              <TextField fx:id="ticketStatusField" layoutX="130.0" layoutY="118.0" prefHeight="26.0" prefWidth="91.0" text="%key.TicketMenu_StatusOpen" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="5.0" text="%key.TicketMenu_EnterAdd" textAlignment="CENTER" />
+                              <Label fx:id="addTicketError" alignment="BOTTOM_CENTER" layoutX="-14.0" layoutY="320.0" prefHeight="15.0" prefWidth="615.0" styleClass="errorMessage" text="label" textAlignment="CENTER" textFill="#0a0a0a" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Pane prefHeight="370.0" prefWidth="299.0">
+                     <children>
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="38.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                        <Label layoutX="62.0" layoutY="53.0" text="%key.TicketMenu_AddAssetType" />
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="38.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                        <Label layoutX="62.0" layoutY="123.0" text="%key.TicketMenu_AddAssetNumber" />
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="38.0" layoutY="176.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                        <Label layoutX="62.0" layoutY="181.0" prefHeight="39.0" prefWidth="72.0" style="-fx-wrap-text: true;" text="%key.TicketMenu_AddRaisedDate" textAlignment="CENTER" />
+                        <DatePicker fx:id="raisedDateField" layoutX="143.0" layoutY="186.0" prefHeight="28.0" prefWidth="118.0" />
+                        <Rectangle fx:id="fieldBg" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="38.0" layoutY="248.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                        <Label layoutX="62.0" layoutY="255.0" prefHeight="39.0" prefWidth="91.0" style="-fx-wrap-text: true;" text="%key.TicketMenu_AddRaiser" textAlignment="CENTER" />
+                        <TextField fx:id="raiserField" layoutX="156.0" layoutY="259.0" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: white;" />
+                        <Button fx:id="addTicketButton" layoutX="70.0" layoutY="345.0" mnemonicParsing="false" onAction="#addTicketClicked" prefHeight="31.0" prefWidth="127.0" text="%key.TicketMenu_Create" />
+                        <Label layoutX="56.0" layoutY="180.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
+                        <Label layoutX="54.0" layoutY="254.0" prefHeight="6.0" prefWidth="3.0" text="*" textFill="#e81a1a" />
+                        <ComboBox fx:id="assetNumberField" layoutX="173.0" layoutY="117.0" onAction="#handleAssetNumberSelection" prefWidth="85.0" />
+                        <TextField fx:id="typeField" layoutX="138.0" layoutY="48.0" prefHeight="26.0" prefWidth="98.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

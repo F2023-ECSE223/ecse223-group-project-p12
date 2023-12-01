@@ -32,3 +32,64 @@ class TOMaintenanceNote {
   String description;
   String noteTakerEmail;
 }
+
+class TOUser {
+  depend java.util.*;
+
+  abstract;
+  immutable;
+  String email;
+  String name;
+  String password;
+  String phoneNumber;
+  List<Integer> ticketsRaised;
+}
+
+class TOGuest {
+  depend java.util.*;
+
+  immutable;
+  isA TOUser;
+}
+
+class TOHotelStaff {
+  depend java.util.*;
+
+  abstract;
+  immutable;
+  isA TOUser;
+  List<Integer> ticketFixed;
+}
+
+class TOEmployee {
+  depend java.util.*;
+
+  immutable;
+  isA TOHotelStaff;
+}
+
+class TOManager {
+  depend java.util.*;
+
+  immutable;
+  isA TOHotelStaff;
+  List<Integer> ticketApproved;
+}
+
+class TOSpecificAsset {
+  depend ca.mcgill.ecse.assetplus.model.AssetType;
+
+  immutable
+  int assetNumber;
+  int floorNumber;
+  int roomNumber;
+  Date purchaseDate;
+  TOAssetType assetType;
+}
+
+class TOAssetType {
+  String name;
+  Integer expectedLifeSpan;
+  1 -> * TOSpecificAsset;
+  lazy String imageURL;
+}

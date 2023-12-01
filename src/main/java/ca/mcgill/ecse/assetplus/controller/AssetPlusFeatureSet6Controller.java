@@ -8,6 +8,7 @@ import ca.mcgill.ecse.assetplus.model.Employee;
 import ca.mcgill.ecse.assetplus.model.Guest;
 import ca.mcgill.ecse.assetplus.model.MaintenanceNote;
 import ca.mcgill.ecse.assetplus.model.MaintenanceTicket;
+import ca.mcgill.ecse.assetplus.model.SpecificAsset;
 import ca.mcgill.ecse.assetplus.model.TicketImage;
 import ca.mcgill.ecse.assetplus.model.User;
 import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
@@ -39,6 +40,7 @@ public class AssetPlusFeatureSet6Controller {
       Guest guest = (Guest) userToDelete;
       guest.delete();
     }
+    AssetPlusPersistence.save();
 
   }
 
@@ -57,6 +59,18 @@ public class AssetPlusFeatureSet6Controller {
 
     return tickets;
   }
+
+  /**
+   * <p>Get a maintenance ticket as transfer object</p>
+   * @return a ticket
+   */
+  public static TOMaintenanceTicket getTicket(int id) {
+    if (MaintenanceTicket.hasWithId(id))
+      return convertFromMaintenanceTicket(MaintenanceTicket.getWithId(id));
+    
+    return null;
+  }
+
 
   /**
    * <p>Converts a maintenance ticket object into a TOMaintenanceTicket</p>
@@ -89,7 +103,6 @@ public class AssetPlusFeatureSet6Controller {
       roomNumber = maintenanceTicket.getAsset().getRoomNumber();
     }
 
-    AssetPlusPersistence.save();
     return new TOMaintenanceTicket(
       maintenanceTicket.getId(), 
       maintenanceTicket.getRaisedOnDate(),
@@ -101,7 +114,8 @@ public class AssetPlusFeatureSet6Controller {
       maintenanceTicket.getPriority() != null ? maintenanceTicket.getPriority().toString() : "",
       maintenanceTicket.hasFixApprover(), 
       assetName, expectedLifeSpanInDays, purchaseDate, floorNumber, roomNumber, 
-      convertFromTicketImages(maintenanceTicket.getTicketImages()), allNotes);
+      convertFromTicketImages(maintenanceTicket.getTicketImages()),
+      allNotes);
   }
 
   /**
@@ -135,4 +149,21 @@ public class AssetPlusFeatureSet6Controller {
     return imageURLS;
   }
 
+  public static TOSpecificAsset getSpecificAssetFromTicket(TOMaintenanceTicket ticket) {
+    MaintenanceTicket maintenanceTicket = MaintenanceTicket.getWithId(ticket.getId());
+    if (maintenanceTicket.getAsset() != null) {
+      SpecificAsset asset = maintenanceTicket.getAsset();
+
+      TOAssetType assetType = new TOAssetType(asset.getAssetType().getName(), asset.getAssetType().getExpectedLifeSpan());
+      if (asset.getAssetType().getImage() != null && !asset.getAssetType().getImage().isEmpty())
+        assetType.setImageURL(asset.getAssetType().getImage());
+        
+      TOSpecificAsset toAsset = new TOSpecificAsset(asset.getAssetNumber(), asset.getFloorNumber(), asset.getRoomNumber(), asset.getPurchaseDate(), assetType);
+
+      return toAsset;
+    }
+    
+    return null;
+
+  }
 }

@@ -5,8 +5,8 @@ package ca.mcgill.ecse.assetplus.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 101 "../../../../../../AssetPlus.ump"
-// line 12 "../../../../../../AssetPlusPersistence.ump"
+// line 44 "../../../../../../AssetPlusPersistence.ump"
+// line 81 "../../../../../../AssetPlus.ump"
 public class AssetType
 {
 
@@ -23,6 +23,7 @@ public class AssetType
   //AssetType Attributes
   private String name;
   private int expectedLifeSpan;
+  private String image;
 
   //AssetType Associations
   private AssetPlus assetPlus;
@@ -35,6 +36,7 @@ public class AssetType
   public AssetType(String aName, int aExpectedLifeSpan, AssetPlus aAssetPlus)
   {
     expectedLifeSpan = aExpectedLifeSpan;
+    image = null;
     if (!setName(aName))
     {
       throw new RuntimeException("Cannot create due to duplicate name. See http://manual.umple.org?RE003ViolationofUniqueness.html");
@@ -78,6 +80,14 @@ public class AssetType
     return wasSet;
   }
 
+  public boolean setImage(String aImage)
+  {
+    boolean wasSet = false;
+    image = aImage;
+    wasSet = true;
+    return wasSet;
+  }
+
   public String getName()
   {
     return name;
@@ -96,6 +106,11 @@ public class AssetType
   public int getExpectedLifeSpan()
   {
     return expectedLifeSpan;
+  }
+
+  public String getImage()
+  {
+    return image;
   }
   /* Code from template association_GetOne */
   public AssetPlus getAssetPlus()
@@ -240,12 +255,12 @@ public class AssetType
     }
   }
 
-  // line 14 "../../../../../../AssetPlusPersistence.ump"
-   public static  void reinitializeUniqueTypes(List<AssetType> types){
-    assettypesByName.clear();
-        for (var type : types) {
-            assettypesByName.put(type.getName(), type);
-        }
+  // line 46 "../../../../../../AssetPlusPersistence.ump"
+   public static  void reinitializeUniqueName(List<AssetType> types){
+    assettypesByName = new HashMap<String, AssetType>();
+    for (AssetType t : types) {
+      assettypesByName.put(t.getName(), t);
+    }
   }
 
 
@@ -253,7 +268,8 @@ public class AssetType
   {
     return super.toString() + "["+
             "name" + ":" + getName()+ "," +
-            "expectedLifeSpan" + ":" + getExpectedLifeSpan()+ "]" + System.getProperties().getProperty("line.separator") +
+            "expectedLifeSpan" + ":" + getExpectedLifeSpan()+ "," +
+            "image" + ":" + getImage()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "assetPlus = "+(getAssetPlus()!=null?Integer.toHexString(System.identityHashCode(getAssetPlus())):"null");
   }
 }

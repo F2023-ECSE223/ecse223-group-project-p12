@@ -1,6 +1,9 @@
 package ca.mcgill.ecse.assetplus.application;
 
+import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.model.AssetPlus;
+import javafx.application.Application;
+import ca.mcgill.ecse.assetplus.persistence.AssetPlusPersistence;
 
 public class AssetPlusApplication {
 
@@ -8,12 +11,16 @@ public class AssetPlusApplication {
 
   public static void main(String[] args) {
     // TODO Start the application user interface here
+    getAssetPlus();
+    Application.launch(AssetPlusFXMLView.class, args);
   }
 
+  
   public static AssetPlus getAssetPlus() {
     if (assetPlus == null) {
       // these attributes are default, you should set them later with the setters
-      assetPlus = new AssetPlus();
+      //assetPlus = new AssetPlus();
+      assetPlus = AssetPlusPersistence.load();
     }
     return assetPlus;
   }
