@@ -11,8 +11,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -22,7 +20,6 @@ import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
 import java.util.Locale;
 import java.util.Stack;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.TicketStatusController;
 import javafx.event.EventHandler;
 
 

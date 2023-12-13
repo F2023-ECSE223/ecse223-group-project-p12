@@ -23,8 +23,6 @@ import io.cucumber.java.en.When;
 /**
  * Step definitions for the DeleteMaintenanceNote feature Checks that an existing maintenance note
  * no longer exists in the system when deleted by a manager
- *
- * @author Team P2
  */
 
 public class DeleteMaintenanceNoteStepDefinitions {
@@ -34,7 +32,6 @@ public class DeleteMaintenanceNoteStepDefinitions {
 
   /**
    * Loads the input dataTable, instantiates and adds the given employees
-   *
    * @param dataTable a data table with each employees information (email, password, name, phoneNumber)
    */
   @Given("the following employees exist in the system \\(p2)")
@@ -43,8 +40,7 @@ public class DeleteMaintenanceNoteStepDefinitions {
     // Turns the dataTable into a list of lists (each row becomes a list)
     List<Map<String, Object>> tableList = dataTable.asMaps(String.class, Object.class);
 
-    // Iterates through each list to create the specified employees and add them to the AssetPlus
-    // application.
+    // Iterates through each list to create the specified employees and add them to the AssetPlus application
     for (Map<String, Object> row : tableList) {
       String email = (row.get("email")).toString();
       String password = (row.get("password")).toString();
@@ -60,7 +56,6 @@ public class DeleteMaintenanceNoteStepDefinitions {
 
   /**
    * Loads the input dataTable and updates the manager
-   *
    * @param dataTable a data table with each managers information (email, password)
    */
   @Given("the following manager exists in the system \\(p2)")
@@ -85,7 +80,6 @@ public class DeleteMaintenanceNoteStepDefinitions {
 
   /**
    * Loads the input dataTable, instantiates and adds the given asset types
-   *
    * @param dataTable a data table with each asset type in the system (with its name and expectedLifeSpan)
    */
   @Given("the following asset types exist in the system \\(p2)")
@@ -95,8 +89,7 @@ public class DeleteMaintenanceNoteStepDefinitions {
     // Turns the dataTable into a list of lists (each row becomes a list).
     List<Map<String, Object>> tableList = dataTable.asMaps(String.class, Object.class);
 
-    // Iterates through each list to create the specified asset types and add them to the AssetPlus
-    // application.
+    // Iterates through each list to create the specified asset types and add them to the AssetPlus application
     for (Map<String, Object> row : tableList) {
       String name = (row.get("name")).toString();
       int expectedLifeSpan = Integer.parseInt((row.get("expectedLifeSpan")).toString());
@@ -110,7 +103,6 @@ public class DeleteMaintenanceNoteStepDefinitions {
 
   /**
    * Loads the input dataTable, instantiates and adds the given assets
-   *
    * @param dataTable a data table with each asset (and its corresponding specific information)
    */
   @Given("the following assets exist in the system \\(p2)")
@@ -120,8 +112,7 @@ public class DeleteMaintenanceNoteStepDefinitions {
     // Turns the dataTable into a list of lists (each row becomes a list).
     List<Map<String, Object>> tableList = dataTable.asMaps(String.class, Object.class);
 
-    // Iterates through each list to create the specified asset and add them to the AssetPlus
-    // application.
+    // Iterates through each list to create the specified asset and add them to the AssetPlus application
     for (Map<String, Object> row : tableList) {
       int assetNumber = Integer.parseInt(row.get("assetNumber").toString());
       String assetTypeName = (row.get("type")).toString();
@@ -140,7 +131,6 @@ public class DeleteMaintenanceNoteStepDefinitions {
 
   /**
    * Loads the input dataTable, instantiates and adds the given maintenance tickets
-   *
    * @param dataTable a data table for each ticket in the system (and its corresponding specific information)
    */
   @Given("the following tickets exist in the system \\(p2)")
@@ -174,7 +164,6 @@ public class DeleteMaintenanceNoteStepDefinitions {
 
   /**
    * Loads the input dataTable, instantiates and adds the given maintenance ticket notes
-   *
    * @param dataTable a data table for each note in the system (and its corresponding specific information)
    */
   @Given("the following notes exist in the system \\(p2)")
@@ -184,27 +173,23 @@ public class DeleteMaintenanceNoteStepDefinitions {
     // Turns the dataTable into a list of lists (each row becomes a list).
     List<Map<String, Object>> tableList = dataTable.asMaps(String.class, Object.class);
 
-    // Iterates through each list to create the specified tickets and add them to the AssetPlus
-    // application.
+    // Iterates through each list to create the specified tickets and add them to the AssetPlus application
     for (Map<String, Object> row : tableList) {
       String noteTaker = (row.get("noteTaker").toString());
       int ticketID = Integer.parseInt(row.get("ticketId").toString());
       Date addedOnDate = Date.valueOf(row.get("addedOnDate").toString());
       String description = (row.get("description").toString());
 
-      // Instantiate and add the specified maintenance ticket notes to the appropriate maintenance
-      // ticket.
+      // Instantiate and add the specified maintenance ticket notes to the appropriate maintenance ticket
       MaintenanceTicket ticket = MaintenanceTicket.getWithId(ticketID);
       HotelStaff staff = (HotelStaff) HotelStaff.getWithEmail(noteTaker); // check this
       MaintenanceNote note = new MaintenanceNote(addedOnDate, description, ticket, staff);
       ticket.addTicketNote(note);
-
     }
   }
 
   /**
    * Deletes the specified maintenance note
-   *
    * @param noteNumberInput the note number
    * @param ticketNumberInput the maintenance ticket
    */
@@ -226,7 +211,6 @@ public class DeleteMaintenanceNoteStepDefinitions {
 
   /**
    * Checks that the number of maintenance notes in the AssetPlus application has updated
-   *
    * @param expectedNumberInput number of notes in the system
    */
   @Then("the number of notes in the system shall be {string} \\(p2)")
@@ -243,7 +227,6 @@ public class DeleteMaintenanceNoteStepDefinitions {
 
   /**
    * Checks that the number of maintenance notes for the specified maintenance ticket has updated
-   *
    * @param ticketNumberInput ticket number
    * @param expectedNumberInput expected number of notes
    */
@@ -261,7 +244,6 @@ public class DeleteMaintenanceNoteStepDefinitions {
 
   /**
    * Checks that the specified maintenance note has been deleted from the AssetPllus application
-   *
    * @param noteNumberInput note number
    * @param ticketNumberInput ticket number
    */

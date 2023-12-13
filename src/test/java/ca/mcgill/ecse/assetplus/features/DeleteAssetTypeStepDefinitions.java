@@ -14,7 +14,6 @@ import io.cucumber.java.en.When;
 
 /**
  * Step definitions for the DeleteAssetType feature, checks that an existing asset type is no longer available in the system when deleted by a manager
- * @author Team P4
  */
 public class DeleteAssetTypeStepDefinitions {
 
@@ -22,15 +21,7 @@ public class DeleteAssetTypeStepDefinitions {
 
   /**
    * Loads asset types from the input dataTable
-   * 
    * @param dataTable
-   * @author Vladimir Venkov (vladimirven001)
-   * @author Laurent Chiricota  (larrycherry13)
-   * @author Samy Sabir (SamySabir)
-   * @author Jessie Kurtz (jkzcodes)
-   * @author Dania Bouhmidi (dania-bh)
-   * @author James Luu (Jamesluu0917)
-   * @author Noah Munro-Kagan (DenzelleJinx)
    */
   private void loadAssetTypes(io.cucumber.datatable.DataTable dataTable) {
 
@@ -45,15 +36,7 @@ public class DeleteAssetTypeStepDefinitions {
 
   /**
    * Loads the input dataTable and creates the given asset types
-   * 
    * @param dataTable
-   * @author Vladimir Venkov (vladimirven001)
-   * @author Laurent Chiricota  (larrycherry13)
-   * @author Samy Sabir (SamySabir)
-   * @author Jessie Kurtz (jkzcodes)
-   * @author Dania Bouhmidi (dania-bh)
-   * @author James Luu (Jamesluu0917)
-   * @author Noah Munro-Kagan (DenzelleJinx)
    */
   @Given("the following asset types exist in the system \\(p4)")
   public void the_following_asset_types_exist_in_the_system_p4(
@@ -63,15 +46,7 @@ public class DeleteAssetTypeStepDefinitions {
 
   /**
    * Calls the deleteAssetType controller method to delete the asset type with the input name
-   * 
    * @param assetType
-   * @author Vladimir Venkov (vladimirven001)
-   * @author Laurent Chiricota  (larrycherry13)
-   * @author Samy Sabir (SamySabir)
-   * @author Jessie Kurtz (jkzcodes)
-   * @author Dania Bouhmidi (dania-bh)
-   * @author James Luu (Jamesluu0917)
-   * @author Noah Munro-Kagan (DenzelleJinx)
    */
   @When("the manager attempts to delete an asset type in the system with name {string} \\(p4)")
   public void the_manager_attempts_to_delete_an_asset_type_in_the_system_with_name_p4(
@@ -81,15 +56,7 @@ public class DeleteAssetTypeStepDefinitions {
 
   /**
    * Checks that the number of asset types in the system is equal to the expected input number
-   * 
    * @param expectedNumberOfAssetTypes
-   * @author Vladimir Venkov (vladimirven001)
-   * @author Laurent Chiricota  (larrycherry13)
-   * @author Samy Sabir (SamySabir)
-   * @author Jessie Kurtz (jkzcodes)
-   * @author Dania Bouhmidi (dania-bh)
-   * @author James Luu (Jamesluu0917)
-   * @author Noah Munro-Kagan (DenzelleJinx)
    */
   @Then("the number of asset types in the system shall be {string} \\(p4)")
   public void the_number_of_asset_types_in_the_system_shall_be_p4(
@@ -100,15 +67,7 @@ public class DeleteAssetTypeStepDefinitions {
 
   /**
    * Checks that the input asset types in the input dataTable exist in the system
-   * 
    * @param dataTable
-   * @author Vladimir Venkov (vladimirven001)
-   * @author Laurent Chiricota  (larrycherry13)
-   * @author Samy Sabir (SamySabir)
-   * @author Jessie Kurtz (jkzcodes)
-   * @author Dania Bouhmidi (dania-bh)
-   * @author James Luu (Jamesluu0917)
-   * @author Noah Munro-Kagan (DenzelleJinx)
    */
   @Then("the following asset types shall exist in the system \\(p4)")
   public void the_following_asset_types_shall_exist_in_the_system_p4(

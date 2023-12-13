@@ -26,13 +26,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to create and add employees to the AssetPlus application.
-   *
-   * @author Mohamed Abdelrahman
-   * @author Anders Woodruff
-   * @author Philippe Aprahamian
-   * @author David Marji
-   * @author Ming Xuan Yue
-   * @author Manuel Hanna
    * @param dataTable Cucumber DataTable containing the email, password, name and phoneNumber of the employees that must exist in the system. 
    */
   @Given("the following employees exist in the system \\(p15)")
@@ -47,10 +40,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to create and add a manager to the AssetPlus application.
-   * 
-   * @author Manuel Hanna
-   * @author Philippe Aprahamian
-   * @author Ming Xuan Yue
    * @param dataTable Cucumber DataTable containing the email and password of the manager that must exist in the system. 
    */
   @Given("the following manager exists in the system \\(p15)")
@@ -64,10 +53,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to create and add asset types to the AssetPlus application.
-   *
-   * @author Anders Woodruff
-   * @author Philippe Aprahamian
-   * @author Ming Xuan Yue
    * @param dataTable Cucumber DataTable containing the name and expectedLifespan of the asset types that must exist in the system. 
    */
   @Given("the following asset types exist in the system \\(p15)")
@@ -81,9 +66,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to create and add assets to the AssetPlus application.
-   * @author Ming Xuan Yue
-   * @author David Marji
-   * @author Philippe Aprahamian
    * @param dataTable Cucumber DataTable containing the assetNumber, type, purchaseDate, floorNumber and roomNumber of the assets that must exist in the system
    */
   @Given("the following assets exist in the system \\(p15)")
@@ -102,9 +84,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to create and add tickets to the AssetPlus application.
-   * @author Ming Xuan Yue
-   * @author Philippe Aprahamian
-   * @author Mohamed Abdelrahman
    * @param dataTable Cucumber DataTable containing the id, ticketRaiser, addedOnDate and description of the tickets that must exist in the system.
    */
   @Given("the following tickets exist in the system \\(p15)")
@@ -128,8 +107,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to create and add ticket notes to the AssetPlus application.
-   * @author Ming Xuan Yue
-   * @author Philippe Aprahamian
    * @param dataTable Cucumber DataTable containing the noteTaker, ticketId, addedOnDate and description of the notes that must exist in the system.
    */
   @Given("the following notes exist in the system \\(p15)")
@@ -149,8 +126,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to create and add ticket images to the AssetPlus application.
-   * @author Philippe Aprahamian
-   * @author Mohamed Abdelrahman
    * @param dataTable Cucumber DataTable containing the imageUrl and ticketId of the ticket images that must exist in the system.
    */
   @Given("the following ticket images exist in the system \\(p15)")
@@ -167,9 +142,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to test controller 6 by getting tickets that exist in the system.
-   * @author David Marji
-   * @author Manuel Hanna
-   * @author Mohamed Abdelrahman
    */
   @When("the manager attempts to view all maintenance tickets in the system \\(p15)")
   public void the_manager_attempts_to_view_all_maintenance_tickets_in_the_system_p15() {
@@ -178,10 +150,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to ensure the information of the tickets obtained by the controller method 6 is the same as the information in the datatable.
-   * @author David Marji
-   * @author Philippe Aprahamian
-   * @author Mohamed Abdelrahman
-   * @author Ming Xuan Yue
    * @param dataTable Cucumber DataTable containing the id, ticketRaiser, raisedOnDate, description, assetName, expectedLifeSpan, purchaseDate, floorNumber and roomNumber of the tickets shown.
    * 
    */
@@ -232,11 +200,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to ensure that information of the notes of the ticket obtained by the controller method 6 is the same as the information in the datatable.
-   * @author David Marji
-   * @author Erik Cupsa
-   * @author Philippe Aprahamian
-   * @author Mohamed Abdelrahman
-   * @author Ming Xuan Yue
    * @param string the ticketId of a specific ticket in the system.
    * @param dataTable Cucumber DataTable containing the noteTaker, addedOnDate and description of the notes of the ticket with the provided ticketId.
    */
@@ -270,8 +233,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to ensure that the ticket obtained by controller 6 has no notes in the system.
-   * @author Erik Cupsa
-   * @author Philippe Aprahamian
    * @param string the ticketId of a specific ticket in the system.
    */
   @Then("the ticket with id {string} shall have no notes \\(p15)")
@@ -290,8 +251,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to ensure that information of the images of the ticket obtained by the controller method 6 is the same as the information in the datatable.
-   * @author Erik Cupsa
-   * @author Philippe Aprahamian
    * @param string the ticketId of a specific ticket in the system.
    * @param dataTable Cucumber DataTable containing the imageUrl of the ticket images of the ticket with the provided ticketId.
    */
@@ -318,8 +277,6 @@ public class ViewStatusOfMaintenanceTicketsStepDefinitions {
 
   /**
    * Gherkin step definition method to ensure that the ticket obtained by controller 6 has no images in the system.
-   * @author Erik Cupsa
-   * @author Philippe Aprahamian
    * @param string the ticketId of a specific ticket in the system.
    */
   @Then("the ticket with id {string} shall have no images \\(p15)")

@@ -25,7 +25,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   private String error;
 
   /**
-   * @author Tiffany Miller
    * @param dataTable The data table of the employees that must exist in the system.
    */
   @Given("the following employees exist in the system \\(p16)")
@@ -45,7 +44,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param dataTable The data table of the manager that must exist in the system.
    */
   @Given("the following manager exists in the system \\(p16)")
@@ -64,7 +62,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param dataTable The data table of the guests that must exist in the system.
    */
   @Given("the following guests exist in the system \\(p16)")
@@ -84,7 +81,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param dataTable The data table of the asset types that must exist in the system.
    */
   @Given("the following asset types exist in the system \\(p16)")
@@ -102,7 +98,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param dataTable The data table of the assets that must exist in the system.
    */
   @Given("the following assets exist in the system \\(p16)")
@@ -122,7 +117,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param dataTable The data table of the tickets that must exist in the system.
    */
   @Given("the following tickets exist in the system \\(p16)")
@@ -146,7 +140,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param email The email of the user that wants to add a maintenance ticket.
    * @param idString The new maintenance ticket id.
    * @param dateString The new maintenance ticket date
@@ -168,7 +161,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param email The email of the user that wants to add a maintenance ticket.
    * @param idString The new maintenance ticket id.
    * @param dateString The new maintenance ticket date
@@ -188,7 +180,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param idString The id of the maintenance ticket the manager wants to update.
    * @param email Updated maintenance ticket raiser.
    * @param dateString Updated maintenance ticket date.
@@ -208,7 +199,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param idString The id of the maintenance ticket the manager wants to update.
    * @param email Updated maintenance ticket raiser.
    * @param dateString Updated maintenance ticket date.
@@ -229,7 +219,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param expectedNumTicketsString The number of maintenance tickets that is expected in the
    *        system.
    */
@@ -242,7 +231,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param dataTable Data table of maintenance tickets that is expected in the system.
    */
   @Then("the following tickets shall exist in the system \\(p16)")
@@ -284,7 +272,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param email The email of the person who raised the ticket.
    * @param idString The id of the new maintenance ticket raised.
    * @param dateString The date of the new maintenance ticket raised.
@@ -307,7 +294,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param email The email of the person who raised the ticket.
    * @param idString The id of the new maintenance ticket raised.
    * @param dateString The date of the new maintenance ticket raised.
@@ -333,7 +319,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param string The error string that should be raised.
    */
   @Then("the system shall raise the error {string} \\(p16)")
@@ -342,7 +327,6 @@ public class AddAndUpdateMaintenanceTicketStepDefinitions {
   }
 
   /**
-   * @author Tiffany Miller
    * @param result The error result after calling controller method.
    */
   private void callController(String result) {

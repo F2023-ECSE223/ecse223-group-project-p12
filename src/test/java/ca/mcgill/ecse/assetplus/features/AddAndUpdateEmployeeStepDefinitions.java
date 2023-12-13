@@ -22,7 +22,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
 
 
   /**
-   * @author Jatin Patel and Anastasiia Nemyrovska
    */
   @Given("the following employees exist in the system \\(p11)")
   public void the_following_employees_exist_in_the_system_p11(
@@ -39,7 +38,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /**
-   * @author Jatin Patel and Anastasiia Nemyrovska
    */
   @Given("the following manager exists in the system \\(p11)")
   public void the_following_manager_exists_in_the_system_p11(
@@ -56,7 +54,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /**
-   * @author Jatin Patel and Anastasiia Nemyrovska
    */
   @When("a new employee attempts to register with {string}, {string}, {string}, and {string} \\(p11)")
   public void a_new_employee_attempts_to_register_with_and_p11(String email, String password,
@@ -66,7 +63,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /**
-   * @author Pei Yan Geng, Dmytro Martyniuk and Laurence Perreault
    */
   @When("the employee with {string} attempts to update their account information to {string}, {string}, and {string} \\(p11)")
   public void the_employee_with_attempts_to_update_their_account_information_to_and_p11(
@@ -75,7 +71,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /**
-   * @author Pei Yan Geng, Dmytro Martyniuk and Laurence Perreault
    */
   @Then("the following {string} shall be raised \\(p11)")
   public void the_following_shall_be_raised_p11(String errorString) {
@@ -83,7 +78,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /**
-   * @author Pei Yan Geng, Dmytro Martyniuk and Laurence Perreault
    */
   @Then("the number of employees in the system shall be {string} \\(p11)")
   public void the_number_of_employees_in_the_system_shall_be_p11(String expectedNumberOfEmployees) {
@@ -94,7 +88,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /**
-   * @author Marc-Antoine Nadeau & Behrad Rezaie
    */
   @Then("a new employee account shall exist with {string}, {string}, {string}, and {string} \\(p11)")
   public void a_new_employee_account_shall_exist_with_and_p11(String email, String password,
@@ -111,7 +104,6 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /**
-   * @author Marc-Antoine Nadeau & Behrad Rezaie
    */
   @Then("their employee account information will be updated and is now {string}, {string}, {string}, and {string} \\(p11)")
   public void their_employee_account_information_will_be_updated_and_is_now_and_p11(String email,
@@ -125,17 +117,11 @@ public class AddAndUpdateEmployeeStepDefinitions {
   }
 
   /**
-   * @author Marc-Antoine Nadeau & Behrad Rezaie
    */
   @Then("the following employees shall exist in the system \\(p11)")
   public void the_following_employees_shall_exist_in_the_system_p11(
       io.cucumber.datatable.DataTable dataTable) {
     List<Map<String, String>> employeeData = dataTable.asMaps();
-    // dataTable should be converted to this format:
-    // [
-    // { "email"="jeff@ap.com", "password"="pass1", "name"="Jeff", "phoneNumber"="(555)555-5555" },
-    // { "email"="john@ap.com", "password"="pass2", "name"="John", "phoneNumber"="(444)444-4444" }
-    // ]
     for (Map<String, String> data : employeeData) {
       // Get info from each sub-directory
       String email = data.get("email");

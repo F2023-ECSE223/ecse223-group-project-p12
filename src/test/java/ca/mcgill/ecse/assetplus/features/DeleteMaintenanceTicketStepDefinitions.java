@@ -20,8 +20,6 @@ public class DeleteMaintenanceTicketStepDefinitions {
 
   /**
    * Adding employees given in the first @Given clause in Gherkin feature file.
-   *
-   * @author Isbat-ul Islam
    * @param employees DataTable containing info on the employees we wish to test on
    */
   @Given("the following employees exist in the system \\(p7)")
@@ -39,8 +37,6 @@ public class DeleteMaintenanceTicketStepDefinitions {
 
   /**
    * Adding Manager from the feature file.
-   *
-   * @author Isbat-ul Islam
    * @param manager DataTable containing info on the Manager we wish to test on
    */
   @Given("the following manager exists in the system \\(p7)")
@@ -60,8 +56,6 @@ public class DeleteMaintenanceTicketStepDefinitions {
 
   /**
    * Adds asset types specified in the Gherkin Feature file.
-   *
-   * @author Isbat-ul Islam
    * @param assetTypes DataTable containing info on the AssetTypes we wish to test on
    */
   @Given("the following asset types exist in the system \\(p7)")
@@ -78,8 +72,6 @@ public class DeleteMaintenanceTicketStepDefinitions {
 
   /**
    * Adds specific assets defined in Gherkin feature file.
-   *
-   * @author Isbat-ul Islam
    * @param specificAssets DataTable containing info on the SpecificAssets we wish to test on
    */
   @Given("the following assets exist in the system \\(p7)")
@@ -99,8 +91,6 @@ public class DeleteMaintenanceTicketStepDefinitions {
 
   /**
    * Add specified Tickets defined in feature file.
-   *
-   * @author Isbat-ul Islam
    * @param maintenanceTickets DataTable containing info on the MaintenanceTickets we wish to test
    *        on
    */
@@ -121,8 +111,6 @@ public class DeleteMaintenanceTicketStepDefinitions {
 
   /**
    * Delete ticket with ticketID "string".
-   *
-   * @author Neil Joe George
    * @param ticketId The ID of the ticket we are trying to delete
    */
   @When("the manager attempts to delete the maintenance ticket with id {string} \\(p7)")
@@ -133,9 +121,6 @@ public class DeleteMaintenanceTicketStepDefinitions {
 
   /**
    * Check if the maintenance tickets saved in the system are correct
-   *
-   * @author Mathieu Pestel
-   * @author Neil Joe George
    * @param maintenanceTickets DataTable containing info on the expected MaintenanceTickets in the
    *        system
    */
@@ -159,8 +144,6 @@ public class DeleteMaintenanceTicketStepDefinitions {
 
   /**
    * Check if the number of maintenance tickets in the system is correct
-   *
-   * @author Mathieu Pestel
    * @param numTickets The amount of tickets we expect to be in the system.
    */
   @Then("the number of maintenance tickets in the system shall be {string} \\(p7)")

@@ -19,7 +19,6 @@ public class AddAndUpdateGuestStepDefinitions {
   private String error;
 
   /**
-   * @author Eric Zhu
    */
   @Given("the following guests exist in the system \\(p10)")
   public void the_following_guests_exist_in_the_system_p10(
@@ -39,7 +38,6 @@ public class AddAndUpdateGuestStepDefinitions {
 
   /**
    * 
-   * @author Muhammad Hamamd
    */
   @Given("the following manager exists in the system \\(p10)")
   public void the_following_manager_exists_in_the_system_p10(
@@ -58,7 +56,6 @@ public class AddAndUpdateGuestStepDefinitions {
   }
 
   /**
-   * @author Qasim Li
    */
   @When("a new guest attempts to register with {string}, {string}, {string}, and {string} \\(p10)")
   public void a_new_guest_attempts_to_register_with_and_p10(String email, String password,
@@ -69,7 +66,6 @@ public class AddAndUpdateGuestStepDefinitions {
   }
 
   /**
-   * @author Steve Chen
    */
   @When("the guest with {string} attempts to update their account information to {string}, {string}, and {string} \\(p10)")
   public void the_guest_with_attempts_to_update_their_account_information_to_and_p10(String email,
@@ -80,7 +76,6 @@ public class AddAndUpdateGuestStepDefinitions {
   }
 
   /**
-   * @author Eric Zhu
    */
   @Then("the following {string} shall be raised \\(p10)")
   public void the_following_shall_be_raised_p10(String errorString) {
@@ -89,7 +84,6 @@ public class AddAndUpdateGuestStepDefinitions {
   }
 
   /**
-   * @author Qasim Li, Bohan Wang
    */
   @Then("the number of guests in the system shall be {string} \\(p10)")
   public void the_number_of_guests_in_the_system_shall_be_p10(String expectedGuestNumber) {
@@ -102,7 +96,6 @@ public class AddAndUpdateGuestStepDefinitions {
   }
 
   /**
-   * @author Christopher
    */
   @Then("a new guest account shall exist with {string}, {string}, {string}, and {string} \\(p10)")
   public void a_new_guest_account_shall_exist_with_and_p10(String email, String password,
@@ -131,7 +124,6 @@ public class AddAndUpdateGuestStepDefinitions {
   }
 
   /**
-   * @author Connor Tate
    */
   @Then("the following guests shall exist in the system \\(p10)")
   public void the_following_guests_shall_exist_in_the_system_p10(
@@ -148,7 +140,6 @@ public class AddAndUpdateGuestStepDefinitions {
   }
 
   /**
-   * @author Steve Chen
    */
   @Then("their guest account information will be updated and is now {string}, {string}, {string}, and {string} \\(p10)")
   public void their_guest_account_information_will_be_updated_and_is_now_and_p10(String email,
