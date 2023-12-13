@@ -45,7 +45,6 @@ public class AddNotePopUpController {
   
   @FXML
   public void initialize() {
-    System.out.println("In initialize");
     ticketId = -1;
     errorMessage.setText("");
 
@@ -85,7 +84,6 @@ public class AddNotePopUpController {
   }
 
   private void setupPopUp() {
-    System.out.println("In setupPopUp");
     if (isDisapproveNote) {
         setDisapproveReason();
     }
@@ -96,19 +94,16 @@ public class AddNotePopUpController {
 
 
   public void setTicketId(int id) {
-    System.out.println("In setTicketId");
     ticketId = id;
   }
 
   private void setDisapproveReason() {
-    System.out.println("In setDisapproveReason()");
     instructionLabel.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.AddNote_WhyDisapprove"));
     this.authorEmail.setValue("manager@ap.com");
     this.authorEmail.setEditable(false);
   }
 
   public void setDisapproveNote(boolean isDisapproveNote) {
-    System.out.println("IN setDisapproveNote");
     this.isDisapproveNote = isDisapproveNote;
     updatePopUp();
   }

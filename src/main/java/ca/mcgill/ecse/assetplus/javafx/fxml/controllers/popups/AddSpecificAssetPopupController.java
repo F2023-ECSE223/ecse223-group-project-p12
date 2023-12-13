@@ -68,7 +68,6 @@ public class AddSpecificAssetPopupController {
 
     @FXML
     void cancel(ActionEvent event) {
-      System.out.println("is this cancelling?");
       AssetPlusFXMLView.getInstance().closePopUpWindow();
     }
 
@@ -202,7 +201,6 @@ public class AddSpecificAssetPopupController {
           }
         }
         
-      System.out.println("Selected: " + selectedValue);
    } else {
       lifeExpectancyBox.setVisible(false);
    }

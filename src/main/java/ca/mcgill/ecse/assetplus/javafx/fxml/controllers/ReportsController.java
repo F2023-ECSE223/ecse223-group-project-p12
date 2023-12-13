@@ -205,7 +205,6 @@ public class ReportsController {
     void oneLastYearBtn(ActionEvent event) {
         assetTypeIssues.getData().clear();
         fixChart(3);
-         System.out.println("1 year");
          fixColors();
     }
 

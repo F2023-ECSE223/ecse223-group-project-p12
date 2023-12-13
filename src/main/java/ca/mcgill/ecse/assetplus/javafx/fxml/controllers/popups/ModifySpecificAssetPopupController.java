@@ -154,11 +154,8 @@ public class ModifySpecificAssetPopupController {
         number = asset.getAssetNumber();   
       }
 
-      System.out.println(hasErrorFloor + " and " + hasErrorRoom);
       if (!hasErrorFloor && !hasErrorRoom){
-        System.out.println("is this reached");
-        String result = AssetPlusFeatureSet3Controller.updateSpecificAsset(number, floor, room, java.sql.Date.valueOf(dateChoice.getValue()), type);
-        System.out.println(result);
+        AssetPlusFeatureSet3Controller.updateSpecificAsset(number, floor, room, java.sql.Date.valueOf(dateChoice.getValue()), type);
         ViewUtils.callController("");
         AssetPlusFXMLView.getInstance().closePopUpWindow();
       }
@@ -204,8 +201,6 @@ public class ModifySpecificAssetPopupController {
             lifeExpectancy.setText(type.getExpectedLifeSpan()+"");
           }
         }
-        
-      System.out.println("Selected: " + selectedValue);
     } else {
         lifeExpectancyBox.setVisible(false);
     }

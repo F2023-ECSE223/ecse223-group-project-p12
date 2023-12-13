@@ -183,13 +183,11 @@ public class AssetTypesController {
     }
 
     private void pencilBtnClicked(String name, int lifeExp, String url){
-        System.out.println("Updating with name: " + name);
         ModifyAssetTypePopUpController controller = (ModifyAssetTypePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssetTypeModifyPopUp.fxml", "Modify Asset Type");
         controller.setAssetTypeInfo(name, lifeExp, url);
     }
 
     private void trashBtnClicked(String name, int lifeExp, String url){
-      System.out.println("Deleting with name: " + name);
       DeleteAssetTypePopUpController controller = (DeleteAssetTypePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AssetTypeDeletePopUp.fxml", "Delete Asset Type");
       controller.setAssetTypeInfo(name, lifeExp, url);
     }

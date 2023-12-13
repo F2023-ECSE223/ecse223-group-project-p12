@@ -47,7 +47,6 @@ public class DeleteTicketPopUpController {
         AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(ticket.getId());
         ViewUtils.callController("");
         ticketNumberField.setText("");
-        System.out.println("Ticket deleted");
         AssetPlusFXMLView.getInstance().closePopUpWindow();    
     }
 

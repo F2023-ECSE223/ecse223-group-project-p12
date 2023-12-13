@@ -112,7 +112,6 @@ public class FrontPageController {
 
       @FXML
     void logIn(ActionEvent event) {
-      System.out.println("does this happen?");
       AssetPlusFXMLView.getInstance().changeTab("pages/TicketStatus.fxml");
     }
 

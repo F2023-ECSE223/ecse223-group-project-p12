@@ -29,12 +29,9 @@ public class StartAndCompleteWorkController {
 
     @FXML
     void handleYes(ActionEvent event) {
-        System.out.println("IT GOES HERE RIGHT?");
         if (this.title.getText().equals(resources.getString("key.TicketStatus_StartWork"))) {
-            System.out.println("DID IT GO HERE?");
             ViewUtils.startWork(ticketId);
         } else if (this.title.getText().equals(resources.getString("key.TicketStatus_CompleteWork"))) {
-            System.out.println("OR HERE");
             ViewUtils.completeWork(ticketId);
         }
         ViewUtils.callController("");

@@ -169,7 +169,6 @@ public class ViewUtils {
 
   public static void deleteTicketsWithIds(List<Integer> ticketIds) {
     for (int id: ticketIds) {
-      System.out.println("IT GOES HERE TOO");
       AssetPlusFeatureSet4Controller.deleteMaintenanceTicket(id);
     }
   }

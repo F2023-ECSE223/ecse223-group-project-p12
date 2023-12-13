@@ -254,7 +254,6 @@ public class AssetPlusFXMLView extends Application {
   }
 
   public void fireEvent(Event event) {
-    System.out.println("Tell me this works");
     stage.fireEvent(event);
   }
 }

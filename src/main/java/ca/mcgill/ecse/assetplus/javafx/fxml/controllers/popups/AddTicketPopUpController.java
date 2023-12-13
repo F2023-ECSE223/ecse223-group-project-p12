@@ -95,7 +95,6 @@ public class AddTicketPopUpController {
         }
         if (description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null || raisedDate == null){
                 addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage1"));
-                System.out.println("Ticket not added");
         }
         else{
             int ticketNumber = 0;
@@ -112,12 +111,10 @@ public class AddTicketPopUpController {
                 typeField.setText(null);
                 raisedDateField.setValue(null);
                 addTicketError.setText(null);
-                System.out.println("Ticket added");
                 AssetPlusFXMLView.getInstance().closePopUpWindow();    
             }
             else{
                 addTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage2"));
-                System.out.println("Ticket not added");
             }  
 
         }

@@ -88,14 +88,12 @@ public class EmployeesController {
 
     @FXML
     void AddEmployee(ActionEvent event) {
-        System.out.println("add");
         AddEmployeePopUpController controller = (AddEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddEmployeePopUp.fxml", "Add Employee");
 
     }
 
     @FXML
     void modifyEmployeePopup(ActionEvent event, String aEmail) {
-        System.out.println("modify");
         email = aEmail;
         ModifyEmployeePopUpController controller = (ModifyEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifyEmployeePopUp.fxml", "Modify Employee");
         
@@ -103,7 +101,6 @@ public class EmployeesController {
 
     @FXML
     void deleteEmployeePopup(ActionEvent event, String aEmail) {
-        System.out.println("delete");
         email = aEmail;
         DeleteEmployeePopUpController controller = (DeleteEmployeePopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteEmployeePopUp.fxml", "Delete Employee");
         
@@ -111,14 +108,12 @@ public class EmployeesController {
 
     @FXML
     void AddGuest(ActionEvent event) {
-        System.out.println("add");
         AddGuestPopUpController controller = (AddGuestPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/AddGuestPopUp.fxml", "Add Guest");
 
     }
 
     @FXML
     void modifyGuestPopup(ActionEvent event, String aEmail) {
-        System.out.println("modify");
         guestEmail = aEmail;
         ModifyGuestPopUpController controller = (ModifyGuestPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/ModifyGuestPopUp.fxml", "Modify Guest");
         
@@ -126,7 +121,6 @@ public class EmployeesController {
 
     @FXML
     void deleteGuestPopup(ActionEvent event, String aEmail) {
-        System.out.println("delete");
         guestEmail = aEmail;
         DeleteGuestPopUpController controller = (DeleteGuestPopUpController) AssetPlusFXMLView.getInstance().loadPopupWindow("popUp/DeleteGuestPopUp.fxml", "Delete GUest");
         

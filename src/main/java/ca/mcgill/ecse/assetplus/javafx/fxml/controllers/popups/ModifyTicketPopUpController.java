@@ -109,7 +109,6 @@ public class ModifyTicketPopUpController {
 
         if (description == null || description.trim().isEmpty() || raiser == null || raiser.trim().isEmpty()|| raisedDate == null || raisedDate == null){
                 updateTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage1"));
-                System.out.println("Ticket not updated");
         }
         else{
             int ticketNumber = Integer.parseInt(ticketNumberString);
@@ -123,12 +122,10 @@ public class ModifyTicketPopUpController {
                 typeField.setText(null);
                 raisedDateField.setValue(null);
                 updateTicketError.setText(null);
-                System.out.println("Ticket updated");
                 AssetPlusFXMLView.getInstance().closePopUpWindow();    
             }
             else{
                 updateTicketError.setText(AssetPlusFXMLView.getInstance().getBundle().getString("key.TicketMenu_ErrorMessage2"));
-                System.out.println("Ticket not updated");
             }  
 
         }
