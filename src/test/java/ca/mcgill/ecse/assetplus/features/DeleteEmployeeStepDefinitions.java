@@ -19,8 +19,6 @@ public class DeleteEmployeeStepDefinitions {
 
   /**
    * This step checks if the following employees exist in the system.
-   * 
-   * @author Kevin Li
    * @param dataTable This is a data table containing all the employees that exists in the system.
    */
   @Given("the following employees exist in the system \\(p1)")
@@ -38,8 +36,6 @@ public class DeleteEmployeeStepDefinitions {
 
   /**
    * This step checks if the following managers exist in the system.
-   * 
-   * @author Mathieu Allaire
    * @param dataTable This is a data table containing all the managers that exists in the system.
    */
   @Given("the following manager exists in the system \\(p1)")
@@ -55,8 +51,6 @@ public class DeleteEmployeeStepDefinitions {
 
   /**
    * This step deletes an employee account linked to a particular email string.
-   * 
-   * @author Luis Jarquin
    * @param employeeEmail This is a string containing the email address linked ot an employee
    *        account.
    */
@@ -69,8 +63,6 @@ public class DeleteEmployeeStepDefinitions {
   /**
    * This step checks that once the employee with email string attempts to delete their own account,
    * their account does not exist in the system.
-   * 
-   * @author Jerome Desrosiers
    * @param employeeEmail This is a string containing the email address that was linked to the now
    *        deleted employee account.
    */
@@ -86,8 +78,6 @@ public class DeleteEmployeeStepDefinitions {
   /**
    * This step checks that after the employee with email string attempts to delete their own
    * account, the manager still exists in the system.
-   * 
-   * @author Yuri Sorice
    * @param managerEmail This is a string containing the email address of the manager.
    */
   @Then("the manager account linked to {string} shall exist in the system \\(p1)")
@@ -100,8 +90,6 @@ public class DeleteEmployeeStepDefinitions {
   /**
    * This step checks that the number of employees in the system is correct after deletion of an
    * employee with email string.
-   * 
-   * @author Tessa Hason
    * @param numOfEmployees This is a string containing the expected number of employees.
    */
   @Then("the number of employees in the system shall be {string} \\(p1)")

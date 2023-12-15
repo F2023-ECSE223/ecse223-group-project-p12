@@ -2,9 +2,7 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.EmployeesController;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

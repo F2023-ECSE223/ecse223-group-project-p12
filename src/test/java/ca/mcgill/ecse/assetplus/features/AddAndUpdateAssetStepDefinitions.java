@@ -19,8 +19,6 @@ public class AddAndUpdateAssetStepDefinitions {
   private String error;
 
   /**
-   * @author Jules Delabrousse (@JulesDelab)
-   * @author Deniz Emre (@denizemre03)
    * @param dataTable representing table of existing asset types (see
    *        ../resources/AddAndUpdateAsset.feature)
    */
@@ -36,8 +34,6 @@ public class AddAndUpdateAssetStepDefinitions {
   }
 
   /**
-   * @author Kaitlyn Pereira (@kaitlynp18)
-   * @author Deniz Emre (@denizemre03)
    * @param dataTable representing table of existing assets (see
    *        ../resources/AddAndUpdateAsset.feature)
    */
@@ -58,8 +54,6 @@ public class AddAndUpdateAssetStepDefinitions {
   }
 
   /**
-   * @author Viviane-Laura Tain (@vivianeltain)
-   * @author Deniz Emre (@denizemre03)
    * @param assetNum represents asset number to update
    * @param assetType represents asset type
    * @param purchaseDateString represents purchase date
@@ -81,8 +75,6 @@ public class AddAndUpdateAssetStepDefinitions {
   }
 
   /**
-   * @author Kaitlyn Pereira (@kaitlynp18)
-   * @author Ana Floarea (@anafloarea)
    * @param assetNum represents asset number to update
    * @param assetType represents asset type
    * @param purchaseDate represents purchase date
@@ -104,8 +96,6 @@ public class AddAndUpdateAssetStepDefinitions {
   }
 
   /**
-   * @author Kaitlyn Pereira (@kaitlynp18)
-   * @author Caroline Thom (@carolinethom02)
    * @param expectedNumOfAssets represents the expected number of assets in the system
    */
   @Then("the number of assets in the system shall be {string} \\(p9)")
@@ -116,8 +106,6 @@ public class AddAndUpdateAssetStepDefinitions {
   }
 
   /**
-   * @author Jules Delabrousse (@JulesDelab)
-   * @author Caroline Thom (@carolinethom02)
    * @param dataTable representing table of supposedly existing assets (see
    *        ../resources/AddAndUpdateAsset.feature)
    */
@@ -138,8 +126,6 @@ public class AddAndUpdateAssetStepDefinitions {
   }
 
   /**
-   * @author Ana Floarea (@anafloarea)
-   * @author Viviane-Laura Tain (@vivianeltain)
    * @param dataTable
    */
   @Then("the following asset types shall exist in the system \\(p9)")
@@ -157,8 +143,6 @@ public class AddAndUpdateAssetStepDefinitions {
   }
 
   /**
-   * @author Viviane-Laura Tain (@vivianeltain)
-   * @author Caroline Thom (@carolinethom02)
    * @param expectedError
    */
   @Then("the error {string} shall be raised \\(p9)")
@@ -168,8 +152,6 @@ public class AddAndUpdateAssetStepDefinitions {
   }
 
   /**
-   * @author Jules Delabrousse (@JulesDelab)
-   * @author Ana Floarea (@anafloarea)
    * @param assetType Asset Type of the compared asset
    * @param assetNumber Asset Number of the compared asset
    * @param purchaseDate Purchase Date of the compared asset

@@ -26,10 +26,6 @@ public class DeleteTicketImageStepDefinitions {
 
   /**
    * Sets up the system with the specified employees.
-   * 
-   * @author Yoonjung Choi
-   * @author Kyujin Chu
-   * @author Minhui Roh
    * @param dataTable DataTable representing the employees' details.
    */
   @Given("the following employees exist in the system \\(p13)")
@@ -47,10 +43,6 @@ public class DeleteTicketImageStepDefinitions {
 
    /**
    * Sets up a manager in the system with the specified details.
-   * 
-   * @author Yoonjung Choi
-   * @author Kyujin Chu
-   * @author Minhui Roh
    * @param dataTable DataTable representing the manager's details.
    */
   @Given("the following manager exists in the system \\(p13)")
@@ -70,10 +62,6 @@ public class DeleteTicketImageStepDefinitions {
 
   /**
    * Sets up the system with the specified asset types.
-   * 
-   * @author Yoonjung Choi
-   * @author Kyujin Chu
-   * @author Minhui Roh
    * @param dataTable DataTable representing the asset types' details.
    */
   @Given("the following asset types exist in the system \\(p13)")
@@ -89,10 +77,6 @@ public class DeleteTicketImageStepDefinitions {
 
   /**
    * Sets up the system with the specified assets.
-   * 
-   * @author Kyujin Chu
-   * @author Yoonjung Choi
-   * @author Minhui Roh
    * @param dataTable DataTable representing the assets' details.
    */
   @Given("the following assets exist in the system \\(p13)")
@@ -111,10 +95,6 @@ public class DeleteTicketImageStepDefinitions {
 
   /**
    * Sets up the system with the specified maintenance tickets.
-   * 
-   * @author Melissa Qian
-   * @author Minhui Roh
-   * @author Kyujin Chu
    * @param dataTable DataTable representing the tickets' details.
    */
   @Given("the following tickets exist in the system \\(p13)")
@@ -135,10 +115,6 @@ public class DeleteTicketImageStepDefinitions {
 
   /**
    * Sets up the system with the specified ticket images.
-   * 
-   * @author Melissa Qian
-   * @author Minhui Roh
-   * @author Leon Song
    * @param dataTable DataTable representing the ticket images' details.
    */
   @Given("the following ticket images exist in the system \\(p13)")
@@ -154,10 +130,6 @@ public class DeleteTicketImageStepDefinitions {
 
   /**
    * Simulates the action where a manager deletes a specific ticket image from a maintenance ticket.
-   * 
-   * @author Minhui Roh
-   * @author Joseph Ciaravella
-   * @author Jione Ban 
    * @param imageURL The URL of the image to be deleted.
    * @param ticketID The ID of the ticket from which the image will be deleted.
    */
@@ -170,10 +142,6 @@ public class DeleteTicketImageStepDefinitions {
 
   /**
    * Verifies that the total number of images in the system matches the expected count.
-   * 
-   * @author Joseph Ciaravella
-   * @author Minhui Roh
-   * @author Jione Ban
    * @param numberOfTicketImages Expected number of ticket images in the system.
    */
   @Then("the number of images in the system shall be {string} \\(p13)")
@@ -188,10 +156,6 @@ public class DeleteTicketImageStepDefinitions {
 
   /**
    * Verifies that the number of images for a given ticket matches the expected count.
-   * 
-   * @author Joseph Ciaravella
-   * @author Minhui Roh
-   * @author Jione Ban
    * @param ticketId ID of the ticket in question.
    * @param numberOfImagesOfTicket Expected number of images for the ticket.
    */
@@ -205,10 +169,6 @@ public class DeleteTicketImageStepDefinitions {
 
   /**
    * Verifies that a specific ticket does not have a given image.
-   * 
-   * @author Joseph Ciaravella
-   * @author Minhui Roh
-   * @author Jione Ban
    * @param ticketId ID of the ticket in question.
    * @param imageUrl URL of the image which the ticket should not have.
    */

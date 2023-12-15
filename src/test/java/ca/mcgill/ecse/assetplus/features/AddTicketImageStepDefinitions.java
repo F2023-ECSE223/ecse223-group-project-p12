@@ -31,8 +31,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Defines the intial employees found in the system
-   * 
-   * @author Group 5
    * @param dataTable tabular data containing email, password, name, and phone number of employees
    *        in system
    */
@@ -51,8 +49,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Defines the intial managers found in the system
-   * 
-   * @author Group 5
    * @param dataTable tabular data containing email and password of managers in system
    */
   @Given("the following manager exists in the system \\(p5)")
@@ -72,8 +68,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Defines the intial asset types found in the system
-   * 
-   * @author Group 5
    * @param dataTable tabular data containing name and expected lifespan of asset types in system
    */
   @Given("the following asset types exist in the system \\(p5)")
@@ -87,8 +81,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Defines the intial assets found in the system
-   * 
-   * @author Group 5
    * @param dataTable tabular data containing assetNumber, type, purchase date, floor number, and
    *        room number of assets in system
    */
@@ -108,8 +100,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Defines the intial tickets found in the system
-   * 
-   * @author Group 5
    * @param dataTable tabular data containing id, ticket raiser, raise date, raisedOnDate,
    *        description, and asset numberasset of tickets in system
    */
@@ -134,8 +124,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Defines the intial ticket images found in the system
-   * 
-   * @author Group 5
    * @param dataTable tabular data containing image Url and ticket Id of ticket images in system
    */
   @Given("the following ticket images exist in the system \\(p5)")
@@ -152,8 +140,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Defines the step at which a hotel staff adds an image to the system
-   * 
-   * @author Group 5
    * @param imgURL String containing image url
    * @param ticketID String containing ticket Id of ticket images
    */
@@ -166,7 +152,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Verifies the number of images in the system
-   * 
    * @param expectedNum The expected number of images in the system
    */
   @Then("the number of images in the system shall be {string} \\(p5)")
@@ -181,7 +166,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Verifies what ticket images are in the system
-   * 
    * @param dataTable contains data, in table form, of the imageURL and ticketId
    */
   @Then("the following ticket images shall exist in the system \\(p5)")
@@ -204,7 +188,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Verfies the image url of a particular MaintenanceTicket
-   * 
    * @param ticketID ticketID of particular MaintenanceTicket
    * @param expectedLength The expected img url
    */
@@ -228,7 +211,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Verifies the number of images contained inside a ticket
-   * 
    * @param ticketID ticketID of MaintenanceTicket
    * @param numOfImg The number of images that the particular ticket should have
    */
@@ -242,7 +224,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Finds the MaintenanceTicket that matches the ticketID
-   * 
    * @param maintenanceTickets An array containing MaintenanceTicket objects
    * @param ticketString The ticketID in string form
    * @return MaintenanceTicket object, if there exists a ticket that matches the string id
@@ -259,7 +240,6 @@ public class AddTicketImageStepDefinitions {
 
   /**
    * Checks if the system outputs the appropriate error message
-   * 
    * @param errorString: The error message we are looking for
    */
   @Then("the system shall raise the error {string} \\(p5)")

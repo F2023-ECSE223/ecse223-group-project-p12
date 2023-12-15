@@ -1,7 +1,6 @@
 package ca.mcgill.ecse.assetplus.javafx.fxml.controllers;
 
 import java.util.ResourceBundle;
-import ca.mcgill.ecse.assetplus.application.AssetPlusApplication;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet1Controller;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureTOController;
 import ca.mcgill.ecse.assetplus.controller.TOManager;

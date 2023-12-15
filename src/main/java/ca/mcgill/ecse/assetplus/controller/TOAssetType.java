@@ -3,7 +3,6 @@
 
 package ca.mcgill.ecse.assetplus.controller;
 import java.util.*;
-import java.sql.Date;
 
 // line 90 "../../../../../../AssetPlusTransferObjects.ump"
 public class TOAssetType

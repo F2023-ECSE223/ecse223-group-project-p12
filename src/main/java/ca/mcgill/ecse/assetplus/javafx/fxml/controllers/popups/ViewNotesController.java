@@ -2,8 +2,6 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 
 
 import java.util.ResourceBundle;
-import javax.swing.text.View;
-import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet5Controller;
 import ca.mcgill.ecse.assetplus.controller.TOMaintenanceNote;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
 import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.ViewUtils;
@@ -14,14 +12,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 
 public class ViewNotesController {

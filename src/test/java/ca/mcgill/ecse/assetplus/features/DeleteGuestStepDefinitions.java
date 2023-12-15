@@ -20,8 +20,6 @@ public class DeleteGuestStepDefinitions {
 
   /**
    * Initiates the scenario by creating a couple test Guests.
-   * 
-   * @author William Wang
    * @param guestsDataTable
    */
   @Given("the following guests exist in the system \\(p8)")
@@ -39,8 +37,6 @@ public class DeleteGuestStepDefinitions {
 
   /**
    * Initiates the scenario by creating a manager with specific email and password.
-   * 
-   * @author Krasimir Kirov
    * @param managerDataTable The Manager's email and password
    */
   @Given("the following manager exists in the system \\(p8)")
@@ -65,8 +61,6 @@ public class DeleteGuestStepDefinitions {
 
   /**
    * Using an email address, attempts to delete an employee or guest's account.
-   * 
-   * @author Michael Rafferty
    * @param guestEmail
    */
   @When("the guest attempts to delete their own account linked to the {string} \\(p8)")
@@ -78,8 +72,6 @@ public class DeleteGuestStepDefinitions {
    * Verifies that the provided email is not associated with any guest in the system. This is
    * achieved by iterating through the list of guests and ensuring the provided email does not match
    * any guest's email.
-   *
-   * @author Vlad Arama
    * @param expectedGuestEmail The email address to verify against the list of guests.
    */
   @Then("the guest account linked to {string} shall not exist in the system \\(p8)")
@@ -94,8 +86,6 @@ public class DeleteGuestStepDefinitions {
 
   /**
    * Verifies that a manager exists and that its email matches the provided email
-   * 
-   * @author Li Yang Lei
    * @param expectedManagerEmail
    */
   @Then("the manager account linked to {string} shall exist in the system \\(p8)")
@@ -109,7 +99,6 @@ public class DeleteGuestStepDefinitions {
   }
 
   /**
-   * @author Tim Pham
    * @param expectedNumberOfGuests
    */
   @Then("the number of guests in the system shall be {string} \\(p8)")

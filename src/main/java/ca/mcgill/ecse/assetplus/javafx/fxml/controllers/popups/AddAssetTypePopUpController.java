@@ -3,14 +3,11 @@ package ca.mcgill.ecse.assetplus.javafx.fxml.controllers.popups;
 import java.util.ResourceBundle;
 import ca.mcgill.ecse.assetplus.controller.AssetPlusFeatureSet2Controller;
 import ca.mcgill.ecse.assetplus.javafx.fxml.AssetPlusFXMLView;
-import ca.mcgill.ecse.assetplus.javafx.fxml.controllers.AssetTypesController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import java.util.ResourceBundle;
 
 public class AddAssetTypePopUpController {
 
