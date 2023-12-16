@@ -11,6 +11,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -58,6 +59,16 @@ public class AssetPlusFXMLView extends Application {
 
       var scene = new Scene(root);
       scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
+
+      Image icon16 = new Image("ca/mcgill/ecse/assetplus/javafx/resources/icons/icon_16.png");
+      Image icon32 = new Image("ca/mcgill/ecse/assetplus/javafx/resources/icons/icon_32.png");
+      Image icon48 = new Image("ca/mcgill/ecse/assetplus/javafx/resources/icons/icon_48.png");
+      Image icon64 = new Image("ca/mcgill/ecse/assetplus/javafx/resources/icons/icon_64.png");
+      Image icon128 = new Image("ca/mcgill/ecse/assetplus/javafx/resources/icons/icon_128.png");
+      // Set the application icon
+      primaryStage.getIcons().addAll(icon16, icon32, icon48, icon64, icon128);
+
+
       primaryStage.setScene(scene);
       primaryStage.setMinWidth(960);
       primaryStage.setMinHeight(540);
