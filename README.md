@@ -1,10 +1,9 @@
 # :hotel::heavy_plus_sign: ECSE223 AssetPlus Project: Team 12
 
-_(Edit this file as needed, then remove this sentence)._
-
 ## Project Overview
 
-_Provide a one-sentence overview of your project here._
+_P12's implementation of the Hotel Asset Manager for model-based programming._
+Engineering tools used: Class Diagrams, State Machines, Umple, Java, Gherkin, Cucumber, JUnit, JavaFX, Gradle, Git, GitHub
 
 For more information about the AssetPlus application, please consult the [wiki](../../wiki).
 
