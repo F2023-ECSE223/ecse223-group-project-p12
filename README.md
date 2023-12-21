@@ -3,6 +3,7 @@
 ## Project Overview
 
 _P12's implementation of the Hotel Asset Manager for model-based programming._
+
 Engineering tools used: Class Diagrams, State Machines, Umple, Java, Gherkin, Cucumber, JUnit, JavaFX, Gradle, Git, GitHub
 
 For more information about the AssetPlus application, please consult the [wiki](../../wiki).
