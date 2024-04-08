@@ -4,7 +4,7 @@
 
 _P12's implementation of the Hotel Asset Manager for model-based programming._
 
-[Screenshots of the application] (https://github.com/F2023-ECSE223/ecse223-group-project-p12/wiki/Iterations-4%E2%80%905). 
+[Screenshots of the application](https://github.com/F2023-ECSE223/ecse223-group-project-p12/wiki/Iterations-4%E2%80%905). 
 
 Engineering tools used: Class Diagrams, State Machines, Umple, Java, Gherkin, Cucumber, JUnit, JavaFX, Gradle, Git, GitHub
 
